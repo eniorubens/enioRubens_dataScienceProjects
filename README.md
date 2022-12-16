@@ -45,8 +45,3 @@ We'll demostrate how Python allow us to import, clean, manipulate, and visualize
 ## Contributing DSWG Members
 
 **Team Leads : [Enio Rubens](https://github.com/eniorubens)**
-
-## Contact
-* If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
-* Our slack channel is `#datasci-projectname`
-* Feel free to contact team leads with any questions or if you are interested in contributing!
