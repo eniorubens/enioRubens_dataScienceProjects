@@ -38,6 +38,7 @@ We'll demostrate how Python allow us to import, clean, manipulate, and visualize
 ## Featured Notebooks/Analysis/Deliverables
 * [A Network Analysis of Game of Thrones](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/A%20Network%20Analysis%20of%20Game%20of%20Thrones/A%20Network%20Analysis%20of%20Game%20of%20Thrones.ipynb)
 * [AB Testing with Cookie Cats](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/AB%20Testing%20with%20Cookie%20Cats/B%20Testing%20with%20Cookie%20Cats.ipynb)
+* [Classify Song Genres from Audio Data]()
 * [Comparing Cosmetics by Ingredients](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Comparing%20Cosmetics%20by%20Ingredients/Comparing%20Cosmetics%20by%20Ingredients.ipynb)
 * [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/Customer%20Lifetime%20Value.ipynb)
 
