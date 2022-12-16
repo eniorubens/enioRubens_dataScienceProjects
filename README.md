@@ -43,6 +43,6 @@ We'll demostrate how Python allow us to import, clean, manipulate, and visualize
 * [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/Customer%20Lifetime%20Value.ipynb)
 
 
-## Contributing DSWG Members
+## Contributing projects Member
 
 **Team Leads : [Enio Rubens](https://github.com/eniorubens)**
