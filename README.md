@@ -41,7 +41,7 @@ We'll demostrate how Python allow us to import, clean, manipulate, and visualize
 * [Classify Song Genres from Audio Data](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Classify%20Song%20Genres%20from%20Audio%20Data/Classify%20Song%20Genres%20from%20Audio%20Data.ipynb)
 * [Comparing Cosmetics by Ingredients](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Comparing%20Cosmetics%20by%20Ingredients/Comparing%20Cosmetics%20by%20Ingredients.ipynb)
 * [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/Customer%20Lifetime%20Value.ipynb)
-*[Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Churn%20Prediction)
+* [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Churn%20Prediction)
 
 ## Contributing projects Member
 
