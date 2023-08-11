@@ -1,5 +1,4 @@
 # Data Science Projects
-These projects are part of the [DataCamp - Data Science Curse](http://datacamp.com) 
 
 #### -- Project Status: [Active, On-Hold, Completed]
 
