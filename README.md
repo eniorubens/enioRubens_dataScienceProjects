@@ -38,6 +38,7 @@ We'll demostrate how Python allow us to import, clean, manipulate, and visualize
 ## Featured Notebooks/Analysis/Deliverables
 * [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Churn%20Prediction)
 
+
 ## Contributing projects Member
 
 **Team Leads : [Enio Rubens](https://github.com/eniorubens)**
