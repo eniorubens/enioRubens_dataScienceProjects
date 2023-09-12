@@ -37,6 +37,7 @@ We'll demostrate how Python allow us to import, clean, manipulate, and visualize
 ## Featured Notebooks/Analysis/Deliverables
 * [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Churn%20Prediction)
 * [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Lifetime%20Value)
+* Market Basket Analysis [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Market%20Basket%20Analysis) [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/An%C3%A1lise%20de%20Cesta%20de%20Compras)
 
 ## Contributing projects Member
 
