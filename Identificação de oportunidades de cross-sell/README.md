@@ -3,7 +3,7 @@
 ## Overview
 This project applies Market Basket Analysis to identify product associations in retail transactional data.
 
-The objective is to distinguish between frequently purchased items and statistically relevant associations, supporting better decision-making in cross-selling strategies.
+The main objective is to distinguish between frequently purchased items and statistically significant associations, enabling more reliable decision-making in cross-selling strategies.
 
 ---
 
@@ -30,8 +30,9 @@ This project focuses on identifying product combinations that occur more frequen
 
 ## Key Insights
 - High-frequency items do not necessarily imply strong association
-- Lift is essential to identify meaningful relationships
+- Lift is essential to identify meaningful relationships between products
 - Many frequent combinations are driven by item popularity rather than true association
+- Relevant rules emerge when combining support, confidence, and lift
 
 ---
 
@@ -52,10 +53,16 @@ This project focuses on identifying product combinations that occur more frequen
 ---
 
 ## Repository Structure
+
 ```text
 cross_sell_association_rules/
 │
-├── Identificação de oportunidades de cross-sell.ipynb
-├── dataset/Groceries_dataset.csv
-└── README.md
+├── Identificação de oportunidades de cross-sell.ipynb   # Main analysis notebook
+├── dataset/Groceries_dataset.csv                        # Input dataset
+└── README.md                                            # Project documentation
 ```
+## Conclusion
+
+This project demonstrates how association rules can be used to extract actionable insights from retail data.
+
+By combining statistical metrics such as support, confidence, and lift, it is possible to differentiate between simple item popularity and meaningful product associations, supporting more effective business decisions.
