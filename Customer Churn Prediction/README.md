@@ -106,5 +106,5 @@ The model enables:
 ---
 
 ## Author
-Ênio Rubens  
+Enio Rubens  
 Data Science & Analytics
