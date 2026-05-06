@@ -259,9 +259,13 @@ Possible future evolutions include:
 
 ---
 
-# Author
+## Nota de Desenvolvimento
 
-Enio Rubens
+Partes deste projeto foram desenvolvidas com o auxílio de ferramentas baseadas em inteligência artificial para apoio em estruturação de código, refinamento técnico, documentação e brainstorming analítico.
+
+Todas as decisões analíticas, interpretações de negócio, escolhas de modelagem, procedimentos de validação e integração final do projeto foram conduzidos e revisados pelo autor.
+
+Author : Enio Rubens
 Data Science & Analytics
 
 ```
