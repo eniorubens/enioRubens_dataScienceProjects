@@ -118,11 +118,11 @@ This model enables:
 
 ---
 
-## Nota de Desenvolvimento
+## Development Notes
 
-Partes deste projeto foram desenvolvidas com o auxílio de ferramentas baseadas em inteligência artificial para apoio em estruturação de código, refinamento técnico, documentação e brainstorming analítico.
+Parts of this project were developed with the assistance of AI-based coding and writing tools for code refinement, structuring, documentation, and analytical brainstorming.
 
-Todas as decisões analíticas, interpretações de negócio, escolhas de modelagem, procedimentos de validação e integração final do projeto foram conduzidos e revisados pelo autor.
+All analytical decisions, business interpretations, modeling choices, validation procedures, and final project integration were conducted and reviewed by the author.
 
 Author : Enio Rubens  
 Data Science & Analytics
