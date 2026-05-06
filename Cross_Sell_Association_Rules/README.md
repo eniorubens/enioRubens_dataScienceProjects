@@ -66,3 +66,12 @@ cross_sell_association_rules/
 This project demonstrates how association rules can be used to extract actionable insights from retail data.
 
 By combining statistical metrics such as support, confidence, and lift, it is possible to differentiate between simple item popularity and meaningful product associations, supporting more effective business decisions.
+
+## Development Notes
+
+Parts of this project were developed with the assistance of AI-based coding and writing tools for code refinement, structuring, documentation, and analytical brainstorming.
+
+All analytical decisions, business interpretations, modeling choices, validation procedures, and final project integration were conducted and reviewed by the author.
+
+Author : Enio Rubens
+Data Science & Analytics 
