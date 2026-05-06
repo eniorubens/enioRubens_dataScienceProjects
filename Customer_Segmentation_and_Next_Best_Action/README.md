@@ -157,9 +157,7 @@ The system then selects the action with the highest expected economic return.
 
 Core concept:
 
-```text
 Best Action = argmax(Expected Profit)
-```
 
 ---
 
@@ -263,7 +261,7 @@ Possible future evolutions include:
 
 # Author
 
-Ênio Rubens
+Enio Rubens
 Data Science & Analytics
 
 ```
