@@ -1,4 +1,4 @@
-# Marketing Campaign Optimization and Retention Analytics
+# Otimização de campanhas de marketing e análise de retenção
 
 Pipeline completa de Marketing Analytics com análise descritiva, inferencial, preditiva e prescritiva aplicada à otimização de campanhas, retenção de usuários e geração de recomendações operacionais.
 
@@ -118,18 +118,6 @@ Geração de recomendações operacionais baseadas em valor esperado e ROI.
 
 ---
 
-## Possíveis Evoluções
-
-- Uplift Modeling
-- Inferência causal
-- SHAP Explainability
-- Monitoramento de drift
-- Deploy em API
-- Integração com CRM
-- Dashboard em Streamlit ou Power BI
-
----
-
 ## Referência Acadêmica
 
 GUHA, P.; ECHAGARRUGA, C.; TIAN, E. Q.  
@@ -140,5 +128,5 @@ Applied Marketing Analytics, v. 7, n. 2, p. 144–153, 2021.
 
 ## Autor
 
-Ênio Rubens  
+Enio Rubens  
 Data Scientist | Marketing Analytics | Machine Learning | Predictive Modeling
