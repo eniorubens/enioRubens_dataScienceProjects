@@ -1,5 +1,7 @@
 # Marketing Campaign Optimization and Retention Analytics
 
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics_EN/Marketing_Campaign_Optimization_and_Retention_Analytics_EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Otimiza%C3%A7%C3%A3o_de_campanhas_de_marketing_e_an%C3%A1lise_de_reten%C3%A7%C3%A3o/Marketing%20Campaign%20Optimization%20and%20Retention%20Analytics.ipynb)
+
 Complete Marketing Analytics pipeline with descriptive, inferential, predictive, and prescriptive analysis applied to campaign optimization, user retention, and operational recommendation generation.
 
 ---
