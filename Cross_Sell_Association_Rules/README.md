@@ -1,5 +1,5 @@
 # Identifying Cross-Selling Opportunities in Retail Using Association Rules
-
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/notebooks/Cross_Sell_Association_Rules_EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/notebooks/Cross_Sell_Association_Rules_PT.ipynb)
 ## Overview
 This project applies Market Basket Analysis to identify product associations in retail transactional data.
 
