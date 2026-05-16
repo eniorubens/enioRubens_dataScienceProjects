@@ -1,6 +1,6 @@
 # Customer Churn Prediction – Production-Grade End-to-End ML Project
 
-[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Churn%20Prediction/notebooks/Customer%20Churn%20Prediction%20EN.ipynb) | [🇧🇷 Português]()
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Churn%20Prediction/notebooks/Customer%20Churn%20Prediction%20EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Churn%20Prediction/notebooks/Customer%20Churn%20Prediction%20PT_Portuguese_PT.ipynb)
 
 ## 🎯 Executive Summary
 
