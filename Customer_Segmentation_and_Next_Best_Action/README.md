@@ -1,5 +1,5 @@
 # Customer Segmentation and Next Best Action
-
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/45c9c834b1d1a922964e1d39f52f8d85c8f94e8a/Customer_Segmentation_and_Next_Best_Action/notebooks/Customer_Segmentation_and_Next_Best_Action-EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/45c9c834b1d1a922964e1d39f52f8d85c8f94e8a/Customer_Segmentation_and_Next_Best_Action/notebooks/Customer_Segmentation_and_Next_Best_Action-PT.ipynb)
 ## Overview
 
 This project develops a complete customer analytics and decision framework using transactional retail data. The objective is not only to segment customers based on purchasing behavior, but also to predict future repurchase probability, simulate marketing incentives, and recommend the most economically advantageous action for each customer profile.
