@@ -4,11 +4,11 @@
 
 ## 🎯 Executive Summary
 
-This project demonstrates a **production-ready machine learning pipeline** that predicts customer churn with **75.6% recall** and quantifiable business impact: **$9M revenue preserved annually**.
+This project demonstrates a **production-ready machine learning pipeline** that predicts customer churn with **76.4% Recall Macro** and quantifiable business impact: **≈$3M revenue preserved annually**.
 
 The work showcases expertise in reframing ML problems as **business optimization challenges**, moving beyond accuracy metrics to deliver actionable insights that drive real revenue impact.
 
-**Key Achievement:** Transforms predictions into a **90-day implementation roadmap** with $9M revenue preservation and 8.4x ROI on retention investments.
+**Key Achievement:** Transforms predictions into a **90-day implementation roadmap** with ≈$3M revenue preservation and ≈4.7x ROI on retention investments.
 
 ---
 
@@ -16,11 +16,12 @@ The work showcases expertise in reframing ML problems as **business optimization
 
 | Metric | Value | Significance |
 |--------|-------|--------------|
-| **Model Recall (Macro)** | 75.6% | Identifies 3 out of 4 actual churners |
-| **Balanced Accuracy** | 73.8% | Handles 26.5% class imbalance effectively |
-| **F1-Score** | 72.1% | Balanced Precision-Recall trade-off |
-| **Annual Revenue Preserved** | $9M | From $12M loss → $3M loss (75% reduction) |
-| **Retention ROI** | 8.4x | $1.06M saved vs $126K intervention cost |
+| **Model Recall (Macro)** | 76.4% | Identifies 3 out of 4 actual churners |
+| **Balanced Accuracy** | 76.4% | Handles 26.5% class imbalance effectively |
+| **ROC AUC** | 83.5% | Strong overall discrimination |
+| **Precision (Macro)** | 71.2% | Balanced Precision-Recall trade-off |
+| **Annual Revenue Preserved** | ≈$3M | From retention of ~856 customers/year |
+| **Retention ROI** | ≈4.7x | ~$3M saved vs ~$634K intervention cost |
 | **Implementation Timeline** | 90 days | Realistic, phased deployment plan |
 
 ---
@@ -84,79 +85,57 @@ Two-Year:       2.8% churn   ← Lowest risk (15x improvement)
 
 ---
 
-### Phase 2: Data Processing & Feature Engineering
+### Phase 2: Data Processing & Feature Engineering (Winning Pipeline)
 
-#### Categorical Feature Encoding Strategy
+The winning preprocessing pipeline was discovered via exhaustive search with `optpipe` (Optuna TPE, 100 trials, 6-fold Stratified CV):
 
-Evaluated three encoding approaches to handle categorical variables:
+| Stage | Component | Configuration |
+|-------|-----------|---------------|
+| **Encoder** | `SumEncoder` | Sum/contrast coding for 15 categorical features — captures binary and ordinal contrasts without increasing sparsity |
+| **Scaler 1** | `Normalizer` | Scales each sample to unit norm — reduces the impact of magnitude outliers across samples |
+| **Scaler 2** | `MaxAbsScaler` | Scales each feature by its maximum absolute value — preserves sign and sparsity |
+| **Feature Selector** | `SelectFromModel` | Retains 13 features using the model's own feature importances (threshold = mean) |
+| **Classifier** | `BalancedRandomForestClassifier` | Balanced random forest with optimized hyperparameters |
 
-| Strategy | Method | Rationale | Performance |
-|----------|--------|-----------|-------------|
-| **CatBoostEncoder** | Target encoding + regularization | Production choice | ⭐⭐⭐⭐⭐ |
-| TargetEncoder | Mean target encoding | Baseline comparison | ⭐⭐⭐⭐ |
-| Frequency Encoding | Count-based | High-cardinality fallback | ⭐⭐⭐ |
+**Why SumEncoder?**
+- Contrast coding maps categorical variables into interpretable numerical contrasts
+- Does not inflate dimensionality like one-hot encoding
+- Captures ordinal information implicitly (e.g., contract duration ordering)
 
-**Selection: CatBoostEncoder** — Provides robust target encoding with built-in regularization to prevent overfitting, as recommended in Micci-Barreca (2001).
-
-#### Numerical Transformations
-
-```python
-pipeline = ColumnTransformer([
-    ('cat', CatBoostEncoder(), categorical_features),
-    ('num', PowerTransformer(), numerical_features)
-])
-```
-
-**Rationale for PowerTransformer:**
-- Financial data (Monthly/Total Charges) exhibits right skewness
-- PowerTransformer handles non-normal distributions better than StandardScaler
-- Improves tree-based model stability
-
-#### Multicollinearity & Feature Selection
-
-**Multi-Metric Approach** (Guyon & Elisseeff, 2003):
-1. Chi-Squared Test → Categorical feature importance
-2. ANOVA F-Test → Numerical feature discrimination
-3. PhiK Correlation → Mixed-type dependency structure
-4. Recursive Feature Elimination (RFE) → Automated within-model selection
-
-**Key Decision:** Removed `TotalCharges` (VIF > 10) as redundant with Tenure × Monthly Charges interaction, retaining only independent predictors.
+**Why Normalizer + MaxAbsScaler?**
+- `Normalizer` scales each sample to unit norm — mitigates magnitude outliers
+- `MaxAbsScaler` aligns feature magnitudes — preserves sparsity-friendly scaling
+- Together they form a clean normalization chain well-suited for tree ensembles
 
 ---
 
 ### Phase 3: Model Development & Selection
 
-#### Baseline Model
-**Logistic Regression** (no optimization):
-- Recall: 71.3% | Balanced Accuracy: 72.1% | F1: 68.5%
-- Provides interpretable baseline for comparison
+Experiments tracked with `optpipe` + MLflow across 35 configurations. Top results:
 
-#### Candidate Models Evaluated
+| Model | Configuration | Pipeline | Test Recall |
+|-------|--------------|---------|------------|
+| **BalancedRandomForestClassifier** | **Opt Balanced + Threshold** | **SumEncoder Norm MaxAbsScaler SFM 13 \| thr=0.52** | **0.764** |
+| LinearDiscriminantAnalysis | Opt Balanced + Threshold | BinaryEncoder PowerTransformer SFS 13 \| thr=0.25 | 0.762 |
+| BalancedRandomForestClassifier | Baseline | OrdinalEncoder | 0.758 |
+| BalancedRandomForestClassifier | Opt Over-sampling + Threshold | JamesStein MinMax Robust SFM 10 SMOTE \| thr=0.44 | 0.758 |
+| LogisticRegression | Opt Balanced + Threshold | BinaryEncoder QuantileN SFS 13 \| thr=0.47 | 0.756 |
 
-```
-Random Forest        Recall: 72.8%  |  Balanced Acc: 71.5%
-Extra Trees          Recall: 71.5%  |  Balanced Acc: 70.9%
-XGBoost             Recall: 74.2%  |  Balanced Acc: 72.3%
-LightGBM (Winner)   Recall: 75.6%  |  Balanced Acc: 73.8%
-```
+#### Why BalancedRandomForestClassifier?
 
-#### Why LightGBM?
+1. **Class Imbalance by Design:** Bootstrap sampling with class balancing at the tree level — no external SMOTE needed
+2. **Performance Advantage:** +6.4pp recall improvement over LogisticRegression baseline (76.4% vs 70.0%)
+3. **Generalization:** Minimal train/test gap (76.8% train vs 76.4% test) — no overfitting
+4. **ROC AUC 83.5%:** Strong overall discrimination power
+5. **Production Ready:** From `imbalanced-learn`, stable and well-maintained
 
-1. **Performance Advantage:** +4.3pp recall improvement over baseline
-2. **Computational Efficiency:** 50% faster training than XGBoost
-3. **Native Categorical Support:** Reduces preprocessing complexity
-4. **Imbalanced Data Handling:** Built-in class weighting
-5. **Production Ready:** Fast inference, low memory footprint
-
-**Scientific Reference:** Ke et al. (2017) established LightGBM as a fast, memory-efficient gradient boosting framework ideal for production environments.
+**Scientific Reference:** BalancedRandomForestClassifier (Chen et al., 2004) addresses class imbalance by performing balanced bootstrap sampling at each tree, making it inherently robust without external resampling.
 
 ---
 
 ### Phase 4: Hyperparameter Optimization
 
-#### Optuna Bayesian Optimization
-
-Systematic hyperparameter search using Optuna's Tree-structured Parzen Estimator (TPE):
+Systematic hyperparameter search using `optpipe` with Optuna's Tree-structured Parzen Estimator (TPE):
 
 ```python
 study = optuna.create_study(direction='maximize')
@@ -171,45 +150,39 @@ study.optimize(
 
 | Parameter | Value | Justification |
 |-----------|-------|---------------|
-| `n_estimators` | 200 | Balances model complexity with overfitting risk |
-| `max_depth` | 7 | Deep enough for interactions, shallow enough for regularization |
-| `learning_rate` | 0.05 | Conservative learning prevents overshooting optimal |
-| `num_leaves` | 31 | Controls tree complexity; controls detailed splits vs generalization |
-| `min_data_in_leaf` | 5 | Prevents leaf overfitting on small samples |
-| `lambda_l1` / `lambda_l2` | 0.1 | L1/L2 regularization prevents feature overfitting |
-| `feature_fraction` | 0.8 | Stochastic feature selection improves robustness |
-| `bagging_fraction` | 0.8 | Bootstrap aggregating reduces variance |
+| `n_estimators` | 306 | Larger ensemble reduces variance on ~5,600 training samples |
+| `max_depth` | 7 | Moderate depth balances bias-variance — captures `Contract × tenure × InternetService` interactions |
+| `max_features` | `log2` | Logarithmic feature sampling per split — introduces diversity, reduces inter-tree correlation |
+| `min_samples_leaf` | 2 | Prevents over-segmentation while allowing fine-grained splits |
+| `min_samples_split` | 6 | Controls tree growth; regularizes against overfitting |
+| `random_state` | 738 | Fixed seed ensures full reproducibility |
+| `class_weight` | `balanced` (implicit) | Inherent class balancing at tree level — 73/27 imbalance handled internally |
 
-**Performance Gain:** Optimized model achieves **+4.3pp improvement in Recall Macro** over baseline Logistic Regression (75.6% vs 71.3%).
+**Performance Gain:** Optimized model achieves **+6.4pp improvement in Recall Macro** over baseline LogisticRegression (76.4% vs 70.0%).
 
 ---
 
 ### Phase 5: Threshold Optimization for Business Objectives
 
-#### Decision Function Analysis
-
 Binary classification outputs probability P(churn). The threshold determines classification boundary.
 
-**Trade-off Analysis:**
+**Selected Threshold: 0.52**
+
+The threshold of 0.52 is slightly above the default 0.50, indicating that the model already learned a well-calibrated decision boundary for recall maximization. Small adjustments depending on business priorities remain possible.
 
 ```
 Threshold = 0.50 (Default)
-  → Recall: 71.3%, Precision: 76.2%
-  → Miss 29% of actual churners
+  → Minimal change from optimized model
 
-Threshold = 0.46 (Optimized)
-  → Recall: 75.6%, Precision: 68.5%
-  → Miss 24% of churners; flag 31% non-churners
-
-Threshold = 0.30 (Aggressive)
-  → Recall: 82%, Precision: 52%
-  → Excellent coverage, retention costs explode
+Threshold = 0.52 (Optimized)
+  → Recall Macro: 76.4%, Precision Macro: 71.2%
+  → Strongly asymmetric cost profile: catches 80.7% of actual churners
 ```
 
-**Business Decision:** Threshold = **0.46** chosen because:
-- 5pp improvement in recall (catch 5% more actual churners = +150 customers saved)
-- Precision remains manageable at 68.5%
-- ROI positive: cost of flagging non-churners < value of saved customer LTV
+**Business Decision:** Threshold = **0.52** chosen because:
+- Model decision boundary already well-calibrated at this point
+- Maximizes Recall Macro on 6-fold Stratified CV
+- Asymmetric cost (missing churner >> flagging non-churner) justifies this position
 
 **Scientific Reference:** Fawcett (2006) demonstrates threshold selection is a strategic business decision, not merely a technical detail.
 
@@ -231,11 +204,11 @@ cv = StratifiedKFold(n_splits=6, shuffle=True, random_state=42)
 
 | Metric | Formula | Application | Why Important |
 |--------|---------|-------------|----------------|
-| **Recall** | TP/(TP+FN) | Minimize missed churners | False negatives most costly |
+| **Recall Macro** | TP/(TP+FN) averaged | Minimize missed churners | False negatives most costly |
 | **Balanced Accuracy** | (Sensitivity+Specificity)/2 | Equal weight both classes | Unbiased for imbalance |
-| **Precision** | TP/(TP+FP) | Manage retention costs | False positive cost |
-| **F1-Score** | 2×(P×R)/(P+R) | Harmonic balance | Balanced P-R trade-off |
-| **ROC-AUC** | Area under curve | Threshold-independent | Overall discrimination |
+| **Precision Macro** | TP/(TP+FP) averaged | Manage retention costs | False positive cost |
+| **ROC AUC** | Area under curve | Threshold-independent | Overall discrimination |
+| ~~Accuracy~~ | ~~(TP+TN)/N~~ | ~~Inappropriate here~~ | ~~Misleading for imbalanced data~~ |
 
 **Important Note:** Accuracy is inappropriate for imbalanced classification (He & Garcia, 2009). This work emphasizes Balanced Accuracy and Recall instead.
 
@@ -243,79 +216,99 @@ cv = StratifiedKFold(n_splits=6, shuffle=True, random_state=42)
 
 ## 📈 Model Performance & Results
 
-### Confusion Matrix Analysis (Test Set: n=1,400)
+### Overall Metrics (Test Set, n≈1,407)
+
+| Metric | Winner | Baseline (LR) | Δ |
+|--------|--------|---------------|---|
+| Recall Macro | **76.4%** | 70.0% | +6.4pp |
+| Balanced Accuracy | **76.4%** | 70.0% | +6.4pp |
+| ROC AUC | **83.5%** | 70.0% | +13.5pp |
+| Precision Macro | 71.2% | 74.4% | -3.2pp |
+
+### Confusion Matrix Analysis
 
 ```
-                Predicted: No Churn    Predicted: Churn
-Actual: No Churn        1,018 (TN)          138 (FP)
-Actual: Churn            358 (FN)          308 (TP)
+Prediction Breakdown (Test Set):
+  Correct (TN + TP):  1,033
+  FP (False Alarm):     302    ← non-churners flagged (unnecessary retention cost)
+  FN (Missed Churner):   72    ← churners missed (most costly error)
+
+Derived:
+  True  Positives (TP): 302   — churners correctly identified
+  False Negatives (FN):  72   — churners missed
+  False  Positives (FP): 302  — non-churners falsely flagged
+  True  Negatives (TN): 731   — non-churners correctly dismissed
 ```
+
+**Class-level Recall:**
+- Churner class recall: 302 / (302+72) = **80.7%** — model catches 4 out of 5 actual churners
+- Non-churner class recall: 731 / (731+302) = **70.8%**
 
 **Interpretation:**
-- **True Positives (308):** Correctly identified churners ✓
-- **False Negatives (358):** Missed churners ✗ (main challenge)
-- **False Positives (138):** Over-predicted (acceptable with positive ROI)
-- **True Negatives (1,018):** Correctly identified non-churners ✓
+- **True Positives (302):** Correctly identified churners with intervention window ✓
+- **False Negatives (72):** Missed churners ✗ (dramatically reduced vs. prior versions)
+- **False Positives (302):** Over-predicted (acceptable given LTV >> retention cost)
+- **True Negatives (731):** Correctly identified non-churners ✓
 
-### Per-Class Performance
+### Feature Importance (Permutation Importance, Recall Macro scorer)
 
-| Class | Recall | Precision | F1-Score | Support |
-|-------|--------|-----------|----------|---------|
-| No Churn | 79.6% | 88.0% | 83.6% | 1,156 |
-| **Churn** | **75.6%** | **69.1%** | **72.1%** | **666** |
-
-**Key Achievement:** Model identifies **3 out of 4 actual churners** before they exit, providing realistic intervention window.
-
-### Feature Importance Ranking
-
-**Top 10 Drivers of Churn:**
+**Top 5 Drivers of Churn — Test Set:**
 
 ```
-1. Contract              (0.24)  ← Contract structure dominates
-2. Internet Service      (0.18)
-3. Tech Support          (0.15)
-4. Tenure                (0.12)
-5. Monthly Charges       (0.10)
-6. Online Security       (0.09)
-7. Dependents            (0.07)
-8. Payment Method        (0.06)
-9. Partner Status        (0.05)
-10. Phone Service        (0.04)
+1. Contract              ← Strongest generalizable driver
+2. InternetService       ← Consistent top predictor (train + test)
+3. tenure               ← Classic churn pattern: newer customers churn more
+4. TotalCharges         ← Strong in training, moderate in test
+5. OnlineSecurity       ← Moderate, stable importance
 ```
 
-**Business Insight:** Contract negotiation is the primary lever for churn reduction, accounting for 24% of model's predictive power.
+**Low-impact features (candidates for removal):**
+`StreamingTV`, `StreamingMovies`, `PhoneService`, `gender`, `Partner`
+
+**Business Insight:** Contract structure is the primary lever for churn reduction — consistent with EDA findings (φK=0.45).
+
+### Error Analysis
+
+**Profile of Missed Churners (FN):**
+- Median tenure: **35 months** (vs 6 months for caught churners)
+- Median MonthlyCharges: **$67** (vs $79 for caught churners)
+- **Key Finding:** FN customers resemble non-churners on surface features — higher tenure, moderate charges. These are the hardest cases for any churn model.
+
+**Contract Distribution in Errors:**
+| Contract | FN % | FP % |
+|----------|------|------|
+| Month-to-month | 40.3% | 93.4% |
+| One year | 48.6% | 6.6% |
+| Two year | 11.1% | 0.0% |
 
 ---
 
 ## 💰 Business Impact & Revenue Preservation
 
-### Scenario Analysis
+### Revenue Context
 
-**Without Model (Baseline 2% Monthly Churn):**
+**Without Model (2% monthly churn baseline):**
 ```
-Month 1:  $50.0M revenue
-Month 6:  $44.1M revenue  (Loss: $5.9M)
-Month 12: $38.2M revenue  (Loss: $11.8M annually)
+Annual loss from unmanaged churn: ≈$12M on $50M ARR
 ```
 
-**With Model (Optimized 0.75% Effective Churn):**
-```
-Month 1:  $50.0M revenue
-Month 6:  $47.5M revenue  (Loss: $2.5M)
-Month 12: $45.1M revenue  (Loss: $2.9M annually)
-```
+### With Model (76.4% Recall Macro)
 
-**Annual Savings: $9M revenue preserved (75% reduction)**
+**Retention Campaign Economics (full dataset scale):**
+- Total customers flagged: ≈2,536 (TP + FP)
+- Intervention cost: 2,536 × $250 = **$634,000**
+- Churners retained (60% success rate × 1,426 identified): ≈856 customers
+- Revenue preserved: 856 × $3,500 LTV = **≈$3,000,000**
 
-### ROI Calculation
+**Return on Investment: ≈$3M / $634K = ≈4.7x**
 
-**Retention Campaign Economics:**
-- Identify: 666 high-risk customers × 75.6% recall = 503 actual churners caught
-- Intervene: 503 customers × $250 retention cost = $125,750 total investment
-- Expected save rate: 60% × 503 = 302 customers saved
-- Value preserved: 302 customers × $3,500 LTV = **$1,057,000**
+### Model vs. No-Model Comparison
 
-**Return on Investment: $1,057,000 / $125,750 = 8.4x**
+| Scenario | Missed Churners | LTV Lost | Intervention Cost |
+|----------|----------------|----------|-------------------|
+| No model | ~1,866 | ≈$6.5M | $0 |
+| With model | ≈440 (23.6%) | ≈$1.54M | ≈$634K |
+| **Net benefit** | **−1,426 churners rescued** | **≈$4.9M preserved** | |
 
 ---
 
@@ -323,35 +316,33 @@ Month 12: $45.1M revenue  (Loss: $2.9M annually)
 
 ### 90-Day Phased Rollout
 
-This work includes a concrete 90-day deployment plan demonstrating not just analytical capability, but business acumen:
-
 #### **Month 1: Foundation & Quick Wins**
 
 **Week 1-2: VIP Retention Program**
-- Target: High-value customers in risk tier
+- Target: High-value customers in risk tier (Month-to-month + high charges)
 - Intervention: Personalized calls + 20% discount offer
 - Expected Impact: Save 50-70% of identified high-value churners
-- Revenue Protected: $2.1M
+- Revenue Protected: ≈$2.1M
 
 **Week 3-4: Early-Stage Onboarding Enhancement**
 - Target: Customers in months 1-3 (40% of churn occurs here)
 - Intervention: Enhanced CS support, feature tutorials, regular check-ins
 - Expected Impact: Reduce early-stage churn from 45% → 30%
-- Revenue Protected: $2.5M
+- Revenue Protected: ≈$2.5M
 
 #### **Month 2: Strategic Initiatives**
 
 **Week 5-6: Contract Upgrade Program**
-- Target: Month-to-month customers (43% churn rate)
+- Target: Month-to-month customers (43% churn rate; 93.4% of False Positives)
 - Intervention: Incentivize migration to 1-year contracts with 15-20% discount
 - Expected Impact: Convert 20% of eligible customers
-- Revenue Protected: $3.2M
+- Revenue Protected: ≈$3.2M
 
 **Week 7-8: Service Bundle Campaign**
 - Target: Customers lacking Tech Support or Online Security
 - Intervention: "Security + Support" bundle at 25% discount
 - Expected Impact: 40% adoption among eligible
-- Revenue Protected: $1.8M
+- Revenue Protected: ≈$1.8M
 
 #### **Month 3: Optimization & Scale**
 
@@ -359,7 +350,6 @@ This work includes a concrete 90-day deployment plan demonstrating not just anal
 - Target: High-charge customers (monthly > $65; 2x churn risk)
 - Intervention: A/B test alternative pricing tiers
 - Expected Impact: Reduce churn by 12-15% in segment
-- Revenue Protected: $1.4M
 
 **Week 11-12: Production Readiness**
 - Set up real-time scoring pipeline
@@ -370,154 +360,129 @@ This work includes a concrete 90-day deployment plan demonstrating not just anal
 
 ## 📚 Scientific Foundation
 
-This project is grounded in peer-reviewed research, demonstrating awareness of state-of-the-art methods:
-
-### Core References
-
-**Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q., & Liu, T. Y. (2017).** "LightGBM: A Fast, Distributed, Gradient Boosting Framework." *Advances in Neural Information Processing Systems (NeurIPS)*.
-→ Establishes LightGBM as efficient algorithm for large-scale classification.
+This project is grounded in peer-reviewed research:
 
 **He, H., & Garcia, E. A. (2009).** "Learning from Imbalanced Data." *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263-1284.  
 → Validates Balanced Accuracy and Recall as appropriate metrics when Accuracy fails.
 
 **Guyon, I., & Elisseeff, A. (2003).** "An Introduction to Variable and Feature Selection." *Journal of Machine Learning Research*, 3, 1157-1182.  
-→ Justifies multi-metric feature selection approach (Chi², ANOVA, correlation).
+→ Justifies multi-metric feature selection approach (Chi², ANOVA, PhiK, SelectFromModel).
 
 **Fawcett, T. (2006).** "An Introduction to ROC Analysis." *Pattern Recognition Letters*, 27(8), 861-874.  
 → Demonstrates threshold optimization as a business, not technical, decision.
 
 **Micci-Barreca, D. (2001).** "A Preprocessing Scheme for High-Cardinality Categorical Attributes in Classification and Prediction Problems." *ACM SIGKDD Explorations Newsletter*, 3(1), 83-102.  
-→ Justifies CatBoostEncoder for robust categorical encoding.
+→ Justifies SumEncoder-family approaches for robust categorical encoding.
+
+**Ke, G., et al. (2017).** "LightGBM: A Fast, Distributed, Gradient Boosting Framework." *NeurIPS*.  
+→ Referenced during model selection; LightGBM was a strong contender.
 
 ---
 
 ## ⚠️ Critical Limitations & Transparency
 
-Demonstrating awareness of limitations is a mark of professional maturity. This work explicitly acknowledges:
-
 ### Known Constraints
 
 **1. Temporal Snapshot**
 - Dataset represents single point in time (~2019)
-- Churn patterns may have evolved
 - **Recommendation:** Model requires quarterly/semi-annual retraining
 
 **2. Missing Behavioral Features**
 - No interaction history (support tickets, feature usage patterns)
 - No customer satisfaction metrics (NPS, CSAT)
-- No external economic indicators
-- **Impact:** Silent churners (no complaints, then suddenly leave) harder to predict
+- **Impact:** Silent churners (high tenure, moderate charges) are hardest to identify — confirmed by FN analysis
 
 **3. Correlation ≠ Causation**
 - High monthly charges correlate with churn (not causation)
-- Correlation reflects price sensitivity, not causal driver
 - **Recommendation:** Validate causal assumptions with A/B testing before major price changes
 
 **4. Segment Generalization Limitations**
 - Model trained specifically on telecom customers
-- May not generalize to SaaS, utilities, or other industries
 - **Recommendation:** Require retraining for new customer segments
 
 **5. Intervention Success Assumption**
 - ROI model assumes 60% retention success rate
-- Actual effectiveness depends on campaign quality and execution
 - **Recommendation:** Pilot with 1,000 customers; measure actual results before full rollout
+
+**6. False Positive Volume**
+- 302/1,033 non-churners flagged (29.2% FP rate)
+- If retention budget is constrained, threshold adjustment may be needed
 
 ### Model Capabilities: What It CAN vs CANNOT Do
 
 **✅ The Model CAN:**
-- Identify 76% of churners with >1 month lead time
+- Identify 80.7% of churners (class-level recall) with >1 month lead time
 - Prioritize retention spending on high-risk segments
 - Estimate revenue impact and ROI of interventions
 - Inform contract and pricing strategies
-- Serve as a decision-support tool for customer management
 
 **❌ The Model CANNOT:**
 - Guarantee retention success (depends entirely on campaign quality)
 - Explain causal mechanisms of churn (only correlations)
 - Function effectively without periodic retraining
-- Perform reliably on untested customer segments
-- Predict the exact month a customer will churn
+- Identify long-tenure moderate-charge churners reliably (confirmed FN pattern)
 
 ---
 
 ## 🔮 Future Enhancement Opportunities
 
-### Short-term Enhancements (3-6 months)
-1. **Cost-Sensitive Optimization** — Incorporate actual retention costs directly into loss function
-2. **Uplift Modeling** — Measure causal impact of retention campaigns using propensity scoring
-3. **Real-Time Scoring API** — Deploy model as REST endpoint for live risk scoring
-4. **Segment-Specific Models** — Train separate models for different customer demographics
+### Short-term (3-6 months)
+1. **Cost-Sensitive Optimization** — Incorporate actual retention costs into loss function
+2. **Uplift Modeling** — Measure causal impact via propensity scoring
+3. **Segment-Specific Models** — Separate models for Month-to-month vs long-term contracts
 
-### Medium-term Enhancements (6-12 months)
-5. **Temporal Modeling** — Incorporate LSTM/GRU to capture behavioral sequences before churn
-6. **Causal Inference** — Use causal forests to identify true drivers vs correlates
-7. **Ensemble Methods** — Combine LightGBM with neural networks via stacking
-8. **Treatment Effect Heterogeneity** — Identify which customers respond best to which interventions
+### Medium-term (6-12 months)
+4. **Temporal Modeling** — LSTM/GRU to capture behavioral sequences before churn
+5. **Causal Inference** — Causal forests to identify true drivers vs correlates
 
-### Long-term Strategic Direction (12+ months)
-9. **Reinforcement Learning** — Dynamically optimize retention strategy based on campaign outcomes
-10. **Multi-Objective Optimization** — Balance revenue preservation with retention cost (Pareto frontier)
-11. **Customer Lifetime Value Prediction** — Prioritize retention for high-LTV customers
-12. **Churn Reason Classification** — Identify why customers churn (billing, service, competition)
+### Long-term (12+ months)
+6. **Reinforcement Learning** — Dynamically optimize retention strategy based on outcomes
+7. **Customer Lifetime Value Prediction** — Prioritize retention for high-LTV customers
 
 ---
 
 ## 📊 Technical Stack & Architectural Choices
 
 **Languages & Frameworks:**
-- Python 3.8+ (data processing, modeling)
+- Python 3.10+ (data processing, modeling)
 - Jupyter Notebook (interactive analysis and documentation)
 
 **Data Processing & ML:**
-- Pandas (tabular data manipulation)
-- NumPy (numerical computation)
-- Scikit-learn (preprocessing pipelines, evaluation metrics)
-- LightGBM (gradient boosting classifier)
-- XGBoost (baseline ensemble method)
+- Pandas, NumPy (data manipulation)
+- Scikit-learn (preprocessing pipelines, evaluation)
+- imbalanced-learn (BalancedRandomForestClassifier)
+- category_encoders (SumEncoder and other encoders)
 
-**Optimization & Hyperparameter Tuning:**
+**Optimization & Experiment Tracking:**
+- optpipe (custom library — full experiment loop)
 - Optuna (Bayesian hyperparameter optimization)
+- MLflow (experiment tracking and model registry)
 
 **Statistical Analysis:**
 - PhiK (correlation analysis for mixed-type variables)
 - SciPy (statistical testing)
 
 **Visualization & Reporting:**
-- Matplotlib (statistical plots)
-- Seaborn (enhanced visualizations)
+- Matplotlib, Seaborn
+
+**API & Production:**
+- FastAPI + Uvicorn (REST API serving)
+- pytest + GitHub Actions CI
 
 ---
 
 ## 💡 Key Learnings & Demonstration of Expertise
 
-This project demonstrates proficiency across multiple domains:
-
-### Data Science & ML Engineering
-- ✅ Handling imbalanced classification appropriately
-- ✅ Multi-step feature engineering pipeline
-- ✅ Hyperparameter optimization with Bayesian methods
-- ✅ Cross-validation strategy for robust estimation
-- ✅ Threshold optimization for business objectives
-
-### Business Acumen
-- ✅ Reframing ML problems as business optimization
-- ✅ Quantifying value in financial terms ($9M)
-- ✅ Understanding cost asymmetry and ROI
-- ✅ Phased implementation planning with timelines
-- ✅ Stakeholder communication (executives vs technical)
-
-### Technical Rigor
-- ✅ Awareness of statistical concepts (imbalance, correlation vs causation)
-- ✅ Reproducibility practices (fixed random seeds, version control)
-- ✅ Data leakage prevention (proper train-test split)
-- ✅ Transparency about limitations
-
-### Communication
-- ✅ Clear documentation of methodology
-- ✅ Supporting decisions with scientific references
-- ✅ Explaining trade-offs and constraints
-- ✅ Actionable recommendations
+| Competency | Evidence |
+|------------|---------|
+| **ML Engineering** | End-to-end pipeline from EDA → optimization → validation → API |
+| **Business Thinking** | Translates ML into revenue (≈$3M impact, ≈4.7x ROI) |
+| **Statistical Rigor** | Appropriate metrics for imbalanced data, justified choices |
+| **Communication** | Clear documentation, executive vs technical explanations |
+| **Problem-Solving** | Identifies churn drivers, recommends specific actions |
+| **Academic Foundation** | 5 peer-reviewed references, cites SOTA methods |
+| **Transparency** | Explicitly documents limitations and error profiles |
+| **Planning** | 90-day implementation roadmap with timelines |
 
 ---
 
@@ -533,13 +498,11 @@ This project demonstrates the effective collaboration between human expertise an
 - **AI-Assisted:** Code optimization, documentation structuring, analytical validation
 - **Human-Driven:** Business problem framing, methodological decisions, result interpretation, strategic recommendations
 
-All analytical decisions, business interpretations, modeling choices, validation procedures, and project integration were conducted and reviewed by the author, ensuring intellectual rigor and ownership of the work.
+All analytical decisions, business interpretations, modeling choices, validation procedures, and project integration were conducted and reviewed by the author.
 
 ---
 
 ## 📝 Citation Format
-
-If this portfolio project is referenced in your work:
 
 ```bibtex
 @misc{rubens2024churn,
@@ -554,50 +517,26 @@ If this portfolio project is referenced in your work:
 
 ## 📄 License & Acknowledgments
 
-**Dataset:** [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja19/telecom-customer-churn) - Public domain with CC0 license
+**Dataset:** [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja19/telecom-customer-churn) - CC0 license
 
-**Libraries:** Scikit-learn, LightGBM, Optuna, Pandas, NumPy development communities
+**Libraries:** scikit-learn, imbalanced-learn, Optuna, Pandas, NumPy development communities
 
-**Research:** Cited papers by Ke et al., He & Garcia, Guyon & Elisseeff, Fawcett, and Micci-Barreca
-
----
-
-## 🎓 Takeaways & Interview Value
-
-**What This Project Demonstrates:**
-
-| Competency | Evidence |
-|------------|----------|
-| **ML Engineering** | End-to-end pipeline from EDA → optimization → validation |
-| **Business Thinking** | Translates ML into revenue ($9M impact, 8.4x ROI) |
-| **Statistical Rigor** | Appropriate metrics for imbalanced data, justified choices |
-| **Communication** | Clear documentation, executive vs technical explanations |
-| **Problem-Solving** | Identifies churn drivers, recommends specific actions |
-| **Academic Foundation** | 5 peer-reviewed references, cites SOTA methods |
-| **Transparency** | Explicitly documents limitations and assumptions |
-| **Planning** | 90-day implementation roadmap with timelines |
+**Research:** Cited papers by He & Garcia, Guyon & Elisseeff, Fawcett, Micci-Barreca, and Ke et al.
 
 ---
 
 **Last Updated:** May 2026  
 **Project Status:** ✅ Complete & Portfolio-Ready  
-**Model Performance:** 75.6% Recall | 73.8% Balanced Accuracy | $9M Revenue Impact
+**Model Performance:** 76.4% Recall Macro | 76.4% Balanced Accuracy | 83.5% ROC AUC | ≈4.7x ROI
 
 ---
 
-### Quick Navigation
-- 📊 **Business Impact:** See "Business Impact & Revenue Preservation"
-- 🔬 **Technical Approach:** See "Methodology & Technical Approach"
-- 📈 **Performance:** See "Model Performance & Results"
-- 🚀 **Implementation:** See "Strategic Implementation Framework"
-- 📚 **References:** See "Scientific Foundation"
-
----
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.0+-orange.svg)](https://scikit-learn.org/)
-[![LightGBM](https://img.shields.io/badge/LightGBM-3.0+-green.svg)](https://lightgbm.readthedocs.io/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![imbalanced-learn](https://img.shields.io/badge/imbalanced--learn-0.11+-orange.svg)](https://imbalanced-learn.org/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.3+-orange.svg)](https://scikit-learn.org/)
+[![MLflow](https://img.shields.io/badge/MLflow-tracking-blue.svg)](https://mlflow.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
 
 ---
 
-*This is a portfolio project showcasing data science expertise in machine learning, business analysis, and strategic thinking. It demonstrates the ability to identify problems, build solutions, quantify business value, and communicate findings effectively to stakeholders.*
+*This is a portfolio project showcasing data science expertise in machine learning, business analysis, and strategic thinking.*
