@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69.5.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "churn_project"
+version = "1.0.0"
+description = "Modular churn prediction project — data, viz, features, evaluation"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.1.4",
+    "numpy>=1.26.4",
+    "matplotlib>=3.8.2",
+    "seaborn>=0.13.2",
+    "scikit-learn>=1.3.2",
+    "phik>=0.12.3",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "imbalanced-learn>=0.11.0",
+    "category_encoders>=2.6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "httpx>=0.23.0,<0.28.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["churn_project*"]
