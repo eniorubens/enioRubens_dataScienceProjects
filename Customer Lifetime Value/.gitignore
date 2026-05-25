@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Models (large files, do not version)
+models/*.nc
+models/*.json
+!models/.gitkeep
+
+# Dataset (do not version)
+dataset/*.csv
+!dataset/.gitkeep
+
+# Environments
+.env
+*.env
+cltv_env/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# PyMC / ArviZ
+*.nc
