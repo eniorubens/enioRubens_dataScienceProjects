@@ -1,5 +1,7 @@
 # Customer Lifetime Value Prediction
 
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/9f494bfca025a50df36dc980a01c647e2907709f/Customer%20Lifetime%20Value/notebooks/Customer_Lifetime_Value_EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/9f494bfca025a50df36dc980a01c647e2907709f/Customer%20Lifetime%20Value/notebooks/Customer_Lifetime_Value_PT.ipynb)
+
 > **Forward-looking revenue estimation at the individual customer level —
 > not historical averages, but probabilistic forecasts of future value.**
 
