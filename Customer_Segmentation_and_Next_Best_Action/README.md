@@ -1,4 +1,4 @@
-# Customer Segmentation & Next Best Action v2
+# Customer Segmentation & Next Best Action
 
 [🇺🇸 English](notebooks/Customer_Segmentation_and_Next_Best_Action-EN.ipynb) | [🇧🇷 Português](notebooks/Customer_Segmentation_and_Next_Best_Action-PT.ipynb)
 
@@ -60,7 +60,7 @@ Both charts are rendered in the notebook. The `search_k()` function in `src/segm
 ## Project Structure
 
 ```
-customer_segmentation_nba_v2/
+customer_segmentation_nba/
 │
 ├── src/
 │   ├── __init__.py
