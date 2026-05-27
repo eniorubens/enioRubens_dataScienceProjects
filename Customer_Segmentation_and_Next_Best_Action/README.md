@@ -2,7 +2,7 @@
 
 [🇺🇸 English](notebooks/Customer_Segmentation_and_Next_Best_Action-EN.ipynb) | [🇧🇷 Português](notebooks/Customer_Segmentation_and_Next_Best_Action-PT.ipynb)
 
-[![Tests](https://github.com/eniorubens/customer-segmentation-nba/actions/workflows/test.yml/badge.svg)](https://github.com/eniorubens/customer-segmentation-nba/actions)
+[![Tests](https://github.com/eniorubens/customer-segmentation-nba/actions/workflows/test.yml/badge.svg)](https://github.com/eniorubens/customer-segmentation-nba/tests)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
