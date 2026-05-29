@@ -21,7 +21,7 @@ A modular Python toolkit providing reusable components shared across all project
 
 ---
 
-### 2. [Customer Churn Prediction](https://github.com/eniorubens/Customer-Churn-Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/1de9a2c1294f4bd6e114eb9e510f07f16afe3a9b/customer-churn-prediction) — End-to-End ML Pipeline
+### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/customer-churn-prediction) — End-to-End ML Pipeline
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Predicts customer churn (26.5% base rate) with **76.4% Recall Macro**, translating into an estimated **$3M annual revenue preserved** at **4.7x ROI**. Reframes ML as a business optimization problem.
@@ -32,7 +32,7 @@ Predicts customer churn (26.5% base rate) with **76.4% Recall Macro**, translati
 
 ---
 
-### 3. [Customer Lifetime Value](https://github.com/eniorubens/Customer-Lifetime-Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/1de9a2c1294f4bd6e114eb9e510f07f16afe3a9b/Customer%20Lifetime%20Value) — Probabilistic BTYD Modeling
+### 3. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/Customer%20Lifetime%20Value) — Probabilistic BTYD Modeling
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Estimates expected future revenue per customer over a **180-day horizon** using probabilistic Buy-Till-You-Die models with temporal holdout validation.
@@ -43,7 +43,7 @@ Estimates expected future revenue per customer over a **180-day horizon** using 
 
 ---
 
-### 4. [Customer Segmentation & Next Best Action]([https://github.com/eniorubens/Customer_Segmentation_and_Next_Best_Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/1de9a2c1294f4bd6e114eb9e510f07f16afe3a9b/Customer_Segmentation_and_Next_Best_Action) — Prescriptive Analytics
+### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/Customer_Segmentation_and_Next_Best_Action) — Prescriptive Analytics
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 End-to-end pipeline from transactional data to actionable marketing decisions: **RFM → K-Means segmentation → Repurchase probability → Budget-constrained prescriptive optimization**, achieving **2.4x improvement in campaign ROI** vs. uniform campaigns.
@@ -54,7 +54,7 @@ End-to-end pipeline from transactional data to actionable marketing decisions: *
 
 ---
 
-### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/1de9a2c1294f4bd6e114eb9e510f07f16afe3a9b/Marketing_Campaign_Optimization_and_Retention_Analytics_EN) — Full Analytics Pipeline
+### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/Marketing_Campaign_Optimization_and_Retention_Analytics_EN) — Full Analytics Pipeline
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 A four-layer analytics pipeline — **descriptive → inferential → predictive → prescriptive** — for campaign performance analysis and user retention, with automated user classification into 6 action categories and multi-sheet Excel export.
