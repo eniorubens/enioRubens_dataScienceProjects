@@ -10,13 +10,13 @@ pipeline optimisation, threshold tuning, and metric persistence.
 ## Installation (local, editable)
 
 ```bash
-pip install -e "D:\Cursos\DataCamp\Data Scientist with Python\Projects\ds_toolkit\opt_binary_clf_pipe"
+pip install -e "path"
 ```
 
 Add to each project's `requirements.txt`:
 
 ```
-opt_binary_clf_pipe @ file:///D:/Cursos/DataCamp/Data%20Scientist%20with%20Python/Projects/ds_toolkit/opt_binary_clf_pipe
+opt_binary_clf_pipe @ file:///c:path
 ```
 
 ---
