@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=69.5.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opt_binary_clf_pipe"
+version = "1.0.0"
+description = "Reusable ML modeling library for binary classification projects"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26.4",
+    "pandas>=2.1.4",
+    "scikit-learn>=1.3.2",
+    "lightgbm>=4.1.0",
+    "xgboost>=2.0.3",
+    "catboost>=1.2.2",
+    "category-encoders>=2.6.3",
+    "feature-engine>=1.6.2",
+    "imbalanced-learn>=0.11.0",
+    "optuna>=3.5.0",
+    "tqdm>=4.66.1",
+    "joblib>=1.3.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.4",
+    "pytest-cov>=4.1.0",
+    "black>=23.11.0",
+    "flake8>=6.1.0",
+    "mypy>=1.7.1",
+    "isort>=5.12.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["opt_binary_clf_pipe*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict = false
