@@ -8,7 +8,7 @@ A portfolio of end-to-end data science projects covering the full analytics spec
 
 ## Projects
 
-### 1. [ds_toolkit]([https://github.com/eniorubens/ds_toolkit](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/871f29b92677490e01defe715740d30081c4f83f/ds_toolkit) — Reusable ML Library
+### 1. [ds_toolkit](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/871f29b92677490e01defe715740d30081c4f83f/ds_toolkit) — Reusable ML Library
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 A modular Python toolkit providing reusable components shared across all projects.
