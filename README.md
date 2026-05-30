@@ -65,6 +65,17 @@ A four-layer analytics pipeline — **descriptive → inferential → predictive
 
 ---
 
+### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/Cross_Sell_Association_Rules) — Market Basket Analysis
+![Status](https://img.shields.io/badge/status-completed-blue)
+
+Identifies genuine cross-selling opportunities in retail transactional data using Association Rules. The core insight: **high item frequency ≠ meaningful association** — whole milk and vegetables, the two most popular items, show lift of 0.77, proving popularity alone misleads. Rules are filtered by lift > 1 and Zhang's metric > 0.2 to surface statistically significant combinations.
+
+**Methods:** Apriori algorithm · Frequent itemset mining · Multi-metric evaluation (Support, Confidence, Lift, Conviction, Zhang's metric) · One-hot encoding · Transaction aggregation
+
+**Technologies:** Python · Pandas · NumPy · MLxtend · Matplotlib · Seaborn
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
@@ -76,10 +87,11 @@ A four-layer analytics pipeline — **descriptive → inferential → predictive
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
 | **Data Engineering** | Feature Pipelines, Encoding Strategies, Imbalanced Data Handling |
+| **Market Basket Analysis** | Apriori, Association Rules, Lift, Conviction, Zhang's Metric |
 
 ## Core Technologies
 
-Python · Pandas · NumPy · scikit-learn · imbalanced-learn · Optuna · MLflow · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · Jupyter
+Python · Pandas · NumPy · scikit-learn · imbalanced-learn · Optuna · MLflow · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
 
 ---
 
