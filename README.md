@@ -65,7 +65,7 @@ A four-layer analytics pipeline — **descriptive → inferential → predictive
 
 ---
 
-### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/Cross_Sell_Association_Rules) — Market Basket Analysis
+### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/67340b649f62a1ace72e7ef38dc9bca064a09998/Cross_Sell_Association_Rules) — Market Basket Analysis
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Identifies genuine cross-selling opportunities in retail transactional data using Association Rules. The core insight: **high item frequency ≠ meaningful association** — whole milk and vegetables, the two most popular items, show lift of 0.77, proving popularity alone misleads. Rules are filtered by lift > 1 and Zhang's metric > 0.2 to surface statistically significant combinations.
