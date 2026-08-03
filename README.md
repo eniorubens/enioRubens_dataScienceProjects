@@ -8,7 +8,7 @@ A portfolio of end-to-end data science projects covering the full analytics spec
 
 ## Projects
 
-### 1. [ds_toolkit](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/871f29b92677490e01defe715740d30081c4f83f/ds_toolkit) — Reusable ML Library
+### 1. [ds_toolkit](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/ds_toolkit) — Reusable ML Library
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 A modular Python toolkit providing reusable components shared across all projects.
@@ -21,7 +21,7 @@ A modular Python toolkit providing reusable components shared across all project
 
 ---
 
-### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/customer-churn-prediction) — End-to-End ML Pipeline
+### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction) — End-to-End ML Pipeline
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Predicts customer churn (26.5% base rate) with **76.4% Recall Macro**, translating into an estimated **$3M annual revenue preserved** at **4.7x ROI**. Reframes ML as a business optimization problem.
@@ -32,7 +32,7 @@ Predicts customer churn (26.5% base rate) with **76.4% Recall Macro**, translati
 
 ---
 
-### 3. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/Customer%20Lifetime%20Value) — Probabilistic BTYD Modeling
+### 3. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Lifetime%20Value) — Probabilistic BTYD Modeling
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Estimates expected future revenue per customer over a **180-day horizon** using probabilistic Buy-Till-You-Die models with temporal holdout validation.
@@ -43,7 +43,7 @@ Estimates expected future revenue per customer over a **180-day horizon** using 
 
 ---
 
-### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/Customer_Segmentation_and_Next_Best_Action) — Prescriptive Analytics
+### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action) — Prescriptive Analytics
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 End-to-end pipeline from transactional data to actionable marketing decisions: **RFM → K-Means segmentation → Repurchase probability → Budget-constrained prescriptive optimization**, achieving **2.4x improvement in campaign ROI** vs. uniform campaigns.
@@ -54,7 +54,7 @@ End-to-end pipeline from transactional data to actionable marketing decisions: *
 
 ---
 
-### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/ef4fc19f71fde9561818eeaca80024985ea8c5a4/Marketing_Campaign_Optimization_and_Retention_Analytics_EN) — Full Analytics Pipeline
+### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Campaign_Optimization_and_Retention_Analytics) — Full Analytics Pipeline
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 A four-layer analytics pipeline — **descriptive → inferential → predictive → prescriptive** — for campaign performance analysis and user retention, with automated user classification into 6 action categories and multi-sheet Excel export.
@@ -65,7 +65,7 @@ A four-layer analytics pipeline — **descriptive → inferential → predictive
 
 ---
 
-### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/67340b649f62a1ace72e7ef38dc9bca064a09998/Cross_Sell_Association_Rules) — Market Basket Analysis
+### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Cross_Sell_Association_Rules) — Market Basket Analysis
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Identifies genuine cross-selling opportunities in retail transactional data using Association Rules. The core insight: **high item frequency ≠ meaningful association** — whole milk and vegetables, the two most popular items, show lift of 0.77, proving popularity alone misleads. Rules are filtered by lift > 1 and Zhang's metric > 0.2 to surface statistically significant combinations.
@@ -79,7 +79,7 @@ Identifies genuine cross-selling opportunities in retail transactional data usin
 ### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) — Temporal Demand Forecasting
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Forecasts hourly bicycle demand under normal operating conditions using nine years of mobility and meteorological data. A sealed temporal holdout confirmed CatBoost with **MAE 1,118.1** and **R² 0.839**; adaptive conformal calibration subsequently raised 90% interval coverage from **81.0% to 90.1%** while reducing mean interval width by **25.6%**.
+Forecasts hourly bicycle demand under normal operating conditions using nine years of mobility and meteorological data. A sealed temporal holdout confirmed CatBoost with **MAE 1,118.1** and **R² 0.839**. On the development folds, adaptive conformal calibration raised 90% interval coverage from **81.0% to 90.1%** while reducing mean interval width by **25.6%**.
 
 **Methods:** Expanding meteorological-year CV · Dynamic estimator-specific preprocessing · Optuna · MLflow · CatBoost · Residual diagnostics · SHAP · Adaptive conformal inference · Operational replay
 
@@ -92,7 +92,10 @@ Forecasts hourly bicycle demand under normal operating conditions using nine yea
 | Area | Methods & Techniques |
 |------|----------------------|
 | **Supervised Learning** | Random Forest, CatBoost, Gradient Boosting, Logistic Regression, Threshold Optimization |
-| **Probabilistic Modeling** | BG/NBD, Gamma-Gamma, MCMC, MAP, Adaptive Conformal Inference |
+| **Probabilistic Modeling** | BG/NBD, Gamma-Gamma, MCMC, MAP |
+| **Time Series & Forecasting** | Expanding-Window CV, Temporal Holdout, Demand Forecasting, Residual Diagnostics |
+| **Uncertainty Quantification** | Adaptive Conformal Inference, Conditional Coverage, Winkler Score, Temporal Bootstrap |
+| **Model Explainability** | SHAP, Permutation Importance, Ablation Analysis |
 | **Unsupervised Learning** | K-Means Clustering, RFM Segmentation |
 | **Prescriptive Analytics** | Budget Optimization, Expected Profit Simulation, Next Best Action |
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
@@ -102,7 +105,7 @@ Forecasts hourly bicycle demand under normal operating conditions using nine yea
 
 ## Core Technologies
 
-Python · Pandas · NumPy · scikit-learn · imbalanced-learn · Optuna · MLflow · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
+Python · Pandas · NumPy · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
 
 ---
 
