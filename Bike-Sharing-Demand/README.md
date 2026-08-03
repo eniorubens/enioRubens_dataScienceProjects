@@ -196,9 +196,82 @@ Os próximos passos previstos são a calibração condicional por regimes, o
 congelamento conjunto do E0, da escala E4 e do estado U4b para inferência online,
 a incorporação de uma nova janela pública e a edição integral em inglês.
 
-## Dados e licenças
+## 👨‍💼 Author & Methodology Notes
 
-O código-fonte é disponibilizado sob a licença MIT; consulte [LICENSE](LICENSE).
-O dataset possui atribuição própria sob KOGL Type 1, descrita em
-[dataset/DATASET_README.md](dataset/DATASET_README.md). A licença do código não
-substitui nem amplia a licença dos dados.
+**Author:** Enio Rubens  
+**Role:** Data Science & Analytics  
+
+### Development Approach
+
+This project demonstrates the effective collaboration between human expertise
+and AI-assisted tools, including OpenAI Codex and other generative AI coding
+assistants:
+
+- **AI-Assisted:** Code review and optimization, modularization, test
+  scaffolding, documentation structuring, hypothesis exploration, and
+  analytical validation support
+- **Human-Driven:** Business problem framing, predictive objective definition,
+  methodological decisions, temporal validation design, regime-change
+  treatment, result interpretation, and strategic recommendations
+
+All AI-assisted contributions were reviewed, tested, and integrated by the
+author. The reported metrics were produced by executing the versioned notebooks
+and modules. Final responsibility for the analytical decisions, conclusions,
+and published content remains entirely with the author.
+
+---
+
+## 📝 Citation Format
+
+```bibtex
+@misc{rubens2026seoulbike,
+  author = {Rubens, Enio},
+  title = {Seoul Bike Sharing Demand: Temporal Forecasting and Conformal Uncertainty},
+  year = {2026},
+  url = {https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand},
+  note = {End-to-End Data Science Portfolio Project}
+}
+```
+
+---
+
+## 📄 License & Acknowledgments
+
+**Code:** Distributed under the [MIT License](LICENSE).
+
+**Dataset:** [Seoul Public Bike Usage](https://data.seoul.go.kr/dataList/OA-15182/F/1/datasetView.do)
+and meteorological observations from the
+[Korea Meteorological Administration](https://data.kma.go.kr), accessed through
+the [consolidated Kaggle copy](https://www.kaggle.com/datasets/lnoahl/seoul-bike-sharing-dataset).
+The source data remain subject to
+[KOGL Type 1](https://www.kogl.or.kr/info/license.do) attribution requirements;
+see [dataset/DATASET_README.md](dataset/DATASET_README.md).
+
+**Libraries:** scikit-learn, CatBoost, XGBoost, LightGBM, Optuna, MLflow,
+feature-engine, SHAP, Pandas, NumPy, SciPy, Statsmodels, Matplotlib, and Seaborn
+development communities.
+
+**Research:** Cited work by Micci-Barreca; Baak et al.; Lundberg & Lee;
+Prokhorenkova et al.; Gneiting & Raftery; Gibbs & Candès; and Barber et al.
+
+---
+
+**Last Updated:** August 2026  
+**Project Status:** ✅ Complete & Portfolio-Ready  
+**Model Performance:** MAE 1,118.1 bikes/hour | R² 0.839 | WAPE 23.1% |
+90.146% conformal coverage
+
+---
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![scikit-learn 1.3.2](https://img.shields.io/badge/scikit--learn-1.3.2-orange.svg)](https://scikit-learn.org/)
+[![CatBoost 1.2.2](https://img.shields.io/badge/CatBoost-1.2.2-yellow.svg)](https://catboost.ai/)
+[![Optuna 3.5.0](https://img.shields.io/badge/Optuna-3.5.0-blueviolet.svg)](https://optuna.org/)
+[![MLflow 2.10.0](https://img.shields.io/badge/MLflow-2.10.0-blue.svg)](https://mlflow.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+
+---
+
+*This is a portfolio project showcasing end-to-end data science expertise in
+temporal machine learning, uncertainty quantification, analytical validation,
+and operational decision support.*
