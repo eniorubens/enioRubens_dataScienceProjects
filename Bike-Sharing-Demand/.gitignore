@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# MLflow
+mlruns/
+
+# Model-selection runtime state
+optuna_studies/
+dataset/candidates_v4/
+dataset/candidates_v4_smoke/
+dataset/invalid_configs_v4.csv
+catboost_info/
+_superseded_*/
+.pytest_tmp*/
+dataset/normal_operations/
+dataset/catboost_refinement/
+
+# Models (large binaries)
+models/*.pkl.gz
+
+# Data (raw — checked in only on first setup)
+# dataset/SeoulBikeData.csv  # keep tracked
+
+# Multilang cache
+.multilang_cache/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# pytest
+.pytest_cache/
+.pytest_*/
+pytest_*/
+
+# Clean tree prepared for manual GitHub browser upload
+_github_upload/

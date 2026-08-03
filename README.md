@@ -2,7 +2,7 @@
 
 **Author:** [Enio Rubens](https://github.com/eniorubens)
 
-A portfolio of end-to-end data science projects covering the full analytics spectrum — from descriptive statistics and inferential testing to predictive modeling and prescriptive optimization. All projects are production-ready, documented in English and Portuguese, and include test suites.
+A portfolio of end-to-end data science projects covering the full analytics spectrum — from descriptive statistics and inferential testing to predictive modeling and prescriptive optimization. Projects include reproducible notebooks, modular source code and automated test suites; the language status of each edition is documented in its own README.
 
 ---
 
@@ -76,12 +76,23 @@ Identifies genuine cross-selling opportunities in retail transactional data usin
 
 ---
 
+### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) — Temporal Demand Forecasting
+![Status](https://img.shields.io/badge/status-completed-blue)
+
+Forecasts hourly bicycle demand under normal operating conditions using nine years of mobility and meteorological data. A sealed temporal holdout confirmed CatBoost with **MAE 1,118.1** and **R² 0.839**; adaptive conformal calibration subsequently raised 90% interval coverage from **81.0% to 90.1%** while reducing mean interval width by **25.6%**.
+
+**Methods:** Expanding meteorological-year CV · Dynamic estimator-specific preprocessing · Optuna · MLflow · CatBoost · Residual diagnostics · SHAP · Adaptive conformal inference · Operational replay
+
+**Technologies:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · MLflow · SHAP · pytest · Jupyter
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
 |------|----------------------|
-| **Supervised Learning** | Random Forest, Gradient Boosting, Logistic Regression, Threshold Optimization |
-| **Probabilistic Modeling** | BG/NBD, Gamma-Gamma, MCMC, MAP |
+| **Supervised Learning** | Random Forest, CatBoost, Gradient Boosting, Logistic Regression, Threshold Optimization |
+| **Probabilistic Modeling** | BG/NBD, Gamma-Gamma, MCMC, MAP, Adaptive Conformal Inference |
 | **Unsupervised Learning** | K-Means Clustering, RFM Segmentation |
 | **Prescriptive Analytics** | Budget Optimization, Expected Profit Simulation, Next Best Action |
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
@@ -95,4 +106,4 @@ Python · Pandas · NumPy · scikit-learn · imbalanced-learn · Optuna · MLflo
 
 ---
 
-*All projects include bilingual notebooks (English / Portuguese) and production-ready APIs or exports.*
+*Portuguese is the canonical language of newly developed notebooks; English editions are published as separate portfolio deliverables when completed.*
