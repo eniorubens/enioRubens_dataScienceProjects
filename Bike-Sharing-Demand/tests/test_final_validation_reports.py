@@ -10,6 +10,7 @@ schema, Portuguese display copy) and that the narrative strings are produced.
 from __future__ import annotations
 
 import gzip
+import json
 import pickle
 
 import matplotlib
@@ -27,6 +28,21 @@ from src.i18n import make_lang  # noqa: E402
 from src.temporal_optimizer import CODE_VERSION  # noqa: E402
 from src.tracking import stamp_pipeline_provenance  # noqa: E402
 from tests.test_final_validation import fit_pipeline, make_entry, make_raw  # noqa: E402
+
+
+def _figure_text(figure) -> str:
+    """Collect every user-visible Matplotlib label from one figure."""
+    values = []
+    if figure._suptitle is not None:
+        values.append(figure._suptitle.get_text())
+    for axis in figure.axes:
+        values.extend([axis.get_title(), axis.get_xlabel(), axis.get_ylabel()])
+        values.extend(label.get_text() for label in axis.get_xticklabels())
+        values.extend(label.get_text() for label in axis.get_yticklabels())
+        legend = axis.get_legend()
+        if legend is not None:
+            values.extend(label.get_text() for label in legend.get_texts())
+    return "\n".join(value for value in values if value)
 
 
 @pytest.fixture(scope="module")
@@ -91,7 +107,11 @@ def results(tmp_path_factory):
         post_holdout_end=None,
         environment={},
     )
-    config = fv.FinalValidationConfig(log_to_mlflow=False, shap_max_sample=120)
+    config = fv.FinalValidationConfig(
+        runtime_root=directory / "runtime",
+        log_to_mlflow=False,
+        shap_max_sample=120,
+    )
     evaluations = [fv.evaluate_candidate(c, data, config.error_quantiles) for c in candidates]
     comparison = fv.comparison_frame(evaluations)
     confirmation = fv.decide_confirmation(evaluations)
@@ -109,7 +129,12 @@ def results(tmp_path_factory):
         segmented=segmented,
         predictions=fv._predictions_frame(data, evaluations),
         manifest_fingerprint=fv.manifest_fingerprint(manifest),
-        final_manifest_path=directory / "final.json",
+        final_manifest_path=config.final_manifest_path,
+    )
+    config.final_manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    config.final_manifest_path.write_text(
+        json.dumps({"holdout_fingerprint": data.holdout_fingerprint}),
+        encoding="utf-8",
     )
     shap_results = fv.run_shap_validation(result, config)
     return result, plan, shap_results
@@ -118,6 +143,11 @@ def results(tmp_path_factory):
 @pytest.fixture(scope="module")
 def lang():
     return make_lang("pt")
+
+
+@pytest.fixture(scope="module")
+def lang_en():
+    return make_lang("en")
 
 
 class TestReportTables:
@@ -151,6 +181,121 @@ class TestReportTables:
         for table in tables:
             assert isinstance(table, pd.DataFrame)
             assert not table.empty
+
+    def test_offline_english_catalog_covers_the_notebook_reports(self, results, lang_en):
+        result, plan, shap_results = results
+        tables = [
+            reports.protocol_report(result.config, lang=lang_en),
+            reports.provenance_report(plan, lang=lang_en),
+            reports.candidates_report(plan, lang=lang_en),
+            reports.holdout_seal_report(result, lang=lang_en),
+            reports.metrics_report(result, lang=lang_en),
+            reports.comparison_report(result, lang=lang_en),
+            reports.confirmation_report(result, lang=lang_en),
+            reports.residual_diagnostics_report(result, lang=lang_en),
+            reports.heteroscedasticity_report(result, lang=lang_en),
+            reports.residual_triage_report(result, lang=lang_en),
+            reports.residual_profile_report(result, "month", lang=lang_en),
+            reports.residual_profile_report(result, "hour", lang=lang_en),
+            reports.residual_profile_report(result, "season", lang=lang_en),
+            reports.residual_profile_report(result, "predicted_demand_decile", lang=lang_en),
+            reports.residual_transformation_report(result, lang=lang_en),
+            reports.condition_metrics_report(result, "season", lang=lang_en),
+            reports.shap_methodology_report(lang=lang_en),
+            reports.shap_additivity_report(shap_results, lang=lang_en),
+            reports.shap_grouped_report(shap_results, lang=lang_en),
+            reports.shap_detailed_report(shap_results, lang=lang_en),
+            reports.shap_feature_comparison_report(shap_results, lang=lang_en),
+            reports.artifacts_report(result, lang=lang_en),
+            reports.synthesis_report(result, lang=lang_en),
+        ]
+        figures = [
+            reports.plot_comparison(result, lang=lang_en),
+            reports.plot_temporal_residuals(result, lang=lang_en),
+            reports.plot_residual_structure(result, lang=lang_en),
+            reports.plot_residual_triage(result, lang=lang_en),
+            reports.plot_residual_transformation_acf(result, lang=lang_en),
+            reports.plot_condition_metrics(result, lang=lang_en),
+            reports.plot_shap_summary(shap_results, lang=lang_en),
+            reports.plot_shap_local(result, shap_results, lang=lang_en),
+        ]
+
+        assert all(not table.empty for table in tables)
+        messages = [
+            reports.confirmation_message(result, lang=lang_en),
+            reports.residual_handoff_message(result, lang=lang_en),
+            reports.handoff_message(result, lang=lang_en),
+        ]
+        assert all(messages)
+
+        visible = "\n".join(
+            [
+                *(table.to_string() for table in tables),
+                *(_figure_text(fig) for fig in figures),
+                *messages,
+            ]
+        )
+        forbidden_portuguese = (
+            "Comparação",
+            "bicicletas",
+            "Resíduo",
+            "Resíduos",
+            "Média",
+            "Previsto",
+            "Observado",
+            "Janela",
+            "Estrutura",
+            "Distribuição",
+            "Quantis",
+            "Autocorrelação",
+            "Defasagem",
+            "Previsão",
+            "Triagem",
+            "Erro ",
+            "Hora",
+            "Dia da semana",
+            "Persistência",
+            "condição",
+            "Faixa",
+            "Quintil",
+            "Segunda",
+            "Terça",
+            "Quarta",
+            "Quinta",
+            "Sexta",
+            "Sábado",
+            "Domingo",
+            "Inverno",
+            "Primavera",
+            "Verão",
+            "Outono",
+            "Decisão",
+            "Observações",
+            "Validação",
+            "validação",
+            "Não ",
+            " não ",
+        )
+        leaked = {
+            token: [line for line in visible.splitlines() if token in line]
+            for token in forbidden_portuguese
+            if token in visible
+        }
+        assert not leaked, f"Portuguese leaked into EN reports/figures: {leaked}"
+
+        expected_titles = {
+            "Temporal holdout comparison",
+            "Champion temporal residuals",
+            "Champion residual structure",
+            "Champion residual screening on the holdout",
+            "Residual persistence before and after diagnostic transformations",
+            "Champion MAE by operating condition",
+            "SHAP importance by candidate",
+            "Local Champion explanations (contributions to the logarithmic residual)",
+        }
+        assert expected_titles.issubset(set(visible.splitlines()))
+        for figure in figures:
+            plt.close(figure)
 
     def test_display_copy_is_localized_while_internal_schema_stays_english(self, results, lang):
         result, _, _ = results

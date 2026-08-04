@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import matplotlib.figure
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pytest
@@ -30,6 +31,86 @@ def _config(**overrides):
     )
     values = {**base.__dict__, **overrides}
     return conformal.ConformalUncertaintyConfig(**values)
+
+
+def _write_replay_fixture(tmp_path: Path):
+    config = _config(run_mode="full", runtime_root=tmp_path)
+    audit = pd.DataFrame(
+        [
+            {
+                "artifact": "source_predictions",
+                "path": "source.csv",
+                "bytes": 10,
+                "sha256": "a" * 64,
+            }
+        ]
+    )
+    for filename in conformal._RESULT_TABLE_FILES.values():
+        pd.DataFrame({"value": [1.0]}).to_csv(tmp_path / filename, index=False)
+    pd.DataFrame(
+        [
+            conformal.ConformalMethodSpec(
+                candidate_id="U0",
+                method_id="U0",
+                label="Baseline",
+                calibration_window="expanding",
+                nonconformity="absolute_residual",
+                adaptive_alpha=False,
+                uses_e4_scale=False,
+                status="executed",
+            ).__dict__
+        ]
+    ).to_csv(tmp_path / "method_specs.csv", index=False)
+    manifest = {
+        "code_version": conformal.CONFORMAL_CODE_VERSION,
+        "config": json.loads(json.dumps(config.__dict__, default=str)),
+        "input_hashes": audit.to_dict(orient="records"),
+        "methods": [
+            conformal.ConformalMethodSpec(
+                candidate_id="U0",
+                method_id="U0",
+                label="Baseline",
+                calibration_window="expanding",
+                nonconformity="absolute_residual",
+                adaptive_alpha=False,
+                uses_e4_scale=False,
+                status="executed",
+            ).__dict__
+        ],
+    }
+    (tmp_path / "conformal_uncertainty_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
+    return config, audit
+
+
+def test_conformal_results_replay_without_recalibration(tmp_path, monkeypatch):
+    config, audit = _write_replay_fixture(tmp_path)
+    monkeypatch.setattr(conformal, "require_environment", lambda: None)
+    monkeypatch.setattr(conformal, "load_source_manifest", lambda path: {"run_mode": "full"})
+    monkeypatch.setattr(conformal, "validate_source_manifest", lambda config, manifest: None)
+    monkeypatch.setattr(conformal, "source_artifact_hashes", lambda config, manifest: audit)
+
+    replay = conformal.load_conformal_calibration_results(config)
+
+    assert replay.specs[0].candidate_id == "U0"
+    assert replay.predictions["value"].tolist() == [1.0]
+    assert replay.manifest_path.name == "conformal_uncertainty_manifest.json"
+
+
+def test_conformal_results_replay_fails_closed_on_code_drift(tmp_path, monkeypatch):
+    config, audit = _write_replay_fixture(tmp_path)
+    manifest_path = tmp_path / "conformal_uncertainty_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["code_version"] = "stale"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    monkeypatch.setattr(conformal, "require_environment", lambda: None)
+    monkeypatch.setattr(conformal, "load_source_manifest", lambda path: {"run_mode": "full"})
+    monkeypatch.setattr(conformal, "validate_source_manifest", lambda config, manifest: None)
+    monkeypatch.setattr(conformal, "source_artifact_hashes", lambda config, manifest: audit)
+
+    with pytest.raises(ValueError, match="code_version"):
+        conformal.load_conformal_calibration_results(config)
 
 
 def _fold_frame(
@@ -434,10 +515,85 @@ def test_all_plots_return_figures_without_mutating(factory):
     pd.testing.assert_frame_equal(results.predictions, before)
 
 
+def _figure_text(figure) -> str:
+    text = [item.get_text() for item in figure.texts]
+    for axis in figure.axes:
+        text.extend(
+            [
+                axis.get_title(),
+                axis.get_xlabel(),
+                axis.get_ylabel(),
+                *(item.get_text() for item in axis.get_xticklabels()),
+                *(item.get_text() for item in axis.get_yticklabels()),
+            ]
+        )
+        legend = axis.get_legend()
+        if legend is not None:
+            text.extend(item.get_text() for item in legend.get_texts())
+    return "\n".join(filter(None, text))
+
+
+def test_offline_english_catalog_covers_conformal_figures():
+    results = _report_results()
+    factories = (
+        reports.plot_coverage_calibration,
+        reports.plot_fold_coverage_heatmap,
+        reports.plot_coverage_width_pareto,
+        reports.plot_scale_diagnostics,
+        reports.plot_rolling_coverage,
+        reports.plot_aci_alpha_trajectory,
+        reports.plot_segment_coverage,
+        reports.plot_representative_interval_windows,
+    )
+    figures = [factory(results, lang="en") for factory in factories]
+    rendered = "\n".join(_figure_text(figure) for figure in figures)
+    try:
+        for token in (
+            "Cobertura",
+            "Erro de cobertura",
+            "Fronteira",
+            "Decil da escala",
+            "Trajetória",
+            "regime operacional",
+            "Semana representativa",
+        ):
+            assert token not in rendered
+        for title in (
+            "Nominal versus observed coverage",
+            "Coverage error by candidate and normal-operation fold",
+            "Calibration-width frontier",
+            "E0 error by decile of the E4 predicted scale",
+            "Prequential adaptive-alpha trajectory",
+            "Coverage by operating regime",
+            "Representative week in the most recent normal-operation fold",
+        ):
+            assert title in rendered
+    finally:
+        for figure in figures:
+            plt.close(figure)
+
+
 def test_decision_message_never_claims_point_successor():
     message = reports.synthesis_report(_report_results(), lang="pt")
     assert "Champion pontual E0 foi preservado" in message
     assert "nenhum sucessor pontual" in message.lower()
+
+
+def test_english_synthesis_composes_stable_templates_without_language_mixing():
+    results = _report_results()
+    results.config.run_mode = "full"
+    results.decision_table.loc[:, "coverage_gate"] = False
+    winner = results.decision_table.index[0]
+    results.decision_table.loc[winner, "coverage_gate"] = True
+    results.decision_table.loc[winner, "experimental_rank"] = 1
+
+    message = reports.synthesis_report(results, lang="en")
+
+    assert "The full execution covered every declared fold." in message
+    assert "Point Champion E0 was preserved" in message
+    assert "most defensible experimental calibrator" in message
+    for token in ("execução", "cobertura", "largura média", "holdout selado", "reajustado"):
+        assert token not in message
 
 
 @pytest.mark.parametrize(

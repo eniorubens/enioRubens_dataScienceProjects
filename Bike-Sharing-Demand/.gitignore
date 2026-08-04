@@ -29,6 +29,16 @@ _superseded_*/
 dataset/normal_operations/
 dataset/catboost_refinement/
 
+# Lightweight, model-free report replay for published notebook 04
+!dataset/normal_operations/
+dataset/normal_operations/*
+!dataset/normal_operations/candidates_v4/
+dataset/normal_operations/candidates_v4/*
+!dataset/normal_operations/candidates_v4/model_selection_results_snapshot.json
+!dataset/normal_operations/final_validation_v4/
+dataset/normal_operations/final_validation_v4/*
+!dataset/normal_operations/final_validation_v4/shap_explanations_v1.npz
+
 # Models (large binaries)
 models/*.pkl.gz
 
@@ -58,3 +68,6 @@ pytest_*/
 
 # Clean tree prepared for manual GitHub browser upload
 _github_upload/
+
+# Temporary cell bundles used during notebook translation review
+_translation_work/

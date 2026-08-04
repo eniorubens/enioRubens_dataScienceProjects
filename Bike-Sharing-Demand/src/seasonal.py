@@ -432,22 +432,24 @@ def plot_seasonal_shape_by_met_year(
 ) -> Tuple[plt.Figure, plt.Axes]:
     """Overlay each meteorological year's seasonal index profile (Dec→Nov)."""
     lang = _resolve_lang(lang)
+    month_labels = lang(
+        {
+            "dec": "Dez",
+            "jan": "Jan",
+            "feb": "Fev",
+            "mar": "Mar",
+            "apr": "Abr",
+            "may": "Mai",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Ago",
+            "sep": "Set",
+            "oct": "Out",
+            "nov": "Nov",
+        }
+    )
     labels = lang(
         {
-            "months": [
-                "Dez",
-                "Jan",
-                "Fev",
-                "Mar",
-                "Abr",
-                "Mai",
-                "Jun",
-                "Jul",
-                "Ago",
-                "Set",
-                "Out",
-                "Nov",
-            ],
             "title": "Forma sazonal do índice de demanda por ano meteorológico (Dez→Nov)",
             "ylabel": "índice médio",
             "xlabel": "mês (ordem meteorológica)",
@@ -471,7 +473,7 @@ def plot_seasonal_shape_by_met_year(
                 markersize=2,
             )
     ax.set_xticks(range(len(met_order)))
-    ax.set_xticklabels(labels["months"])
+    ax.set_xticklabels(list(month_labels.values()))
     ax.axhline(1.0, ls="--", color="gray", lw=2)
     ax.axvspan(-0.3, 2.3, color="steelblue", alpha=0.06)  # winter block
     ax.set(title=labels["title"], ylabel=labels["ylabel"], xlabel=labels["xlabel"])

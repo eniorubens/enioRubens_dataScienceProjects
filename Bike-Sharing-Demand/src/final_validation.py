@@ -139,6 +139,8 @@ DEFAULT_RUNTIME_ROOT = _PROJECT_ROOT / "dataset" / "normal_operations" / "final_
 DEFAULT_TRACKING_URI = f"file:{_PROJECT_ROOT / 'mlruns'}"
 
 FINAL_MANIFEST_NAME = "final_validation_manifest.json"
+SHAP_SNAPSHOT_NAME = "shap_explanations_v1.npz"
+SHAP_SNAPSHOT_SCHEMA_VERSION = 1
 
 # The manifest keys whose values are a fixed contract for a definitive
 # notebook-05 run. Data-derived fingerprints are confronted separately, against
@@ -250,6 +252,11 @@ class FinalValidationConfig:
     def final_manifest_path(self) -> Path:
         """Location of the complete final manifest, written last on success."""
         return Path(self.runtime_root) / FINAL_MANIFEST_NAME
+
+    @property
+    def shap_snapshot_path(self) -> Path:
+        """Location of the replayable SHAP explanation snapshot."""
+        return Path(self.runtime_root) / SHAP_SNAPSHOT_NAME
 
 
 # ---------------------------------------------------------------------------
@@ -2683,6 +2690,190 @@ def _results_from_cache(
     )
 
 
+def _shap_snapshot_contract(
+    results: FinalValidationResults,
+    config: FinalValidationConfig,
+) -> Dict[str, Any]:
+    """Build the provenance contract required for a replayable SHAP snapshot."""
+    final_manifest = json.loads(Path(results.final_manifest_path).read_text(encoding="utf-8"))
+    return {
+        "schema_version": SHAP_SNAPSHOT_SCHEMA_VERSION,
+        "final_validation_code_version": FINAL_VALIDATION_CODE_VERSION,
+        "candidate_manifest_fingerprint": results.manifest_fingerprint,
+        "holdout_fingerprint": final_manifest["holdout_fingerprint"],
+        "shap": {
+            "max_sample": int(config.shap_max_sample),
+            "random_state": int(config.shap_random_state),
+            "rtol": float(config.shap_rtol),
+            "atol": float(config.shap_atol),
+        },
+        "candidates": [
+            {
+                "role": candidate.role,
+                "run_id": candidate.run_id,
+                "estimator": candidate.estimator,
+            }
+            for candidate in results.candidates
+        ],
+    }
+
+
+def persist_shap_validation_snapshot(
+    results: FinalValidationResults,
+    explanations: Sequence[ShapCandidateExplanation],
+    config: Optional[FinalValidationConfig] = None,
+) -> Path:
+    """Persist SHAP arrays and provenance for deterministic, holdout-free replay.
+
+    NumPy arrays are stored in a compressed archive without pickle payloads.
+    Importance tables are deliberately reconstructed from the SHAP matrix on
+    load, preventing a stale table from diverging from the stored attributions.
+    """
+    config = config or results.config
+    explanations = list(explanations)
+    expected = [
+        (candidate.role, candidate.run_id, candidate.estimator) for candidate in results.candidates
+    ]
+    actual = [(item.role, item.run_id, item.estimator) for item in explanations]
+    if actual != expected:
+        raise ValueError("SHAP explanations do not match the frozen candidate order and identity.")
+
+    contract = _shap_snapshot_contract(results, config)
+    contract["explanations"] = []
+    arrays: Dict[str, np.ndarray] = {}
+    for index, explanation in enumerate(explanations):
+        prefix = f"candidate_{index}"
+        sample_positions = np.asarray(explanation.sample_positions, dtype=np.int64)
+        shap_values = np.asarray(explanation.shap_values, dtype=float)
+        matrix = np.asarray(explanation.matrix, dtype=float)
+        if shap_values.ndim != 2 or matrix.shape != shap_values.shape:
+            raise ValueError(
+                f"Invalid SHAP snapshot shape for {explanation.estimator}: "
+                f"values={shap_values.shape}, matrix={matrix.shape}."
+            )
+        if sample_positions.shape != (shap_values.shape[0],):
+            raise ValueError(
+                f"Invalid SHAP sample positions for {explanation.estimator}: "
+                f"{sample_positions.shape} for {shap_values.shape[0]} rows."
+            )
+        if (
+            len(explanation.feature_names) != shap_values.shape[1]
+            or len(explanation.feature_sources) != shap_values.shape[1]
+        ):
+            raise ValueError(f"SHAP feature metadata width does not match {explanation.estimator}.")
+
+        arrays[f"{prefix}_sample_positions"] = sample_positions
+        arrays[f"{prefix}_shap_values"] = shap_values
+        arrays[f"{prefix}_matrix"] = matrix
+        contract["explanations"].append(
+            {
+                "role": explanation.role,
+                "run_id": explanation.run_id,
+                "estimator": explanation.estimator,
+                "feature_names": list(explanation.feature_names),
+                "feature_sources": list(explanation.feature_sources),
+                "expected_value": float(explanation.expected_value),
+                "additivity_max_error": float(explanation.additivity_max_error),
+                "reconstruction_max_error": float(explanation.reconstruction_max_error),
+                "local_examples": dict(explanation.local_examples),
+            }
+        )
+
+    arrays["metadata_json"] = np.asarray(json.dumps(contract, ensure_ascii=False, sort_keys=True))
+    path = Path(config.shap_snapshot_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f"{path.stem}.tmp{path.suffix}")
+    np.savez_compressed(temporary, **arrays)
+    temporary.replace(path)
+    return path
+
+
+def load_shap_validation(
+    results: FinalValidationResults,
+    config: Optional[FinalValidationConfig] = None,
+) -> List[ShapCandidateExplanation]:
+    """Restore persisted SHAP explanations without reopening the holdout.
+
+    The archive is accepted only when its holdout, candidate identities and SHAP
+    configuration match the final-validation result currently being reported.
+    """
+    config = config or results.config
+    path = Path(config.shap_snapshot_path)
+    if not path.exists():
+        raise FileNotFoundError(
+            f"SHAP replay snapshot not found at {path}. The holdout will not be "
+            "reopened implicitly. Use recompute_shap_validation(...) once, under "
+            "explicit authorization, to create the snapshot."
+        )
+
+    with np.load(path, allow_pickle=False) as archive:
+        metadata = json.loads(str(archive["metadata_json"].item()))
+        expected_contract = _shap_snapshot_contract(results, config)
+        mismatches = [
+            key
+            for key in (
+                "schema_version",
+                "final_validation_code_version",
+                "candidate_manifest_fingerprint",
+                "holdout_fingerprint",
+                "shap",
+                "candidates",
+            )
+            if metadata.get(key) != expected_contract.get(key)
+        ]
+        if mismatches:
+            raise ValueError(
+                "The SHAP replay snapshot is incompatible with the current final "
+                f"validation contract: {', '.join(mismatches)}."
+            )
+
+        explanation_metadata = metadata.get("explanations", [])
+        if len(explanation_metadata) != len(results.candidates):
+            raise ValueError("The SHAP replay snapshot has an unexpected candidate count.")
+
+        explanations: List[ShapCandidateExplanation] = []
+        for index, item in enumerate(explanation_metadata):
+            prefix = f"candidate_{index}"
+            sample_positions = np.asarray(archive[f"{prefix}_sample_positions"], dtype=int)
+            shap_values = np.asarray(archive[f"{prefix}_shap_values"], dtype=float)
+            matrix = np.asarray(archive[f"{prefix}_matrix"], dtype=float)
+            feature_names = list(item["feature_names"])
+            feature_sources = list(item["feature_sources"])
+            if shap_values.ndim != 2 or matrix.shape != shap_values.shape:
+                raise ValueError(f"Corrupt SHAP arrays for {item['estimator']}.")
+            if sample_positions.shape != (shap_values.shape[0],):
+                raise ValueError(f"Corrupt SHAP sample positions for {item['estimator']}.")
+            if (
+                len(feature_names) != shap_values.shape[1]
+                or len(feature_sources) != shap_values.shape[1]
+            ):
+                raise ValueError(f"Corrupt SHAP feature metadata for {item['estimator']}.")
+
+            explanations.append(
+                ShapCandidateExplanation(
+                    role=item["role"],
+                    run_id=item["run_id"],
+                    estimator=item["estimator"],
+                    sample_positions=sample_positions,
+                    feature_names=feature_names,
+                    feature_sources=feature_sources,
+                    shap_values=shap_values,
+                    expected_value=float(item["expected_value"]),
+                    matrix=matrix,
+                    detailed_importance=_detailed_importance(shap_values, feature_names),
+                    grouped_importance=_grouped_importance(shap_values, feature_sources),
+                    additivity_max_error=float(item["additivity_max_error"]),
+                    reconstruction_max_error=float(item["reconstruction_max_error"]),
+                    local_examples={
+                        key: int(value) for key, value in item.get("local_examples", {}).items()
+                    },
+                )
+            )
+
+    results.shap = explanations
+    return explanations
+
+
 # ---------------------------------------------------------------------------
 # MLflow logging (dedicated final-validation experiment)
 # ---------------------------------------------------------------------------
@@ -2878,19 +3069,32 @@ def run_shap_validation(
     results: FinalValidationResults,
     config: Optional[FinalValidationConfig] = None,
 ) -> List[ShapCandidateExplanation]:
-    """Explain the three residual models on one shared, deterministic holdout sample.
+    """Load SHAP replay data, or compute it from an already-resident holdout.
 
-    The holdout data already opened by :func:`run_final_validation` is reused; if
-    the results were loaded from cache the holdout is materialised once here. The
-    same sample rows explain all three candidates, and the additivity and
-    trend+residual reconstruction identities are asserted for each. Local
-    explanations of a median, a worst under- and a worst over-estimation are
-    attached to the champion; when the champion is not confirmed they are also
-    attached to the candidate that performed best on the holdout, so a
-    comparative local explanation is available for it too.
+    A compatible snapshot is always preferred. If the final validation was just
+    performed and its holdout is still resident in ``results.data``, explanations
+    may be computed and persisted. Cached final results never cause the holdout
+    to be reopened implicitly; use :func:`recompute_shap_validation` explicitly
+    for the one-time migration of an older run that predates SHAP snapshots.
     """
     config = config or results.config
-    data = results.data or materialize_final_holdout(config)
+    if Path(config.shap_snapshot_path).exists():
+        return load_shap_validation(results, config)
+    if results.data is None:
+        raise FileNotFoundError(
+            f"SHAP replay snapshot not found at {config.shap_snapshot_path}. "
+            "Cached final-validation results will not reopen the holdout implicitly. "
+            "Use recompute_shap_validation(...) once under explicit authorization."
+        )
+    return _compute_shap_validation(results, results.data, config)
+
+
+def _compute_shap_validation(
+    results: FinalValidationResults,
+    data: FinalEvaluationData,
+    config: FinalValidationConfig,
+) -> List[ShapCandidateExplanation]:
+    """Compute, validate and persist the shared SHAP explanation sample."""
     engineered = engineered_holdout_frame(
         next(c for c in results.candidates if c.is_champion), data.X_holdout
     )
@@ -2922,4 +3126,21 @@ def run_shap_validation(
         for candidate in results.candidates
     ]
     results.shap = explanations
+    persist_shap_validation_snapshot(results, explanations, config)
     return explanations
+
+
+def recompute_shap_validation(
+    results: FinalValidationResults,
+    config: Optional[FinalValidationConfig] = None,
+) -> List[ShapCandidateExplanation]:
+    """Explicitly rematerialize holdout features and rebuild the SHAP snapshot.
+
+    This migration entry point is intentionally separate from normal notebook
+    replay. It does not refit models or produce new final-performance metrics,
+    but it does reopen holdout features and invoke the frozen models for SHAP
+    reconstruction checks; callers must therefore opt into it explicitly.
+    """
+    config = config or results.config
+    data = results.data or materialize_final_holdout(config)
+    return _compute_shap_validation(results, data, config)

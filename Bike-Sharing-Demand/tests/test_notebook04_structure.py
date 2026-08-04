@@ -16,7 +16,10 @@ from pathlib import Path
 import pytest
 
 NOTEBOOK_PATH = (
-    Path(__file__).resolve().parent.parent / "notebooks" / "04_Seoul_Bike_Model_Selection.ipynb"
+    Path(__file__).resolve().parent.parent
+    / "notebooks"
+    / "pt-BR"
+    / "04_Seoul_Bike_Model_Selection.ipynb"
 )
 
 # Everything that belongs in src/, not in a cell.
@@ -100,8 +103,12 @@ class TestOrchestrationSurface:
             "prepare_development_data(",
             "sample_dynamic_pipeline(",
             "run_model_selection(",
+            "load_model_selection_results(",
         ):
             assert symbol in code_source
+
+    def test_published_execution_replays_without_retraining_by_default(self, code_source):
+        assert "RETRAIN_MODELS = False" in code_source
 
     def test_uses_the_reports_layer_for_every_display(self, code_source):
         for report in (

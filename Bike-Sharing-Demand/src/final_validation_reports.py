@@ -101,25 +101,35 @@ def _candidate_color(index: int, role: str) -> str:
     return _CHALLENGER_COLORS[index % len(_CHALLENGER_COLORS)]
 
 
-def _format_p_value(value: Any) -> Any:
+def _format_p_value(value: Any, lang=None) -> Any:
     """Display p-values without turning numerical underflow into a literal zero."""
     if pd.isna(value):
         return value
     number = float(value)
     if number == 0.0:
-        return "abaixo da precisão numérica"
+        if lang is None:
+            return "abaixo da precisão numérica"
+        return lang({"underflow": "abaixo da precisão numérica"})["underflow"]
     if abs(number) < 0.001:
         return f"{number:.2e}"
     return round(number, 6)
 
 
-def _format_p_value_columns(frame: pd.DataFrame) -> pd.DataFrame:
+def _format_p_value_columns(frame: pd.DataFrame, lang=None) -> pd.DataFrame:
     """Format p-value columns in a display copy only."""
     display = frame.copy()
     for column in ("p_value", "adjusted_p_value"):
         if column in display.columns:
-            display[column] = display[column].map(_format_p_value)
+            display[column] = display[column].map(lambda value: _format_p_value(value, lang))
     return display
+
+
+def _localized_category_value(value: Any, lang) -> str:
+    """Translate a known categorical display value and preserve unknown values."""
+    canonical = _VALUE_LABELS.get(value)
+    if canonical is None:
+        return str(value)
+    return lang({"value": canonical})["value"]
 
 
 # ---------------------------------------------------------------------------
@@ -531,7 +541,7 @@ def residual_diagnostics_report(results: FinalValidationResults, lang=None) -> p
 def heteroscedasticity_report(results: FinalValidationResults, lang=None) -> pd.DataFrame:
     """Formal heteroscedasticity diagnostics, localized for notebook display."""
     lang = resolve_lang(lang)
-    frame = _format_p_value_columns(heteroscedasticity_diagnostics(results))
+    frame = _format_p_value_columns(heteroscedasticity_diagnostics(results), lang=lang)
     value_labels = {
         **_VALUE_LABELS,
         "ok": "Aplicavel",
@@ -649,7 +659,7 @@ def plot_residual_structure(results: FinalValidationResults, lang=None) -> plt.F
             "acf": "Autocorrelação (ACF)",
             "pacf": "Autocorrelação parcial (PACF)",
             "lag": "Defasagem (horas)",
-            "calibration": "Calibração por decis de previsão",
+            "calibration": "Calibração por decil da previsão",
             "mean_pred": "Previsão média",
             "mean_obs": "Observado médio",
         }
@@ -831,7 +841,8 @@ def plot_residual_triage(results: FinalValidationResults, lang=None) -> plt.Figu
     axes[1, 0].set_xlabel(text["hour"])
     axes[1, 0].set_ylabel(text["weekday"])
     axes[1, 0].set_yticks(range(7))
-    axes[1, 0].set_yticklabels([_WEEKDAY_LABELS[index] for index in range(7)])
+    weekday_labels = lang({str(index): label for index, label in _WEEKDAY_LABELS.items()})
+    axes[1, 0].set_yticklabels([weekday_labels[str(index)] for index in range(7)])
     fig.colorbar(image, ax=axes[1, 0], fraction=0.046, pad=0.04)
 
     axes[1, 1].plot(
@@ -859,7 +870,9 @@ def plot_residual_triage(results: FinalValidationResults, lang=None) -> plt.Figu
 def residual_transformation_report(results: FinalValidationResults, lang=None) -> pd.DataFrame:
     """ARCH and ACF diagnostics after descriptive residual transformations."""
     lang = resolve_lang(lang)
-    frame = _format_p_value_columns(champion_residual_transformation_diagnostics(results))
+    frame = _format_p_value_columns(
+        champion_residual_transformation_diagnostics(results), lang=lang
+    )
     columns = {
         "residual_version": "Versão do resíduo",
         "arch_lag": "Lag ARCH",
@@ -924,7 +937,7 @@ def plot_residual_transformation_acf(
         ].to_numpy(dtype=float)
         acf = autocorrelation_function(values, n_lags)
         squared_acf = autocorrelation_function(values**2, n_lags)
-        label = _VALUE_LABELS.get(version, version)
+        label = _localized_category_value(version, lang)
         axes[0].plot(range(n_lags + 1), acf, linewidth=1.2, label=label)
         axes[1].plot(range(n_lags + 1), squared_acf, linewidth=1.2, label=label)
 
@@ -1053,7 +1066,8 @@ def plot_condition_metrics(results: FinalValidationResults, lang=None) -> plt.Fi
             ax.axis("off")
             continue
         subset = frame[frame["estimator"] == champion.estimator]
-        ax.bar(subset["segment"].astype(str), subset["mae"], color=_CHAMPION_COLOR)
+        segment_labels = [_localized_category_value(value, lang) for value in subset["segment"]]
+        ax.bar(segment_labels, subset["mae"], color=_CHAMPION_COLOR)
         ax.set_title(text.get(view, view))
         ax.set_ylabel(text["mae"])
         ax.tick_params(axis="x", rotation=30)

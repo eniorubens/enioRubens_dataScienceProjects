@@ -62,6 +62,21 @@ SOURCE_USECOLS: Tuple[str, ...] = (
     "predicted_scale",
 )
 
+_RESULT_TABLE_FILES = {
+    "input_audit": "input_audit.csv",
+    "method_specs": "method_specs.csv",
+    "fold_metrics": "fold_metrics.csv",
+    "aggregate_metrics": "aggregate_metrics.csv",
+    "stress_metrics": "stress_metrics.csv",
+    "scale_diagnostics": "scale_diagnostics.csv",
+    "rolling_coverage": "rolling_coverage.csv.gz",
+    "segment_metrics": "segment_metrics.csv",
+    "bootstrap_metrics": "bootstrap_metrics.csv",
+    "decision_table": "decision_table.csv",
+    "aci_alpha_trace": "aci_alpha_trace.csv.gz",
+    "predictions": "conformal_oof_predictions.csv.gz",
+}
+
 
 @dataclass
 class ConformalMethodSpec:
@@ -346,6 +361,87 @@ def source_artifact_hashes(
             }
             for index, path in enumerate(paths)
         ]
+    )
+
+
+def load_conformal_calibration_results(
+    config: ConformalUncertaintyConfig,
+    results_manifest_path: Optional[Path] = None,
+) -> ConformalCalibrationResults:
+    """Reconstruct notebook 07 reports from persisted conformal artifacts.
+
+    The replay is read-only and never recalculates a calibrator. It fails
+    closed if the configuration, source hashes, or conformal code contract no
+    longer matches the persisted full run.
+    """
+    require_environment()
+    root = Path(config.runtime_root)
+    manifest_path = Path(results_manifest_path or root / "conformal_uncertainty_manifest.json")
+    if not manifest_path.exists():
+        raise FileNotFoundError(
+            f"Conformal calibration manifest not found at '{manifest_path}'. "
+            "Run the explicit calibration workflow before requesting replay."
+        )
+
+    saved = json.loads(manifest_path.read_text(encoding="utf-8"))
+    saved_config = saved.get("config", {})
+    current_config = json.loads(json.dumps(asdict(config), default=str))
+    mismatches = {}
+    if saved.get("code_version") != CONFORMAL_CODE_VERSION:
+        mismatches["code_version"] = {
+            "expected": CONFORMAL_CODE_VERSION,
+            "saved": saved.get("code_version"),
+        }
+    if saved_config != current_config:
+        mismatches["config"] = {"expected": current_config, "saved": saved_config}
+    if mismatches:
+        raise ValueError(
+            "Persisted conformal results are incompatible with the current contract: "
+            + json.dumps(mismatches, sort_keys=True)
+        )
+
+    source_manifest = load_source_manifest(config.source_manifest_path)
+    validate_source_manifest(config, source_manifest)
+    current_audit = source_artifact_hashes(config, source_manifest)
+    saved_audit = pd.DataFrame(saved.get("input_hashes", []))
+    audit_columns = ["artifact", "bytes", "sha256"]
+    if saved_audit.empty or not current_audit[audit_columns].equals(saved_audit[audit_columns]):
+        raise ValueError("Persisted conformal results do not match the current source hashes.")
+
+    table_paths = {name: root / filename for name, filename in _RESULT_TABLE_FILES.items()}
+    missing = [str(path) for path in table_paths.values() if not path.exists()]
+    if missing:
+        raise FileNotFoundError(
+            "Persisted conformal results are incomplete; missing: " + ", ".join(missing)
+        )
+
+    tables = {name: pd.read_csv(path, low_memory=False) for name, path in table_paths.items()}
+    for name in ("predictions", "rolling_coverage", "aci_alpha_trace"):
+        if "timestamp" in tables[name]:
+            tables[name]["timestamp"] = pd.to_datetime(tables[name]["timestamp"])
+    specs = [ConformalMethodSpec(**payload) for payload in saved.get("methods", [])]
+    if not specs:
+        raise ValueError("Persisted conformal manifest contains no method specifications.")
+
+    artifacts = {name: str(path) for name, path in table_paths.items()}
+    artifacts["manifest"] = str(manifest_path)
+    return ConformalCalibrationResults(
+        config=config,
+        source_manifest=source_manifest,
+        input_audit=tables["input_audit"],
+        specs=specs,
+        predictions=tables["predictions"],
+        fold_metrics=tables["fold_metrics"],
+        aggregate_metrics=tables["aggregate_metrics"],
+        stress_metrics=tables["stress_metrics"],
+        scale_diagnostics=tables["scale_diagnostics"],
+        rolling_coverage=tables["rolling_coverage"],
+        segment_metrics=tables["segment_metrics"],
+        bootstrap_metrics=tables["bootstrap_metrics"],
+        decision_table=tables["decision_table"],
+        aci_alpha_trace=tables["aci_alpha_trace"],
+        manifest_path=manifest_path,
+        artifacts=artifacts,
     )
 
 

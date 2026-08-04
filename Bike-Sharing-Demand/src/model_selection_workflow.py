@@ -15,9 +15,11 @@ exists anywhere in the flow is the metadata-only
 
 from __future__ import annotations
 
+import json
 import logging
 import tempfile
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
+from io import StringIO
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
@@ -65,6 +67,7 @@ from src.temporal_optimizer import (
     RUN_MODES,
     FoldEvaluation,
     TemporalRegressionOptimizer,
+    candidates_dir_for,
     dataset_fingerprint,
     freeze_candidates,
     select_champion_and_challengers,
@@ -414,6 +417,24 @@ class EstimatorOutcome:
         return float(self.study.best_value)
 
 
+@dataclass(frozen=True)
+class StudyResultSummary:
+    """Read-only Optuna summary used when notebook 04 replays saved results.
+
+    The reporting cells only need the winning objective and the number of
+    completed trials.  Keeping this deliberately small prevents a published
+    notebook from deserialising an Optuna study merely to redraw tables.
+    """
+
+    best_value: float
+    trials_completed: int
+
+    @property
+    def trials(self) -> range:
+        """A length-compatible stand-in for callers that audit trial count."""
+        return range(self.trials_completed)
+
+
 def _log_outcome(
     development: DevelopmentData,
     optimizer: TemporalRegressionOptimizer,
@@ -624,6 +645,214 @@ class ModelSelectionResults:
         return self.config.is_smoke
 
 
+MODEL_SELECTION_SNAPSHOT_SCHEMA_VERSION = 1
+MODEL_SELECTION_SNAPSHOT_NAME = "model_selection_results_snapshot.json"
+
+
+def model_selection_snapshot_path(
+    config: ModelSelectionConfig,
+    manifest_path: Optional[Path] = None,
+) -> Path:
+    """Return the lightweight report snapshot path for one run mode."""
+    if manifest_path is not None:
+        return Path(manifest_path).with_name(MODEL_SELECTION_SNAPSHOT_NAME)
+    return candidates_dir_for(config.run_mode, config.candidates_root) / (
+        MODEL_SELECTION_SNAPSHOT_NAME
+    )
+
+
+def _frame_to_snapshot(frame: pd.DataFrame) -> str:
+    """Serialise a small diagnostic frame without pickle or model state."""
+    return frame.to_json(orient="split", date_format="iso", double_precision=15)
+
+
+def _frame_from_snapshot(payload: str) -> pd.DataFrame:
+    """Rebuild a diagnostic frame saved by :func:`_frame_to_snapshot`."""
+    return pd.read_json(StringIO(payload), orient="split")
+
+
+def _json_default(value: Any) -> Any:
+    """Convert NumPy/path values occurring in result metadata to JSON."""
+    if isinstance(value, np.generic):
+        return value.item()
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, Path):
+        return str(value)
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serialisable")
+
+
+def save_model_selection_results(
+    results: ModelSelectionResults,
+    snapshot_path: Optional[Path] = None,
+) -> Path:
+    """Persist report inputs only, excluding pipelines, studies and row data.
+
+    This is the safe replay contract for notebook 04.  It contains the
+    manifest, pipeline specifications and aggregated CV diagnostics needed by
+    ``src.model_selection_reports``; no fitted estimator, prediction or final
+    holdout observation is written.
+    """
+    path = Path(
+        snapshot_path or model_selection_snapshot_path(results.config, results.manifest_path)
+    )
+    outcomes = []
+    for outcome in results.outcomes:
+        evaluation = outcome.evaluation
+        outcomes.append(
+            {
+                "estimator": outcome.estimator,
+                "run_id": outcome.run_id,
+                "is_baseline": outcome.is_baseline,
+                "trials_planned": outcome.trials_planned,
+                "termination_reason": outcome.termination_reason,
+                "cv_fingerprint": outcome.cv_fingerprint,
+                "best_value": outcome.cv_mae_selection,
+                "evaluation": {
+                    "best_params": evaluation.best_params,
+                    "spec": asdict(evaluation.spec),
+                    "fold_metrics": _frame_to_snapshot(evaluation.fold_metrics),
+                    "seasonal_metrics": _frame_to_snapshot(evaluation.seasonal_metrics),
+                    "extreme_metrics": _frame_to_snapshot(evaluation.extreme_metrics),
+                    "trials_completed": evaluation.trials_completed,
+                    "cv_metrics": evaluation.cv_metrics,
+                    "best_iterations_by_fold": evaluation.best_iterations_by_fold,
+                    "final_n_estimators": evaluation.final_n_estimators,
+                    "iteration_aggregation": evaluation.iteration_aggregation,
+                    "cap_hits_by_fold": evaluation.cap_hits_by_fold,
+                    "n_folds_cap_hit": evaluation.n_folds_cap_hit,
+                    "n_folds_with_budget": evaluation.n_folds_with_budget,
+                    "iteration_ceiling": evaluation.iteration_ceiling,
+                    "systematic_truncation": evaluation.systematic_truncation,
+                },
+            }
+        )
+
+    selection = json.loads(json.dumps(results.selection, default=_json_default))
+    for candidate in [selection.get("champion", {})] + selection.get("challengers", []):
+        candidate.pop("artifact_path", None)
+        candidate.pop("pipeline_source", None)
+
+    payload = {
+        "schema_version": MODEL_SELECTION_SNAPSHOT_SCHEMA_VERSION,
+        "experiment_name": results.experiment_name,
+        "experiment_id": results.experiment_id,
+        "selection": selection,
+        "outcomes": outcomes,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False, default=_json_default),
+        encoding="utf-8",
+    )
+    temporary.replace(path)
+    return path
+
+
+def load_model_selection_results(
+    config: ModelSelectionConfig,
+    development: DevelopmentData,
+    snapshot_path: Optional[Path] = None,
+) -> ModelSelectionResults:
+    """Reconstruct notebook 04 reports without training or loading a model.
+
+    Strict fingerprint and estimator checks make stale or partial snapshots
+    fail closed.  The function performs no MLflow write, Optuna search, fit or
+    prediction; its ``FoldEvaluation.fitted_pipeline`` fields are intentionally
+    ``None`` because replay is a reporting-only operation.
+    """
+    path = Path(snapshot_path or model_selection_snapshot_path(config))
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Model-selection snapshot not found at '{path}'. Run the explicit "
+            "training route once to create it."
+        )
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("schema_version") != MODEL_SELECTION_SNAPSHOT_SCHEMA_VERSION:
+        raise ValueError("Unsupported model-selection snapshot schema version.")
+
+    selection = payload["selection"]
+    checks = {
+        "run_mode": config.run_mode,
+        "dataset_fingerprint": development.fingerprint,
+        "regime_policy": config.regime_policy,
+        "regime_fingerprint": development.regime_fingerprint,
+    }
+    for key, expected in checks.items():
+        if selection.get(key) != expected:
+            raise ValueError(
+                f"Snapshot {key} mismatch: expected '{expected}', " f"found '{selection.get(key)}'."
+            )
+
+    outcomes: List[EstimatorOutcome] = []
+    for item in payload["outcomes"]:
+        saved = item["evaluation"]
+        spec_data = saved["spec"]
+        if spec_data.get("n_features_selected") is not None:
+            spec_data["n_features_selected"] = int(spec_data["n_features_selected"])
+        evaluation = FoldEvaluation(
+            best_params=saved["best_params"],
+            spec=PipelineSpec(**spec_data),
+            fold_metrics=_frame_from_snapshot(saved["fold_metrics"]),
+            seasonal_metrics=_frame_from_snapshot(saved["seasonal_metrics"]),
+            extreme_metrics=_frame_from_snapshot(saved["extreme_metrics"]),
+            fitted_pipeline=None,
+            trials_completed=int(saved["trials_completed"]),
+            cv_metrics=saved["cv_metrics"],
+            best_iterations_by_fold=saved["best_iterations_by_fold"],
+            final_n_estimators=saved["final_n_estimators"],
+            iteration_aggregation=saved["iteration_aggregation"],
+            cap_hits_by_fold=saved["cap_hits_by_fold"],
+            n_folds_cap_hit=int(saved["n_folds_cap_hit"]),
+            n_folds_with_budget=int(saved["n_folds_with_budget"]),
+            iteration_ceiling=saved["iteration_ceiling"],
+            systematic_truncation=bool(saved["systematic_truncation"]),
+        )
+        outcomes.append(
+            EstimatorOutcome(
+                estimator=item["estimator"],
+                study=StudyResultSummary(
+                    best_value=float(item["best_value"]),
+                    trials_completed=int(saved["trials_completed"]),
+                ),
+                evaluation=evaluation,
+                run_id=item["run_id"],
+                is_baseline=bool(item["is_baseline"]),
+                trials_planned=int(item["trials_planned"]),
+                termination_reason=item["termination_reason"],
+                cv_fingerprint=item["cv_fingerprint"],
+            )
+        )
+
+    expected_estimators = {BASELINE_ESTIMATOR, *config.candidate_estimators}
+    observed_estimators = {outcome.estimator for outcome in outcomes}
+    if observed_estimators != expected_estimators:
+        raise ValueError(
+            "Snapshot estimator set mismatch: "
+            f"expected {sorted(expected_estimators)}, "
+            f"found {sorted(observed_estimators)}."
+        )
+    if selection["champion"]["run_id"] not in {outcome.run_id for outcome in outcomes}:
+        raise ValueError("Snapshot champion run is absent from its outcomes.")
+
+    manifest_name = (
+        "candidates_manifest.json"
+        if config.run_mode == RUN_MODE_FULL
+        else "candidates_manifest_smoke.json"
+    )
+    return ModelSelectionResults(
+        config=config,
+        development=development,
+        outcomes=outcomes,
+        selection=selection,
+        manifest_path=path.with_name(manifest_name),
+        experiment_name=payload["experiment_name"],
+        experiment_id=str(payload["experiment_id"]),
+        tracker=None,
+    )
+
+
 def run_model_selection(
     config: ModelSelectionConfig,
     development: Optional[DevelopmentData] = None,
@@ -675,7 +904,7 @@ def run_model_selection(
         allow_boosting_truncation=config.allow_boosting_truncation,
     )
 
-    return ModelSelectionResults(
+    results = ModelSelectionResults(
         config=config,
         development=development,
         outcomes=outcomes,
@@ -685,3 +914,5 @@ def run_model_selection(
         experiment_id=experiment_id,
         tracker=tracker,
     )
+    save_model_selection_results(results)
+    return results

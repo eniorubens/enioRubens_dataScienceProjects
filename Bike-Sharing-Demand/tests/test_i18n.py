@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import json
+from collections import Counter
+
 import pandas as pd
 
 import src.i18n as i18n
@@ -20,6 +23,62 @@ def test_make_lang_pt_is_passthrough():
     out = lang(payload)
     assert out == payload
     assert out is not payload
+
+
+def test_make_lang_en_uses_reviewed_offline_catalog(monkeypatch):
+    def _boom(*args, **kwargs):  # pragma: no cover - must not be called
+        raise AssertionError("online translation backend must not be invoked")
+
+    monkeypatch.setattr(i18n.LangMap, "_translate_batch", _boom, raising=True)
+    lang = make_lang("en")
+
+    assert lang.offline is True
+    assert lang({"season": "Inverno", "holiday": "Sem feriado"}) == {
+        "season": "Winter",
+        "holiday": "No Holiday",
+    }
+
+
+def test_reviewed_english_catalog_has_no_duplicate_keys():
+    path = i18n.CATALOG_DIR / "pt_en.json"
+    pairs = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=lambda items: items)
+    counts = Counter(key for key, _ in pairs)
+    duplicates = sorted(key for key, count in counts.items() if count > 1)
+
+    assert not duplicates
+
+
+def test_localize_table_uses_english_catalog_without_mutating_input():
+    internal = pd.DataFrame(
+        {
+            "Seasons": pd.Categorical(["Winter", "Summer"]),
+            "Holiday": ["No Holiday", "Holiday"],
+            "Functioning Day": ["Yes", "No"],
+        }
+    )
+    before = internal.copy()
+
+    display_df = localize_table(
+        internal,
+        make_lang("en"),
+        columns={},
+        value_columns=("Seasons", "Holiday", "Functioning Day"),
+        value_labels={
+            "Winter": "Inverno",
+            "Summer": "Verão",
+            "No Holiday": "Sem feriado",
+            "Holiday": "Feriado",
+            "Yes": "Sim",
+            "No": "Não",
+        },
+    )
+
+    assert display_df.to_dict(orient="list") == {
+        "Seasons": ["Winter", "Summer"],
+        "Holiday": ["No Holiday", "Holiday"],
+        "Functioning Day": ["Yes", "No"],
+    }
+    pd.testing.assert_frame_equal(internal, before)
 
 
 def test_resolve_lang_none_returns_pt_passthrough(monkeypatch):

@@ -18,7 +18,10 @@ from pathlib import Path
 import pytest
 
 NOTEBOOK_PATH = (
-    Path(__file__).resolve().parent.parent / "notebooks" / "05_Seoul_Bike_Final_Validation.ipynb"
+    Path(__file__).resolve().parent.parent
+    / "notebooks"
+    / "pt-BR"
+    / "05_Seoul_Bike_Final_Validation.ipynb"
 )
 
 # Everything that belongs in src/, not in a notebook cell.

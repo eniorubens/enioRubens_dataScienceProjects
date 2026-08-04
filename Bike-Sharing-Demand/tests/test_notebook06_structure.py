@@ -11,6 +11,7 @@ import pytest
 NOTEBOOK_PATH = (
     Path(__file__).resolve().parent.parent
     / "notebooks"
+    / "pt-BR"
     / "06_Seoul_Bike_Residual_and_Uncertainty_Experiments.ipynb"
 )
 
@@ -117,7 +118,7 @@ def test_public_workflow_and_report_functions_are_used(code_source):
     for symbol in (
         "UncertaintyExperimentConfig(",
         "prepare_uncertainty_development(",
-        "run_uncertainty_experiments(",
+        "load_uncertainty_experiment_results(",
         "reports.protocol_report(",
         "reports.development_report(",
         "reports.fold_audit_report(",

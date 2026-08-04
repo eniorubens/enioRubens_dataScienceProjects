@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 
-NOTEBOOK_PATH = Path("notebooks/07_Seoul_Bike_Temporal_Conformal_Calibration.ipynb")
+NOTEBOOK_PATH = Path("notebooks/pt-BR/07_Seoul_Bike_Temporal_Conformal_Calibration.ipynb")
 
 
 @pytest.fixture(scope="module")
@@ -111,7 +111,7 @@ def test_notebook_runs_smoke_not_full(code_source):
 def test_public_workflow_and_reports_are_used(code_source):
     required = [
         "ConformalUncertaintyConfig(",
-        "run_conformal_uncertainty_experiments(",
+        "load_conformal_calibration_results(",
         "reports.protocol_report(",
         "reports.input_audit_report(",
         "reports.warmup_report(",

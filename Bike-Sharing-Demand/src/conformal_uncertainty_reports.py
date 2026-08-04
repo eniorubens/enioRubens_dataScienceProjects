@@ -57,22 +57,35 @@ def protocol_report(config_or_results: Any, lang=None) -> pd.DataFrame:
             "bootstrap": "Bootstrap temporal",
         }
     )
+    values = lang(
+        {
+            "claim": "candidato experimental para a camada de incerteza",
+            "holdout": "não utilizado",
+            "source": "previsões OOF congeladas do Notebook 06",
+            "warmup": "{hours} horas",
+            "reset": "a cada fold e mudança de regime",
+            "stress": "relatório separado, fora do ranking",
+            "bootstrap": "{repetitions} repetições; blocos de {hours} horas",
+        }
+    )
     return _key_value_frame(
         lang,
         [
             (labels["mode"], config.run_mode),
-            (labels["claim"], "candidato experimental para a camada de incerteza"),
-            (labels["holdout"], "não utilizado"),
-            (labels["source"], "previsões OOF congeladas do Notebook 06"),
+            (labels["claim"], values["claim"]),
+            (labels["holdout"], values["holdout"]),
+            (labels["source"], values["source"]),
             (labels["point"], config.point_experiment_id),
-            (labels["warmup"], f"{config.warmup_hours} horas"),
-            (labels["reset"], "a cada fold e mudança de regime"),
+            (labels["warmup"], values["warmup"].format(hours=config.warmup_hours)),
+            (labels["reset"], values["reset"]),
             (labels["coverages"], ", ".join(f"{x:.0%}" for x in config.interval_coverages)),
-            (labels["stress"], "relatório separado, fora do ranking"),
+            (labels["stress"], values["stress"]),
             (
                 labels["bootstrap"],
-                f"{config.bootstrap_repetitions} repetições; blocos de "
-                f"{config.bootstrap_block_hours} horas",
+                values["bootstrap"].format(
+                    repetitions=config.bootstrap_repetitions,
+                    hours=config.bootstrap_block_hours,
+                ),
             ),
         ],
     )
@@ -657,44 +670,67 @@ def calibration_message(results: ConformalCalibrationResults, lang=None) -> str:
             }
         )["m"]
     best = feasible.sort_values("experimental_rank").iloc[0]
-    return lang(
+    template = lang(
         {
             "m": (
-                f"O candidato {best['candidate_id']} foi o calibrador experimental mais "
-                f"defensável: cobertura {best['empirical_coverage']:.1%}, erro "
-                f"{best['coverage_error']:+.2%}, largura média {best['mean_width']:,.1f} e "
-                f"Winkler score {best['winkler_score']:,.1f}. A conclusão ainda exige uma "
-                "nova janela independente antes de qualquer adoção operacional."
+                "O candidato {candidate_id} foi o calibrador experimental mais defensável: "
+                "cobertura {coverage}, erro {coverage_error}, largura média {mean_width} e "
+                "Winkler score {winkler_score}. A conclusão ainda exige uma nova janela "
+                "independente antes de qualquer adoção operacional."
             )
         }
     )["m"]
+    return template.format(
+        candidate_id=best["candidate_id"],
+        coverage=f"{best['empirical_coverage']:.1%}",
+        coverage_error=f"{best['coverage_error']:+.2%}",
+        mean_width=f"{best['mean_width']:,.1f}",
+        winkler_score=f"{best['winkler_score']:,.1f}",
+    )
 
 
 def synthesis_report(results: ConformalCalibrationResults, lang=None) -> str:
     lang = resolve_lang(lang)
     scale = results.scale_diagnostics.loc[results.scale_diagnostics["scope"].eq("overall")]
     spearman = scale["spearman_scale_abs_error"].iloc[0] if not scale.empty else np.nan
-    mode_text = (
-        "Esta execução foi realizada em modo smoke e não autoriza ranking definitivo. "
-        if results.is_smoke
-        else "A execução full percorreu todos os folds declarados. "
+    mode_labels = lang(
+        {
+            "smoke": (
+                "Esta execução foi realizada em modo smoke e não autoriza ranking definitivo."
+            ),
+            "full": "A execução full percorreu todos os folds declarados.",
+        }
     )
-    return lang(
+    body_template = lang(
         {
             "m": (
-                f"{mode_text}O Champion pontual E0 foi preservado e somente os intervalos foram "
+                "O Champion pontual E0 foi preservado e somente os intervalos foram "
                 "recalibrados. Em cada fold, as primeiras 168 horas foram tratadas como "
                 "warm-up; a observação corrente atualizou apenas a previsão seguinte, e o "
                 "estado foi reiniciado antes de cada nova janela temporal. O regime de 2020 "
                 "foi mantido fora do ranking. "
-                f"A escala do E4 apresentou correlação de Spearman {spearman:.3f} com o erro "
+                "A escala do E4 apresentou correlação de Spearman {spearman} com o erro "
                 "absoluto do E0, o que quantifica sua utilidade de ordenação sem pressupor "
-                "calibração. "
-                f"{calibration_message(results, lang=lang)} O holdout selado não foi reaberto, "
-                "nenhum estimator foi reajustado e nenhum sucessor pontual foi proposto."
+                "calibração."
             )
         }
     )["m"]
+    closing = lang(
+        {
+            "m": (
+                "O holdout selado não foi reaberto, nenhum estimator foi reajustado e nenhum "
+                "sucessor pontual foi proposto."
+            )
+        }
+    )["m"]
+    return " ".join(
+        (
+            mode_labels["smoke" if results.is_smoke else "full"],
+            body_template.format(spearman=f"{spearman:.3f}"),
+            calibration_message(results, lang=lang),
+            closing,
+        )
+    )
 
 
 def artifact_report(results: ConformalCalibrationResults, lang=None) -> pd.DataFrame:

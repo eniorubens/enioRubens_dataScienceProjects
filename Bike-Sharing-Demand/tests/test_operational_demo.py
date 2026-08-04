@@ -211,3 +211,45 @@ def test_plot_and_synthesis_are_available(tmp_path):
         assert "U4b" in reports.synthesis_report(result)
     finally:
         plt.close(figure)
+
+
+def test_reports_use_reviewed_offline_english_catalog(tmp_path):
+    result = build_operational_replay(
+        _config(tmp_path, planned_capacity=4000.0),
+        _context_frame(),
+    )
+    protocol = reports.protocol_report(result.config, lang="en")
+    profile = reports.profile_report(result, lang="en")
+    forecast = reports.forecast_report(result, lang="en")
+    decision = reports.decision_report(result, lang="en")
+    audit = reports.audit_report(result, lang="en")
+    synthesis = reports.synthesis_report(result, lang="en")
+    rendered = " ".join(
+        str(value)
+        for frame in (protocol, profile, forecast, decision, audit)
+        for value in frame.to_numpy().ravel()
+    )
+
+    assert "historical replay of a frozen OOF forecast" in rendered
+    assert "4,000 rentals/hour" in rendered
+    assert "Saturday" in rendered
+    assert "off-peak" in rendered
+    assert "E0 point forecast" in rendered
+    assert "CAPACITY COMPATIBLE" in rendered
+    assert "Demand observed after the decision" in rendered
+    assert "For 10/22/2022 07:00" in synthesis
+    assert "was contained within the interval" in synthesis
+
+    figure = reports.plot_operational_forecast(result, lang="en")
+    try:
+        axis = figure.axes[0]
+        assert axis.get_title() == ("Operational replay: forecast, uncertainty, and capacity")
+        assert axis.get_xlabel() == "Aggregate demand (rentals per hour)"
+        legend_labels = [text.get_text() for text in axis.get_legend().get_texts()]
+        assert legend_labels == [
+            "E0 prediction",
+            "Observed demand",
+            "Simulated capacity",
+        ]
+    finally:
+        plt.close(figure)

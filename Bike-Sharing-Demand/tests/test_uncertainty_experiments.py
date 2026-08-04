@@ -17,18 +17,24 @@ from src.feature_engineering import (
     SelectiveWeatherInteractionTransformer,
     build_preprocessing_pipeline,
 )
+from src.i18n import make_lang
 from src.probabilistic_modeling import (
     CatBoostResidualUncertaintyRegressor,
     RobustTrendProbabilisticRegressor,
     lognormal_demand_distribution,
 )
 from src.uncertainty_experiments import (
+    CV_STRATEGY_VERSION,
+    UNCERTAINTY_CODE_VERSION,
+    ExperimentSpec,
     UncertaintyExperimentConfig,
+    _RESULT_TABLE_FILES,
     _apply_e4_scale_model,
     _selected_folds,
     _residual_lag_frame,
     build_experiment_pipeline,
     frozen_artifact_hashes,
+    load_uncertainty_experiment_results,
     probabilistic_fold_metrics,
     scale_diagnostics,
 )
@@ -58,6 +64,67 @@ def _minimal_manifest() -> dict:
             "encoder": "OrdinalEncoder",
         }
     }
+
+
+def _write_replay_fixture(tmp_path: Path):
+    candidate_path = tmp_path / "candidates_manifest.json"
+    candidate_path.write_text(json.dumps(_minimal_manifest()), encoding="utf-8")
+    config = UncertaintyExperimentConfig(
+        run_mode="full",
+        runtime_root=tmp_path,
+        manifest_path=candidate_path,
+        log_to_mlflow=False,
+    )
+    development = SimpleNamespace(
+        fingerprint="dataset-fingerprint",
+        regime_fingerprint="regime-fingerprint",
+    )
+    for filename in _RESULT_TABLE_FILES.values():
+        pd.DataFrame({"value": [1.0]}).to_csv(tmp_path / filename, index=False)
+    manifest = {
+        "code_version": UNCERTAINTY_CODE_VERSION,
+        "run_mode": "full",
+        "dataset_fingerprint": development.fingerprint,
+        "regime_fingerprint": development.regime_fingerprint,
+        "cv_strategy_version": CV_STRATEGY_VERSION,
+        "experiments": [
+            ExperimentSpec(
+                experiment_id="E0",
+                label="Baseline",
+                point_model="CatBoostRegressor",
+                uses_hour_of_week=False,
+                uses_weather_interactions=False,
+                probabilistic_loss=False,
+                residual_scale_model=False,
+                point_prediction="median",
+                status="executed",
+            ).__dict__
+        ],
+        "artifacts": {"pipeline_specs": "{}"},
+    }
+    manifest_path = tmp_path / "uncertainty_experiments_manifest.json"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    return config, development
+
+
+def test_persisted_results_replay_without_refitting(tmp_path):
+    config, development = _write_replay_fixture(tmp_path)
+
+    replay = load_uncertainty_experiment_results(config, development)
+
+    assert replay.config is config
+    assert replay.development is development
+    assert replay.specs[0].experiment_id == "E0"
+    assert replay.predictions["value"].tolist() == [1.0]
+    assert replay.artifacts["pipeline_specs"] == "{}"
+
+
+def test_persisted_results_fail_closed_on_dataset_drift(tmp_path):
+    config, development = _write_replay_fixture(tmp_path)
+    development.fingerprint = "different-dataset"
+
+    with pytest.raises(ValueError, match="dataset_fingerprint"):
+        load_uncertainty_experiment_results(config, development)
 
 
 def test_hour_of_week_maps_monday_zero_and_sunday_167():
@@ -481,6 +548,73 @@ def test_new_uncertainty_plots_return_figures_and_do_not_mutate(factory):
     assert fig.__class__.__name__ == "Figure"
     pd.testing.assert_frame_equal(result.predictions, before)
     plt.close(fig)
+
+
+def _figure_text(figure) -> str:
+    text = [item.get_text() for item in figure.texts]
+    for axis in figure.axes:
+        text.extend(
+            [
+                axis.get_title(),
+                axis.get_xlabel(),
+                axis.get_ylabel(),
+                *(item.get_text() for item in axis.get_xticklabels()),
+                *(item.get_text() for item in axis.get_yticklabels()),
+            ]
+        )
+        legend = axis.get_legend()
+        if legend is not None:
+            text.extend(item.get_text() for item in legend.get_texts())
+    return "\n".join(filter(None, text))
+
+
+def test_offline_english_catalog_covers_uncertainty_figures():
+    result = _report_results()
+    lang = make_lang("en")
+    factories = (
+        reports.plot_point_metrics,
+        reports.plot_point_metrics_by_fold,
+        reports.plot_residual_dependence,
+        reports.plot_residual_diagnostics_heatmap,
+        reports.plot_coverage_calibration,
+        reports.plot_probabilistic_metrics_by_fold,
+        reports.plot_scale_diagnostics,
+        reports.plot_representative_interval_windows,
+        reports.plot_segment_coverage,
+    )
+    figures = [factory(result, lang=lang) for factory in factories]
+    rendered = "\n".join(_figure_text(figure) for figure in figures)
+    forbidden = (
+        "Comparacao",
+        "Desempenho",
+        "Diagnostico",
+        "Cobertura",
+        "Largura",
+        "Persistencia",
+        "Valores proximos",
+        "Semanas representativas",
+        "Demanda observada",
+        "Estacao",
+        "Chuva",
+    )
+    try:
+        for token in forbidden:
+            assert token not in rendered
+        for title in (
+            "Point prediction comparison by temporal validation",
+            "Point prediction performance by normal-operation fold",
+            "Residual persistence by experiment",
+            "Residual diagnostics by experiment",
+            "Nominal versus observed coverage",
+            "Probabilistic calibration by normal-operation fold",
+            "E4 scale-multiplier diagnostics",
+            "Representative weeks in the most recent normal-operation fold",
+            "E4 90% coverage error by segment",
+        ):
+            assert title in rendered
+    finally:
+        for figure in figures:
+            plt.close(figure)
 
 
 def test_successor_message_does_not_call_e0_a_successor():

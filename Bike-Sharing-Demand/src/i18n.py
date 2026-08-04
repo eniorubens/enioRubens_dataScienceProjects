@@ -3,11 +3,13 @@
 Português é o idioma **canônico** (fonte) do projeto: todos os textos
 visíveis enviados ao ``LangMap`` são escritos em PT-BR. Os notebooks PT
 usam ``make_lang("pt")``, que opera em modo *passthrough* — retorna os
-textos originais sem nenhuma chamada de rede. No futuro, ``make_lang("en")``
-traduzirá esses mesmos textos canônicos para inglês.
+textos originais sem nenhuma chamada de rede. ``make_lang("en")`` consulta o
+catálogo PT→EN revisado e versionado em ``src/i18n_catalogs``; portanto, a
+edição publicada também é executada sem depender de serviços externos.
 
 Esta camada NÃO reimplementa tradução: apenas embrulha o ``multilang.LangMap``
-compartilhado com os defaults do projeto (idioma-base PT e cache versionado).
+compartilhado com os defaults do projeto (idioma-base PT, catálogo EN
+versionado e cache de desenvolvimento para outros idiomas).
 
 Instalar o pacote multilang (editável local):
     pip install deep-translator
@@ -25,6 +27,7 @@ from multilang import LangMap  # type: ignore[import]
 # Português é o idioma-fonte canônico. make_lang("pt") -> passthrough (sem rede).
 BASE_LANG: str = "pt"
 CACHE_DIR: Path = Path(__file__).resolve().parent.parent / ".multilang_cache"
+CATALOG_DIR: Path = Path(__file__).resolve().parent / "i18n_catalogs"
 
 
 def make_lang(target: str) -> LangMap:
@@ -39,6 +42,17 @@ def make_lang(target: str) -> LangMap:
         canônicos em português sem modificação.
     """
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    catalog_path = CATALOG_DIR / f"{BASE_LANG}_{target}.json"
+    if catalog_path.exists():
+        # Published notebook editions must be reproducible and cannot depend on
+        # an external translation service at execution time.  A reviewed,
+        # versioned catalogue is therefore authoritative whenever available.
+        return LangMap(
+            source=BASE_LANG,
+            target=target,
+            cache_dir=str(CATALOG_DIR),
+            offline=True,
+        )
     return LangMap(source=BASE_LANG, target=target, cache_dir=str(CACHE_DIR))
 
 

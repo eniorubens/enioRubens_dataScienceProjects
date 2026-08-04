@@ -10,6 +10,7 @@ frame engineered to have exactly the same 8,784-hour window as the real one.
 from __future__ import annotations
 
 import gzip
+import json
 import pickle
 from pathlib import Path
 
@@ -1043,6 +1044,77 @@ class TestShap:
             "largest_underestimation",
             "largest_overestimation",
         }
+
+    def test_snapshot_round_trip_replays_without_pickle(
+        self, tmp_path, candidates, eval_data, shap_context
+    ):
+        _, _, _, explanations = shap_context
+        config = FinalValidationConfig(
+            runtime_root=tmp_path,
+            log_to_mlflow=False,
+            shap_max_sample=120,
+        )
+        config.final_manifest_path.write_text(
+            json.dumps({"holdout_fingerprint": eval_data.holdout_fingerprint}),
+            encoding="utf-8",
+        )
+        evaluations = [fv.evaluate_candidate(candidate, eval_data) for candidate in candidates]
+        results = fv.FinalValidationResults(
+            config=config,
+            manifest={},
+            candidates=candidates,
+            data=None,
+            evaluations=evaluations,
+            comparison=pd.DataFrame(),
+            confirmation={"decision": CONFIRMED},
+            segmented={},
+            predictions=pd.DataFrame(),
+            manifest_fingerprint="synthetic_manifest",
+            final_manifest_path=config.final_manifest_path,
+        )
+
+        path = fv.persist_shap_validation_snapshot(results, explanations, config)
+        assert path == config.shap_snapshot_path
+        loaded = fv.load_shap_validation(results, config)
+
+        assert [item.run_id for item in loaded] == [item.run_id for item in explanations]
+        for actual, expected in zip(loaded, explanations):
+            np.testing.assert_array_equal(actual.sample_positions, expected.sample_positions)
+            np.testing.assert_allclose(actual.shap_values, expected.shap_values)
+            np.testing.assert_allclose(actual.matrix, expected.matrix)
+            pd.testing.assert_frame_equal(actual.grouped_importance, expected.grouped_importance)
+
+    def test_cached_results_never_reopen_holdout_when_snapshot_is_missing(
+        self, monkeypatch, tmp_path, candidates, eval_data
+    ):
+        config = FinalValidationConfig(runtime_root=tmp_path, log_to_mlflow=False)
+        config.final_manifest_path.write_text(
+            json.dumps({"holdout_fingerprint": eval_data.holdout_fingerprint}),
+            encoding="utf-8",
+        )
+        evaluations = [fv.evaluate_candidate(candidate, eval_data) for candidate in candidates]
+        results = fv.FinalValidationResults(
+            config=config,
+            manifest={},
+            candidates=candidates,
+            data=None,
+            evaluations=evaluations,
+            comparison=pd.DataFrame(),
+            confirmation={"decision": CONFIRMED},
+            segmented={},
+            predictions=pd.DataFrame(),
+            manifest_fingerprint="synthetic_manifest",
+            final_manifest_path=config.final_manifest_path,
+            loaded_from_cache=True,
+        )
+        monkeypatch.setattr(
+            fv,
+            "materialize_final_holdout",
+            lambda *_: pytest.fail("the holdout was reopened"),
+        )
+
+        with pytest.raises(FileNotFoundError, match="will not reopen the holdout"):
+            fv.run_shap_validation(results, config)
 
 
 # ---------------------------------------------------------------------------

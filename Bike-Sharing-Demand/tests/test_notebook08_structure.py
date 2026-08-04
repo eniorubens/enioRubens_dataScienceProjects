@@ -3,11 +3,20 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOK_PATH = PROJECT_ROOT / "notebooks" / "08_Seoul_Bike_Operational_Forecast_Demo.ipynb"
+NOTEBOOK_PATH = (
+    PROJECT_ROOT / "notebooks" / "pt-BR" / "08_Seoul_Bike_Operational_Forecast_Demo.ipynb"
+)
+EN_NOTEBOOK_PATH = (
+    PROJECT_ROOT / "notebooks" / "en-US" / "08_Seoul_Bike_Operational_Forecast_Demo.ipynb"
+)
 
 
 def _notebook():
     return json.loads(NOTEBOOK_PATH.read_text(encoding="utf-8"))
+
+
+def _english_notebook():
+    return json.loads(EN_NOTEBOOK_PATH.read_text(encoding="utf-8"))
 
 
 def _source(cell):
@@ -126,3 +135,58 @@ def test_executed_notebook_is_sequential_and_error_free():
     assert counts == list(range(1, len(code_cells) + 1))
     for cell in code_cells:
         assert all(output.get("output_type") != "error" for output in cell["outputs"])
+
+
+def test_english_notebook_preserves_structure_and_code_identity():
+    source = _notebook()
+    target = _english_notebook()
+    assert len(source["cells"]) == len(target["cells"])
+    assert [cell.get("id") for cell in source["cells"]] == [
+        cell.get("id") for cell in target["cells"]
+    ]
+    assert [cell["cell_type"] for cell in source["cells"]] == [
+        cell["cell_type"] for cell in target["cells"]
+    ]
+    source_code = "\n".join(
+        _source(cell) for cell in source["cells"] if cell["cell_type"] == "code"
+    )
+    target_code = "\n".join(
+        _source(cell) for cell in target["cells"] if cell["cell_type"] == "code"
+    ).replace("make_lang('en')", "make_lang('pt')")
+    assert target_code == source_code
+    assert target["metadata"]["project_language"] == "en-US"
+
+
+def test_english_notebook_has_reviewed_narrative_and_execution():
+    notebook = _english_notebook()
+    markdown = "\n".join(
+        _source(cell) for cell in notebook["cells"] if cell["cell_type"] == "markdown"
+    )
+    expected = [
+        "# Operational Demonstration of an Hourly Forecast",
+        "## 1. Objective and Scope of the Demonstration",
+        "## 2. Operational Replay Contract",
+        "## 5. Point Forecast and Prediction Interval",
+        "## 6. Decision Before Demand Is Revealed",
+        "### Insights",
+        "## 9. Synthesis",
+        "### Methodological References",
+    ]
+    for heading in expected:
+        assert heading in markdown
+    for forbidden in (
+        "Demonstra\u00e7\u00e3o operacional",
+        "Previs\u00e3o pontual",
+        "Capacidade simulada",
+    ):
+        assert forbidden not in markdown
+
+    code_cells = [cell for cell in notebook["cells"] if cell["cell_type"] == "code"]
+    assert [cell.get("execution_count") for cell in code_cells] == list(
+        range(1, len(code_cells) + 1)
+    )
+    assert not any(
+        output.get("output_type") == "error"
+        for cell in code_cells
+        for output in cell.get("outputs", [])
+    )

@@ -84,6 +84,19 @@ ARCH_LAGS = (24, 168)
 ACF_LAGS = (1, 24, 168)
 PROBABILISTIC_IDS = ("E2", "E3", "E4")
 
+_RESULT_TABLE_FILES = {
+    "fold_metrics": "fold_metrics.csv",
+    "aggregate_metrics": "aggregate_metrics.csv",
+    "residual_metrics": "residual_metrics.csv",
+    "probabilistic_metrics": "probabilistic_metrics.csv",
+    "interval_metrics": "interval_metrics.csv",
+    "probabilistic_fold_metrics": "probabilistic_fold_metrics.csv",
+    "scale_diagnostics": "scale_diagnostics.csv",
+    "segment_metrics": "segment_metrics.csv",
+    "friday_18_metrics": "friday_18_metrics.csv",
+    "predictions": "development_oof_predictions.csv",
+}
+
 
 @dataclass(frozen=True)
 class OperationalResidualContract:
@@ -217,6 +230,85 @@ def frozen_artifact_hashes(paths: Sequence[Path] = (DEFAULT_MANIFEST_PATH,)) -> 
     if not rows:
         return pd.DataFrame(columns=["path", "sha256"])
     return pd.DataFrame(rows).sort_values("path").reset_index(drop=True)
+
+
+def load_uncertainty_experiment_results(
+    config: UncertaintyExperimentConfig,
+    development: Optional[DevelopmentData] = None,
+    results_manifest_path: Optional[Path] = None,
+) -> UncertaintyExperimentResults:
+    """Reconstruct notebook 06 reports from persisted development artifacts.
+
+    This read-only replay path never fits a model. Strict version, run-mode,
+    dataset, and regime checks prevent a stale full run from being presented as
+    if it belonged to the current development split.
+    """
+    if development is None:
+        development = prepare_uncertainty_development(config)
+
+    root = Path(config.runtime_root)
+    manifest_path = Path(results_manifest_path or root / "uncertainty_experiments_manifest.json")
+    if not manifest_path.exists():
+        raise FileNotFoundError(
+            f"Uncertainty experiment manifest not found at '{manifest_path}'. "
+            "Run the explicit training workflow before requesting replay."
+        )
+
+    saved = json.loads(manifest_path.read_text(encoding="utf-8"))
+    expected = {
+        "code_version": UNCERTAINTY_CODE_VERSION,
+        "run_mode": config.run_mode,
+        "dataset_fingerprint": development.fingerprint,
+        "regime_fingerprint": development.regime_fingerprint,
+        "cv_strategy_version": CV_STRATEGY_VERSION,
+    }
+    mismatches = {
+        key: {"expected": value, "saved": saved.get(key)}
+        for key, value in expected.items()
+        if saved.get(key) != value
+    }
+    if mismatches:
+        raise ValueError(
+            "Persisted uncertainty results are incompatible with the current "
+            f"development contract: {json.dumps(mismatches, sort_keys=True)}"
+        )
+
+    table_paths = {name: root / filename for name, filename in _RESULT_TABLE_FILES.items()}
+    missing = [str(path) for path in table_paths.values() if not path.exists()]
+    if missing:
+        raise FileNotFoundError(
+            "Persisted uncertainty results are incomplete; missing: " + ", ".join(missing)
+        )
+
+    tables = {name: pd.read_csv(path, low_memory=False) for name, path in table_paths.items()}
+    specs = [ExperimentSpec(**payload) for payload in saved.get("experiments", [])]
+    if not specs:
+        raise ValueError("Persisted uncertainty manifest contains no experiment specs.")
+
+    artifacts = {name: str(path) for name, path in table_paths.items()}
+    pipeline_specs = saved.get("artifacts", {}).get("pipeline_specs")
+    if pipeline_specs:
+        artifacts["pipeline_specs"] = pipeline_specs
+    artifacts["manifest"] = str(manifest_path)
+
+    return UncertaintyExperimentResults(
+        config=config,
+        development=development,
+        manifest=load_candidate_manifest(config.manifest_path),
+        specs=specs,
+        fold_metrics=tables["fold_metrics"],
+        aggregate_metrics=tables["aggregate_metrics"],
+        residual_metrics=tables["residual_metrics"],
+        probabilistic_metrics=tables["probabilistic_metrics"],
+        interval_metrics=tables["interval_metrics"],
+        probabilistic_fold_metrics=tables["probabilistic_fold_metrics"],
+        scale_diagnostics=tables["scale_diagnostics"],
+        segment_metrics=tables["segment_metrics"],
+        friday_18_metrics=tables["friday_18_metrics"],
+        predictions=tables["predictions"],
+        manifest_path=manifest_path,
+        artifacts=artifacts,
+    )
 
 
 def prepare_uncertainty_development(config: UncertaintyExperimentConfig) -> DevelopmentData:
