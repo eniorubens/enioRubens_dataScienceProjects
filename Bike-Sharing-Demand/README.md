@@ -212,8 +212,7 @@ incorporation of a new public temporal window.
 ### Development Approach
 
 This project demonstrates effective collaboration between human expertise and
-AI-assisted tools, including OpenAI Codex and other generative AI coding
-assistants:
+AI-assisted tools, including OpenAI Codex and Antropic Claude:
 
 - **AI-Assisted:** Code review and optimization, modularization, test
   scaffolding, documentation structuring, hypothesis exploration, and
