@@ -1,0 +1,38 @@
+{
+  "status": "not_ready_for_direct_deployment",
+  "reasons": [
+    "S6 não confirmou vantagem do UpliftTree sobre o baseline",
+    "S7/S8 são pós-confirmatórios e exploratórios",
+    "visit e spend têm baixo alinhamento",
+    "custos, margens e guardrails operacionais não estão validados"
+  ],
+  "allowed_uses": [
+    "aprendizado e geração de hipóteses",
+    "desenho de piloto prospectivo randomizado",
+    "simulação ilustrativa com premissas explicitamente substituíveis"
+  ],
+  "prohibited_uses": [
+    "claim de superioridade confirmatória",
+    "deployment automático",
+    "escolha retrospectiva de vencedor",
+    "tratar máximo entre budgets como teste independente"
+  ],
+  "prospective_randomized_pilot_requirements": {
+    "policy_frozen_before_launch": true,
+    "real_cost_and_margin": true,
+    "primary_outcome_pre_specified": true,
+    "operational_guardrails": [
+      "fadiga",
+      "entregabilidade",
+      "descadastro",
+      "reclamações",
+      "capacidade"
+    ],
+    "analysis": [
+      "ITT",
+      "IPW se houver aderência/ponderação definida antes"
+    ],
+    "sample_size_and_power": true,
+    "monitoring_plan": true
+  }
+}

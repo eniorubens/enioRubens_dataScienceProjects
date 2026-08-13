@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69.5.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uplift-modeling-hillstrom"
+version = "1.0.0"
+description = "Uplift modeling (CATE) em e-mail marketing — Hillstrom MineThatData Challenge"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# --basetemp: o diretório padrão do Windows (%TEMP%\pytest-of-<user>) ficou com
+# ACL negando acesso neste ambiente; redireciona para dentro do projeto, que é
+# sabidamente gravável.
+addopts = "--tb=short -q --basetemp=.pytest_tmp"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100

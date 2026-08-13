@@ -1,0 +1,82 @@
+{
+  "metrics_absolute": {
+    "UpliftTree": {
+      "qini_auc": 0.008863,
+      "uplift_auc": 0.005048,
+      "uplift_at_30pct": 0.05667
+    },
+    "X+Tree(depth=4)": {
+      "qini_auc": 0.04701,
+      "uplift_auc": 0.027801,
+      "uplift_at_30pct": 0.086572
+    },
+    "S+LightGBM(vanilla)": {
+      "qini_auc": 0.017454,
+      "uplift_auc": 0.01075,
+      "uplift_at_30pct": 0.066648
+    },
+    "Baseline (propensão)": {
+      "qini_auc": 0.017708,
+      "uplift_auc": 0.010333,
+      "uplift_at_30pct": 0.088348
+    }
+  },
+  "bootstrap": {
+    "n_boot": 2000,
+    "seed": 42,
+    "candidates": {
+      "UpliftTree": {
+        "point_estimate": 0.008862839725930842,
+        "ci_low": -0.017350333198745488,
+        "ci_high": 0.03530841470658027
+      },
+      "X+Tree(depth=4)": {
+        "point_estimate": 0.04700995385437284,
+        "ci_low": 0.0179903113103557,
+        "ci_high": 0.07492094283525917
+      },
+      "S+LightGBM(vanilla)": {
+        "point_estimate": 0.017453857408532454,
+        "ci_low": -0.011688735722374857,
+        "ci_high": 0.04651628133984715
+      },
+      "Baseline (propensão)": {
+        "point_estimate": 0.01770755970712924,
+        "ci_low": -0.009482356516712984,
+        "ci_high": 0.044922649334814914
+      }
+    },
+    "deltas": {
+      "UpliftTree - Baseline (propensão)": {
+        "point_estimate": -0.008844719981198396,
+        "ci_low": -0.04915708997452239,
+        "ci_high": 0.03024856926795489
+      },
+      "UpliftTree - X+Tree(depth=4)": {
+        "point_estimate": -0.038147114128442,
+        "ci_low": -0.06823427088417403,
+        "ci_high": -0.00971729500115126
+      },
+      "UpliftTree - S+LightGBM(vanilla)": {
+        "point_estimate": -0.008591017682601612,
+        "ci_low": -0.04121021780642579,
+        "ci_high": 0.021963182583738652
+      },
+      "X+Tree(depth=4) - Baseline (propensão)": {
+        "point_estimate": 0.029302394147243605,
+        "ci_low": -0.008155284750141453,
+        "ci_high": 0.06365287791061912
+      },
+      "S+LightGBM(vanilla) - Baseline (propensão)": {
+        "point_estimate": -0.0002537022985967842,
+        "ci_low": -0.029459499316200653,
+        "ci_high": 0.030922914171346516
+      }
+    }
+  },
+  "preregistration_sha256": "eb51d102617a2a72dd4de6495de625452267ae622600d7a705b3beff0925f329",
+  "final_models_sha256": "2d07afdd33ebf6317e6dbb4975f819ac993547c2bb5ef4060797520f959f464d",
+  "dataset_fingerprint": "9bd6dd74628d14b652cef843df5e52c07f9024706dc00ece13855a85c4543b41",
+  "n_test": 12800,
+  "timestamp_utc": "2026-08-11T20:22:50.196946+00:00"
+}

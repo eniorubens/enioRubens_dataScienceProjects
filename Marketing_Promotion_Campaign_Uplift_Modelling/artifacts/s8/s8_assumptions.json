@@ -1,0 +1,22 @@
+{
+  "status": "post-confirmatory exploratory",
+  "fit_partition": "train_df only",
+  "evaluation_partition": "val_df only",
+  "pooled_propensity": 0.6666666666666666,
+  "three_arm_propensity": 0.3333333333333333,
+  "gross_margin_grid": [
+    0.3,
+    0.5,
+    0.7
+  ],
+  "email_cost_grid": [
+    0.02,
+    0.05,
+    0.1
+  ],
+  "illustrative_margin": 0.5,
+  "illustrative_email_cost": 0.05,
+  "economic_note": "Observed spend is a revenue proxy; gross margin and email cost are illustrative scenarios, not company facts.",
+  "treat_all_note": "treat_all and all-arm policies are unconditional benchmarks and are infeasible below 100% contact.",
+  "s6_note": "S8 does not change the confirmatory S6 result or select a retrospective winner."
+}

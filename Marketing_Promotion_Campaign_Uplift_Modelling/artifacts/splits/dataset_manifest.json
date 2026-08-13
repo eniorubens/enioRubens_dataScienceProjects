@@ -1,0 +1,11 @@
+{
+  "dataset_sha256": "9bd6dd74628d14b652cef843df5e52c07f9024706dc00ece13855a85c4543b41",
+  "seed": 42,
+  "n_rows": 64000,
+  "train_frac": 0.6,
+  "val_frac": 0.2,
+  "test_frac": 0.2,
+  "n_train": 38400,
+  "n_val": 12800,
+  "n_test": 12800
+}

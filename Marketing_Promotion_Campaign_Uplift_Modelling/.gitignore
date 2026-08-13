@@ -1,0 +1,19 @@
+.multilang_cache/
+.pytest_cache/
+.pytest_tmp*/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local data must be obtained from the original publisher.
+dataset/*.csv
+dataset/*.zip
+
+# Generated and development-only outputs.
+artifacts/_exec_*.ipynb
+artifacts/_pytest*/
+artifacts/.pytest*/
+artifacts/_s49*.csv
+artifacts/meta_learners.joblib
+temp/

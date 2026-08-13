@@ -1,0 +1,12 @@
+category,risk,evidence,impact,mitigation_next_step,severity
+hypothesis,Hipótese primária não confirmada,IC95% de S6 inclui zero,Não sustenta claim de superioridade,Preservar S6 como resultado nulo e desenhar piloto novo,high
+inference,Pós-seleção e exploração,S7/S8 foram produzidos após S6,Risco de otimismo e multiplicidade,Tratar como geração de hipótese; pré-especificar próximo teste,high
+data,Conversion raro,Taxa baixa e ICs amplos nos resumos,Baixa potência para decisões de conversão,Definir outcome e amostra com power analysis,high
+economics,Spend é proxy e margem/custo são hipotéticos,S8 usa cenários ilustrativos,ROI não é business case,"Usar receita incremental, margem e custo reais",high
+alignment,Baixa correlação visit–spend,Correlação Spearman visit–spend persistida em S7,Ranking de visit pode não maximizar valor,Avaliar outcome econômico pré-especificado,high
+uncertainty,Incerteza dos ICs,Muitos intervalos incluem zero,Direção e magnitude são instáveis,Aumentar amostra e congelar análise,high
+interpretability,Surrogate descritivo da ação,"S8 mede aproximação da ação, não efeito causal",Regras não são explicação causal individual,Usar perfis por quantil e surrogate apenas para comunicação,medium
+external_validity,Validade externa limitada,Hillstrom é campanha histórica,Resultados podem não transportar,Revalidar em campanha e população atuais,high
+operations,"Política usa validação, não piloto prospectivo",Nenhuma execução randomizada futura foi observada,Não há evidência operacional,Executar piloto randomizado com política congelada,high
+operations,"Ausência de efeitos adversos, fadiga, capacidade e entregabilidade",Artefatos não medem esses guardrails,Risco operacional e de experiência,"Monitorar supressão, reclamações, saturação e capacidade",high
+multiplicity,Comparações secundárias e multiplicidade,"Vários modelos, outcomes e budgets",Falsos positivos exploratórios,Não selecionar máximos; pré-especificar uma análise,high
