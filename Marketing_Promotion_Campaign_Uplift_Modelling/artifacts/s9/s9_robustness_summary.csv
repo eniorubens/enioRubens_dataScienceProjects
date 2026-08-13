@@ -1,0 +1,17 @@
+section,subject,outcome,n_units,positive_count,negative_count,zero_count,ci_above_zero_count,ci_below_zero_count,ci_includes_zero_count,estimate,ci_low,ci_high,positive_proportion,ci_above_zero_proportion,interpretation
+binary_policy_stability,uplift_tree,visit,20,3,16,1,0,0,20,,,,0.15,0.0,Mesma curva exploratória por budget; nenhum budget é teste confirmatório.
+binary_policy_stability,uplift_tree,spend,20,9,10,1,0,0,20,,,,0.45,0.0,Mesma curva exploratória por budget; nenhum budget é teste confirmatório.
+binary_policy_stability,x_tree,visit,20,13,6,1,3,0,17,,,,0.65,0.15,Mesma curva exploratória por budget; nenhum budget é teste confirmatório.
+binary_policy_stability,x_tree,spend,20,12,7,1,1,0,19,,,,0.6,0.05,Mesma curva exploratória por budget; nenhum budget é teste confirmatório.
+economic_sensitivity,no_contact,spend,180,0,0,180,0,0,0,,,,0.0,,"Apenas cenários econômicos factíveis são contados a partir das estimativas pontuais; margens e custos são ilustrativos, e a proporção não propaga a incerteza dos efeitos."
+economic_sensitivity,propensity,spend,180,180,0,0,0,0,0,,,,1.0,,"Apenas cenários econômicos factíveis são contados a partir das estimativas pontuais; margens e custos são ilustrativos, e a proporção não propaga a incerteza dos efeitos."
+economic_sensitivity,random,spend,180,180,0,0,0,0,0,,,,1.0,,"Apenas cenários econômicos factíveis são contados a partir das estimativas pontuais; margens e custos são ilustrativos, e a proporção não propaga a incerteza dos efeitos."
+economic_sensitivity,treat_all,spend,9,9,0,0,0,0,0,,,,1.0,,"Apenas cenários econômicos factíveis são contados a partir das estimativas pontuais; margens e custos são ilustrativos, e a proporção não propaga a incerteza dos efeitos."
+economic_sensitivity,uplift_tree,spend,180,161,19,0,0,0,0,,,,0.8944444444444445,,"Apenas cenários econômicos factíveis são contados a partir das estimativas pontuais; margens e custos são ilustrativos, e a proporção não propaga a incerteza dos efeitos."
+economic_sensitivity,x_tree,spend,180,180,0,0,0,0,0,,,,1.0,,"Apenas cenários econômicos factíveis são contados a partir das estimativas pontuais; margens e custos são ilustrativos, e a proporção não propaga a incerteza dos efeitos."
+three_way_learned,learned,conversion,20,19,1,0,2,0,18,,,,0.95,0.1,Intervalos por budget resumem uma curva exploratória de validação; não são testes independentes.
+three_way_learned,learned,spend,20,19,1,0,0,0,20,,,,0.95,0.0,Intervalos por budget resumem uma curva exploratória de validação; não são testes independentes.
+three_way_learned,learned,visit,20,19,1,0,18,0,2,,,,0.95,0.9,Intervalos por budget resumem uma curva exploratória de validação; não são testes independentes.
+cross_outcome_alignment,conversion_vs_visit,rankings,1,1,0,0,0,0,0,0.6524040176511308,,,1.0,,Alinhamento entre outcomes é descritivo; a baixa correlação visit–spend enfraquece a transferência de um ranking de visit para a economia.
+cross_outcome_alignment,conversion_vs_spend,rankings,1,1,0,0,0,0,0,0.1314734056356228,,,1.0,,Alinhamento entre outcomes é descritivo; a baixa correlação visit–spend enfraquece a transferência de um ranking de visit para a economia.
+cross_outcome_alignment,spend_vs_visit,rankings,1,1,0,0,0,0,0,0.094127243026051,,,1.0,,Alinhamento entre outcomes é descritivo; a baixa correlação visit–spend enfraquece a transferência de um ranking de visit para a economia.

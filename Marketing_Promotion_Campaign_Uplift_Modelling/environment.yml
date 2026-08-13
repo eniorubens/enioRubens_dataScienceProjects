@@ -1,0 +1,81 @@
+# Ambiente conda para o projeto Uplift Modeling (Hillstrom)
+# Uso:
+#   mamba env create -f environment.yml
+#   mamba activate uplift
+#   python -m ipykernel install --user --name uplift --display-name "Python (uplift)"
+
+name: uplift
+channels:
+  - conda-forge
+  - nodefaults  # evita misturar com o canal 'defaults', fonte clássica de conflitos no Windows
+
+dependencies:
+  # ---- Núcleo Python ----
+  - python=3.11        # sweet spot: causalml 0.15.5 e econml 0.16 suportam; 3.12 ainda tem arestas
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn>=1.6  # causalml=0.15.5 importa validate_data de sklearn.utils.validation,
+                       # que só existe a partir da 1.6 — 1.5.2 quebra o import de causalml.inference.tree.
+                       # sklift.viz precisa do shim de compat em qualquer versão (>=1.5): ver célula
+                       # imports-causal do notebook — check_matplotlib_support não é mais reexportado
+                       # em sklearn.utils desde a 1.5 (verificado em 1.5.2 e 1.6.1).
+  - pyarrow            # backend pandas, leitura rápida de parquet
+  - libblas=*=*openblas  # CRÍTICO no Windows: o build MKL do libblas (mkl 2026.0.0, resolvido sem
+                         # este pin) crasha o processo nativamente (abort, exceção 0xC06D007F em
+                         # KERNELBASE.dll) ao importar causalml.inference.meta/tree, econml.dml/
+                         # metalearners ou shap — sem exceção Python, sem traceback, kernel morre.
+                         # Reproduzido tanto via terminal quanto no kernel Jupyter do VS Code.
+                         # OpenBLAS elimina o conflito. numpy 1.x vs 2.x é irrelevante para este bug
+                         # (testado nas duas versões, ambas OK com OpenBLAS, ambas crasham com MKL).
+
+  # ---- Visualização ----
+  - matplotlib
+  - seaborn
+  - plotly             # opcional, útil para Qini interativa
+  - python-graphviz    # necessário p/ visualização de uplift trees do causalml
+  - graphviz           # binário do sistema (resolve o "GraphViz's executables not found")
+
+  # ---- Jupyter ----
+  - jupyterlab
+  - notebook
+  - ipykernel
+  - ipywidgets
+  - nbformat
+
+  # ---- Boosters (usados internamente por causalml/econml) ----
+  - xgboost
+  - lightgbm
+
+  # ---- Causal & uplift (CORE do projeto) ----
+  - causalml=0.15.5    # meta-learners, uplift trees/forests
+  - econml=0.16.0      # CausalForestDML, DR-learner, policy trees
+
+  # ---- MLOps & tuning (sua infra optpipe) ----
+  - mlflow
+  - optuna
+  - optuna-integration # callbacks para sklearn/xgboost/lightgbm
+
+  # ---- Interpretabilidade ----
+  - shap
+
+  # ---- Estatística ----
+  - statsmodels        # útil para análises auxiliares e balance tests
+
+  # ---- Utilitários ----
+  - tqdm
+  - joblib
+  - python-dotenv
+  - rich               # logs bonitos no terminal Windows
+
+  # ---- Dev (opcional, remova se não usar) ----
+  - black
+  - ruff
+  - pytest
+
+  # ---- O que só existe no PyPI ----
+  - pip:
+      - scikit-uplift           # sklift: métricas Qini, AUUC, plots de uplift curve
+      - deep-translator         # backend do multilang (só usado quando target != source)
+      - -e ../ds_toolkit/multilang  # LangMap compartilhado; mantenha os projetos como irmãos no monorepo

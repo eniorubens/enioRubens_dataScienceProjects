@@ -87,6 +87,23 @@ Forecasts hourly bicycle demand under normal operating conditions using nine yea
 
 ---
 
+### 8. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) — Causal Targeting and Policy Learning
+![Status](https://img.shields.io/badge/status-completed-blue)
+
+Estimates who should receive an e-mail because the treatment changes their
+outcome, using the randomized Hillstrom experiment. The bilingual workflow
+compares response targeting, meta-learners, causal forests, and uplift trees,
+then evaluates budget-constrained policies and ROI scenarios. Its
+pre-registered sealed-test result is deliberately conservative: the primary
+uplift candidate did not demonstrate superiority over the baseline, so the
+project recommends a prospective randomized pilot rather than deployment.
+
+**Methods:** Randomization audit · S/T/X/R-learners · Causal forest · Uplift trees · Qini/AUUC · Sealed holdout · Quantile heterogeneity profiles · Policy learning · IPW evaluation · ROI sensitivity
+
+**Technologies:** Python · Pandas · scikit-learn · EconML · CausalML · Matplotlib · pytest · Jupyter
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
@@ -99,13 +116,14 @@ Forecasts hourly bicycle demand under normal operating conditions using nine yea
 | **Unsupervised Learning** | K-Means Clustering, RFM Segmentation |
 | **Prescriptive Analytics** | Budget Optimization, Expected Profit Simulation, Next Best Action |
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
+| **Causal Inference** | CATE Estimation, Meta-Learners, Causal Forests, Uplift Evaluation, Policy Learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
 | **Data Engineering** | Feature Pipelines, Encoding Strategies, Imbalanced Data Handling |
 | **Market Basket Analysis** | Apriori, Association Rules, Lift, Conviction, Zhang's Metric |
 
 ## Core Technologies
 
-Python · Pandas · NumPy · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
+Python · Pandas · NumPy · scikit-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
 
 ---
 

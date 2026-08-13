@@ -1,0 +1,127 @@
+{
+  "stage": "S6",
+  "status": "preregistered_before_sealed_test",
+  "estimand": "any email vs. No E-Mail (treatment pooled binário, RCT — three-arm pooled to two)",
+  "treatment_col_pooled": "treatment",
+  "treatment_col_observed_arms": "segment",
+  "primary_outcome": "visit",
+  "primary_model": "UpliftTree",
+  "comparators": [
+    "X+Tree(depth=4)",
+    "S+LightGBM(vanilla)",
+    "Baseline (propensão)"
+  ],
+  "excluded_from_s6": {
+    "models": [
+      "UpliftRF",
+      "CausalForest"
+    ],
+    "reason": "Configurações pré-registradas avaliadas em S5 não apresentaram evidência competitiva suficiente para justificar aumentar a multiplicidade da avaliação selada. Não implica que as famílias sejam inadequadas em geral — ver Notebook 04, seção 5.8."
+  },
+  "primary_hypothesis": "UpliftTree produz ranking incremental melhor que o baseline de propensão de resposta no teste selado.",
+  "primary_metric": "qini_auc (normalized Qini AUC via sklift.metrics.qini_auc_score)",
+  "secondary_metrics": [
+    "uplift_auc",
+    "uplift_at_30pct"
+  ],
+  "primary_comparison": "UpliftTree - Baseline (propensão)",
+  "secondary_comparisons": [
+    "UpliftTree - X+Tree(depth=4)",
+    "UpliftTree - S+LightGBM(vanilla)",
+    "X+Tree(depth=4) - Baseline (propensão)",
+    "S+LightGBM(vanilla) - Baseline (propensão)"
+  ],
+  "interpretation_rule_primary": {
+    "ci_entirely_above_zero": "evidência confirmatória de vantagem do UpliftTree sobre response targeting",
+    "ci_includes_zero": "não há evidência confirmatória de vantagem",
+    "ci_entirely_below_zero": "evidência de que o baseline supera o UpliftTree nessa amostra selada",
+    "note": "Critério fixado antes da abertura do teste selado; não pode ser alterado depois de ver o teste. Comparações secundárias são reportadas mas não substituem retrospectivamente o modelo primário nem definem um novo 'vencedor'."
+  },
+  "bootstrap_protocol": {
+    "function": "bootstrap_qini_comparison (src/evaluation.py)",
+    "n_boot": 2000,
+    "seed": 42,
+    "paired": true,
+    "paired_note": "A mesma amostra bootstrap de índices é usada simultaneamente para outcome, treatment e os scores de todos os candidatos.",
+    "stratification": "estratificado por braço randomizado original (segment / TREATMENT_COL)",
+    "stratification_note": "Reamostragem com reposição dentro de cada braço observado (No E-Mail, Mens E-Mail, Womens E-Mail), preservando o tamanho observado de cada braço em cada réplica; o treatment pooled é reconstruído a partir do braço reamostrado. Não estratifica por outcome.",
+    "ci_method": "percentil, 95%",
+    "candidates": [
+      "UpliftTree",
+      "X+Tree(depth=4)",
+      "S+LightGBM(vanilla)",
+      "Baseline (propensão)"
+    ],
+    "deltas": [
+      "UpliftTree - Baseline (propensão)",
+      "UpliftTree - X+Tree(depth=4)",
+      "UpliftTree - S+LightGBM(vanilla)",
+      "X+Tree(depth=4) - Baseline (propensão)",
+      "S+LightGBM(vanilla) - Baseline (propensão)"
+    ],
+    "applies_to_metric": "qini_auc",
+    "written_and_tested_before_sealed_test_access": true
+  },
+  "development_training_protocol": "dev_df = train_df + val_df (80% de desenvolvimento completos, os mesmos splits persistidos por 02_Baseline_Propensity_PT); nenhuma linha do teste selado usada no fit; OneHotEncoder ajustado somente em dev_df; modelos treinados uma única vez e congelados em artifacts/s6/final_models.joblib antes da abertura do teste.",
+  "feature_cols": [
+    "recency",
+    "history",
+    "mens",
+    "womens",
+    "newbie",
+    "zip_code",
+    "channel",
+    "history_segment"
+  ],
+  "model_specs": {
+    "UpliftTree": {
+      "class": "causalml.inference.tree.UpliftTreeClassifier",
+      "non_default_params": {
+        "control_name": "control",
+        "random_state": 42
+      },
+      "note": "Configuração idêntica à usada em S5 — sem tuning após S5."
+    },
+    "X+Tree(depth=4)": {
+      "class": "causalml.inference.meta.BaseXRegressor",
+      "base_learner": "sklearn.tree.DecisionTreeRegressor",
+      "non_default_params": {
+        "max_depth": 4,
+        "random_state": 42
+      },
+      "note": "Configuração congelada de S4.9/S5 (fit_single_meta_learner('X', ..., base_learner_factory=tree_factory))."
+    },
+    "S+LightGBM(vanilla)": {
+      "class": "causalml.inference.meta.BaseSRegressor",
+      "base_learner": "lightgbm.LGBMRegressor",
+      "non_default_params": {
+        "random_state": 42
+      },
+      "note": "Configuração congelada de S4.1-4.3/S5 (base learner vanilla, _default_base_learner)."
+    },
+    "Baseline (propensão)": {
+      "class": "lightgbm.LGBMClassifier (via fit_propensity_baseline)",
+      "non_default_params": {
+        "random_state": 42
+      },
+      "note": "P(Y=1|X,T=1), treinado somente nas observações tratadas de dev_df."
+    }
+  },
+  "seed": 42,
+  "dataset_fingerprint": "9bd6dd74628d14b652cef843df5e52c07f9024706dc00ece13855a85c4543b41",
+  "split_manifest_fingerprint": "42f7b4af0ddd81fb25e7fddde4f3fbbf379967d079515bdba8cd92c6f036f3d1",
+  "split_manifest_fingerprint_note": "SHA-256 de artifacts/splits/dataset_manifest.json (fingerprint do CSV fonte + seed + contagens train/val/test) — não do conteúdo do teste selado em si, que não é lido nesta fase.",
+  "absolute_guardrails": [
+    "Não alterar Notebook 03.",
+    "Não alterar splits existentes.",
+    "Não alterar o estimand pooled.",
+    "Não abrir o sealed test antes de autorização explícita para S6.",
+    "Não usar train + val + test juntos para nada além da avaliação confirmatória final.",
+    "Não fazer tuning após olhar resultados do teste selado.",
+    "Não criar novas features.",
+    "Não experimentar redes neurais.",
+    "Não separar Men's/Women's e-mail.",
+    "Não rodar as seções confirmatórias de S6 nesta rodada."
+  ],
+  "created_before_test_unlock": true
+}

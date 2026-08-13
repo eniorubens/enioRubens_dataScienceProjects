@@ -1,0 +1,5 @@
+evidence_id,stage,evidence_class,claim,estimate,ci_low,ci_high,status,interpretation
+S6_primary,S6,confirmatory,UpliftTree - baseline de propensão,-0.008844719981198396,-0.04915708997452239,0.03024856926795489,no_confirmatory_advantage,O IC95% inclui zero; a hipótese primária não foi confirmada.
+S7_funnel,S7,exploratory,Heterogeneidade e ranking no outcome visit,0.0615288635573958,,,descriptive_only,A curva é exploratória e não substitui a avaliação confirmatória.
+S7_visit_spend_alignment,S7,exploratory,Correlação entre rankings visit e spend,0.094127243026051,,,low_alignment,O baixo alinhamento limita a transferência de targeting de visit para receita.
+S8_policy_validation,S8,exploratory,Políticas de contato e ROI na validação,,,,descriptive_only,Consultar o resumo de robustez; budgets e cenários econômicos não autorizam deployment nem vencedor retrospectivo.

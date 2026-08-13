@@ -1,0 +1,49 @@
+{
+  "stage": "S9",
+  "status": "reporting-only post-confirmatory",
+  "allowed_inputs": {
+    "s6_results": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s6\\s6_results.json",
+      "sha256": "5e31f843bde49cd2f2c839959a079952378e450a1b6e5f9b146b10b3d0e2d9ec"
+    },
+    "preregistration": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s6\\preregistration.json",
+      "sha256": "eb51d102617a2a72dd4de6495de625452267ae622600d7a705b3beff0925f329"
+    },
+    "funnel_metrics": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s7\\s7_funnel_metrics.csv",
+      "sha256": "04d458143615abc4e879679e19f7388341c8538f4578e85805bf1c98b72dc746"
+    },
+    "funnel_spearman": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s7\\s7_funnel_spearman.csv",
+      "sha256": "dbaae273de4a87ee90fbbcd3daafc315264fa0e8ab169230ed60399590afdd8e"
+    },
+    "quantile_outcomes": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s7\\s7_quantile_outcomes.csv",
+      "sha256": "cfc9f9171578469451fb0d46b2f5821aa3e9062d302c134dca057701666c8fea"
+    },
+    "top_bottom_profile": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s7\\s7_top_bottom_profile.csv",
+      "sha256": "9c656bfef23fddd3ecb178bee3c6a535a77a4822b22b4a258457ee1420d0e515"
+    },
+    "policy_comparisons": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s8\\s8_policy_comparisons.csv",
+      "sha256": "1e9f84e1e7d2e4906a5cb332cfab72203320000a2e373427528550014b47171a"
+    },
+    "roi_sensitivity": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s8\\s8_roi_sensitivity.csv",
+      "sha256": "00af0bd787c17f632f25740e673d156817edc1a33aff57243ea57f0840544ab3"
+    },
+    "three_way_policy": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s8\\s8_three_way_policy.csv",
+      "sha256": "e1a246b51123dd31ff075e2c194a6d61a26bc2d493ab3b34029799ac5304fbcf"
+    },
+    "assumptions": {
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Marketing Promotion Campaign Uplift Modelling\\artifacts\\s8\\s8_assumptions.json",
+      "sha256": "16828e59c92af769e19ba8f4aaf139150560577d42f73865c6505d8bdeecabde"
+    }
+  },
+  "sealed_data_copied": false,
+  "models_loaded": false,
+  "confirmatory_metrics_recalculated": false
+}
