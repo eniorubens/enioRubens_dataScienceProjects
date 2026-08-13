@@ -216,11 +216,6 @@ experiment would be a different study.
 - Athey, S., Tibshirani, J. and Wager, S. (2019), [Generalized Random Forests](https://doi.org/10.1214/18-AOS1709).
 - Zhao, Y., Fang, X. and Simchi-Levi, D. (2017), [Uplift Modeling with Multiple Treatments and General Response Types](https://doi.org/10.1137/1.9781611974973.66).
 
-## License
-
-Code and project documentation are available under the [MIT License](LICENSE).
-The license does not cover the third-party Hillstrom dataset.
-
 ## Author and Responsibility
 
 **Author:** Enio Rubens<br>
@@ -231,9 +226,45 @@ documentation, and review. Business framing, methodological decisions, result
 interpretation, and final approval remained human-led. All published claims are
 the author's responsibility.
 
-## Data Attribution
+---
 
-The dataset was released by Kevin Hillstrom for the 2008 MineThatData E-Mail
-Analytics Challenge. It is obtained directly from the publisher and is not
-redistributed here; ownership and original distribution terms remain with the
-source.
+## License & Acknowledgments
+
+**Code:** Distributed under the [MIT License](LICENSE).
+
+**Dataset:** [Hillstrom MineThatData E-Mail Analytics Challenge](https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html),
+published by Kevin Hillstrom. The dataset is obtained directly from the
+publisher and is not redistributed because the source does not state an
+explicit reuse license; see [dataset/README.md](dataset/README.md).
+
+**Libraries:** scikit-learn, CausalML, EconML, scikit-uplift, XGBoost,
+LightGBM, Pandas, NumPy, SciPy, Statsmodels, Matplotlib, Seaborn, Plotly,
+Graphviz, Optuna, MLflow, and pytest development communities.
+
+**Research:** Cited work by Radcliffe & Surry; Künzel et al.; Nie & Wager;
+Athey, Tibshirani & Wager; and Zhao, Fang & Simchi-Levi.
+
+---
+
+**Last Updated:** August 2026<br>
+**Project Status:** Complete & Portfolio-Ready<br>
+**Confirmatory Result:** Δ Qini AUC -0.0088 | 95% CI [-0.0492, 0.0302] |
+no superiority established<br>
+**Decision Boundary:** Not ready for direct deployment
+
+---
+
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![scikit-learn 1.6+](https://img.shields.io/badge/scikit--learn-1.6%2B-orange.svg)](https://scikit-learn.org/)
+[![CausalML 0.15.5](https://img.shields.io/badge/CausalML-0.15.5-008B8B.svg)](https://causalml.readthedocs.io/)
+[![EconML 0.16.0](https://img.shields.io/badge/EconML-0.16.0-5C2D91.svg)](https://www.pywhy.org/EconML/)
+[![scikit-uplift](https://img.shields.io/badge/scikit--uplift-metrics-brightgreen.svg)](https://www.uplift-modeling.com/)
+[![pytest](https://img.shields.io/badge/pytest-154%20passed-brightgreen.svg)](https://pytest.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+[![Bilingual notebooks](https://img.shields.io/badge/notebooks-PT--BR%20%7C%20EN--US-blueviolet.svg)](notebooks/README.md)
+
+---
+
+*This portfolio project showcases end-to-end causal machine learning, honest
+confirmatory evaluation, heterogeneous treatment-effect analysis, and
+budget-constrained policy learning.*

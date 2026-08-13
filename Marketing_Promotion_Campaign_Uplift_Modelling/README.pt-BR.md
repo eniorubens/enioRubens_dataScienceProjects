@@ -218,11 +218,6 @@ experimento no teste selado constituiria outro estudo.
 - Athey, S., Tibshirani, J. e Wager, S. (2019), [Generalized Random Forests](https://doi.org/10.1214/18-AOS1709).
 - Zhao, Y., Fang, X. e Simchi-Levi, D. (2017), [Uplift Modeling with Multiple Treatments and General Response Types](https://doi.org/10.1137/1.9781611974973.66).
 
-## Licença
-
-O código e a documentação do projeto estão disponíveis sob a
-[Licença MIT](LICENSE). A licença não abrange o dataset Hillstrom de terceiros.
-
 ## Autor e Responsabilidade
 
 **Autor:** Enio Rubens<br>
@@ -233,9 +228,45 @@ de testes, documentação e revisão. Framing de negócio, decisões metodológi
 interpretação dos resultados e aprovação final permaneceram sob condução
 humana. A responsabilidade pelas conclusões publicadas é do autor.
 
-## Atribuição dos Dados
+---
 
-O dataset foi disponibilizado por Kevin Hillstrom para o MineThatData E-Mail
-Analytics Challenge de 2008. Ele é obtido diretamente da fonte e não é
-redistribuído aqui; a titularidade e os termos originais de distribuição
-permanecem com a fonte correspondente.
+## Licença e Agradecimentos
+
+**Código:** Distribuído sob a [Licença MIT](LICENSE).
+
+**Dataset:** [Hillstrom MineThatData E-Mail Analytics Challenge](https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html),
+publicado por Kevin Hillstrom. O dataset é obtido diretamente da fonte e não é
+redistribuído porque a publicação original não declara uma licença explícita de
+reutilização; consulte [dataset/README.md](dataset/README.md).
+
+**Bibliotecas:** comunidades de desenvolvimento do scikit-learn, CausalML,
+EconML, scikit-uplift, XGBoost, LightGBM, Pandas, NumPy, SciPy, Statsmodels,
+Matplotlib, Seaborn, Plotly, Graphviz, Optuna, MLflow e pytest.
+
+**Pesquisa:** trabalhos citados de Radcliffe e Surry; Künzel et al.; Nie e
+Wager; Athey, Tibshirani e Wager; e Zhao, Fang e Simchi-Levi.
+
+---
+
+**Última atualização:** agosto de 2026<br>
+**Status do projeto:** completo e pronto para portfólio<br>
+**Resultado confirmatório:** Δ Qini AUC -0,0088 | IC 95% [-0,0492; 0,0302] |
+superioridade não estabelecida<br>
+**Fronteira de decisão:** não pronto para implantação direta
+
+---
+
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![scikit-learn 1.6+](https://img.shields.io/badge/scikit--learn-1.6%2B-orange.svg)](https://scikit-learn.org/)
+[![CausalML 0.15.5](https://img.shields.io/badge/CausalML-0.15.5-008B8B.svg)](https://causalml.readthedocs.io/)
+[![EconML 0.16.0](https://img.shields.io/badge/EconML-0.16.0-5C2D91.svg)](https://www.pywhy.org/EconML/)
+[![scikit-uplift](https://img.shields.io/badge/scikit--uplift-metrics-brightgreen.svg)](https://www.uplift-modeling.com/)
+[![pytest](https://img.shields.io/badge/pytest-154%20passed-brightgreen.svg)](https://pytest.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+[![Notebooks bilíngues](https://img.shields.io/badge/notebooks-PT--BR%20%7C%20EN--US-blueviolet.svg)](notebooks/README.md)
+
+---
+
+*Este projeto de portfólio demonstra machine learning causal de ponta a ponta,
+avaliação confirmatória honesta, análise de efeitos heterogêneos de tratamento
+e aprendizado de políticas com restrição de orçamento.*
