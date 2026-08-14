@@ -2,6 +2,8 @@
 
 **Author:** [Enio Rubens](https://github.com/eniorubens)
 
+**Language:** English | [Português (Brasil)](README.pt-BR.md)
+
 A portfolio of end-to-end data science projects covering the full analytics spectrum — from descriptive statistics and inferential testing to predictive modeling and prescriptive optimization. Projects include reproducible notebooks, modular source code and automated test suites; the language status of each edition is documented in its own README.
 
 ---
