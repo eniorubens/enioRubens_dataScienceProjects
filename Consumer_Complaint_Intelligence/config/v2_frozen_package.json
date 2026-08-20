@@ -1,0 +1,206 @@
+{
+  "schema_version": "v2-frozen-package-config-v1",
+  "stage": "V2.1-P",
+  "adr": "docs/ADR-013-v2-frozen-package.md",
+  "status": "FROZEN_FOR_CONFIRMATION",
+  "approved_on": "2026-08-19",
+  "protocol": {
+    "path": "config/v2_development_protocol.json",
+    "sha256": "45E5F83C624B97E1AF785AF6EA6185F7E4DA2D73E6A9F7AB86ED7FDBFF9C16C5",
+    "size_bytes": 5973,
+    "schema_version": "v2-post-confirmation-development-v1-1",
+    "authorizes": [
+      "apply_safety_margin_and_select_v2_candidate",
+      "freeze_v2_package"
+    ],
+    "seven_step_cycle_index": [5, 6]
+  },
+  "model_version": "consumer-complaint-detector-v2",
+  "critical_class": "debt_credit_management",
+  "input_language": "en-US",
+  "architecture": {
+    "type": "hierarchical_critical_override",
+    "stage_a": "binary_critical_detector",
+    "stage_b": "frozen_s7_multiclass_fallback",
+    "combination": "critical_override_at_or_above_calibrated_threshold",
+    "score_kind": "critical_margin",
+    "threshold_source": "inner_calibration_only",
+    "threshold_search": "search_detector_threshold_exact",
+    "no_refit_after_calibration": true
+  },
+  "candidate": {
+    "selected_by": "V2.1-D1",
+    "unchallenged_after": "V2.1-D2",
+    "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+    "representation": "word_char_tfidf_union_40000_60000",
+    "balance_strategy": "hard_negative",
+    "C": 1.0,
+    "sampling_strategy": null,
+    "random_state": 42
+  },
+  "fit_scope": {
+    "role": "inner_fit",
+    "partition": "train",
+    "start": "2023-08-01",
+    "end": "2024-06-30"
+  },
+  "calibration_scope": {
+    "role": "inner_calibration",
+    "partition": "validation",
+    "start": "2024-07-01",
+    "end": "2024-09-30"
+  },
+  "outer_scope": {
+    "role": "outer_evaluation",
+    "partition": "validation",
+    "start": "2024-10-01",
+    "end": "2024-12-31"
+  },
+  "hard_negative_pool": {
+    "source": "generate_hard_negative_indices",
+    "hard_negative_per_positive": 10,
+    "background_negative_per_positive": 5,
+    "oof_splitter": "StratifiedKFold",
+    "oof_n_splits": 3,
+    "oof_random_state": 42,
+    "positive_groups": 946,
+    "hard_negative_groups": 14190,
+    "row_count": 15136,
+    "persisted": false
+  },
+  "safety_margin": {
+    "required_gate_count": 3,
+    "limits": {
+      "global_macro_f1_min": 0.7,
+      "critical_f1_min": 0.29,
+      "critical_precision_min": 0.22
+    },
+    "values": {
+      "macro_f1": 0.731214101791537,
+      "critical_f1": 0.38689866939611056,
+      "critical_precision": 0.4375
+    },
+    "headroom": {
+      "macro_f1": 0.031214101791537052,
+      "critical_f1": 0.09689866939611058,
+      "critical_precision": 0.2175
+    },
+    "passed": true,
+    "measured_on": "outer_evaluation",
+    "evidence_status": "development_optimistic_not_independent"
+  },
+  "reproduction_gate": {
+    "required": true,
+    "comparison": "exact_no_tolerance",
+    "source_of_truth": "temp/v2/v2_classical_benchmark.json",
+    "checks": [
+      "calibrated_threshold",
+      "calibration_confusion_matrix",
+      "calibration_override_decisions",
+      "calibration_effective_overrides",
+      "outer_confusion_matrix",
+      "outer_override_decisions",
+      "outer_effective_overrides",
+      "hard_negative_pool_counts"
+    ],
+    "expected": {
+      "threshold": -0.13949530151425016,
+      "calibration_override_decisions": 57,
+      "calibration_effective_overrides": 16,
+      "calibration_row_count": 118274,
+      "outer_override_decisions": 258,
+      "outer_effective_overrides": 82,
+      "outer_row_count": 127706,
+      "outer_critical_f1": 0.38689866939611056,
+      "outer_critical_precision": 0.4375,
+      "outer_critical_recall": 0.3467889908256881,
+      "outer_macro_f1": 0.731214101791537,
+      "outer_critical_support": 545
+    },
+    "on_mismatch": "REPRODUCTION_MISMATCH",
+    "publishes_bundle_on_mismatch": false,
+    "fallback_environment": "kaggle_image_used_by_v2_1_d1"
+  },
+  "fallback_baseline_outer": {
+    "critical_f1": 0.3396648044692737,
+    "critical_precision": 0.4342857142857143,
+    "critical_recall": 0.27889908256880735,
+    "macro_f1": 0.7258162180952451,
+    "critical_f1_gain": 0.047233864926836844
+  },
+  "provenance": {
+    "cache": {
+      "path": "temp/s3/scientific.parquet",
+      "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+      "size_bytes": 152781873
+    },
+    "d1": {
+      "stage": "V2.1-D1",
+      "artifact": {
+        "path": "temp/v2/v2_classical_benchmark.json",
+        "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+        "size_bytes": 219597
+      },
+      "manifest": {
+        "path": "config/v2_classical_results.json",
+        "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+        "size_bytes": 1573
+      }
+    },
+    "d2": {
+      "stage": "V2.1-D2",
+      "outcome": "CLASSICAL_WINNER_STANDS",
+      "artifact": {
+        "path": "temp/v2/v2_transformer_challenge.json",
+        "sha256": "37B5E24A80AD6BEBC8C50ACDB75F6925952DC0CCB45B67EA32D52F6B9BA6243E",
+        "size_bytes": 38556
+      },
+      "manifest": {
+        "path": "config/v2_transformer_results.json",
+        "sha256": "8DA685A7F0792A33986150E4CD4CA832DD93CBF787FD0F2891EB28AE6C73985D",
+        "size_bytes": 1712
+      }
+    },
+    "s7": {
+      "bundle": {
+        "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+        "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+        "size_bytes": 3268327
+      },
+      "manifest": {
+        "path": "config/s7_results.json",
+        "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+        "size_bytes": 11306
+      },
+      "result": {
+        "path": "temp/s7/s7_results.json",
+        "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+        "size_bytes": 10793
+      }
+    }
+  },
+  "boundary": {
+    "allowed_partitions": ["train", "validation"],
+    "sealed_partitions": ["test", "stress", "monitor"],
+    "no_sealed_partition_unlock_in_development_code": true,
+    "persists_fitted_weights": true,
+    "persists_narratives_or_identifiers": false,
+    "persists_row_indices": false,
+    "persists_individual_margins": false
+  },
+  "deployment": {
+    "deployment_authorized": false,
+    "status": "FROZEN_FOR_CONFIRMATION",
+    "next_step": "open_stress_2025_h2_once_under_a_new_confirmatory_protocol",
+    "next_step_authorized_here": false
+  },
+  "outputs": {
+    "bundle": "artifacts/v2/consumer_complaint_detector_v2.joblib",
+    "artifact": "temp/v2/v2_package.json",
+    "manifest": "config/v2_results.json"
+  },
+  "run_defaults": {
+    "batch_size": 4096,
+    "smoke_max_per_class": 8
+  }
+}

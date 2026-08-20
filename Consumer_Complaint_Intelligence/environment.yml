@@ -1,0 +1,16 @@
+name: consumer-nlp
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - polars
+  - pyarrow
+  - duckdb
+  - python-duckdb
+  - scikit-learn
+  - imbalanced-learn
+  - joblib
+  - libblas=*=*openblas
+  - jupyterlab
+  - ipykernel
+  - plotly

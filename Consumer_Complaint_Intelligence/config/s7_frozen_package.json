@@ -1,0 +1,55 @@
+{
+  "schema_version": "s7-frozen-package-v1",
+  "status": "FROZEN_FOR_FINAL_FIT",
+  "approved_on": "2026-08-16",
+  "scientific_cache": "temp/s3/scientific.parquet",
+  "fit_partition": "train",
+  "fit_scope": {
+    "partition": "train",
+    "start": "2023-08-01",
+    "end": "2024-06-30"
+  },
+  "calibration_scope": {
+    "partition": "validation",
+    "start": "2024-07-01",
+    "end": "2024-12-31"
+  },
+  "sealed_partitions": ["test", "stress", "monitor"],
+  "critical_class": "debt_credit_management",
+  "input_language": "en-US",
+  "representation": {
+    "analyzer": "word",
+    "ngram_range": [1, 2],
+    "max_features": 40000,
+    "min_df": 2,
+    "max_df": 0.98,
+    "sublinear_tf": true,
+    "dtype": "float32"
+  },
+  "estimator": {
+    "name": "linear_svc_c_0_3_balanced",
+    "class": "LinearSVC",
+    "C": 0.3,
+    "class_weight": "balanced",
+    "tol": 0.0001,
+    "max_iter": 5000,
+    "dual": "auto",
+    "random_state": 42
+  },
+  "threshold_policy": {
+    "method": "search_thresholds_exact",
+    "score_rule": "critical_margin",
+    "calibration_source": "validation_only",
+    "no_refit_after_calibration": true
+  },
+  "gates": {
+    "global_macro_f1_min": 0.69,
+    "critical_f1_min": 0.2715,
+    "critical_precision_min": 0.2
+  },
+  "random_state": 42,
+  "run_defaults": {
+    "batch_size": 4096,
+    "smoke_max_per_class": 8
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "confirmatory": true,
+  "confirmed": false,
+  "deploy": false,
+  "execution_attempts": 1,
+  "gates": {
+    "passed": false,
+    "passed_count": 3,
+    "required_gate_count": 4,
+    "results": [
+      {
+        "limit": 0.69,
+        "name": "macro_f1",
+        "observed": 0.7107483011383684,
+        "passed": true,
+        "strict": false
+      },
+      {
+        "limit": 0.2715,
+        "name": "critical_f1",
+        "observed": 0.2604042806183115,
+        "passed": false,
+        "strict": false
+      },
+      {
+        "limit": 0.2,
+        "name": "critical_precision",
+        "observed": 0.4260700389105058,
+        "passed": true,
+        "strict": false
+      },
+      {
+        "limit": 0.0,
+        "name": "paired_critical_f1_gain",
+        "observed": 0.006455313425115905,
+        "passed": true,
+        "strict": true
+      }
+    ]
+  },
+  "index": {
+    "path": "temp/s2/modeling_index.parquet",
+    "sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9",
+    "size_bytes": 69858991
+  },
+  "opened_at": "2026-08-19T19:39:06Z",
+  "operational_view": "secondary_diagnostic_only",
+  "protocol": {
+    "path": "config/v2_stress_protocol.json",
+    "sha256": "D4927C10DDDD86BC09EA56F0F7DB469425F86B046F71EFE6C980BC4D5FF142D2",
+    "size_bytes": 6915
+  },
+  "raw_source": {
+    "path": "dataset/processed/complaints.parquet",
+    "sha256": "33875E0439B72E00CB6E5985238B47F76B5B0A63B0AC21DDB8C7D46B565C428F",
+    "size_bytes": 821595288
+  },
+  "remaining_sealed": [
+    "monitor"
+  ],
+  "result": {
+    "path": "temp/v2/v2_stress_results.json",
+    "sha256": "97E7CE82B8A8973013AFD75F512A82629EC4C95B9D68BE407A5A908741E20387",
+    "size_bytes": 32375
+  },
+  "s3_protocol": {
+    "path": "config/s3_protocol.json",
+    "sha256": "7CF86C2E0E4849881F50A483FD3C37ABE7C04914C8BFA80A4E4467F4AF31DAF4",
+    "size_bytes": 2567
+  },
+  "s7_freeze": {
+    "bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    },
+    "config": {
+      "path": "config/s7_frozen_package.json",
+      "sha256": "D73014AEA0C40ECA323FAE6AE1E76CBF0C62E953304BD7A10092DBBBE5DC6D78",
+      "size_bytes": 1351
+    },
+    "manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    }
+  },
+  "schema_version": "v2-stress-confirmatory-manifest-v1",
+  "scientific_view": "primary_only",
+  "stage": "V2.1-C",
+  "status": "NOT_CONFIRMED",
+  "stress_opened": true,
+  "v2_freeze": {
+    "bundle": {
+      "path": "artifacts/v2/consumer_complaint_detector_v2.joblib",
+      "sha256": "CD9193D3B3B1BD94931F4FE38393245D498DCF379AFBE0AF1039C79AB66649E0",
+      "size_bytes": 1774532
+    },
+    "config": {
+      "path": "config/v2_frozen_package.json",
+      "sha256": "51EDCFAF209636C57F2B7950F83918EA8E5F39015885DC722C11B2C6B702242D",
+      "size_bytes": 6726
+    },
+    "manifest": {
+      "path": "config/v2_results.json",
+      "sha256": "CF587163AF83A0F6F006B8DA69623DB2996052023B15540FCD375E46AC327017",
+      "size_bytes": 3231
+    },
+    "result": {
+      "path": "temp/v2/v2_package.json",
+      "sha256": "4F44D1B017A1B6B57D2A998E66FCC0797456151C4F0C0FC50F88F9506E4D7A74",
+      "size_bytes": 16565
+    }
+  }
+}

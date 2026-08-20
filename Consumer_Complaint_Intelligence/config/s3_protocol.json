@@ -1,0 +1,84 @@
+{
+  "schema_version": "s3-frozen-protocol-v1",
+  "protocol_id": "post_2023_taxonomy",
+  "stage": "S3",
+  "approval": {
+    "status": "FROZEN_FOR_S3_DEVELOPMENT",
+    "approved_on": "2026-08-15",
+    "approved_by": "user"
+  },
+  "windows": {
+    "train": {
+      "start": "2023-08-01",
+      "end": "2024-06-30"
+    },
+    "validation": {
+      "start": "2024-07-01",
+      "end": "2024-12-31"
+    },
+    "test": {
+      "start": "2025-01-01",
+      "end": "2025-06-30"
+    },
+    "stress": {
+      "start": "2025-07-01",
+      "end": "2025-12-31"
+    },
+    "monitor": {
+      "start": "2026-01-01",
+      "end": "2026-12-31"
+    }
+  },
+  "modeled_families": [
+    "cards_prepaid",
+    "consumer_lending",
+    "credit_reporting",
+    "debt_collection",
+    "debt_credit_management",
+    "deposit_accounts",
+    "money_services",
+    "mortgage",
+    "student_loan"
+  ],
+  "rare_policy": {
+    "family": "other_financial_services",
+    "action": "out_of_scope_rare/abstention"
+  },
+  "group_identity": {
+    "version": "lowercase-trim-whitespace-collapse-md5-length-v1",
+    "columns": ["normalized_group_hash", "normalized_length"],
+    "scientific_row_policy": "minimum Complaint ID per uniquely labeled group",
+    "ambiguous_group_policy": "exclude from scientific train and validation",
+    "ambiguous_group_label": "label_ambiguous"
+  },
+  "s2_evidence": {
+    "report": "temp/s2/s2_report_pilot.json",
+    "report_sha256": "5C6A46F017D10BBBEAE38C9BCBDDFD0B1F70C66F5E1CD49CE210F04EAAF15FA1",
+    "index": "temp/s2/modeling_index.parquet",
+    "index_sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9",
+    "candidate_status": "PASS",
+    "eligible_class_count": 9
+  },
+  "sealed_partitions": ["test", "stress", "monitor"],
+  "scientific_partitions": ["train", "validation"],
+  "validation_policy": {
+    "primary": "macro_f1_on_one_minimum_id_row_per_novel_validation_group",
+    "secondary": [
+      "weighted_f1",
+      "balanced_accuracy",
+      "per_class_metrics"
+    ],
+    "operational": "all_text_validation_metrics_reported_separately"
+  },
+  "execution_guard": {
+    "full_api": "run_s3_full",
+    "scientific_cache": "duckdb_sql_to_parquet_arrow",
+    "full_batch_size": 4096,
+    "default_full_memory_budget_gb": 7.0,
+    "full_operational_policy": "final_fraction_only_batched_accumulator",
+    "default_max_loaded_development_rows": 250000,
+    "large_load_requires_explicit_null_limit": true,
+    "large_load_guard_scope": "legacy_smoke_only",
+    "smoke_sampling": "deterministic_stratified_by_partition_and_family"
+  }
+}

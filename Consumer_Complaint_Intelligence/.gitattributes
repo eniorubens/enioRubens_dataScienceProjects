@@ -1,0 +1,28 @@
+* text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+*.json text eol=lf
+*.ipynb text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.ps1 text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+*.bin binary
+*.joblib binary
+*.onnx binary
+*.parquet binary
+*.pickle binary
+*.pkl binary
+*.pt binary
+*.zip binary
+
+# Frozen and historical evidence is byte-addressed by protocol hashes.
+config/*.json -text whitespace=-trailing-space
+temp/**/*.json -text whitespace=-trailing-space
+kaggle/**/*.json -text whitespace=-trailing-space
+kaggle/**/*.ipynb -text whitespace=-trailing-space
+LICENSE text eol=lf

@@ -1,0 +1,68 @@
+{
+  "schema_version": "s5-estimator-benchmark-v1",
+  "status": "FROZEN_FOR_S5_DEVELOPMENT",
+  "approved_on": "2026-08-15",
+  "fit_partition": "train",
+  "evaluation_partition": "validation",
+  "sealed_partitions": ["test", "stress", "monitor"],
+  "random_state": 42,
+  "critical_class": "debt_credit_management",
+  "gates": {
+    "global_macro_f1_min": 0.69,
+    "critical_f1_min": 0.2715,
+    "critical_precision_min": 0.2
+  },
+  "representation": {
+    "analyzer": "word",
+    "ngram_range": [1, 2],
+    "max_features": 40000,
+    "min_df": 2,
+    "max_df": 0.98,
+    "sublinear_tf": true,
+    "dtype": "float32"
+  },
+  "candidates": {
+    "sgd_log_loss_balanced_reference": {
+      "estimator": "SGDClassifier",
+      "loss": "log_loss",
+      "class_weight": "balanced",
+      "max_iter": 500,
+      "tol": 0.001,
+      "random_state": 42
+    },
+    "linear_svc_balanced": {
+      "estimator": "LinearSVC",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "tol": 0.0001,
+      "max_iter": 5000,
+      "random_state": 42,
+      "dual": "auto"
+    },
+    "complement_nb_balanced": {
+      "estimator": "ComplementNB",
+      "alpha": 1.0,
+      "norm": false,
+      "sample_weight": "compute_sample_weight('balanced', y_train)"
+    }
+  },
+  "deferred_candidates": {
+    "logistic_regression_saga": {
+      "estimator": "LogisticRegression",
+      "solver": "saga",
+      "reason": "Deferred because full sparse fit may exceed local resource budget; not executed or treated as a failure in S5."
+    }
+  },
+  "reference_reproduction": {
+    "artifact": "temp/s4/s4_results.json",
+    "candidate": "word_balanced_reference",
+    "max_absolute_metric_delta": 0.000001,
+    "required_metrics": ["macro_f1", "critical_precision", "critical_recall", "critical_f1"]
+  },
+  "run_defaults": {
+    "batch_size": 4096,
+    "smoke_max_per_class": 8,
+    "diagnostic_only": true,
+    "tracker": "noop"
+  }
+}

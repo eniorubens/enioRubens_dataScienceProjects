@@ -1,0 +1,78 @@
+{
+  "schema_version": "s4-experiment-v1",
+  "status": "FROZEN_FOR_S4_DEVELOPMENT",
+  "approved_on": "2026-08-15",
+  "fit_partition": "train",
+  "evaluation_partition": "validation",
+  "sealed_partitions": ["test", "stress", "monitor"],
+  "random_state": 42,
+  "critical_class": "debt_credit_management",
+  "gates": {
+    "global_macro_f1_min": 0.69,
+    "critical_f1_min": 0.2715,
+    "critical_precision_min": 0.2
+  },
+  "weight_formula": "w_sqrt_i = sqrt(w_balanced_i); w_i = w_sqrt_i / sum_j(p_j * w_sqrt_j)",
+  "candidates": {
+    "word_balanced_reference": {
+      "representation": "word",
+      "analyzer": "word",
+      "ngram_range": [1, 2],
+      "max_features": 40000,
+      "min_df": 2,
+      "max_df": 0.98,
+      "sublinear_tf": true,
+      "dtype": "float32",
+      "classifier": "SGDClassifier",
+      "loss": "log_loss",
+      "class_weight": "balanced",
+      "max_iter": 500,
+      "tol": 0.001
+    },
+    "word_sqrt_balanced": {
+      "representation": "word",
+      "analyzer": "word",
+      "ngram_range": [1, 2],
+      "max_features": 40000,
+      "min_df": 2,
+      "max_df": 0.98,
+      "sublinear_tf": true,
+      "dtype": "float32",
+      "classifier": "SGDClassifier",
+      "loss": "log_loss",
+      "class_weight": "sqrt_balanced",
+      "max_iter": 500,
+      "tol": 0.001
+    },
+    "char_wb_balanced": {
+      "representation": "char_wb",
+      "analyzer": "char_wb",
+      "ngram_range": [3, 5],
+      "max_features": 60000,
+      "min_df": 3,
+      "max_df": 1.0,
+      "sublinear_tf": true,
+      "dtype": "float32",
+      "classifier": "SGDClassifier",
+      "loss": "log_loss",
+      "class_weight": "balanced",
+      "max_iter": 500,
+      "tol": 0.001
+    },
+    "char_wb_sqrt_balanced": {
+      "representation": "char_wb",
+      "analyzer": "char_wb",
+      "ngram_range": [3, 5],
+      "max_features": 60000,
+      "min_df": 3,
+      "max_df": 1.0,
+      "sublinear_tf": true,
+      "dtype": "float32",
+      "classifier": "SGDClassifier",
+      "loss": "log_loss",
+      "class_weight": "sqrt_balanced",
+      "max_iter": 500,
+      "tol": 0.001
+    }
+  }
+}

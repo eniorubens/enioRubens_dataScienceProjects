@@ -1,0 +1,182 @@
+{
+  "schema_version": "s4-results-manifest-v1",
+  "experiment_schema_version": "s4-experiment-v1",
+  "status": "DEVELOPMENT_CHALLENGE_COMPLETE",
+  "confirmatory": false,
+  "deploy_ready": false,
+  "sealed": false,
+  "selection_status": "NO_ELIGIBLE_CHALLENGER",
+  "recommended_candidate": null,
+  "diagnostic_focus_candidate": "word_balanced_reference",
+  "claim_boundary": "NO_TEST_STRESS_OR_MONITOR_ACCESS",
+  "source_artifact": {
+    "path": "temp/s4/s4_results.json",
+    "sha256": "3F6F36DC0B768A36FD650F32D09A58809E3E7676CDA0897D7599BB60614F01A8",
+    "complete": true,
+    "modeling_recomputed": false
+  },
+  "boundary": {
+    "fit_partition": "train",
+    "evaluation_partition": "validation",
+    "sealed_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ]
+  },
+  "config": {
+    "critical_class": "debt_credit_management",
+    "random_state": 42,
+    "approved_on": "2026-08-15",
+    "weight_formula": "w_sqrt_i = sqrt(w_balanced_i); w_i = w_sqrt_i / sum_j(p_j * w_sqrt_j)",
+    "gates": {
+      "global_macro_f1_min": 0.69,
+      "critical_f1_min": 0.2715,
+      "critical_precision_min": 0.2
+    },
+    "candidates": [
+      {
+        "name": "word_balanced_reference",
+        "representation": "word",
+        "analyzer": "word",
+        "ngram_range": [1, 2],
+        "max_features": 40000,
+        "min_df": 2,
+        "max_df": 0.98,
+        "class_weight": "balanced",
+        "classifier": "SGDClassifier",
+        "loss": "log_loss",
+        "dtype": "float32",
+        "sublinear_tf": true,
+        "max_iter": 500,
+        "tol": 0.001
+      },
+      {
+        "name": "word_sqrt_balanced",
+        "representation": "word",
+        "analyzer": "word",
+        "ngram_range": [1, 2],
+        "max_features": 40000,
+        "min_df": 2,
+        "max_df": 0.98,
+        "class_weight": "sqrt_balanced",
+        "classifier": "SGDClassifier",
+        "loss": "log_loss",
+        "dtype": "float32",
+        "sublinear_tf": true,
+        "max_iter": 500,
+        "tol": 0.001
+      },
+      {
+        "name": "char_wb_balanced",
+        "representation": "char_wb",
+        "analyzer": "char_wb",
+        "ngram_range": [3, 5],
+        "max_features": 60000,
+        "min_df": 3,
+        "max_df": 1.0,
+        "class_weight": "balanced",
+        "classifier": "SGDClassifier",
+        "loss": "log_loss",
+        "dtype": "float32",
+        "sublinear_tf": true,
+        "max_iter": 500,
+        "tol": 0.001
+      },
+      {
+        "name": "char_wb_sqrt_balanced",
+        "representation": "char_wb",
+        "analyzer": "char_wb",
+        "ngram_range": [3, 5],
+        "max_features": 60000,
+        "min_df": 3,
+        "max_df": 1.0,
+        "class_weight": "sqrt_balanced",
+        "classifier": "SGDClassifier",
+        "loss": "log_loss",
+        "dtype": "float32",
+        "sublinear_tf": true,
+        "max_iter": 500,
+        "tol": 0.001
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "candidate": "word_balanced_reference",
+      "macro_f1": 0.700392672156457,
+      "weighted_f1": 0.8577145234798565,
+      "balanced_accuracy": 0.7419930464565737,
+      "critical_precision": 0.17387261738726173,
+      "critical_recall": 0.4192825112107623,
+      "critical_f1": 0.24581005586592178,
+      "gates": {
+        "global_macro_f1": true,
+        "critical_f1": false,
+        "critical_precision": false
+      },
+      "eligible": false
+    },
+    {
+      "candidate": "word_sqrt_balanced",
+      "macro_f1": 0.6701194495548408,
+      "weighted_f1": 0.85967363409427,
+      "balanced_accuracy": 0.6478777599362715,
+      "critical_precision": 0.0,
+      "critical_recall": 0.0,
+      "critical_f1": 0.0,
+      "gates": {
+        "global_macro_f1": false,
+        "critical_f1": false,
+        "critical_precision": false
+      },
+      "eligible": false
+    },
+    {
+      "candidate": "char_wb_balanced",
+      "macro_f1": 0.6997009560820676,
+      "weighted_f1": 0.8573305423136776,
+      "balanced_accuracy": 0.7508005582583485,
+      "critical_precision": 0.1597535934291581,
+      "critical_recall": 0.43609865470852016,
+      "critical_f1": 0.23384430417793808,
+      "gates": {
+        "global_macro_f1": true,
+        "critical_f1": false,
+        "critical_precision": false
+      },
+      "eligible": false
+    },
+    {
+      "candidate": "char_wb_sqrt_balanced",
+      "macro_f1": 0.6973732034050226,
+      "weighted_f1": 0.8649641047146727,
+      "balanced_accuracy": 0.6806659304360019,
+      "critical_precision": 0.639344262295082,
+      "critical_recall": 0.08744394618834081,
+      "critical_f1": 0.15384615384615385,
+      "gates": {
+        "global_macro_f1": true,
+        "critical_f1": false,
+        "critical_precision": true
+      },
+      "eligible": false
+    }
+  ],
+  "resources": {
+    "elapsed_seconds": 2193.0,
+    "peak_rss_gb": 7.24,
+    "minimum_system_available_gb": 0.01,
+    "vectorizer_fits": 2,
+    "train_rows": 345552,
+    "validation_rows": 245980
+  },
+  "interpretation": {
+    "summary": "Nenhum challenger passou simultaneamente pelos três gates.",
+    "diagnostic_focus": "word_balanced_reference é foco diagnóstico; não é uma seleção nem uma promoção do baseline.",
+    "tradeoff": "char_wb_sqrt_balanced alcança alta precisão na classe crítica, mas perde recall e F1; as alternativas balanced preservam recall maior, ainda abaixo dos gates.",
+    "sealed_partitions": "Nenhuma partição selada foi aberta, pontuada ou usada para seleção.",
+    "operational_recommendation": "Buscas futuras com char em espaço amplo, transformers ou tuning intensivo devem usar cloud ou uma máquina com mais RAM. O processamento local atingiu o limite prático, com 7.24 GB de RSS e apenas 0.01 GB disponível.",
+    "model_promotion": "Não promover baseline ou challenger; o resultado permanece desenvolvimento diagnóstico."
+  }
+}

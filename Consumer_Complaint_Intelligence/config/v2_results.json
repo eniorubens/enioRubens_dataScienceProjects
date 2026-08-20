@@ -1,0 +1,97 @@
+{
+  "adr": "docs/ADR-013-v2-frozen-package.md",
+  "approved_on": "2026-08-19",
+  "artifact": {
+    "path": "temp/v2/v2_package.json",
+    "sha256": "4F44D1B017A1B6B57D2A998E66FCC0797456151C4F0C0FC50F88F9506E4D7A74",
+    "size_bytes": 16565
+  },
+  "bundle": {
+    "path": "artifacts/v2/consumer_complaint_detector_v2.joblib",
+    "sha256": "CD9193D3B3B1BD94931F4FE38393245D498DCF379AFBE0AF1039C79AB66649E0",
+    "size_bytes": 1774532
+  },
+  "cache": {
+    "path": "temp/s3/scientific.parquet",
+    "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+    "size_bytes": 152781873
+  },
+  "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+  "complete": true,
+  "d1": {
+    "artifact": {
+      "path": "temp/v2/v2_classical_benchmark.json",
+      "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+      "size_bytes": 219597
+    },
+    "manifest": {
+      "path": "config/v2_classical_results.json",
+      "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+      "size_bytes": 1573
+    }
+  },
+  "d2": {
+    "artifact": {
+      "path": "temp/v2/v2_transformer_challenge.json",
+      "sha256": "37B5E24A80AD6BEBC8C50ACDB75F6925952DC0CCB45B67EA32D52F6B9BA6243E",
+      "size_bytes": 38556
+    },
+    "manifest": {
+      "path": "config/v2_transformer_results.json",
+      "sha256": "8DA685A7F0792A33986150E4CD4CA832DD93CBF787FD0F2891EB28AE6C73985D",
+      "size_bytes": 1712
+    }
+  },
+  "deployment_authorized": false,
+  "diagnostic_only": false,
+  "failed_checks": [],
+  "frozen": true,
+  "frozen_config": {
+    "path": "config/v2_frozen_package.json",
+    "sha256": "51EDCFAF209636C57F2B7950F83918EA8E5F39015885DC722C11B2C6B702242D",
+    "size_bytes": 6726
+  },
+  "model_spec": {
+    "critical_class": "debt_credit_management",
+    "fallback_model_version": "consumer-complaint-classifier-s7",
+    "input_language": "en-US",
+    "model_version": "consumer-complaint-detector-v2",
+    "score_kind": "critical_margin",
+    "stage": "hierarchical_critical_override",
+    "threshold": -0.13949530151425016
+  },
+  "outcome": "PACKAGE_FROZEN",
+  "package_status": "FROZEN_FOR_CONFIRMATION",
+  "protocol": {
+    "path": "config/v2_development_protocol.json",
+    "sha256": "45E5F83C624B97E1AF785AF6EA6185F7E4DA2D73E6A9F7AB86ED7FDBFF9C16C5",
+    "size_bytes": 5973
+  },
+  "reproduction_gate_passed": true,
+  "s7": {
+    "bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    },
+    "manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    }
+  },
+  "schema_version": "v2-package-results-manifest-v1",
+  "sealed_access": {
+    "monitor": false,
+    "stress": false,
+    "test": false
+  },
+  "signature": "94B12AF72C56CBB1FC091AE7408534A39F2E98A86091201C3DEF0328F5F6FE54",
+  "stage": "V2.1-P",
+  "status": "COMPLETE"
+}

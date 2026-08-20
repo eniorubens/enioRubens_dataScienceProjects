@@ -1,0 +1,73 @@
+{
+  "columns": [
+    "Complaint ID",
+    "received_date",
+    "product_family",
+    "normalized_group_hash",
+    "normalized_length",
+    "partition_name",
+    "narrative"
+  ],
+  "contains_sealed_narratives": false,
+  "rows": 1026306,
+  "schema_version": "s3-frozen-protocol-v1",
+  "signature": {
+    "index": {
+      "mtime_ns": 1786752820381206300,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s2\\modeling_index.parquet",
+      "size": 69858991
+    },
+    "narrative_boundary": [
+      "train",
+      "validation"
+    ],
+    "protocol": {
+      "approval_status": "FROZEN_FOR_S3_DEVELOPMENT",
+      "approved_on": "2026-08-15",
+      "fingerprint_version": "lowercase-trim-whitespace-collapse-md5-length-v1",
+      "index_sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9",
+      "modeled_families": [
+        "cards_prepaid",
+        "consumer_lending",
+        "credit_reporting",
+        "debt_collection",
+        "debt_credit_management",
+        "deposit_accounts",
+        "money_services",
+        "mortgage",
+        "student_loan"
+      ],
+      "protocol_id": "post_2023_taxonomy",
+      "rare_family": "other_financial_services",
+      "report_sha256": "5C6A46F017D10BBBEAE38C9BCBDDFD0B1F70C66F5E1CD49CE210F04EAAF15FA1",
+      "windows": {
+        "monitor": {
+          "end": "2026-12-31",
+          "start": "2026-01-01"
+        },
+        "stress": {
+          "end": "2025-12-31",
+          "start": "2025-07-01"
+        },
+        "test": {
+          "end": "2025-06-30",
+          "start": "2025-01-01"
+        },
+        "train": {
+          "end": "2024-06-30",
+          "start": "2023-08-01"
+        },
+        "validation": {
+          "end": "2024-12-31",
+          "start": "2024-07-01"
+        }
+      }
+    },
+    "schema_version": "s3-frozen-protocol-v1",
+    "source": {
+      "mtime_ns": 1786735294752123800,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\dataset\\processed\\complaints.parquet",
+      "size": 821595288
+    }
+  }
+}

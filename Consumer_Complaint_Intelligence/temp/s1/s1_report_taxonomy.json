@@ -1,0 +1,2993 @@
+{
+  "component": "taxonomy",
+  "report": {
+    "concentration": {
+      "largest_family": {
+        "family": "credit_reporting",
+        "narrative_rows": 2510907,
+        "narrative_share_pct": 65.4451
+      },
+      "largest_family_share_pct": 65.4451,
+      "narrative_rows": 3836659,
+      "top_3_share_pct": 83.3745
+    },
+    "coverage_by_year_product_family": [
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1260,
+        "year": 2011
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1276,
+        "year": 2011
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 15352,
+        "year": 2012
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1986,
+        "year": 2012
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1873,
+        "year": 2012
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 12210,
+        "year": 2012
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 38107,
+        "year": 2012
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 2840,
+        "year": 2012
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 13105,
+        "year": 2013
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 3311,
+        "year": 2013
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 14380,
+        "year": 2013
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 11068,
+        "year": 2013
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 13388,
+        "year": 2013
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 559,
+        "year": 2013
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 49398,
+        "year": 2013
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 3005,
+        "year": 2013
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 14310,
+        "year": 2014
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 7158,
+        "year": 2014
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 29238,
+        "year": 2014
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 39032,
+        "year": 2014
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 14662,
+        "year": 2014
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1170,
+        "year": 2014
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 42941,
+        "year": 2014
+      },
+      {
+        "label": "other_financial_services",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 116,
+        "year": 2014
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 4282,
+        "year": 2014
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 36.7643,
+        "narrative_rows": 7015,
+        "total_rows": 19081,
+        "year": 2015
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 37.9073,
+        "narrative_rows": 3583,
+        "total_rows": 9452,
+        "year": 2015
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 29.9329,
+        "narrative_rows": 10258,
+        "total_rows": 34270,
+        "year": 2015
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 36.7648,
+        "narrative_rows": 14546,
+        "total_rows": 39565,
+        "year": 2015
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 26.6033,
+        "narrative_rows": 4559,
+        "total_rows": 17137,
+        "year": 2015
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 34.9938,
+        "narrative_rows": 569,
+        "total_rows": 1626,
+        "year": 2015
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 29.0605,
+        "narrative_rows": 12301,
+        "total_rows": 42329,
+        "year": 2015
+      },
+      {
+        "label": "other_financial_services",
+        "narrative_coverage_pct": 27.8846,
+        "narrative_rows": 87,
+        "total_rows": 312,
+        "year": 2015
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 40.1022,
+        "narrative_rows": 1805,
+        "total_rows": 4501,
+        "year": 2015
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 44.4788,
+        "narrative_rows": 9925,
+        "total_rows": 22314,
+        "year": 2016
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 49.6321,
+        "narrative_rows": 5531,
+        "total_rows": 11144,
+        "year": 2016
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 34.2128,
+        "narrative_rows": 15081,
+        "total_rows": 44080,
+        "year": 2016
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 46.3034,
+        "narrative_rows": 18676,
+        "total_rows": 40334,
+        "year": 2016
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 35.4985,
+        "narrative_rows": 7755,
+        "total_rows": 21846,
+        "year": 2016
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 45.5527,
+        "narrative_rows": 717,
+        "total_rows": 1574,
+        "year": 2016
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 38.0277,
+        "narrative_rows": 15764,
+        "total_rows": 41454,
+        "year": 2016
+      },
+      {
+        "label": "other_financial_services",
+        "narrative_coverage_pct": 30.0216,
+        "narrative_rows": 139,
+        "total_rows": 463,
+        "year": 2016
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 51.6887,
+        "narrative_rows": 4178,
+        "total_rows": 8083,
+        "year": 2016
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 48.4967,
+        "narrative_rows": 11146,
+        "total_rows": 22983,
+        "year": 2017
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 54.0878,
+        "narrative_rows": 5769,
+        "total_rows": 10666,
+        "year": 2017
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 47.3008,
+        "narrative_rows": 42549,
+        "total_rows": 89954,
+        "year": 2017
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 49.2756,
+        "narrative_rows": 23571,
+        "total_rows": 47835,
+        "year": 2017
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 37.1285,
+        "narrative_rows": 7321,
+        "total_rows": 19718,
+        "year": 2017
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 56.5534,
+        "narrative_rows": 2097,
+        "total_rows": 3708,
+        "year": 2017
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 43.0437,
+        "narrative_rows": 13152,
+        "total_rows": 30555,
+        "year": 2017
+      },
+      {
+        "label": "other_financial_services",
+        "narrative_coverage_pct": 40.0,
+        "narrative_rows": 66,
+        "total_rows": 165,
+        "year": 2017
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 56.1739,
+        "narrative_rows": 9640,
+        "total_rows": 17161,
+        "year": 2017
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 48.8986,
+        "narrative_rows": 11854,
+        "total_rows": 24242,
+        "year": 2018
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 55.2465,
+        "narrative_rows": 5660,
+        "total_rows": 10245,
+        "year": 2018
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 43.886,
+        "narrative_rows": 48975,
+        "total_rows": 111596,
+        "year": 2018
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 51.112,
+        "narrative_rows": 26107,
+        "total_rows": 51078,
+        "year": 2018
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 33.0033,
+        "narrative_rows": 6999,
+        "total_rows": 21207,
+        "year": 2018
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 59.6869,
+        "narrative_rows": 3241,
+        "total_rows": 5430,
+        "year": 2018
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 41.8051,
+        "narrative_rows": 10269,
+        "total_rows": 24564,
+        "year": 2018
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 60.3033,
+        "narrative_rows": 5288,
+        "total_rows": 8769,
+        "year": 2018
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 48.5071,
+        "narrative_rows": 12526,
+        "total_rows": 25823,
+        "year": 2019
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 54.6261,
+        "narrative_rows": 5355,
+        "total_rows": 9803,
+        "year": 2019
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 42.232,
+        "narrative_rows": 58515,
+        "total_rows": 138556,
+        "year": 2019
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 51.6802,
+        "narrative_rows": 23945,
+        "total_rows": 46333,
+        "year": 2019
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 33.8226,
+        "narrative_rows": 7351,
+        "total_rows": 21734,
+        "year": 2019
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 55.7851,
+        "narrative_rows": 2835,
+        "total_rows": 5082,
+        "year": 2019
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 44.2051,
+        "narrative_rows": 10035,
+        "total_rows": 22701,
+        "year": 2019
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 59.3923,
+        "narrative_rows": 4281,
+        "total_rows": 7208,
+        "year": 2019
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 50.4796,
+        "narrative_rows": 17102,
+        "total_rows": 33879,
+        "year": 2020
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 55.0671,
+        "narrative_rows": 6151,
+        "total_rows": 11170,
+        "year": 2020
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 33.81,
+        "narrative_rows": 95924,
+        "total_rows": 283715,
+        "year": 2020
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 47.9524,
+        "narrative_rows": 25831,
+        "total_rows": 53868,
+        "year": 2020
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 39.3184,
+        "narrative_rows": 9530,
+        "total_rows": 24238,
+        "year": 2020
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 58.1146,
+        "narrative_rows": 4827,
+        "total_rows": 8306,
+        "year": 2020
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 50.572,
+        "narrative_rows": 12467,
+        "total_rows": 24652,
+        "year": 2020
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 56.2144,
+        "narrative_rows": 2465,
+        "total_rows": 4385,
+        "year": 2020
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 52.1872,
+        "narrative_rows": 16607,
+        "total_rows": 31822,
+        "year": 2021
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 54.809,
+        "narrative_rows": 6673,
+        "total_rows": 12175,
+        "year": 2021
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 35.5068,
+        "narrative_rows": 109197,
+        "total_rows": 307538,
+        "year": 2021
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 49.0441,
+        "narrative_rows": 34478,
+        "total_rows": 70300,
+        "year": 2021
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 41.9576,
+        "narrative_rows": 12401,
+        "total_rows": 29556,
+        "year": 2021
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 57.3258,
+        "narrative_rows": 7966,
+        "total_rows": 13896,
+        "year": 2021
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 53.0687,
+        "narrative_rows": 14077,
+        "total_rows": 26526,
+        "year": 2021
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 52.6175,
+        "narrative_rows": 2171,
+        "total_rows": 4126,
+        "year": 2021
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 53.9432,
+        "narrative_rows": 21512,
+        "total_rows": 39879,
+        "year": 2022
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 55.6767,
+        "narrative_rows": 8018,
+        "total_rows": 14401,
+        "year": 2022
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 38.7116,
+        "narrative_rows": 233888,
+        "total_rows": 604181,
+        "year": 2022
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 52.7945,
+        "narrative_rows": 31380,
+        "total_rows": 59438,
+        "year": 2022
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 47.9804,
+        "narrative_rows": 18032,
+        "total_rows": 37582,
+        "year": 2022
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 58.3567,
+        "narrative_rows": 7898,
+        "total_rows": 13534,
+        "year": 2022
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 52.7923,
+        "narrative_rows": 12289,
+        "total_rows": 23278,
+        "year": 2022
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 53.5211,
+        "narrative_rows": 4256,
+        "total_rows": 7952,
+        "year": 2022
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 59.7857,
+        "narrative_rows": 35539,
+        "total_rows": 59444,
+        "year": 2023
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 58.2822,
+        "narrative_rows": 11678,
+        "total_rows": 20037,
+        "year": 2023
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 33.3143,
+        "narrative_rows": 348757,
+        "total_rows": 1046869,
+        "year": 2023
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 52.281,
+        "narrative_rows": 35607,
+        "total_rows": 68107,
+        "year": 2023
+      },
+      {
+        "label": "debt_credit_management",
+        "narrative_coverage_pct": 63.4298,
+        "narrative_rows": 307,
+        "total_rows": 484,
+        "year": 2023
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 56.1767,
+        "narrative_rows": 28017,
+        "total_rows": 49873,
+        "year": 2023
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 61.5245,
+        "narrative_rows": 8459,
+        "total_rows": 13749,
+        "year": 2023
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 56.3733,
+        "narrative_rows": 12883,
+        "total_rows": 22853,
+        "year": 2023
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 57.9611,
+        "narrative_rows": 6163,
+        "total_rows": 10633,
+        "year": 2023
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 47.5629,
+        "narrative_rows": 39150,
+        "total_rows": 82312,
+        "year": 2024
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 56.9879,
+        "narrative_rows": 12763,
+        "total_rows": 22396,
+        "year": 2024
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 26.6602,
+        "narrative_rows": 630670,
+        "total_rows": 2365586,
+        "year": 2024
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 45.0887,
+        "narrative_rows": 70291,
+        "total_rows": 155895,
+        "year": 2024
+      },
+      {
+        "label": "debt_credit_management",
+        "narrative_coverage_pct": 64.3597,
+        "narrative_rows": 1553,
+        "total_rows": 2413,
+        "year": 2024
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 55.8198,
+        "narrative_rows": 29484,
+        "total_rows": 52820,
+        "year": 2024
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 61.1247,
+        "narrative_rows": 10239,
+        "total_rows": 16751,
+        "year": 2024
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 56.9476,
+        "narrative_rows": 12209,
+        "total_rows": 21439,
+        "year": 2024
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 54.752,
+        "narrative_rows": 8025,
+        "total_rows": 14657,
+        "year": 2024
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 46.9927,
+        "narrative_rows": 45339,
+        "total_rows": 96481,
+        "year": 2025
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 57.4867,
+        "narrative_rows": 19492,
+        "total_rows": 33907,
+        "year": 2025
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 18.975,
+        "narrative_rows": 912757,
+        "total_rows": 4810303,
+        "year": 2025
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 35.5255,
+        "narrative_rows": 100610,
+        "total_rows": 283205,
+        "year": 2025
+      },
+      {
+        "label": "debt_credit_management",
+        "narrative_coverage_pct": 62.0019,
+        "narrative_rows": 2645,
+        "total_rows": 4266,
+        "year": 2025
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 61.1065,
+        "narrative_rows": 51448,
+        "total_rows": 84194,
+        "year": 2025
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 76.6518,
+        "narrative_rows": 64862,
+        "total_rows": 84619,
+        "year": 2025
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 56.8045,
+        "narrative_rows": 14029,
+        "total_rows": 24697,
+        "year": 2025
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 51.0421,
+        "narrative_rows": 10874,
+        "total_rows": 21304,
+        "year": 2025
+      },
+      {
+        "label": "cards_prepaid",
+        "narrative_coverage_pct": 31.7489,
+        "narrative_rows": 19290,
+        "total_rows": 60758,
+        "year": 2026
+      },
+      {
+        "label": "consumer_lending",
+        "narrative_coverage_pct": 34.1729,
+        "narrative_rows": 8900,
+        "total_rows": 26044,
+        "year": 2026
+      },
+      {
+        "label": "credit_reporting",
+        "narrative_coverage_pct": 0.1081,
+        "narrative_rows": 4336,
+        "total_rows": 4010356,
+        "year": 2026
+      },
+      {
+        "label": "debt_collection",
+        "narrative_coverage_pct": 17.6022,
+        "narrative_rows": 35844,
+        "total_rows": 203634,
+        "year": 2026
+      },
+      {
+        "label": "debt_credit_management",
+        "narrative_coverage_pct": 34.8672,
+        "narrative_rows": 932,
+        "total_rows": 2673,
+        "year": 2026
+      },
+      {
+        "label": "deposit_accounts",
+        "narrative_coverage_pct": 35.1302,
+        "narrative_rows": 18678,
+        "total_rows": 53168,
+        "year": 2026
+      },
+      {
+        "label": "money_services",
+        "narrative_coverage_pct": 36.892,
+        "narrative_rows": 8411,
+        "total_rows": 22799,
+        "year": 2026
+      },
+      {
+        "label": "mortgage",
+        "narrative_coverage_pct": 33.5722,
+        "narrative_rows": 6792,
+        "total_rows": 20231,
+        "year": 2026
+      },
+      {
+        "label": "student_loan",
+        "narrative_coverage_pct": 26.8775,
+        "narrative_rows": 3450,
+        "total_rows": 12836,
+        "year": 2026
+      }
+    ],
+    "coverage_by_year_raw_product": [
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1260,
+        "year": 2011
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1276,
+        "year": 2011
+      },
+      {
+        "label": "Bank account or service",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 12210,
+        "year": 2012
+      },
+      {
+        "label": "Consumer Loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1986,
+        "year": 2012
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 15352,
+        "year": 2012
+      },
+      {
+        "label": "Credit reporting",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1873,
+        "year": 2012
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 38107,
+        "year": 2012
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 2840,
+        "year": 2012
+      },
+      {
+        "label": "Bank account or service",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 13388,
+        "year": 2013
+      },
+      {
+        "label": "Consumer Loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 3117,
+        "year": 2013
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 13105,
+        "year": 2013
+      },
+      {
+        "label": "Credit reporting",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 14380,
+        "year": 2013
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 11068,
+        "year": 2013
+      },
+      {
+        "label": "Money transfers",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 559,
+        "year": 2013
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 49398,
+        "year": 2013
+      },
+      {
+        "label": "Payday loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 194,
+        "year": 2013
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 3005,
+        "year": 2013
+      },
+      {
+        "label": "Bank account or service",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 14662,
+        "year": 2014
+      },
+      {
+        "label": "Consumer Loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 5455,
+        "year": 2014
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 13974,
+        "year": 2014
+      },
+      {
+        "label": "Credit reporting",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 29238,
+        "year": 2014
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 39032,
+        "year": 2014
+      },
+      {
+        "label": "Money transfers",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1169,
+        "year": 2014
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 42941,
+        "year": 2014
+      },
+      {
+        "label": "Other financial service",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 116,
+        "year": 2014
+      },
+      {
+        "label": "Payday loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1703,
+        "year": 2014
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 336,
+        "year": 2014
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 4282,
+        "year": 2014
+      },
+      {
+        "label": "Virtual currency",
+        "narrative_coverage_pct": 0.0,
+        "narrative_rows": 0,
+        "total_rows": 1,
+        "year": 2014
+      },
+      {
+        "label": "Bank account or service",
+        "narrative_coverage_pct": 26.6033,
+        "narrative_rows": 4559,
+        "total_rows": 17137,
+        "year": 2015
+      },
+      {
+        "label": "Consumer Loan",
+        "narrative_coverage_pct": 37.6968,
+        "narrative_rows": 2969,
+        "total_rows": 7876,
+        "year": 2015
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 36.093,
+        "narrative_rows": 6243,
+        "total_rows": 17297,
+        "year": 2015
+      },
+      {
+        "label": "Credit reporting",
+        "narrative_coverage_pct": 29.9329,
+        "narrative_rows": 10258,
+        "total_rows": 34270,
+        "year": 2015
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 36.7648,
+        "narrative_rows": 14546,
+        "total_rows": 39565,
+        "year": 2015
+      },
+      {
+        "label": "Money transfers",
+        "narrative_coverage_pct": 34.7128,
+        "narrative_rows": 562,
+        "total_rows": 1619,
+        "year": 2015
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 29.0605,
+        "narrative_rows": 12301,
+        "total_rows": 42329,
+        "year": 2015
+      },
+      {
+        "label": "Other financial service",
+        "narrative_coverage_pct": 27.8846,
+        "narrative_rows": 87,
+        "total_rows": 312,
+        "year": 2015
+      },
+      {
+        "label": "Payday loan",
+        "narrative_coverage_pct": 38.9594,
+        "narrative_rows": 614,
+        "total_rows": 1576,
+        "year": 2015
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 43.2735,
+        "narrative_rows": 772,
+        "total_rows": 1784,
+        "year": 2015
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 40.1022,
+        "narrative_rows": 1805,
+        "total_rows": 4501,
+        "year": 2015
+      },
+      {
+        "label": "Virtual currency",
+        "narrative_coverage_pct": 100.0,
+        "narrative_rows": 7,
+        "total_rows": 7,
+        "year": 2015
+      },
+      {
+        "label": "Bank account or service",
+        "narrative_coverage_pct": 35.4985,
+        "narrative_rows": 7755,
+        "total_rows": 21846,
+        "year": 2016
+      },
+      {
+        "label": "Consumer Loan",
+        "narrative_coverage_pct": 48.6955,
+        "narrative_rows": 4666,
+        "total_rows": 9582,
+        "year": 2016
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 44.7826,
+        "narrative_rows": 9433,
+        "total_rows": 21064,
+        "year": 2016
+      },
+      {
+        "label": "Credit reporting",
+        "narrative_coverage_pct": 34.2128,
+        "narrative_rows": 15081,
+        "total_rows": 44080,
+        "year": 2016
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 46.3034,
+        "narrative_rows": 18676,
+        "total_rows": 40334,
+        "year": 2016
+      },
+      {
+        "label": "Money transfers",
+        "narrative_coverage_pct": 45.3733,
+        "narrative_rows": 711,
+        "total_rows": 1567,
+        "year": 2016
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 38.0277,
+        "narrative_rows": 15764,
+        "total_rows": 41454,
+        "year": 2016
+      },
+      {
+        "label": "Other financial service",
+        "narrative_coverage_pct": 30.0216,
+        "narrative_rows": 139,
+        "total_rows": 463,
+        "year": 2016
+      },
+      {
+        "label": "Payday loan",
+        "narrative_coverage_pct": 55.3777,
+        "narrative_rows": 865,
+        "total_rows": 1562,
+        "year": 2016
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 39.36,
+        "narrative_rows": 492,
+        "total_rows": 1250,
+        "year": 2016
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 51.6887,
+        "narrative_rows": 4178,
+        "total_rows": 8083,
+        "year": 2016
+      },
+      {
+        "label": "Virtual currency",
+        "narrative_coverage_pct": 85.7143,
+        "narrative_rows": 6,
+        "total_rows": 7,
+        "year": 2016
+      },
+      {
+        "label": "Bank account or service",
+        "narrative_coverage_pct": 36.9375,
+        "narrative_rows": 2569,
+        "total_rows": 6955,
+        "year": 2017
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 37.2326,
+        "narrative_rows": 4752,
+        "total_rows": 12763,
+        "year": 2017
+      },
+      {
+        "label": "Consumer Loan",
+        "narrative_coverage_pct": 51.4536,
+        "narrative_rows": 1823,
+        "total_rows": 3543,
+        "year": 2017
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 44.3152,
+        "narrative_rows": 3161,
+        "total_rows": 7133,
+        "year": 2017
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 50.6396,
+        "narrative_rows": 7799,
+        "total_rows": 15401,
+        "year": 2017
+      },
+      {
+        "label": "Credit reporting",
+        "narrative_coverage_pct": 37.6726,
+        "narrative_rows": 6248,
+        "total_rows": 16585,
+        "year": 2017
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 49.4773,
+        "narrative_rows": 36301,
+        "total_rows": 73369,
+        "year": 2017
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 49.2756,
+        "narrative_rows": 23571,
+        "total_rows": 47835,
+        "year": 2017
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 57.2741,
+        "narrative_rows": 1870,
+        "total_rows": 3265,
+        "year": 2017
+      },
+      {
+        "label": "Money transfers",
+        "narrative_coverage_pct": 50.9091,
+        "narrative_rows": 224,
+        "total_rows": 440,
+        "year": 2017
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 43.0437,
+        "narrative_rows": 13152,
+        "total_rows": 30555,
+        "year": 2017
+      },
+      {
+        "label": "Other financial service",
+        "narrative_coverage_pct": 40.0,
+        "narrative_rows": 66,
+        "total_rows": 165,
+        "year": 2017
+      },
+      {
+        "label": "Payday loan",
+        "narrative_coverage_pct": 53.9554,
+        "narrative_rows": 266,
+        "total_rows": 493,
+        "year": 2017
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 55.582,
+        "narrative_rows": 1633,
+        "total_rows": 2938,
+        "year": 2017
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 41.4254,
+        "narrative_rows": 186,
+        "total_rows": 449,
+        "year": 2017
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 56.1739,
+        "narrative_rows": 9640,
+        "total_rows": 17161,
+        "year": 2017
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 55.4442,
+        "narrative_rows": 2047,
+        "total_rows": 3692,
+        "year": 2017
+      },
+      {
+        "label": "Virtual currency",
+        "narrative_coverage_pct": 100.0,
+        "narrative_rows": 3,
+        "total_rows": 3,
+        "year": 2017
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 33.0033,
+        "narrative_rows": 6999,
+        "total_rows": 21207,
+        "year": 2018
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 48.8986,
+        "narrative_rows": 11854,
+        "total_rows": 24242,
+        "year": 2018
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 43.886,
+        "narrative_rows": 48975,
+        "total_rows": 111596,
+        "year": 2018
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 51.112,
+        "narrative_rows": 26107,
+        "total_rows": 51078,
+        "year": 2018
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 59.6869,
+        "narrative_rows": 3241,
+        "total_rows": 5430,
+        "year": 2018
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 41.8051,
+        "narrative_rows": 10269,
+        "total_rows": 24564,
+        "year": 2018
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 54.9415,
+        "narrative_rows": 2396,
+        "total_rows": 4361,
+        "year": 2018
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 60.3033,
+        "narrative_rows": 5288,
+        "total_rows": 8769,
+        "year": 2018
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 55.4725,
+        "narrative_rows": 3264,
+        "total_rows": 5884,
+        "year": 2018
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 33.8226,
+        "narrative_rows": 7351,
+        "total_rows": 21734,
+        "year": 2019
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 48.5071,
+        "narrative_rows": 12526,
+        "total_rows": 25823,
+        "year": 2019
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 42.232,
+        "narrative_rows": 58515,
+        "total_rows": 138556,
+        "year": 2019
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 51.6802,
+        "narrative_rows": 23945,
+        "total_rows": 46333,
+        "year": 2019
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 55.7851,
+        "narrative_rows": 2835,
+        "total_rows": 5082,
+        "year": 2019
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 44.2051,
+        "narrative_rows": 10035,
+        "total_rows": 22701,
+        "year": 2019
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 56.1603,
+        "narrative_rows": 2425,
+        "total_rows": 4318,
+        "year": 2019
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 59.3923,
+        "narrative_rows": 4281,
+        "total_rows": 7208,
+        "year": 2019
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 53.4184,
+        "narrative_rows": 2930,
+        "total_rows": 5485,
+        "year": 2019
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 39.3184,
+        "narrative_rows": 9530,
+        "total_rows": 24238,
+        "year": 2020
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 50.4796,
+        "narrative_rows": 17102,
+        "total_rows": 33879,
+        "year": 2020
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 33.81,
+        "narrative_rows": 95924,
+        "total_rows": 283715,
+        "year": 2020
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 47.9524,
+        "narrative_rows": 25831,
+        "total_rows": 53868,
+        "year": 2020
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 58.1146,
+        "narrative_rows": 4827,
+        "total_rows": 8306,
+        "year": 2020
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 50.572,
+        "narrative_rows": 12467,
+        "total_rows": 24652,
+        "year": 2020
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 55.9419,
+        "narrative_rows": 2349,
+        "total_rows": 4199,
+        "year": 2020
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 56.2144,
+        "narrative_rows": 2465,
+        "total_rows": 4385,
+        "year": 2020
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 54.5402,
+        "narrative_rows": 3802,
+        "total_rows": 6971,
+        "year": 2020
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 41.9576,
+        "narrative_rows": 12401,
+        "total_rows": 29556,
+        "year": 2021
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 52.1872,
+        "narrative_rows": 16607,
+        "total_rows": 31822,
+        "year": 2021
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 35.5068,
+        "narrative_rows": 109197,
+        "total_rows": 307538,
+        "year": 2021
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 49.0441,
+        "narrative_rows": 34478,
+        "total_rows": 70300,
+        "year": 2021
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 57.3258,
+        "narrative_rows": 7966,
+        "total_rows": 13896,
+        "year": 2021
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 53.0687,
+        "narrative_rows": 14077,
+        "total_rows": 26526,
+        "year": 2021
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 54.8713,
+        "narrative_rows": 2388,
+        "total_rows": 4352,
+        "year": 2021
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 52.6175,
+        "narrative_rows": 2171,
+        "total_rows": 4126,
+        "year": 2021
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 54.7744,
+        "narrative_rows": 4285,
+        "total_rows": 7823,
+        "year": 2021
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 47.9804,
+        "narrative_rows": 18032,
+        "total_rows": 37582,
+        "year": 2022
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 53.9432,
+        "narrative_rows": 21512,
+        "total_rows": 39879,
+        "year": 2022
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 38.7116,
+        "narrative_rows": 233888,
+        "total_rows": 604181,
+        "year": 2022
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 52.7945,
+        "narrative_rows": 31380,
+        "total_rows": 59438,
+        "year": 2022
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 58.3567,
+        "narrative_rows": 7898,
+        "total_rows": 13534,
+        "year": 2022
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 52.7923,
+        "narrative_rows": 12289,
+        "total_rows": 23278,
+        "year": 2022
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 55.571,
+        "narrative_rows": 3202,
+        "total_rows": 5762,
+        "year": 2022
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 53.5211,
+        "narrative_rows": 4256,
+        "total_rows": 7952,
+        "year": 2022
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 55.7472,
+        "narrative_rows": 4816,
+        "total_rows": 8639,
+        "year": 2022
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 56.1767,
+        "narrative_rows": 28017,
+        "total_rows": 49873,
+        "year": 2023
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 59.0024,
+        "narrative_rows": 12905,
+        "total_rows": 21872,
+        "year": 2023
+      },
+      {
+        "label": "Credit card or prepaid card",
+        "narrative_coverage_pct": 60.2747,
+        "narrative_rows": 21283,
+        "total_rows": 35310,
+        "year": 2023
+      },
+      {
+        "label": "Credit reporting or other personal consumer reports",
+        "narrative_coverage_pct": 30.8561,
+        "narrative_rows": 124058,
+        "total_rows": 402054,
+        "year": 2023
+      },
+      {
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "narrative_coverage_pct": 34.847,
+        "narrative_rows": 224699,
+        "total_rows": 644815,
+        "year": 2023
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 52.281,
+        "narrative_rows": 35607,
+        "total_rows": 68107,
+        "year": 2023
+      },
+      {
+        "label": "Debt or credit management",
+        "narrative_coverage_pct": 63.4298,
+        "narrative_rows": 307,
+        "total_rows": 484,
+        "year": 2023
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 61.5245,
+        "narrative_rows": 8459,
+        "total_rows": 13749,
+        "year": 2023
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 56.3733,
+        "narrative_rows": 12883,
+        "total_rows": 22853,
+        "year": 2023
+      },
+      {
+        "label": "Payday loan, title loan, or personal loan",
+        "narrative_coverage_pct": 60.333,
+        "narrative_rows": 2826,
+        "total_rows": 4684,
+        "year": 2023
+      },
+      {
+        "label": "Payday loan, title loan, personal loan, or advance loan",
+        "narrative_coverage_pct": 58.304,
+        "narrative_rows": 1492,
+        "total_rows": 2559,
+        "year": 2023
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 59.7259,
+        "narrative_rows": 1351,
+        "total_rows": 2262,
+        "year": 2023
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 57.9611,
+        "narrative_rows": 6163,
+        "total_rows": 10633,
+        "year": 2023
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 57.527,
+        "narrative_rows": 7360,
+        "total_rows": 12794,
+        "year": 2023
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 55.8198,
+        "narrative_rows": 29484,
+        "total_rows": 52820,
+        "year": 2024
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 46.6528,
+        "narrative_rows": 35451,
+        "total_rows": 75989,
+        "year": 2024
+      },
+      {
+        "label": "Credit reporting or other personal consumer reports",
+        "narrative_coverage_pct": 26.6602,
+        "narrative_rows": 630670,
+        "total_rows": 2365586,
+        "year": 2024
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 45.0887,
+        "narrative_rows": 70291,
+        "total_rows": 155895,
+        "year": 2024
+      },
+      {
+        "label": "Debt or credit management",
+        "narrative_coverage_pct": 64.3597,
+        "narrative_rows": 1553,
+        "total_rows": 2413,
+        "year": 2024
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 61.1247,
+        "narrative_rows": 10239,
+        "total_rows": 16751,
+        "year": 2024
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 56.9476,
+        "narrative_rows": 12209,
+        "total_rows": 21439,
+        "year": 2024
+      },
+      {
+        "label": "Payday loan, title loan, personal loan, or advance loan",
+        "narrative_coverage_pct": 57.6693,
+        "narrative_rows": 5211,
+        "total_rows": 9036,
+        "year": 2024
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 58.5007,
+        "narrative_rows": 3699,
+        "total_rows": 6323,
+        "year": 2024
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 54.752,
+        "narrative_rows": 8025,
+        "total_rows": 14657,
+        "year": 2024
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 56.5269,
+        "narrative_rows": 7552,
+        "total_rows": 13360,
+        "year": 2024
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 61.1065,
+        "narrative_rows": 51448,
+        "total_rows": 84194,
+        "year": 2025
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 46.1408,
+        "narrative_rows": 41517,
+        "total_rows": 89979,
+        "year": 2025
+      },
+      {
+        "label": "Credit reporting or other personal consumer reports",
+        "narrative_coverage_pct": 18.975,
+        "narrative_rows": 912757,
+        "total_rows": 4810303,
+        "year": 2025
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 35.5255,
+        "narrative_rows": 100610,
+        "total_rows": 283205,
+        "year": 2025
+      },
+      {
+        "label": "Debt or credit management",
+        "narrative_coverage_pct": 62.0019,
+        "narrative_rows": 2645,
+        "total_rows": 4266,
+        "year": 2025
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 76.6518,
+        "narrative_rows": 64862,
+        "total_rows": 84619,
+        "year": 2025
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 56.8045,
+        "narrative_rows": 14029,
+        "total_rows": 24697,
+        "year": 2025
+      },
+      {
+        "label": "Payday loan, title loan, personal loan, or advance loan",
+        "narrative_coverage_pct": 59.4154,
+        "narrative_rows": 7806,
+        "total_rows": 13138,
+        "year": 2025
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 58.7819,
+        "narrative_rows": 3822,
+        "total_rows": 6502,
+        "year": 2025
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 51.0421,
+        "narrative_rows": 10874,
+        "total_rows": 21304,
+        "year": 2025
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 56.2666,
+        "narrative_rows": 11686,
+        "total_rows": 20769,
+        "year": 2025
+      },
+      {
+        "label": "Checking or savings account",
+        "narrative_coverage_pct": 35.1302,
+        "narrative_rows": 18678,
+        "total_rows": 53168,
+        "year": 2026
+      },
+      {
+        "label": "Credit card",
+        "narrative_coverage_pct": 31.561,
+        "narrative_rows": 18039,
+        "total_rows": 57156,
+        "year": 2026
+      },
+      {
+        "label": "Credit reporting or other personal consumer reports",
+        "narrative_coverage_pct": 0.1081,
+        "narrative_rows": 4336,
+        "total_rows": 4010356,
+        "year": 2026
+      },
+      {
+        "label": "Debt collection",
+        "narrative_coverage_pct": 17.6022,
+        "narrative_rows": 35844,
+        "total_rows": 203634,
+        "year": 2026
+      },
+      {
+        "label": "Debt or credit management",
+        "narrative_coverage_pct": 34.8672,
+        "narrative_rows": 932,
+        "total_rows": 2673,
+        "year": 2026
+      },
+      {
+        "label": "Money transfer, virtual currency, or money service",
+        "narrative_coverage_pct": 36.892,
+        "narrative_rows": 8411,
+        "total_rows": 22799,
+        "year": 2026
+      },
+      {
+        "label": "Mortgage",
+        "narrative_coverage_pct": 33.5722,
+        "narrative_rows": 6792,
+        "total_rows": 20231,
+        "year": 2026
+      },
+      {
+        "label": "Payday loan, title loan, personal loan, or advance loan",
+        "narrative_coverage_pct": 33.608,
+        "narrative_rows": 3671,
+        "total_rows": 10923,
+        "year": 2026
+      },
+      {
+        "label": "Prepaid card",
+        "narrative_coverage_pct": 34.7307,
+        "narrative_rows": 1251,
+        "total_rows": 3602,
+        "year": 2026
+      },
+      {
+        "label": "Student loan",
+        "narrative_coverage_pct": 26.8775,
+        "narrative_rows": 3450,
+        "total_rows": 12836,
+        "year": 2026
+      },
+      {
+        "label": "Vehicle loan or lease",
+        "narrative_coverage_pct": 34.581,
+        "narrative_rows": 5229,
+        "total_rows": 15121,
+        "year": 2026
+      }
+    ],
+    "duration_seconds": 82.846,
+    "first_last_year": [
+      {
+        "first_year": 2011,
+        "label": "cards_prepaid",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 247005,
+        "total_rows": 563045
+      },
+      {
+        "first_year": 2012,
+        "label": "consumer_lending",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 99573,
+        "total_rows": 203895
+      },
+      {
+        "first_year": 2012,
+        "label": "credit_reporting",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 2510907,
+        "total_rows": 13892495
+      },
+      {
+        "first_year": 2013,
+        "label": "debt_collection",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 440886,
+        "total_rows": 1169692
+      },
+      {
+        "first_year": 2023,
+        "label": "debt_credit_management",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 5437,
+        "total_rows": 9836
+      },
+      {
+        "first_year": 2012,
+        "label": "deposit_accounts",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 201575,
+        "total_rows": 473333
+      },
+      {
+        "first_year": 2013,
+        "label": "money_services",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 122121,
+        "total_rows": 192803
+      },
+      {
+        "first_year": 2011,
+        "label": "mortgage",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 146267,
+        "total_rows": 457001
+      },
+      {
+        "first_year": 2014,
+        "label": "other_financial_services",
+        "label_level": "product_family",
+        "last_year": 2017,
+        "narrative_rows": 292,
+        "total_rows": 1056
+      },
+      {
+        "first_year": 2012,
+        "label": "student_loan",
+        "label_level": "product_family",
+        "last_year": 2026,
+        "narrative_rows": 62596,
+        "total_rows": 131742
+      },
+      {
+        "first_year": 2012,
+        "label": "Bank account or service",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 14883,
+        "total_rows": 86198
+      },
+      {
+        "first_year": 2017,
+        "label": "Checking or savings account",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 186692,
+        "total_rows": 387135
+      },
+      {
+        "first_year": 2012,
+        "label": "Consumer Loan",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 9458,
+        "total_rows": 31559
+      },
+      {
+        "first_year": 2011,
+        "label": "Credit card",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 126749,
+        "total_rows": 334181
+      },
+      {
+        "first_year": 2017,
+        "label": "Credit card or prepaid card",
+        "label_level": "raw_product",
+        "last_year": 2023,
+        "narrative_rows": 108683,
+        "total_rows": 206356
+      },
+      {
+        "first_year": 2012,
+        "label": "Credit reporting",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 31587,
+        "total_rows": 140426
+      },
+      {
+        "first_year": 2023,
+        "label": "Credit reporting or other personal consumer reports",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 1671821,
+        "total_rows": 11588299
+      },
+      {
+        "first_year": 2017,
+        "label": "Credit reporting, credit repair services, or other personal consumer reports",
+        "label_level": "raw_product",
+        "last_year": 2023,
+        "narrative_rows": 807499,
+        "total_rows": 2163770
+      },
+      {
+        "first_year": 2013,
+        "label": "Debt collection",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 440886,
+        "total_rows": 1169692
+      },
+      {
+        "first_year": 2023,
+        "label": "Debt or credit management",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 5437,
+        "total_rows": 9836
+      },
+      {
+        "first_year": 2017,
+        "label": "Money transfer, virtual currency, or money service",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 120608,
+        "total_rows": 187431
+      },
+      {
+        "first_year": 2013,
+        "label": "Money transfers",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 1497,
+        "total_rows": 5354
+      },
+      {
+        "first_year": 2011,
+        "label": "Mortgage",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 146267,
+        "total_rows": 457001
+      },
+      {
+        "first_year": 2014,
+        "label": "Other financial service",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 292,
+        "total_rows": 1056
+      },
+      {
+        "first_year": 2013,
+        "label": "Payday loan",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 1745,
+        "total_rows": 5528
+      },
+      {
+        "first_year": 2017,
+        "label": "Payday loan, title loan, or personal loan",
+        "label_level": "raw_product",
+        "last_year": 2023,
+        "narrative_rows": 17219,
+        "total_rows": 30614
+      },
+      {
+        "first_year": 2023,
+        "label": "Payday loan, title loan, personal loan, or advance loan",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 18180,
+        "total_rows": 35656
+      },
+      {
+        "first_year": 2014,
+        "label": "Prepaid card",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 11573,
+        "total_rows": 22508
+      },
+      {
+        "first_year": 2012,
+        "label": "Student loan",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 62596,
+        "total_rows": 131742
+      },
+      {
+        "first_year": 2017,
+        "label": "Vehicle loan or lease",
+        "label_level": "raw_product",
+        "last_year": 2026,
+        "narrative_rows": 52971,
+        "total_rows": 100538
+      },
+      {
+        "first_year": 2014,
+        "label": "Virtual currency",
+        "label_level": "raw_product",
+        "last_year": 2017,
+        "narrative_rows": 16,
+        "total_rows": 18
+      }
+    ],
+    "interpretation": {
+      "issue_stability": "Issue values depend on Product and form options changed over time; use family plus raw Issue as a secondary hierarchical target.",
+      "target_meaning": "Routing to historical form categories, not prevalence of harm."
+    },
+    "issue": {
+      "conflicts_across_families": [
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Incorrect information on your report",
+          "number_families": 6,
+          "total_rows": 7643228
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Improper use of your report",
+          "number_families": 6,
+          "total_rows": 3280972
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Problem with a company's investigation into an existing problem",
+          "number_families": 6,
+          "total_rows": 2187529
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Problem with a credit reporting company's investigation into an existing problem",
+          "number_families": 6,
+          "total_rows": 589318
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Unable to get your credit report or credit score",
+          "number_families": 6,
+          "total_rows": 62979
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Problem with fraud alerts or security freezes",
+          "number_families": 6,
+          "total_rows": 54501
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Credit monitoring or identity theft protection services",
+          "number_families": 6,
+          "total_rows": 39539
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "deposit_accounts",
+            "mortgage",
+            "student_loan"
+          ],
+          "issue": "Problem with credit report or credit score",
+          "number_families": 5,
+          "total_rows": 44
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting",
+            "money_services",
+            "other_financial_services"
+          ],
+          "issue": "Fraud or scam",
+          "number_families": 4,
+          "total_rows": 51267
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting",
+            "debt_credit_management",
+            "money_services"
+          ],
+          "issue": "Confusing or missing disclosures",
+          "number_families": 4,
+          "total_rows": 7333
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting",
+            "debt_credit_management",
+            "money_services"
+          ],
+          "issue": "Problem with customer service",
+          "number_families": 4,
+          "total_rows": 4867
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting",
+            "debt_credit_management",
+            "money_services"
+          ],
+          "issue": "Confusing or misleading advertising or marketing",
+          "number_families": 4,
+          "total_rows": 3205
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "consumer_lending",
+            "credit_reporting"
+          ],
+          "issue": "Problem when making payments",
+          "number_families": 3,
+          "total_rows": 39479
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting",
+            "money_services"
+          ],
+          "issue": "Unexpected or other fees",
+          "number_families": 3,
+          "total_rows": 8098
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting",
+            "deposit_accounts"
+          ],
+          "issue": "Getting a line of credit",
+          "number_families": 3,
+          "total_rows": 3098
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "deposit_accounts"
+          ],
+          "issue": "Managing an account",
+          "number_families": 2,
+          "total_rows": 226201
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "mortgage"
+          ],
+          "issue": "Trouble during payment process",
+          "number_families": 2,
+          "total_rows": 111449
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Problem with a purchase shown on your statement",
+          "number_families": 2,
+          "total_rows": 109186
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "student_loan"
+          ],
+          "issue": "Dealing with your lender or servicer",
+          "number_families": 2,
+          "total_rows": 64746
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "mortgage"
+          ],
+          "issue": "Struggling to pay mortgage",
+          "number_families": 2,
+          "total_rows": 62241
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Getting a credit card",
+          "number_families": 2,
+          "total_rows": 53491
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "deposit_accounts"
+          ],
+          "issue": "Closing an account",
+          "number_families": 2,
+          "total_rows": 49795
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Other features, terms, or problems",
+          "number_families": 2,
+          "total_rows": 46935
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Fees or interest",
+          "number_families": 2,
+          "total_rows": 42163
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Closing your account",
+          "number_families": 2,
+          "total_rows": 29369
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "student_loan"
+          ],
+          "issue": "Struggling to repay your loan",
+          "number_families": 2,
+          "total_rows": 19370
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting"
+          ],
+          "issue": "Struggling to pay your loan",
+          "number_families": 2,
+          "total_rows": 19008
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Advertising and marketing, including promotional offers",
+          "number_families": 2,
+          "total_rows": 18874
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "mortgage"
+          ],
+          "issue": "Closing on a mortgage",
+          "number_families": 2,
+          "total_rows": 18753
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting"
+          ],
+          "issue": "Problems at the end of the loan or lease",
+          "number_families": 2,
+          "total_rows": 16499
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "credit_reporting"
+          ],
+          "issue": "Trouble using your card",
+          "number_families": 2,
+          "total_rows": 16079
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "mortgage"
+          ],
+          "issue": "Other",
+          "number_families": 2,
+          "total_rows": 14777
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting"
+          ],
+          "issue": "Getting a loan or lease",
+          "number_families": 2,
+          "total_rows": 13635
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "money_services"
+          ],
+          "issue": "Managing, opening, or closing your mobile wallet account",
+          "number_families": 2,
+          "total_rows": 11987
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "student_loan"
+          ],
+          "issue": "Problems when you are unable to pay",
+          "number_families": 2,
+          "total_rows": 9370
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting"
+          ],
+          "issue": "Problem with the payoff process at the end of the loan",
+          "number_families": 2,
+          "total_rows": 5642
+        },
+        {
+          "families": [
+            "consumer_lending",
+            "credit_reporting"
+          ],
+          "issue": "Getting the loan",
+          "number_families": 2,
+          "total_rows": 5406
+        },
+        {
+          "families": [
+            "cards_prepaid",
+            "other_financial_services"
+          ],
+          "issue": "Advertising and marketing",
+          "number_families": 2,
+          "total_rows": 2959
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "student_loan"
+          ],
+          "issue": "Getting a loan",
+          "number_families": 2,
+          "total_rows": 2689
+        },
+        {
+          "families": [
+            "money_services",
+            "other_financial_services"
+          ],
+          "issue": "Lost or stolen money order",
+          "number_families": 2,
+          "total_rows": 980
+        },
+        {
+          "families": [
+            "money_services",
+            "other_financial_services"
+          ],
+          "issue": "Lost or stolen check",
+          "number_families": 2,
+          "total_rows": 470
+        },
+        {
+          "families": [
+            "credit_reporting",
+            "other_financial_services"
+          ],
+          "issue": "Excessive fees",
+          "number_families": 2,
+          "total_rows": 331
+        },
+        {
+          "families": [
+            "money_services",
+            "other_financial_services"
+          ],
+          "issue": "Incorrect exchange rate",
+          "number_families": 2,
+          "total_rows": 191
+        }
+      ],
+      "distinct_family_issue_key": 265,
+      "distinct_raw_issue": 178,
+      "distinct_raw_issue_including_missing": 179,
+      "hierarchical_key": "product_family + Issue",
+      "merge_policy": "Preserve raw Issue; no automatic merge in S1."
+    },
+    "mapping": {
+      "classes": [
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 1671821,
+          "raw_product": "Credit reporting or other personal consumer reports",
+          "total_rows": 11588299
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 807499,
+          "raw_product": "Credit reporting, credit repair services, or other personal consumer reports",
+          "total_rows": 2163770
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 440886,
+          "raw_product": "Debt collection",
+          "total_rows": 1169692
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 146267,
+          "raw_product": "Mortgage",
+          "total_rows": 457001
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 186692,
+          "raw_product": "Checking or savings account",
+          "total_rows": 387135
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 126749,
+          "raw_product": "Credit card",
+          "total_rows": 334181
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 108683,
+          "raw_product": "Credit card or prepaid card",
+          "total_rows": 206356
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 120608,
+          "raw_product": "Money transfer, virtual currency, or money service",
+          "total_rows": 187431
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 31587,
+          "raw_product": "Credit reporting",
+          "total_rows": 140426
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 62596,
+          "raw_product": "Student loan",
+          "total_rows": 131742
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 52971,
+          "raw_product": "Vehicle loan or lease",
+          "total_rows": 100538
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 14883,
+          "raw_product": "Bank account or service",
+          "total_rows": 86198
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 18180,
+          "raw_product": "Payday loan, title loan, personal loan, or advance loan",
+          "total_rows": 35656
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 9458,
+          "raw_product": "Consumer Loan",
+          "total_rows": 31559
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 17219,
+          "raw_product": "Payday loan, title loan, or personal loan",
+          "total_rows": 30614
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 11573,
+          "raw_product": "Prepaid card",
+          "total_rows": 22508
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 5437,
+          "raw_product": "Debt or credit management",
+          "total_rows": 9836
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 1745,
+          "raw_product": "Payday loan",
+          "total_rows": 5528
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 1497,
+          "raw_product": "Money transfers",
+          "total_rows": 5354
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 292,
+          "raw_product": "Other financial service",
+          "total_rows": 1056
+        },
+        {
+          "mapping_status": "mapped",
+          "narrative_rows": 16,
+          "raw_product": "Virtual currency",
+          "total_rows": 18
+        }
+      ],
+      "summary": {
+        "mapped_narrative_rows": 3836659,
+        "mapped_rows": 17094898,
+        "mapping_coverage_pct": 100.0,
+        "narrative_rows": 3836659,
+        "total_rows": 17094898,
+        "unmapped_narrative_rows": 0,
+        "unmapped_rows": 0
+      }
+    },
+    "narrative_distribution_by_family": [
+      {
+        "family": "credit_reporting",
+        "narrative_rows": 2510907,
+        "narrative_share_pct": 65.4451
+      },
+      {
+        "family": "debt_collection",
+        "narrative_rows": 440886,
+        "narrative_share_pct": 11.4914
+      },
+      {
+        "family": "cards_prepaid",
+        "narrative_rows": 247005,
+        "narrative_share_pct": 6.438
+      },
+      {
+        "family": "deposit_accounts",
+        "narrative_rows": 201575,
+        "narrative_share_pct": 5.2539
+      },
+      {
+        "family": "mortgage",
+        "narrative_rows": 146267,
+        "narrative_share_pct": 3.8124
+      },
+      {
+        "family": "money_services",
+        "narrative_rows": 122121,
+        "narrative_share_pct": 3.183
+      },
+      {
+        "family": "consumer_lending",
+        "narrative_rows": 99573,
+        "narrative_share_pct": 2.5953
+      },
+      {
+        "family": "student_loan",
+        "narrative_rows": 62596,
+        "narrative_share_pct": 1.6315
+      },
+      {
+        "family": "debt_credit_management",
+        "narrative_rows": 5437,
+        "narrative_share_pct": 0.1417
+      },
+      {
+        "family": "other_financial_services",
+        "narrative_rows": 292,
+        "narrative_share_pct": 0.0076
+      }
+    ],
+    "product_policy": {
+      "raw_product_preserved": true,
+      "registered_raw_product_count": 21,
+      "unknown_mode": "unmapped for audit; strict in modeling code"
+    },
+    "regime_review": {
+      "credit_reporting_concentration_requires_review": true,
+      "notice_is_not_an_automatic_exclusion_rule": true,
+      "periods": [
+        2017,
+        2023,
+        2025,
+        2026
+      ],
+      "required": true,
+      "year_2026_partial": true
+    },
+    "scope": {
+      "engine": "DuckDB",
+      "evidence": "complete_parquet_corpus",
+      "memory_limit": "2GB",
+      "narratives_materialized_in_python": false,
+      "parquet_scans_expected": 1,
+      "source": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\dataset\\processed\\complaints.parquet",
+      "temp_directory": "temp\\duckdb",
+      "threads": 2
+    },
+    "sources": {
+      "cfpb_august_2023_pdf": "https://files.consumerfinance.gov/f/documents/cfpb_consumer_complaint_form_product_issue_options_August_2023_FINAL.pdf",
+      "cfpb_database": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+      "cfpb_fields": "https://cfpb.github.io/api/ccdb/fields.html",
+      "cfpb_june_2026_notice": "https://www.consumerfinance.gov/about-us/newsroom/the-cfpb-is-correcting-flaws-to-restore-integrity-and-utility-to-the-consumer-complaint-system/"
+    },
+    "taxonomy_version": "cfpb-product-family-v1.0.0"
+  },
+  "schema_version": "s1-component-cache-v1",
+  "signature": {
+    "payload": {
+      "config": {
+        "date_column": "Date received",
+        "duckdb_memory_limit": "2GB",
+        "duckdb_threads": 2,
+        "issue_column": "Issue",
+        "product_column": "Product",
+        "text_column": "Consumer complaint narrative",
+        "top_k": 20
+      },
+      "file_size": 821595288,
+      "mtime_ns": 1786735294752123800,
+      "resolved_path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\dataset\\processed\\complaints.parquet",
+      "taxonomy_version": "cfpb-product-family-v1.0.0"
+    },
+    "sha256": "5f2d3b1795fb5b3e522534a55665a6b3796ca2099cc43028300d195672a2ca1b"
+  }
+}

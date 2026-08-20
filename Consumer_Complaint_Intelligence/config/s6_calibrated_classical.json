@@ -1,0 +1,88 @@
+{
+  "schema_version": "s6-calibrated-classical-v1",
+  "status": "FROZEN_FOR_S6_DEVELOPMENT",
+  "approved_on": "2026-08-16",
+  "scientific_cache": "temp/s3/scientific.parquet",
+  "fit_partition": "train",
+  "inner_fit": {
+    "partition": "train",
+    "start": "2023-08-01",
+    "end": "2024-04-30"
+  },
+  "inner_calibration": {
+    "partition": "train",
+    "start": "2024-05-01",
+    "end": "2024-06-30"
+  },
+  "outer_evaluation": {
+    "partition": "validation",
+    "start": "2024-07-01",
+    "end": "2024-12-31"
+  },
+  "sealed_partitions": ["test", "stress", "monitor"],
+  "critical_class": "debt_credit_management",
+  "representation": {
+    "analyzer": "word",
+    "ngram_range": [1, 2],
+    "max_features": 40000,
+    "min_df": 2,
+    "max_df": 0.98,
+    "sublinear_tf": true,
+    "dtype": "float32"
+  },
+  "candidates": {
+    "ridge_balanced": {
+      "estimator": "RidgeClassifier",
+      "alpha": 1.0,
+      "class_weight": "balanced",
+      "tol": 0.001,
+      "solver": "lsqr"
+    },
+    "logistic_regression_saga_balanced": {
+      "estimator": "LogisticRegression",
+      "solver": "saga",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "max_iter": 200,
+      "tol": 0.001,
+      "random_state": 42
+    },
+    "linear_svc_c_0_3_balanced": {
+      "estimator": "LinearSVC",
+      "C": 0.3,
+      "class_weight": "balanced",
+      "tol": 0.0001,
+      "max_iter": 5000,
+      "dual": "auto",
+      "random_state": 42
+    },
+    "linear_svc_c_1_balanced": {
+      "estimator": "LinearSVC",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "tol": 0.0001,
+      "max_iter": 5000,
+      "dual": "auto",
+      "random_state": 42
+    },
+    "linear_svc_c_3_balanced": {
+      "estimator": "LinearSVC",
+      "C": 3.0,
+      "class_weight": "balanced",
+      "tol": 0.0001,
+      "max_iter": 5000,
+      "dual": "auto",
+      "random_state": 42
+    }
+  },
+  "gates": {
+    "global_macro_f1_min": 0.69,
+    "critical_f1_min": 0.2715,
+    "critical_precision_min": 0.2
+  },
+  "random_state": 42,
+  "run_defaults": {
+    "batch_size": 4096,
+    "smoke_max_per_class": 8
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "confirmatory": true,
+  "confirmed": false,
+  "decision": {
+    "deploy": false,
+    "gate_count": 2,
+    "required_gate_count": 3,
+    "scientific_view": "primary",
+    "status": "NOT_CONFIRMED",
+    "test_does_not_authorize_deployment": true
+  },
+  "deploy": false,
+  "execution_attempts": 1,
+  "index": {
+    "path": "temp/s2/modeling_index.parquet",
+    "sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9",
+    "size_bytes": 69858991
+  },
+  "opened_at": "2026-08-16T17:55:53Z",
+  "operational_view": "secondary_diagnostic_only",
+  "protocol": {
+    "path": "config/s8_confirmatory_protocol.json",
+    "sha256": "946BB56C441F711010C4E17250834B5D4606B9B61C74C0474D63C2D82C6E5A04",
+    "size_bytes": 3487
+  },
+  "raw_source": {
+    "path": "dataset/processed/complaints.parquet",
+    "sha256": "33875E0439B72E00CB6E5985238B47F76B5B0A63B0AC21DDB8C7D46B565C428F",
+    "size_bytes": 821595288
+  },
+  "remaining_sealed": [
+    "stress",
+    "monitor"
+  ],
+  "result": {
+    "path": "temp/s8/s8_results.json",
+    "sha256": "B72927A7D44BDFDF37536B586EB41A16ECBAA1B2A53416BB293FC669C9002D6A",
+    "size_bytes": 11915
+  },
+  "s3_protocol": {
+    "path": "config/s3_protocol.json",
+    "sha256": "7CF86C2E0E4849881F50A483FD3C37ABE7C04914C8BFA80A4E4467F4AF31DAF4",
+    "size_bytes": 2567
+  },
+  "s7_freeze": {
+    "bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    },
+    "config": {
+      "path": "config/s7_frozen_package.json",
+      "sha256": "D73014AEA0C40ECA323FAE6AE1E76CBF0C62E953304BD7A10092DBBBE5DC6D78",
+      "size_bytes": 1351
+    },
+    "manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    }
+  },
+  "schema_version": "s8-confirmatory-manifest-v1",
+  "scientific_view": "primary_only",
+  "stage": "S8",
+  "status": "NOT_CONFIRMED",
+  "test_opened": true
+}

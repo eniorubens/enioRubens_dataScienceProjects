@@ -1,0 +1,2107 @@
+{
+  "report": {
+    "audit": "S2_temporal_protocol_candidates",
+    "candidates": [
+      {
+        "candidate": {
+          "limits_are_inclusive": true,
+          "name": "historical_stress",
+          "overlap_policy": "forbidden",
+          "windows": [
+            {
+              "end": "2022-12-31",
+              "name": "train",
+              "start": "2015-01-01"
+            },
+            {
+              "end": "2023-12-31",
+              "name": "validation",
+              "start": "2023-01-01"
+            },
+            {
+              "end": "2024-12-31",
+              "name": "test",
+              "start": "2024-01-01"
+            },
+            {
+              "end": "2025-12-31",
+              "name": "stress",
+              "start": "2025-01-01"
+            },
+            {
+              "end": "2026-12-31",
+              "name": "monitor",
+              "start": "2026-01-01"
+            }
+          ]
+        },
+        "candidate_status": "FAIL",
+        "criterion_results": {
+          "classes_present_train_validation_test": false,
+          "largest_family_share_limit": true,
+          "mapping_coverage_100_pct": {
+            "observed": 1.0,
+            "pass": true,
+            "required": 1.0
+          },
+          "test_min_novel_unique_groups_per_class": {
+            "pass": true,
+            "required": 500
+          },
+          "train_min_rows_per_class": {
+            "pass": false,
+            "required": 2000
+          },
+          "train_min_unique_groups_per_class": {
+            "pass": false,
+            "required": 1000
+          },
+          "validation_min_novel_unique_groups_per_class": {
+            "pass": false,
+            "required": 500
+          }
+        },
+        "eligible_class_count": 8,
+        "eligible_classes": [
+          "cards_prepaid",
+          "consumer_lending",
+          "credit_reporting",
+          "debt_collection",
+          "deposit_accounts",
+          "money_services",
+          "mortgage",
+          "student_loan"
+        ],
+        "limitations": [
+          "Stress and monitor partitions are diagnostic and do not approve a model.",
+          "Novel groups are the scientific unit; all-text metrics remain operational.",
+          "The 2.24pp approximation for n=500 assumes approximately independent groups.",
+          "Group dependence still requires group-weighted or one-observation per-group metrics."
+        ],
+        "mapping": {
+          "coverage": 1.0,
+          "mapped_rows": 3836659,
+          "rare_family": "other_financial_services",
+          "rare_rows_out_of_scope": 292,
+          "scoped_rows": 3836659
+        },
+        "min_novel_unique_groups_test": 1541,
+        "partitions": [
+          {
+            "all_text_rows": 1206176,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.5094909626464901,
+            "missing_modeled_classes": [
+              "debt_credit_management"
+            ],
+            "modeled_text_rows": 1205884,
+            "novel_text_rows": 1205884,
+            "novel_unique_groups": 1024864,
+            "out_of_scope_rare_rows": 292,
+            "partition": "train",
+            "purge_pct": 0.0,
+            "purged_seen_before_rows": 0,
+            "repeated_within_partition_rows": 181020,
+            "seen_before_rows": 0,
+            "support_by_family": [
+              {
+                "all_text_rows": 107687,
+                "family": "cards_prepaid",
+                "novel_text_rows": 107687,
+                "novel_unique_groups": 106234,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 1453,
+                "seen_before_rows": 0,
+                "unique_groups": 106234
+              },
+              {
+                "all_text_rows": 46740,
+                "family": "consumer_lending",
+                "novel_text_rows": 46740,
+                "novel_unique_groups": 46292,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 448,
+                "seen_before_rows": 0,
+                "unique_groups": 46292
+              },
+              {
+                "all_text_rows": 614387,
+                "family": "credit_reporting",
+                "novel_text_rows": 614387,
+                "novel_unique_groups": 447242,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 167145,
+                "seen_before_rows": 0,
+                "unique_groups": 447242
+              },
+              {
+                "all_text_rows": 198534,
+                "family": "debt_collection",
+                "novel_text_rows": 198534,
+                "novel_unique_groups": 187307,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 11227,
+                "seen_before_rows": 0,
+                "unique_groups": 187307
+              },
+              {
+                "all_text_rows": 0,
+                "family": "debt_credit_management",
+                "novel_text_rows": 0,
+                "novel_unique_groups": 0,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 0,
+                "seen_before_rows": 0,
+                "unique_groups": 0
+              },
+              {
+                "all_text_rows": 73948,
+                "family": "deposit_accounts",
+                "novel_text_rows": 73948,
+                "novel_unique_groups": 73836,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 112,
+                "seen_before_rows": 0,
+                "unique_groups": 73836
+              },
+              {
+                "all_text_rows": 30150,
+                "family": "money_services",
+                "novel_text_rows": 30150,
+                "novel_unique_groups": 29837,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 313,
+                "seen_before_rows": 0,
+                "unique_groups": 29837
+              },
+              {
+                "all_text_rows": 100354,
+                "family": "mortgage",
+                "novel_text_rows": 100354,
+                "novel_unique_groups": 100192,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 162,
+                "seen_before_rows": 0,
+                "unique_groups": 100192
+              },
+              {
+                "all_text_rows": 292,
+                "family": "other_financial_services",
+                "novel_text_rows": 292,
+                "novel_unique_groups": 291,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 1,
+                "seen_before_rows": 0,
+                "unique_groups": 291
+              },
+              {
+                "all_text_rows": 34084,
+                "family": "student_loan",
+                "novel_text_rows": 34084,
+                "novel_unique_groups": 33924,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 160,
+                "seen_before_rows": 0,
+                "unique_groups": 33924
+              }
+            ],
+            "unique_groups": 1024864
+          },
+          {
+            "all_text_rows": 487410,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7155310724031103,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 487410,
+            "novel_text_rows": 450790,
+            "novel_unique_groups": 338317,
+            "out_of_scope_rare_rows": 0,
+            "partition": "validation",
+            "purge_pct": 7.513181920764859,
+            "purged_seen_before_rows": 36620,
+            "repeated_within_partition_rows": 147860,
+            "seen_before_rows": 36620,
+            "support_by_family": [
+              {
+                "all_text_rows": 35539,
+                "family": "cards_prepaid",
+                "novel_text_rows": 34065,
+                "novel_unique_groups": 29139,
+                "purged_seen_before_rows": 1474,
+                "repeated_within_partition_rows": 6368,
+                "seen_before_rows": 1474,
+                "unique_groups": 29171
+              },
+              {
+                "all_text_rows": 11678,
+                "family": "consumer_lending",
+                "novel_text_rows": 11662,
+                "novel_unique_groups": 11641,
+                "purged_seen_before_rows": 16,
+                "repeated_within_partition_rows": 28,
+                "seen_before_rows": 16,
+                "unique_groups": 11650
+              },
+              {
+                "all_text_rows": 348757,
+                "family": "credit_reporting",
+                "novel_text_rows": 313968,
+                "novel_unique_groups": 208478,
+                "purged_seen_before_rows": 34789,
+                "repeated_within_partition_rows": 139182,
+                "seen_before_rows": 34789,
+                "unique_groups": 209575
+              },
+              {
+                "all_text_rows": 35607,
+                "family": "debt_collection",
+                "novel_text_rows": 35275,
+                "novel_unique_groups": 33313,
+                "purged_seen_before_rows": 332,
+                "repeated_within_partition_rows": 2208,
+                "seen_before_rows": 332,
+                "unique_groups": 33399
+              },
+              {
+                "all_text_rows": 307,
+                "family": "debt_credit_management",
+                "novel_text_rows": 306,
+                "novel_unique_groups": 306,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 0,
+                "seen_before_rows": 1,
+                "unique_groups": 307
+              },
+              {
+                "all_text_rows": 28017,
+                "family": "deposit_accounts",
+                "novel_text_rows": 28016,
+                "novel_unique_groups": 27985,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 31,
+                "seen_before_rows": 1,
+                "unique_groups": 27986
+              },
+              {
+                "all_text_rows": 8459,
+                "family": "money_services",
+                "novel_text_rows": 8456,
+                "novel_unique_groups": 8429,
+                "purged_seen_before_rows": 3,
+                "repeated_within_partition_rows": 27,
+                "seen_before_rows": 3,
+                "unique_groups": 8432
+              },
+              {
+                "all_text_rows": 12883,
+                "family": "mortgage",
+                "novel_text_rows": 12881,
+                "novel_unique_groups": 12868,
+                "purged_seen_before_rows": 2,
+                "repeated_within_partition_rows": 13,
+                "seen_before_rows": 2,
+                "unique_groups": 12870
+              },
+              {
+                "all_text_rows": 6163,
+                "family": "student_loan",
+                "novel_text_rows": 6161,
+                "novel_unique_groups": 6158,
+                "purged_seen_before_rows": 2,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 2,
+                "unique_groups": 6160
+              }
+            ],
+            "unique_groups": 339550
+          },
+          {
+            "all_text_rows": 814384,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7744135444704218,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 814384,
+            "novel_text_rows": 723427,
+            "novel_unique_groups": 452133,
+            "out_of_scope_rare_rows": 0,
+            "partition": "test",
+            "purge_pct": 11.168809799799604,
+            "purged_seen_before_rows": 90957,
+            "repeated_within_partition_rows": 359834,
+            "seen_before_rows": 90957,
+            "support_by_family": [
+              {
+                "all_text_rows": 39150,
+                "family": "cards_prepaid",
+                "novel_text_rows": 38647,
+                "novel_unique_groups": 35215,
+                "purged_seen_before_rows": 503,
+                "repeated_within_partition_rows": 3867,
+                "seen_before_rows": 503,
+                "unique_groups": 35283
+              },
+              {
+                "all_text_rows": 12763,
+                "family": "consumer_lending",
+                "novel_text_rows": 12750,
+                "novel_unique_groups": 12677,
+                "purged_seen_before_rows": 13,
+                "repeated_within_partition_rows": 74,
+                "seen_before_rows": 13,
+                "unique_groups": 12689
+              },
+              {
+                "all_text_rows": 630670,
+                "family": "credit_reporting",
+                "novel_text_rows": 540938,
+                "novel_unique_groups": 294287,
+                "purged_seen_before_rows": 89732,
+                "repeated_within_partition_rows": 334212,
+                "seen_before_rows": 89732,
+                "unique_groups": 296458
+              },
+              {
+                "all_text_rows": 70291,
+                "family": "debt_collection",
+                "novel_text_rows": 69596,
+                "novel_unique_groups": 48551,
+                "purged_seen_before_rows": 695,
+                "repeated_within_partition_rows": 21587,
+                "seen_before_rows": 695,
+                "unique_groups": 48704
+              },
+              {
+                "all_text_rows": 1553,
+                "family": "debt_credit_management",
+                "novel_text_rows": 1549,
+                "novel_unique_groups": 1541,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 9,
+                "seen_before_rows": 4,
+                "unique_groups": 1544
+              },
+              {
+                "all_text_rows": 29484,
+                "family": "deposit_accounts",
+                "novel_text_rows": 29480,
+                "novel_unique_groups": 29428,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 52,
+                "seen_before_rows": 4,
+                "unique_groups": 29432
+              },
+              {
+                "all_text_rows": 10239,
+                "family": "money_services",
+                "novel_text_rows": 10236,
+                "novel_unique_groups": 10219,
+                "purged_seen_before_rows": 3,
+                "repeated_within_partition_rows": 17,
+                "seen_before_rows": 3,
+                "unique_groups": 10222
+              },
+              {
+                "all_text_rows": 12209,
+                "family": "mortgage",
+                "novel_text_rows": 12208,
+                "novel_unique_groups": 12195,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 13,
+                "seen_before_rows": 1,
+                "unique_groups": 12196
+              },
+              {
+                "all_text_rows": 8025,
+                "family": "student_loan",
+                "novel_text_rows": 8023,
+                "novel_unique_groups": 8020,
+                "purged_seen_before_rows": 2,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 2,
+                "unique_groups": 8022
+              }
+            ],
+            "unique_groups": 454550
+          },
+          {
+            "all_text_rows": 1222056,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7469027605936226,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 1222056,
+            "novel_text_rows": 1032688,
+            "novel_unique_groups": 605202,
+            "out_of_scope_rare_rows": 0,
+            "partition": "stress",
+            "purge_pct": 15.495852890538567,
+            "purged_seen_before_rows": 189368,
+            "repeated_within_partition_rows": 613394,
+            "seen_before_rows": 189368,
+            "support_by_family": [
+              {
+                "all_text_rows": 45339,
+                "family": "cards_prepaid",
+                "novel_text_rows": 44297,
+                "novel_unique_groups": 43033,
+                "purged_seen_before_rows": 1042,
+                "repeated_within_partition_rows": 2211,
+                "seen_before_rows": 1042,
+                "unique_groups": 43128
+              },
+              {
+                "all_text_rows": 19492,
+                "family": "consumer_lending",
+                "novel_text_rows": 19479,
+                "novel_unique_groups": 19429,
+                "purged_seen_before_rows": 13,
+                "repeated_within_partition_rows": 52,
+                "seen_before_rows": 13,
+                "unique_groups": 19440
+              },
+              {
+                "all_text_rows": 912757,
+                "family": "credit_reporting",
+                "novel_text_rows": 735570,
+                "novel_unique_groups": 353814,
+                "purged_seen_before_rows": 177187,
+                "repeated_within_partition_rows": 555797,
+                "seen_before_rows": 177187,
+                "unique_groups": 356960
+              },
+              {
+                "all_text_rows": 100610,
+                "family": "debt_collection",
+                "novel_text_rows": 89499,
+                "novel_unique_groups": 75211,
+                "purged_seen_before_rows": 11111,
+                "repeated_within_partition_rows": 25201,
+                "seen_before_rows": 11111,
+                "unique_groups": 75409
+              },
+              {
+                "all_text_rows": 2645,
+                "family": "debt_credit_management",
+                "novel_text_rows": 2644,
+                "novel_unique_groups": 2569,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 75,
+                "seen_before_rows": 1,
+                "unique_groups": 2570
+              },
+              {
+                "all_text_rows": 51448,
+                "family": "deposit_accounts",
+                "novel_text_rows": 51439,
+                "novel_unique_groups": 47120,
+                "purged_seen_before_rows": 9,
+                "repeated_within_partition_rows": 4323,
+                "seen_before_rows": 9,
+                "unique_groups": 47125
+              },
+              {
+                "all_text_rows": 64862,
+                "family": "money_services",
+                "novel_text_rows": 64859,
+                "novel_unique_groups": 39286,
+                "purged_seen_before_rows": 3,
+                "repeated_within_partition_rows": 25574,
+                "seen_before_rows": 3,
+                "unique_groups": 39288
+              },
+              {
+                "all_text_rows": 14029,
+                "family": "mortgage",
+                "novel_text_rows": 14028,
+                "novel_unique_groups": 14021,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 7,
+                "seen_before_rows": 1,
+                "unique_groups": 14022
+              },
+              {
+                "all_text_rows": 10874,
+                "family": "student_loan",
+                "novel_text_rows": 10873,
+                "novel_unique_groups": 10719,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 154,
+                "seen_before_rows": 1,
+                "unique_groups": 10720
+              }
+            ],
+            "unique_groups": 608662
+          },
+          {
+            "all_text_rows": 106633,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.3361435953222736,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 106633,
+            "novel_text_rows": 99644,
+            "novel_unique_groups": 95257,
+            "out_of_scope_rare_rows": 0,
+            "partition": "monitor",
+            "purge_pct": 6.554256187109056,
+            "purged_seen_before_rows": 6989,
+            "repeated_within_partition_rows": 10658,
+            "seen_before_rows": 6989,
+            "support_by_family": [
+              {
+                "all_text_rows": 19290,
+                "family": "cards_prepaid",
+                "novel_text_rows": 19176,
+                "novel_unique_groups": 19088,
+                "purged_seen_before_rows": 114,
+                "repeated_within_partition_rows": 178,
+                "seen_before_rows": 114,
+                "unique_groups": 19112
+              },
+              {
+                "all_text_rows": 8900,
+                "family": "consumer_lending",
+                "novel_text_rows": 8895,
+                "novel_unique_groups": 8859,
+                "purged_seen_before_rows": 5,
+                "repeated_within_partition_rows": 37,
+                "seen_before_rows": 5,
+                "unique_groups": 8863
+              },
+              {
+                "all_text_rows": 4336,
+                "family": "credit_reporting",
+                "novel_text_rows": 3002,
+                "novel_unique_groups": 2031,
+                "purged_seen_before_rows": 1334,
+                "repeated_within_partition_rows": 1994,
+                "seen_before_rows": 1334,
+                "unique_groups": 2342
+              },
+              {
+                "all_text_rows": 35844,
+                "family": "debt_collection",
+                "novel_text_rows": 30380,
+                "novel_unique_groups": 27125,
+                "purged_seen_before_rows": 5464,
+                "repeated_within_partition_rows": 8371,
+                "seen_before_rows": 5464,
+                "unique_groups": 27473
+              },
+              {
+                "all_text_rows": 932,
+                "family": "debt_credit_management",
+                "novel_text_rows": 926,
+                "novel_unique_groups": 920,
+                "purged_seen_before_rows": 6,
+                "repeated_within_partition_rows": 10,
+                "seen_before_rows": 6,
+                "unique_groups": 922
+              },
+              {
+                "all_text_rows": 18678,
+                "family": "deposit_accounts",
+                "novel_text_rows": 18667,
+                "novel_unique_groups": 18643,
+                "purged_seen_before_rows": 11,
+                "repeated_within_partition_rows": 29,
+                "seen_before_rows": 11,
+                "unique_groups": 18649
+              },
+              {
+                "all_text_rows": 8411,
+                "family": "money_services",
+                "novel_text_rows": 8360,
+                "novel_unique_groups": 8358,
+                "purged_seen_before_rows": 51,
+                "repeated_within_partition_rows": 34,
+                "seen_before_rows": 51,
+                "unique_groups": 8377
+              },
+              {
+                "all_text_rows": 6792,
+                "family": "mortgage",
+                "novel_text_rows": 6792,
+                "novel_unique_groups": 6790,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 2,
+                "seen_before_rows": 0,
+                "unique_groups": 6790
+              },
+              {
+                "all_text_rows": 3450,
+                "family": "student_loan",
+                "novel_text_rows": 3446,
+                "novel_unique_groups": 3443,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 4,
+                "unique_groups": 3447
+              }
+            ],
+            "unique_groups": 95975
+          }
+        ],
+        "test_purge_pct": 11.168809799799604
+      },
+      {
+        "candidate": {
+          "limits_are_inclusive": true,
+          "name": "post_2023_taxonomy",
+          "overlap_policy": "forbidden",
+          "windows": [
+            {
+              "end": "2024-06-30",
+              "name": "train",
+              "start": "2023-08-01"
+            },
+            {
+              "end": "2024-12-31",
+              "name": "validation",
+              "start": "2024-07-01"
+            },
+            {
+              "end": "2025-06-30",
+              "name": "test",
+              "start": "2025-01-01"
+            },
+            {
+              "end": "2025-12-31",
+              "name": "stress",
+              "start": "2025-07-01"
+            },
+            {
+              "end": "2026-12-31",
+              "name": "monitor",
+              "start": "2026-01-01"
+            }
+          ]
+        },
+        "candidate_status": "FAIL",
+        "criterion_results": {
+          "classes_present_train_validation_test": true,
+          "largest_family_share_limit": true,
+          "mapping_coverage_100_pct": {
+            "observed": 1.0,
+            "pass": true,
+            "required": 1.0
+          },
+          "test_min_novel_unique_groups_per_class": {
+            "pass": true,
+            "required": 500
+          },
+          "train_min_rows_per_class": {
+            "pass": false,
+            "required": 2000
+          },
+          "train_min_unique_groups_per_class": {
+            "pass": false,
+            "required": 1000
+          },
+          "validation_min_novel_unique_groups_per_class": {
+            "pass": true,
+            "required": 500
+          }
+        },
+        "eligible_class_count": 8,
+        "eligible_classes": [
+          "cards_prepaid",
+          "consumer_lending",
+          "credit_reporting",
+          "debt_collection",
+          "deposit_accounts",
+          "money_services",
+          "mortgage",
+          "student_loan"
+        ],
+        "limitations": [
+          "Stress and monitor partitions are diagnostic and do not approve a model.",
+          "Novel groups are the scientific unit; all-text metrics remain operational.",
+          "The 2.24pp approximation for n=500 assumes approximately independent groups.",
+          "Group dependence still requires group-weighted or one-observation per-group metrics."
+        ],
+        "mapping": {
+          "coverage": 1.0,
+          "mapped_rows": 2354995,
+          "rare_family": "other_financial_services",
+          "rare_rows_out_of_scope": 0,
+          "scoped_rows": 2354995
+        },
+        "min_novel_unique_groups_test": 1398,
+        "partitions": [
+          {
+            "all_text_rows": 568598,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7313004970119487,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 568598,
+            "novel_text_rows": 568598,
+            "novel_unique_groups": 347217,
+            "out_of_scope_rare_rows": 0,
+            "partition": "train",
+            "purge_pct": 0.0,
+            "purged_seen_before_rows": 0,
+            "repeated_within_partition_rows": 221381,
+            "seen_before_rows": 0,
+            "support_by_family": [
+              {
+                "all_text_rows": 38242,
+                "family": "cards_prepaid",
+                "novel_text_rows": 38242,
+                "novel_unique_groups": 31076,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 7166,
+                "seen_before_rows": 0,
+                "unique_groups": 31076
+              },
+              {
+                "all_text_rows": 10990,
+                "family": "consumer_lending",
+                "novel_text_rows": 10990,
+                "novel_unique_groups": 10950,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 40,
+                "seen_before_rows": 0,
+                "unique_groups": 10950
+              },
+              {
+                "all_text_rows": 415816,
+                "family": "credit_reporting",
+                "novel_text_rows": 415816,
+                "novel_unique_groups": 214377,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 201439,
+                "seen_before_rows": 0,
+                "unique_groups": 214377
+              },
+              {
+                "all_text_rows": 49524,
+                "family": "debt_collection",
+                "novel_text_rows": 49524,
+                "novel_unique_groups": 36843,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 12681,
+                "seen_before_rows": 0,
+                "unique_groups": 36843
+              },
+              {
+                "all_text_rows": 968,
+                "family": "debt_credit_management",
+                "novel_text_rows": 968,
+                "novel_unique_groups": 959,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 9,
+                "seen_before_rows": 0,
+                "unique_groups": 959
+              },
+              {
+                "all_text_rows": 24911,
+                "family": "deposit_accounts",
+                "novel_text_rows": 24911,
+                "novel_unique_groups": 24890,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 21,
+                "seen_before_rows": 0,
+                "unique_groups": 24890
+              },
+              {
+                "all_text_rows": 8498,
+                "family": "money_services",
+                "novel_text_rows": 8498,
+                "novel_unique_groups": 8487,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 11,
+                "seen_before_rows": 0,
+                "unique_groups": 8487
+              },
+              {
+                "all_text_rows": 11097,
+                "family": "mortgage",
+                "novel_text_rows": 11097,
+                "novel_unique_groups": 11086,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 11,
+                "seen_before_rows": 0,
+                "unique_groups": 11086
+              },
+              {
+                "all_text_rows": 8552,
+                "family": "student_loan",
+                "novel_text_rows": 8552,
+                "novel_unique_groups": 8549,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 0,
+                "unique_groups": 8549
+              }
+            ],
+            "unique_groups": 347217
+          },
+          {
+            "all_text_rows": 457708,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7989307593487551,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 457708,
+            "novel_text_rows": 345614,
+            "novel_unique_groups": 246461,
+            "out_of_scope_rare_rows": 0,
+            "partition": "validation",
+            "purge_pct": 24.490286383458447,
+            "purged_seen_before_rows": 112094,
+            "repeated_within_partition_rows": 208435,
+            "seen_before_rows": 112094,
+            "support_by_family": [
+              {
+                "all_text_rows": 17970,
+                "family": "cards_prepaid",
+                "novel_text_rows": 17920,
+                "novel_unique_groups": 17351,
+                "purged_seen_before_rows": 50,
+                "repeated_within_partition_rows": 586,
+                "seen_before_rows": 50,
+                "unique_groups": 17384
+              },
+              {
+                "all_text_rows": 6515,
+                "family": "consumer_lending",
+                "novel_text_rows": 6500,
+                "novel_unique_groups": 6466,
+                "purged_seen_before_rows": 15,
+                "repeated_within_partition_rows": 38,
+                "seen_before_rows": 15,
+                "unique_groups": 6477
+              },
+              {
+                "all_text_rows": 365677,
+                "family": "credit_reporting",
+                "novel_text_rows": 261173,
+                "novel_unique_groups": 165009,
+                "purged_seen_before_rows": 104504,
+                "repeated_within_partition_rows": 198016,
+                "seen_before_rows": 104504,
+                "unique_groups": 167661
+              },
+              {
+                "all_text_rows": 35578,
+                "family": "debt_collection",
+                "novel_text_rows": 28055,
+                "novel_unique_groups": 25724,
+                "purged_seen_before_rows": 7523,
+                "repeated_within_partition_rows": 9740,
+                "seen_before_rows": 7523,
+                "unique_groups": 25838
+              },
+              {
+                "all_text_rows": 892,
+                "family": "debt_credit_management",
+                "novel_text_rows": 892,
+                "novel_unique_groups": 892,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 0,
+                "seen_before_rows": 0,
+                "unique_groups": 892
+              },
+              {
+                "all_text_rows": 15677,
+                "family": "deposit_accounts",
+                "novel_text_rows": 15675,
+                "novel_unique_groups": 15641,
+                "purged_seen_before_rows": 2,
+                "repeated_within_partition_rows": 34,
+                "seen_before_rows": 2,
+                "unique_groups": 15643
+              },
+              {
+                "all_text_rows": 5434,
+                "family": "money_services",
+                "novel_text_rows": 5434,
+                "novel_unique_groups": 5423,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 11,
+                "seen_before_rows": 0,
+                "unique_groups": 5423
+              },
+              {
+                "all_text_rows": 6194,
+                "family": "mortgage",
+                "novel_text_rows": 6194,
+                "novel_unique_groups": 6185,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 9,
+                "seen_before_rows": 0,
+                "unique_groups": 6185
+              },
+              {
+                "all_text_rows": 3771,
+                "family": "student_loan",
+                "novel_text_rows": 3771,
+                "novel_unique_groups": 3770,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 1,
+                "seen_before_rows": 0,
+                "unique_groups": 3770
+              }
+            ],
+            "unique_groups": 249273
+          },
+          {
+            "all_text_rows": 695184,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7428033441506133,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 695184,
+            "novel_text_rows": 566040,
+            "novel_unique_groups": 334973,
+            "out_of_scope_rare_rows": 0,
+            "partition": "test",
+            "purge_pct": 18.57695228889042,
+            "purged_seen_before_rows": 129144,
+            "repeated_within_partition_rows": 357208,
+            "seen_before_rows": 129144,
+            "support_by_family": [
+              {
+                "all_text_rows": 21578,
+                "family": "cards_prepaid",
+                "novel_text_rows": 21250,
+                "novel_unique_groups": 20708,
+                "purged_seen_before_rows": 328,
+                "repeated_within_partition_rows": 821,
+                "seen_before_rows": 328,
+                "unique_groups": 20757
+              },
+              {
+                "all_text_rows": 8895,
+                "family": "consumer_lending",
+                "novel_text_rows": 8887,
+                "novel_unique_groups": 8863,
+                "purged_seen_before_rows": 8,
+                "repeated_within_partition_rows": 24,
+                "seen_before_rows": 8,
+                "unique_groups": 8871
+              },
+              {
+                "all_text_rows": 516385,
+                "family": "credit_reporting",
+                "novel_text_rows": 395589,
+                "novel_unique_groups": 198861,
+                "purged_seen_before_rows": 120796,
+                "repeated_within_partition_rows": 314748,
+                "seen_before_rows": 120796,
+                "unique_groups": 201637
+              },
+              {
+                "all_text_rows": 49807,
+                "family": "debt_collection",
+                "novel_text_rows": 41808,
+                "novel_unique_groups": 37469,
+                "purged_seen_before_rows": 7999,
+                "repeated_within_partition_rows": 12176,
+                "seen_before_rows": 7999,
+                "unique_groups": 37631
+              },
+              {
+                "all_text_rows": 1400,
+                "family": "debt_credit_management",
+                "novel_text_rows": 1400,
+                "novel_unique_groups": 1398,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 2,
+                "seen_before_rows": 0,
+                "unique_groups": 1398
+              },
+              {
+                "all_text_rows": 29735,
+                "family": "deposit_accounts",
+                "novel_text_rows": 29726,
+                "novel_unique_groups": 25484,
+                "purged_seen_before_rows": 9,
+                "repeated_within_partition_rows": 4246,
+                "seen_before_rows": 9,
+                "unique_groups": 25489
+              },
+              {
+                "all_text_rows": 53572,
+                "family": "money_services",
+                "novel_text_rows": 53569,
+                "novel_unique_groups": 28521,
+                "purged_seen_before_rows": 3,
+                "repeated_within_partition_rows": 25049,
+                "seen_before_rows": 3,
+                "unique_groups": 28523
+              },
+              {
+                "all_text_rows": 6816,
+                "family": "mortgage",
+                "novel_text_rows": 6816,
+                "novel_unique_groups": 6813,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 0,
+                "unique_groups": 6813
+              },
+              {
+                "all_text_rows": 6996,
+                "family": "student_loan",
+                "novel_text_rows": 6995,
+                "novel_unique_groups": 6856,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 139,
+                "seen_before_rows": 1,
+                "unique_groups": 6857
+              }
+            ],
+            "unique_groups": 337976
+          },
+          {
+            "all_text_rows": 526872,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7523117569352709,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 526872,
+            "novel_text_rows": 382385,
+            "novel_unique_groups": 270279,
+            "out_of_scope_rare_rows": 0,
+            "partition": "stress",
+            "purge_pct": 27.42354879363489,
+            "purged_seen_before_rows": 144487,
+            "repeated_within_partition_rows": 253392,
+            "seen_before_rows": 144487,
+            "support_by_family": [
+              {
+                "all_text_rows": 23761,
+                "family": "cards_prepaid",
+                "novel_text_rows": 22987,
+                "novel_unique_groups": 22309,
+                "purged_seen_before_rows": 774,
+                "repeated_within_partition_rows": 1376,
+                "seen_before_rows": 774,
+                "unique_groups": 22385
+              },
+              {
+                "all_text_rows": 10597,
+                "family": "consumer_lending",
+                "novel_text_rows": 10592,
+                "novel_unique_groups": 10566,
+                "purged_seen_before_rows": 5,
+                "repeated_within_partition_rows": 27,
+                "seen_before_rows": 5,
+                "unique_groups": 10570
+              },
+              {
+                "all_text_rows": 396372,
+                "family": "credit_reporting",
+                "novel_text_rows": 262133,
+                "novel_unique_groups": 155041,
+                "purged_seen_before_rows": 134239,
+                "repeated_within_partition_rows": 238545,
+                "seen_before_rows": 134239,
+                "unique_groups": 157827
+              },
+              {
+                "all_text_rows": 50803,
+                "family": "debt_collection",
+                "novel_text_rows": 41857,
+                "novel_unique_groups": 37724,
+                "purged_seen_before_rows": 8946,
+                "repeated_within_partition_rows": 12879,
+                "seen_before_rows": 8946,
+                "unique_groups": 37924
+              },
+              {
+                "all_text_rows": 1245,
+                "family": "debt_credit_management",
+                "novel_text_rows": 1243,
+                "novel_unique_groups": 1170,
+                "purged_seen_before_rows": 2,
+                "repeated_within_partition_rows": 73,
+                "seen_before_rows": 2,
+                "unique_groups": 1172
+              },
+              {
+                "all_text_rows": 21713,
+                "family": "deposit_accounts",
+                "novel_text_rows": 21669,
+                "novel_unique_groups": 21634,
+                "purged_seen_before_rows": 44,
+                "repeated_within_partition_rows": 66,
+                "seen_before_rows": 44,
+                "unique_groups": 21647
+              },
+              {
+                "all_text_rows": 11290,
+                "family": "money_services",
+                "novel_text_rows": 10824,
+                "novel_unique_groups": 10765,
+                "purged_seen_before_rows": 466,
+                "repeated_within_partition_rows": 414,
+                "seen_before_rows": 466,
+                "unique_groups": 10876
+              },
+              {
+                "all_text_rows": 7213,
+                "family": "mortgage",
+                "novel_text_rows": 7212,
+                "novel_unique_groups": 7209,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 1,
+                "unique_groups": 7210
+              },
+              {
+                "all_text_rows": 3878,
+                "family": "student_loan",
+                "novel_text_rows": 3868,
+                "novel_unique_groups": 3861,
+                "purged_seen_before_rows": 10,
+                "repeated_within_partition_rows": 9,
+                "seen_before_rows": 10,
+                "unique_groups": 3869
+              }
+            ],
+            "unique_groups": 273480
+          },
+          {
+            "all_text_rows": 106633,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.3361435953222736,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 106633,
+            "novel_text_rows": 99649,
+            "novel_unique_groups": 95260,
+            "out_of_scope_rare_rows": 0,
+            "partition": "monitor",
+            "purge_pct": 6.549567207149757,
+            "purged_seen_before_rows": 6984,
+            "repeated_within_partition_rows": 10658,
+            "seen_before_rows": 6984,
+            "support_by_family": [
+              {
+                "all_text_rows": 19290,
+                "family": "cards_prepaid",
+                "novel_text_rows": 19176,
+                "novel_unique_groups": 19088,
+                "purged_seen_before_rows": 114,
+                "repeated_within_partition_rows": 178,
+                "seen_before_rows": 114,
+                "unique_groups": 19112
+              },
+              {
+                "all_text_rows": 8900,
+                "family": "consumer_lending",
+                "novel_text_rows": 8895,
+                "novel_unique_groups": 8859,
+                "purged_seen_before_rows": 5,
+                "repeated_within_partition_rows": 37,
+                "seen_before_rows": 5,
+                "unique_groups": 8863
+              },
+              {
+                "all_text_rows": 4336,
+                "family": "credit_reporting",
+                "novel_text_rows": 3002,
+                "novel_unique_groups": 2031,
+                "purged_seen_before_rows": 1334,
+                "repeated_within_partition_rows": 1994,
+                "seen_before_rows": 1334,
+                "unique_groups": 2342
+              },
+              {
+                "all_text_rows": 35844,
+                "family": "debt_collection",
+                "novel_text_rows": 30385,
+                "novel_unique_groups": 27128,
+                "purged_seen_before_rows": 5459,
+                "repeated_within_partition_rows": 8371,
+                "seen_before_rows": 5459,
+                "unique_groups": 27473
+              },
+              {
+                "all_text_rows": 932,
+                "family": "debt_credit_management",
+                "novel_text_rows": 926,
+                "novel_unique_groups": 920,
+                "purged_seen_before_rows": 6,
+                "repeated_within_partition_rows": 10,
+                "seen_before_rows": 6,
+                "unique_groups": 922
+              },
+              {
+                "all_text_rows": 18678,
+                "family": "deposit_accounts",
+                "novel_text_rows": 18667,
+                "novel_unique_groups": 18643,
+                "purged_seen_before_rows": 11,
+                "repeated_within_partition_rows": 29,
+                "seen_before_rows": 11,
+                "unique_groups": 18649
+              },
+              {
+                "all_text_rows": 8411,
+                "family": "money_services",
+                "novel_text_rows": 8360,
+                "novel_unique_groups": 8358,
+                "purged_seen_before_rows": 51,
+                "repeated_within_partition_rows": 34,
+                "seen_before_rows": 51,
+                "unique_groups": 8377
+              },
+              {
+                "all_text_rows": 6792,
+                "family": "mortgage",
+                "novel_text_rows": 6792,
+                "novel_unique_groups": 6790,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 2,
+                "seen_before_rows": 0,
+                "unique_groups": 6790
+              },
+              {
+                "all_text_rows": 3450,
+                "family": "student_loan",
+                "novel_text_rows": 3446,
+                "novel_unique_groups": 3443,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 4,
+                "unique_groups": 3447
+              }
+            ],
+            "unique_groups": 95975
+          }
+        ],
+        "test_purge_pct": 18.57695228889042
+      },
+      {
+        "candidate": {
+          "limits_are_inclusive": true,
+          "name": "extended_history",
+          "overlap_policy": "forbidden",
+          "windows": [
+            {
+              "end": "2023-12-31",
+              "name": "train",
+              "start": "2015-01-01"
+            },
+            {
+              "end": "2024-12-31",
+              "name": "validation",
+              "start": "2024-01-01"
+            },
+            {
+              "end": "2025-12-31",
+              "name": "test",
+              "start": "2025-01-01"
+            },
+            {
+              "end": "2026-12-31",
+              "name": "monitor",
+              "start": "2026-01-01"
+            }
+          ]
+        },
+        "candidate_status": "FAIL",
+        "criterion_results": {
+          "classes_present_train_validation_test": true,
+          "largest_family_share_limit": true,
+          "mapping_coverage_100_pct": {
+            "observed": 1.0,
+            "pass": true,
+            "required": 1.0
+          },
+          "test_min_novel_unique_groups_per_class": {
+            "pass": true,
+            "required": 500
+          },
+          "train_min_rows_per_class": {
+            "pass": false,
+            "required": 2000
+          },
+          "train_min_unique_groups_per_class": {
+            "pass": false,
+            "required": 1000
+          },
+          "validation_min_novel_unique_groups_per_class": {
+            "pass": true,
+            "required": 500
+          }
+        },
+        "eligible_class_count": 8,
+        "eligible_classes": [
+          "cards_prepaid",
+          "consumer_lending",
+          "credit_reporting",
+          "debt_collection",
+          "deposit_accounts",
+          "money_services",
+          "mortgage",
+          "student_loan"
+        ],
+        "limitations": [
+          "Stress and monitor partitions are diagnostic and do not approve a model.",
+          "Novel groups are the scientific unit; all-text metrics remain operational.",
+          "The 2.24pp approximation for n=500 assumes approximately independent groups.",
+          "Group dependence still requires group-weighted or one-observation per-group metrics."
+        ],
+        "mapping": {
+          "coverage": 1.0,
+          "mapped_rows": 3836659,
+          "rare_family": "other_financial_services",
+          "rare_rows_out_of_scope": 292,
+          "scoped_rows": 3836659
+        },
+        "min_novel_unique_groups_test": 2569,
+        "partitions": [
+          {
+            "all_text_rows": 1693586,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.5687990390327964,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 1693294,
+            "novel_text_rows": 1693294,
+            "novel_unique_groups": 1363254,
+            "out_of_scope_rare_rows": 292,
+            "partition": "train",
+            "purge_pct": 0.0,
+            "purged_seen_before_rows": 0,
+            "repeated_within_partition_rows": 330040,
+            "seen_before_rows": 0,
+            "support_by_family": [
+              {
+                "all_text_rows": 143226,
+                "family": "cards_prepaid",
+                "novel_text_rows": 143226,
+                "novel_unique_groups": 135391,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 7835,
+                "seen_before_rows": 0,
+                "unique_groups": 135391
+              },
+              {
+                "all_text_rows": 58418,
+                "family": "consumer_lending",
+                "novel_text_rows": 58418,
+                "novel_unique_groups": 57940,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 478,
+                "seen_before_rows": 0,
+                "unique_groups": 57940
+              },
+              {
+                "all_text_rows": 963144,
+                "family": "credit_reporting",
+                "novel_text_rows": 963144,
+                "novel_unique_groups": 655733,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 307411,
+                "seen_before_rows": 0,
+                "unique_groups": 655733
+              },
+              {
+                "all_text_rows": 234141,
+                "family": "debt_collection",
+                "novel_text_rows": 234141,
+                "novel_unique_groups": 220648,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 13493,
+                "seen_before_rows": 0,
+                "unique_groups": 220648
+              },
+              {
+                "all_text_rows": 307,
+                "family": "debt_credit_management",
+                "novel_text_rows": 307,
+                "novel_unique_groups": 307,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 0,
+                "seen_before_rows": 0,
+                "unique_groups": 307
+              },
+              {
+                "all_text_rows": 101965,
+                "family": "deposit_accounts",
+                "novel_text_rows": 101965,
+                "novel_unique_groups": 101822,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 143,
+                "seen_before_rows": 0,
+                "unique_groups": 101822
+              },
+              {
+                "all_text_rows": 38609,
+                "family": "money_services",
+                "novel_text_rows": 38609,
+                "novel_unique_groups": 38267,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 342,
+                "seen_before_rows": 0,
+                "unique_groups": 38267
+              },
+              {
+                "all_text_rows": 113237,
+                "family": "mortgage",
+                "novel_text_rows": 113237,
+                "novel_unique_groups": 113062,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 175,
+                "seen_before_rows": 0,
+                "unique_groups": 113062
+              },
+              {
+                "all_text_rows": 292,
+                "family": "other_financial_services",
+                "novel_text_rows": 292,
+                "novel_unique_groups": 291,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 1,
+                "seen_before_rows": 0,
+                "unique_groups": 291
+              },
+              {
+                "all_text_rows": 40247,
+                "family": "student_loan",
+                "novel_text_rows": 40247,
+                "novel_unique_groups": 40084,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 163,
+                "seen_before_rows": 0,
+                "unique_groups": 40084
+              }
+            ],
+            "unique_groups": 1363254
+          },
+          {
+            "all_text_rows": 814384,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7744135444704218,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 814384,
+            "novel_text_rows": 723427,
+            "novel_unique_groups": 452133,
+            "out_of_scope_rare_rows": 0,
+            "partition": "validation",
+            "purge_pct": 11.168809799799604,
+            "purged_seen_before_rows": 90957,
+            "repeated_within_partition_rows": 359834,
+            "seen_before_rows": 90957,
+            "support_by_family": [
+              {
+                "all_text_rows": 39150,
+                "family": "cards_prepaid",
+                "novel_text_rows": 38647,
+                "novel_unique_groups": 35215,
+                "purged_seen_before_rows": 503,
+                "repeated_within_partition_rows": 3867,
+                "seen_before_rows": 503,
+                "unique_groups": 35283
+              },
+              {
+                "all_text_rows": 12763,
+                "family": "consumer_lending",
+                "novel_text_rows": 12750,
+                "novel_unique_groups": 12677,
+                "purged_seen_before_rows": 13,
+                "repeated_within_partition_rows": 74,
+                "seen_before_rows": 13,
+                "unique_groups": 12689
+              },
+              {
+                "all_text_rows": 630670,
+                "family": "credit_reporting",
+                "novel_text_rows": 540938,
+                "novel_unique_groups": 294287,
+                "purged_seen_before_rows": 89732,
+                "repeated_within_partition_rows": 334212,
+                "seen_before_rows": 89732,
+                "unique_groups": 296458
+              },
+              {
+                "all_text_rows": 70291,
+                "family": "debt_collection",
+                "novel_text_rows": 69596,
+                "novel_unique_groups": 48551,
+                "purged_seen_before_rows": 695,
+                "repeated_within_partition_rows": 21587,
+                "seen_before_rows": 695,
+                "unique_groups": 48704
+              },
+              {
+                "all_text_rows": 1553,
+                "family": "debt_credit_management",
+                "novel_text_rows": 1549,
+                "novel_unique_groups": 1541,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 9,
+                "seen_before_rows": 4,
+                "unique_groups": 1544
+              },
+              {
+                "all_text_rows": 29484,
+                "family": "deposit_accounts",
+                "novel_text_rows": 29480,
+                "novel_unique_groups": 29428,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 52,
+                "seen_before_rows": 4,
+                "unique_groups": 29432
+              },
+              {
+                "all_text_rows": 10239,
+                "family": "money_services",
+                "novel_text_rows": 10236,
+                "novel_unique_groups": 10219,
+                "purged_seen_before_rows": 3,
+                "repeated_within_partition_rows": 17,
+                "seen_before_rows": 3,
+                "unique_groups": 10222
+              },
+              {
+                "all_text_rows": 12209,
+                "family": "mortgage",
+                "novel_text_rows": 12208,
+                "novel_unique_groups": 12195,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 13,
+                "seen_before_rows": 1,
+                "unique_groups": 12196
+              },
+              {
+                "all_text_rows": 8025,
+                "family": "student_loan",
+                "novel_text_rows": 8023,
+                "novel_unique_groups": 8020,
+                "purged_seen_before_rows": 2,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 2,
+                "unique_groups": 8022
+              }
+            ],
+            "unique_groups": 454550
+          },
+          {
+            "all_text_rows": 1222056,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.7469027605936226,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 1222056,
+            "novel_text_rows": 1032688,
+            "novel_unique_groups": 605202,
+            "out_of_scope_rare_rows": 0,
+            "partition": "test",
+            "purge_pct": 15.495852890538567,
+            "purged_seen_before_rows": 189368,
+            "repeated_within_partition_rows": 613394,
+            "seen_before_rows": 189368,
+            "support_by_family": [
+              {
+                "all_text_rows": 45339,
+                "family": "cards_prepaid",
+                "novel_text_rows": 44297,
+                "novel_unique_groups": 43033,
+                "purged_seen_before_rows": 1042,
+                "repeated_within_partition_rows": 2211,
+                "seen_before_rows": 1042,
+                "unique_groups": 43128
+              },
+              {
+                "all_text_rows": 19492,
+                "family": "consumer_lending",
+                "novel_text_rows": 19479,
+                "novel_unique_groups": 19429,
+                "purged_seen_before_rows": 13,
+                "repeated_within_partition_rows": 52,
+                "seen_before_rows": 13,
+                "unique_groups": 19440
+              },
+              {
+                "all_text_rows": 912757,
+                "family": "credit_reporting",
+                "novel_text_rows": 735570,
+                "novel_unique_groups": 353814,
+                "purged_seen_before_rows": 177187,
+                "repeated_within_partition_rows": 555797,
+                "seen_before_rows": 177187,
+                "unique_groups": 356960
+              },
+              {
+                "all_text_rows": 100610,
+                "family": "debt_collection",
+                "novel_text_rows": 89499,
+                "novel_unique_groups": 75211,
+                "purged_seen_before_rows": 11111,
+                "repeated_within_partition_rows": 25201,
+                "seen_before_rows": 11111,
+                "unique_groups": 75409
+              },
+              {
+                "all_text_rows": 2645,
+                "family": "debt_credit_management",
+                "novel_text_rows": 2644,
+                "novel_unique_groups": 2569,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 75,
+                "seen_before_rows": 1,
+                "unique_groups": 2570
+              },
+              {
+                "all_text_rows": 51448,
+                "family": "deposit_accounts",
+                "novel_text_rows": 51439,
+                "novel_unique_groups": 47120,
+                "purged_seen_before_rows": 9,
+                "repeated_within_partition_rows": 4323,
+                "seen_before_rows": 9,
+                "unique_groups": 47125
+              },
+              {
+                "all_text_rows": 64862,
+                "family": "money_services",
+                "novel_text_rows": 64859,
+                "novel_unique_groups": 39286,
+                "purged_seen_before_rows": 3,
+                "repeated_within_partition_rows": 25574,
+                "seen_before_rows": 3,
+                "unique_groups": 39288
+              },
+              {
+                "all_text_rows": 14029,
+                "family": "mortgage",
+                "novel_text_rows": 14028,
+                "novel_unique_groups": 14021,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 7,
+                "seen_before_rows": 1,
+                "unique_groups": 14022
+              },
+              {
+                "all_text_rows": 10874,
+                "family": "student_loan",
+                "novel_text_rows": 10873,
+                "novel_unique_groups": 10719,
+                "purged_seen_before_rows": 1,
+                "repeated_within_partition_rows": 154,
+                "seen_before_rows": 1,
+                "unique_groups": 10720
+              }
+            ],
+            "unique_groups": 608662
+          },
+          {
+            "all_text_rows": 106633,
+            "classes_present": [
+              "cards_prepaid",
+              "consumer_lending",
+              "credit_reporting",
+              "debt_collection",
+              "debt_credit_management",
+              "deposit_accounts",
+              "money_services",
+              "mortgage",
+              "student_loan"
+            ],
+            "largest_family_share": 0.3361435953222736,
+            "missing_modeled_classes": [],
+            "modeled_text_rows": 106633,
+            "novel_text_rows": 99644,
+            "novel_unique_groups": 95257,
+            "out_of_scope_rare_rows": 0,
+            "partition": "monitor",
+            "purge_pct": 6.554256187109056,
+            "purged_seen_before_rows": 6989,
+            "repeated_within_partition_rows": 10658,
+            "seen_before_rows": 6989,
+            "support_by_family": [
+              {
+                "all_text_rows": 19290,
+                "family": "cards_prepaid",
+                "novel_text_rows": 19176,
+                "novel_unique_groups": 19088,
+                "purged_seen_before_rows": 114,
+                "repeated_within_partition_rows": 178,
+                "seen_before_rows": 114,
+                "unique_groups": 19112
+              },
+              {
+                "all_text_rows": 8900,
+                "family": "consumer_lending",
+                "novel_text_rows": 8895,
+                "novel_unique_groups": 8859,
+                "purged_seen_before_rows": 5,
+                "repeated_within_partition_rows": 37,
+                "seen_before_rows": 5,
+                "unique_groups": 8863
+              },
+              {
+                "all_text_rows": 4336,
+                "family": "credit_reporting",
+                "novel_text_rows": 3002,
+                "novel_unique_groups": 2031,
+                "purged_seen_before_rows": 1334,
+                "repeated_within_partition_rows": 1994,
+                "seen_before_rows": 1334,
+                "unique_groups": 2342
+              },
+              {
+                "all_text_rows": 35844,
+                "family": "debt_collection",
+                "novel_text_rows": 30380,
+                "novel_unique_groups": 27125,
+                "purged_seen_before_rows": 5464,
+                "repeated_within_partition_rows": 8371,
+                "seen_before_rows": 5464,
+                "unique_groups": 27473
+              },
+              {
+                "all_text_rows": 932,
+                "family": "debt_credit_management",
+                "novel_text_rows": 926,
+                "novel_unique_groups": 920,
+                "purged_seen_before_rows": 6,
+                "repeated_within_partition_rows": 10,
+                "seen_before_rows": 6,
+                "unique_groups": 922
+              },
+              {
+                "all_text_rows": 18678,
+                "family": "deposit_accounts",
+                "novel_text_rows": 18667,
+                "novel_unique_groups": 18643,
+                "purged_seen_before_rows": 11,
+                "repeated_within_partition_rows": 29,
+                "seen_before_rows": 11,
+                "unique_groups": 18649
+              },
+              {
+                "all_text_rows": 8411,
+                "family": "money_services",
+                "novel_text_rows": 8360,
+                "novel_unique_groups": 8358,
+                "purged_seen_before_rows": 51,
+                "repeated_within_partition_rows": 34,
+                "seen_before_rows": 51,
+                "unique_groups": 8377
+              },
+              {
+                "all_text_rows": 6792,
+                "family": "mortgage",
+                "novel_text_rows": 6792,
+                "novel_unique_groups": 6790,
+                "purged_seen_before_rows": 0,
+                "repeated_within_partition_rows": 2,
+                "seen_before_rows": 0,
+                "unique_groups": 6790
+              },
+              {
+                "all_text_rows": 3450,
+                "family": "student_loan",
+                "novel_text_rows": 3446,
+                "novel_unique_groups": 3443,
+                "purged_seen_before_rows": 4,
+                "repeated_within_partition_rows": 3,
+                "seen_before_rows": 4,
+                "unique_groups": 3447
+              }
+            ],
+            "unique_groups": 95975
+          }
+        ],
+        "test_purge_pct": 15.495852890538567
+      }
+    ],
+    "criteria": {
+      "max_largest_family_share": 0.8,
+      "min_test_novel_unique_groups": 500,
+      "min_train_rows": 2000,
+      "min_train_unique_groups": 1000,
+      "min_validation_novel_unique_groups": 500,
+      "required_mapping_coverage": 1.0
+    },
+    "fingerprint_version": "lowercase-trim-whitespace-collapse-md5-length-v1",
+    "modeled_families": [
+      "cards_prepaid",
+      "consumer_lending",
+      "credit_reporting",
+      "debt_collection",
+      "debt_credit_management",
+      "deposit_accounts",
+      "money_services",
+      "mortgage",
+      "student_loan"
+    ],
+    "next_steps": [
+      "Review the candidate matrix and taxonomy regime assumptions.",
+      "Choose a protocol explicitly before any model training.",
+      "Use group-aware or one-observation-per-novel-group scientific metrics.",
+      "Keep all-text operational metrics beside novel-group metrics."
+    ],
+    "rare_family_policy": {
+      "family": "other_financial_services",
+      "kept_in_counts": true,
+      "status": "out_of_scope_rare_abstention"
+    },
+    "recommendation_basis": [
+      "PASS candidates only",
+      "most eligible classes",
+      "highest minimum novel unique-group test support",
+      "lowest test purge percentage",
+      "historical_stress wins the final tie-break"
+    ],
+    "recommendation_status": "BLOCKED",
+    "recommended_candidate": null,
+    "report_schema_version": "s2-temporal-report-v2",
+    "status_is_not_sealed": true,
+    "taxonomy_version": "cfpb-product-family-v1.0.0"
+  },
+  "report_schema_version": "s2-temporal-report-v2",
+  "signature": {
+    "payload": {
+      "candidates": [
+        {
+          "limits_are_inclusive": true,
+          "name": "historical_stress",
+          "overlap_policy": "forbidden",
+          "windows": [
+            {
+              "end": "2022-12-31",
+              "name": "train",
+              "start": "2015-01-01"
+            },
+            {
+              "end": "2023-12-31",
+              "name": "validation",
+              "start": "2023-01-01"
+            },
+            {
+              "end": "2024-12-31",
+              "name": "test",
+              "start": "2024-01-01"
+            },
+            {
+              "end": "2025-12-31",
+              "name": "stress",
+              "start": "2025-01-01"
+            },
+            {
+              "end": "2026-12-31",
+              "name": "monitor",
+              "start": "2026-01-01"
+            }
+          ]
+        },
+        {
+          "limits_are_inclusive": true,
+          "name": "post_2023_taxonomy",
+          "overlap_policy": "forbidden",
+          "windows": [
+            {
+              "end": "2024-06-30",
+              "name": "train",
+              "start": "2023-08-01"
+            },
+            {
+              "end": "2024-12-31",
+              "name": "validation",
+              "start": "2024-07-01"
+            },
+            {
+              "end": "2025-06-30",
+              "name": "test",
+              "start": "2025-01-01"
+            },
+            {
+              "end": "2025-12-31",
+              "name": "stress",
+              "start": "2025-07-01"
+            },
+            {
+              "end": "2026-12-31",
+              "name": "monitor",
+              "start": "2026-01-01"
+            }
+          ]
+        },
+        {
+          "limits_are_inclusive": true,
+          "name": "extended_history",
+          "overlap_policy": "forbidden",
+          "windows": [
+            {
+              "end": "2023-12-31",
+              "name": "train",
+              "start": "2015-01-01"
+            },
+            {
+              "end": "2024-12-31",
+              "name": "validation",
+              "start": "2024-01-01"
+            },
+            {
+              "end": "2025-12-31",
+              "name": "test",
+              "start": "2025-01-01"
+            },
+            {
+              "end": "2026-12-31",
+              "name": "monitor",
+              "start": "2026-01-01"
+            }
+          ]
+        }
+      ],
+      "criteria": {
+        "max_largest_family_share": 0.8,
+        "min_test_novel_unique_groups": 500,
+        "min_train_rows": 2000,
+        "min_train_unique_groups": 1000,
+        "min_validation_novel_unique_groups": 500,
+        "required_mapping_coverage": 1.0
+      },
+      "index_signature": {
+        "payload": {
+          "file_size": 821595288,
+          "fingerprint_version": "lowercase-trim-whitespace-collapse-md5-length-v1",
+          "mtime_ns": 1786735294752123800,
+          "resolved_path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\dataset\\processed\\complaints.parquet",
+          "schema_version": "s2-modeling-index-v1",
+          "source_columns": {
+            "date": "Date received",
+            "issue": "Issue",
+            "product": "Product",
+            "text": "Consumer complaint narrative"
+          },
+          "taxonomy_version": "cfpb-product-family-v1.0.0"
+        },
+        "sha256": "3a925ad2473262e1a66aa0652bab2508b78909ccf6c613537b0e909ab094f4c7"
+      },
+      "report_schema_version": "s2-temporal-report-v2"
+    },
+    "sha256": "cd19f21ef5fe729ab2a966da9127d6eb65912f2e48c73e87971daa8d83d1d187"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "peak_process_rss_bytes": 4021764096,
+  "min_system_available_bytes": 1486430208,
+  "samples": 858,
+  "started_at_epoch": 1786840528.198393,
+  "elapsed_seconds": 456.8656366999494,
+  "status": "COMPLETE",
+  "peak_process_rss_gb": 3.7455596923828125,
+  "min_system_available_gb": 1.3843460083007812
+}

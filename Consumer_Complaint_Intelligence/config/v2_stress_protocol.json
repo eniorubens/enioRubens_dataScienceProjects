@@ -1,0 +1,202 @@
+{
+  "schema_version": "v2-stress-confirmatory-protocol-v1",
+  "stage": "V2.1-C",
+  "adr": "ADR-014",
+  "status": "FROZEN_FOR_CONFIRMATORY_TEST",
+  "approved_on": "2026-08-19",
+  "approved_by": "user",
+  "confirmatory_partition": "stress",
+  "stress_scope": {
+    "start": "2025-07-01",
+    "end": "2025-12-31"
+  },
+  "remaining_sealed": [
+    "monitor"
+  ],
+  "partition_promotion": {
+    "amends": "s2_limitation_stress_and_monitor_are_diagnostic",
+    "amended_by": "ADR-014",
+    "reason": "test_2025_h1_was_consumed_by_s8_and_is_forbidden_to_v2",
+    "criteria_source": "s2_pilot_criteria",
+    "checked_against_s2_metadata_only": true,
+    "min_novel_unique_groups_required": 500,
+    "min_novel_unique_groups_observed": 1170,
+    "max_largest_family_share_allowed": 0.8,
+    "largest_family_share_observed": 0.7523117569352709,
+    "would_pass_pilot_criteria": true,
+    "monitor_remains_diagnostic": true
+  },
+  "model": {
+    "model_version": "consumer-complaint-detector-v2",
+    "fallback_model_version": "consumer-complaint-classifier-s7",
+    "input_language": "en-US",
+    "classes": [
+      "cards_prepaid",
+      "consumer_lending",
+      "credit_reporting",
+      "debt_collection",
+      "debt_credit_management",
+      "deposit_accounts",
+      "money_services",
+      "mortgage",
+      "student_loan"
+    ],
+    "critical_class": "debt_credit_management",
+    "threshold": -0.13949530151425016,
+    "score_kind": "critical_margin",
+    "combination": "critical_override_at_or_above_calibrated_threshold"
+  },
+  "arms": {
+    "primary": "v2_combined",
+    "control": "s7_fallback_alone",
+    "scored_in_one_pass": true,
+    "seal_openings": 1,
+    "rationale": "paired_contrast_is_immune_to_partition_composition_drift"
+  },
+  "gates": {
+    "required_gate_count": 4,
+    "macro_f1_min": 0.69,
+    "critical_f1_min": 0.2715,
+    "critical_precision_min": 0.2,
+    "paired_critical_f1_gain_min": 0.0,
+    "paired_gain_strict": true,
+    "absolute_gates_source": "s8_confirmatory_protocol_v1_unchanged",
+    "absolute_gates_frozen_on": "2026-08-16",
+    "evaluated_on": "scientific_primary_view"
+  },
+  "expectation": {
+    "diagnostic_only": true,
+    "not_a_gate": true,
+    "development_v2_critical_f1": 0.38689866939611056,
+    "development_s7_critical_f1": 0.3396648044692737,
+    "development_paired_gain": 0.047233864926836844,
+    "development_window": "validation_2024_07_01_to_2024_12_31",
+    "s7_critical_f1_on_s8_test": 0.257843,
+    "s7_cross_window_delta": -0.081822,
+    "note": "the same frozen s7 moved 0.0818 across windows with no model change"
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 42,
+    "confidence_level": 0.95,
+    "diagnostic_only": true,
+    "includes_paired_difference": true
+  },
+  "access": {
+    "memory_limit": "4GB",
+    "threads": 1,
+    "batch_size": 4096,
+    "temp_directory": "temp/v2/duckdb",
+    "unlock_env": "V2_STRESS_UNLOCK",
+    "unlock_sha256": "4E43E6D5E549495BC4BA358B3C2040792024C1A5226DDC43529836F46DEC1A1F"
+  },
+  "paths": {
+    "source_path": "dataset/processed/complaints.parquet",
+    "index_path": "temp/s2/modeling_index.parquet",
+    "s2_report": "temp/s2/s2_report_pilot.json",
+    "s3_protocol": "config/s3_protocol.json",
+    "v2_config": "config/v2_frozen_package.json",
+    "v2_manifest": "config/v2_results.json",
+    "v2_result": "temp/v2/v2_package.json",
+    "v2_bundle": "artifacts/v2/consumer_complaint_detector_v2.joblib",
+    "s7_config": "config/s7_frozen_package.json",
+    "s7_manifest": "config/s7_results.json",
+    "s7_result": "temp/s7/s7_results.json",
+    "s7_bundle": "artifacts/s7/consumer_complaint_classifier_s7.joblib"
+  },
+  "source": {
+    "raw_sha256": "33875E0439B72E00CB6E5985238B47F76B5B0A63B0AC21DDB8C7D46B565C428F",
+    "raw_size_bytes": 821595288,
+    "index_sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9",
+    "index_size_bytes": 69858991,
+    "s2_report_sha256": "5C6A46F017D10BBBEAE38C9BCBDDFD0B1F70C66F5E1CD49CE210F04EAAF15FA1",
+    "s2_report_size_bytes": 76187,
+    "s3_protocol_sha256": "7CF86C2E0E4849881F50A483FD3C37ABE7C04914C8BFA80A4E4467F4AF31DAF4",
+    "s3_protocol_size_bytes": 2567,
+    "stress_start": "2025-07-01",
+    "stress_end": "2025-12-31",
+    "text_column": "Consumer complaint narrative"
+  },
+  "v2_freeze": {
+    "config": {
+      "path": "config/v2_frozen_package.json",
+      "sha256": "51EDCFAF209636C57F2B7950F83918EA8E5F39015885DC722C11B2C6B702242D",
+      "size_bytes": 6726
+    },
+    "manifest": {
+      "path": "config/v2_results.json",
+      "sha256": "CF587163AF83A0F6F006B8DA69623DB2996052023B15540FCD375E46AC327017",
+      "size_bytes": 3231
+    },
+    "result": {
+      "path": "temp/v2/v2_package.json",
+      "sha256": "4F44D1B017A1B6B57D2A998E66FCC0797456151C4F0C0FC50F88F9506E4D7A74",
+      "size_bytes": 16565
+    },
+    "bundle": {
+      "path": "artifacts/v2/consumer_complaint_detector_v2.joblib",
+      "sha256": "CD9193D3B3B1BD94931F4FE38393245D498DCF379AFBE0AF1039C79AB66649E0",
+      "size_bytes": 1774532
+    }
+  },
+  "s7_freeze": {
+    "config": {
+      "path": "config/s7_frozen_package.json",
+      "sha256": "D73014AEA0C40ECA323FAE6AE1E76CBF0C62E953304BD7A10092DBBBE5DC6D78",
+      "size_bytes": 1351
+    },
+    "manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    },
+    "bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    }
+  },
+  "s2_evidence": {
+    "protocol_id": "post_2023_taxonomy",
+    "candidate_status": "PASS",
+    "stress_all_text": 526872,
+    "stress_novel_text": 382385,
+    "stress_novel_unique_groups": 270279,
+    "stress_unique_groups": 273480,
+    "stress_purge_pct": 27.42354879363489,
+    "critical_novel_groups": 1170,
+    "report": "temp/s2/s2_report_pilot.json",
+    "report_sha256": "5C6A46F017D10BBBEAE38C9BCBDDFD0B1F70C66F5E1CD49CE210F04EAAF15FA1",
+    "index_sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9"
+  },
+  "boundary": {
+    "reads_partitions": [
+      "stress"
+    ],
+    "sealed_after_run": [
+      "monitor"
+    ],
+    "persists_narratives_or_identifiers": false,
+    "persists_individual_scores": false,
+    "persists_stress_cache": false,
+    "aggregate_only": true
+  },
+  "deployment": {
+    "deployment_authorized": false,
+    "confirmation_never_authorizes_deployment": true
+  },
+  "outputs": {
+    "result": "temp/v2/v2_stress_results.json",
+    "manifest": "config/v2_stress_results.json"
+  },
+  "run_defaults": {
+    "batch_size": 4096,
+    "memory_limit": "4GB",
+    "threads": 1
+  }
+}
