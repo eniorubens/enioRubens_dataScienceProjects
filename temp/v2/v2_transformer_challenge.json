@@ -1,0 +1,1705 @@
+{
+  "allowed_partitions": [
+    "train",
+    "validation"
+  ],
+  "code_schema": "v2-transformer-runtime-v1",
+  "complete": true,
+  "critical_class": "debt_credit_management",
+  "decision": {
+    "blocked_reason": "outer_critical_precision_at_least_precision_floor",
+    "displacement_bar": 0.4255986693961106,
+    "displacement_increment": 0.0387,
+    "effective_overrides_greater_than_zero": true,
+    "outcome": "CLASSICAL_WINNER_STANDS",
+    "outer_critical_f1_at_least_displacement_bar": false,
+    "outer_critical_f1_greater_than_fallback_baseline": true,
+    "outer_critical_precision_at_least_precision_floor": false,
+    "passes_three_of_three_development_safety_margins": true,
+    "pre_registered": true,
+    "precision_floor": 0.4342857142857143
+  },
+  "diagnostic_only": false,
+  "execution_config": {
+    "adr": "docs/ADR-012-v2-d2-transformer-challenge.md",
+    "architecture": {
+      "combination": "critical_override_above_calibrated_threshold",
+      "score_definition": "logit_critical_minus_logit_non_critical",
+      "stage_a": "compact_transformer_margin_detector",
+      "stage_b": "frozen_s7_fallback",
+      "threshold_search": "search_detector_threshold_exact",
+      "threshold_source": "inner_calibration_only"
+    },
+    "boundary": {
+      "allowed_partitions": [
+        "train",
+        "validation"
+      ],
+      "no_sealed_partition_unlock_in_development_code": true,
+      "persists_fitted_weights": false,
+      "persists_narratives_or_identifiers": false,
+      "sealed_partitions": [
+        "test",
+        "stress",
+        "monitor"
+      ]
+    },
+    "decision_rule": {
+      "conditions": [
+        "passes_three_of_three_development_safety_margins",
+        "effective_overrides_greater_than_zero",
+        "outer_critical_f1_greater_than_fallback_baseline",
+        "outer_critical_precision_at_least_precision_floor",
+        "outer_critical_f1_at_least_displacement_bar"
+      ],
+      "displacement_bar": 0.4255986693961106,
+      "displacement_increment": 0.0387,
+      "displacement_increment_basis": {
+        "coincides_with_relative_improvement": 0.1,
+        "draws": 200000,
+        "method": "parametric_bootstrap_on_the_incumbent_outer_confusion_matrix",
+        "multiplier": 2,
+        "standard_deviation": 0.019347
+      },
+      "evaluated_on": "reported_seed_outer_evaluation",
+      "outcomes": {
+        "met": "TRANSFORMER_DISPLACES_CLASSICAL",
+        "not_met": "CLASSICAL_WINNER_STANDS"
+      },
+      "pre_registered": true,
+      "precision_floor": 0.4342857142857143,
+      "precision_floor_source": "fallback_baseline_outer_critical_precision",
+      "reopening_classical_selection": "forbidden",
+      "window_revision": "forbidden"
+    },
+    "incumbent": {
+      "artifact": {
+        "path": "temp/v2/v2_classical_benchmark.json",
+        "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+        "size_bytes": 219597
+      },
+      "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+      "manifest": {
+        "path": "config/v2_classical_results.json",
+        "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+        "size_bytes": 1573
+      },
+      "outer": {
+        "critical_f1": 0.38689866939611056,
+        "critical_precision": 0.4375,
+        "critical_recall": 0.3467889908256881,
+        "critical_support": 545,
+        "macro_f1": 0.731214101791537,
+        "row_count": 127706
+      },
+      "stage": "V2.1-D1"
+    },
+    "model_spec": {
+      "family": "compact_transformer",
+      "hyperparameter_search": "forbidden",
+      "maximum_models": 1,
+      "model_id": "distilbert-base-uncased",
+      "parameter_count_millions": 66,
+      "rationale": "one_pre_registered_configuration_no_tuning_surface",
+      "record_resolved_revision": true,
+      "revision": "main"
+    },
+    "outputs": {
+      "artifact": "temp/v2/v2_transformer_challenge.json",
+      "manifest": "config/v2_transformer_results.json"
+    },
+    "protocol": {
+      "authorizes": "transformer_challenge",
+      "path": "config/v2_development_protocol.json",
+      "schema_version": "v2-post-confirmation-development-v1-1",
+      "seven_step_cycle_index": 4,
+      "sha256": "45E5F83C624B97E1AF785AF6EA6185F7E4DA2D73E6A9F7AB86ED7FDBFF9C16C5",
+      "size_bytes": 5973
+    },
+    "schema_version": "v2-d2-execution-config-v1",
+    "seeds": {
+      "aggregation": "median_of_outer_critical_f1",
+      "best_of_seeds": "forbidden",
+      "reported_seed": "the_seed_attaining_the_median",
+      "role": "replicates_of_one_model_not_distinct_models",
+      "values": [
+        42,
+        43,
+        44
+      ]
+    },
+    "stage": "V2.1-D2",
+    "task": "binary_critical_detector",
+    "tokenizer": {
+      "lowercase": true,
+      "max_length": 256,
+      "padding": "max_length",
+      "truncation": true
+    },
+    "training": {
+      "background_negative_per_positive": 5,
+      "balance_strategy": "hard_negative",
+      "checkpoint_selection": "forbidden_last_epoch_only",
+      "class_weight": null,
+      "early_stopping": "forbidden",
+      "epochs": 3,
+      "eval_batch_size": 128,
+      "fit_scope_role": "inner_fit",
+      "hard_negative_per_positive": 10,
+      "hard_negative_source": "generate_hard_negative_indices",
+      "learning_rate": 2e-05,
+      "lr_scheduler_type": "linear",
+      "max_grad_norm": 1.0,
+      "mixed_precision": "fp16_if_cuda_else_fp32",
+      "oof_random_state": 42,
+      "optimizer": "adamw_torch",
+      "train_batch_size": 32,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01
+    }
+  },
+  "execution_config_signature": {
+    "sha256": "F61931AACE4B000EDEBE3CEA1B40783CB8F54D64D6ACE9FA896474FC2A24AD57",
+    "size_bytes": 4423
+  },
+  "fallback_baseline": {
+    "inner_calibration": {
+      "accuracy": 0.8682973434567192,
+      "balanced_accuracy": 0.7400688253947786,
+      "confusion_matrix": [
+        [
+          6528,
+          187,
+          682,
+          245,
+          13,
+          578,
+          184,
+          29,
+          18
+        ],
+        [
+          127,
+          2220,
+          271,
+          196,
+          6,
+          86,
+          49,
+          53,
+          26
+        ],
+        [
+          1405,
+          1006,
+          72699,
+          3571,
+          61,
+          285,
+          95,
+          374,
+          274
+        ],
+        [
+          331,
+          331,
+          2042,
+          8826,
+          25,
+          88,
+          41,
+          95,
+          45
+        ],
+        [
+          39,
+          33,
+          63,
+          117,
+          55,
+          14,
+          4,
+          17,
+          5
+        ],
+        [
+          429,
+          60,
+          126,
+          74,
+          9,
+          6113,
+          542,
+          33,
+          5
+        ],
+        [
+          84,
+          47,
+          14,
+          14,
+          1,
+          556,
+          1753,
+          10,
+          2
+        ],
+        [
+          26,
+          73,
+          48,
+          48,
+          0,
+          36,
+          19,
+          2886,
+          12
+        ],
+        [
+          16,
+          52,
+          73,
+          32,
+          1,
+          9,
+          3,
+          12,
+          1617
+        ]
+      ],
+      "critical_f1": 0.21235521235521235,
+      "critical_precision": 0.3216374269005848,
+      "critical_recall": 0.1585014409221902,
+      "critical_support": 347,
+      "macro_f1": 0.7144953296194135,
+      "row_count": 118274,
+      "weighted_f1": 0.8712525672341493
+    },
+    "outer_evaluation": {
+      "accuracy": 0.8619798599909166,
+      "balanced_accuracy": 0.747647427770265,
+      "confusion_matrix": [
+        [
+          6906,
+          160,
+          620,
+          265,
+          16,
+          595,
+          209,
+          26,
+          21
+        ],
+        [
+          140,
+          2479,
+          314,
+          223,
+          5,
+          95,
+          41,
+          69,
+          36
+        ],
+        [
+          1371,
+          1057,
+          77526,
+          3903,
+          108,
+          315,
+          119,
+          375,
+          257
+        ],
+        [
+          336,
+          409,
+          3000,
+          9638,
+          44,
+          96,
+          53,
+          109,
+          56
+        ],
+        [
+          41,
+          36,
+          90,
+          156,
+          152,
+          26,
+          17,
+          23,
+          4
+        ],
+        [
+          423,
+          78,
+          138,
+          69,
+          9,
+          6810,
+          670,
+          41,
+          6
+        ],
+        [
+          107,
+          38,
+          21,
+          22,
+          7,
+          641,
+          2082,
+          17,
+          5
+        ],
+        [
+          23,
+          82,
+          42,
+          37,
+          6,
+          42,
+          5,
+          2782,
+          14
+        ],
+        [
+          8,
+          66,
+          94,
+          39,
+          3,
+          9,
+          6,
+          22,
+          1705
+        ]
+      ],
+      "critical_f1": 0.3396648044692737,
+      "critical_precision": 0.4342857142857143,
+      "critical_recall": 0.27889908256880735,
+      "critical_support": 545,
+      "macro_f1": 0.7258162180952451,
+      "row_count": 127706,
+      "weighted_f1": 0.864238349833087
+    }
+  },
+  "hard_negative": {
+    "hard_negative_groups": 14190,
+    "pool_rows": 15136,
+    "pool_signature": "A9DED33BC707823A01ACF511FCBD22487B3D13808B306608DA058E03CAFA0288",
+    "positive_groups": 946
+  },
+  "incumbent": {
+    "artifact": {
+      "path": "temp/v2/v2_classical_benchmark.json",
+      "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+      "size_bytes": 219597
+    },
+    "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+    "manifest": {
+      "path": "config/v2_classical_results.json",
+      "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+      "size_bytes": 1573
+    },
+    "outer": {
+      "critical_f1": 0.38689866939611056,
+      "critical_precision": 0.4375,
+      "critical_recall": 0.3467889908256881,
+      "critical_support": 545,
+      "macro_f1": 0.731214101791537,
+      "row_count": 127706
+    }
+  },
+  "input_language": "en-US",
+  "model_spec": {
+    "model_id": "distilbert-base-uncased",
+    "resolved_revision": "distilbert-base-uncased"
+  },
+  "opened_at": "2026-08-18T15:56:25Z",
+  "reported": {
+    "aggregation": "median_of_three_outer_critical_f1",
+    "calibration": {
+      "effective_overrides": 49,
+      "gates": {
+        "checks": {
+          "critical_f1": true,
+          "critical_precision": true,
+          "macro_f1": true
+        },
+        "gate_count": 3,
+        "limits": {
+          "critical_f1_min": 0.2715,
+          "critical_precision_min": 0.2,
+          "global_macro_f1_min": 0.69
+        },
+        "passed": true,
+        "required_gate_count": 3,
+        "values": {
+          "critical_f1": 0.271604938271605,
+          "critical_precision": 0.35,
+          "macro_f1": 0.7209976779324696
+        }
+      },
+      "metrics": {
+        "accuracy": 0.8682804335695081,
+        "balanced_accuracy": 0.7467732277317234,
+        "confusion_matrix": [
+          [
+            6526,
+            187,
+            682,
+            245,
+            15,
+            578,
+            184,
+            29,
+            18
+          ],
+          [
+            127,
+            2217,
+            271,
+            195,
+            10,
+            86,
+            49,
+            53,
+            26
+          ],
+          [
+            1405,
+            1006,
+            72695,
+            3571,
+            65,
+            285,
+            95,
+            374,
+            274
+          ],
+          [
+            329,
+            331,
+            2042,
+            8813,
+            40,
+            88,
+            41,
+            95,
+            45
+          ],
+          [
+            36,
+            31,
+            63,
+            104,
+            77,
+            11,
+            4,
+            16,
+            5
+          ],
+          [
+            429,
+            60,
+            126,
+            74,
+            10,
+            6112,
+            542,
+            33,
+            5
+          ],
+          [
+            84,
+            47,
+            14,
+            14,
+            1,
+            556,
+            1753,
+            10,
+            2
+          ],
+          [
+            26,
+            73,
+            48,
+            48,
+            0,
+            36,
+            19,
+            2886,
+            12
+          ],
+          [
+            16,
+            52,
+            73,
+            32,
+            2,
+            9,
+            3,
+            12,
+            1616
+          ]
+        ],
+        "critical_f1": 0.271604938271605,
+        "critical_precision": 0.35,
+        "critical_recall": 0.2219020172910663,
+        "critical_support": 347,
+        "macro_f1": 0.7209976779324696,
+        "row_count": 118274,
+        "weighted_f1": 0.8713788526890931
+      },
+      "override_decisions": 94,
+      "threshold": 0.7932395935058594,
+      "threshold_count": 112651
+    },
+    "critical_f1_vs_fallback": 0.0630589309392866,
+    "critical_f1_vs_incumbent": 0.015825066012449762,
+    "gates": {
+      "checks": {
+        "critical_f1": true,
+        "critical_precision": true,
+        "macro_f1": true
+      },
+      "gate_count": 3,
+      "limits": {
+        "critical_f1_min": 0.2715,
+        "critical_precision_min": 0.2,
+        "global_macro_f1_min": 0.69
+      },
+      "passed": true,
+      "required_gate_count": 3,
+      "values": {
+        "critical_f1": 0.4027237354085603,
+        "critical_precision": 0.42857142857142855,
+        "macro_f1": 0.7330569218159
+      }
+    },
+    "outer": {
+      "effective_overrides": 133,
+      "gates": {
+        "checks": {
+          "critical_f1": true,
+          "critical_precision": true,
+          "macro_f1": true
+        },
+        "gate_count": 3,
+        "limits": {
+          "critical_f1_min": 0.2715,
+          "critical_precision_min": 0.2,
+          "global_macro_f1_min": 0.69
+        },
+        "passed": true,
+        "required_gate_count": 3,
+        "values": {
+          "critical_f1": 0.4027237354085603,
+          "critical_precision": 0.42857142857142855,
+          "macro_f1": 0.7330569218159
+        }
+      },
+      "metrics": {
+        "accuracy": 0.8620659953330305,
+        "balanced_accuracy": 0.7584712396409399,
+        "confusion_matrix": [
+          [
+            6901,
+            159,
+            620,
+            264,
+            23,
+            595,
+            209,
+            26,
+            21
+          ],
+          [
+            140,
+            2477,
+            314,
+            223,
+            7,
+            95,
+            41,
+            69,
+            36
+          ],
+          [
+            1367,
+            1054,
+            77510,
+            3890,
+            149,
+            312,
+            117,
+            375,
+            257
+          ],
+          [
+            336,
+            409,
+            2999,
+            9621,
+            63,
+            96,
+            53,
+            109,
+            55
+          ],
+          [
+            34,
+            26,
+            82,
+            136,
+            207,
+            21,
+            13,
+            22,
+            4
+          ],
+          [
+            423,
+            78,
+            138,
+            68,
+            14,
+            6808,
+            668,
+            41,
+            6
+          ],
+          [
+            107,
+            38,
+            21,
+            21,
+            10,
+            641,
+            2080,
+            17,
+            5
+          ],
+          [
+            23,
+            82,
+            42,
+            37,
+            6,
+            42,
+            5,
+            2782,
+            14
+          ],
+          [
+            8,
+            66,
+            94,
+            39,
+            4,
+            9,
+            6,
+            21,
+            1705
+          ]
+        ],
+        "critical_f1": 0.4027237354085603,
+        "critical_precision": 0.42857142857142855,
+        "critical_recall": 0.3798165137614679,
+        "critical_support": 545,
+        "macro_f1": 0.7330569218159,
+        "row_count": 127706,
+        "weighted_f1": 0.8645462754628438
+      },
+      "override_decisions": 281,
+      "safety": {
+        "checks": {
+          "critical_f1": true,
+          "critical_precision": true,
+          "macro_f1": true
+        },
+        "gate_count": 3,
+        "headroom": {
+          "critical_f1": 0.11272373540856034,
+          "critical_precision": 0.20857142857142855,
+          "macro_f1": 0.03305692181590003
+        },
+        "limits": {
+          "critical_f1_min": 0.29,
+          "critical_precision_min": 0.22,
+          "global_macro_f1_min": 0.7
+        },
+        "passed": true,
+        "required_gate_count": 3,
+        "values": {
+          "critical_f1": 0.4027237354085603,
+          "critical_precision": 0.42857142857142855,
+          "macro_f1": 0.7330569218159
+        }
+      }
+    },
+    "safety": {
+      "checks": {
+        "critical_f1": true,
+        "critical_precision": true,
+        "macro_f1": true
+      },
+      "gate_count": 3,
+      "headroom": {
+        "critical_f1": 0.11272373540856034,
+        "critical_precision": 0.20857142857142855,
+        "macro_f1": 0.03305692181590003
+      },
+      "limits": {
+        "critical_f1_min": 0.29,
+        "critical_precision_min": 0.22,
+        "global_macro_f1_min": 0.7
+      },
+      "passed": true,
+      "required_gate_count": 3,
+      "values": {
+        "critical_f1": 0.4027237354085603,
+        "critical_precision": 0.42857142857142855,
+        "macro_f1": 0.7330569218159
+      }
+    },
+    "seed": 43
+  },
+  "runtime_seconds": 7647.442182949,
+  "schema_version": "v2-transformer-challenge-v1",
+  "sealed_access": {
+    "monitor": false,
+    "stress": false,
+    "test": false
+  },
+  "sealed_partitions": [
+    "test",
+    "stress",
+    "monitor"
+  ],
+  "seed_spread": {
+    "critical_f1_max": 0.40851887705711526,
+    "critical_f1_median": 0.4027237354085603,
+    "critical_f1_min": 0.39191919191919194,
+    "critical_f1_range": 0.016599685137923315
+  },
+  "seeds": [
+    {
+      "calibration": {
+        "effective_overrides": 42,
+        "gates": {
+          "checks": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 2,
+          "limits": {
+            "critical_f1_min": 0.2715,
+            "critical_precision_min": 0.2,
+            "global_macro_f1_min": 0.69
+          },
+          "passed": false,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.26785714285714285,
+            "critical_precision": 0.352112676056338,
+            "macro_f1": 0.7206228671745967
+          }
+        },
+        "metrics": {
+          "accuracy": 0.8683142533439302,
+          "balanced_accuracy": 0.7462119928629072,
+          "confusion_matrix": [
+            [
+              6527,
+              187,
+              682,
+              244,
+              16,
+              578,
+              183,
+              29,
+              18
+            ],
+            [
+              127,
+              2219,
+              271,
+              196,
+              7,
+              86,
+              49,
+              53,
+              26
+            ],
+            [
+              1404,
+              1006,
+              72695,
+              3570,
+              67,
+              285,
+              95,
+              374,
+              274
+            ],
+            [
+              331,
+              331,
+              2042,
+              8817,
+              34,
+              88,
+              41,
+              95,
+              45
+            ],
+            [
+              37,
+              32,
+              62,
+              105,
+              75,
+              11,
+              4,
+              16,
+              5
+            ],
+            [
+              429,
+              60,
+              126,
+              74,
+              10,
+              6112,
+              542,
+              33,
+              5
+            ],
+            [
+              84,
+              47,
+              14,
+              14,
+              2,
+              556,
+              1752,
+              10,
+              2
+            ],
+            [
+              26,
+              73,
+              48,
+              48,
+              0,
+              36,
+              19,
+              2886,
+              12
+            ],
+            [
+              16,
+              52,
+              73,
+              32,
+              2,
+              9,
+              3,
+              12,
+              1616
+            ]
+          ],
+          "critical_f1": 0.26785714285714285,
+          "critical_precision": 0.352112676056338,
+          "critical_recall": 0.21613832853025935,
+          "critical_support": 347,
+          "macro_f1": 0.7206228671745967,
+          "row_count": 118274,
+          "weighted_f1": 0.8713967070920368
+        },
+        "override_decisions": 88,
+        "threshold": 1.1060981750488281,
+        "threshold_count": 112498
+      },
+      "outer": {
+        "effective_overrides": 95,
+        "gates": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "limits": {
+            "critical_f1_min": 0.2715,
+            "critical_precision_min": 0.2,
+            "global_macro_f1_min": 0.69
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.39191919191919194,
+            "critical_precision": 0.43595505617977526,
+            "macro_f1": 0.7318030076544472
+          }
+        },
+        "metrics": {
+          "accuracy": 0.8620738258186773,
+          "balanced_accuracy": 0.7559576375878225,
+          "confusion_matrix": [
+            [
+              6905,
+              160,
+              620,
+              264,
+              19,
+              595,
+              208,
+              26,
+              21
+            ],
+            [
+              139,
+              2479,
+              313,
+              223,
+              7,
+              95,
+              41,
+              69,
+              36
+            ],
+            [
+              1369,
+              1056,
+              77518,
+              3893,
+              132,
+              313,
+              118,
+              375,
+              257
+            ],
+            [
+              336,
+              409,
+              3000,
+              9620,
+              62,
+              96,
+              53,
+              109,
+              56
+            ],
+            [
+              36,
+              27,
+              84,
+              142,
+              194,
+              23,
+              13,
+              22,
+              4
+            ],
+            [
+              423,
+              78,
+              138,
+              69,
+              12,
+              6808,
+              669,
+              41,
+              6
+            ],
+            [
+              107,
+              38,
+              21,
+              21,
+              9,
+              640,
+              2082,
+              17,
+              5
+            ],
+            [
+              23,
+              82,
+              42,
+              37,
+              6,
+              42,
+              5,
+              2782,
+              14
+            ],
+            [
+              8,
+              66,
+              94,
+              39,
+              4,
+              9,
+              6,
+              22,
+              1704
+            ]
+          ],
+          "critical_f1": 0.39191919191919194,
+          "critical_precision": 0.43595505617977526,
+          "critical_recall": 0.3559633027522936,
+          "critical_support": 545,
+          "macro_f1": 0.7318030076544472,
+          "row_count": 127706,
+          "weighted_f1": 0.8644969090173261
+        },
+        "override_decisions": 223,
+        "safety": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "headroom": {
+            "critical_f1": 0.10191919191919196,
+            "critical_precision": 0.21595505617977526,
+            "macro_f1": 0.03180300765444721
+          },
+          "limits": {
+            "critical_f1_min": 0.29,
+            "critical_precision_min": 0.22,
+            "global_macro_f1_min": 0.7
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.39191919191919194,
+            "critical_precision": 0.43595505617977526,
+            "macro_f1": 0.7318030076544472
+          }
+        }
+      },
+      "resolved_revision": "distilbert-base-uncased",
+      "seed": 42
+    },
+    {
+      "calibration": {
+        "effective_overrides": 49,
+        "gates": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "limits": {
+            "critical_f1_min": 0.2715,
+            "critical_precision_min": 0.2,
+            "global_macro_f1_min": 0.69
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.271604938271605,
+            "critical_precision": 0.35,
+            "macro_f1": 0.7209976779324696
+          }
+        },
+        "metrics": {
+          "accuracy": 0.8682804335695081,
+          "balanced_accuracy": 0.7467732277317234,
+          "confusion_matrix": [
+            [
+              6526,
+              187,
+              682,
+              245,
+              15,
+              578,
+              184,
+              29,
+              18
+            ],
+            [
+              127,
+              2217,
+              271,
+              195,
+              10,
+              86,
+              49,
+              53,
+              26
+            ],
+            [
+              1405,
+              1006,
+              72695,
+              3571,
+              65,
+              285,
+              95,
+              374,
+              274
+            ],
+            [
+              329,
+              331,
+              2042,
+              8813,
+              40,
+              88,
+              41,
+              95,
+              45
+            ],
+            [
+              36,
+              31,
+              63,
+              104,
+              77,
+              11,
+              4,
+              16,
+              5
+            ],
+            [
+              429,
+              60,
+              126,
+              74,
+              10,
+              6112,
+              542,
+              33,
+              5
+            ],
+            [
+              84,
+              47,
+              14,
+              14,
+              1,
+              556,
+              1753,
+              10,
+              2
+            ],
+            [
+              26,
+              73,
+              48,
+              48,
+              0,
+              36,
+              19,
+              2886,
+              12
+            ],
+            [
+              16,
+              52,
+              73,
+              32,
+              2,
+              9,
+              3,
+              12,
+              1616
+            ]
+          ],
+          "critical_f1": 0.271604938271605,
+          "critical_precision": 0.35,
+          "critical_recall": 0.2219020172910663,
+          "critical_support": 347,
+          "macro_f1": 0.7209976779324696,
+          "row_count": 118274,
+          "weighted_f1": 0.8713788526890931
+        },
+        "override_decisions": 94,
+        "threshold": 0.7932395935058594,
+        "threshold_count": 112651
+      },
+      "outer": {
+        "effective_overrides": 133,
+        "gates": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "limits": {
+            "critical_f1_min": 0.2715,
+            "critical_precision_min": 0.2,
+            "global_macro_f1_min": 0.69
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.4027237354085603,
+            "critical_precision": 0.42857142857142855,
+            "macro_f1": 0.7330569218159
+          }
+        },
+        "metrics": {
+          "accuracy": 0.8620659953330305,
+          "balanced_accuracy": 0.7584712396409399,
+          "confusion_matrix": [
+            [
+              6901,
+              159,
+              620,
+              264,
+              23,
+              595,
+              209,
+              26,
+              21
+            ],
+            [
+              140,
+              2477,
+              314,
+              223,
+              7,
+              95,
+              41,
+              69,
+              36
+            ],
+            [
+              1367,
+              1054,
+              77510,
+              3890,
+              149,
+              312,
+              117,
+              375,
+              257
+            ],
+            [
+              336,
+              409,
+              2999,
+              9621,
+              63,
+              96,
+              53,
+              109,
+              55
+            ],
+            [
+              34,
+              26,
+              82,
+              136,
+              207,
+              21,
+              13,
+              22,
+              4
+            ],
+            [
+              423,
+              78,
+              138,
+              68,
+              14,
+              6808,
+              668,
+              41,
+              6
+            ],
+            [
+              107,
+              38,
+              21,
+              21,
+              10,
+              641,
+              2080,
+              17,
+              5
+            ],
+            [
+              23,
+              82,
+              42,
+              37,
+              6,
+              42,
+              5,
+              2782,
+              14
+            ],
+            [
+              8,
+              66,
+              94,
+              39,
+              4,
+              9,
+              6,
+              21,
+              1705
+            ]
+          ],
+          "critical_f1": 0.4027237354085603,
+          "critical_precision": 0.42857142857142855,
+          "critical_recall": 0.3798165137614679,
+          "critical_support": 545,
+          "macro_f1": 0.7330569218159,
+          "row_count": 127706,
+          "weighted_f1": 0.8645462754628438
+        },
+        "override_decisions": 281,
+        "safety": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "headroom": {
+            "critical_f1": 0.11272373540856034,
+            "critical_precision": 0.20857142857142855,
+            "macro_f1": 0.03305692181590003
+          },
+          "limits": {
+            "critical_f1_min": 0.29,
+            "critical_precision_min": 0.22,
+            "global_macro_f1_min": 0.7
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.4027237354085603,
+            "critical_precision": 0.42857142857142855,
+            "macro_f1": 0.7330569218159
+          }
+        }
+      },
+      "resolved_revision": "distilbert-base-uncased",
+      "seed": 43
+    },
+    {
+      "calibration": {
+        "effective_overrides": 51,
+        "gates": {
+          "checks": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 2,
+          "limits": {
+            "critical_f1_min": 0.2715,
+            "critical_precision_min": 0.2,
+            "global_macro_f1_min": 0.69
+          },
+          "passed": false,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.2671353251318102,
+            "critical_precision": 0.34234234234234234,
+            "macro_f1": 0.7205767058567153
+          }
+        },
+        "metrics": {
+          "accuracy": 0.8683142533439302,
+          "balanced_accuracy": 0.7465004332709624,
+          "confusion_matrix": [
+            [
+              6526,
+              187,
+              682,
+              244,
+              17,
+              577,
+              184,
+              29,
+              18
+            ],
+            [
+              127,
+              2217,
+              271,
+              196,
+              11,
+              84,
+              49,
+              53,
+              26
+            ],
+            [
+              1404,
+              1005,
+              72697,
+              3571,
+              66,
+              285,
+              94,
+              374,
+              274
+            ],
+            [
+              330,
+              331,
+              2042,
+              8816,
+              36,
+              88,
+              41,
+              95,
+              45
+            ],
+            [
+              37,
+              32,
+              63,
+              105,
+              76,
+              9,
+              4,
+              16,
+              5
+            ],
+            [
+              428,
+              60,
+              126,
+              74,
+              11,
+              6112,
+              542,
+              33,
+              5
+            ],
+            [
+              84,
+              47,
+              14,
+              14,
+              3,
+              555,
+              1752,
+              10,
+              2
+            ],
+            [
+              25,
+              73,
+              48,
+              48,
+              1,
+              36,
+              19,
+              2886,
+              12
+            ],
+            [
+              16,
+              52,
+              73,
+              32,
+              1,
+              9,
+              3,
+              12,
+              1617
+            ]
+          ],
+          "critical_f1": 0.2671353251318102,
+          "critical_precision": 0.34234234234234234,
+          "critical_recall": 0.21902017291066284,
+          "critical_support": 347,
+          "macro_f1": 0.7205767058567153,
+          "row_count": 118274,
+          "weighted_f1": 0.8714127575311568
+        },
+        "override_decisions": 100,
+        "threshold": 0.3494098484516144,
+        "threshold_count": 112513
+      },
+      "outer": {
+        "effective_overrides": 138,
+        "gates": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "limits": {
+            "critical_f1_min": 0.2715,
+            "critical_precision_min": 0.2,
+            "global_macro_f1_min": 0.69
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.40851887705711526,
+            "critical_precision": 0.4323770491803279,
+            "macro_f1": 0.7336914517794928
+          }
+        },
+        "metrics": {
+          "accuracy": 0.8621208087325576,
+          "balanced_accuracy": 0.7592236599604706,
+          "confusion_matrix": [
+            [
+              6903,
+              159,
+              620,
+              264,
+              21,
+              595,
+              209,
+              26,
+              21
+            ],
+            [
+              140,
+              2477,
+              314,
+              223,
+              7,
+              95,
+              41,
+              69,
+              36
+            ],
+            [
+              1367,
+              1054,
+              77514,
+              3889,
+              147,
+              312,
+              117,
+              374,
+              257
+            ],
+            [
+              336,
+              408,
+              2998,
+              9623,
+              62,
+              96,
+              53,
+              109,
+              56
+            ],
+            [
+              33,
+              27,
+              83,
+              134,
+              211,
+              19,
+              12,
+              22,
+              4
+            ],
+            [
+              423,
+              78,
+              138,
+              68,
+              17,
+              6804,
+              669,
+              41,
+              6
+            ],
+            [
+              107,
+              38,
+              20,
+              21,
+              11,
+              640,
+              2081,
+              17,
+              5
+            ],
+            [
+              23,
+              82,
+              42,
+              37,
+              7,
+              42,
+              5,
+              2781,
+              14
+            ],
+            [
+              8,
+              66,
+              94,
+              39,
+              5,
+              9,
+              6,
+              21,
+              1704
+            ]
+          ],
+          "critical_f1": 0.40851887705711526,
+          "critical_precision": 0.4323770491803279,
+          "critical_recall": 0.3871559633027523,
+          "critical_support": 545,
+          "macro_f1": 0.7336914517794928,
+          "row_count": 127706,
+          "weighted_f1": 0.8646094934031654
+        },
+        "override_decisions": 286,
+        "safety": {
+          "checks": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "macro_f1": true
+          },
+          "gate_count": 3,
+          "headroom": {
+            "critical_f1": 0.11851887705711528,
+            "critical_precision": 0.21237704918032788,
+            "macro_f1": 0.03369145177949284
+          },
+          "limits": {
+            "critical_f1_min": 0.29,
+            "critical_precision_min": 0.22,
+            "global_macro_f1_min": 0.7
+          },
+          "passed": true,
+          "required_gate_count": 3,
+          "values": {
+            "critical_f1": 0.40851887705711526,
+            "critical_precision": 0.4323770491803279,
+            "macro_f1": 0.7336914517794928
+          }
+        }
+      },
+      "resolved_revision": "distilbert-base-uncased",
+      "seed": 44
+    }
+  ],
+  "signature": "F1E27460DBE5D9D6481D4CE5F980F2D5C457124696DF0D7B0A824DBEBAC8749E",
+  "status": "COMPLETE"
+}

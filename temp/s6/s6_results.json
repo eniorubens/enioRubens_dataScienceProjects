@@ -1,0 +1,4087 @@
+{
+  "calibration_summary": [
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": false,
+            "eligible": false,
+            "gate_count": 0,
+            "global_macro_f1": false,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.18134034165571616,
+              "critical_precision": 0.12637362637362637,
+              "global_macro_f1": 0.6876395921059095
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7652487607898265,
+            "confusion_matrix": [
+              [
+                4588,
+                131,
+                256,
+                168,
+                50,
+                379,
+                165,
+                28,
+                14
+              ],
+              [
+                72,
+                1507,
+                101,
+                118,
+                24,
+                78,
+                30,
+                42,
+                19
+              ],
+              [
+                1235,
+                1023,
+                42086,
+                3482,
+                273,
+                305,
+                88,
+                349,
+                284
+              ],
+              [
+                243,
+                298,
+                699,
+                5537,
+                74,
+                84,
+                48,
+                83,
+                33
+              ],
+              [
+                19,
+                13,
+                20,
+                62,
+                69,
+                14,
+                5,
+                10,
+                3
+              ],
+              [
+                256,
+                61,
+                32,
+                43,
+                35,
+                3871,
+                498,
+                28,
+                5
+              ],
+              [
+                51,
+                20,
+                6,
+                16,
+                9,
+                281,
+                1161,
+                10,
+                3
+              ],
+              [
+                15,
+                49,
+                11,
+                15,
+                6,
+                24,
+                21,
+                1676,
+                8
+              ],
+              [
+                8,
+                29,
+                17,
+                30,
+                6,
+                12,
+                4,
+                8,
+                1199
+              ]
+            ],
+            "macro_f1": 0.6876395921059095,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7480841350073375,
+                "precision": 0.7072606751965469,
+                "recall": 0.7939089807925247,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5884420148379539,
+                "precision": 0.48131587352283617,
+                "recall": 0.7569060773480663,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9114159799898215,
+                "precision": 0.9735819376330156,
+                "recall": 0.8567124681933842,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.668316234158117,
+                "precision": 0.5846267553584626,
+                "recall": 0.7799690097196789,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.18134034165571616,
+                "precision": 0.12637362637362637,
+                "recall": 0.3209302325581395,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7838412473423103,
+                "precision": 0.7668383518225039,
+                "recall": 0.8016152412507765,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6491473301649426,
+                "precision": 0.5747524752475247,
+                "recall": 0.7456647398843931,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8258191672825819,
+                "precision": 0.7502238137869293,
+                "recall": 0.9183561643835616,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8323498785144048,
+                "precision": 0.7646683673469388,
+                "recall": 0.9131759329779132,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8469386645295481
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.30057803468208094,
+              "critical_precision": 0.3969465648854962,
+              "global_macro_f1": 0.7004648486738303
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7591404749096178,
+            "confusion_matrix": [
+              [
+                4607,
+                136,
+                261,
+                170,
+                9,
+                384,
+                169,
+                28,
+                15
+              ],
+              [
+                75,
+                1517,
+                103,
+                121,
+                1,
+                80,
+                32,
+                43,
+                19
+              ],
+              [
+                1248,
+                1048,
+                42193,
+                3531,
+                51,
+                324,
+                92,
+                352,
+                286
+              ],
+              [
+                246,
+                303,
+                709,
+                5571,
+                13,
+                89,
+                51,
+                84,
+                33
+              ],
+              [
+                22,
+                14,
+                22,
+                68,
+                52,
+                17,
+                6,
+                11,
+                3
+              ],
+              [
+                262,
+                63,
+                34,
+                46,
+                3,
+                3886,
+                501,
+                29,
+                5
+              ],
+              [
+                52,
+                20,
+                6,
+                17,
+                1,
+                281,
+                1167,
+                10,
+                3
+              ],
+              [
+                15,
+                50,
+                12,
+                16,
+                0,
+                25,
+                21,
+                1678,
+                8
+              ],
+              [
+                8,
+                32,
+                17,
+                31,
+                1,
+                12,
+                4,
+                8,
+                1200
+              ]
+            ],
+            "macro_f1": 0.7004648486738303,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7482540198148449,
+                "precision": 0.704973221117062,
+                "recall": 0.7971967468420141,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.586393505991496,
+                "precision": 0.4765944077913918,
+                "recall": 0.7619286790557509,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.912458640600333,
+                "precision": 0.9731531240630117,
+                "recall": 0.8588905852417302,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.668386322735453,
+                "precision": 0.5820708389927908,
+                "recall": 0.7847584166784054,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.30057803468208094,
+                "precision": 0.3969465648854962,
+                "recall": 0.24186046511627907,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7829152815553542,
+                "precision": 0.7622597096900745,
+                "recall": 0.8047214744253469,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6483333333333333,
+                "precision": 0.5712187958883994,
+                "recall": 0.7495183044315993,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8249754178957719,
+                "precision": 0.7481052162282658,
+                "recall": 0.9194520547945205,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.831889081455806,
+                "precision": 0.7633587786259542,
+                "recall": 0.913937547600914,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8478388557257688
+          },
+          "threshold": 0.37713614106178284
+        },
+        "threshold_count": 72662
+      },
+      "convergence_warnings": [],
+      "estimator": "RidgeClassifier",
+      "name": "ridge_balanced",
+      "parameters": {
+        "alpha": 1.0,
+        "class_weight": "balanced",
+        "solver": "lsqr",
+        "tol": 0.001
+      },
+      "runtime_seconds": 53.32789150000008
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": false,
+            "eligible": false,
+            "gate_count": 0,
+            "global_macro_f1": false,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.03888713246917483,
+              "critical_precision": 0.020127638684339717,
+              "global_macro_f1": 0.6506068223449066
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7217453027268509,
+            "confusion_matrix": [
+              [
+                4001,
+                111,
+                345,
+                102,
+                436,
+                561,
+                212,
+                11,
+                0
+              ],
+              [
+                79,
+                1347,
+                135,
+                68,
+                194,
+                85,
+                41,
+                40,
+                2
+              ],
+              [
+                906,
+                681,
+                40973,
+                2328,
+                3495,
+                306,
+                91,
+                224,
+                121
+              ],
+              [
+                212,
+                233,
+                921,
+                3994,
+                1505,
+                103,
+                53,
+                64,
+                14
+              ],
+              [
+                7,
+                10,
+                23,
+                29,
+                123,
+                9,
+                4,
+                10,
+                0
+              ],
+              [
+                178,
+                27,
+                45,
+                20,
+                133,
+                3869,
+                545,
+                12,
+                0
+              ],
+              [
+                39,
+                21,
+                9,
+                8,
+                41,
+                290,
+                1140,
+                9,
+                0
+              ],
+              [
+                17,
+                56,
+                34,
+                18,
+                121,
+                36,
+                35,
+                1507,
+                1
+              ],
+              [
+                21,
+                68,
+                51,
+                20,
+                63,
+                16,
+                11,
+                14,
+                1049
+              ]
+            ],
+            "macro_f1": 0.6506068223449066,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7119850520508942,
+                "precision": 0.7327838827838827,
+                "recall": 0.6923343138951376,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5927392739273927,
+                "precision": 0.5274079874706343,
+                "recall": 0.676544450025113,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.8940116298098428,
+                "precision": 0.9632546548805717,
+                "recall": 0.8340559796437659,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.5836621364898436,
+                "precision": 0.6063458327007742,
+                "recall": 0.5626144527398225,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.03888713246917483,
+                "precision": 0.020127638684339717,
+                "recall": 0.5720930232558139,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7658353127474268,
+                "precision": 0.7334597156398104,
+                "recall": 0.8012010768275005,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6180536730821361,
+                "precision": 0.5347091932457786,
+                "recall": 0.7321772639691715,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8110871905274489,
+                "precision": 0.7969328397673189,
+                "recall": 0.8257534246575342,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8392,
+                "precision": 0.8837405223251895,
+                "recall": 0.7989337395277989,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8219852316056739
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "eligible": false,
+            "gate_count": 1,
+            "global_macro_f1": false,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.2233766233766234,
+              "critical_precision": 0.2529411764705882,
+              "global_macro_f1": 0.680330379150537
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7205002556404764,
+            "confusion_matrix": [
+              [
+                4255,
+                130,
+                397,
+                129,
+                11,
+                608,
+                235,
+                14,
+                0
+              ],
+              [
+                88,
+                1439,
+                172,
+                90,
+                4,
+                97,
+                50,
+                48,
+                3
+              ],
+              [
+                1199,
+                841,
+                43491,
+                2655,
+                49,
+                380,
+                124,
+                255,
+                131
+              ],
+              [
+                314,
+                311,
+                1243,
+                4832,
+                62,
+                154,
+                84,
+                79,
+                20
+              ],
+              [
+                13,
+                19,
+                43,
+                50,
+                43,
+                23,
+                10,
+                13,
+                1
+              ],
+              [
+                195,
+                32,
+                54,
+                23,
+                1,
+                3946,
+                566,
+                12,
+                0
+              ],
+              [
+                42,
+                21,
+                10,
+                9,
+                0,
+                301,
+                1165,
+                9,
+                0
+              ],
+              [
+                25,
+                61,
+                41,
+                19,
+                0,
+                44,
+                42,
+                1592,
+                1
+              ],
+              [
+                22,
+                75,
+                62,
+                23,
+                0,
+                18,
+                17,
+                17,
+                1079
+              ]
+            ],
+            "macro_f1": 0.680330379150537,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.713208179684881,
+                "precision": 0.691532585730538,
+                "recall": 0.7362865547672608,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5849593495934959,
+                "precision": 0.4912939569819051,
+                "recall": 0.7227523857358111,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9191022633614404,
+                "precision": 0.955573132951025,
+                "recall": 0.8853129770992366,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6473306986402304,
+                "precision": 0.6171136653895275,
+                "recall": 0.6806592477813777,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.2233766233766234,
+                "precision": 0.2529411764705882,
+                "recall": 0.2,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7588461538461538,
+                "precision": 0.7083108957099264,
+                "recall": 0.8171464071236281,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6051948051948052,
+                "precision": 0.5080680331443523,
+                "recall": 0.7482337829158638,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.824016563146998,
+                "precision": 0.7807748896517901,
+                "recall": 0.8723287671232877,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8469387755102041,
+                "precision": 0.8736842105263158,
+                "recall": 0.8217821782178217,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8449842900104819
+          },
+          "threshold": 14.96053957939148
+        },
+        "threshold_count": 72705
+      },
+      "convergence_warnings": [
+        {
+          "category": "ConvergenceWarning",
+          "message": "The max_iter was reached which means the coef_ did not converge"
+        }
+      ],
+      "estimator": "LogisticRegression",
+      "name": "logistic_regression_saga_balanced",
+      "parameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 200,
+        "random_state": 42,
+        "solver": "saga",
+        "tol": 0.001
+      },
+      "runtime_seconds": 460.4684867000001
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.30640668523676884,
+              "critical_precision": 0.3819444444444444,
+              "global_macro_f1": 0.7299210085604123
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.753806454441738,
+            "confusion_matrix": [
+              [
+                4583,
+                88,
+                423,
+                168,
+                12,
+                371,
+                108,
+                17,
+                9
+              ],
+              [
+                95,
+                1422,
+                184,
+                127,
+                5,
+                69,
+                32,
+                34,
+                23
+              ],
+              [
+                807,
+                564,
+                44870,
+                2203,
+                44,
+                184,
+                49,
+                240,
+                164
+              ],
+              [
+                190,
+                221,
+                1093,
+                5374,
+                13,
+                71,
+                39,
+                73,
+                25
+              ],
+              [
+                20,
+                11,
+                39,
+                60,
+                55,
+                13,
+                4,
+                12,
+                1
+              ],
+              [
+                256,
+                43,
+                52,
+                36,
+                9,
+                4051,
+                356,
+                25,
+                1
+              ],
+              [
+                58,
+                19,
+                10,
+                18,
+                1,
+                338,
+                1095,
+                14,
+                4
+              ],
+              [
+                11,
+                49,
+                29,
+                18,
+                1,
+                29,
+                17,
+                1662,
+                9
+              ],
+              [
+                8,
+                30,
+                36,
+                38,
+                4,
+                8,
+                5,
+                5,
+                1179
+              ]
+            ],
+            "macro_f1": 0.7299210085604123,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7763191327178792,
+                "precision": 0.7602853351028533,
+                "recall": 0.7930437792005537,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.640829202343398,
+                "precision": 0.5811197384552513,
+                "recall": 0.7142139628327474,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9361471296982089,
+                "precision": 0.9600736049298185,
+                "recall": 0.9133842239185751,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.7098606432864408,
+                "precision": 0.6682417309127083,
+                "recall": 0.7570080292999014,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.30640668523676884,
+                "precision": 0.3819444444444444,
+                "recall": 0.2558139534883721,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.8132088728294691,
+                "precision": 0.7890533696922477,
+                "recall": 0.8388900393456202,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.671367259350092,
+                "precision": 0.6422287390029325,
+                "recall": 0.7032755298651252,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8507806501151779,
+                "precision": 0.7982708933717579,
+                "recall": 0.9106849315068493,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8643695014662757,
+                "precision": 0.8332155477031802,
+                "recall": 0.897943640517898,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8749886945040919
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.3264248704663213,
+              "critical_precision": 0.3684210526315789,
+              "global_macro_f1": 0.7321620399360317
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7577980975656664,
+            "confusion_matrix": [
+              [
+                4580,
+                88,
+                423,
+                167,
+                16,
+                371,
+                108,
+                17,
+                9
+              ],
+              [
+                94,
+                1422,
+                184,
+                126,
+                7,
+                69,
+                32,
+                34,
+                23
+              ],
+              [
+                807,
+                564,
+                44867,
+                2201,
+                49,
+                184,
+                49,
+                240,
+                164
+              ],
+              [
+                188,
+                220,
+                1093,
+                5369,
+                21,
+                71,
+                39,
+                73,
+                25
+              ],
+              [
+                17,
+                11,
+                37,
+                58,
+                63,
+                12,
+                4,
+                12,
+                1
+              ],
+              [
+                256,
+                43,
+                52,
+                36,
+                9,
+                4051,
+                356,
+                25,
+                1
+              ],
+              [
+                58,
+                19,
+                10,
+                18,
+                1,
+                338,
+                1095,
+                14,
+                4
+              ],
+              [
+                11,
+                49,
+                29,
+                18,
+                1,
+                29,
+                17,
+                1662,
+                9
+              ],
+              [
+                8,
+                30,
+                36,
+                38,
+                4,
+                8,
+                5,
+                5,
+                1179
+              ]
+            ],
+            "macro_f1": 0.7321620399360317,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7764027801322259,
+                "precision": 0.7609237414852965,
+                "recall": 0.7925246582453712,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.6409736308316429,
+                "precision": 0.5813573180703189,
+                "recall": 0.7142139628327474,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9361333667167417,
+                "precision": 0.9601121311335088,
+                "recall": 0.9133231552162849,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.7097157964309319,
+                "precision": 0.6685344290872868,
+                "recall": 0.7563037047471475,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.3264248704663213,
+                "precision": 0.3684210526315789,
+                "recall": 0.2930232558139535,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.8132905039148765,
+                "precision": 0.7892070913695695,
+                "recall": 0.8388900393456202,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.671367259350092,
+                "precision": 0.6422287390029325,
+                "recall": 0.7032755298651252,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8507806501151779,
+                "precision": 0.7982708933717579,
+                "recall": 0.9106849315068493,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8643695014662757,
+                "precision": 0.8332155477031802,
+                "recall": 0.897943640517898,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.875039752884621
+          },
+          "threshold": -0.05898101744617057
+        },
+        "threshold_count": 72730
+      },
+      "convergence_warnings": [],
+      "estimator": "LinearSVC",
+      "name": "linear_svc_c_0_3_balanced",
+      "parameters": {
+        "C": 0.3,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 87.06740850000006
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.2724458204334365,
+              "critical_precision": 0.4074074074074074,
+              "global_macro_f1": 0.7152106228764228
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7335401163359448,
+            "confusion_matrix": [
+              [
+                4539,
+                99,
+                443,
+                180,
+                11,
+                363,
+                111,
+                24,
+                9
+              ],
+              [
+                110,
+                1361,
+                214,
+                136,
+                3,
+                67,
+                25,
+                46,
+                29
+              ],
+              [
+                833,
+                538,
+                44898,
+                2228,
+                27,
+                194,
+                53,
+                212,
+                142
+              ],
+              [
+                215,
+                214,
+                1147,
+                5285,
+                16,
+                69,
+                49,
+                74,
+                30
+              ],
+              [
+                27,
+                12,
+                37,
+                64,
+                44,
+                13,
+                5,
+                11,
+                2
+              ],
+              [
+                307,
+                47,
+                64,
+                43,
+                2,
+                3951,
+                388,
+                23,
+                4
+              ],
+              [
+                68,
+                25,
+                13,
+                21,
+                1,
+                364,
+                1047,
+                14,
+                4
+              ],
+              [
+                12,
+                52,
+                39,
+                30,
+                1,
+                31,
+                15,
+                1636,
+                9
+              ],
+              [
+                9,
+                34,
+                44,
+                39,
+                3,
+                12,
+                5,
+                8,
+                1159
+              ]
+            ],
+            "macro_f1": 0.7152106228764228,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7629212538868814,
+                "precision": 0.7416666666666667,
+                "recall": 0.7854300051912095,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.622455979876515,
+                "precision": 0.5713685978169606,
+                "recall": 0.6835760924158715,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9351412146963259,
+                "precision": 0.9573338450713235,
+                "recall": 0.9139541984732824,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6988429752066116,
+                "precision": 0.6584849239970098,
+                "recall": 0.7444710522608818,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.2724458204334365,
+                "precision": 0.4074074074074074,
+                "recall": 0.20465116279069767,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.798746588496917,
+                "precision": 0.7802132701421801,
+                "recall": 0.8181818181818182,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6433179723502305,
+                "precision": 0.6166077738515902,
+                "recall": 0.6724470134874759,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8448231345210431,
+                "precision": 0.798828125,
+                "recall": 0.8964383561643836,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8582006664198446,
+                "precision": 0.8350144092219021,
+                "recall": 0.8827113480578828,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8698156746748328
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.3045685279187817,
+              "critical_precision": 0.33519553072625696,
+              "global_macro_f1": 0.7189625143103895
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.74136107403747,
+            "confusion_matrix": [
+              [
+                4535,
+                99,
+                442,
+                178,
+                19,
+                363,
+                110,
+                24,
+                9
+              ],
+              [
+                109,
+                1359,
+                213,
+                135,
+                9,
+                67,
+                25,
+                45,
+                29
+              ],
+              [
+                831,
+                536,
+                44886,
+                2222,
+                49,
+                194,
+                53,
+                212,
+                142
+              ],
+              [
+                215,
+                213,
+                1147,
+                5277,
+                25,
+                69,
+                49,
+                74,
+                30
+              ],
+              [
+                24,
+                9,
+                35,
+                58,
+                60,
+                13,
+                4,
+                11,
+                1
+              ],
+              [
+                307,
+                47,
+                63,
+                43,
+                10,
+                3949,
+                385,
+                22,
+                3
+              ],
+              [
+                68,
+                25,
+                13,
+                21,
+                1,
+                364,
+                1047,
+                14,
+                4
+              ],
+              [
+                12,
+                52,
+                38,
+                30,
+                3,
+                31,
+                15,
+                1635,
+                9
+              ],
+              [
+                9,
+                34,
+                44,
+                39,
+                3,
+                12,
+                5,
+                8,
+                1159
+              ]
+            ],
+            "macro_f1": 0.7189625143103895,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7628900664479772,
+                "precision": 0.7422258592471358,
+                "recall": 0.7847378439176328,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.622680412371134,
+                "precision": 0.5724515585509689,
+                "recall": 0.6825715720743345,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9350665583401038,
+                "precision": 0.9574454469827862,
+                "recall": 0.9137099236641222,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6988478347238776,
+                "precision": 0.6593777333499937,
+                "recall": 0.7433441329764756,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.3045685279187817,
+                "precision": 0.33519553072625696,
+                "recall": 0.27906976744186046,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7985036902234354,
+                "precision": 0.7801264322402213,
+                "recall": 0.8177676537585421,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6443076923076922,
+                "precision": 0.6184288245717661,
+                "recall": 0.6724470134874759,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8449612403100775,
+                "precision": 0.7995110024449877,
+                "recall": 0.8958904109589041,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.858836606150426,
+                "precision": 0.8362193362193362,
+                "recall": 0.8827113480578828,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8698834200446499
+          },
+          "threshold": -0.14371195914467627
+        },
+        "threshold_count": 72730
+      },
+      "convergence_warnings": [],
+      "estimator": "LinearSVC",
+      "name": "linear_svc_c_1_balanced",
+      "parameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 112.12129579999964
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "eligible": false,
+            "gate_count": 2,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.24922118380062305,
+              "critical_precision": 0.37735849056603776,
+              "global_macro_f1": 0.6978637021541476
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7119233707586399,
+            "confusion_matrix": [
+              [
+                4437,
+                102,
+                479,
+                203,
+                13,
+                389,
+                115,
+                27,
+                14
+              ],
+              [
+                119,
+                1273,
+                249,
+                158,
+                3,
+                76,
+                30,
+                50,
+                33
+              ],
+              [
+                920,
+                518,
+                44745,
+                2367,
+                19,
+                196,
+                46,
+                194,
+                120
+              ],
+              [
+                245,
+                206,
+                1250,
+                5163,
+                18,
+                71,
+                44,
+                71,
+                31
+              ],
+              [
+                28,
+                11,
+                41,
+                63,
+                40,
+                14,
+                5,
+                11,
+                2
+              ],
+              [
+                359,
+                57,
+                83,
+                55,
+                4,
+                3841,
+                397,
+                28,
+                5
+              ],
+              [
+                83,
+                25,
+                21,
+                29,
+                3,
+                386,
+                991,
+                16,
+                3
+              ],
+              [
+                15,
+                54,
+                45,
+                39,
+                3,
+                36,
+                19,
+                1604,
+                10
+              ],
+              [
+                12,
+                31,
+                58,
+                42,
+                3,
+                17,
+                5,
+                9,
+                1136
+              ]
+            ],
+            "macro_f1": 0.6978637021541476,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7396849212303075,
+                "precision": 0.7135734963010615,
+                "recall": 0.7677798927150026,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5965323336457357,
+                "precision": 0.5590689503732982,
+                "recall": 0.6393771973882472,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9312562437562436,
+                "precision": 0.9526090566519767,
+                "recall": 0.9108396946564885,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6785385727428046,
+                "precision": 0.6359157531715729,
+                "recall": 0.7272855331736864,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.24922118380062305,
+                "precision": 0.37735849056603776,
+                "recall": 0.18604651162790697,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7795027904616945,
+                "precision": 0.7642260246717071,
+                "recall": 0.7954027749016359,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.617637893424743,
+                "precision": 0.5998789346246973,
+                "recall": 0.636480411046885,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8365058670143416,
+                "precision": 0.7980099502487562,
+                "recall": 0.8789041095890411,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8518935133108362,
+                "precision": 0.8389955686853766,
+                "recall": 0.8651942117288652,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.860562657948307
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "eligible": false,
+            "gate_count": 2,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.2603550295857988,
+              "critical_precision": 0.35772357723577236,
+              "global_macro_f1": 0.699165494063709
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7138701034531393,
+            "confusion_matrix": [
+              [
+                4437,
+                102,
+                479,
+                203,
+                14,
+                389,
+                114,
+                27,
+                14
+              ],
+              [
+                118,
+                1273,
+                249,
+                158,
+                4,
+                76,
+                30,
+                50,
+                33
+              ],
+              [
+                918,
+                518,
+                44743,
+                2365,
+                25,
+                196,
+                46,
+                194,
+                120
+              ],
+              [
+                244,
+                206,
+                1250,
+                5161,
+                21,
+                71,
+                44,
+                71,
+                31
+              ],
+              [
+                28,
+                11,
+                41,
+                61,
+                44,
+                13,
+                5,
+                11,
+                1
+              ],
+              [
+                359,
+                57,
+                83,
+                55,
+                5,
+                3841,
+                396,
+                28,
+                5
+              ],
+              [
+                83,
+                25,
+                21,
+                29,
+                3,
+                386,
+                991,
+                16,
+                3
+              ],
+              [
+                15,
+                54,
+                45,
+                39,
+                3,
+                36,
+                19,
+                1604,
+                10
+              ],
+              [
+                12,
+                31,
+                58,
+                42,
+                4,
+                17,
+                5,
+                9,
+                1135
+              ]
+            ],
+            "macro_f1": 0.699165494063709,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7399316267822897,
+                "precision": 0.7140328290955906,
+                "recall": 0.7677798927150026,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5965323336457357,
+                "precision": 0.5590689503732982,
+                "recall": 0.6393771973882472,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9312340000416259,
+                "precision": 0.9526070386850901,
+                "recall": 0.9107989821882951,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6785432553247436,
+                "precision": 0.6361395291507457,
+                "recall": 0.7270038033525849,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.2603550295857988,
+                "precision": 0.35772357723577236,
+                "recall": 0.20465116279069767,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7795818956768824,
+                "precision": 0.7643781094527363,
+                "recall": 0.7954027749016359,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6180230745244776,
+                "precision": 0.6006060606060606,
+                "recall": 0.636480411046885,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8365058670143416,
+                "precision": 0.7980099502487562,
+                "recall": 0.8789041095890411,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.851782363977486,
+                "precision": 0.8394970414201184,
+                "recall": 0.8644325971058644,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8606114257236457
+          },
+          "threshold": -0.04348549546231095
+        },
+        "threshold_count": 72730
+      },
+      "convergence_warnings": [],
+      "estimator": "LinearSVC",
+      "name": "linear_svc_c_3_balanced",
+      "parameters": {
+        "C": 3.0,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 168.61088999999993
+    }
+  ],
+  "candidates": [
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": false,
+            "eligible": false,
+            "gate_count": 0,
+            "global_macro_f1": false,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.18134034165571616,
+              "critical_precision": 0.12637362637362637,
+              "global_macro_f1": 0.6876395921059095
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7652487607898265,
+            "confusion_matrix": [
+              [
+                4588,
+                131,
+                256,
+                168,
+                50,
+                379,
+                165,
+                28,
+                14
+              ],
+              [
+                72,
+                1507,
+                101,
+                118,
+                24,
+                78,
+                30,
+                42,
+                19
+              ],
+              [
+                1235,
+                1023,
+                42086,
+                3482,
+                273,
+                305,
+                88,
+                349,
+                284
+              ],
+              [
+                243,
+                298,
+                699,
+                5537,
+                74,
+                84,
+                48,
+                83,
+                33
+              ],
+              [
+                19,
+                13,
+                20,
+                62,
+                69,
+                14,
+                5,
+                10,
+                3
+              ],
+              [
+                256,
+                61,
+                32,
+                43,
+                35,
+                3871,
+                498,
+                28,
+                5
+              ],
+              [
+                51,
+                20,
+                6,
+                16,
+                9,
+                281,
+                1161,
+                10,
+                3
+              ],
+              [
+                15,
+                49,
+                11,
+                15,
+                6,
+                24,
+                21,
+                1676,
+                8
+              ],
+              [
+                8,
+                29,
+                17,
+                30,
+                6,
+                12,
+                4,
+                8,
+                1199
+              ]
+            ],
+            "macro_f1": 0.6876395921059095,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7480841350073375,
+                "precision": 0.7072606751965469,
+                "recall": 0.7939089807925247,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5884420148379539,
+                "precision": 0.48131587352283617,
+                "recall": 0.7569060773480663,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9114159799898215,
+                "precision": 0.9735819376330156,
+                "recall": 0.8567124681933842,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.668316234158117,
+                "precision": 0.5846267553584626,
+                "recall": 0.7799690097196789,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.18134034165571616,
+                "precision": 0.12637362637362637,
+                "recall": 0.3209302325581395,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7838412473423103,
+                "precision": 0.7668383518225039,
+                "recall": 0.8016152412507765,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6491473301649426,
+                "precision": 0.5747524752475247,
+                "recall": 0.7456647398843931,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8258191672825819,
+                "precision": 0.7502238137869293,
+                "recall": 0.9183561643835616,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8323498785144048,
+                "precision": 0.7646683673469388,
+                "recall": 0.9131759329779132,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8469386645295481
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.30057803468208094,
+              "critical_precision": 0.3969465648854962,
+              "global_macro_f1": 0.7004648486738303
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7591404749096178,
+            "confusion_matrix": [
+              [
+                4607,
+                136,
+                261,
+                170,
+                9,
+                384,
+                169,
+                28,
+                15
+              ],
+              [
+                75,
+                1517,
+                103,
+                121,
+                1,
+                80,
+                32,
+                43,
+                19
+              ],
+              [
+                1248,
+                1048,
+                42193,
+                3531,
+                51,
+                324,
+                92,
+                352,
+                286
+              ],
+              [
+                246,
+                303,
+                709,
+                5571,
+                13,
+                89,
+                51,
+                84,
+                33
+              ],
+              [
+                22,
+                14,
+                22,
+                68,
+                52,
+                17,
+                6,
+                11,
+                3
+              ],
+              [
+                262,
+                63,
+                34,
+                46,
+                3,
+                3886,
+                501,
+                29,
+                5
+              ],
+              [
+                52,
+                20,
+                6,
+                17,
+                1,
+                281,
+                1167,
+                10,
+                3
+              ],
+              [
+                15,
+                50,
+                12,
+                16,
+                0,
+                25,
+                21,
+                1678,
+                8
+              ],
+              [
+                8,
+                32,
+                17,
+                31,
+                1,
+                12,
+                4,
+                8,
+                1200
+              ]
+            ],
+            "macro_f1": 0.7004648486738303,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7482540198148449,
+                "precision": 0.704973221117062,
+                "recall": 0.7971967468420141,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.586393505991496,
+                "precision": 0.4765944077913918,
+                "recall": 0.7619286790557509,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.912458640600333,
+                "precision": 0.9731531240630117,
+                "recall": 0.8588905852417302,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.668386322735453,
+                "precision": 0.5820708389927908,
+                "recall": 0.7847584166784054,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.30057803468208094,
+                "precision": 0.3969465648854962,
+                "recall": 0.24186046511627907,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7829152815553542,
+                "precision": 0.7622597096900745,
+                "recall": 0.8047214744253469,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6483333333333333,
+                "precision": 0.5712187958883994,
+                "recall": 0.7495183044315993,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8249754178957719,
+                "precision": 0.7481052162282658,
+                "recall": 0.9194520547945205,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.831889081455806,
+                "precision": 0.7633587786259542,
+                "recall": 0.913937547600914,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8478388557257688
+          },
+          "threshold": 0.37713614106178284
+        },
+        "threshold_count": 72662
+      },
+      "convergence_warnings": [],
+      "estimator": "RidgeClassifier",
+      "name": "ridge_balanced",
+      "parameters": {
+        "alpha": 1.0,
+        "class_weight": "balanced",
+        "solver": "lsqr",
+        "tol": 0.001
+      },
+      "runtime_seconds": 53.32789150000008
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": false,
+            "eligible": false,
+            "gate_count": 0,
+            "global_macro_f1": false,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.03888713246917483,
+              "critical_precision": 0.020127638684339717,
+              "global_macro_f1": 0.6506068223449066
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7217453027268509,
+            "confusion_matrix": [
+              [
+                4001,
+                111,
+                345,
+                102,
+                436,
+                561,
+                212,
+                11,
+                0
+              ],
+              [
+                79,
+                1347,
+                135,
+                68,
+                194,
+                85,
+                41,
+                40,
+                2
+              ],
+              [
+                906,
+                681,
+                40973,
+                2328,
+                3495,
+                306,
+                91,
+                224,
+                121
+              ],
+              [
+                212,
+                233,
+                921,
+                3994,
+                1505,
+                103,
+                53,
+                64,
+                14
+              ],
+              [
+                7,
+                10,
+                23,
+                29,
+                123,
+                9,
+                4,
+                10,
+                0
+              ],
+              [
+                178,
+                27,
+                45,
+                20,
+                133,
+                3869,
+                545,
+                12,
+                0
+              ],
+              [
+                39,
+                21,
+                9,
+                8,
+                41,
+                290,
+                1140,
+                9,
+                0
+              ],
+              [
+                17,
+                56,
+                34,
+                18,
+                121,
+                36,
+                35,
+                1507,
+                1
+              ],
+              [
+                21,
+                68,
+                51,
+                20,
+                63,
+                16,
+                11,
+                14,
+                1049
+              ]
+            ],
+            "macro_f1": 0.6506068223449066,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7119850520508942,
+                "precision": 0.7327838827838827,
+                "recall": 0.6923343138951376,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5927392739273927,
+                "precision": 0.5274079874706343,
+                "recall": 0.676544450025113,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.8940116298098428,
+                "precision": 0.9632546548805717,
+                "recall": 0.8340559796437659,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.5836621364898436,
+                "precision": 0.6063458327007742,
+                "recall": 0.5626144527398225,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.03888713246917483,
+                "precision": 0.020127638684339717,
+                "recall": 0.5720930232558139,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7658353127474268,
+                "precision": 0.7334597156398104,
+                "recall": 0.8012010768275005,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6180536730821361,
+                "precision": 0.5347091932457786,
+                "recall": 0.7321772639691715,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8110871905274489,
+                "precision": 0.7969328397673189,
+                "recall": 0.8257534246575342,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8392,
+                "precision": 0.8837405223251895,
+                "recall": 0.7989337395277989,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8219852316056739
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "eligible": false,
+            "gate_count": 1,
+            "global_macro_f1": false,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.2233766233766234,
+              "critical_precision": 0.2529411764705882,
+              "global_macro_f1": 0.680330379150537
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7205002556404764,
+            "confusion_matrix": [
+              [
+                4255,
+                130,
+                397,
+                129,
+                11,
+                608,
+                235,
+                14,
+                0
+              ],
+              [
+                88,
+                1439,
+                172,
+                90,
+                4,
+                97,
+                50,
+                48,
+                3
+              ],
+              [
+                1199,
+                841,
+                43491,
+                2655,
+                49,
+                380,
+                124,
+                255,
+                131
+              ],
+              [
+                314,
+                311,
+                1243,
+                4832,
+                62,
+                154,
+                84,
+                79,
+                20
+              ],
+              [
+                13,
+                19,
+                43,
+                50,
+                43,
+                23,
+                10,
+                13,
+                1
+              ],
+              [
+                195,
+                32,
+                54,
+                23,
+                1,
+                3946,
+                566,
+                12,
+                0
+              ],
+              [
+                42,
+                21,
+                10,
+                9,
+                0,
+                301,
+                1165,
+                9,
+                0
+              ],
+              [
+                25,
+                61,
+                41,
+                19,
+                0,
+                44,
+                42,
+                1592,
+                1
+              ],
+              [
+                22,
+                75,
+                62,
+                23,
+                0,
+                18,
+                17,
+                17,
+                1079
+              ]
+            ],
+            "macro_f1": 0.680330379150537,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.713208179684881,
+                "precision": 0.691532585730538,
+                "recall": 0.7362865547672608,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5849593495934959,
+                "precision": 0.4912939569819051,
+                "recall": 0.7227523857358111,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9191022633614404,
+                "precision": 0.955573132951025,
+                "recall": 0.8853129770992366,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6473306986402304,
+                "precision": 0.6171136653895275,
+                "recall": 0.6806592477813777,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.2233766233766234,
+                "precision": 0.2529411764705882,
+                "recall": 0.2,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7588461538461538,
+                "precision": 0.7083108957099264,
+                "recall": 0.8171464071236281,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6051948051948052,
+                "precision": 0.5080680331443523,
+                "recall": 0.7482337829158638,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.824016563146998,
+                "precision": 0.7807748896517901,
+                "recall": 0.8723287671232877,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8469387755102041,
+                "precision": 0.8736842105263158,
+                "recall": 0.8217821782178217,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8449842900104819
+          },
+          "threshold": 14.96053957939148
+        },
+        "threshold_count": 72705
+      },
+      "convergence_warnings": [
+        {
+          "category": "ConvergenceWarning",
+          "message": "The max_iter was reached which means the coef_ did not converge"
+        }
+      ],
+      "estimator": "LogisticRegression",
+      "name": "logistic_regression_saga_balanced",
+      "parameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 200,
+        "random_state": 42,
+        "solver": "saga",
+        "tol": 0.001
+      },
+      "runtime_seconds": 460.4684867000001
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.30640668523676884,
+              "critical_precision": 0.3819444444444444,
+              "global_macro_f1": 0.7299210085604123
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.753806454441738,
+            "confusion_matrix": [
+              [
+                4583,
+                88,
+                423,
+                168,
+                12,
+                371,
+                108,
+                17,
+                9
+              ],
+              [
+                95,
+                1422,
+                184,
+                127,
+                5,
+                69,
+                32,
+                34,
+                23
+              ],
+              [
+                807,
+                564,
+                44870,
+                2203,
+                44,
+                184,
+                49,
+                240,
+                164
+              ],
+              [
+                190,
+                221,
+                1093,
+                5374,
+                13,
+                71,
+                39,
+                73,
+                25
+              ],
+              [
+                20,
+                11,
+                39,
+                60,
+                55,
+                13,
+                4,
+                12,
+                1
+              ],
+              [
+                256,
+                43,
+                52,
+                36,
+                9,
+                4051,
+                356,
+                25,
+                1
+              ],
+              [
+                58,
+                19,
+                10,
+                18,
+                1,
+                338,
+                1095,
+                14,
+                4
+              ],
+              [
+                11,
+                49,
+                29,
+                18,
+                1,
+                29,
+                17,
+                1662,
+                9
+              ],
+              [
+                8,
+                30,
+                36,
+                38,
+                4,
+                8,
+                5,
+                5,
+                1179
+              ]
+            ],
+            "macro_f1": 0.7299210085604123,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7763191327178792,
+                "precision": 0.7602853351028533,
+                "recall": 0.7930437792005537,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.640829202343398,
+                "precision": 0.5811197384552513,
+                "recall": 0.7142139628327474,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9361471296982089,
+                "precision": 0.9600736049298185,
+                "recall": 0.9133842239185751,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.7098606432864408,
+                "precision": 0.6682417309127083,
+                "recall": 0.7570080292999014,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.30640668523676884,
+                "precision": 0.3819444444444444,
+                "recall": 0.2558139534883721,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.8132088728294691,
+                "precision": 0.7890533696922477,
+                "recall": 0.8388900393456202,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.671367259350092,
+                "precision": 0.6422287390029325,
+                "recall": 0.7032755298651252,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8507806501151779,
+                "precision": 0.7982708933717579,
+                "recall": 0.9106849315068493,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8643695014662757,
+                "precision": 0.8332155477031802,
+                "recall": 0.897943640517898,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8749886945040919
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.3264248704663213,
+              "critical_precision": 0.3684210526315789,
+              "global_macro_f1": 0.7321620399360317
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7577980975656664,
+            "confusion_matrix": [
+              [
+                4580,
+                88,
+                423,
+                167,
+                16,
+                371,
+                108,
+                17,
+                9
+              ],
+              [
+                94,
+                1422,
+                184,
+                126,
+                7,
+                69,
+                32,
+                34,
+                23
+              ],
+              [
+                807,
+                564,
+                44867,
+                2201,
+                49,
+                184,
+                49,
+                240,
+                164
+              ],
+              [
+                188,
+                220,
+                1093,
+                5369,
+                21,
+                71,
+                39,
+                73,
+                25
+              ],
+              [
+                17,
+                11,
+                37,
+                58,
+                63,
+                12,
+                4,
+                12,
+                1
+              ],
+              [
+                256,
+                43,
+                52,
+                36,
+                9,
+                4051,
+                356,
+                25,
+                1
+              ],
+              [
+                58,
+                19,
+                10,
+                18,
+                1,
+                338,
+                1095,
+                14,
+                4
+              ],
+              [
+                11,
+                49,
+                29,
+                18,
+                1,
+                29,
+                17,
+                1662,
+                9
+              ],
+              [
+                8,
+                30,
+                36,
+                38,
+                4,
+                8,
+                5,
+                5,
+                1179
+              ]
+            ],
+            "macro_f1": 0.7321620399360317,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7764027801322259,
+                "precision": 0.7609237414852965,
+                "recall": 0.7925246582453712,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.6409736308316429,
+                "precision": 0.5813573180703189,
+                "recall": 0.7142139628327474,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9361333667167417,
+                "precision": 0.9601121311335088,
+                "recall": 0.9133231552162849,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.7097157964309319,
+                "precision": 0.6685344290872868,
+                "recall": 0.7563037047471475,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.3264248704663213,
+                "precision": 0.3684210526315789,
+                "recall": 0.2930232558139535,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.8132905039148765,
+                "precision": 0.7892070913695695,
+                "recall": 0.8388900393456202,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.671367259350092,
+                "precision": 0.6422287390029325,
+                "recall": 0.7032755298651252,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8507806501151779,
+                "precision": 0.7982708933717579,
+                "recall": 0.9106849315068493,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8643695014662757,
+                "precision": 0.8332155477031802,
+                "recall": 0.897943640517898,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.875039752884621
+          },
+          "threshold": -0.05898101744617057
+        },
+        "threshold_count": 72730
+      },
+      "convergence_warnings": [],
+      "estimator": "LinearSVC",
+      "name": "linear_svc_c_0_3_balanced",
+      "parameters": {
+        "C": 0.3,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 87.06740850000006
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.2724458204334365,
+              "critical_precision": 0.4074074074074074,
+              "global_macro_f1": 0.7152106228764228
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7335401163359448,
+            "confusion_matrix": [
+              [
+                4539,
+                99,
+                443,
+                180,
+                11,
+                363,
+                111,
+                24,
+                9
+              ],
+              [
+                110,
+                1361,
+                214,
+                136,
+                3,
+                67,
+                25,
+                46,
+                29
+              ],
+              [
+                833,
+                538,
+                44898,
+                2228,
+                27,
+                194,
+                53,
+                212,
+                142
+              ],
+              [
+                215,
+                214,
+                1147,
+                5285,
+                16,
+                69,
+                49,
+                74,
+                30
+              ],
+              [
+                27,
+                12,
+                37,
+                64,
+                44,
+                13,
+                5,
+                11,
+                2
+              ],
+              [
+                307,
+                47,
+                64,
+                43,
+                2,
+                3951,
+                388,
+                23,
+                4
+              ],
+              [
+                68,
+                25,
+                13,
+                21,
+                1,
+                364,
+                1047,
+                14,
+                4
+              ],
+              [
+                12,
+                52,
+                39,
+                30,
+                1,
+                31,
+                15,
+                1636,
+                9
+              ],
+              [
+                9,
+                34,
+                44,
+                39,
+                3,
+                12,
+                5,
+                8,
+                1159
+              ]
+            ],
+            "macro_f1": 0.7152106228764228,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7629212538868814,
+                "precision": 0.7416666666666667,
+                "recall": 0.7854300051912095,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.622455979876515,
+                "precision": 0.5713685978169606,
+                "recall": 0.6835760924158715,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9351412146963259,
+                "precision": 0.9573338450713235,
+                "recall": 0.9139541984732824,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6988429752066116,
+                "precision": 0.6584849239970098,
+                "recall": 0.7444710522608818,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.2724458204334365,
+                "precision": 0.4074074074074074,
+                "recall": 0.20465116279069767,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.798746588496917,
+                "precision": 0.7802132701421801,
+                "recall": 0.8181818181818182,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6433179723502305,
+                "precision": 0.6166077738515902,
+                "recall": 0.6724470134874759,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8448231345210431,
+                "precision": 0.798828125,
+                "recall": 0.8964383561643836,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8582006664198446,
+                "precision": 0.8350144092219021,
+                "recall": 0.8827113480578828,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8698156746748328
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": true,
+            "critical_precision": true,
+            "eligible": true,
+            "gate_count": 3,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.3045685279187817,
+              "critical_precision": 0.33519553072625696,
+              "global_macro_f1": 0.7189625143103895
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.74136107403747,
+            "confusion_matrix": [
+              [
+                4535,
+                99,
+                442,
+                178,
+                19,
+                363,
+                110,
+                24,
+                9
+              ],
+              [
+                109,
+                1359,
+                213,
+                135,
+                9,
+                67,
+                25,
+                45,
+                29
+              ],
+              [
+                831,
+                536,
+                44886,
+                2222,
+                49,
+                194,
+                53,
+                212,
+                142
+              ],
+              [
+                215,
+                213,
+                1147,
+                5277,
+                25,
+                69,
+                49,
+                74,
+                30
+              ],
+              [
+                24,
+                9,
+                35,
+                58,
+                60,
+                13,
+                4,
+                11,
+                1
+              ],
+              [
+                307,
+                47,
+                63,
+                43,
+                10,
+                3949,
+                385,
+                22,
+                3
+              ],
+              [
+                68,
+                25,
+                13,
+                21,
+                1,
+                364,
+                1047,
+                14,
+                4
+              ],
+              [
+                12,
+                52,
+                38,
+                30,
+                3,
+                31,
+                15,
+                1635,
+                9
+              ],
+              [
+                9,
+                34,
+                44,
+                39,
+                3,
+                12,
+                5,
+                8,
+                1159
+              ]
+            ],
+            "macro_f1": 0.7189625143103895,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7628900664479772,
+                "precision": 0.7422258592471358,
+                "recall": 0.7847378439176328,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.622680412371134,
+                "precision": 0.5724515585509689,
+                "recall": 0.6825715720743345,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9350665583401038,
+                "precision": 0.9574454469827862,
+                "recall": 0.9137099236641222,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6988478347238776,
+                "precision": 0.6593777333499937,
+                "recall": 0.7433441329764756,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.3045685279187817,
+                "precision": 0.33519553072625696,
+                "recall": 0.27906976744186046,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7985036902234354,
+                "precision": 0.7801264322402213,
+                "recall": 0.8177676537585421,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6443076923076922,
+                "precision": 0.6184288245717661,
+                "recall": 0.6724470134874759,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8449612403100775,
+                "precision": 0.7995110024449877,
+                "recall": 0.8958904109589041,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.858836606150426,
+                "precision": 0.8362193362193362,
+                "recall": 0.8827113480578828,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8698834200446499
+          },
+          "threshold": -0.14371195914467627
+        },
+        "threshold_count": 72730
+      },
+      "convergence_warnings": [],
+      "estimator": "LinearSVC",
+      "name": "linear_svc_c_1_balanced",
+      "parameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 112.12129579999964
+    },
+    {
+      "calibration": {
+        "baseline_threshold_zero": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "eligible": false,
+            "gate_count": 2,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.24922118380062305,
+              "critical_precision": 0.37735849056603776,
+              "global_macro_f1": 0.6978637021541476
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7119233707586399,
+            "confusion_matrix": [
+              [
+                4437,
+                102,
+                479,
+                203,
+                13,
+                389,
+                115,
+                27,
+                14
+              ],
+              [
+                119,
+                1273,
+                249,
+                158,
+                3,
+                76,
+                30,
+                50,
+                33
+              ],
+              [
+                920,
+                518,
+                44745,
+                2367,
+                19,
+                196,
+                46,
+                194,
+                120
+              ],
+              [
+                245,
+                206,
+                1250,
+                5163,
+                18,
+                71,
+                44,
+                71,
+                31
+              ],
+              [
+                28,
+                11,
+                41,
+                63,
+                40,
+                14,
+                5,
+                11,
+                2
+              ],
+              [
+                359,
+                57,
+                83,
+                55,
+                4,
+                3841,
+                397,
+                28,
+                5
+              ],
+              [
+                83,
+                25,
+                21,
+                29,
+                3,
+                386,
+                991,
+                16,
+                3
+              ],
+              [
+                15,
+                54,
+                45,
+                39,
+                3,
+                36,
+                19,
+                1604,
+                10
+              ],
+              [
+                12,
+                31,
+                58,
+                42,
+                3,
+                17,
+                5,
+                9,
+                1136
+              ]
+            ],
+            "macro_f1": 0.6978637021541476,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7396849212303075,
+                "precision": 0.7135734963010615,
+                "recall": 0.7677798927150026,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5965323336457357,
+                "precision": 0.5590689503732982,
+                "recall": 0.6393771973882472,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9312562437562436,
+                "precision": 0.9526090566519767,
+                "recall": 0.9108396946564885,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6785385727428046,
+                "precision": 0.6359157531715729,
+                "recall": 0.7272855331736864,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.24922118380062305,
+                "precision": 0.37735849056603776,
+                "recall": 0.18604651162790697,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7795027904616945,
+                "precision": 0.7642260246717071,
+                "recall": 0.7954027749016359,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.617637893424743,
+                "precision": 0.5998789346246973,
+                "recall": 0.636480411046885,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8365058670143416,
+                "precision": 0.7980099502487562,
+                "recall": 0.8789041095890411,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.8518935133108362,
+                "precision": 0.8389955686853766,
+                "recall": 0.8651942117288652,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.860562657948307
+          },
+          "threshold": 0.0
+        },
+        "selected": {
+          "gates": {
+            "critical_f1": false,
+            "critical_precision": true,
+            "eligible": false,
+            "gate_count": 2,
+            "global_macro_f1": true,
+            "limits": {
+              "critical_f1": 0.2715,
+              "critical_precision": 0.2,
+              "global_macro_f1": 0.69
+            },
+            "values": {
+              "critical_f1": 0.2603550295857988,
+              "critical_precision": 0.35772357723577236,
+              "global_macro_f1": 0.699165494063709
+            }
+          },
+          "metrics": {
+            "balanced_accuracy": 0.7138701034531393,
+            "confusion_matrix": [
+              [
+                4437,
+                102,
+                479,
+                203,
+                14,
+                389,
+                114,
+                27,
+                14
+              ],
+              [
+                118,
+                1273,
+                249,
+                158,
+                4,
+                76,
+                30,
+                50,
+                33
+              ],
+              [
+                918,
+                518,
+                44743,
+                2365,
+                25,
+                196,
+                46,
+                194,
+                120
+              ],
+              [
+                244,
+                206,
+                1250,
+                5161,
+                21,
+                71,
+                44,
+                71,
+                31
+              ],
+              [
+                28,
+                11,
+                41,
+                61,
+                44,
+                13,
+                5,
+                11,
+                1
+              ],
+              [
+                359,
+                57,
+                83,
+                55,
+                5,
+                3841,
+                396,
+                28,
+                5
+              ],
+              [
+                83,
+                25,
+                21,
+                29,
+                3,
+                386,
+                991,
+                16,
+                3
+              ],
+              [
+                15,
+                54,
+                45,
+                39,
+                3,
+                36,
+                19,
+                1604,
+                10
+              ],
+              [
+                12,
+                31,
+                58,
+                42,
+                4,
+                17,
+                5,
+                9,
+                1135
+              ]
+            ],
+            "macro_f1": 0.699165494063709,
+            "per_class": {
+              "cards_prepaid": {
+                "f1": 0.7399316267822897,
+                "precision": 0.7140328290955906,
+                "recall": 0.7677798927150026,
+                "support": 5779
+              },
+              "consumer_lending": {
+                "f1": 0.5965323336457357,
+                "precision": 0.5590689503732982,
+                "recall": 0.6393771973882472,
+                "support": 1991
+              },
+              "credit_reporting": {
+                "f1": 0.9312340000416259,
+                "precision": 0.9526070386850901,
+                "recall": 0.9107989821882951,
+                "support": 49125
+              },
+              "debt_collection": {
+                "f1": 0.6785432553247436,
+                "precision": 0.6361395291507457,
+                "recall": 0.7270038033525849,
+                "support": 7099
+              },
+              "debt_credit_management": {
+                "f1": 0.2603550295857988,
+                "precision": 0.35772357723577236,
+                "recall": 0.20465116279069767,
+                "support": 215
+              },
+              "deposit_accounts": {
+                "f1": 0.7795818956768824,
+                "precision": 0.7643781094527363,
+                "recall": 0.7954027749016359,
+                "support": 4829
+              },
+              "money_services": {
+                "f1": 0.6180230745244776,
+                "precision": 0.6006060606060606,
+                "recall": 0.636480411046885,
+                "support": 1557
+              },
+              "mortgage": {
+                "f1": 0.8365058670143416,
+                "precision": 0.7980099502487562,
+                "recall": 0.8789041095890411,
+                "support": 1825
+              },
+              "student_loan": {
+                "f1": 0.851782363977486,
+                "precision": 0.8394970414201184,
+                "recall": 0.8644325971058644,
+                "support": 1313
+              }
+            },
+            "row_count": 73733,
+            "weighted_f1": 0.8606114257236457
+          },
+          "threshold": -0.04348549546231095
+        },
+        "threshold_count": 72730
+      },
+      "convergence_warnings": [],
+      "estimator": "LinearSVC",
+      "name": "linear_svc_c_3_balanced",
+      "parameters": {
+        "C": 3.0,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 168.61088999999993
+    }
+  ],
+  "claim_boundary": "NO_TEST_STRESS_OR_MONITOR_ACCESS",
+  "complete": true,
+  "diagnostic_focus": "linear_svc_c_0_3_balanced",
+  "execution_attempts": 2,
+  "outer_evaluated_candidate": "linear_svc_c_0_3_balanced",
+  "outer_summary": {
+    "candidate": "linear_svc_c_0_3_balanced",
+    "gates": {
+      "critical_f1": true,
+      "critical_precision": true,
+      "eligible": true,
+      "gate_count": 3,
+      "global_macro_f1": true,
+      "limits": {
+        "critical_f1": 0.2715,
+        "critical_precision": 0.2,
+        "global_macro_f1": 0.69
+      },
+      "values": {
+        "critical_f1": 0.2823086574654956,
+        "critical_precision": 0.32051282051282054,
+        "global_macro_f1": 0.7181382079245
+      }
+    },
+    "metrics": {
+      "balanced_accuracy": 0.7442948050222236,
+      "confusion_matrix": [
+        [
+          13345,
+          340,
+          1353,
+          522,
+          55,
+          1168,
+          401,
+          56,
+          42
+        ],
+        [
+          272,
+          4626,
+          604,
+          428,
+          21,
+          191,
+          97,
+          130,
+          67
+        ],
+        [
+          2728,
+          1976,
+          149549,
+          8221,
+          239,
+          612,
+          191,
+          755,
+          530
+        ],
+        [
+          652,
+          723,
+          4984,
+          18507,
+          110,
+          188,
+          98,
+          202,
+          101
+        ],
+        [
+          73,
+          65,
+          159,
+          265,
+          225,
+          44,
+          15,
+          40,
+          6
+        ],
+        [
+          934,
+          128,
+          268,
+          143,
+          27,
+          12818,
+          1229,
+          74,
+          14
+        ],
+        [
+          203,
+          79,
+          34,
+          49,
+          10,
+          1189,
+          3826,
+          24,
+          7
+        ],
+        [
+          50,
+          149,
+          87,
+          80,
+          8,
+          89,
+          27,
+          5659,
+          32
+        ],
+        [
+          24,
+          116,
+          167,
+          73,
+          7,
+          14,
+          12,
+          28,
+          3326
+        ]
+      ],
+      "macro_f1": 0.7181382079245,
+      "per_class": {
+        "cards_prepaid": {
+          "f1": 0.7504991142479543,
+          "precision": 0.7299928887916416,
+          "recall": 0.772190718666821,
+          "support": 17282
+        },
+        "consumer_lending": {
+          "f1": 0.632053559229403,
+          "precision": 0.5640087783467447,
+          "recall": 0.718769422001243,
+          "support": 6436
+        },
+        "credit_reporting": {
+          "f1": 0.9288584684757427,
+          "precision": 0.9512992589294234,
+          "recall": 0.9074520178882409,
+          "support": 164801
+        },
+        "debt_collection": {
+          "f1": 0.6873154698902568,
+          "precision": 0.6542350113122172,
+          "recall": 0.7239194210835126,
+          "support": 25565
+        },
+        "debt_credit_management": {
+          "f1": 0.2823086574654956,
+          "precision": 0.32051282051282054,
+          "recall": 0.2522421524663677,
+          "support": 892
+        },
+        "deposit_accounts": {
+          "f1": 0.8024289470389383,
+          "precision": 0.7857536933733832,
+          "recall": 0.8198273105212663,
+          "support": 15635
+        },
+        "money_services": {
+          "f1": 0.6761509233895908,
+          "precision": 0.6489145183175034,
+          "recall": 0.7057738424644899,
+          "support": 5421
+        },
+        "mortgage": {
+          "f1": 0.8607498669100311,
+          "precision": 0.8121412169919633,
+          "recall": 0.9155476460119721,
+          "support": 6181
+        },
+        "student_loan": {
+          "f1": 0.8428788646730868,
+          "precision": 0.8063030303030303,
+          "recall": 0.8829307140960977,
+          "support": 3767
+        }
+      },
+      "row_count": 245980,
+      "weighted_f1": 0.8644795370613517
+    },
+    "threshold": -0.05898101744617057
+  },
+  "recommended_candidate": "linear_svc_c_0_3_balanced",
+  "resources": {
+    "batch_size": 4096,
+    "vocabulary_size": 40000
+  },
+  "resume": {
+    "previous_status": "RUNNING",
+    "resumed": true,
+    "reused_candidate_count": 2
+  },
+  "run_mode": "full",
+  "schema_version": "s6-calibrated-classical-v1",
+  "scope_rows": {
+    "inner_calibration": 73733,
+    "inner_fit": 271819,
+    "outer_validation": 245980
+  },
+  "sealed_partitions": [
+    "test",
+    "stress",
+    "monitor"
+  ],
+  "selection_status": "RECOMMENDED",
+  "signature": {
+    "boundary": {
+      "inner_calibration": "train:2024-05-01..2024-06-30",
+      "inner_fit": "train:2023-08-01..2024-04-30",
+      "outer": "validation:2024-07-01..2024-12-31",
+      "sealed": [
+        "test",
+        "stress",
+        "monitor"
+      ]
+    },
+    "code_schema": "s6-runtime-v1",
+    "config": {
+      "mtime_ns": 1786887423935692700,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\config\\s6_calibrated_classical.json",
+      "sha256": "2A4C1EB5D87337C841FB8FA3639B24F44E75F03A2D0181A721F43E3B90027F20",
+      "size": 2094
+    },
+    "run": {
+      "batch_size": 4096,
+      "max_per_class": null,
+      "mode": "full"
+    },
+    "schema_version": "s6-calibrated-classical-v1",
+    "scientific_cache": {
+      "mtime_ns": 1786808166911902600,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s3\\scientific.parquet",
+      "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+      "size": 152781873
+    }
+  },
+  "status": "DEVELOPMENT_COMPLETE",
+  "vectorizer_fit_count": 2
+}

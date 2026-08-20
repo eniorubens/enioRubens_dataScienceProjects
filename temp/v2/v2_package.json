@@ -1,0 +1,756 @@
+{
+  "adr": "docs/ADR-013-v2-frozen-package.md",
+  "allowed_partitions": [
+    "train",
+    "validation"
+  ],
+  "approved_on": "2026-08-19",
+  "architecture": {
+    "combination": "critical_override_at_or_above_calibrated_threshold",
+    "no_refit_after_calibration": true,
+    "score_kind": "critical_margin",
+    "stage_a": "binary_critical_detector",
+    "stage_b": "frozen_s7_multiclass_fallback",
+    "threshold_search": "search_detector_threshold_exact",
+    "threshold_source": "inner_calibration_only",
+    "type": "hierarchical_critical_override"
+  },
+  "boundary": {
+    "allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "no_sealed_partition_unlock_in_development_code": true,
+    "persists_fitted_weights": true,
+    "persists_individual_margins": false,
+    "persists_narratives_or_identifiers": false,
+    "persists_row_indices": false,
+    "sealed_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ]
+  },
+  "bundle": {
+    "path": "artifacts/v2/consumer_complaint_detector_v2.joblib",
+    "persisted": true,
+    "sha256": "CD9193D3B3B1BD94931F4FE38393245D498DCF379AFBE0AF1039C79AB66649E0",
+    "size_bytes": 1774532
+  },
+  "calibration": {
+    "effective_overrides": 16,
+    "gates": {
+      "checks": {
+        "critical_f1": false,
+        "critical_precision": true,
+        "macro_f1": true
+      },
+      "gate_count": 2,
+      "limits": {
+        "critical_f1_min": 0.2715,
+        "critical_precision_min": 0.2,
+        "global_macro_f1_min": 0.69
+      },
+      "passed": false,
+      "required_gate_count": 3,
+      "values": {
+        "critical_f1": 0.23220973782771534,
+        "critical_precision": 0.3315508021390374,
+        "macro_f1": 0.716709968099412
+      }
+    },
+    "metrics": {
+      "accuracy": 0.8682888885131136,
+      "balanced_accuracy": 0.7422652138800422,
+      "confusion_matrix": [
+        [
+          6528,
+          187,
+          682,
+          245,
+          13,
+          578,
+          184,
+          29,
+          18
+        ],
+        [
+          127,
+          2220,
+          271,
+          196,
+          6,
+          86,
+          49,
+          53,
+          26
+        ],
+        [
+          1405,
+          1006,
+          72692,
+          3571,
+          68,
+          285,
+          95,
+          374,
+          274
+        ],
+        [
+          330,
+          331,
+          2042,
+          8826,
+          26,
+          88,
+          41,
+          95,
+          45
+        ],
+        [
+          37,
+          33,
+          63,
+          113,
+          62,
+          13,
+          4,
+          17,
+          5
+        ],
+        [
+          429,
+          60,
+          126,
+          74,
+          9,
+          6113,
+          542,
+          33,
+          5
+        ],
+        [
+          84,
+          47,
+          14,
+          14,
+          1,
+          556,
+          1753,
+          10,
+          2
+        ],
+        [
+          26,
+          73,
+          48,
+          48,
+          1,
+          36,
+          19,
+          2885,
+          12
+        ],
+        [
+          16,
+          52,
+          73,
+          32,
+          1,
+          9,
+          3,
+          12,
+          1617
+        ]
+      ],
+      "critical_f1": 0.23220973782771534,
+      "critical_precision": 0.3315508021390374,
+      "critical_recall": 0.1786743515850144,
+      "critical_support": 347,
+      "macro_f1": 0.716709968099412,
+      "row_count": 118274,
+      "weighted_f1": 0.8712978375757655
+    },
+    "override_decisions": 57,
+    "threshold": -0.13949530151425016,
+    "threshold_count": 117974
+  },
+  "calibration_scope": {
+    "end": "2024-09-30",
+    "partition": "validation",
+    "role": "inner_calibration",
+    "start": "2024-07-01"
+  },
+  "candidate": {
+    "C": 1.0,
+    "balance_strategy": "hard_negative",
+    "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+    "random_state": 42,
+    "representation": "word_char_tfidf_union_40000_60000",
+    "sampling_strategy": null,
+    "selected_by": "V2.1-D1",
+    "unchallenged_after": "V2.1-D2"
+  },
+  "code_schema": "v2-package-runtime-v1",
+  "complete": true,
+  "critical_class": "debt_credit_management",
+  "deployment": {
+    "deployment_authorized": false,
+    "next_step": "open_stress_2025_h2_once_under_a_new_confirmatory_protocol",
+    "next_step_authorized_here": false,
+    "status": "FROZEN_FOR_CONFIRMATION"
+  },
+  "diagnostic_only": false,
+  "fallback_baseline": {
+    "inner_calibration": {
+      "accuracy": 0.8682973434567192,
+      "balanced_accuracy": 0.7400688253947786,
+      "confusion_matrix": [
+        [
+          6528,
+          187,
+          682,
+          245,
+          13,
+          578,
+          184,
+          29,
+          18
+        ],
+        [
+          127,
+          2220,
+          271,
+          196,
+          6,
+          86,
+          49,
+          53,
+          26
+        ],
+        [
+          1405,
+          1006,
+          72699,
+          3571,
+          61,
+          285,
+          95,
+          374,
+          274
+        ],
+        [
+          331,
+          331,
+          2042,
+          8826,
+          25,
+          88,
+          41,
+          95,
+          45
+        ],
+        [
+          39,
+          33,
+          63,
+          117,
+          55,
+          14,
+          4,
+          17,
+          5
+        ],
+        [
+          429,
+          60,
+          126,
+          74,
+          9,
+          6113,
+          542,
+          33,
+          5
+        ],
+        [
+          84,
+          47,
+          14,
+          14,
+          1,
+          556,
+          1753,
+          10,
+          2
+        ],
+        [
+          26,
+          73,
+          48,
+          48,
+          0,
+          36,
+          19,
+          2886,
+          12
+        ],
+        [
+          16,
+          52,
+          73,
+          32,
+          1,
+          9,
+          3,
+          12,
+          1617
+        ]
+      ],
+      "critical_f1": 0.21235521235521235,
+      "critical_precision": 0.3216374269005848,
+      "critical_recall": 0.1585014409221902,
+      "critical_support": 347,
+      "macro_f1": 0.7144953296194135,
+      "row_count": 118274,
+      "weighted_f1": 0.8712525672341493
+    },
+    "outer_evaluation": {
+      "accuracy": 0.8619798599909166,
+      "balanced_accuracy": 0.747647427770265,
+      "confusion_matrix": [
+        [
+          6906,
+          160,
+          620,
+          265,
+          16,
+          595,
+          209,
+          26,
+          21
+        ],
+        [
+          140,
+          2479,
+          314,
+          223,
+          5,
+          95,
+          41,
+          69,
+          36
+        ],
+        [
+          1371,
+          1057,
+          77526,
+          3903,
+          108,
+          315,
+          119,
+          375,
+          257
+        ],
+        [
+          336,
+          409,
+          3000,
+          9638,
+          44,
+          96,
+          53,
+          109,
+          56
+        ],
+        [
+          41,
+          36,
+          90,
+          156,
+          152,
+          26,
+          17,
+          23,
+          4
+        ],
+        [
+          423,
+          78,
+          138,
+          69,
+          9,
+          6810,
+          670,
+          41,
+          6
+        ],
+        [
+          107,
+          38,
+          21,
+          22,
+          7,
+          641,
+          2082,
+          17,
+          5
+        ],
+        [
+          23,
+          82,
+          42,
+          37,
+          6,
+          42,
+          5,
+          2782,
+          14
+        ],
+        [
+          8,
+          66,
+          94,
+          39,
+          3,
+          9,
+          6,
+          22,
+          1705
+        ]
+      ],
+      "critical_f1": 0.3396648044692737,
+      "critical_precision": 0.4342857142857143,
+      "critical_recall": 0.27889908256880735,
+      "critical_support": 545,
+      "macro_f1": 0.7258162180952451,
+      "row_count": 127706,
+      "weighted_f1": 0.864238349833087
+    }
+  },
+  "fit_scope": {
+    "end": "2024-06-30",
+    "partition": "train",
+    "role": "inner_fit",
+    "start": "2023-08-01"
+  },
+  "frozen": true,
+  "frozen_config": {
+    "sha256": "51EDCFAF209636C57F2B7950F83918EA8E5F39015885DC722C11B2C6B702242D",
+    "size_bytes": 6726
+  },
+  "hard_negative": {
+    "hard_negative_groups": 14190,
+    "pool_rows": 15136,
+    "pool_signature": "D173E5CD476B2F10404E4F694DAE1ED4BC457EB34D687FC719339DF07146C9D6",
+    "positive_groups": 946
+  },
+  "input_language": "en-US",
+  "model_spec": {
+    "critical_class": "debt_credit_management",
+    "fallback_model_version": "consumer-complaint-classifier-s7",
+    "input_language": "en-US",
+    "model_version": "consumer-complaint-detector-v2",
+    "score_kind": "critical_margin",
+    "stage": "hierarchical_critical_override",
+    "threshold": -0.13949530151425016
+  },
+  "model_version": "consumer-complaint-detector-v2",
+  "opened_at": "2026-08-19T14:00:22Z",
+  "outcome": "PACKAGE_FROZEN",
+  "outer": {
+    "critical_f1_vs_fallback": 0.047233864926836844,
+    "effective_overrides": 82,
+    "gates": {
+      "checks": {
+        "critical_f1": true,
+        "critical_precision": true,
+        "macro_f1": true
+      },
+      "gate_count": 3,
+      "limits": {
+        "critical_f1_min": 0.2715,
+        "critical_precision_min": 0.2,
+        "global_macro_f1_min": 0.69
+      },
+      "passed": true,
+      "required_gate_count": 3,
+      "values": {
+        "critical_f1": 0.38689866939611056,
+        "critical_precision": 0.4375,
+        "macro_f1": 0.731214101791537
+      }
+    },
+    "metrics": {
+      "accuracy": 0.8620659953330305,
+      "balanced_accuracy": 0.7549798432254285,
+      "confusion_matrix": [
+        [
+          6905,
+          160,
+          620,
+          265,
+          17,
+          595,
+          209,
+          26,
+          21
+        ],
+        [
+          140,
+          2478,
+          314,
+          223,
+          6,
+          95,
+          41,
+          69,
+          36
+        ],
+        [
+          1368,
+          1056,
+          77511,
+          3894,
+          138,
+          313,
+          119,
+          375,
+          257
+        ],
+        [
+          336,
+          409,
+          2998,
+          9634,
+          50,
+          96,
+          53,
+          109,
+          56
+        ],
+        [
+          36,
+          31,
+          86,
+          143,
+          189,
+          21,
+          12,
+          23,
+          4
+        ],
+        [
+          423,
+          78,
+          138,
+          69,
+          12,
+          6807,
+          670,
+          41,
+          6
+        ],
+        [
+          107,
+          38,
+          21,
+          21,
+          8,
+          641,
+          2082,
+          17,
+          5
+        ],
+        [
+          23,
+          82,
+          42,
+          37,
+          8,
+          42,
+          5,
+          2780,
+          14
+        ],
+        [
+          8,
+          66,
+          94,
+          39,
+          4,
+          9,
+          6,
+          21,
+          1705
+        ]
+      ],
+      "critical_f1": 0.38689866939611056,
+      "critical_precision": 0.4375,
+      "critical_recall": 0.3467889908256881,
+      "critical_support": 545,
+      "macro_f1": 0.731214101791537,
+      "row_count": 127706,
+      "weighted_f1": 0.8644805955756623
+    },
+    "override_decisions": 258,
+    "safety": {
+      "checks": {
+        "critical_f1": true,
+        "critical_precision": true,
+        "macro_f1": true
+      },
+      "gate_count": 3,
+      "headroom": {
+        "critical_f1": 0.09689866939611058,
+        "critical_precision": 0.2175,
+        "macro_f1": 0.031214101791537052
+      },
+      "limits": {
+        "critical_f1_min": 0.29,
+        "critical_precision_min": 0.22,
+        "global_macro_f1_min": 0.7
+      },
+      "passed": true,
+      "required_gate_count": 3,
+      "values": {
+        "critical_f1": 0.38689866939611056,
+        "critical_precision": 0.4375,
+        "macro_f1": 0.731214101791537
+      }
+    }
+  },
+  "outer_scope": {
+    "end": "2024-12-31",
+    "partition": "validation",
+    "role": "outer_evaluation",
+    "start": "2024-10-01"
+  },
+  "provenance": {
+    "cache": {
+      "path": "temp/s3/scientific.parquet",
+      "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+      "size_bytes": 152781873
+    },
+    "d1_artifact": {
+      "path": "temp/v2/v2_classical_benchmark.json",
+      "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+      "size_bytes": 219597
+    },
+    "d1_manifest": {
+      "path": "config/v2_classical_results.json",
+      "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+      "size_bytes": 1573
+    },
+    "d2_artifact": {
+      "path": "temp/v2/v2_transformer_challenge.json",
+      "sha256": "37B5E24A80AD6BEBC8C50ACDB75F6925952DC0CCB45B67EA32D52F6B9BA6243E",
+      "size_bytes": 38556
+    },
+    "d2_manifest": {
+      "path": "config/v2_transformer_results.json",
+      "sha256": "8DA685A7F0792A33986150E4CD4CA832DD93CBF787FD0F2891EB28AE6C73985D",
+      "size_bytes": 1712
+    },
+    "protocol": {
+      "path": "config/v2_development_protocol.json",
+      "sha256": "45E5F83C624B97E1AF785AF6EA6185F7E4DA2D73E6A9F7AB86ED7FDBFF9C16C5",
+      "size_bytes": 5973
+    },
+    "s7_bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    },
+    "s7_manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "s7_result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    }
+  },
+  "reproduction_gate": {
+    "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+    "check_count": 21,
+    "checks": {
+      "calibrated_threshold": true,
+      "calibration_confusion_matrix": true,
+      "calibration_effective_overrides": true,
+      "calibration_override_decisions": true,
+      "config_expected_calibration_effective_overrides": true,
+      "config_expected_calibration_override_decisions": true,
+      "config_expected_calibration_row_count": true,
+      "config_expected_hard_negative_pool": true,
+      "config_expected_outer_critical_f1": true,
+      "config_expected_outer_critical_precision": true,
+      "config_expected_outer_critical_recall": true,
+      "config_expected_outer_critical_support": true,
+      "config_expected_outer_effective_overrides": true,
+      "config_expected_outer_macro_f1": true,
+      "config_expected_outer_override_decisions": true,
+      "config_expected_outer_row_count": true,
+      "config_expected_threshold": true,
+      "hard_negative_pool_counts": true,
+      "outer_confusion_matrix": true,
+      "outer_effective_overrides": true,
+      "outer_override_decisions": true
+    },
+    "comparison": "exact_no_tolerance",
+    "divergences": {},
+    "failed_checks": [],
+    "fallback_environment": "kaggle_image_used_by_v2_1_d1",
+    "passed": true,
+    "required": true,
+    "required_checks": [
+      "calibrated_threshold",
+      "calibration_confusion_matrix",
+      "calibration_override_decisions",
+      "calibration_effective_overrides",
+      "outer_confusion_matrix",
+      "outer_override_decisions",
+      "outer_effective_overrides",
+      "hard_negative_pool_counts"
+    ],
+    "source_of_truth": "temp/v2/v2_classical_benchmark.json"
+  },
+  "run_mode": "full",
+  "runtime_seconds": 1309.0263996200001,
+  "safety_margin": {
+    "evidence_status": "development_optimistic_not_independent",
+    "headroom": {
+      "critical_f1": 0.09689866939611058,
+      "critical_precision": 0.2175,
+      "macro_f1": 0.031214101791537052
+    },
+    "limits": {
+      "critical_f1_min": 0.29,
+      "critical_precision_min": 0.22,
+      "global_macro_f1_min": 0.7
+    },
+    "measured_on": "outer_evaluation",
+    "passed": true,
+    "required_gate_count": 3,
+    "values": {
+      "critical_f1": 0.38689866939611056,
+      "critical_precision": 0.4375,
+      "macro_f1": 0.731214101791537
+    }
+  },
+  "schema_version": "v2-package-v1",
+  "sealed_access": {
+    "monitor": false,
+    "stress": false,
+    "test": false
+  },
+  "sealed_partitions": [
+    "test",
+    "stress",
+    "monitor"
+  ],
+  "signature": "94B12AF72C56CBB1FC091AE7408534A39F2E98A86091201C3DEF0328F5F6FE54",
+  "stage": "V2.1-P",
+  "status": "COMPLETE"
+}

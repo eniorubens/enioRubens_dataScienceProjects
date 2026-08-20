@@ -1,0 +1,89 @@
+{
+  "schema_version": "s6-results-manifest-v1",
+  "artifact": {
+    "path": "temp/s6/s6_results.json",
+    "sha256": "050AA8B379A4F2DB95A29662C69AA214CD4154971C2C1534384500967D7211AE",
+    "schema_version": "s6-calibrated-classical-v1",
+    "status": "DEVELOPMENT_COMPLETE",
+    "run_mode": "full",
+    "complete": true,
+    "selection_status": "RECOMMENDED",
+    "recommended_candidate": "linear_svc_c_0_3_balanced",
+    "recommended_scope": "development_only",
+    "deploy": false,
+    "sealed": false,
+    "claim_boundary": "NO_TEST_STRESS_OR_MONITOR_ACCESS"
+  },
+  "protocol": {
+    "outer": "validation:2024-07-01..2024-12-31",
+    "inner_fit": "train:2023-08-01..2024-04-30",
+    "inner_calibration": "train:2024-05-01..2024-06-30",
+    "sealed_partitions": ["test", "stress", "monitor"],
+    "scope_rows": {
+      "inner_fit": 271819,
+      "inner_calibration": 73733,
+      "outer_validation": 245980
+    },
+    "limits": {
+      "global_macro_f1": 0.69,
+      "critical_f1": 0.2715,
+      "critical_precision": 0.2
+    }
+  },
+  "candidates": [
+    {
+      "name": "ridge_balanced",
+      "estimator": "RidgeClassifier",
+      "runtime_seconds": 53.32789150000008,
+      "warnings": [],
+      "calibration": {"threshold": 0.37713614106178284, "gate_count": 3, "eligible": true, "global_macro_f1": 0.7004648486738303, "critical_f1": 0.30057803468208094, "critical_precision": 0.3969465648854962},
+      "outer": null
+    },
+    {
+      "name": "logistic_regression_saga_balanced",
+      "estimator": "LogisticRegression",
+      "runtime_seconds": 460.4684867000001,
+      "warnings": ["The max_iter was reached which means the coef_ did not converge"],
+      "calibration": {"threshold": 14.96053957939148, "gate_count": 1, "eligible": false, "global_macro_f1": 0.680330379150537, "critical_f1": 0.2233766233766234, "critical_precision": 0.2529411764705882},
+      "outer": null
+    },
+    {
+      "name": "linear_svc_c_0_3_balanced",
+      "estimator": "LinearSVC",
+      "runtime_seconds": 87.06740850000006,
+      "warnings": [],
+      "calibration": {"threshold": -0.05898101744617057, "gate_count": 3, "eligible": true, "global_macro_f1": 0.7321620399360317, "critical_f1": 0.3264248704663213, "critical_precision": 0.3684210526315789},
+      "outer": {"gate_count": 3, "eligible": true, "global_macro_f1": 0.7181382079245, "critical_f1": 0.2823086574654956, "critical_precision": 0.32051282051282054, "balanced_accuracy": 0.7442948050222236, "weighted_f1": 0.8644795370613517, "row_count": 245980, "threshold": -0.05898101744617057}
+    },
+    {
+      "name": "linear_svc_c_1_balanced",
+      "estimator": "LinearSVC",
+      "runtime_seconds": 112.12129579999964,
+      "warnings": [],
+      "calibration": {"threshold": -0.14371195914467627, "gate_count": 3, "eligible": true, "global_macro_f1": 0.7189625143103895, "critical_f1": 0.3045685279187817, "critical_precision": 0.33519553072625696},
+      "outer": null
+    },
+    {
+      "name": "linear_svc_c_3_balanced",
+      "estimator": "LinearSVC",
+      "runtime_seconds": 168.61088999999993,
+      "warnings": [],
+      "calibration": {"threshold": -0.04348549546231095, "gate_count": 2, "eligible": false, "global_macro_f1": 0.699165494063709, "critical_f1": 0.2603550295857988, "critical_precision": 0.35772357723577236},
+      "outer": null
+    }
+  ],
+  "execution": {
+    "execution_attempts": 2,
+    "attempts": [
+      {"number": 1, "status": "ABORTED_LOW_MEMORY", "previous_status": "RUNNING"},
+      {"number": 2, "status": "COMPLETE", "resumed": true, "reused_candidate_count": 2}
+    ],
+    "vectorizer_fit_count": 2,
+    "scope": "one shared word TF-IDF representation; calibration and outer validation only"
+  },
+  "resource_monitors": [
+    {"path": "temp/s6/s6_resource_monitor.json", "status": "ABORTED_LOW_MEMORY", "peak_process_rss_gb": 3.267230987548828, "min_system_available_gb": 0.35181427001953125, "samples": 1204},
+    {"path": "temp/s6/s6_resource_monitor_resume.json", "status": "COMPLETE", "peak_process_rss_gb": 3.3121414184570312, "min_system_available_gb": 4.332851409912109, "elapsed_seconds": 571.1051462, "samples": 1101}
+  ],
+  "interpretation_pt_br": "O candidato recomendado é elegível apenas em desenvolvimento. O warning do SAGA registra não convergência dentro de max_iter e não autoriza promoção. O outer validation é informativo e não confirmatório; test, stress e monitor permanecem selados. Nenhuma abertura automática das partições seladas deve ocorrer."
+}

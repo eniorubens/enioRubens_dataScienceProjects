@@ -1,0 +1,216 @@
+{
+  "adr": "docs/ADR-010-v2-post-confirmation-cycle.md",
+  "contains_data": false,
+  "created_utc": "2026-08-19T13:59:05+00:00",
+  "environment": {
+    "installed": {
+      "imbalanced-learn": "0.14.2",
+      "joblib": "1.5.3",
+      "numpy": "2.4.6",
+      "pyarrow": "25.0.0",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.17.1"
+    },
+    "pin_matches": {
+      "imbalanced-learn": true,
+      "scikit-learn": true
+    },
+    "pins_match": true,
+    "python_version": "3.11.15",
+    "required_pins": {
+      "imbalanced-learn": "0.14.2",
+      "scikit-learn": "1.9.0"
+    }
+  },
+  "files": {
+    "artifacts/s7/consumer_complaint_classifier_s7.joblib": {
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    },
+    "config/s7_frozen_package.json": {
+      "sha256": "D73014AEA0C40ECA323FAE6AE1E76CBF0C62E953304BD7A10092DBBBE5DC6D78",
+      "size_bytes": 1351
+    },
+    "config/s7_results.json": {
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "config/s8_results.json": {
+      "sha256": "E9301499F73BC0619A477C6925BE35E1ED67928D308748E3755B901D659F455A",
+      "size_bytes": 2298
+    },
+    "config/v2_classical_results.json": {
+      "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+      "size_bytes": 1573
+    },
+    "config/v2_d2_execution.json": {
+      "sha256": "F61931AACE4B000EDEBE3CEA1B40783CB8F54D64D6ACE9FA896474FC2A24AD57",
+      "size_bytes": 4423
+    },
+    "config/v2_development_protocol.json": {
+      "sha256": "45E5F83C624B97E1AF785AF6EA6185F7E4DA2D73E6A9F7AB86ED7FDBFF9C16C5",
+      "size_bytes": 5973
+    },
+    "config/v2_frozen_package.json": {
+      "sha256": "51EDCFAF209636C57F2B7950F83918EA8E5F39015885DC722C11B2C6B702242D",
+      "size_bytes": 6726
+    },
+    "config/v2_transformer_results.json": {
+      "sha256": "8DA685A7F0792A33986150E4CD4CA832DD93CBF787FD0F2891EB28AE6C73985D",
+      "size_bytes": 1712
+    },
+    "pyproject.toml": {
+      "sha256": "214133FDB90E5314EE4BE7520AD6F3A4A280C937995716C80034F75F02DF4E96",
+      "size_bytes": 511
+    },
+    "src/consumer_complaint_intelligence/__init__.py": {
+      "sha256": "9D885AB5A3A8D88A177AFCE1A5058A3EEFE62575C2BECA4A6426DC300B3B5AE9",
+      "size_bytes": 91
+    },
+    "src/consumer_complaint_intelligence/audit.py": {
+      "sha256": "6541BE5D593540B7ADAB85FB8A17530BE62CB18D7118630C25BE30B1CDD8AF75",
+      "size_bytes": 20386
+    },
+    "src/consumer_complaint_intelligence/config.py": {
+      "sha256": "D7C7CECEA1F9424B53CF90D6271C92C850A46EBC53AB8D4403D5EE574BBE56E4",
+      "size_bytes": 3606
+    },
+    "src/consumer_complaint_intelligence/contracts.py": {
+      "sha256": "874F90F98481777AF2D80191A21ED83B154266A8A4DAFB86364876189565DCE9",
+      "size_bytes": 3453
+    },
+    "src/consumer_complaint_intelligence/data.py": {
+      "sha256": "5F33DF896720A6F49ED9C7B54410E03DCD457BF13616937DEEACA554FDD60FB7",
+      "size_bytes": 5174
+    },
+    "src/consumer_complaint_intelligence/deduplication.py": {
+      "sha256": "3CF3AC1A5BA8C8F1B0D436AC03DEAC351CE1704B76B1EA3A92F6F43E468A6EBA",
+      "size_bytes": 10025
+    },
+    "src/consumer_complaint_intelligence/kaggle_execution.py": {
+      "sha256": "7C20083311B84B7F92280056CC1ACC26338C80BF5125A6D18BA15D5076DF5506",
+      "size_bytes": 27015
+    },
+    "src/consumer_complaint_intelligence/s1.py": {
+      "sha256": "7EC1B71FF666026C4DA5BEA381176B9B830ABAD61C28393B72334F1BA4BDC917",
+      "size_bytes": 28352
+    },
+    "src/consumer_complaint_intelligence/s3.py": {
+      "sha256": "FB0FFBB9191D6B87C24C7AFFE6E379B21C6926E288FB67A1D788BA08EBB3C1D2",
+      "size_bytes": 63334
+    },
+    "src/consumer_complaint_intelligence/s3_reporting.py": {
+      "sha256": "6C0C42123CFB8F4FB7D79598063E66CA79BBB033C5F030133CBBCD63260E61BD",
+      "size_bytes": 7048
+    },
+    "src/consumer_complaint_intelligence/s4.py": {
+      "sha256": "1B9B1F6F8E51E222281155C4D15A99E9E40BA56DA1E3DAEEF3A3D0C80CBE9059",
+      "size_bytes": 29440
+    },
+    "src/consumer_complaint_intelligence/s4_reporting.py": {
+      "sha256": "315F997A91B8306B5D95928A3D42F14EB9AB33BCABE84F7C44248EA86F925B71",
+      "size_bytes": 8318
+    },
+    "src/consumer_complaint_intelligence/s5.py": {
+      "sha256": "7EB368449E0298D397751CA2FBAD036F3A622882AD6BF8FF797384B5504A27CC",
+      "size_bytes": 34787
+    },
+    "src/consumer_complaint_intelligence/s5_reporting.py": {
+      "sha256": "AC2E4FF9BFE27B7C2D330348AB2C697CF307398C815BE909BAFB0436ECC0B1A3",
+      "size_bytes": 9927
+    },
+    "src/consumer_complaint_intelligence/s6.py": {
+      "sha256": "878944F37D88ACE8015F19EA4EEEFDE3A14308EE48650FB78DD9C9B1E255A06B",
+      "size_bytes": 36661
+    },
+    "src/consumer_complaint_intelligence/s6_reporting.py": {
+      "sha256": "86BC45185958331991F5630D3B7483955CC10F40CA2E15C4946130E8347465E6",
+      "size_bytes": 9762
+    },
+    "src/consumer_complaint_intelligence/s7.py": {
+      "sha256": "9BBF5D378F60D8F95A0B26B2BBF4AB2B35E5B292BF98D3EA6D82BC639A276E65",
+      "size_bytes": 36183
+    },
+    "src/consumer_complaint_intelligence/s7_reporting.py": {
+      "sha256": "8623A9AB14C3298DC02C9377F029E1C98CE707695D3C8AC7643D611A87AD342B",
+      "size_bytes": 5283
+    },
+    "src/consumer_complaint_intelligence/s8.py": {
+      "sha256": "0CD2ADBA1BDA482B46572A8A6AD027AD770A7F14CC13B8BC4086228685BB3EDB",
+      "size_bytes": 50870
+    },
+    "src/consumer_complaint_intelligence/s8_reporting.py": {
+      "sha256": "52E0290F693A4A39FD07C2FB477FF11656EBA88A1281D892664F096C637FBE81",
+      "size_bytes": 6642
+    },
+    "src/consumer_complaint_intelligence/service.py": {
+      "sha256": "4304F2C528EBD320D26607E78E02872E753B82DD3733C5F95CEF09E3D5185CB6",
+      "size_bytes": 1681
+    },
+    "src/consumer_complaint_intelligence/taxonomy.py": {
+      "sha256": "0B6B08B18FE87E16EF773BABACB02AFAF16EDBD3763B298E2B1598AF0D157C0E",
+      "size_bytes": 4428
+    },
+    "src/consumer_complaint_intelligence/temporal_split.py": {
+      "sha256": "659FFCED7BAB4743F2AC3A204AB62FCCCD211EB722998F2977D8954392DA922A",
+      "size_bytes": 34934
+    },
+    "src/consumer_complaint_intelligence/tracking.py": {
+      "sha256": "BB099719076BE7870747E56E803C0329B0AD4ED03E00F052768A029F2B404E1E",
+      "size_bytes": 3378
+    },
+    "src/consumer_complaint_intelligence/v2_benchmark.py": {
+      "sha256": "92C2B575594502213D639C7325464EE5EBB11844A45D7FF1CB57D349FB583F75",
+      "size_bytes": 49352
+    },
+    "src/consumer_complaint_intelligence/v2_detector.py": {
+      "sha256": "42A8ABB7D00641A1DB98B366E60BA4A531AE38FFC07ADCCBA33F0AF9A15D1C81",
+      "size_bytes": 28308
+    },
+    "src/consumer_complaint_intelligence/v2_import.py": {
+      "sha256": "21ADDD5E0D4EF9AC09766185D9636BE84FC2B98AE2C1099EC921D3D7692D9D41",
+      "size_bytes": 33816
+    },
+    "src/consumer_complaint_intelligence/v2_package.py": {
+      "sha256": "09CAD4B7DD1268E0C8D7C5404D8BA510D01164D8CA4CDAA4FB4EE7A531C44A91",
+      "size_bytes": 73582
+    },
+    "src/consumer_complaint_intelligence/v2_protocol.py": {
+      "sha256": "CCFA9679838174A5F1147ADCA2EDE0299557BAD2E2F8D7FFA4D225BBF5A1C7F6",
+      "size_bytes": 24768
+    },
+    "src/consumer_complaint_intelligence/v2_transformer.py": {
+      "sha256": "EBFF211A30BA5CE67CA7C353E18901DA6219F10A47504DBD3F16D6E9492D1C86",
+      "size_bytes": 46945
+    },
+    "temp/s7/s7_results.json": {
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    },
+    "temp/s8/s8_results.json": {
+      "sha256": "B72927A7D44BDFDF37536B586EB41A16ECBAA1B2A53416BB293FC669C9002D6A",
+      "size_bytes": 11915
+    },
+    "temp/v2/v2_classical_benchmark.json": {
+      "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+      "size_bytes": 219597
+    },
+    "temp/v2/v2_transformer_challenge.json": {
+      "sha256": "37B5E24A80AD6BEBC8C50ACDB75F6925952DC0CCB45B67EA32D52F6B9BA6243E",
+      "size_bytes": 38556
+    }
+  },
+  "purpose": "kaggle_execution_bundle",
+  "schema_version": "v2-kaggle-bundle-manifest-v1",
+  "scientific_cache": {
+    "path": "temp/s3/scientific.parquet",
+    "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+    "size_bytes": 152781873
+  },
+  "sealed_partitions": [
+    "test",
+    "stress",
+    "monitor"
+  ],
+  "stage": "V2.1-D1+D2+P"
+}

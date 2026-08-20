@@ -1,0 +1,2299 @@
+{
+  "candidates": [
+    {
+      "convergence_warnings": [],
+      "diagnostics": {
+        "critical_false_negatives": [
+          {
+            "count": 186,
+            "predicted_class": "debt_collection",
+            "rate": 0.2085201793721973
+          },
+          {
+            "count": 143,
+            "predicted_class": "credit_reporting",
+            "rate": 0.16031390134529147
+          },
+          {
+            "count": 51,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.05717488789237668
+          },
+          {
+            "count": 44,
+            "predicted_class": "consumer_lending",
+            "rate": 0.04932735426008968
+          },
+          {
+            "count": 39,
+            "predicted_class": "mortgage",
+            "rate": 0.043721973094170405
+          },
+          {
+            "count": 37,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.04147982062780269
+          },
+          {
+            "count": 13,
+            "predicted_class": "money_services",
+            "rate": 0.014573991031390135
+          },
+          {
+            "count": 5,
+            "predicted_class": "student_loan",
+            "rate": 0.005605381165919282
+          }
+        ],
+        "critical_false_positives": [
+          {
+            "count": 826,
+            "rate": 0.005012105509068513,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 410,
+            "rate": 0.016037551339722275,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 208,
+            "rate": 0.01203564402268256,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 116,
+            "rate": 0.007419251678925488,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 113,
+            "rate": 0.017557489123679305,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 38,
+            "rate": 0.007009776793949456,
+            "true_class": "money_services"
+          },
+          {
+            "count": 38,
+            "rate": 0.0061478725125384244,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 28,
+            "rate": 0.007432970533581099,
+            "true_class": "student_loan"
+          }
+        ],
+        "top_confusions": [
+          {
+            "count": 6452,
+            "predicted_class": "debt_collection",
+            "rate": 0.18028389404269587,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 5999,
+            "predicted_class": "credit_reporting",
+            "rate": 0.16762601989493686,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 2794,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.07807086174136582,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1913,
+            "predicted_class": "consumer_lending",
+            "rate": 0.05345367162177266,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1712,
+            "predicted_class": "credit_reporting",
+            "rate": 0.047837263887336536,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 1417,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.039594277411422824,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 1339,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.03741477590253716,
+            "true_class": "money_services"
+          },
+          {
+            "count": 1062,
+            "predicted_class": "money_services",
+            "rate": 0.02967475131328937,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 1006,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.028109980999217615,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 887,
+            "predicted_class": "mortgage",
+            "rate": 0.024784844081815135,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 826,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0230803621325584,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 751,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.020984687604783725,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 736,
+            "predicted_class": "credit_reporting",
+            "rate": 0.02056555269922879,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 725,
+            "predicted_class": "student_loan",
+            "rate": 0.02025818710182184,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 672,
+            "predicted_class": "consumer_lending",
+            "rate": 0.01877724376886107,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 622,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.01738012741701129,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 443,
+            "predicted_class": "credit_reporting",
+            "rate": 0.012378450877389069,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 422,
+            "predicted_class": "money_services",
+            "rate": 0.01179166200961216,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 410,
+            "predicted_class": "debt_collection",
+            "rate": 0.011456354085168213,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 410,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.011456354085168213,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 340,
+            "predicted_class": "debt_collection",
+            "rate": 0.009500391192578518,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 316,
+            "predicted_class": "consumer_lending",
+            "rate": 0.008829775343690623,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 259,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.007237062702581871,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 254,
+            "predicted_class": "mortgage",
+            "rate": 0.007097351067396893,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 252,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.007041466413322902,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 223,
+            "predicted_class": "consumer_lending",
+            "rate": 0.006231138929250028,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 208,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.005812004023695094,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 201,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.005616407734436124,
+            "true_class": "money_services"
+          },
+          {
+            "count": 200,
+            "predicted_class": "money_services",
+            "rate": 0.005588465407399128,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 199,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.005560523080362132,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 186,
+            "predicted_class": "debt_collection",
+            "rate": 0.0051972728288811896,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 164,
+            "predicted_class": "credit_reporting",
+            "rate": 0.0045825416340672855,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 161,
+            "predicted_class": "consumer_lending",
+            "rate": 0.004498714652956298,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 143,
+            "predicted_class": "credit_reporting",
+            "rate": 0.003995752766290377,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 143,
+            "predicted_class": "credit_reporting",
+            "rate": 0.003995752766290377,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 121,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0033810215714764726,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 116,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0032413099362914944,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 113,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0031574829551805073,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 112,
+            "predicted_class": "mortgage",
+            "rate": 0.0031295406281435117,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 109,
+            "predicted_class": "consumer_lending",
+            "rate": 0.003045713647032525,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 107,
+            "predicted_class": "money_services",
+            "rate": 0.0029898289929585335,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 87,
+            "predicted_class": "debt_collection",
+            "rate": 0.0024309824522186206,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 80,
+            "predicted_class": "mortgage",
+            "rate": 0.002235386162959651,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 79,
+            "predicted_class": "student_loan",
+            "rate": 0.0022074438359226557,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 76,
+            "predicted_class": "debt_collection",
+            "rate": 0.0021236168548116685,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 72,
+            "predicted_class": "money_services",
+            "rate": 0.0020118475466636863,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 71,
+            "predicted_class": "credit_reporting",
+            "rate": 0.0019839052196266903,
+            "true_class": "money_services"
+          },
+          {
+            "count": 70,
+            "predicted_class": "student_loan",
+            "rate": 0.0019559628925896948,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 62,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0017324242762937296,
+            "true_class": "money_services"
+          },
+          {
+            "count": 54,
+            "predicted_class": "debt_collection",
+            "rate": 0.0015088856599977645,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 52,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0014530010059237734,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 51,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0014250586788867776,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 48,
+            "predicted_class": "mortgage",
+            "rate": 0.0013412316977757907,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 44,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0012294623896278083,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 39,
+            "predicted_class": "mortgage",
+            "rate": 0.00108975075444283,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 38,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0010618084274058343,
+            "true_class": "money_services"
+          },
+          {
+            "count": 38,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0010618084274058343,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 38,
+            "predicted_class": "student_loan",
+            "rate": 0.0010618084274058343,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 37,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0010338661003688387,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 35,
+            "predicted_class": "student_loan",
+            "rate": 0.0009779814462948474,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 29,
+            "predicted_class": "mortgage",
+            "rate": 0.0008103274840728736,
+            "true_class": "money_services"
+          },
+          {
+            "count": 28,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0007823851570358779,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 23,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0006426735218508997,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 23,
+            "predicted_class": "mortgage",
+            "rate": 0.0006426735218508997,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 18,
+            "predicted_class": "money_services",
+            "rate": 0.0005029618866659216,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 18,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0005029618866659216,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 14,
+            "predicted_class": "debt_collection",
+            "rate": 0.00039119257851793896,
+            "true_class": "money_services"
+          },
+          {
+            "count": 13,
+            "predicted_class": "money_services",
+            "rate": 0.00036325025148094335,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 9,
+            "predicted_class": "student_loan",
+            "rate": 0.0002514809433329608,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 9,
+            "predicted_class": "money_services",
+            "rate": 0.0002514809433329608,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 5,
+            "predicted_class": "student_loan",
+            "rate": 0.0001397116351849782,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 3,
+            "predicted_class": "student_loan",
+            "rate": 8.382698111098692e-05,
+            "true_class": "money_services"
+          }
+        ]
+      },
+      "eligible": false,
+      "estimator": "SGDClassifier",
+      "gates": {
+        "critical_f1": false,
+        "critical_precision": false,
+        "global_macro_f1": true
+      },
+      "metrics": {
+        "balanced_accuracy": 0.7419930464565737,
+        "confusion_matrix": [
+          [
+            12714,
+            316,
+            1712,
+            410,
+            208,
+            1417,
+            422,
+            48,
+            35
+          ],
+          [
+            259,
+            4447,
+            736,
+            340,
+            113,
+            252,
+            107,
+            112,
+            70
+          ],
+          [
+            2794,
+            1913,
+            150253,
+            6452,
+            826,
+            751,
+            200,
+            887,
+            725
+          ],
+          [
+            622,
+            672,
+            5999,
+            17258,
+            410,
+            199,
+            72,
+            254,
+            79
+          ],
+          [
+            51,
+            44,
+            143,
+            186,
+            374,
+            37,
+            13,
+            39,
+            5
+          ],
+          [
+            1006,
+            109,
+            443,
+            87,
+            116,
+            12723,
+            1062,
+            80,
+            9
+          ],
+          [
+            201,
+            62,
+            71,
+            14,
+            38,
+            1339,
+            3664,
+            29,
+            3
+          ],
+          [
+            52,
+            223,
+            143,
+            54,
+            38,
+            121,
+            18,
+            5494,
+            38
+          ],
+          [
+            23,
+            161,
+            164,
+            76,
+            28,
+            18,
+            9,
+            23,
+            3265
+          ]
+        ],
+        "macro_f1": 0.700392672156457,
+        "per_class": {
+          "cards_prepaid": {
+            "f1": 0.7264312649982858,
+            "precision": 0.7174133844938495,
+            "recall": 0.7356787408864714,
+            "support": 17282
+          },
+          "consumer_lending": {
+            "f1": 0.6183689077383021,
+            "precision": 0.559582232288914,
+            "recall": 0.6909571162212554,
+            "support": 6436
+          },
+          "credit_reporting": {
+            "f1": 0.9261584454409567,
+            "precision": 0.9410574706884457,
+            "recall": 0.9117238366272049,
+            "support": 164801
+          },
+          "debt_collection": {
+            "f1": 0.6842710439712938,
+            "precision": 0.6937331671825381,
+            "recall": 0.6750635634656758,
+            "support": 25565
+          },
+          "debt_credit_management": {
+            "f1": 0.24581005586592178,
+            "precision": 0.17387261738726173,
+            "recall": 0.4192825112107623,
+            "support": 892
+          },
+          "deposit_accounts": {
+            "f1": 0.7831466207066355,
+            "precision": 0.7547606335646913,
+            "recall": 0.8137511992324912,
+            "support": 15635
+          },
+          "money_services": {
+            "f1": 0.6669093556607208,
+            "precision": 0.6581641817855218,
+            "recall": 0.6758900571850213,
+            "support": 5421
+          },
+          "mortgage": {
+            "f1": 0.8357800258614132,
+            "precision": 0.7886879127189205,
+            "recall": 0.8888529364180553,
+            "support": 6181
+          },
+          "student_loan": {
+            "f1": 0.8166583291645823,
+            "precision": 0.7720501300543864,
+            "recall": 0.8667374568622246,
+            "support": 3767
+          }
+        },
+        "row_count": 245980,
+        "weighted_f1": 0.8577145234798565
+      },
+      "name": "sgd_log_loss_balanced_reference",
+      "parameters": {
+        "class_weight": "balanced",
+        "loss": "log_loss",
+        "max_iter": 500,
+        "random_state": 42,
+        "tol": 0.001
+      },
+      "runtime_seconds": 80.7041418000008,
+      "train_rows": 345552,
+      "validation_rows": 245980,
+      "vocabulary_size": 40000
+    },
+    {
+      "convergence_warnings": [],
+      "diagnostics": {
+        "critical_false_negatives": [
+          {
+            "count": 265,
+            "predicted_class": "debt_collection",
+            "rate": 0.297085201793722
+          },
+          {
+            "count": 161,
+            "predicted_class": "credit_reporting",
+            "rate": 0.1804932735426009
+          },
+          {
+            "count": 91,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.10201793721973094
+          },
+          {
+            "count": 69,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0773542600896861
+          },
+          {
+            "count": 42,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.04708520179372197
+          },
+          {
+            "count": 41,
+            "predicted_class": "mortgage",
+            "rate": 0.04596412556053812
+          },
+          {
+            "count": 23,
+            "predicted_class": "money_services",
+            "rate": 0.0257847533632287
+          },
+          {
+            "count": 10,
+            "predicted_class": "student_loan",
+            "rate": 0.011210762331838564
+          }
+        ],
+        "critical_false_positives": [
+          {
+            "count": 180,
+            "rate": 0.0010922263821214677,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 83,
+            "rate": 0.0032466262468218267,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 33,
+            "rate": 0.001909501215137137,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 20,
+            "rate": 0.0012791813239526704,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 16,
+            "rate": 0.002486016159105034,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 11,
+            "rate": 0.0017796473062611229,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 6,
+            "rate": 0.0011068068622025456,
+            "true_class": "money_services"
+          },
+          {
+            "count": 6,
+            "rate": 0.0015927794000530925,
+            "true_class": "student_loan"
+          }
+        ],
+        "top_confusions": [
+          {
+            "count": 7918,
+            "predicted_class": "debt_collection",
+            "rate": 0.22571909119416175,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 5239,
+            "predicted_class": "credit_reporting",
+            "rate": 0.1493486131303629,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 2958,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.08432395450269392,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1969,
+            "predicted_class": "consumer_lending",
+            "rate": 0.056130448416431486,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1367,
+            "predicted_class": "credit_reporting",
+            "rate": 0.038969183842184785,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 1270,
+            "predicted_class": "money_services",
+            "rate": 0.03620399669317825,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 1264,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.03603295418911599,
+            "true_class": "money_services"
+          },
+          {
+            "count": 1211,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.034522078736566035,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 991,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.02825052025428319,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 785,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.022378060948145616,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 738,
+            "predicted_class": "consumer_lending",
+            "rate": 0.021038227999657915,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 674,
+            "predicted_class": "mortgage",
+            "rate": 0.019213774622993816,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 648,
+            "predicted_class": "credit_reporting",
+            "rate": 0.018472590438724023,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 616,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.017560363750391973,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 600,
+            "predicted_class": "debt_collection",
+            "rate": 0.017104250406225947,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 505,
+            "predicted_class": "student_loan",
+            "rate": 0.014396077425240171,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 470,
+            "predicted_class": "debt_collection",
+            "rate": 0.013398329484876991,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 393,
+            "predicted_class": "money_services",
+            "rate": 0.011203284016077996,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 362,
+            "predicted_class": "consumer_lending",
+            "rate": 0.010319564411756322,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 332,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.009464351891445025,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 289,
+            "predicted_class": "credit_reporting",
+            "rate": 0.008238547278998832,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 265,
+            "predicted_class": "debt_collection",
+            "rate": 0.007554377262749793,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 256,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0072978135066564045,
+            "true_class": "money_services"
+          },
+          {
+            "count": 210,
+            "predicted_class": "money_services",
+            "rate": 0.005986487642179081,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 201,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.005729923886085692,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 198,
+            "predicted_class": "mortgage",
+            "rate": 0.005644402634054563,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 194,
+            "predicted_class": "credit_reporting",
+            "rate": 0.005530374298013056,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 189,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.005387838877961173,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 180,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.005131275121867784,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 173,
+            "predicted_class": "debt_collection",
+            "rate": 0.004931725533795148,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 165,
+            "predicted_class": "consumer_lending",
+            "rate": 0.004703668861712135,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 161,
+            "predicted_class": "credit_reporting",
+            "rate": 0.004589640525670629,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 148,
+            "predicted_class": "consumer_lending",
+            "rate": 0.004219048433535734,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 132,
+            "predicted_class": "mortgage",
+            "rate": 0.0037629350893697085,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 114,
+            "predicted_class": "credit_reporting",
+            "rate": 0.00324980757718293,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 110,
+            "predicted_class": "debt_collection",
+            "rate": 0.0031357792411414237,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 110,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0031357792411414237,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 109,
+            "predicted_class": "student_loan",
+            "rate": 0.0031072721571310472,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 101,
+            "predicted_class": "money_services",
+            "rate": 0.0028792154850480344,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 95,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.002708172980985775,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 93,
+            "predicted_class": "money_services",
+            "rate": 0.002651158812965022,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 93,
+            "predicted_class": "debt_collection",
+            "rate": 0.002651158812965022,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 91,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0025941446449442686,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 87,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0024801163089027624,
+            "true_class": "money_services"
+          },
+          {
+            "count": 83,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.002366087972861256,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 82,
+            "predicted_class": "mortgage",
+            "rate": 0.0023375808888508793,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 75,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0021380313007782433,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 69,
+            "predicted_class": "consumer_lending",
+            "rate": 0.001966988796715984,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 67,
+            "predicted_class": "student_loan",
+            "rate": 0.0019099746286952307,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 60,
+            "predicted_class": "mortgage",
+            "rate": 0.0017104250406225947,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 56,
+            "predicted_class": "debt_collection",
+            "rate": 0.0015963967045810885,
+            "true_class": "money_services"
+          },
+          {
+            "count": 46,
+            "predicted_class": "credit_reporting",
+            "rate": 0.0013113258644773225,
+            "true_class": "money_services"
+          },
+          {
+            "count": 42,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0011972975284358163,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 41,
+            "predicted_class": "mortgage",
+            "rate": 0.0011687904444254397,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 40,
+            "predicted_class": "mortgage",
+            "rate": 0.0011402833604150632,
+            "true_class": "money_services"
+          },
+          {
+            "count": 38,
+            "predicted_class": "student_loan",
+            "rate": 0.0010832691923943099,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 36,
+            "predicted_class": "mortgage",
+            "rate": 0.0010262550243735568,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 33,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0009407337723424271,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 33,
+            "predicted_class": "student_loan",
+            "rate": 0.0009407337723424271,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 30,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0008552125203112974,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 26,
+            "predicted_class": "money_services",
+            "rate": 0.000741184184269791,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 24,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0006841700162490379,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 23,
+            "predicted_class": "money_services",
+            "rate": 0.0006556629322386613,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 20,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0005701416802075316,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 16,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0004561133441660253,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 13,
+            "predicted_class": "student_loan",
+            "rate": 0.0003705920921348955,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 11,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.00031357792411414236,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 10,
+            "predicted_class": "student_loan",
+            "rate": 0.0002850708401037658,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 10,
+            "predicted_class": "money_services",
+            "rate": 0.0002850708401037658,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 9,
+            "predicted_class": "student_loan",
+            "rate": 0.0002565637560933892,
+            "true_class": "money_services"
+          },
+          {
+            "count": 6,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.00017104250406225948,
+            "true_class": "money_services"
+          },
+          {
+            "count": 6,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.00017104250406225948,
+            "true_class": "student_loan"
+          }
+        ]
+      },
+      "eligible": false,
+      "estimator": "LinearSVC",
+      "gates": {
+        "critical_f1": false,
+        "critical_precision": true,
+        "global_macro_f1": true
+      },
+      "metrics": {
+        "balanced_accuracy": 0.7267946101064882,
+        "confusion_matrix": [
+          [
+            13218,
+            362,
+            1367,
+            600,
+            33,
+            1211,
+            393,
+            60,
+            38
+          ],
+          [
+            332,
+            4477,
+            648,
+            470,
+            16,
+            201,
+            93,
+            132,
+            67
+          ],
+          [
+            2958,
+            1969,
+            149771,
+            7918,
+            180,
+            616,
+            210,
+            674,
+            505
+          ],
+          [
+            785,
+            738,
+            5239,
+            18123,
+            83,
+            189,
+            101,
+            198,
+            109
+          ],
+          [
+            91,
+            69,
+            161,
+            265,
+            190,
+            42,
+            23,
+            41,
+            10
+          ],
+          [
+            991,
+            165,
+            289,
+            173,
+            20,
+            12632,
+            1270,
+            82,
+            13
+          ],
+          [
+            256,
+            87,
+            46,
+            56,
+            6,
+            1264,
+            3657,
+            40,
+            9
+          ],
+          [
+            75,
+            148,
+            114,
+            110,
+            11,
+            95,
+            26,
+            5569,
+            33
+          ],
+          [
+            30,
+            110,
+            194,
+            93,
+            6,
+            24,
+            10,
+            36,
+            3264
+          ]
+        ],
+        "macro_f1": 0.7062962379390603,
+        "per_class": {
+          "cards_prepaid": {
+            "f1": 0.7339663501582542,
+            "precision": 0.7054867634500427,
+            "recall": 0.7648420321722023,
+            "support": 17282
+          },
+          "consumer_lending": {
+            "f1": 0.61493029324909,
+            "precision": 0.5510153846153846,
+            "recall": 0.6956183965195774,
+            "support": 6436
+          },
+          "credit_reporting": {
+            "f1": 0.9284381489632088,
+            "precision": 0.9489447439950833,
+            "recall": 0.9087990970928574,
+            "support": 164801
+          },
+          "debt_collection": {
+            "f1": 0.6791074138609409,
+            "precision": 0.6517189298043728,
+            "recall": 0.708898885194602,
+            "support": 25565
+          },
+          "debt_credit_management": {
+            "f1": 0.2644398051496173,
+            "precision": 0.3486238532110092,
+            "recall": 0.21300448430493274,
+            "support": 892
+          },
+          "deposit_accounts": {
+            "f1": 0.7917515434516907,
+            "precision": 0.7762074474622097,
+            "recall": 0.8079309242085065,
+            "support": 15635
+          },
+          "money_services": {
+            "f1": 0.6528025705105319,
+            "precision": 0.6323707418295003,
+            "recall": 0.6745987825124515,
+            "support": 5421
+          },
+          "mortgage": {
+            "f1": 0.855913317451779,
+            "precision": 0.8151346604215457,
+            "recall": 0.9009868953243811,
+            "support": 6181
+          },
+          "student_loan": {
+            "f1": 0.83531669865643,
+            "precision": 0.8063241106719368,
+            "recall": 0.8664719936288824,
+            "support": 3767
+          }
+        },
+        "row_count": 245980,
+        "weighted_f1": 0.8602399011921018
+      },
+      "name": "linear_svc_balanced",
+      "parameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "dual": "auto",
+        "max_iter": 5000,
+        "random_state": 42,
+        "tol": 0.0001
+      },
+      "runtime_seconds": 219.8197247000062,
+      "train_rows": 345552,
+      "validation_rows": 245980,
+      "vocabulary_size": 40000
+    },
+    {
+      "convergence_warnings": [],
+      "diagnostics": {
+        "critical_false_negatives": [
+          {
+            "count": 161,
+            "predicted_class": "debt_collection",
+            "rate": 0.1804932735426009
+          },
+          {
+            "count": 96,
+            "predicted_class": "credit_reporting",
+            "rate": 0.10762331838565023
+          },
+          {
+            "count": 65,
+            "predicted_class": "mortgage",
+            "rate": 0.07286995515695067
+          },
+          {
+            "count": 49,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.05493273542600897
+          },
+          {
+            "count": 40,
+            "predicted_class": "student_loan",
+            "rate": 0.04484304932735426
+          },
+          {
+            "count": 39,
+            "predicted_class": "consumer_lending",
+            "rate": 0.043721973094170405
+          },
+          {
+            "count": 34,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.03811659192825112
+          },
+          {
+            "count": 27,
+            "predicted_class": "money_services",
+            "rate": 0.030269058295964126
+          }
+        ],
+        "critical_false_positives": [
+          {
+            "count": 1350,
+            "rate": 0.008191697865911007,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 644,
+            "rate": 0.025190690397027187,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 192,
+            "rate": 0.011109825251706978,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 115,
+            "rate": 0.017868241143567432,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 74,
+            "rate": 0.00473297089862488,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 16,
+            "rate": 0.002951484965873455,
+            "true_class": "money_services"
+          },
+          {
+            "count": 11,
+            "rate": 0.002920095566764003,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 8,
+            "rate": 0.0012942889500080893,
+            "true_class": "mortgage"
+          }
+        ],
+        "top_confusions": [
+          {
+            "count": 8681,
+            "predicted_class": "debt_collection",
+            "rate": 0.19900965131473372,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 4846,
+            "predicted_class": "credit_reporting",
+            "rate": 0.11109328075926733,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 2869,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.06577107356548452,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 2239,
+            "predicted_class": "consumer_lending",
+            "rate": 0.05132848857201806,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 2176,
+            "predicted_class": "money_services",
+            "rate": 0.04988423007267142,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 2022,
+            "predicted_class": "student_loan",
+            "rate": 0.046353820407601845,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1787,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.04096650695765801,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 1517,
+            "predicted_class": "mortgage",
+            "rate": 0.03477682767474381,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1502,
+            "predicted_class": "credit_reporting",
+            "rate": 0.03443295660347081,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 1350,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.030948396414570964,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 1036,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.023750028655922607,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 955,
+            "predicted_class": "money_services",
+            "rate": 0.021893124871048348,
+            "true_class": "credit_reporting"
+          },
+          {
+            "count": 874,
+            "predicted_class": "money_services",
+            "rate": 0.020036221086174092,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 824,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.018889984181930723,
+            "true_class": "money_services"
+          },
+          {
+            "count": 810,
+            "predicted_class": "consumer_lending",
+            "rate": 0.01856903784874258,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 660,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.015130327136012471,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 647,
+            "predicted_class": "mortgage",
+            "rate": 0.014832305540909195,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 644,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.014763531326654592,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 586,
+            "predicted_class": "credit_reporting",
+            "rate": 0.013433896517732285,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 574,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.013158799660713877,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 527,
+            "predicted_class": "student_loan",
+            "rate": 0.01208133697072511,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 452,
+            "predicted_class": "debt_collection",
+            "rate": 0.010361981614360055,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 427,
+            "predicted_class": "credit_reporting",
+            "rate": 0.009788863162238372,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 423,
+            "predicted_class": "student_loan",
+            "rate": 0.009697164209898902,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 387,
+            "predicted_class": "student_loan",
+            "rate": 0.008871873638843676,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 354,
+            "predicted_class": "consumer_lending",
+            "rate": 0.008115357282043052,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 326,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.007473464615666766,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 323,
+            "predicted_class": "debt_collection",
+            "rate": 0.007404690401412164,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 308,
+            "predicted_class": "mortgage",
+            "rate": 0.007060819330139153,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 286,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.006556475092272071,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 283,
+            "predicted_class": "mortgage",
+            "rate": 0.0064877008780174685,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 259,
+            "predicted_class": "money_services",
+            "rate": 0.005937507163980652,
+            "true_class": "debt_collection"
+          },
+          {
+            "count": 217,
+            "predicted_class": "mortgage",
+            "rate": 0.004974668164416222,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 195,
+            "predicted_class": "money_services",
+            "rate": 0.0044703239265491395,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 192,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.004401549712294537,
+            "true_class": "cards_prepaid"
+          },
+          {
+            "count": 187,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0042869260218702,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 161,
+            "predicted_class": "debt_collection",
+            "rate": 0.003690882831663648,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 115,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0026363448797597487,
+            "true_class": "consumer_lending"
+          },
+          {
+            "count": 112,
+            "predicted_class": "student_loan",
+            "rate": 0.0025675706655051466,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 107,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0024529469750808096,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 102,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0023383232846564727,
+            "true_class": "money_services"
+          },
+          {
+            "count": 96,
+            "predicted_class": "credit_reporting",
+            "rate": 0.0022007748561472685,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 94,
+            "predicted_class": "debt_collection",
+            "rate": 0.0021549253799775336,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 88,
+            "predicted_class": "credit_reporting",
+            "rate": 0.0020173769514683294,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 82,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0018798285229591253,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 77,
+            "predicted_class": "student_loan",
+            "rate": 0.0017652048325347883,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 74,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0016964306182801862,
+            "true_class": "deposit_accounts"
+          },
+          {
+            "count": 65,
+            "predicted_class": "mortgage",
+            "rate": 0.0014901079755163798,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 60,
+            "predicted_class": "credit_reporting",
+            "rate": 0.0013754842850920428,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 58,
+            "predicted_class": "mortgage",
+            "rate": 0.0013296348089223082,
+            "true_class": "money_services"
+          },
+          {
+            "count": 51,
+            "predicted_class": "debt_collection",
+            "rate": 0.0011691616423282363,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 49,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0011233121661585017,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 49,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0011233121661585017,
+            "true_class": "money_services"
+          },
+          {
+            "count": 42,
+            "predicted_class": "credit_reporting",
+            "rate": 0.00096283899956443,
+            "true_class": "money_services"
+          },
+          {
+            "count": 40,
+            "predicted_class": "student_loan",
+            "rate": 0.0009169895233946952,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 40,
+            "predicted_class": "debt_collection",
+            "rate": 0.0009169895233946952,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 39,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0008940647853098279,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 34,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0007794410948854909,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 31,
+            "predicted_class": "money_services",
+            "rate": 0.0007106668806308888,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 30,
+            "predicted_class": "consumer_lending",
+            "rate": 0.0006877421425460214,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 27,
+            "predicted_class": "money_services",
+            "rate": 0.0006189679282914193,
+            "true_class": "debt_credit_management"
+          },
+          {
+            "count": 25,
+            "predicted_class": "student_loan",
+            "rate": 0.0005731184521216846,
+            "true_class": "money_services"
+          },
+          {
+            "count": 21,
+            "predicted_class": "consumer_lending",
+            "rate": 0.000481419499782215,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 19,
+            "predicted_class": "mortgage",
+            "rate": 0.0004355700236124802,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 16,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0003667958093578781,
+            "true_class": "money_services"
+          },
+          {
+            "count": 15,
+            "predicted_class": "debt_collection",
+            "rate": 0.0003438710712730107,
+            "true_class": "money_services"
+          },
+          {
+            "count": 14,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.0003209463331881433,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 11,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.0002521721189335412,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 10,
+            "predicted_class": "deposit_accounts",
+            "rate": 0.0002292473808486738,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 8,
+            "predicted_class": "debt_credit_management",
+            "rate": 0.00018339790467893904,
+            "true_class": "mortgage"
+          },
+          {
+            "count": 8,
+            "predicted_class": "cards_prepaid",
+            "rate": 0.00018339790467893904,
+            "true_class": "student_loan"
+          },
+          {
+            "count": 6,
+            "predicted_class": "money_services",
+            "rate": 0.00013754842850920428,
+            "true_class": "student_loan"
+          }
+        ]
+      },
+      "eligible": false,
+      "estimator": "ComplementNB",
+      "gates": {
+        "critical_f1": false,
+        "critical_precision": false,
+        "global_macro_f1": false
+      },
+      "metrics": {
+        "balanced_accuracy": 0.7407769416221264,
+        "confusion_matrix": [
+          [
+            11415,
+            354,
+            1502,
+            452,
+            192,
+            1787,
+            874,
+            283,
+            423
+          ],
+          [
+            187,
+            3909,
+            586,
+            323,
+            115,
+            286,
+            195,
+            308,
+            527
+          ],
+          [
+            2869,
+            2239,
+            144132,
+            8681,
+            1350,
+            1036,
+            955,
+            1517,
+            2022
+          ],
+          [
+            574,
+            810,
+            4846,
+            17072,
+            644,
+            326,
+            259,
+            647,
+            387
+          ],
+          [
+            49,
+            39,
+            96,
+            161,
+            381,
+            34,
+            27,
+            65,
+            40
+          ],
+          [
+            660,
+            107,
+            427,
+            94,
+            74,
+            11803,
+            2176,
+            217,
+            77
+          ],
+          [
+            102,
+            49,
+            42,
+            15,
+            16,
+            824,
+            4290,
+            58,
+            25
+          ],
+          [
+            14,
+            30,
+            60,
+            51,
+            8,
+            82,
+            31,
+            5793,
+            112
+          ],
+          [
+            8,
+            21,
+            88,
+            40,
+            11,
+            10,
+            6,
+            19,
+            3564
+          ]
+        ],
+        "macro_f1": 0.6421463192124527,
+        "per_class": {
+          "cards_prepaid": {
+            "f1": 0.6884800965018095,
+            "precision": 0.7189192593525633,
+            "recall": 0.6605138294178915,
+            "support": 17282
+          },
+          "consumer_lending": {
+            "f1": 0.5586680005716737,
+            "precision": 0.5172003175443239,
+            "recall": 0.6073648228713486,
+            "support": 6436
+          },
+          "credit_reporting": {
+            "f1": 0.9105565733779771,
+            "precision": 0.94961753602277,
+            "recall": 0.8745820717107299,
+            "support": 164801
+          },
+          "debt_collection": {
+            "f1": 0.650932245395966,
+            "precision": 0.6349064673286474,
+            "recall": 0.6677879913944846,
+            "support": 25565
+          },
+          "debt_credit_management": {
+            "f1": 0.20689655172413793,
+            "precision": 0.13651021139376568,
+            "recall": 0.42713004484304934,
+            "support": 892
+          },
+          "deposit_accounts": {
+            "f1": 0.7417905288627722,
+            "precision": 0.7291203360513961,
+            "recall": 0.7549088583306683,
+            "support": 15635
+          },
+          "money_services": {
+            "f1": 0.6027820710973726,
+            "precision": 0.4867808918642914,
+            "recall": 0.7913669064748201,
+            "support": 5421
+          },
+          "mortgage": {
+            "f1": 0.7678950159066809,
+            "precision": 0.6503873358033008,
+            "recall": 0.9372269859246076,
+            "support": 6181
+          },
+          "student_loan": {
+            "f1": 0.6513157894736842,
+            "precision": 0.49658631740281456,
+            "recall": 0.946110963631537,
+            "support": 3767
+          }
+        },
+        "row_count": 245980,
+        "weighted_f1": 0.8311472920758934
+      },
+      "name": "complement_nb_balanced",
+      "parameters": {
+        "alpha": 1.0,
+        "norm": false,
+        "sample_weight": "compute_sample_weight('balanced', y_train)"
+      },
+      "runtime_seconds": 58.00779830000829,
+      "train_rows": 345552,
+      "validation_rows": 245980,
+      "vocabulary_size": 40000
+    }
+  ],
+  "claim_boundary": "NO_TEST_STRESS_OR_MONITOR_ACCESS",
+  "complete": true,
+  "completed_candidates": [
+    "sgd_log_loss_balanced_reference",
+    "linear_svc_balanced",
+    "complement_nb_balanced"
+  ],
+  "config": {
+    "approved_on": "2026-08-15",
+    "candidates": [
+      {
+        "estimator": "SGDClassifier",
+        "name": "sgd_log_loss_balanced_reference",
+        "parameters": {
+          "class_weight": "balanced",
+          "loss": "log_loss",
+          "max_iter": 500,
+          "random_state": 42,
+          "tol": 0.001
+        }
+      },
+      {
+        "estimator": "LinearSVC",
+        "name": "linear_svc_balanced",
+        "parameters": {
+          "C": 1.0,
+          "class_weight": "balanced",
+          "dual": "auto",
+          "max_iter": 5000,
+          "random_state": 42,
+          "tol": 0.0001
+        }
+      },
+      {
+        "estimator": "ComplementNB",
+        "name": "complement_nb_balanced",
+        "parameters": {
+          "alpha": 1.0,
+          "norm": false,
+          "sample_weight": "compute_sample_weight('balanced', y_train)"
+        }
+      }
+    ],
+    "critical_class": "debt_credit_management",
+    "deferred_candidates": {
+      "logistic_regression_saga": {
+        "estimator": "LogisticRegression",
+        "reason": "Deferred because full sparse fit may exceed local resource budget; not executed or treated as a failure in S5.",
+        "solver": "saga"
+      }
+    },
+    "evaluation_partition": "validation",
+    "fit_partition": "train",
+    "gates": {
+      "critical_f1_min": 0.2715,
+      "critical_precision_min": 0.2,
+      "global_macro_f1_min": 0.69
+    },
+    "random_state": 42,
+    "reference_reproduction": {
+      "artifact": "temp/s4/s4_results.json",
+      "candidate": "word_balanced_reference",
+      "max_absolute_metric_delta": 1e-06,
+      "required_metrics": [
+        "macro_f1",
+        "critical_precision",
+        "critical_recall",
+        "critical_f1"
+      ]
+    },
+    "representation": {
+      "analyzer": "word",
+      "dtype": "float32",
+      "max_df": 0.98,
+      "max_features": 40000,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true
+    },
+    "run_defaults": {
+      "batch_size": 4096,
+      "diagnostic_only": true,
+      "smoke_max_per_class": 8,
+      "tracker": "noop"
+    },
+    "schema_version": "s5-estimator-benchmark-v1",
+    "sealed_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ],
+    "status": "FROZEN_FOR_S5_DEVELOPMENT"
+  },
+  "deferred_candidates": {
+    "logistic_regression_saga": {
+      "estimator": "LogisticRegression",
+      "reason": "Deferred because full sparse fit may exceed local resource budget; not executed or treated as a failure in S5.",
+      "solver": "saga"
+    }
+  },
+  "recommended_candidate": null,
+  "reference_reproduction": {
+    "actual": {
+      "critical_f1": 0.24581005586592178,
+      "critical_precision": 0.17387261738726173,
+      "critical_recall": 0.4192825112107623,
+      "macro_f1": 0.700392672156457
+    },
+    "deltas": {
+      "critical_f1": 0.0,
+      "critical_precision": 0.0,
+      "critical_recall": 0.0,
+      "macro_f1": 0.0
+    },
+    "passed": true,
+    "reference": {
+      "critical_f1": 0.24581005586592178,
+      "critical_precision": 0.17387261738726173,
+      "critical_recall": 0.4192825112107623,
+      "macro_f1": 0.700392672156457
+    },
+    "status": "PASSED",
+    "tolerance": 1e-06
+  },
+  "representation_fit_event": {
+    "candidate_names": [
+      "sgd_log_loss_balanced_reference",
+      "linear_svc_balanced",
+      "complement_nb_balanced"
+    ],
+    "fit_transform_count": 1,
+    "representation": "word",
+    "vocabulary_size": 40000
+  },
+  "resources": {
+    "candidate_count": 3
+  },
+  "schema_version": "s5-estimator-benchmark-v1",
+  "selection_status": "NO_ELIGIBLE_ESTIMATOR",
+  "signature": {
+    "boundary": {
+      "evaluation": "validation",
+      "fit": "train",
+      "sealed": [
+        "test",
+        "stress",
+        "monitor"
+      ]
+    },
+    "code_schema": "s5-runtime-v1",
+    "config": {
+      "mtime_ns": 1786839230102991400,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\config\\s5_estimator_benchmark.json",
+      "sha256": "909A5A9AB2231CA85815BEB478C77E0990F2308AE1AB20988F304E21D8487B3B",
+      "size": 1902
+    },
+    "run": {
+      "batch_size": 4096,
+      "diagnostic_only": false,
+      "reference_artifact_path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s4\\s4_results.json",
+      "smoke_max_per_class": null
+    },
+    "s4_reference": {
+      "mtime_ns": 1786827852470844000,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s4\\s4_results.json",
+      "sha256": "3F6F36DC0B768A36FD650F32D09A58809E3E7676CDA0897D7599BB60614F01A8",
+      "size": 82241
+    },
+    "schema_version": "s5-estimator-benchmark-v1",
+    "scientific_cache": {
+      "mtime_ns": 1786808166911902600,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s3\\scientific.parquet",
+      "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+      "size": 152781873
+    }
+  },
+  "status": "DEVELOPMENT_COMPLETE",
+  "vectorizer_fit_count": 1
+}

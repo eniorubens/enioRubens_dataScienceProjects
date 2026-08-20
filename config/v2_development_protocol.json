@@ -1,0 +1,191 @@
+{
+  "schema_version": "v2-post-confirmation-development-v1-1",
+  "cycle_id": "consumer-complaint-intelligence-v2",
+  "stage": "V2.1-D0",
+  "approval": {
+    "status": "FROZEN_FOR_V2_DEVELOPMENT",
+    "approved_on": "2026-08-17",
+    "approved_by": "user"
+  },
+  "revision": {
+    "revision_id": "V2.1",
+    "supersedes_schema_version": "v2-post-confirmation-development-v1",
+    "adr": "docs/ADR-011-v2-1-calibration-window-revision.md",
+    "reason": "d1_degenerate_null_all_candidates_selected_zero_override_sentinel",
+    "change": "move_stage_a_calibration_to_a_later_harder_window",
+    "final_development_iteration": true,
+    "zero_override_candidate_is_not_selectable": true
+  },
+  "objective": {
+    "primary": "raise critical-class recall while preserving all three scientific gates",
+    "critical_class": "debt_credit_management",
+    "input_language": "en-US",
+    "deployment_authorized": false
+  },
+  "baseline_s8": {
+    "status": "NOT_CONFIRMED",
+    "manifest": {
+      "path": "config/s8_results.json",
+      "sha256": "E9301499F73BC0619A477C6925BE35E1ED67928D308748E3755B901D659F455A",
+      "size_bytes": 2298
+    },
+    "result": {
+      "path": "temp/s8/s8_results.json",
+      "sha256": "B72927A7D44BDFDF37536B586EB41A16ECBAA1B2A53416BB293FC669C9002D6A",
+      "size_bytes": 11915
+    },
+    "aggregate_metrics": {
+      "macro_f1": 0.7182138908021497,
+      "critical_precision": 0.4046153846153846,
+      "critical_recall": 0.18920863309352517,
+      "critical_f1": 0.25784313725490193
+    },
+    "permitted_use": "motivation_and_immutable_baseline_only",
+    "forbidden_use": [
+      "candidate_selection",
+      "threshold_selection",
+      "hyperparameter_selection",
+      "test_narrative_inspection",
+      "test_prediction_inspection"
+    ]
+  },
+  "development_windows": {
+    "inner_fit": {
+      "partition": "train",
+      "start": "2023-08-01",
+      "end": "2024-06-30"
+    },
+    "inner_calibration": {
+      "partition": "validation",
+      "start": "2024-07-01",
+      "end": "2024-09-30"
+    },
+    "outer_evaluation": {
+      "partition": "validation",
+      "start": "2024-10-01",
+      "end": "2024-12-31"
+    }
+  },
+  "data_boundary": {
+    "scientific_cache": "temp/s3/scientific.parquet",
+    "allowed_partitions": ["train", "validation"],
+    "forbidden_partitions": ["test", "stress", "monitor"],
+    "future_confirmation": {
+      "partition": "stress",
+      "start": "2025-07-01",
+      "end": "2025-12-31",
+      "status": "SEALED"
+    },
+    "future_monitoring": {
+      "partition": "monitor",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "status": "SEALED"
+    }
+  },
+  "architecture": {
+    "type": "hierarchical_critical_override",
+    "stage_a": "binary_critical_detector",
+    "stage_b": "frozen_s7_multiclass_fallback",
+    "decision_rule": "stage_a_overrides_stage_b_only_at_a_development_calibrated_threshold",
+    "stage_b_bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327,
+      "fit_scope": {
+        "partition": "train",
+        "start": "2023-08-01",
+        "end": "2024-06-30"
+      }
+    }
+  },
+  "classical_challenge": {
+    "representations": [
+      "word_tfidf_1_2_40000",
+      "word_char_tfidf_union_40000_60000"
+    ],
+    "estimator": {
+      "class": "LinearSVC",
+      "C": [0.1, 0.3, 1.0],
+      "tol": 0.0001,
+      "max_iter": 5000,
+      "dual": "auto",
+      "random_state": 42
+    },
+    "balance_strategies": {
+      "weighted_full": {
+        "class_weight": "balanced"
+      },
+      "random_over": {
+        "sampling_strategy": [0.05, 0.1, 0.2],
+        "shrinkage": null,
+        "class_weight": null,
+        "sparse_materialization": "row_index_multiplicity_as_integer_sample_weight"
+      },
+      "hard_negative": {
+        "positive_policy": "all_development_critical_groups",
+        "hard_negative_source": "inner_fit_out_of_fold_predictions_only",
+        "oof": {
+          "splitter": "StratifiedKFold",
+          "n_splits": 3,
+          "shuffle": true,
+          "random_state": 42,
+          "pipeline_refit_per_fold": true,
+          "representation": "word_tfidf_1_2_40000",
+          "C": 0.3,
+          "class_weight": "balanced"
+        },
+        "hard_negative_per_positive": 10,
+        "background_negative_per_positive": 5,
+        "candidate_class_weight": null
+      }
+    },
+    "resampling_scope": "fit_fold_only",
+    "group_identity_required": true,
+    "maximum_completed_candidates": 30
+  },
+  "transformer_challenge": {
+    "status": "DEFERRED_UNTIL_CLASSICAL_WINNER",
+    "task": "binary_critical_detector",
+    "maximum_models": 1,
+    "requires_separate_frozen_execution_config": true
+  },
+  "selection": {
+    "scientific_gates": {
+      "global_macro_f1_min": 0.69,
+      "critical_f1_min": 0.2715,
+      "critical_precision_min": 0.2
+    },
+    "development_safety_margins": {
+      "global_macro_f1_min": 0.7,
+      "critical_f1_min": 0.29,
+      "critical_precision_min": 0.22
+    },
+    "required_margin_gate_count": 3,
+    "ranking_after_margin": [
+      "critical_f1_desc",
+      "global_macro_f1_desc",
+      "critical_precision_desc",
+      "lower_runtime_asc"
+    ],
+    "threshold_source": "inner_calibration_only",
+    "outer_evaluation_can_select_candidate": true,
+    "s8_can_select_candidate": false
+  },
+  "execution": {
+    "default_run_mode": "disabled",
+    "smoke_is_diagnostic_only": true,
+    "random_state": 42,
+    "batch_size": 4096,
+    "no_sealed_partition_unlock_in_development_code": true
+  },
+  "seven_step_cycle": [
+    "freeze_v1_baseline_and_v2_protocol",
+    "build_hierarchical_critical_detector",
+    "compare_resampling_and_hard_negatives",
+    "challenge_best_classical_with_compact_transformer",
+    "apply_safety_margin_and_select_v2_candidate",
+    "freeze_v2_package",
+    "open_stress_2025_h2_once_under_a_new_confirmatory_protocol"
+  ]
+}

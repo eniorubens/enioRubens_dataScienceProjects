@@ -1,0 +1,13 @@
+{
+    "status":  "ABORTED_LOW_MEMORY",
+    "started_at_utc":  "2026-08-17T15:01:21.8569432Z",
+    "ended_at_utc":  "2026-08-17T15:27:05.6521643Z",
+    "elapsed_seconds":  1543.7952211,
+    "exit_code":  -1,
+    "peak_process_rss_gb":  10.181758880615234,
+    "min_system_available_gb":  0.11442947387695313,
+    "samples":  302,
+    "minimum_available_gb_guard":  0.75,
+    "stdout":  "",
+    "stderr":  ""
+}

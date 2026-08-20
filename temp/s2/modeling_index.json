@@ -1,0 +1,34 @@
+{
+  "columns": [
+    "Complaint ID",
+    "received_date",
+    "raw_product",
+    "product_family",
+    "raw_issue",
+    "normalized_group_hash",
+    "normalized_length",
+    "is_modeled_family"
+  ],
+  "contains_narrative": false,
+  "contains_normalized_text": false,
+  "contains_zip_code": false,
+  "rows": 3836659,
+  "schema_version": "s2-modeling-index-v1",
+  "signature": {
+    "payload": {
+      "file_size": 821595288,
+      "fingerprint_version": "lowercase-trim-whitespace-collapse-md5-length-v1",
+      "mtime_ns": 1786735294752123800,
+      "resolved_path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\dataset\\processed\\complaints.parquet",
+      "schema_version": "s2-modeling-index-v1",
+      "source_columns": {
+        "date": "Date received",
+        "issue": "Issue",
+        "product": "Product",
+        "text": "Consumer complaint narrative"
+      },
+      "taxonomy_version": "cfpb-product-family-v1.0.0"
+    },
+    "sha256": "3a925ad2473262e1a66aa0652bab2508b78909ccf6c613537b0e909ab094f4c7"
+  }
+}

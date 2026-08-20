@@ -1,0 +1,137 @@
+{
+  "columns": [
+    "Complaint ID",
+    "received_date",
+    "product_family",
+    "normalized_group_hash",
+    "normalized_length",
+    "partition_name",
+    "narrative"
+  ],
+  "contains_sealed_narratives": false,
+  "rows": 591532,
+  "schema_version": "s3-scientific-cache-v2",
+  "signature": {
+    "ambiguous_label_scope": [
+      "train",
+      "validation"
+    ],
+    "group_identity": [
+      "normalized_group_hash",
+      "normalized_length"
+    ],
+    "representative": "minimum Complaint ID",
+    "schema_version": "s3-scientific-cache-v2",
+    "source": {
+      "mtime_ns": 1786806882351477000,
+      "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s3\\development.parquet",
+      "size": 166434080
+    }
+  },
+  "summary": {
+    "ambiguous_groups": 1070,
+    "ambiguous_rows": 104737,
+    "ambiguous_rows_by_partition": {
+      "train": 60400,
+      "validation": 44337
+    },
+    "raw_groups": 592602,
+    "raw_rows": 1026306,
+    "raw_rows_by_partition": {
+      "train": 568598,
+      "validation": 457708
+    },
+    "scientific_rows_by_partition_and_class": [
+      {
+        "partition": "train",
+        "product_family": "cards_prepaid",
+        "rows": 30695
+      },
+      {
+        "partition": "train",
+        "product_family": "consumer_lending",
+        "rows": 10886
+      },
+      {
+        "partition": "train",
+        "product_family": "credit_reporting",
+        "rows": 213626
+      },
+      {
+        "partition": "train",
+        "product_family": "debt_collection",
+        "rows": 36434
+      },
+      {
+        "partition": "train",
+        "product_family": "debt_credit_management",
+        "rows": 946
+      },
+      {
+        "partition": "train",
+        "product_family": "deposit_accounts",
+        "rows": 24871
+      },
+      {
+        "partition": "train",
+        "product_family": "money_services",
+        "rows": 8485
+      },
+      {
+        "partition": "train",
+        "product_family": "mortgage",
+        "rows": 11076
+      },
+      {
+        "partition": "train",
+        "product_family": "student_loan",
+        "rows": 8533
+      },
+      {
+        "partition": "validation",
+        "product_family": "cards_prepaid",
+        "rows": 17282
+      },
+      {
+        "partition": "validation",
+        "product_family": "consumer_lending",
+        "rows": 6436
+      },
+      {
+        "partition": "validation",
+        "product_family": "credit_reporting",
+        "rows": 164801
+      },
+      {
+        "partition": "validation",
+        "product_family": "debt_collection",
+        "rows": 25565
+      },
+      {
+        "partition": "validation",
+        "product_family": "debt_credit_management",
+        "rows": 892
+      },
+      {
+        "partition": "validation",
+        "product_family": "deposit_accounts",
+        "rows": 15635
+      },
+      {
+        "partition": "validation",
+        "product_family": "money_services",
+        "rows": 5421
+      },
+      {
+        "partition": "validation",
+        "product_family": "mortgage",
+        "rows": 6181
+      },
+      {
+        "partition": "validation",
+        "product_family": "student_loan",
+        "rows": 3767
+      }
+    ]
+  }
+}

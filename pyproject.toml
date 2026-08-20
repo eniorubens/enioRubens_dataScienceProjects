@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "consumer-complaint-intelligence"
+version = "0.1.0"
+description = "Bounded audits and framework-neutral NLP contracts for CFPB complaints"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Enio Rubens"}]
+license = {file = "LICENSE"}
+dependencies = [
+    "duckdb",
+    "imbalanced-learn",
+    "joblib",
+    "numpy",
+    "polars",
+    "pyarrow",
+    "scikit-learn",
+]
+
+[project.optional-dependencies]
+serving = ["flask"]
+tracking = ["mlflow"]
+transformer = ["torch", "transformers"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

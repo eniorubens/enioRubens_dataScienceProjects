@@ -1,0 +1,106 @@
+{
+  "schema_version": "s5-results-manifest-v1",
+  "experiment_schema_version": "s5-estimator-benchmark-v1",
+  "status": "DEVELOPMENT_COMPLETE",
+  "confirmatory": false,
+  "deploy_ready": false,
+  "sealed": false,
+  "selection_status": "NO_ELIGIBLE_ESTIMATOR",
+  "recommended_candidate": null,
+  "diagnostic_focus_candidate": "linear_svc_balanced",
+  "claim_boundary": "NO_TEST_STRESS_OR_MONITOR_ACCESS",
+  "source_artifact": {
+    "path": "temp/s5/s5_results.json",
+    "sha256": "8A41690A7C337EC64DDC288E27A82AF3C0BF87C91FE8BEC48D3FEDDD20AC183C",
+    "complete": true,
+    "modeling_recomputed": false
+  },
+  "resource_monitor": {
+    "path": "temp/s5/s5_resource_monitor.json",
+    "status": "COMPLETE",
+    "peak_process_rss_bytes": 4021764096,
+    "min_system_available_bytes": 1486430208,
+    "samples": 858,
+    "started_at_epoch": 1786840528.198393,
+    "elapsed_seconds": 456.8656366999494,
+    "peak_process_rss_gb": 3.7455596923828125,
+    "min_system_available_gb": 1.3843460083007812
+  },
+  "boundary": {
+    "fit_partition": "train",
+    "evaluation_partition": "validation",
+    "sealed_partitions": ["test", "stress", "monitor"]
+  },
+  "metrics": [
+    {
+      "candidate": "sgd_log_loss_balanced_reference",
+      "estimator": "SGDClassifier",
+      "macro_f1": 0.700392672156457,
+      "weighted_f1": 0.8577145234798565,
+      "balanced_accuracy": 0.7419930464565737,
+      "critical_precision": 0.17387261738726173,
+      "critical_recall": 0.4192825112107623,
+      "critical_f1": 0.24581005586592178,
+      "gates": {"critical_f1": false, "critical_precision": false, "global_macro_f1": true},
+      "eligible": false,
+      "runtime_seconds": 80.7041418000008,
+      "train_rows": 345552,
+      "validation_rows": 245980
+    },
+    {
+      "candidate": "linear_svc_balanced",
+      "estimator": "LinearSVC",
+      "macro_f1": 0.7062962379390603,
+      "weighted_f1": 0.8602399011921018,
+      "balanced_accuracy": 0.7267946101064882,
+      "critical_precision": 0.3486238532110092,
+      "critical_recall": 0.21300448430493274,
+      "critical_f1": 0.2644398051496173,
+      "gates": {"critical_f1": false, "critical_precision": true, "global_macro_f1": true},
+      "eligible": false,
+      "runtime_seconds": 219.8197247000062,
+      "train_rows": 345552,
+      "validation_rows": 245980
+    },
+    {
+      "candidate": "complement_nb_balanced",
+      "estimator": "ComplementNB",
+      "macro_f1": 0.6421463192124527,
+      "weighted_f1": 0.8311472920758934,
+      "balanced_accuracy": 0.7407769416221264,
+      "critical_precision": 0.13651021139376568,
+      "critical_recall": 0.42713004484304934,
+      "critical_f1": 0.20689655172413793,
+      "gates": {"critical_f1": false, "critical_precision": false, "global_macro_f1": false},
+      "eligible": false,
+      "runtime_seconds": 58.00779830000829,
+      "train_rows": 345552,
+      "validation_rows": 245980
+    }
+  ],
+  "deferred_candidates": {
+    "logistic_regression_saga": {
+      "estimator": "LogisticRegression",
+      "solver": "saga",
+      "reason": "Adiado por orçamento local de recursos; não executado e não tratado como falha no S5."
+    }
+  },
+  "parity": {
+    "status": "PASSED",
+    "reference_artifact": "temp/s4/s4_results.json",
+    "candidate": "word_balanced_reference",
+    "tolerance": 1e-06,
+    "passed": true,
+    "actual": {"critical_f1": 0.24581005586592178, "critical_precision": 0.17387261738726173, "critical_recall": 0.4192825112107623, "macro_f1": 0.700392672156457},
+    "reference": {"critical_f1": 0.24581005586592178, "critical_precision": 0.17387261738726173, "critical_recall": 0.4192825112107623, "macro_f1": 0.700392672156457},
+    "deltas": {"critical_f1": 0.0, "critical_precision": 0.0, "critical_recall": 0.0, "macro_f1": 0.0}
+  },
+  "interpretation": {
+    "summary": "Nenhum estimador passou simultaneamente pelos três gates.",
+    "diagnostic_focus": "linear_svc_balanced é foco diagnóstico; não é seleção nem promoção.",
+    "tradeoff": "LinearSVC elevou o macro-F1 e a precisão da classe crítica, mas seu recall e F1 crítico ficaram abaixo dos gates.",
+    "deferred_saga": "LogisticRegression com solver saga foi adiado por recursos; isso não é uma falha experimental.",
+    "sealed_partitions": "Nenhuma partição selada foi aberta, pontuada ou usada para seleção.",
+    "model_promotion": "Não promover nenhum estimador; o resultado permanece não confirmatório e diagnóstico."
+  }
+}

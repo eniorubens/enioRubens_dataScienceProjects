@@ -1,0 +1,802 @@
+{
+  "complete": true,
+  "group_policy": {
+    "ambiguous_groups": 1070,
+    "ambiguous_rows": 104737,
+    "ambiguous_rows_by_partition": {
+      "train": 60400,
+      "validation": 44337
+    },
+    "raw_groups": 592602,
+    "raw_rows": 1026306,
+    "raw_rows_by_partition": {
+      "train": 568598,
+      "validation": 457708
+    },
+    "scientific_rows_by_partition_and_class": [
+      {
+        "partition": "train",
+        "product_family": "cards_prepaid",
+        "rows": 30695
+      },
+      {
+        "partition": "train",
+        "product_family": "consumer_lending",
+        "rows": 10886
+      },
+      {
+        "partition": "train",
+        "product_family": "credit_reporting",
+        "rows": 213626
+      },
+      {
+        "partition": "train",
+        "product_family": "debt_collection",
+        "rows": 36434
+      },
+      {
+        "partition": "train",
+        "product_family": "debt_credit_management",
+        "rows": 946
+      },
+      {
+        "partition": "train",
+        "product_family": "deposit_accounts",
+        "rows": 24871
+      },
+      {
+        "partition": "train",
+        "product_family": "money_services",
+        "rows": 8485
+      },
+      {
+        "partition": "train",
+        "product_family": "mortgage",
+        "rows": 11076
+      },
+      {
+        "partition": "train",
+        "product_family": "student_loan",
+        "rows": 8533
+      },
+      {
+        "partition": "validation",
+        "product_family": "cards_prepaid",
+        "rows": 17282
+      },
+      {
+        "partition": "validation",
+        "product_family": "consumer_lending",
+        "rows": 6436
+      },
+      {
+        "partition": "validation",
+        "product_family": "credit_reporting",
+        "rows": 164801
+      },
+      {
+        "partition": "validation",
+        "product_family": "debt_collection",
+        "rows": 25565
+      },
+      {
+        "partition": "validation",
+        "product_family": "debt_credit_management",
+        "rows": 892
+      },
+      {
+        "partition": "validation",
+        "product_family": "deposit_accounts",
+        "rows": 15635
+      },
+      {
+        "partition": "validation",
+        "product_family": "money_services",
+        "rows": 5421
+      },
+      {
+        "partition": "validation",
+        "product_family": "mortgage",
+        "rows": 6181
+      },
+      {
+        "partition": "validation",
+        "product_family": "student_loan",
+        "rows": 3767
+      }
+    ]
+  },
+  "memory_guard": {
+    "budget_bytes": 7516192768,
+    "estimate_bytes": 6560514312,
+    "narrative_bytes": 756138524
+  },
+  "operational_policy": "final_fraction_only_streamed_in_batches",
+  "points": {
+    "0.25": {
+      "dummy": {
+        "scientific": {
+          "balanced_accuracy": 0.1111111111111111,
+          "macro_f1": 0.08915320923909441,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 17282
+            },
+            "consumer_lending": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6436
+            },
+            "credit_reporting": {
+              "f1": 0.8023788831518497,
+              "precision": 0.669977233921457,
+              "recall": 1.0,
+              "support": 164801
+            },
+            "debt_collection": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 25565
+            },
+            "debt_credit_management": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15635
+            },
+            "money_services": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 5421
+            },
+            "mortgage": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6181
+            },
+            "student_loan": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3767
+            }
+          },
+          "row_count": 245980,
+          "weighted_f1": 0.5375755846910643
+        }
+      },
+      "sgd_logistic": {
+        "scientific": {
+          "balanced_accuracy": 0.7279549588258344,
+          "macro_f1": 0.701704341942044,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.722350685240539,
+              "precision": 0.7045104510451045,
+              "recall": 0.7411179261659531,
+              "support": 17282
+            },
+            "consumer_lending": {
+              "f1": 0.6151334469051675,
+              "precision": 0.566257187663356,
+              "recall": 0.6732442510876321,
+              "support": 6436
+            },
+            "credit_reporting": {
+              "f1": 0.9266437072396059,
+              "precision": 0.9401886085435923,
+              "recall": 0.9134835346872895,
+              "support": 164801
+            },
+            "debt_collection": {
+              "f1": 0.6861675951260802,
+              "precision": 0.6906403550483436,
+              "recall": 0.6817523958537063,
+              "support": 25565
+            },
+            "debt_credit_management": {
+              "f1": 0.27154308617234474,
+              "precision": 0.24547101449275363,
+              "recall": 0.3038116591928251,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.783110347367129,
+              "precision": 0.7526691441042883,
+              "recall": 0.8161176846818037,
+              "support": 15635
+            },
+            "money_services": {
+              "f1": 0.6645865834633384,
+              "precision": 0.6612490869247626,
+              "recall": 0.6679579413392362,
+              "support": 5421
+            },
+            "mortgage": {
+              "f1": 0.830804248861912,
+              "precision": 0.7822546078011144,
+              "recall": 0.8857790001617861,
+              "support": 6181
+            },
+            "student_loan": {
+              "f1": 0.8149993771022798,
+              "precision": 0.7678403755868545,
+              "recall": 0.8683302362622777,
+              "support": 3767
+            }
+          },
+          "row_count": 245980,
+          "weighted_f1": 0.8577547844193287
+        }
+      },
+      "train_groups": 86392,
+      "train_rows": 86392,
+      "vocabulary_size": 40000
+    },
+    "0.5": {
+      "dummy": {
+        "scientific": {
+          "balanced_accuracy": 0.1111111111111111,
+          "macro_f1": 0.08915320923909441,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 17282
+            },
+            "consumer_lending": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6436
+            },
+            "credit_reporting": {
+              "f1": 0.8023788831518497,
+              "precision": 0.669977233921457,
+              "recall": 1.0,
+              "support": 164801
+            },
+            "debt_collection": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 25565
+            },
+            "debt_credit_management": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15635
+            },
+            "money_services": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 5421
+            },
+            "mortgage": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6181
+            },
+            "student_loan": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3767
+            }
+          },
+          "row_count": 245980,
+          "weighted_f1": 0.5375755846910643
+        }
+      },
+      "sgd_logistic": {
+        "scientific": {
+          "balanced_accuracy": 0.7350303239330391,
+          "macro_f1": 0.6996108746858691,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.7249791672653085,
+              "precision": 0.720075346766368,
+              "recall": 0.72995023724106,
+              "support": 17282
+            },
+            "consumer_lending": {
+              "f1": 0.6148065683273031,
+              "precision": 0.5567036290322581,
+              "recall": 0.6864512119328776,
+              "support": 6436
+            },
+            "credit_reporting": {
+              "f1": 0.9263125481139339,
+              "precision": 0.940362240464148,
+              "recall": 0.9126765007493887,
+              "support": 164801
+            },
+            "debt_collection": {
+              "f1": 0.6859458390986362,
+              "precision": 0.6933466533466534,
+              "recall": 0.6787013495012713,
+              "support": 25565
+            },
+            "debt_credit_management": {
+              "f1": 0.24873294346978556,
+              "precision": 0.19067543335325762,
+              "recall": 0.3576233183856502,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.7824861353678341,
+              "precision": 0.7510292906716857,
+              "recall": 0.8166933162775823,
+              "support": 15635
+            },
+            "money_services": {
+              "f1": 0.6664863402758994,
+              "precision": 0.6518518518518519,
+              "recall": 0.6817930271167681,
+              "support": 5421
+            },
+            "mortgage": {
+              "f1": 0.8328383215292057,
+              "precision": 0.7867625899280576,
+              "recall": 0.884646497330529,
+              "support": 6181
+            },
+            "student_loan": {
+              "f1": 0.8139100087249158,
+              "precision": 0.7671522556390977,
+              "recall": 0.8667374568622246,
+              "support": 3767
+            }
+          },
+          "row_count": 245980,
+          "weighted_f1": 0.8576398906075299
+        }
+      },
+      "train_groups": 172778,
+      "train_rows": 172778,
+      "vocabulary_size": 40000
+    },
+    "1": {
+      "dummy": {
+        "operational_all_text": {
+          "balanced_accuracy": 0.1111111111111111,
+          "macro_f1": 0.0986920523880755,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 17970
+            },
+            "consumer_lending": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6515
+            },
+            "credit_reporting": {
+              "f1": 0.8882284714926796,
+              "precision": 0.7989307593487551,
+              "recall": 1.0,
+              "support": 365677
+            },
+            "debt_collection": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 35578
+            },
+            "debt_credit_management": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15677
+            },
+            "money_services": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 5434
+            },
+            "mortgage": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6194
+            },
+            "student_loan": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3771
+            }
+          },
+          "row_count": 457708,
+          "weighted_f1": 0.7096330472048306
+        },
+        "scientific": {
+          "balanced_accuracy": 0.1111111111111111,
+          "macro_f1": 0.08915320923909441,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 17282
+            },
+            "consumer_lending": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6436
+            },
+            "credit_reporting": {
+              "f1": 0.8023788831518497,
+              "precision": 0.669977233921457,
+              "recall": 1.0,
+              "support": 164801
+            },
+            "debt_collection": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 25565
+            },
+            "debt_credit_management": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15635
+            },
+            "money_services": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 5421
+            },
+            "mortgage": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 6181
+            },
+            "student_loan": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3767
+            }
+          },
+          "row_count": 245980,
+          "weighted_f1": 0.5375755846910643
+        }
+      },
+      "sgd_logistic": {
+        "operational_all_text": {
+          "balanced_accuracy": 0.7260925077259021,
+          "macro_f1": 0.6784213060669473,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.6832685239439621,
+              "precision": 0.6552411115651818,
+              "recall": 0.7138007790762382,
+              "support": 17970
+            },
+            "consumer_lending": {
+              "f1": 0.5857603050424035,
+              "precision": 0.5123045078196872,
+              "recall": 0.6838066001534919,
+              "support": 6515
+            },
+            "credit_reporting": {
+              "f1": 0.9467969866252012,
+              "precision": 0.9494946439130375,
+              "recall": 0.9441146148103381,
+              "support": 365677
+            },
+            "debt_collection": {
+              "f1": 0.5814854682454251,
+              "precision": 0.6419597989949749,
+              "recall": 0.5314239136545056,
+              "support": 35578
+            },
+            "debt_credit_management": {
+              "f1": 0.23309442193829857,
+              "precision": 0.1614156236512732,
+              "recall": 0.4192825112107623,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.7795800942645528,
+              "precision": 0.7493087015355651,
+              "recall": 0.8124003316961154,
+              "support": 15677
+            },
+            "money_services": {
+              "f1": 0.6661224489795918,
+              "precision": 0.656769808620998,
+              "recall": 0.6757453073242546,
+              "support": 5434
+            },
+            "mortgage": {
+              "f1": 0.8277677496991577,
+              "precision": 0.774852154322726,
+              "recall": 0.8884404262189215,
+              "support": 6194
+            },
+            "student_loan": {
+              "f1": 0.8019157558639323,
+              "precision": 0.7467978042086002,
+              "recall": 0.8658180853884911,
+              "support": 3771
+            }
+          },
+          "row_count": 457708,
+          "weighted_f1": 0.8896607879628773
+        },
+        "scientific": {
+          "balanced_accuracy": 0.7419930464565737,
+          "macro_f1": 0.700392672156457,
+          "per_class": {
+            "cards_prepaid": {
+              "f1": 0.7264312649982858,
+              "precision": 0.7174133844938495,
+              "recall": 0.7356787408864714,
+              "support": 17282
+            },
+            "consumer_lending": {
+              "f1": 0.6183689077383021,
+              "precision": 0.559582232288914,
+              "recall": 0.6909571162212554,
+              "support": 6436
+            },
+            "credit_reporting": {
+              "f1": 0.9261584454409567,
+              "precision": 0.9410574706884457,
+              "recall": 0.9117238366272049,
+              "support": 164801
+            },
+            "debt_collection": {
+              "f1": 0.6842710439712938,
+              "precision": 0.6937331671825381,
+              "recall": 0.6750635634656758,
+              "support": 25565
+            },
+            "debt_credit_management": {
+              "f1": 0.24581005586592178,
+              "precision": 0.17387261738726173,
+              "recall": 0.4192825112107623,
+              "support": 892
+            },
+            "deposit_accounts": {
+              "f1": 0.7831466207066355,
+              "precision": 0.7547606335646913,
+              "recall": 0.8137511992324912,
+              "support": 15635
+            },
+            "money_services": {
+              "f1": 0.6669093556607208,
+              "precision": 0.6581641817855218,
+              "recall": 0.6758900571850213,
+              "support": 5421
+            },
+            "mortgage": {
+              "f1": 0.8357800258614132,
+              "precision": 0.7886879127189205,
+              "recall": 0.8888529364180553,
+              "support": 6181
+            },
+            "student_loan": {
+              "f1": 0.8166583291645823,
+              "precision": 0.7720501300543864,
+              "recall": 0.8667374568622246,
+              "support": 3767
+            }
+          },
+          "row_count": 245980,
+          "weighted_f1": 0.8577145234798565
+        }
+      },
+      "train_groups": 345552,
+      "train_rows": 345552,
+      "vocabulary_size": 40000
+    }
+  },
+  "protocol_boundary": {
+    "development_partitions": [
+      "train",
+      "validation"
+    ],
+    "evaluation_partition": "validation",
+    "fit_partition": "train",
+    "sealed_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ]
+  },
+  "schema_version": "s3-frozen-protocol-v1",
+  "scientific_cache": {
+    "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s3\\scientific.parquet",
+    "rows": 591532,
+    "summary": {
+      "ambiguous_groups": 1070,
+      "ambiguous_rows": 104737,
+      "ambiguous_rows_by_partition": {
+        "train": 60400,
+        "validation": 44337
+      },
+      "raw_groups": 592602,
+      "raw_rows": 1026306,
+      "raw_rows_by_partition": {
+        "train": 568598,
+        "validation": 457708
+      },
+      "scientific_rows_by_partition_and_class": [
+        {
+          "partition": "train",
+          "product_family": "cards_prepaid",
+          "rows": 30695
+        },
+        {
+          "partition": "train",
+          "product_family": "consumer_lending",
+          "rows": 10886
+        },
+        {
+          "partition": "train",
+          "product_family": "credit_reporting",
+          "rows": 213626
+        },
+        {
+          "partition": "train",
+          "product_family": "debt_collection",
+          "rows": 36434
+        },
+        {
+          "partition": "train",
+          "product_family": "debt_credit_management",
+          "rows": 946
+        },
+        {
+          "partition": "train",
+          "product_family": "deposit_accounts",
+          "rows": 24871
+        },
+        {
+          "partition": "train",
+          "product_family": "money_services",
+          "rows": 8485
+        },
+        {
+          "partition": "train",
+          "product_family": "mortgage",
+          "rows": 11076
+        },
+        {
+          "partition": "train",
+          "product_family": "student_loan",
+          "rows": 8533
+        },
+        {
+          "partition": "validation",
+          "product_family": "cards_prepaid",
+          "rows": 17282
+        },
+        {
+          "partition": "validation",
+          "product_family": "consumer_lending",
+          "rows": 6436
+        },
+        {
+          "partition": "validation",
+          "product_family": "credit_reporting",
+          "rows": 164801
+        },
+        {
+          "partition": "validation",
+          "product_family": "debt_collection",
+          "rows": 25565
+        },
+        {
+          "partition": "validation",
+          "product_family": "debt_credit_management",
+          "rows": 892
+        },
+        {
+          "partition": "validation",
+          "product_family": "deposit_accounts",
+          "rows": 15635
+        },
+        {
+          "partition": "validation",
+          "product_family": "money_services",
+          "rows": 5421
+        },
+        {
+          "partition": "validation",
+          "product_family": "mortgage",
+          "rows": 6181
+        },
+        {
+          "partition": "validation",
+          "product_family": "student_loan",
+          "rows": 3767
+        }
+      ]
+    }
+  },
+  "signature": {
+    "batch_size": 4096,
+    "config": {
+      "fractions": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "max_df": 0.98,
+      "max_features": 40000,
+      "max_iter": 500,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "random_state": 42
+    },
+    "max_groups_per_class": null,
+    "memory_budget_gb": 7.0,
+    "scientific_cache": {
+      "ambiguous_label_scope": [
+        "train",
+        "validation"
+      ],
+      "group_identity": [
+        "normalized_group_hash",
+        "normalized_length"
+      ],
+      "representative": "minimum Complaint ID",
+      "schema_version": "s3-scientific-cache-v2",
+      "source": {
+        "mtime_ns": 1786806882351477000,
+        "path": "D:\\Cursos\\DataCamp\\Data Scientist with Python\\Projects\\Consumer Complaint Intelligence\\temp\\s3\\development.parquet",
+        "size": 166434080
+      }
+    }
+  }
+}

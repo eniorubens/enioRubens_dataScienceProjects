@@ -1,0 +1,9 @@
+{
+  "peak_process_rss_bytes": 3508162560,
+  "min_system_available_bytes": 377757696,
+  "samples": 1204,
+  "started_at_epoch": 1786888363.4807694,
+  "status": "ABORTED_LOW_MEMORY",
+  "peak_process_rss_gb": 3.267230987548828,
+  "min_system_available_gb": 0.35181427001953125
+}

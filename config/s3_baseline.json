@@ -1,0 +1,81 @@
+{
+  "schema_version": "s3-baseline-manifest-v1",
+  "manifest_id": "s3_tfidf_sgd_development_baseline_2026-08-15",
+  "stage": "S3",
+  "status": "DEVELOPMENT_BASELINE_COMPLETE",
+  "claim_scope": {
+    "evidence_type": "development_validation",
+    "confirmatory_result": false,
+    "deploy_ready": false,
+    "sealed_partitions_opened": false
+  },
+  "source_artifact": {
+    "path": "temp/s3/s3_full.json",
+    "executed": true,
+    "recomputed_during_publication": false
+  },
+  "protocol_boundary": {
+    "development_partitions": ["train", "validation"],
+    "fit_partition": "train",
+    "evaluation_partition": "validation",
+    "sealed_partitions": ["test", "stress", "monitor"]
+  },
+  "baseline": {
+    "estimator": "SGDClassifier(loss=log_loss)",
+    "vectorizer": "TfidfVectorizer",
+    "max_features": 40000,
+    "min_df": 2,
+    "max_df": 0.98,
+    "ngram_range": [1, 2],
+    "max_iter": 500,
+    "random_state": 42,
+    "fractions": [0.25, 0.5, 1.0],
+    "batch_size_rows": 4096
+  },
+  "scientific_units": {
+    "train_groups": 345552,
+    "validation_groups": 245980,
+    "scientific_cache_rows": 591532,
+    "validation_support_debt_credit_management": 892
+  },
+  "resource_evidence": {
+    "execution_seconds": 674.93,
+    "peak_rss_gb": 3.35,
+    "minimum_system_available_gb": 4.89,
+    "internal_memory_estimate_gb": 6.11,
+    "memory_limit": "4GB",
+    "duckdb_threads": 1
+  },
+  "metrics": {
+    "scientific_learning_curve": [
+      {
+        "fraction": 0.25,
+        "macro_f1": 0.7017043419,
+        "balanced_accuracy": 0.7279549588,
+        "debt_credit_management_f1": 0.2715430862
+      },
+      {
+        "fraction": 0.5,
+        "macro_f1": 0.6996108747,
+        "balanced_accuracy": 0.7350303239,
+        "debt_credit_management_f1": 0.2487329435
+      },
+      {
+        "fraction": 1.0,
+        "macro_f1": 0.7003926722,
+        "balanced_accuracy": 0.7419930465,
+        "debt_credit_management_f1": 0.2458100559,
+        "debt_credit_management_recall": 0.4192825112
+      }
+    ],
+    "dummy_scientific_macro_f1": 0.089153,
+    "final_operational_all_text_macro_f1": 0.6784213061
+  },
+  "interpretation": {
+    "learning_curve": "Scientific macro-F1 is essentially flat across the tested training fractions.",
+    "critical_class": "debt_credit_management does not improve with additional training volume in this baseline.",
+    "dummy_comparison": "The SGD logistic baseline exceeds the dummy scientific macro-F1.",
+    "operational_view": "The final all-text validation metric is reported separately from the scientific metric.",
+    "next_claim_boundary": "No test, stress, or monitor performance claim is authorized by this artifact."
+  }
+}

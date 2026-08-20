@@ -1,0 +1,127 @@
+{
+  "schema_version": "v2-d2-execution-config-v1",
+  "stage": "V2.1-D2",
+  "adr": "docs/ADR-012-v2-d2-transformer-challenge.md",
+  "protocol": {
+    "path": "config/v2_development_protocol.json",
+    "sha256": "45E5F83C624B97E1AF785AF6EA6185F7E4DA2D73E6A9F7AB86ED7FDBFF9C16C5",
+    "size_bytes": 5973,
+    "schema_version": "v2-post-confirmation-development-v1-1",
+    "authorizes": "transformer_challenge",
+    "seven_step_cycle_index": 4
+  },
+  "task": "binary_critical_detector",
+  "architecture": {
+    "stage_a": "compact_transformer_margin_detector",
+    "stage_b": "frozen_s7_fallback",
+    "combination": "critical_override_above_calibrated_threshold",
+    "score_definition": "logit_critical_minus_logit_non_critical",
+    "threshold_source": "inner_calibration_only",
+    "threshold_search": "search_detector_threshold_exact"
+  },
+  "model": {
+    "family": "compact_transformer",
+    "model_id": "distilbert-base-uncased",
+    "revision": "main",
+    "record_resolved_revision": true,
+    "parameter_count_millions": 66,
+    "maximum_models": 1,
+    "hyperparameter_search": "forbidden",
+    "rationale": "one_pre_registered_configuration_no_tuning_surface"
+  },
+  "tokenizer": {
+    "max_length": 256,
+    "truncation": true,
+    "padding": "max_length",
+    "lowercase": true
+  },
+  "training": {
+    "fit_scope_role": "inner_fit",
+    "balance_strategy": "hard_negative",
+    "hard_negative_source": "generate_hard_negative_indices",
+    "hard_negative_per_positive": 10,
+    "background_negative_per_positive": 5,
+    "oof_random_state": 42,
+    "epochs": 3,
+    "learning_rate": 0.00002,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "train_batch_size": 32,
+    "eval_batch_size": 128,
+    "max_grad_norm": 1.0,
+    "optimizer": "adamw_torch",
+    "lr_scheduler_type": "linear",
+    "mixed_precision": "fp16_if_cuda_else_fp32",
+    "class_weight": null,
+    "early_stopping": "forbidden",
+    "checkpoint_selection": "forbidden_last_epoch_only"
+  },
+  "seeds": {
+    "values": [42, 43, 44],
+    "role": "replicates_of_one_model_not_distinct_models",
+    "aggregation": "median_of_outer_critical_f1",
+    "reported_seed": "the_seed_attaining_the_median",
+    "best_of_seeds": "forbidden"
+  },
+  "incumbent": {
+    "stage": "V2.1-D1",
+    "candidate_id": "word_char_tfidf_union_40000_60000_c_1_hard_negative",
+    "artifact": {
+      "path": "temp/v2/v2_classical_benchmark.json",
+      "sha256": "A0ED2BB2914485770D638AE5B317576E09F2DF4F23589E4F57F794086377A6E9",
+      "size_bytes": 219597
+    },
+    "manifest": {
+      "path": "config/v2_classical_results.json",
+      "sha256": "CC60C849A3BEED5A4F025CF0F11DAD6F497910F04E28F4E10C4BB11DF920427A",
+      "size_bytes": 1573
+    },
+    "outer": {
+      "critical_f1": 0.38689866939611056,
+      "critical_precision": 0.4375,
+      "critical_recall": 0.3467889908256881,
+      "macro_f1": 0.731214101791537,
+      "critical_support": 545,
+      "row_count": 127706
+    }
+  },
+  "decision_rule": {
+    "pre_registered": true,
+    "evaluated_on": "reported_seed_outer_evaluation",
+    "conditions": [
+      "passes_three_of_three_development_safety_margins",
+      "effective_overrides_greater_than_zero",
+      "outer_critical_f1_greater_than_fallback_baseline",
+      "outer_critical_precision_at_least_precision_floor",
+      "outer_critical_f1_at_least_displacement_bar"
+    ],
+    "precision_floor": 0.4342857142857143,
+    "precision_floor_source": "fallback_baseline_outer_critical_precision",
+    "displacement_increment": 0.0387,
+    "displacement_bar": 0.4255986693961106,
+    "displacement_increment_basis": {
+      "method": "parametric_bootstrap_on_the_incumbent_outer_confusion_matrix",
+      "draws": 200000,
+      "standard_deviation": 0.019347,
+      "multiplier": 2,
+      "coincides_with_relative_improvement": 0.1
+    },
+    "outcomes": {
+      "met": "TRANSFORMER_DISPLACES_CLASSICAL",
+      "not_met": "CLASSICAL_WINNER_STANDS"
+    },
+    "reopening_classical_selection": "forbidden",
+    "window_revision": "forbidden"
+  },
+  "boundary": {
+    "allowed_partitions": ["train", "validation"],
+    "sealed_partitions": ["test", "stress", "monitor"],
+    "no_sealed_partition_unlock_in_development_code": true,
+    "persists_narratives_or_identifiers": false,
+    "persists_fitted_weights": false
+  },
+  "outputs": {
+    "artifact": "temp/v2/v2_transformer_challenge.json",
+    "manifest": "config/v2_transformer_results.json"
+  }
+}
