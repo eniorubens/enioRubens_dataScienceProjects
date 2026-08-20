@@ -106,11 +106,29 @@ project recommends a prospective randomized pilot rather than deployment.
 
 ---
 
+### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) — Imbalanced NLP and Confirmatory Evaluation
+![Status](https://img.shields.io/badge/status-completed-blue)
+
+Builds a reproducible `en-US` complaint-routing system over a 3.8-million-row
+CFPB snapshot. The project progresses from bounded Polars/DuckDB audits and
+temporal deduplication to TF-IDF classifiers, hard-negative mining, a
+hierarchical detector, frozen inference bundles, and two pre-registered sealed
+evaluations. Neither cycle was retrospectively promoted: S8 passed 2 of 3
+gates and V2.1-C passed 3 of 4, so both remain `NOT_CONFIRMED` and
+`deploy=false`.
+
+**Methods:** Imbalanced multiclass NLP · Word/character TF-IDF · LinearSVC · SGD logistic regression · Temporal splitting · Group-aware deduplication · Hard-negative mining · Hierarchical classification · Threshold calibration · Bootstrap intervals · Sealed confirmatory evaluation
+
+**Technologies:** Python · Polars · DuckDB · scikit-learn · imbalanced-learn · joblib · Kaggle · Jupyter · unittest
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
 |------|----------------------|
 | **Supervised Learning** | Random Forest, CatBoost, Gradient Boosting, Logistic Regression, Threshold Optimization |
+| **Natural Language Processing** | TF-IDF, Sparse Linear Models, Hard-Negative Mining, Hierarchical Classification, Imbalanced Text Classification |
 | **Probabilistic Modeling** | BG/NBD, Gamma-Gamma, MCMC, MAP |
 | **Time Series & Forecasting** | Expanding-Window CV, Temporal Holdout, Demand Forecasting, Residual Diagnostics |
 | **Uncertainty Quantification** | Adaptive Conformal Inference, Conditional Coverage, Winkler Score, Temporal Bootstrap |
@@ -120,12 +138,12 @@ project recommends a prospective randomized pilot rather than deployment.
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
 | **Causal Inference** | CATE Estimation, Meta-Learners, Causal Forests, Uplift Evaluation, Policy Learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
-| **Data Engineering** | Feature Pipelines, Encoding Strategies, Imbalanced Data Handling |
+| **Data Engineering** | Polars, DuckDB, Feature Pipelines, Encoding Strategies, Imbalanced Data Handling |
 | **Market Basket Analysis** | Apriori, Association Rules, Lift, Conviction, Zhang's Metric |
 
 ## Core Technologies
 
-Python · Pandas · NumPy · scikit-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
+Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
 
 ---
 

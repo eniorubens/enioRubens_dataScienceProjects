@@ -106,11 +106,29 @@ projeto recomenda um piloto randomizado prospectivo em vez de deployment.
 
 ---
 
+### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) — NLP desbalanceado e avaliação confirmatória
+![Status](https://img.shields.io/badge/status-completed-blue)
+
+Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre
+um snapshot do CFPB com 3,8 milhões de linhas. O projeto avança de auditorias
+limitadas com Polars/DuckDB e deduplicação temporal para classificadores
+TF-IDF, mineração de hard negatives, detector hierárquico, bundles congelados
+de inferência e duas avaliações seladas pré-registradas. Nenhum ciclo foi
+promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
+4; ambos permanecem `NOT_CONFIRMED` e `deploy=false`.
+
+**Métodos:** NLP multiclasse desbalanceado · TF-IDF por palavras e caracteres · LinearSVC · Regressão logística SGD · Divisão temporal · Deduplicação por grupos · Mineração de hard negatives · Classificação hierárquica · Calibração de threshold · Intervalos bootstrap · Avaliação confirmatória selada
+
+**Tecnologias:** Python · Polars · DuckDB · scikit-learn · imbalanced-learn · joblib · Kaggle · Jupyter · unittest
+
+---
+
 ## Resumo de competências
 
 | Área | Métodos e técnicas |
 |------|--------------------|
 | **Aprendizado supervisionado** | Random Forest, CatBoost, Gradient Boosting, Logistic Regression, otimização de threshold |
+| **Processamento de linguagem natural** | TF-IDF, modelos lineares esparsos, mineração de hard negatives, classificação hierárquica, classificação de texto desbalanceada |
 | **Modelagem probabilística** | BG/NBD, Gamma-Gamma, MCMC, MAP |
 | **Séries temporais e previsão** | Validação cruzada expansiva, holdout temporal, previsão de demanda, diagnósticos residuais |
 | **Quantificação de incerteza** | Inferência conformal adaptativa, cobertura condicional, Winkler Score, bootstrap temporal |
@@ -120,12 +138,12 @@ projeto recomenda um piloto randomizado prospectivo em vez de deployment.
 | **Estatística inferencial** | Teste Z, A/B testing, testes de hipótese |
 | **Inferência causal** | Estimação de CATE, meta-learners, causal forests, avaliação de uplift, policy learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
-| **Engenharia de dados** | Pipelines de features, estratégias de encoding, tratamento de dados desbalanceados |
+| **Engenharia de dados** | Polars, DuckDB, pipelines de features, estratégias de encoding, tratamento de dados desbalanceados |
 | **Market basket analysis** | Apriori, regras de associação, lift, conviction, métrica de Zhang |
 
 ## Tecnologias principais
 
-Python · Pandas · NumPy · scikit-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
+Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
 
 ---
 
