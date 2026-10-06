@@ -1,0 +1,206 @@
+feature,importance_mean,importance_std_between_folds,repeats_std_mean,familia,tipo,janela,selecionada_optuna
+cycle,7.714986967670863,0.7867968207420597,0.2463091276230867,Base,Base,Atual,True
+s11_desvio_80,1.3475800544065255,0.1815778224412691,0.0551899900924219,Desvio-padrão móvel,Desvio-padrão,80,True
+s9_desvio_80,0.8754394485479502,0.2001324806793014,0.044850444457841,Desvio-padrão móvel,Desvio-padrão,80,True
+s14_desvio_80,0.6444452683278593,0.0952465292881012,0.0318557447991431,Desvio-padrão móvel,Desvio-padrão,80,True
+s12_desvio_80,0.5718109176744188,0.1744362958437494,0.0467948771933571,Desvio-padrão móvel,Desvio-padrão,80,True
+s15_desvio_80,0.3678621487861316,0.1221282727810306,0.0168781016706005,Desvio-padrão móvel,Desvio-padrão,80,True
+s20_desvio_80,0.3013036683740658,0.2892099981118394,0.0274067344794086,Desvio-padrão móvel,Desvio-padrão,80,True
+s4_desvio_80,0.2996780120658878,0.0923288403775014,0.042416503193907,Desvio-padrão móvel,Desvio-padrão,80,True
+s14_desvio_40,0.2892616681016091,0.1012524391716358,0.0155843934904366,Desvio-padrão móvel,Desvio-padrão,40,True
+s8_desvio_80,0.2445247718124074,0.1627189557789116,0.0250341906566142,Desvio-padrão móvel,Desvio-padrão,80,True
+s7_desvio_80,0.2433576149909807,0.1367924557857512,0.0263145503017579,Desvio-padrão móvel,Desvio-padrão,80,True
+s7_media_80,0.2400819689085779,0.3500169308263077,0.0195082791596386,Média móvel,Média,80,True
+s11_media_10,0.2356803827307466,0.2020264522396951,0.0166547676652873,Média móvel,Média,10,True
+s4_media_10,0.2158328014709655,0.1980166485912944,0.0120717354806632,Média móvel,Média,10,True
+s9_desvio_40,0.1927881271254925,0.1309159603986053,0.0113737539066046,Desvio-padrão móvel,Desvio-padrão,40,False
+s11_media_5,0.1731162358041224,0.1843175348584611,0.015766170264724,Média móvel,Média,5,True
+s13_desvio_80,0.171415581895557,0.1522208218027245,0.0192578226541571,Desvio-padrão móvel,Desvio-padrão,80,True
+s20_media_80,0.1628955529761843,0.2436440961251002,0.0221846296874351,Média móvel,Média,80,True
+s21_media_10,0.1564402845807156,0.1982501817747985,0.0151953951777623,Média móvel,Média,10,True
+s4_media_20,0.1435934846344485,0.1331166115581805,0.0163452824733948,Média móvel,Média,20,True
+s15_media_10,0.1216362692477403,0.1163332446742233,0.0097194978677347,Média móvel,Média,10,True
+s13_media_80,0.1129147360043163,0.3260717390867943,0.0127228235103185,Média móvel,Média,80,True
+s2_media_10,0.0977286901577125,0.1043088698838285,0.0069742574719515,Média móvel,Média,10,True
+s4_media_5,0.0976691032669322,0.1264913289543741,0.0111005299367684,Média móvel,Média,5,True
+s17_desvio_80,0.096639168569032,0.0551285647673828,0.0138046877459122,Desvio-padrão móvel,Desvio-padrão,80,True
+s21_desvio_80,0.0859617531294295,0.1016517015725222,0.0113423783638012,Desvio-padrão móvel,Desvio-padrão,80,True
+s4_media_80,0.0817806263238978,0.1361167959101296,0.0167187980938694,Média móvel,Média,80,True
+s8_media_80,0.0768985815897191,0.210668911862622,0.009594531938569,Média móvel,Média,80,True
+s20_media_10,0.0760208848833545,0.1034278934999968,0.0054363880656636,Média móvel,Média,10,True
+s3_media_10,0.0573126608444868,0.0736704446003183,0.0113647947148467,Média móvel,Média,10,True
+s17_media_80,0.0532690515778869,0.1216278628029129,0.0071239893412334,Média móvel,Média,80,True
+s3_media_20,0.0525504871330838,0.1213095720973102,0.0105238231051135,Média móvel,Média,20,True
+s17_media_10,0.0500926899679472,0.0495539487201955,0.0076598412189091,Média móvel,Média,10,True
+s2_media_20,0.0460088353419344,0.1739471037114847,0.0055878058821244,Média móvel,Média,20,True
+s3_desvio_80,0.0333040446008209,0.0479963570878388,0.0071133722745211,Desvio-padrão móvel,Desvio-padrão,80,True
+s15_media_5,0.0292621499880508,0.0489207019279721,0.0054276909747194,Média móvel,Média,5,True
+s17_media_20,0.0244996209206419,0.0902456364507149,0.0094644355620422,Média móvel,Média,20,True
+s3_media_5,0.0127713551124173,0.0286171022107129,0.0043868999829667,Média móvel,Média,5,True
+s15_media_20,0.01059580484867,0.1349656039599563,0.0089001826227013,Média móvel,Média,20,True
+s20_desvio_40,0.0104532447487587,0.042365884883896,0.0022807617104616,Desvio-padrão móvel,Desvio-padrão,40,False
+s4_media_40,0.0089309514255944,0.0219415478261899,0.0085470414619847,Média móvel,Média,40,True
+s8_media_5,0.0071229900307047,0.0059463050382196,0.0010635091715286,Média móvel,Média,5,True
+s2_media_5,0.0066371908503477,0.0312984780653195,0.0044902585154313,Média móvel,Média,5,True
+s7_media_5,0.0065908432761098,0.0291583428241287,0.0044205769532505,Média móvel,Média,5,True
+s2_desvio_80,0.0051649106924282,0.0562807826684845,0.0077675079538894,Desvio-padrão móvel,Desvio-padrão,80,True
+s7_desvio_40,0.0043588938691478,0.0457140943637594,0.0061965688800726,Desvio-padrão móvel,Desvio-padrão,40,True
+s8_media_10,0.0038287925706453,0.0191246510556074,0.0042518727131726,Média móvel,Média,10,True
+s8_media_20,0.0026257633640518,0.0315916211478095,0.0057594725649187,Média móvel,Média,20,True
+s13_desvio_40,0.0025536014055539,0.0164644740298471,0.0031246819052266,Desvio-padrão móvel,Desvio-padrão,40,True
+s15_media_80,0.002495045865861,0.0691416972342258,0.008177583837764,Média móvel,Média,80,True
+s7_media_10,0.0014604144492665,0.0741208294979774,0.0053005619354047,Média móvel,Média,10,True
+s8,0.001044262599171,0.0022846272578927,0.0005421327380539,Base,Base,Atual,True
+s20,0.0008859286050091,0.0007818275792017,0.0002923339256958,Base,Base,Atual,True
+s17,0.0006767571365436,0.0012953060448075,0.0005295576739615,Base,Base,Atual,True
+s7,0.0002569321445382,0.0025079381419044,0.0004822707690183,Base,Base,Atual,True
+s2,0.0001838397855109,0.0010047176461995,0.0005079214439971,Base,Base,Atual,True
+s4,0.0001818587594167,0.0019365838125292,0.0004497930895677,Base,Base,Atual,True
+s15_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s11_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s15_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s15_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s17_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s17_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s14_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s14_media_10,0.0,0.0,0.0,Média móvel,Média,10,False
+s14_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s14_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s12_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s12_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s13_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s14_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s14,0.0,0.0,0.0,Base,Base,Atual,False
+s12_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s12_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s11_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s11_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s11_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+setting1_media_20,0.0,0.0,0.0,Média móvel,Média,20,False
+setting1_media_40,0.0,0.0,0.0,Média móvel,Média,40,False
+setting1_media_5,0.0,0.0,0.0,Média móvel,Média,5,False
+s9_media_10,0.0,0.0,0.0,Média móvel,Média,10,False
+s9_media_20,0.0,0.0,0.0,Média móvel,Média,20,False
+s9_media_40,0.0,0.0,0.0,Média móvel,Média,40,False
+s9_media_5,0.0,0.0,0.0,Média móvel,Média,5,False
+s9_media_80,0.0,0.0,0.0,Média móvel,Média,80,False
+setting1,0.0,0.0,0.0,Base,Base,Atual,False
+setting1_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+setting1_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+setting1_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+setting1_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+setting1_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s7_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s7_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s8_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s8_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s7_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s6_media_40,0.0,0.0,0.0,Média móvel,Média,40,False
+s6_media_80,0.0,0.0,0.0,Média móvel,Média,80,False
+s14_media_40,0.0,0.0,0.0,Média móvel,Média,40,False
+s14_media_20,0.0,0.0,0.0,Média móvel,Média,20,False
+s14_media_5,0.0,0.0,0.0,Média móvel,Média,5,False
+s17_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s15_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s15_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s14_media_80,0.0,0.0,0.0,Média móvel,Média,80,False
+s17_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s17_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s20_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s20_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s13_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s13_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s13_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s6_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s6_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s3_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s4_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s6,0.0,0.0,0.0,Base,Base,Atual,False
+s6_desvio_80,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,80,False
+s6_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s2_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s3_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s4_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s3_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s3_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s3_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s6_media_10,0.0,0.0,0.0,Média móvel,Média,10,False
+s6_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s6_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s4_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s4_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s21_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s2_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s2_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s2_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s2_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s21_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s21_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s21_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+s21_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s20_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s20_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+setting2_desvio_40,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,40,False
+setting2_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+setting2_desvio_80,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,80,False
+setting1_media_80,0.0,0.0,0.0,Média móvel,Média,80,False
+setting2,0.0,0.0,0.0,Base,Base,Atual,False
+setting2_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+setting2_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+setting2_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+setting2_media_20,0.0,0.0,0.0,Média móvel,Média,20,False
+setting2_media_40,0.0,0.0,0.0,Média móvel,Média,40,False
+setting2_media_5,0.0,0.0,0.0,Média móvel,Média,5,False
+setting2_media_10,0.0,0.0,0.0,Média móvel,Média,10,False
+setting2_media_80,0.0,0.0,0.0,Média móvel,Média,80,False
+setting1_media_10,0.0,0.0,0.0,Média móvel,Média,10,False
+setting1_desvio_80,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,80,False
+s6_media_20,0.0,0.0,0.0,Média móvel,Média,20,False
+s9_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s9_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s8_desvio_10,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,10,False
+s9,0.0,0.0,0.0,Base,Base,Atual,False
+s9_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s7_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s8_desvio_20,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,20,False
+s8_delta,0.0,0.0,0.0,Delta,Delta,Atual,False
+s6_media_5,0.0,0.0,0.0,Média móvel,Média,5,False
+s9_desvio_5,0.0,0.0,0.0,Desvio-padrão móvel,Desvio-padrão,5,False
+s3,-5.2244857810042775e-05,0.0012529442338594,0.000347690040633,Base,Base,Atual,True
+s15,-0.0001032363261532,0.0009324481122773,0.0001731744387236,Base,Base,Atual,True
+s13,-0.0001382190589737,0.0014025641507327,0.000646195393992,Base,Base,Atual,True
+s20_media_20,-0.0002975024433444,0.0763523694458548,0.0056840585426541,Média móvel,Média,20,True
+s21,-0.0005155648776432,0.0013097213967482,0.0003449645730902,Base,Base,Atual,True
+s11_media_80,-0.0006072848704112,0.1020701068081031,0.0105838604601608,Média móvel,Média,80,True
+s17_media_5,-0.0014929468867459,0.0157870281963838,0.0028483989625991,Média móvel,Média,5,True
+s12_desvio_40,-0.001719259434329,0.0224805102918796,0.0074355002569906,Desvio-padrão móvel,Desvio-padrão,40,True
+s12,-0.0021993419817559,0.0038223112773061,0.0007844382373197,Base,Base,Atual,True
+s11_desvio_40,-0.0027728497487065,0.0698742775380679,0.0067892358244807,Desvio-padrão móvel,Desvio-padrão,40,True
+s21_media_20,-0.0046504850828905,0.2052701196139102,0.01686112727251,Média móvel,Média,20,True
+s7_media_40,-0.0047043144632247,0.1056426980898599,0.0086034169194626,Média móvel,Média,40,True
+s13_media_5,-0.0056004820191302,0.0054843652529569,0.0019881520955898,Média móvel,Média,5,True
+s11,-0.0060772220910652,0.0074268423254603,0.0013483422398439,Base,Base,Atual,True
+s4_desvio_40,-0.0061864943533646,0.0308437306718116,0.0065494395152439,Desvio-padrão móvel,Desvio-padrão,40,True
+s20_media_5,-0.0085334014386977,0.0189537072381436,0.0041369862550355,Média móvel,Média,5,True
+s17_media_40,-0.0105231513421439,0.0406574522469184,0.0056565040629746,Média móvel,Média,40,True
+s7_media_20,-0.0109799404485256,0.0910470886904472,0.0062915813325716,Média móvel,Média,20,True
+s21_media_5,-0.0110884737287681,0.0836664141793569,0.0083608173174293,Média móvel,Média,5,True
+s21_media_80,-0.0177977301209317,0.0442142407206143,0.004802586876987,Média móvel,Média,80,True
+s12_media_80,-0.0206989564796605,0.1348408244187977,0.0087041706138076,Média móvel,Média,80,True
+s8_media_40,-0.0255190191744676,0.0525312740448377,0.005767962325075,Média móvel,Média,40,True
+s20_media_40,-0.0337033273103453,0.047994475216179,0.0066130732638711,Média móvel,Média,40,True
+s15_media_40,-0.0347377581575192,0.0545201329205199,0.0038331708855768,Média móvel,Média,40,True
+s13_media_10,-0.0385341873829022,0.0446980077338245,0.0028486491531613,Média móvel,Média,10,True
+s12_media_5,-0.0414924203769433,0.0970843725525865,0.0085879584366,Média móvel,Média,5,True
+s21_media_40,-0.0526203056114527,0.0747708636894902,0.0063688871623262,Média móvel,Média,40,True
+s3_media_40,-0.0584988060602131,0.1356840794800285,0.0079640999477634,Média móvel,Média,40,True
+s12_media_10,-0.0641888252582942,0.1433418001148201,0.0085813735486983,Média móvel,Média,10,True
+s12_media_20,-0.0679110323834379,0.1174576924036571,0.0055564183622662,Média móvel,Média,20,True
+s2_media_80,-0.0681651024459159,0.1667014864077853,0.0056677620376079,Média móvel,Média,80,True
+s13_media_20,-0.0721607836913863,0.0978741506425034,0.0070407519926441,Média móvel,Média,20,True
+s11_media_40,-0.077994400878529,0.1114129932897481,0.0065953989782417,Média móvel,Média,40,True
+s11_media_20,-0.0841384675506485,0.1612140848765121,0.0157298461667316,Média móvel,Média,20,True
+s2_media_40,-0.0862026210918306,0.2071612133916255,0.0076567319251175,Média móvel,Média,40,True
+s3_media_80,-0.0887480262968037,0.1523400691496508,0.0089537115408567,Média móvel,Média,80,True
+s12_media_40,-0.0897725837457696,0.1089260359029012,0.0064027924637047,Média móvel,Média,40,True
+s13_media_40,-0.115856609085741,0.1891865856924174,0.0109759035721948,Média móvel,Média,40,True

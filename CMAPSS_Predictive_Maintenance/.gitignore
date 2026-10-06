@@ -1,0 +1,13 @@
+# Referências pessoais: não incluir no repositório público.
+/docs/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+/.ipython*/
+/.validation/
+.env
+.env.*
+*.log
+*.db-journal
+*.db-wal
+*.db-shm

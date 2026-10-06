@@ -1,0 +1,22 @@
+{
+  "sources": {
+    "outputs\\reports\\extra-trees-importancia-permutacao-fd001.csv": "c0fceb4c5649e33d2394ff82aa4fa872d3ce7da7cdca69c4ec3bd2a4d3305045",
+    "outputs\\reports\\extra-trees-alertas-resumo-fd001.csv": "0273391018f1427f82daab3d4f7c3dd49f8d5b096f45deb7dd3ab7b4bd895b8d",
+    "outputs\\reports\\extra-trees-alertas-custos-fd001.csv": "744072dbd3868955e05954185f4efc4f8366701cfc1db1c5d4cd888567c8e2c1",
+    "outputs\\reports\\extra-trees-incerteza-faixas-fd001.csv": "662b08ae2abd7e5c74b14ba41c22ff5e164e6a80e861fe84833db4abe3f96251",
+    "outputs\\reports\\extra-trees-incerteza-resumo-fd001.csv": "397d9067f6d868eecd5851449145214f58ceadcb3c6570d66aba768d0540b5bb",
+    "outputs\\reports\\decisao-final-extra-trees-fd001.md": "6ea2b4f900bfb62b7299531acdb79db38f97ac4d11ff3ea9dedb868cdc32ef18"
+  },
+  "benchmark": "Frozen values from decisao-final-extra-trees-fd001.md; no new evaluation.",
+  "languages": [
+    "pt-BR",
+    "en-US"
+  ],
+  "training_performed": false,
+  "dataset_provenance": {
+    "repository": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/",
+    "catalog": "https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data",
+    "citation": "Saxena and Goebel (2008), Turbofan Engine Degradation Simulation Data Set",
+    "local_readme_sha256": "4f5270554b775c67e73aff383c5436fd329d6e4cc3d3a116913276fae511269b"
+  }
+}

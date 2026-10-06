@@ -123,6 +123,18 @@ promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
 
 ---
 
+### 10. [NASA C-MAPSS — Manutenção preditiva](CMAPSS_Predictive_Maintenance/README.md) — Vida útil restante
+
+Estima a vida útil restante de motores simulados do FD001 com histórico causal dos sensores. Um pipeline Extra Trees selecionou 93 de 205 atributos e registrou **MAE de 16,23 ciclos** e **RMSE de 23,80 ciclos** no benchmark oficial de 100 motores. A escolha final ocorreu após essa comparação; o resultado não é uma avaliação independente adicional após a seleção. Alertas, custos hipotéticos e faixas empíricas de incerteza permanecem exploratórios, sem validação industrial.
+
+**Leitura:** [Relatório interativo](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) · [Notebook de síntese](CMAPSS_Predictive_Maintenance/notebooks/pt-BR/27_conclusao_entrega_fd001.ipynb) · [English](CMAPSS_Predictive_Maintenance/README.en.md)
+
+**Métodos:** Validação por motor · Features móveis causais · Optuna · Seleção de atributos · Diagnóstico de resíduos · Importância por permutação · Alertas e custos ilustrativos de manutenção
+
+**Tecnologias:** Python · Pandas · scikit-learn · Extra Trees · XGBoost · HistGradientBoosting · Optuna · Plotly · Jupyter · GitHub Pages
+
+---
+
 ## Resumo de competências
 
 | Área | Métodos e técnicas |

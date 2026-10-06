@@ -1,0 +1,5 @@
+familia,tipo,atributos,selecionados,importancia_permutacao_media,importancia_permutacao_abs_media,atributos_importancia_positiva
+Base,Base,18,13,0.4282850398615362,0.4292945764385807,7
+Desvio-padrão móvel,Desvio-padrão,85,20,0.06796734465397243,0.06821860591365242,19
+Média móvel,Média,85,60,0.013777944756711286,0.04194780230557421,31
+Delta,Delta,17,0,0.0,0.0,0

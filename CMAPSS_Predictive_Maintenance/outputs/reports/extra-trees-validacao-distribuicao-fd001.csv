@@ -1,0 +1,3 @@
+origem,motores_ou_observacoes,superestimados,subestimados,percentual_superestimacao,percentual_subestimacao,erro_medio,mediana_erro,magnitude_media_superestimacao,magnitude_media_subestimacao
+Teste oficial,100,72,28,72.0,28.000000000000004,10.077659117055916,4.556906494729706,18.26776499589817,10.982613142824167
+OOF desenvolvimento (média por motor),100,64,36,64.0,36.0,3.591057053972834,6.926712881048788,18.292364360184123,22.54460037929168

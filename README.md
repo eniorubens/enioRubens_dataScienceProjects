@@ -123,6 +123,18 @@ gates and V2.1-C passed 3 of 4, so both remain `NOT_CONFIRMED` and
 
 ---
 
+### 10. [NASA C-MAPSS — Predictive Maintenance](CMAPSS_Predictive_Maintenance/README.en.md) — Remaining Useful Life
+
+Estimates remaining useful life on simulated FD001 engine trajectories using causal sensor histories. An Extra Trees pipeline selected 93 of 205 attributes and achieved **MAE 16.23 cycles** and **RMSE 23.80 cycles** in the official 100-engine benchmark. Model selection followed that comparison; the result is not an additional independent post-selection evaluation. Alerts, hypothetical costs and empirical uncertainty bands remain exploratory, not industrial validation.
+
+**Read:** [Interactive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html) · [English summary notebook](CMAPSS_Predictive_Maintenance/notebooks/en-US/27_conclusion_delivery_fd001.ipynb) · [Português](CMAPSS_Predictive_Maintenance/README.md)
+
+**Methods:** Engine-grouped validation · Causal rolling features · Optuna · Feature selection · Residual diagnostics · Permutation importance · Illustrative maintenance alerts and costs
+
+**Technologies:** Python · Pandas · scikit-learn · Extra Trees · XGBoost · HistGradientBoosting · Optuna · Plotly · Jupyter · GitHub Pages
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |

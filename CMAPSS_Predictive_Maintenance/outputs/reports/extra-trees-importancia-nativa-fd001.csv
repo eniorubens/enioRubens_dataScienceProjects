@@ -1,0 +1,206 @@
+feature,selecionada_optuna,importancia_nativa,familia,tipo,janela
+cycle,True,0.18778725533359017,Base,Base,Atual
+s4_media_10,True,0.035307986925430045,Média móvel,Média,10
+s11_media_10,True,0.032073456581420925,Média móvel,Média,10
+s11_desvio_80,True,0.031123039540923395,Desvio-padrão móvel,Desvio-padrão,80
+s11_media_5,True,0.031105960997392365,Média móvel,Média,5
+s15_media_10,True,0.02828485761630084,Média móvel,Média,10
+s21_media_10,True,0.02523899667369733,Média móvel,Média,10
+s17_media_10,True,0.024770301540126136,Média móvel,Média,10
+s4_media_5,True,0.024468398760678595,Média móvel,Média,5
+s3_media_20,True,0.021438238161449304,Média móvel,Média,20
+s9_desvio_80,True,0.020061453873818073,Desvio-padrão móvel,Desvio-padrão,80
+s4_media_20,True,0.019288002730416292,Média móvel,Média,20
+s12_desvio_80,True,0.01823716648084746,Desvio-padrão móvel,Desvio-padrão,80
+s21_media_5,True,0.017370779134161747,Média móvel,Média,5
+s4_desvio_80,True,0.017345000354801035,Desvio-padrão móvel,Desvio-padrão,80
+s15_media_5,True,0.017106026907475102,Média móvel,Média,5
+s17_media_20,True,0.01688859526435754,Média móvel,Média,20
+s14_desvio_80,True,0.01662051593413012,Desvio-padrão móvel,Desvio-padrão,80
+s3_media_10,True,0.01656575505836788,Média móvel,Média,10
+s21_media_20,True,0.015720476719465325,Média móvel,Média,20
+s2_media_10,True,0.014668964586531464,Média móvel,Média,10
+s20_desvio_80,True,0.014453161584417685,Desvio-padrão móvel,Desvio-padrão,80
+s15_media_20,True,0.013191781534203587,Média móvel,Média,20
+s11_media_20,True,0.0128018445203455,Média móvel,Média,20
+s12_media_5,True,0.01233998749280293,Média móvel,Média,5
+s20_media_5,True,0.010718736100014484,Média móvel,Média,5
+s15_desvio_80,True,0.010531457096907807,Desvio-padrão móvel,Desvio-padrão,80
+s7_media_5,True,0.010468262506150195,Média móvel,Média,5
+s13_media_80,True,0.010301757235615652,Média móvel,Média,80
+s7_media_10,True,0.010227363645965633,Média móvel,Média,10
+s17_media_5,True,0.009861825312880003,Média móvel,Média,5
+s20_media_10,True,0.009610224413914485,Média móvel,Média,10
+s7_desvio_80,True,0.009593758119011008,Desvio-padrão móvel,Desvio-padrão,80
+s2_media_5,True,0.00904195643987055,Média móvel,Média,5
+s20_media_20,True,0.008967009790141983,Média móvel,Média,20
+s8_desvio_80,True,0.008917546161644814,Desvio-padrão móvel,Desvio-padrão,80
+s8_media_80,True,0.008606382090166413,Média móvel,Média,80
+s12_media_10,True,0.008382978551019523,Média móvel,Média,10
+s2_media_20,True,0.007883832072598148,Média móvel,Média,20
+s14_desvio_40,True,0.00756415808575308,Desvio-padrão móvel,Desvio-padrão,40
+s13_desvio_80,True,0.0074639592824888275,Desvio-padrão móvel,Desvio-padrão,80
+s21_desvio_80,True,0.006509968021806196,Desvio-padrão móvel,Desvio-padrão,80
+s7_media_20,True,0.006368348125652596,Média móvel,Média,20
+s3_media_5,True,0.00607464848318554,Média móvel,Média,5
+s3_desvio_80,True,0.005887164743512059,Desvio-padrão móvel,Desvio-padrão,80
+s17_desvio_80,True,0.005600362478151708,Desvio-padrão móvel,Desvio-padrão,80
+s11_media_40,True,0.005466107202733549,Média móvel,Média,40
+s4_media_40,True,0.005402329439888376,Média móvel,Média,40
+s13_media_40,True,0.005398281403536365,Média móvel,Média,40
+s12_media_80,True,0.005356952109236955,Média móvel,Média,80
+s2_media_80,True,0.0053004703403229615,Média móvel,Média,80
+s3_media_40,True,0.005164449189103679,Média móvel,Média,40
+s20_media_80,True,0.005107929934477007,Média móvel,Média,80
+s2_media_40,True,0.004937155173436521,Média móvel,Média,40
+s2_desvio_80,True,0.0048545563753622295,Desvio-padrão móvel,Desvio-padrão,80
+s12_media_20,True,0.004805204204405614,Média móvel,Média,20
+s7_media_80,True,0.00476651844551363,Média móvel,Média,80
+s4_media_80,True,0.004589863174701304,Média móvel,Média,80
+s17_media_80,True,0.004259651122480552,Média móvel,Média,80
+s20_media_40,True,0.004204914072714197,Média móvel,Média,40
+s3_media_80,True,0.004174732208506183,Média móvel,Média,80
+s11_media_80,True,0.0041257470982433075,Média móvel,Média,80
+s15_media_80,True,0.00412100536226844,Média móvel,Média,80
+s11_desvio_40,True,0.004065406492422929,Desvio-padrão móvel,Desvio-padrão,40
+s8_media_40,True,0.003987257817394908,Média móvel,Média,40
+s15_media_40,True,0.003923857914643092,Média móvel,Média,40
+s7_media_40,True,0.003923255236791379,Média móvel,Média,40
+s12_media_40,True,0.003503766138735854,Média móvel,Média,40
+s12_desvio_40,True,0.0034844267417489883,Desvio-padrão móvel,Desvio-padrão,40
+s17_media_40,True,0.003323387745743554,Média móvel,Média,40
+s8_media_20,True,0.0032608956620723494,Média móvel,Média,20
+s13_media_20,True,0.003244550259519884,Média móvel,Média,20
+s7_desvio_40,True,0.0029392833198036016,Desvio-padrão móvel,Desvio-padrão,40
+s21_media_80,True,0.00290973567041836,Média móvel,Média,80
+s13_desvio_40,True,0.002671981956291964,Desvio-padrão móvel,Desvio-padrão,40
+s4_desvio_40,True,0.0025616414311570093,Desvio-padrão móvel,Desvio-padrão,40
+s21_media_40,True,0.0023649793427835794,Média móvel,Média,40
+s13_media_10,True,0.0017219521231869894,Média móvel,Média,10
+s8_media_10,True,0.0017028923869284566,Média móvel,Média,10
+s11,True,0.0012960582739432271,Base,Base,Atual
+s4,True,0.0011975965619277816,Base,Base,Atual
+s12,True,0.0011910061760436379,Base,Base,Atual
+s8_media_5,True,0.0006814083932072354,Média móvel,Média,5
+s13_media_5,True,0.0005822222240046461,Média móvel,Média,5
+s13,True,8.181743283793004e-05,Base,Base,Atual
+s8,True,8.170786010728106e-05,Base,Base,Atual
+s7,True,6.970517952739264e-05,Base,Base,Atual
+s15,True,6.396141731022321e-05,Base,Base,Atual
+s17,True,6.308472605800203e-05,Base,Base,Atual
+s21,True,5.753446204304004e-05,Base,Base,Atual
+s20,True,5.7033197751716106e-05,Base,Base,Atual
+s2,True,5.672458174695522e-05,Base,Base,Atual
+s3,True,5.5299353315597794e-05,Base,Base,Atual
+s6_media_10,False,0.0,Média móvel,Média,10
+s6_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s6_media_5,False,0.0,Média móvel,Média,5
+s6_delta,False,0.0,Delta,Delta,Atual
+s4_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s4_delta,False,0.0,Delta,Delta,Atual
+s4_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s4_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s3_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s3_delta,False,0.0,Delta,Delta,Atual
+s2_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s2_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s3_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+setting2_desvio_80,False,0.0,Desvio-padrão móvel,Desvio-padrão,80
+s2_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s2_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+setting1_delta,False,0.0,Delta,Delta,Atual
+setting1_media_5,False,0.0,Média móvel,Média,5
+setting1_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+setting1_media_40,False,0.0,Média móvel,Média,40
+setting1_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+setting1_media_20,False,0.0,Média móvel,Média,20
+setting1_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+setting1_media_10,False,0.0,Média móvel,Média,10
+s14,False,0.0,Base,Base,Atual
+setting2,False,0.0,Base,Base,Atual
+s6,False,0.0,Base,Base,Atual
+s9,False,0.0,Base,Base,Atual
+setting1,False,0.0,Base,Base,Atual
+s3_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s3_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+setting1_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+setting1_desvio_80,False,0.0,Desvio-padrão móvel,Desvio-padrão,80
+setting1_media_80,False,0.0,Média móvel,Média,80
+setting2_delta,False,0.0,Delta,Delta,Atual
+setting2_media_5,False,0.0,Média móvel,Média,5
+setting2_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+setting2_media_20,False,0.0,Média móvel,Média,20
+setting2_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+setting2_media_10,False,0.0,Média móvel,Média,10
+setting2_media_40,False,0.0,Média móvel,Média,40
+setting2_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+setting2_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+setting2_media_80,False,0.0,Média móvel,Média,80
+s2_delta,False,0.0,Delta,Delta,Atual
+s6_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s6_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s6_media_20,False,0.0,Média móvel,Média,20
+s13_delta,False,0.0,Delta,Delta,Atual
+s12_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s12_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s12_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s12_delta,False,0.0,Delta,Delta,Atual
+s9_media_10,False,0.0,Média móvel,Média,10
+s9_media_20,False,0.0,Média móvel,Média,20
+s9_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s9_media_80,False,0.0,Média móvel,Média,80
+s9_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s9_media_40,False,0.0,Média móvel,Média,40
+s9_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s11_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s11_delta,False,0.0,Delta,Delta,Atual
+s11_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s11_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s7_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s7_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s7_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s6_media_40,False,0.0,Média móvel,Média,40
+s6_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s6_media_80,False,0.0,Média móvel,Média,80
+s6_desvio_80,False,0.0,Desvio-padrão móvel,Desvio-padrão,80
+s7_delta,False,0.0,Delta,Delta,Atual
+s8_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s8_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s8_delta,False,0.0,Delta,Delta,Atual
+s8_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s8_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s9_delta,False,0.0,Delta,Delta,Atual
+s9_media_5,False,0.0,Média móvel,Média,5
+s9_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s17_delta,False,0.0,Delta,Delta,Atual
+s15_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s15_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s15_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s14_media_80,False,0.0,Média móvel,Média,80
+s14_media_40,False,0.0,Média móvel,Média,40
+s15_delta,False,0.0,Delta,Delta,Atual
+s15_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s13_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s14_delta,False,0.0,Delta,Delta,Atual
+s14_media_5,False,0.0,Média móvel,Média,5
+s14_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s14_media_10,False,0.0,Média móvel,Média,10
+s14_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s14_media_20,False,0.0,Média móvel,Média,20
+s14_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s13_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s13_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s20_delta,False,0.0,Delta,Delta,Atual
+s20_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s17_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s17_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s17_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s17_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s20_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s21_delta,False,0.0,Delta,Delta,Atual
+s20_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s20_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
+s21_desvio_5,False,0.0,Desvio-padrão móvel,Desvio-padrão,5
+s21_desvio_10,False,0.0,Desvio-padrão móvel,Desvio-padrão,10
+s21_desvio_20,False,0.0,Desvio-padrão móvel,Desvio-padrão,20
+s21_desvio_40,False,0.0,Desvio-padrão móvel,Desvio-padrão,40
