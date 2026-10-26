@@ -1,0 +1,3 @@
+# Local Codex/Maestri orchestration artifacts; never publish.
+.maestri/
+CONTEXTO_MAESTRI.md
