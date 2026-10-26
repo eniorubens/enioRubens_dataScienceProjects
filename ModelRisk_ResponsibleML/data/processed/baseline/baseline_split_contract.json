@@ -1,0 +1,42 @@
+{
+  "official_train_rows": 32561,
+  "fit_rows": 26048,
+  "calibration_rows": 6513,
+  "validation_rows": 6513,
+  "official_test_rows_reserved": 16281,
+  "predictors": [
+    "age",
+    "workclass",
+    "fnlwgt",
+    "education",
+    "education_num",
+    "marital_status",
+    "occupation",
+    "relationship",
+    "capital_gain",
+    "capital_loss",
+    "hours_per_week",
+    "native_country"
+  ],
+  "audit_columns_excluded_from_predictors": [
+    "sex",
+    "race"
+  ],
+  "random_state": 42,
+  "selection_threshold": 0.5,
+  "test_used": false,
+  "duplicate_policy": "source rows retained; exact predictor-signature overlap reported; baseline holdout is diagnostic",
+  "duplicate_policy_status": "adopted",
+  "duplicate_identity": "exact_model_predictor_signature_with_missing_marker; target_excluded",
+  "source_rows_removed": 0,
+  "holdout_role": "validation holdout; no probability calibrator fitted",
+  "protected_attributes_excluded_but_proxies_retained": true,
+  "preprocessing_contract": {
+    "numeric_missing": "median fitted on fit partition",
+    "categorical_missing": "most_frequent fitted on fit partition",
+    "categorical_encoding": "one-hot with handle_unknown=ignore",
+    "rare_categories": "not collapsed in this baseline; sensitivity analysis pending",
+    "education_and_education_num": "both retained; redundancy sensitivity analysis pending",
+    "fnlwgt": "retained as predictor, not sample weight; sensitivity analysis pending"
+  }
+}

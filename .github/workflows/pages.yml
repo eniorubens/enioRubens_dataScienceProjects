@@ -27,6 +27,8 @@ jobs:
         run: |
           mkdir -p _site/CMAPSS_Predictive_Maintenance
           cp -a CMAPSS_Predictive_Maintenance/site/. _site/CMAPSS_Predictive_Maintenance/
+          mkdir -p _site/ModelRisk_ResponsibleML
+          cp -a ModelRisk_ResponsibleML/site/. _site/ModelRisk_ResponsibleML/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

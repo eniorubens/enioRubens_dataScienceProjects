@@ -1,0 +1,5 @@
+sex,income,count
+Female,<=50K,14423
+Female,>50K,1769
+Male,<=50K,22732
+Male,>50K,9918

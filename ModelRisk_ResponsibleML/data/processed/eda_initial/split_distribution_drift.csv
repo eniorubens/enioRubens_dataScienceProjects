@@ -1,0 +1,15 @@
+feature,comparison,metric,value,max_category_rate_gap
+age,numeric,standardized_mean_difference,-0.01355254085059739,
+workclass,categorical,total_variation_distance,0.009237498851710914,0.008497544075593999
+fnlwgt,numeric,standardized_mean_difference,0.003245034711432204,
+education,categorical,total_variation_distance,0.010949285510979475,0.0044514183383934855
+education_num,numeric,standardized_mean_difference,0.0030230856036395615,
+marital_status,categorical,total_variation_distance,0.0076355220101492986,0.005671393283917747
+occupation,categorical,total_variation_distance,0.011844311073419659,0.003315874321197003
+relationship,categorical,total_variation_distance,0.00981864787785281,0.007700538672869073
+race,categorical,total_variation_distance,0.0025224548608468473,0.002427120856808355
+sex,categorical,total_variation_distance,0.0021702968334633144,0.00217029683346337
+capital_gain,numeric,standardized_mean_difference,-0.0005711553295050508,
+capital_loss,numeric,standardized_mean_difference,-0.0014775003125093872,
+hours_per_week,numeric,standardized_mean_difference,0.003649252087641093,
+native_country,categorical,total_variation_distance,0.008570745590477886,0.004701926877745621

@@ -1,0 +1,2 @@
+age,workclass,fnlwgt,education,education_num,marital_status,occupation,relationship,capital_gain,capital_loss,hours_per_week,native_country,sex,race,source_split,source_row_index,model,threshold,raw_probability,calibrated_probability,predicted_label,actual_label,prediction_correct
+63,Private,145985,HS-grad,9,Married-civ-spouse,Craft-repair,Husband,0,0,40,United-States,Male,White,test_official,32617,hist_gradient_boosting,0.31,0.3012706291904857,0.3103823907636744,>50K,<=50K,False

@@ -1,0 +1,50 @@
+{
+  "rows": 48842,
+  "columns": 16,
+  "feature_columns": [
+    "age",
+    "workclass",
+    "fnlwgt",
+    "education",
+    "education_num",
+    "marital_status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "capital_gain",
+    "capital_loss",
+    "hours_per_week",
+    "native_country"
+  ],
+  "target": "income",
+  "audit_columns": [
+    "sex",
+    "race"
+  ],
+  "duplicates": 29,
+  "duplicates_without_split": 52,
+  "missing_by_column": {
+    "occupation": 2809,
+    "workclass": 2799,
+    "native_country": 857
+  },
+  "target_counts": {
+    "<=50K": 37155,
+    ">50K": 11687
+  },
+  "split_counts": {
+    "train_official": 32561,
+    "test_official": 16281
+  },
+  "audit_cardinality": {
+    "sex": 2,
+    "race": 5
+  },
+  "duplicate_policy": "source rows retained; exact predictor-signature overlap is diagnosed; no silent deduplication",
+  "duplicate_policy_status": "adopted",
+  "duplicate_identity": "exact_model_predictor_signature_with_missing_marker; target_excluded",
+  "raw_zip_sha256": "7537312dd56c2b98035880805ce99e68183a30ee468aa5329d6df0fbb3cc21bb",
+  "dataset_source": "UCI Machine Learning Repository, Adult, dataset id 2",
+  "dataset_doi": "10.24432/C5XW20"
+}

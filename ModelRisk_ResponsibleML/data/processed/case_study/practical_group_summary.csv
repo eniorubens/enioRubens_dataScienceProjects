@@ -1,0 +1,2 @@
+audit_column,group,count,positive_count,observed_target_rate,wilson_ci_low,wilson_ci_high,wilson_confidence,mean_calibrated_probability,mean_probability_inside_wilson_interval,threshold,selection_count,selection_rate,selection_wilson_ci_low,selection_wilson_ci_high,reference,wilson_scope
+sex,Female,5421,590,0.10883600811658366,0.10082080427837646,0.1174052172887786,0.95,0.11956943057328448,False,0.31,727,0.1341080981368751,0.1252952868905723,0.14343912187078206,test_official_same_frozen_evaluation_protocol,observed binary target proportion in the group

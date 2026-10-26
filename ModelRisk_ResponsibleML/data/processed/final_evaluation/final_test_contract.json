@@ -1,0 +1,39 @@
+{
+  "protocol_version": "final-test-evaluation-mvp-1",
+  "model": "hist_gradient_boosting",
+  "threshold": 0.31,
+  "tuned_model_params": {
+    "max_iter": 250,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 30
+  },
+  "fit_rows": 19537,
+  "calibration_rows": 6512,
+  "selection_rows": 6512,
+  "official_test_rows": 16281,
+  "random_state": 42,
+  "calibrator": "sigmoid_platt_on_calibration_holdout",
+  "test_used": true,
+  "evaluation_count": 1,
+  "final_model_refit": false,
+  "selection_contract_frozen": true,
+  "official_test_overlap_diagnostic_only": true,
+  "duplicate_policy": "exact_predictor_signature_groups_adopted; source_rows_retained; official_train_test_overlap_reported_as_diagnostic",
+  "duplicate_policy_status": "adopted",
+  "duplicate_identity": "exact_model_predictor_signature_with_missing_marker; target_excluded",
+  "source_rows_removed": 0,
+  "cross_official_split_predictor_signature_keys": 26,
+  "cross_official_split_train_rows": 28,
+  "cross_official_split_test_rows": 26,
+  "cross_official_split_target_discordant_keys": 3,
+  "sensitivity_analysis": {
+    "performed": true,
+    "method": "exclude_test_rows_whose_exact_predictor_signature_occurs_in_official_train",
+    "identity": "exact_model_predictor_signature_with_missing_marker; target_excluded",
+    "excluded_test_rows": 26,
+    "retained_test_rows": 16255,
+    "retained_source_rows": true
+  },
+  "production_eligible": false
+}

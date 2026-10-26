@@ -1,0 +1,86 @@
+model,threshold,audit_column,group,count,denominator,metric,estimate,ci_low,ci_high,low_support
+hist_gradient_boosting,0.31,sex,Female,2207,2207,selection_rate,0.13457181694608064,0.12096705237896041,0.14944653129885707,False
+hist_gradient_boosting,0.31,sex,Female,2207,229,tpr,0.7467248908296943,0.6866459280956214,0.798662539119859,False
+hist_gradient_boosting,0.31,sex,Female,2207,1978,fpr,0.06370070778564206,0.05376092838357584,0.07533193150996965,False
+hist_gradient_boosting,0.31,sex,Female,2207,229,fnr,0.25327510917030566,0.20133746088014104,0.3133540719043786,False
+hist_gradient_boosting,0.31,sex,Female,2207,297,ppv,0.5757575757575758,0.5189329904758684,0.6306473867060107,False
+hist_gradient_boosting,0.31,sex,Male,4305,4305,selection_rate,0.40116144018583044,0.3866143781809076,0.4158847436248231,False
+hist_gradient_boosting,0.31,sex,Male,4305,1339,tpr,0.8401792382374906,0.8195823510012354,0.8588297565772012,False
+hist_gradient_boosting,0.31,sex,Male,4305,2966,fpr,0.20296695886716115,0.18888035338275255,0.2178220108106778,False
+hist_gradient_boosting,0.31,sex,Male,4305,1339,fnr,0.15982076176250934,0.14117024342279882,0.18041764899876456,False
+hist_gradient_boosting,0.31,sex,Male,4305,1727,ppv,0.6514186450492183,0.6286304060452482,0.6735347372006734,False
+hist_gradient_boosting,0.31,race,Amer-Indian-Eskimo,62,62,selection_rate,0.12903225806451613,0.06685798258498754,0.23449556896904517,False
+hist_gradient_boosting,0.31,race,Amer-Indian-Eskimo,62,4,tpr,0.75,0.3006360524426366,0.9544139373553637,True
+hist_gradient_boosting,0.31,race,Amer-Indian-Eskimo,62,58,fpr,0.08620689655172414,0.03738483193379338,0.18643861377265664,False
+hist_gradient_boosting,0.31,race,Amer-Indian-Eskimo,62,4,fnr,0.25,0.045586062644636216,0.6993639475573634,True
+hist_gradient_boosting,0.31,race,Amer-Indian-Eskimo,62,8,ppv,0.375,0.13684175946152105,0.6942621454161981,True
+hist_gradient_boosting,0.31,race,Asian-Pac-Islander,219,219,selection_rate,0.3378995433789954,0.27852801974807834,0.40286001552002243,False
+hist_gradient_boosting,0.31,race,Asian-Pac-Islander,219,61,tpr,0.8360655737704918,0.7238692567544832,0.9084408651425705,False
+hist_gradient_boosting,0.31,race,Asian-Pac-Islander,219,158,fpr,0.14556962025316456,0.09899957225581027,0.20896574692047074,False
+hist_gradient_boosting,0.31,race,Asian-Pac-Islander,219,61,fnr,0.16393442622950818,0.0915591348574295,0.27613074324551673,False
+hist_gradient_boosting,0.31,race,Asian-Pac-Islander,219,74,ppv,0.6891891891891891,0.5766117525232517,0.7830930839652068,False
+hist_gradient_boosting,0.31,race,Black,663,663,selection_rate,0.1794871794871795,0.15214759080778958,0.21051964530945325,False
+hist_gradient_boosting,0.31,race,Black,663,94,tpr,0.8085106382978723,0.7174953172054067,0.8752995675879734,False
+hist_gradient_boosting,0.31,race,Black,663,569,fpr,0.07557117750439367,0.05658634240250603,0.10024863606274509,False
+hist_gradient_boosting,0.31,race,Black,663,94,fnr,0.19148936170212766,0.12470043241202647,0.2825046827945932,False
+hist_gradient_boosting,0.31,race,Black,663,119,ppv,0.6386554621848739,0.5492559860401528,0.7193826510339328,False
+hist_gradient_boosting,0.31,race,Other,44,44,selection_rate,0.09090909090909091,0.035921611478836546,0.21159519397917487,False
+hist_gradient_boosting,0.31,race,Other,44,3,tpr,1.0,0.43849391955098227,1.0,True
+hist_gradient_boosting,0.31,race,Other,44,41,fpr,0.024390243902439025,0.00431842027071648,0.12595347011678087,False
+hist_gradient_boosting,0.31,race,Other,44,3,fnr,0.0,0.0,0.5615060804490177,True
+hist_gradient_boosting,0.31,race,Other,44,4,ppv,0.75,0.3006360524426366,0.9544139373553637,True
+hist_gradient_boosting,0.31,race,White,5524,5524,selection_rate,0.3292903692976104,0.3170194707333767,0.3417985388130618,False
+hist_gradient_boosting,0.31,race,White,5524,1406,tpr,0.8271692745376956,0.8065207818560908,0.846034796018757,False
+hist_gradient_boosting,0.31,race,White,5524,4118,fpr,0.1593006313744536,0.14844143388048467,0.17079489970399855,False
+hist_gradient_boosting,0.31,race,White,5524,1406,fnr,0.1728307254623044,0.15396520398124303,0.19347921814390917,False
+hist_gradient_boosting,0.31,race,White,5524,1819,ppv,0.6393622869708631,0.6170226131396168,0.6611145546757324,False
+hist_gradient_boosting,0.31,sex_race,Female × Amer-Indian-Eskimo,25,25,selection_rate,0.04,0.007096050386699165,0.19544472405022525,True
+hist_gradient_boosting,0.31,sex_race,Female × Amer-Indian-Eskimo,25,1,tpr,1.0,0.20654329147389294,1.0,True
+hist_gradient_boosting,0.31,sex_race,Female × Amer-Indian-Eskimo,25,24,fpr,0.0,0.0,0.13798057582897535,True
+hist_gradient_boosting,0.31,sex_race,Female × Amer-Indian-Eskimo,25,1,fnr,0.0,0.0,0.7934567085261071,True
+hist_gradient_boosting,0.31,sex_race,Female × Amer-Indian-Eskimo,25,1,ppv,1.0,0.20654329147389294,1.0,True
+hist_gradient_boosting,0.31,sex_race,Female × Asian-Pac-Islander,66,66,selection_rate,0.07575757575757576,0.03279155406460817,0.16539405451251493,False
+hist_gradient_boosting,0.31,sex_race,Female × Asian-Pac-Islander,66,5,tpr,0.4,0.1176182311592533,0.769280067791163,True
+hist_gradient_boosting,0.31,sex_race,Female × Asian-Pac-Islander,66,61,fpr,0.04918032786885246,0.016865676835230686,0.1349134279370143,False
+hist_gradient_boosting,0.31,sex_race,Female × Asian-Pac-Islander,66,5,fnr,0.6,0.23071993220883708,0.8823817688407467,True
+hist_gradient_boosting,0.31,sex_race,Female × Asian-Pac-Islander,66,5,ppv,0.4,0.1176182311592533,0.769280067791163,True
+hist_gradient_boosting,0.31,sex_race,Female × Black,330,330,selection_rate,0.10909090909090909,0.07984567305795337,0.1473327253201996,False
+hist_gradient_boosting,0.31,sex_race,Female × Black,330,23,tpr,0.7391304347826086,0.5352960945624944,0.8745155411075104,True
+hist_gradient_boosting,0.31,sex_race,Female × Black,330,307,fpr,0.06188925081433225,0.039975169310694614,0.09463229635670639,False
+hist_gradient_boosting,0.31,sex_race,Female × Black,330,23,fnr,0.2608695652173913,0.1254844588924897,0.4647039054375056,True
+hist_gradient_boosting,0.31,sex_race,Female × Black,330,36,ppv,0.4722222222222222,0.31985792907209337,0.6299432837306054,False
+hist_gradient_boosting,0.31,sex_race,Female × Other,20,20,selection_rate,0.1,0.027865893984153206,0.30103820641179335,True
+hist_gradient_boosting,0.31,sex_race,Female × Other,20,2,tpr,1.0,0.34237195288961925,1.0,True
+hist_gradient_boosting,0.31,sex_race,Female × Other,20,18,fpr,0.0,0.0,0.1758845505823749,True
+hist_gradient_boosting,0.31,sex_race,Female × Other,20,2,fnr,0.0,0.0,0.6576280471103807,True
+hist_gradient_boosting,0.31,sex_race,Female × Other,20,2,ppv,1.0,0.34237195288961925,1.0,True
+hist_gradient_boosting,0.31,sex_race,Female × White,1766,1766,selection_rate,0.1432616081540204,0.127695413767831,0.16037646791920812,False
+hist_gradient_boosting,0.31,sex_race,Female × White,1766,198,tpr,0.7525252525252525,0.6879897193237009,0.8074482875093799,False
+hist_gradient_boosting,0.31,sex_race,Female × White,1766,1568,fpr,0.0663265306122449,0.05503837637525734,0.07973449132337083,False
+hist_gradient_boosting,0.31,sex_race,Female × White,1766,198,fnr,0.2474747474747475,0.19255171249062003,0.31201028067629905,False
+hist_gradient_boosting,0.31,sex_race,Female × White,1766,253,ppv,0.5889328063241107,0.5274134062083404,0.6477918564905372,False
+hist_gradient_boosting,0.31,sex_race,Male × Amer-Indian-Eskimo,37,37,selection_rate,0.1891891891891892,0.09479858757337126,0.342050115709556,False
+hist_gradient_boosting,0.31,sex_race,Male × Amer-Indian-Eskimo,37,3,tpr,0.6666666666666666,0.2076549551264879,0.9385096847238394,True
+hist_gradient_boosting,0.31,sex_race,Male × Amer-Indian-Eskimo,37,34,fpr,0.14705882352941177,0.06449346382626417,0.30128388174051957,False
+hist_gradient_boosting,0.31,sex_race,Male × Amer-Indian-Eskimo,37,3,fnr,0.3333333333333333,0.0614903152761605,0.7923450448735121,True
+hist_gradient_boosting,0.31,sex_race,Male × Amer-Indian-Eskimo,37,7,ppv,0.2857142857142857,0.0822171657090155,0.6410709098517873,True
+hist_gradient_boosting,0.31,sex_race,Male × Asian-Pac-Islander,153,153,selection_rate,0.45098039215686275,0.3742967741616633,0.5300653338504968,False
+hist_gradient_boosting,0.31,sex_race,Male × Asian-Pac-Islander,153,56,tpr,0.875,0.763742793023606,0.9381100986103075,False
+hist_gradient_boosting,0.31,sex_race,Male × Asian-Pac-Islander,153,97,fpr,0.20618556701030927,0.13762597270753013,0.2971311116703456,False
+hist_gradient_boosting,0.31,sex_race,Male × Asian-Pac-Islander,153,56,fnr,0.125,0.06188990138969254,0.23625720697639396,False
+hist_gradient_boosting,0.31,sex_race,Male × Asian-Pac-Islander,153,69,ppv,0.7101449275362319,0.5942832702456184,0.8038408785924083,False
+hist_gradient_boosting,0.31,sex_race,Male × Black,333,333,selection_rate,0.24924924924924924,0.20582418353248744,0.298393822794522,False
+hist_gradient_boosting,0.31,sex_race,Male × Black,333,71,tpr,0.8309859154929577,0.7274065601494254,0.9005864277075953,False
+hist_gradient_boosting,0.31,sex_race,Male × Black,333,262,fpr,0.0916030534351145,0.062329393285910355,0.1326799656707014,False
+hist_gradient_boosting,0.31,sex_race,Male × Black,333,71,fnr,0.16901408450704225,0.0994135722924047,0.2725934398505746,False
+hist_gradient_boosting,0.31,sex_race,Male × Black,333,83,ppv,0.7108433734939759,0.6057057654384659,0.7973268825090616,False
+hist_gradient_boosting,0.31,sex_race,Male × Other,24,24,selection_rate,0.08333333333333333,0.023158327842973503,0.258492152014506,True
+hist_gradient_boosting,0.31,sex_race,Male × Other,24,1,tpr,1.0,0.20654329147389294,1.0,True
+hist_gradient_boosting,0.31,sex_race,Male × Other,24,23,fpr,0.043478260869565216,0.0077164669621267445,0.20991586494059142,True
+hist_gradient_boosting,0.31,sex_race,Male × Other,24,1,fnr,0.0,0.0,0.7934567085261071,True
+hist_gradient_boosting,0.31,sex_race,Male × Other,24,2,ppv,0.5,0.09452865480086614,0.9054713451991339,True
+hist_gradient_boosting,0.31,sex_race,Male × White,3758,3758,selection_rate,0.4167110164981373,0.4010409582510244,0.43255118449097724,False
+hist_gradient_boosting,0.31,sex_race,Male × White,3758,1208,tpr,0.8394039735099338,0.8176278957381614,0.8590281952889168,False
+hist_gradient_boosting,0.31,sex_race,Male × White,3758,2550,fpr,0.2164705882352941,0.20091840355547533,0.232875767547384,False
+hist_gradient_boosting,0.31,sex_race,Male × White,3758,1208,fnr,0.1605960264900662,0.14097180471108317,0.18237210426183864,False
+hist_gradient_boosting,0.31,sex_race,Male × White,3758,1566,ppv,0.6475095785440613,0.6235125177672626,0.6707846903077431,False

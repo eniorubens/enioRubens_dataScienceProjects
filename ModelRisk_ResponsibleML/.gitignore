@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local secrets and editor state
+.env
+.vscode/
+.idea/
+
+# Source data is downloaded from UCI; processed, auditable aggregates remain tracked.
+data/raw/*
+!data/raw/.gitkeep
+
+# Local Obsidian transfer package; not part of the published project.
+docs/obsidian_handoff/
+
+# Local orchestration context; not part of the published project.
+.maestri/
+CONTEXTO_MAESTRI.md

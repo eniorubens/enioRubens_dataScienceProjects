@@ -1,0 +1,15 @@
+feature,dtype,n_unique,missing_count,missing_rate,role
+age,int64,74,0,0.0,predictor_candidate
+workclass,string,8,2799,0.05730723557593874,predictor_candidate
+fnlwgt,int64,28523,0,0.0,predictor_candidate
+education,string,16,0,0.0,predictor_candidate
+education_num,int64,16,0,0.0,predictor_candidate
+marital_status,string,7,0,0.0,predictor_candidate
+occupation,string,14,2809,0.05751197739650301,predictor_candidate
+relationship,string,6,0,0.0,predictor_candidate
+race,string,5,0,0.0,audit
+sex,string,2,0,0.0,audit
+capital_gain,int64,123,0,0.0,predictor_candidate
+capital_loss,int64,99,0,0.0,predictor_candidate
+hours_per_week,int64,96,0,0.0,predictor_candidate
+native_country,string,41,857,0.017546374022357807,predictor_candidate

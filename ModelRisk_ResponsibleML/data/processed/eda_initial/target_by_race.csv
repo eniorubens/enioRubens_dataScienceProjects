@@ -1,0 +1,11 @@
+race,income,count
+Amer-Indian-Eskimo,<=50K,415
+Amer-Indian-Eskimo,>50K,55
+Asian-Pac-Islander,<=50K,1110
+Asian-Pac-Islander,>50K,409
+Black,<=50K,4119
+Black,>50K,566
+Other,<=50K,356
+Other,>50K,50
+White,<=50K,31155
+White,>50K,10607

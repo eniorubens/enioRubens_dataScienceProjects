@@ -1,0 +1,34 @@
+{
+  "protocol_version": "hgb-tuning-mvp-1",
+  "tuned_model": "hist_gradient_boosting",
+  "search_method": "explicit_candidate_grid",
+  "candidate_count": 6,
+  "candidate_ids": [
+    "baseline_fixed",
+    "conservative_leaves",
+    "deeper_regularized",
+    "faster_medium",
+    "wide_faster",
+    "shallow_regularized"
+  ],
+  "objective_order": [
+    "pr_auc",
+    "roc_auc",
+    "brier"
+  ],
+  "fit_rows": 19537,
+  "oof_folds": 3,
+  "group_aware": true,
+  "random_state": 44,
+  "threshold_used": false,
+  "calibration_used": false,
+  "official_test_rows_reserved": 16281,
+  "test_used": false,
+  "selected_candidate_id": "conservative_leaves",
+  "selected_params": {
+    "max_iter": 250,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 30
+  }
+}

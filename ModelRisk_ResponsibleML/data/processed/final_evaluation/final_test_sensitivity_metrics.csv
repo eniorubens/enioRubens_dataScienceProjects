@@ -1,0 +1,2 @@
+model,split,rows,prevalence,threshold,roc_auc,pr_auc,brier,precision,recall_tpr,f1,selection_rate
+hist_gradient_boosting,test_official_excluding_train_overlap,16255,0.23623500461396493,0.31,0.9231795480098,0.8169858877792763,0.09033521298844333,0.6326447954637505,0.8135416666666667,0.7117794486215538,0.30378345124577055

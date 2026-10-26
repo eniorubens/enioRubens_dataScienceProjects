@@ -135,6 +135,18 @@ Estimates remaining useful life on simulated FD001 engine trajectories using cau
 
 ---
 
+### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.md) — Responsible Model-Risk Audit
+
+Audits calibration, fairness, uncertainty and final-test isolation on the UCI Adult dataset. The bilingual portfolio documents a frozen HistGradientBoosting evaluation, threshold 0.31 and 18 automated contract tests. The result is explicitly exploratory and `production_eligible=false`.
+
+**Read:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/en.html) · [Português](ModelRisk_ResponsibleML/README.md) · [English](ModelRisk_ResponsibleML/site/en.html)
+
+**Methods:** Group-aware partitions · Platt calibration · Threshold audit · Wilson interval for group proportions · Fairness diagnostics · Contract tests
+
+**Technologies:** Python · Pandas · scikit-learn · Matplotlib · Jupyter · unittest · GitHub Pages
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |

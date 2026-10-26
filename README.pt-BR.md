@@ -135,6 +135,18 @@ Estima a vida útil restante de motores simulados do FD001 com histórico causal
 
 ---
 
+### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.md) — Auditoria responsável de risco de modelo
+
+Audita calibração, fairness, incerteza e isolamento do teste final sobre o conjunto UCI Adult. O portfólio bilíngue documenta uma avaliação congelada com HistGradientBoosting, threshold 0,31 e 18 testes automatizados de contrato. O resultado é explicitamente exploratório e `production_eligible=false`.
+
+**Leitura:** [Relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) · [Português](ModelRisk_ResponsibleML/README.md) · [English](ModelRisk_ResponsibleML/site/en.html)
+
+**Métodos:** Partições group-aware · Calibração Platt · Auditoria de threshold · Intervalo de Wilson para proporções de grupo · Diagnósticos de fairness · Testes de contrato
+
+**Tecnologias:** Python · Pandas · scikit-learn · Matplotlib · Jupyter · unittest · GitHub Pages
+
+---
+
 ## Resumo de competências
 
 | Área | Métodos e técnicas |

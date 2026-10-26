@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.ipynb linguist-language=Jupyter Notebook
+*.csv text eol=lf
+*.json text eol=lf
+*.svg text eol=lf
