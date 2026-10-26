@@ -29,6 +29,18 @@ jobs:
           cp -a CMAPSS_Predictive_Maintenance/site/. _site/CMAPSS_Predictive_Maintenance/
           mkdir -p _site/ModelRisk_ResponsibleML
           cp -a ModelRisk_ResponsibleML/site/. _site/ModelRisk_ResponsibleML/
+          cp -a ModelRisk_ResponsibleML/pt-BR _site/ModelRisk_ResponsibleML/
+          cp -a ModelRisk_ResponsibleML/en-US _site/ModelRisk_ResponsibleML/
+          cp -a ModelRisk_ResponsibleML/docs _site/ModelRisk_ResponsibleML/
+          mkdir -p _site/ModelRisk_ResponsibleML/data
+          cp -a ModelRisk_ResponsibleML/data/processed _site/ModelRisk_ResponsibleML/data/
+          sed -i \
+            -e 's#\.\./pt-BR/#pt-BR/#g' \
+            -e 's#\.\./en-US/#en-US/#g' \
+            -e 's#\.\./docs/#docs/#g' \
+            -e 's#\.\./data/#data/#g' \
+            _site/ModelRisk_ResponsibleML/index.html \
+            _site/ModelRisk_ResponsibleML/en.html
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website
