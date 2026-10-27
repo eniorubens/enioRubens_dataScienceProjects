@@ -78,11 +78,11 @@ A four-layer analytics pipeline — **descriptive → inferential → predictive
 
 Identifies genuine cross-selling opportunities in retail transactional data using Association Rules. The core insight: **high item frequency ≠ meaningful association** — whole milk and vegetables, the two most popular items, show lift of 0.77, proving popularity alone misleads. Rules are filtered by lift > 1 and Zhang's metric > 0.2 to surface meaningful associations supported by lift and Zhang filters without treating them as causal evidence.
 
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
+
 **Methods:** Apriori algorithm · Frequent itemset mining · Multi-metric evaluation (Support, Confidence, Lift, Conviction, Zhang's metric) · One-hot encoding · Transaction aggregation
 
 **Technologies:** Python · Pandas · NumPy · MLxtend · Matplotlib · Seaborn
-
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
 
 ---
 
