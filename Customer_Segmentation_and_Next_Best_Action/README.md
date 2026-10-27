@@ -8,6 +8,8 @@
 
 ---
 
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html)
+
 ## Observed Outputs and Simulation Status
 
 The project applies segmentation, a repurchase model and a prescriptive simulation to the UCI Online Retail dataset. The values below are the materialized outputs of the Portuguese notebook; they are not causal business outcomes.
