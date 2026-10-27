@@ -43,8 +43,6 @@ jobs:
             _site/ModelRisk_ResponsibleML/en.html
           mkdir -p _site/Customer_Segmentation_and_Next_Best_Action
           cp -a Customer_Segmentation_and_Next_Best_Action/site/. _site/Customer_Segmentation_and_Next_Best_Action/
-          cp -a Customer_Segmentation_and_Next_Best_Action/notebooks _site/Customer_Segmentation_and_Next_Best_Action/
-          cp -a Customer_Segmentation_and_Next_Best_Action/src _site/Customer_Segmentation_and_Next_Best_Action/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website
