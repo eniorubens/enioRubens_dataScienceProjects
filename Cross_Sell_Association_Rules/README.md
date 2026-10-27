@@ -1,9 +1,11 @@
 # Identifying Cross-Selling Opportunities in Retail Using Association Rules
-[🇺🇸 English](https://nbviewer.org/github/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/notebooks/Cross_Sell_Association_Rules_EN.ipynb) | [🇧🇷 Português](https://nbviewer.org/github/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/notebooks/Cross_Sell_Association_Rules_PT.ipynb)
+
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
+
 ## Overview
 This project applies Market Basket Analysis to identify product associations in retail transactional data.
 
-The main objective is to distinguish between frequently purchased items and statistically significant associations, enabling more reliable decision-making in cross-selling strategies.
+The main objective is to distinguish between frequently purchased items and meaningful associations supported by lift and Zhang filters, enabling more reliable decision-making in cross-selling strategies.
 
 ---
 
@@ -55,9 +57,11 @@ This project focuses on identifying product combinations that occur more frequen
 ## Repository Structure
 
 ```text
-cross_sell_association_rules/
+Cross_Sell_Association_Rules/
 │
-├── Identificação de oportunidades de cross-sell.ipynb   # Main analysis notebook
+├── notebooks/
+│   ├── Cross_Sell_Association_Rules_PT.ipynb            # Portuguese analysis notebook
+│   └── Cross_Sell_Association_Rules_EN.ipynb            # English analysis notebook
 ├── dataset/Groceries_dataset.csv                        # Input dataset
 └── README.md                                            # Project documentation
 ```
@@ -67,11 +71,7 @@ This project demonstrates how association rules can be used to extract actionabl
 
 By combining statistical metrics such as support, confidence, and lift, it is possible to differentiate between simple item popularity and meaningful product associations, supporting more effective business decisions.
 
-## Development Notes
 
-Parts of this project were developed with the assistance of AI-based coding and writing tools for code refinement, structuring, documentation, and analytical brainstorming.
+## Reproducibility note
 
-All analytical decisions, business interpretations, modeling choices, validation procedures, and final project integration were conducted and reviewed by the author.
-
-Author : Enio Rubens
-Data Science & Analytics 
+Both notebooks use the same dataset path relative to the `notebooks/` directory and the same analytical thresholds. Their saved outputs were checked for numerical consistency; a fresh execution still requires a working environment with NumPy, pandas, mlxtend, SciPy, Matplotlib and Seaborn.

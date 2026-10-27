@@ -43,6 +43,8 @@ jobs:
             _site/ModelRisk_ResponsibleML/en.html
           mkdir -p "_site/Customer Lifetime Value"
           cp -a "Customer Lifetime Value/site/." "_site/Customer Lifetime Value/"
+          mkdir -p _site/Cross_Sell_Association_Rules
+          cp -a Cross_Sell_Association_Rules/site/. _site/Cross_Sell_Association_Rules/
           mkdir -p _site/Marketing_Campaign_Optimization_and_Retention_Analytics
           cp -a Marketing_Campaign_Optimization_and_Retention_Analytics/site/. _site/Marketing_Campaign_Optimization_and_Retention_Analytics/
           mkdir -p _site/Customer_Segmentation_and_Next_Best_Action
