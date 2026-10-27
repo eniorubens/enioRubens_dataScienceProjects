@@ -208,7 +208,8 @@ e a incorporação de uma nova janela temporal pública.
 ### Development Approach
 
 This project demonstrates the effective collaboration between human expertise
-and AI-assisted tools, including OpenAI Codex and Antropic Claude:
+and AI-assisted tools, including OpenAI Codex and other generative AI coding
+assistants:
 
 - **AI-Assisted:** Code review and optimization, modularization, test
   scaffolding, documentation structuring, hypothesis exploration, and

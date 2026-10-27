@@ -1,5 +1,7 @@
 # Hourly Bike-Sharing Demand Forecasting in Seoul
 
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)
+
 **Language:** English | [Português (Brasil)](README.pt-BR.md)
 
 This project models hourly demand for Seoul's public bike-sharing system using
@@ -212,7 +214,8 @@ incorporation of a new public temporal window.
 ### Development Approach
 
 This project demonstrates effective collaboration between human expertise and
-AI-assisted tools, including OpenAI Codex and Antropic Claude:
+AI-assisted tools, including OpenAI Codex and other generative AI coding
+assistants:
 
 - **AI-Assisted:** Code review and optimization, modularization, test
   scaffolding, documentation structuring, hypothesis exploration, and
