@@ -6,6 +6,8 @@
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) explicita o que o hold-out sustenta e por que receita/ROI permanecem ilustrativos.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** módulos reutilizáveis em `churn_project/`, artefato de treino persistido, endpoints FastAPI em `serve_model.py` e testes automatizados.
 
 **Pode sustentar:** priorização exploratória de risco de churn e inferência reprodutível para um piloto controlado de retenção.

@@ -12,6 +12,8 @@ Complete Marketing Analytics pipeline with descriptive, inferential, predictive,
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) connects analytical findings to explicit business limitations.
 
+**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
+
 **Engineering surface:** notebook-led analysis with generated CRM/Excel outputs; this project does not expose a reusable `src/` package, serving API or automated test suite.
 
 **Can support:** descriptive, inferential, predictive and prescriptive exploration of campaign and retention decisions.

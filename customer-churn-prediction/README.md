@@ -6,6 +6,8 @@
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) states which hold-out evidence supports and why revenue/ROI remain illustrative.
 
+**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
+
 **Engineering surface:** reusable `churn_project/` modules, a persisted training artifact, FastAPI endpoints in `serve_model.py`, and automated tests.
 
 **Can support:** exploratory churn-risk prioritization and reproducible inference for a controlled retention pilot.

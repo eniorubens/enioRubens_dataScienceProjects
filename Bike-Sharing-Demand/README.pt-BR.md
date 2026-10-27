@@ -18,6 +18,8 @@ técnica e validação de execução dos oito notebooks.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) documenta a validação temporal, a incerteza e a fronteira operacional.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** workflows modulares em `src/`, replay operacional e cobertura automatizada com pytest; não há API geral de serving exposta.
 
 **Pode sustentar:** previsão horária de demanda sob validação temporal e intervalos conformais exploratórios.

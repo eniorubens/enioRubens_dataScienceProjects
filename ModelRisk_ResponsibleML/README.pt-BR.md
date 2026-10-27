@@ -8,6 +8,8 @@ O objetivo não é produzir um modelo para decisões reais. O objetivo é mostra
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) documenta calibração, fairness, incerteza e a fronteira do teste final.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** módulos reutilizáveis de auditoria/relatório em `src/` e testes de contrato; este projeto é um artefato de auditoria, não uma API de serving.
 
 **Pode sustentar:** revisão responsável de risco de modelo e evidência reprodutível sobre calibração, grupos e incerteza.

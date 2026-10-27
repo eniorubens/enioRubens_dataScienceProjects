@@ -20,6 +20,8 @@ implantável.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) preserva as partições seladas, os gates confirmatórios e a decisão `deploy=false`.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** etapas modulares em `src/`, manifestos públicos de resultado, contratos de artefato e cobertura automatizada de testes; o estudo congelado não autoriza serving.
 
 **Pode sustentar:** auditoria de protocolo, avaliação de classe rara e desenho de estudo futuro em partições não consumidas.

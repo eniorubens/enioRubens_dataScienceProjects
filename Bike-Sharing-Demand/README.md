@@ -21,6 +21,8 @@ code and numerical results.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) documents temporal validation, uncertainty and the operational boundary.
 
+**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
+
 **Engineering surface:** modular `src/` workflows, operational replay and automated pytest coverage; no general-purpose serving API is exposed.
 
 **Can support:** hourly demand forecasting under temporal validation and exploratory conformal intervals.

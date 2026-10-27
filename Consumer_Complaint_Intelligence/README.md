@@ -20,6 +20,8 @@ deployable model.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) preserves sealed partitions, confirmatory gates and the `deploy=false` decision.
 
+**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
+
 **Engineering surface:** modular `src/` stages, public result manifests, artifact contracts and automated test coverage; the frozen study does not authorize serving.
 
 **Can support:** protocol audit, rare-class evaluation and design of a future study on unconsumed partitions.

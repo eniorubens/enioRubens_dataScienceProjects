@@ -8,6 +8,8 @@
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) separa os outputs observados em holdout das simulações sob restrição de orçamento.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** módulos reutilizáveis em `src/`, notebooks bilíngues e suíte pytest; este projeto não expõe uma API de serving.
 
 **Pode sustentar:** segmentação RFM/K-Means, score exploratório de recompra e simulações de ações sob premissas.

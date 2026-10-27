@@ -8,6 +8,8 @@
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) conecta os achados analíticos às limitações de negócio explícitas.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** análise orientada por notebooks com outputs CRM/Excel; este projeto não expõe pacote reutilizável `src/`, API de serving ou suíte automatizada de testes.
 
 **Pode sustentar:** exploração descritiva, inferencial, preditiva e prescritiva de decisões de campanha e retenção.

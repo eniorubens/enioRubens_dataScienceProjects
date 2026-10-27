@@ -11,6 +11,8 @@ pipeline optimisation, threshold tuning, and metric persistence.
 
 **Governance layer:** this is the reusable library behind portfolio workflows; it does not have a separate executive report because it is not an end-to-end business project.
 
+**Contract-oriented production:** this library provides reusable building blocks; input/output contracts, artifact validation and deployment gates remain the responsibility of each consuming project.
+
 **Engineering surface:** installable Python package for pipeline construction, optimization, scoring and persistence; project-specific contracts and tests remain in each consuming project.
 
 **Can support:** reusable binary-classification experimentation across encoding, feature selection, model fitting and thresholding.

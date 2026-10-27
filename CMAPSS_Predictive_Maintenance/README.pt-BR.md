@@ -10,6 +10,8 @@ O projeto foi desenvolvido para estimar a vida útil restante de motores simulad
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) separa o benchmark oficial dos diagnósticos pós-seleção e dos alertas ilustrativos.
 
+**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
+
 **Superfície de engenharia:** módulos reutilizáveis em `src/`, scripts de reconstrução e contrato versionado de entrada para CLI/artefato; não há API web geral exposta.
 
 **Pode sustentar:** estimativa exploratória de RUL em trajetórias simuladas FD001 e hipóteses auditáveis de manutenção.
