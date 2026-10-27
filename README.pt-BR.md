@@ -39,6 +39,8 @@ Prevê churn de clientes, com taxa base de 26,5%, usando **76,4% de Recall Macro
 
 Estima a receita futura esperada por cliente em uma **janela de 180 dias** usando modelos probabilísticos Buy-Till-You-Die com validação por holdout temporal.
 
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html)
+
 **Métodos:** Engenharia de features RFM · Modelo BG/NBD (frequência de compra e P(alive)) · Modelo Gamma-Gamma (valor monetário) · Ajuste MAP e MCMC · Segmentação de clientes na matriz CLTV × P(alive)
 
 **Tecnologias:** pymc-marketing · Pandas · NumPy · scikit-learn · Flask API · pytest
@@ -48,7 +50,9 @@ Estima a receita futura esperada por cliente em uma **janela de 180 dias** usand
 ### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action) — Analytics prescritivo
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Pipeline completo de dados transacionais a decisões acionáveis de marketing: **RFM → segmentação com K-Means → probabilidade de recompra → otimização prescritiva com restrição de orçamento**, alcançando **melhoria de 2,4x no ROI de campanha** em comparação com campanhas uniformes.
+Pipeline completo de dados transacionais a decisões acionáveis de marketing: **RFM → segmentação com K-Means → probabilidade de recompra → otimização prescritiva com restrição de orçamento**. O projeto reporta simulações de lucro esperado sob premissas explícitas; uplift causal e superioridade sobre uma campanha uniforme não estão estabelecidos.
+
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html)
 
 **Métodos:** Clusterização K-Means (Elbow + Silhouette, k=6) · Classificador probabilístico calibrado · Simulação de incentivos · Cálculo de lucro esperado · Otimizador de orçamento
 
@@ -61,6 +65,8 @@ Pipeline completo de dados transacionais a decisões acionáveis de marketing: *
 
 Um pipeline analítico em quatro camadas — **descritiva → inferencial → preditiva → prescritiva** — para análise de desempenho de campanhas e retenção de usuários, com classificação automatizada de usuários em 6 categorias de ação e exportação para Excel com múltiplas planilhas.
 
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html)
+
 **Métodos:** Análise de desempenho por canal · Teste Z para A/B testing · Modelagem supervisionada de retenção · Diagnóstico de falsos positivos / viés · Simulação financeira de ROI · Sistema automatizado de recomendações
 
 **Tecnologias:** Python · Pandas · NumPy · scikit-learn · Statsmodels · Matplotlib · OpenPyXL
@@ -72,6 +78,8 @@ Um pipeline analítico em quatro camadas — **descritiva → inferencial → pr
 
 Identifica oportunidades genuínas de cross-selling em dados transacionais de varejo usando regras de associação. O insight central: **alta frequência de item ≠ associação relevante** — leite integral e vegetais, os dois itens mais populares, apresentam lift de 0,77, mostrando que popularidade isolada induz a erro. As regras são filtradas por lift > 1 e métrica de Zhang > 0,2 para revelar combinações estatisticamente relevantes.
 
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
+
 **Métodos:** Algoritmo Apriori · Mineração de itemsets frequentes · Avaliação multimétrica (Support, Confidence, Lift, Conviction, métrica de Zhang) · One-hot encoding · Agregação de transações
 
 **Tecnologias:** Python · Pandas · NumPy · MLxtend · Matplotlib · Seaborn
@@ -82,6 +90,8 @@ Identifica oportunidades genuínas de cross-selling em dados transacionais de va
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Prevê a demanda horária de bicicletas em condições operacionais normais usando nove anos de dados de mobilidade e meteorologia. Um holdout temporal selado confirmou CatBoost com **MAE 1.118,1** e **R² 0,839**. Nos folds de desenvolvimento, a calibração conformal adaptativa elevou a cobertura de intervalos de 90% de **81,0% para 90,1%**, reduzindo a largura média dos intervalos em **25,6%**.
+
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)
 
 **Métodos:** Validação cruzada expansiva por ano meteorológico · Pré-processamento dinâmico por estimador · Optuna · MLflow · CatBoost · Diagnósticos residuais · SHAP · Inferência conformal adaptativa · Replay operacional
 
@@ -123,11 +133,11 @@ promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
 
 ---
 
-### 10. [NASA C-MAPSS — Manutenção preditiva](CMAPSS_Predictive_Maintenance/README.md) — Vida útil restante
+### 10. [NASA C-MAPSS — Manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) — Vida útil restante
 
 Estima a vida útil restante de motores simulados do FD001 com histórico causal dos sensores. Um pipeline Extra Trees selecionou 93 de 205 atributos e registrou **MAE de 16,23 ciclos** e **RMSE de 23,80 ciclos** no benchmark oficial de 100 motores. A escolha final ocorreu após essa comparação; o resultado não é uma avaliação independente adicional após a seleção. Alertas, custos hipotéticos e faixas empíricas de incerteza permanecem exploratórios, sem validação industrial.
 
-**Leitura:** [Relatório interativo](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) · [Notebook de síntese](CMAPSS_Predictive_Maintenance/notebooks/pt-BR/27_conclusao_entrega_fd001.ipynb) · [English](CMAPSS_Predictive_Maintenance/README.en.md)
+**Leitura:** [Relatório interativo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) · [Relatório interativo · English](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html) · [Notebook de síntese](CMAPSS_Predictive_Maintenance/notebooks/pt-BR/27_conclusao_entrega_fd001.ipynb)
 
 **Métodos:** Validação por motor · Features móveis causais · Optuna · Seleção de atributos · Diagnóstico de resíduos · Importância por permutação · Alertas e custos ilustrativos de manutenção
 
@@ -135,11 +145,11 @@ Estima a vida útil restante de motores simulados do FD001 com histórico causal
 
 ---
 
-### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.md) — Auditoria responsável de risco de modelo
+### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.pt-BR.md) — Auditoria responsável de risco de modelo
 
 Audita calibração, fairness, incerteza e isolamento do teste final sobre o conjunto UCI Adult. O portfólio bilíngue documenta uma avaliação congelada com HistGradientBoosting, threshold 0,31 e 18 testes automatizados de contrato. O resultado é explicitamente exploratório e `production_eligible=false`.
 
-**Leitura:** [Relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) · [Português](ModelRisk_ResponsibleML/README.md) · [English](ModelRisk_ResponsibleML/site/en.html)
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) · [Relatório executivo · English](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/en.html)
 
 **Métodos:** Partições group-aware · Calibração Platt · Auditoria de threshold · Intervalo de Wilson para proporções de grupo · Diagnósticos de fairness · Testes de contrato
 
