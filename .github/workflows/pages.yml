@@ -51,6 +51,8 @@ jobs:
           cp -a Marketing_Campaign_Optimization_and_Retention_Analytics/site/. _site/Marketing_Campaign_Optimization_and_Retention_Analytics/
           mkdir -p _site/Customer_Segmentation_and_Next_Best_Action
           cp -a Customer_Segmentation_and_Next_Best_Action/site/. _site/Customer_Segmentation_and_Next_Best_Action/
+          mkdir -p _site/Marketing_Promotion_Campaign_Uplift_Modelling
+          cp -a Marketing_Promotion_Campaign_Uplift_Modelling/site/. _site/Marketing_Promotion_Campaign_Uplift_Modelling/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

@@ -1,5 +1,7 @@
 # Uplift Modeling para Targeting de Campanha: Hillstrom
 
+**Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/en.html)
+
 **Idioma:** [English](README.md) | Português (Brasil)
 
 Este projeto investiga **quem deve receber uma ação de marketing porque a ação

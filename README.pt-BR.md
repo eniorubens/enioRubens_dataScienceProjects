@@ -110,6 +110,8 @@ pré-registrado em teste selado é deliberadamente conservador: o candidato
 primário de uplift não demonstrou superioridade sobre o baseline, portanto o
 projeto recomenda um piloto randomizado prospectivo em vez de deployment.
 
+**Leitura:** [Relatório · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/en.html)
+
 **Métodos:** Auditoria de randomização · S/T/X/R-learners · Causal forest · Uplift trees · Qini/AUUC · Holdout selado · Perfis de heterogeneidade por quantil · Policy learning · Avaliação IPW · Sensibilidade de ROI
 
 **Tecnologias:** Python · Pandas · scikit-learn · EconML · CausalML · Matplotlib · pytest · Jupyter

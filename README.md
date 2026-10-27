@@ -110,6 +110,8 @@ pre-registered sealed-test result is deliberately conservative: the primary
 uplift candidate did not demonstrate superiority over the baseline, so the
 project recommends a prospective randomized pilot rather than deployment.
 
+**Read:** [Relatório · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/en.html)
+
 **Methods:** Randomization audit · S/T/X/R-learners · Causal forest · Uplift trees · Qini/AUUC · Sealed holdout · Quantile heterogeneity profiles · Policy learning · IPW evaluation · ROI sensitivity
 
 **Technologies:** Python · Pandas · scikit-learn · EconML · CausalML · Matplotlib · pytest · Jupyter
