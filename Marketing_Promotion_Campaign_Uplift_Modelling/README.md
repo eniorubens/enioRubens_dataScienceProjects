@@ -15,6 +15,16 @@ pre-registered sealed-test evaluation. Its main conclusion is deliberately
 conservative: the primary confirmatory hypothesis was not supported, and the
 resulting policies are **not ready for direct deployment**.
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) preserves the sealed-test result and the `not_ready_for_direct_deployment` boundary.
+
+**Engineering surface:** modular `src/` components, bilingual notebook workflow, persisted artifacts and automated tests; no production serving API is exposed.
+
+**Can support:** causal-targeting research and design of a prospective randomized pilot.
+
+**Does not support:** automatic policy deployment, validated ROI, or retrospective superiority claims.
+
 ## Executive Result
 
 The pre-registered primary comparison was the Qini AUC difference between the

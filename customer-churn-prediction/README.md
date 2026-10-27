@@ -2,6 +2,16 @@
 
 [🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-PT.ipynb)
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) states which hold-out evidence supports and why revenue/ROI remain illustrative.
+
+**Engineering surface:** reusable `churn_project/` modules, a persisted training artifact, FastAPI endpoints in `serve_model.py`, and automated tests.
+
+**Can support:** exploratory churn-risk prioritization and reproducible inference for a controlled retention pilot.
+
+**Does not support:** causal retention claims, observed revenue preservation, or production use without temporal validation, monitoring and a controlled experiment.
+
 ## 🎯 Executive Summary
 
 This project demonstrates an **exploratory, reproducible machine learning pipeline** that predicts customer churn. The current materialized artifact reaches **76.6% Macro Recall** and **84.6% ROC AUC** on the deterministic hold-out test.

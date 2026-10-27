@@ -15,6 +15,16 @@ pré-registrada em teste selado. Sua conclusão principal é deliberadamente
 conservadora: a hipótese confirmatória primária não foi sustentada, e as
 políticas resultantes **não estão prontas para deployment direto**.
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) preserva o resultado do teste selado e a fronteira `not_ready_for_direct_deployment`.
+
+**Superfície de engenharia:** componentes modulares em `src/`, workflow de notebooks bilíngue, artefatos persistidos e testes automatizados; não há API produtiva de serving exposta.
+
+**Pode sustentar:** pesquisa de targeting causal e desenho de um piloto randomizado prospectivo.
+
+**Não sustenta:** deployment automático de política, ROI validado ou alegações retrospectivas de superioridade.
+
 ## Resultado Executivo
 
 A comparação primária pré-registrada foi a diferença de Qini AUC entre a

@@ -9,6 +9,16 @@
 
 ---
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) documents the temporal holdout, assumptions and supported decisions.
+
+**Engineering surface:** reusable `src/` modules, a Flask API in `serve_model.py`, persisted model workflow and a pytest suite.
+
+**Can support:** exploratory 180-day customer-lifetime-value estimation and segmentation for analytical prioritization.
+
+**Does not support:** guaranteed future revenue, causal customer behavior claims, or production use without monitoring and temporal revalidation.
+
 ## Overview
 
 This project builds a reproducible CLTV (Customer Lifetime Value) pipeline

@@ -6,6 +6,16 @@
 
 O projeto foi desenvolvido para estimar a vida útil restante de motores simulados, expressa em ciclos de operação. A etapa FD001 foi concluída com um Extra Trees e uma representação temporal construída exclusivamente a partir do ciclo atual e dos anteriores. O objetivo desta entrega é permitir a reprodução da análise e a execução local da previsão pontual.
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) separa o benchmark oficial dos diagnósticos pós-seleção e dos alertas ilustrativos.
+
+**Superfície de engenharia:** módulos reutilizáveis em `src/`, scripts de reconstrução e contrato versionado de entrada para CLI/artefato; não há API web geral exposta.
+
+**Pode sustentar:** estimativa exploratória de RUL em trajetórias simuladas FD001 e hipóteses auditáveis de manutenção.
+
+**Não sustenta:** limite de segurança industrial, generalização para toda a frota ou decisões produtivas de manutenção sem validação externa.
+
 ## Fonte dos dados
 
 O conjunto utilizado é o **Turbofan Engine Degradation Simulation Data Set**, disponibilizado pelo Prognostics Center of Excellence (PCoE) do NASA Ames Research Center (Saxena e Goebel, 2008). NASA é a sigla de **National Aeronautics and Space Administration**, a agência espacial e aeronáutica dos Estados Unidos. No título deste projeto, ela identifica a origem dos dados; a análise e o modelo são trabalhos autorais de portfólio. [Repositório oficial da NASA](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/).

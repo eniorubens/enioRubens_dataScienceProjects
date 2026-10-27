@@ -7,6 +7,16 @@ pipeline optimisation, threshold tuning, and metric persistence.
 
 ---
 
+## 💡 Library philosophy and scope
+
+**Governance layer:** this is the reusable library behind portfolio workflows; it does not have a separate executive report because it is not an end-to-end business project.
+
+**Engineering surface:** installable Python package for pipeline construction, optimization, scoring and persistence; project-specific contracts and tests remain in each consuming project.
+
+**Can support:** reusable binary-classification experimentation across encoding, feature selection, model fitting and thresholding.
+
+**Does not support:** a standalone deployed service, business conclusions without a consuming project, or automatic production authorization.
+
 ## Installation (local, editable)
 
 ```bash

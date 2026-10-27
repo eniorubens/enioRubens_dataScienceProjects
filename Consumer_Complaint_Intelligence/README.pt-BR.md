@@ -16,6 +16,16 @@ Dois ciclos completos responderam a essa pergunta. Os dois retornaram
 `NOT_CONFIRMED`. A entrega é o protocolo e a evidência, não um modelo
 implantável.
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) preserva as partições seladas, os gates confirmatórios e a decisão `deploy=false`.
+
+**Superfície de engenharia:** etapas modulares em `src/`, manifestos públicos de resultado, contratos de artefato e cobertura automatizada de testes; o estudo congelado não autoriza serving.
+
+**Pode sustentar:** auditoria de protocolo, avaliação de classe rara e desenho de estudo futuro em partições não consumidas.
+
+**Não sustenta:** deployment produtivo confirmado, reabertura de veredictos consumidos ou uso de métricas de desenvolvimento como performance.
+
 ## Resultado executivo
 
 Duas partições seladas foram abertas, cada uma exatamente uma vez, cada uma sob

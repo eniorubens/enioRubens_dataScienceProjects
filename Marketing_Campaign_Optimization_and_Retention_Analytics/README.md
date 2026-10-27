@@ -8,6 +8,16 @@ Complete Marketing Analytics pipeline with descriptive, inferential, predictive,
 
 ---
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) connects analytical findings to explicit business limitations.
+
+**Engineering surface:** notebook-led analysis with generated CRM/Excel outputs; this project does not expose a reusable `src/` package, serving API or automated test suite.
+
+**Can support:** descriptive, inferential, predictive and prescriptive exploration of campaign and retention decisions.
+
+**Does not support:** a production scoring service, causal campaign impact, or automatic decisions without further engineering and validation.
+
 ## Objective
 
 This project implements an end-to-end analytics solution for digital marketing campaigns, integrating:

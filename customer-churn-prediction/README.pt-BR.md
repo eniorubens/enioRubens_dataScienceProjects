@@ -2,6 +2,16 @@
 
 [🇺🇸 English](README.md) · [🇧🇷 Notebook PT-BR](notebooks/Customer-Churn-Prediction-PT.ipynb)
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) explicita o que o hold-out sustenta e por que receita/ROI permanecem ilustrativos.
+
+**Superfície de engenharia:** módulos reutilizáveis em `churn_project/`, artefato de treino persistido, endpoints FastAPI em `serve_model.py` e testes automatizados.
+
+**Pode sustentar:** priorização exploratória de risco de churn e inferência reprodutível para um piloto controlado de retenção.
+
+**Não sustenta:** causalidade de retenção, receita preservada observada ou uso produtivo sem validação temporal, monitoramento e experimento controlado.
+
 ## Resumo executivo
 
 Pipeline modular para priorização exploratória de retenção em clientes de telecomunicações. O artefato treinado atual usa `BalancedRandomForestClassifier`, codificação `SumEncoder`, normalização, escala `MaxAbsScaler`, seleção de atributos e threshold `0,52`.

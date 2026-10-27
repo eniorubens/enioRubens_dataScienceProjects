@@ -2,6 +2,16 @@
 
 **Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) presents the rules as behavioral associations, not intervention evidence.
+
+**Engineering surface:** reproducible notebook and dataset analysis; this project does not expose a modular `src/` package, serving API or automated test suite.
+
+**Can support:** exploratory market-basket analysis and candidate cross-sell hypotheses.
+
+**Does not support:** causal incrementality, guaranteed conversion uplift, or automatic offer deployment.
+
 ## Overview
 This project applies Market Basket Analysis to identify product associations in retail transactional data.
 

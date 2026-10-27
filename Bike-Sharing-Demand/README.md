@@ -17,6 +17,16 @@ remain in English, while visible notebook content is localized through the
 and execution-validated independently while preserving identical analytical
 code and numerical results.
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) documents temporal validation, uncertainty and the operational boundary.
+
+**Engineering surface:** modular `src/` workflows, operational replay and automated pytest coverage; no general-purpose serving API is exposed.
+
+**Can support:** hourly demand forecasting under temporal validation and exploratory conformal intervals.
+
+**Does not support:** an industrial guarantee, unrestricted future-period generalization, or production promotion without operational monitoring.
+
 ## Central Modeling Decision
 
 An extraordinary mobility regime shift was identified in the 2020 data and

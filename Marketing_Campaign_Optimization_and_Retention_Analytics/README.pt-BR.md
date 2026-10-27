@@ -4,6 +4,16 @@
 
 [Notebook PT-BR](notebooks/Marketing_Campaign_Optimization_and_Retention_Analytics_PT.ipynb) · [Notebook EN-US](notebooks/Marketing_Campaign_Optimization_and_Retention_Analytics_EN.ipynb)
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) conecta os achados analíticos às limitações de negócio explícitas.
+
+**Superfície de engenharia:** análise orientada por notebooks com outputs CRM/Excel; este projeto não expõe pacote reutilizável `src/`, API de serving ou suíte automatizada de testes.
+
+**Pode sustentar:** exploração descritiva, inferencial, preditiva e prescritiva de decisões de campanha e retenção.
+
+**Não sustenta:** serviço produtivo de scoring, impacto causal de campanha ou decisões automáticas sem engenharia e validação adicionais.
+
 ## Visão geral
 
 Pipeline de analytics de marketing em quatro camadas: análise descritiva, teste A/B, previsão de retenção e recomendação operacional. O projeto organiza conversão, retenção, diagnóstico de erros, simulação financeira e exportação de resultados.

@@ -4,6 +4,16 @@
 
 [Notebook PT-BR](notebooks/Customer_Segmentation_and_Next_Best_Action-PT.ipynb) · [Notebook EN-US](notebooks/Customer_Segmentation_and_Next_Best_Action-EN.ipynb)
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) separa os outputs observados em holdout das simulações sob restrição de orçamento.
+
+**Superfície de engenharia:** módulos reutilizáveis em `src/`, notebooks bilíngues e suíte pytest; este projeto não expõe uma API de serving.
+
+**Pode sustentar:** segmentação RFM/K-Means, score exploratório de recompra e simulações de ações sob premissas.
+
+**Não sustenta:** uplift causal, superioridade sobre campanha uniforme ou prescrição produtiva automatizada.
+
 ## Visão geral
 
 O projeto transforma transações do Online Retail II em segmentação RFM, probabilidade de recompra e recomendação prescritiva sob restrição de orçamento. A cadeia é modular: dados → RFM → K-Means → previsão → simulação de incentivos → ação recomendada.

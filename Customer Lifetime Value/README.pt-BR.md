@@ -4,6 +4,16 @@
 
 [Notebook PT-BR](notebooks/Customer_Lifetime_Value_PT.ipynb) · [Notebook EN-US](notebooks/Customer_Lifetime_Value_EN.ipynb)
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) documenta o holdout temporal, as premissas e as decisões sustentadas.
+
+**Superfície de engenharia:** módulos reutilizáveis em `src/`, API Flask em `serve_model.py`, fluxo de modelo persistido e suíte pytest.
+
+**Pode sustentar:** estimativa exploratória de valor de vida em 180 dias e segmentação para priorização analítica.
+
+**Não sustenta:** garantia de receita futura, causalidade sobre comportamento ou uso produtivo sem monitoramento e revalidação temporal.
+
 ## Visão geral
 
 Este projeto estima a receita futura esperada por cliente em um horizonte de 180 dias usando modelos probabilísticos Buy-Till-You-Die. A análise usa histórico transacional, separação temporal entre desenvolvimento e holdout e uma leitura explícita das limitações de extrapolar comportamento passado.

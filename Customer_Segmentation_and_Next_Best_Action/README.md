@@ -10,6 +10,16 @@
 
 **Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html)
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) separates observed hold-out outputs from budget-constrained simulations.
+
+**Engineering surface:** reusable `src/` modules, bilingual notebooks and a pytest suite; this project does not expose a serving API.
+
+**Can support:** RFM/K-Means segmentation, exploratory repurchase scoring and assumption-based action simulations.
+
+**Does not support:** causal uplift, superiority over a uniform campaign, or automated production prescription.
+
 ## Observed Outputs and Simulation Status
 
 The project applies segmentation, a repurchase model and a prescriptive simulation to the UCI Online Retail dataset. The values below are the materialized outputs of the Portuguese notebook; they are not causal business outcomes.

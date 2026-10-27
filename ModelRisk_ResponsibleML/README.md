@@ -4,6 +4,16 @@ Auditoria reproduzível de risco, calibração e fairness aplicada ao conjunto [
 
 O objetivo não é produzir um modelo para decisões reais. O objetivo é mostrar como uma avaliação responsável separa desenvolvimento e teste, comunica incerteza e limita honestamente o que os dados permitem concluir.
 
+## 💡 Project philosophy
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) documents calibration, fairness, uncertainty and the final-test boundary.
+
+**Engineering surface:** reusable `src/` audit/report modules and contract tests; this project is an audit artifact, not a serving API.
+
+**Can support:** responsible model-risk review and reproducible evidence about calibration, groups and uncertainty.
+
+**Does not support:** credit, employment or benefit decisions, production authorization, or causal fairness claims.
+
 ## Resultado resumido
 
 O protocolo selecionou um `HistGradientBoosting` com calibrador Platt e threshold `0,31`. No teste oficial congelado:

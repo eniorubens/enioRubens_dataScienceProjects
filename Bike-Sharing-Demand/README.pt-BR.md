@@ -14,6 +14,16 @@ permanecem em inglês e os textos exibidos são localizados pela camada
 `multilang`. A edição EN-US foi concluída após tradução editorial, revisão
 técnica e validação de execução dos oito notebooks.
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) documenta a validação temporal, a incerteza e a fronteira operacional.
+
+**Superfície de engenharia:** workflows modulares em `src/`, replay operacional e cobertura automatizada com pytest; não há API geral de serving exposta.
+
+**Pode sustentar:** previsão horária de demanda sob validação temporal e intervalos conformais exploratórios.
+
+**Não sustenta:** garantia industrial, generalização irrestrita para períodos futuros ou promoção produtiva sem monitoramento operacional.
+
 ## Decisão central de modelagem
 
 Nos dados de 2020, foi identificada uma ruptura extraordinária de mobilidade que

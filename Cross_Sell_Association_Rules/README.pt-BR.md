@@ -4,6 +4,16 @@
 
 [Notebook PT-BR](notebooks/Cross_Sell_Association_Rules_PT.ipynb) · [Notebook EN-US](notebooks/Cross_Sell_Association_Rules_EN.ipynb)
 
+## 💡 Filosofia do projeto
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) apresenta as regras como associações comportamentais, não como evidência de intervenção.
+
+**Superfície de engenharia:** análise reprodutível em notebook e dataset; este projeto não expõe pacote modular `src/`, API de serving ou suíte automatizada de testes.
+
+**Pode sustentar:** análise exploratória de cesta de compras e hipóteses candidatas de cross-sell.
+
+**Não sustenta:** incrementalidade causal, uplift garantido de conversão ou deployment automático de ofertas.
+
 ## Visão geral
 
 Market Basket Analysis aplicada a transações de varejo para distinguir itens populares de associações relevantes. A frequência alta, isoladamente, não demonstra que dois produtos estejam associados.
