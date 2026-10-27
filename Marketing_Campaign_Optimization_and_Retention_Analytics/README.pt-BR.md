@@ -1,8 +1,14 @@
 # Otimização de Campanhas de Marketing e Analytics de Retenção
 
-[Relatório executivo PT-BR](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [Relatório em inglês](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html)
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/notebooks/Marketing_Campaign_Optimization_and_Retention_Analytics_EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/notebooks/Marketing_Campaign_Optimization_and_Retention_Analytics_PT.ipynb)
 
-[Notebook PT-BR](notebooks/Marketing_Campaign_Optimization_and_Retention_Analytics_PT.ipynb) · [Notebook EN-US](notebooks/Marketing_Campaign_Optimization_and_Retention_Analytics_EN.ipynb)
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [Relatório em inglês](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html)
+
+Pipeline completo de Marketing Analytics com análises descritiva, inferencial,
+preditiva e prescritiva aplicadas à otimização de campanhas, retenção de usuários
+e geração de recomendações operacionais.
+
+---
 
 ## 💡 Filosofia do projeto
 
@@ -16,33 +22,131 @@
 
 **Não sustenta:** serviço produtivo de scoring, impacto causal de campanha ou decisões automáticas sem engenharia e validação adicionais.
 
-## Visão geral
+## Objetivo
 
-Pipeline de analytics de marketing em quatro camadas: análise descritiva, teste A/B, previsão de retenção e recomendação operacional. O projeto organiza conversão, retenção, diagnóstico de erros, simulação financeira e exportação de resultados.
+Este projeto implementa uma solução analítica de ponta a ponta para campanhas de
+marketing digital, integrando:
 
-## Resultados resumidos
+- análise exploratória;
+- análise do funil de conversão;
+- teste A/B;
+- modelagem preditiva de retenção;
+- diagnóstico de viés nos erros do modelo;
+- simulação de ROI;
+- cálculo do valor esperado por usuário;
+- geração automatizada de recomendações operacionais.
 
-- 10.037 registros brutos, 9.757 exposições após limpeza e 6.849 usuários estáveis na base canônica.
-- A personalização não mostrou uplift no cohort canônico: diferença observada de −0,06 ponto percentual, sem evidência de superioridade.
-- O cenário preditivo publicado alcançou ROC-AUC de 0,956.
-- ROI, lucro esperado e recomendações usam premissas simuladas e não representam contabilidade financeira observada.
+O projeto foi inspirado conceitualmente pelo artigo:
 
-## Métodos
+> *Optimising Marketing Strategies by Customer Segments and Lifetime Values, with A/B Testing*
+> Guha, Echagarruga & Tian (2021)
 
-- Funil de conversão, retenção e desempenho por canal.
-- Z-test para diferença entre proporções e interpretação de uplift.
-- Pipeline supervisionado para retenção com pré-processamento e codificação categórica.
-- Diagnóstico de falsos positivos, simulação de ROI e recomendação por valor esperado.
+mas foi ampliado para um pipeline moderno de data science aplicado ao contexto
+de analytics de marketing.
 
-## Limitações
+---
 
-O teste permaneceu exploratório e a base canônica ficou abaixo do tamanho planejado para o lift de interesse. As recomendações exigem custos reais, atribuição clara e experimento controlado antes de uso operacional.
+## Principais funcionalidades
 
-## Estrutura
+### Análise descritiva
+- Taxa geral de conversão
+- Taxa de retenção
+- Desempenho por canal
+- Impacto da personalização
+- Conversão e retenção por idioma
 
-```text
-Marketing_Campaign_Optimization_and_Retention_Analytics/
-├── notebooks/ · src/ · tests/
-├── site/              # relatório executivo PT-BR/EN-US
-└── README.md / README.pt-BR.md
-```
+### Teste A/B
+- Z-test para diferença entre proporções
+- Interpretação estatística do uplift
+- Validação inferencial das variantes
+
+### Machine Learning
+- Pipeline supervisionado para previsão de retenção
+- Pré-processamento automatizado
+- Codificação de variáveis categóricas
+- Avaliação usando:
+  - ROC AUC
+  - Recall
+  - Accuracy
+  - Precision
+
+### Diagnóstico de erros
+- Análise de falsos positivos
+- Sobre-representação de grupos nos erros do modelo
+- Comparação entre a composição do dataset e a composição dos erros
+- Diagnóstico de potenciais vieses operacionais
+
+### Simulação financeira
+- ROI estimado por canal
+- Lucro esperado
+- Valor esperado por usuário
+- Priorização operacional baseada em impacto financeiro
+
+### Recomendação prescritiva
+Classificação automática dos usuários em ações como:
+
+- Priorizar e escalar
+- Manter e otimizar
+- Análise detalhada
+- Corrigir idioma
+- Revisar preço
+- Baixa prioridade
+
+### Exportação
+- Exportação automatizada para Excel com múltiplas planilhas
+- Consolidação dos principais resultados analíticos
+
+---
+
+## Tecnologias utilizadas
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Statsmodels
+- Matplotlib
+- OpenPyXL
+
+---
+
+## Estrutura analítica
+
+O pipeline foi estruturado em quatro camadas analíticas:
+
+### 1. Descritiva
+Compreensão do comportamento de campanhas e usuários.
+
+### 2. Inferencial
+Validação estatística das diferenças observadas por meio de testes A/B.
+
+### 3. Preditiva
+Modelagem da probabilidade de retenção do usuário.
+
+### 4. Prescritiva
+Geração de recomendações operacionais com base em valor esperado e ROI.
+
+---
+
+## Principais resultados
+
+- Identificação de diferenças estatisticamente significativas entre variantes A/B
+- Melhor desempenho em campanhas que usam o idioma correto
+- Identificação de segmentos sobre-representados nos falsos positivos
+- Simulação de ROI mostrando forte variação entre canais
+- Priorização automatizada de usuários com maior valor esperado
+
+---
+
+## Referência acadêmica
+
+GUHA, P.; ECHAGARRUGA, C.; TIAN, E. Q.
+*Optimising Marketing Strategies by Customer Segments and Lifetime Values, with A/B Testing*.
+Applied Marketing Analytics, v. 7, n. 2, p. 144–153, 2021.
+
+---
+
+## Autor
+
+Enio Rubens
+Data Scientist | Marketing Analytics | Machine Learning | Predictive Modeling
