@@ -65,6 +65,8 @@ End-to-end pipeline from transactional data to actionable marketing decisions: *
 
 A four-layer analytics pipeline — **descriptive → inferential → predictive → prescriptive** — for campaign performance analysis and user retention, with automated user classification into 6 action categories and multi-sheet Excel export.
 
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html)
+
 **Methods:** Channel performance analysis · Z-test A/B testing · Supervised retention modeling · False positive / bias diagnosis · Financial ROI simulation · Automated recommendation system
 
 **Technologies:** Python · Pandas · NumPy · scikit-learn · Statsmodels · Matplotlib · OpenPyXL
