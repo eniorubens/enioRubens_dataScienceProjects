@@ -48,7 +48,7 @@ Estimates expected future revenue per customer over a **180-day horizon** using 
 ### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action) — Prescriptive Analytics
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-End-to-end pipeline from transactional data to actionable marketing decisions: **RFM → K-Means segmentation → Repurchase probability → Budget-constrained prescriptive optimization**, achieving **2.4x improvement in campaign ROI** vs. uniform campaigns.
+End-to-end pipeline from transactional data to actionable marketing decisions: **RFM → K-Means segmentation → Repurchase probability → Budget-constrained prescriptive optimization**. The project reports expected-profit simulations under explicit assumptions; causal uplift and superiority over a uniform campaign are not established.
 
 **Methods:** K-Means clustering (Elbow + Silhouette, k=6) · Calibrated probabilistic classifier · Incentive simulation · Expected profit calculation · Budget optimizer
 

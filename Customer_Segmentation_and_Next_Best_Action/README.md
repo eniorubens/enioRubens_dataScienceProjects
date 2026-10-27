@@ -2,28 +2,33 @@
 
 [🇺🇸 English](notebooks/Customer_Segmentation_and_Next_Best_Action-EN.ipynb) | [🇧🇷 Português](notebooks/Customer_Segmentation_and_Next_Best_Action-PT.ipynb)
 
+[![Tests](https://github.com/eniorubens/customer-segmentation-nba/actions/workflows/test.yml/badge.svg)](https://github.com/eniorubens/customer-segmentation-nba/tests)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## Business Impact
+## Observed Outputs and Simulation Status
 
-The prescriptive pipeline, applied to the Online Retail II dataset (~4 300 customers on hold-out), produced the following simulated outcomes under the configured budget and margin assumptions:
+The project applies segmentation, a repurchase model and a prescriptive simulation to the UCI Online Retail dataset. The values below are the materialized outputs of the Portuguese notebook; they are not causal business outcomes.
 
-| Segment | Customers | Revenue Share | Recommended Action | Simulated Retention Uplift |
-|---|---|---|---|---|
-| **Champions** | ~12% of base | ~42% of revenue | VIP treatment, premium offers | 8–10% |
-| **High Value at Risk** | ~9% of base | ~27% of revenue | Immediate win-back campaign | 10–13% |
-| **Loyal Customers** | ~18% of base | ~19% of revenue | Cross-sell and bundle strategy | 6–8% |
-| **Occasional Buyers** | ~24% of base | ~8% of revenue | Low-cost second-purchase nudge | 3–5% |
-| **Inactive Customers** | ~37% of base | ~4% of revenue | Selective reactivation or no action | 0–2% |
+| Segment | Customers | Revenue Share | Recommended Action |
+|---|---:|---:|---|
+| **Champions** | 449 | 56.66% | VIP treatment, early access and exclusivity |
+| **Loyal Customers** | 1,089 | 19.26% | Cross-sell and bundles |
+| **High Value at Risk** | 540 | 15.03% | Priority reactivation |
+| **Occasional Buyers** | 1,142 | 5.57% | Low-cost second-purchase campaigns |
+| **Inactive Customers** | 670 | 2.80% | Selective reactivation or low priority |
+| **Low Value** | 448 | 0.68% | Low-cost marketing automation |
 
-> **Note:** Uplift values are heuristic simulation assumptions for portfolio demonstration purposes. They are not causal estimates. Calibrate against A/B test results before production use.
+> **Important:** uplift values used by the simulation are heuristic portfolio assumptions. They are not causal estimates and must be calibrated against A/B-test results before operational use.
 
-**Budget optimisation result (default $10 000 budget):**
-- Top 30% of customers by ROI capture ~68% of total incremental profit
-- Prescriptive selection outperforms a uniform campaign by ~2.4× in expected incremental margin
+**Materialized budget simulation (hold-out, default $10,000 limit):**
+- Budget used: **$2,895**
+- Customers exported to CRM: **353**
+- Expected incremental profit under the configured heuristic: **$14,733.53**
+
+The scenario comparison is objective-sensitive: the materialized scenario table reports a **$10,275** gain for the uniform campaign versus baseline, while the margin-based prescription scenario is negative under that comparison. The objective, margin, cost and population must be reconciled before claiming superiority or production readiness.
 
 ---
 
@@ -79,10 +84,9 @@ customer_segmentation_nba/
 │   └── Customer_Segmentation_and_Next_Best_Action-PT.ipynb
 │
 ├── data/
-│   └── online_retail_II.csv
+│   └── online_retail.csv
 │
-├── outputs/
-│   └── crm_next_best_action.csv
+├── notebooks/outputs/       # generated CRM export; local artifact, not public payload
 │
 ├── .github/workflows/test.yml
 ├── pyproject.toml

@@ -1,4 +1,4 @@
-name: Publicar portfólio FD001
+name: Publicar portfólio
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Package only public static pages
+      - name: Package public static pages
         run: |
           mkdir -p _site/CMAPSS_Predictive_Maintenance
           cp -a CMAPSS_Predictive_Maintenance/site/. _site/CMAPSS_Predictive_Maintenance/
@@ -41,6 +41,8 @@ jobs:
             -e 's#\.\./data/#data/#g' \
             _site/ModelRisk_ResponsibleML/index.html \
             _site/ModelRisk_ResponsibleML/en.html
+          mkdir -p _site/Customer_Segmentation_and_Next_Best_Action
+          cp -a Customer_Segmentation_and_Next_Best_Action/site/. _site/Customer_Segmentation_and_Next_Best_Action/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website
