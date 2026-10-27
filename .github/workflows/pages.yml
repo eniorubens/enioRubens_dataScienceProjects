@@ -41,6 +41,8 @@ jobs:
             -e 's#\.\./data/#data/#g' \
             _site/ModelRisk_ResponsibleML/index.html \
             _site/ModelRisk_ResponsibleML/en.html
+          mkdir -p "_site/Customer Lifetime Value"
+          cp -a "Customer Lifetime Value/site/." "_site/Customer Lifetime Value/"
           mkdir -p _site/Customer_Segmentation_and_Next_Best_Action
           cp -a Customer_Segmentation_and_Next_Best_Action/site/. _site/Customer_Segmentation_and_Next_Best_Action/
           cp pages-publicacao/index.html _site/index.html

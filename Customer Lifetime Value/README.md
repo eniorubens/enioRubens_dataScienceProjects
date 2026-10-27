@@ -1,6 +1,8 @@
 # Customer Lifetime Value Prediction
 
-[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/9f494bfca025a50df36dc980a01c647e2907709f/Customer%20Lifetime%20Value/notebooks/Customer_Lifetime_Value_EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/9f494bfca025a50df36dc980a01c647e2907709f/Customer%20Lifetime%20Value/notebooks/Customer_Lifetime_Value_PT.ipynb)
+[🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/notebooks/Customer_Lifetime_Value_EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/notebooks/Customer_Lifetime_Value_PT.ipynb)
+
+**Read:** [Executive report · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html)
 
 > **Forward-looking revenue estimation at the individual customer level —
 > not historical averages, but probabilistic forecasts of future value.**
@@ -9,13 +11,13 @@
 
 ## Overview
 
-This project builds a production-ready CLTV (Customer Lifetime Value) pipeline
+This project builds a reproducible CLTV (Customer Lifetime Value) pipeline
 using probabilistic BTYD models on transactional e-commerce data. It estimates,
 for each customer, how often they will purchase, how much they will spend per
 transaction, and how likely they are to still be active — then combines these
 into a 180-day revenue forecast and a prioritised marketing action per customer.
 
-The output is not a segment label. It is a defensible, individual-level
+The output is not a segment label. It is an auditable, individual-level
 allocation signal for marketing, sales, and finance teams.
 
 ---
@@ -39,7 +41,7 @@ answers three questions that drive allocation decisions:
 |---|---|
 | Total expected revenue (180d) | GBP 99,751,217 |
 | Top 10% customers — revenue share | 40.1% |
-| Top 20% customers — revenue share | ~60% |
+| Top 20% customers — revenue share | 54.2% |
 | Customers in modelling base | 2,762 |
 
 **Segment breakdown:**

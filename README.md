@@ -39,6 +39,8 @@ Predicts customer churn (26.5% base rate) with **76.4% Recall Macro**, translati
 
 Estimates expected future revenue per customer over a **180-day horizon** using probabilistic Buy-Till-You-Die models with temporal holdout validation.
 
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html)
+
 **Methods:** RFM feature engineering · BG/NBD model (purchase frequency & P(alive)) · Gamma-Gamma model (monetary value) · MAP & MCMC fitting · Customer segmentation on CLTV × P(alive) matrix
 
 **Technologies:** pymc-marketing · Pandas · NumPy · scikit-learn · Flask API · pytest
