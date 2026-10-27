@@ -91,11 +91,11 @@ Identifies genuine cross-selling opportunities in retail transactional data usin
 
 Forecasts hourly bicycle demand under normal operating conditions using nine years of mobility and meteorological data. A sealed temporal holdout confirmed CatBoost with **MAE 1,118.1** and **R² 0.839**. On the development folds, adaptive conformal calibration raised 90% interval coverage from **81.0% to 90.1%** while reducing mean interval width by **25.6%**.
 
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)
+
 **Methods:** Expanding meteorological-year CV · Dynamic estimator-specific preprocessing · Optuna · MLflow · CatBoost · Residual diagnostics · SHAP · Adaptive conformal inference · Operational replay
 
 **Technologies:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · MLflow · SHAP · pytest · Jupyter
-
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)
 
 ---
 
