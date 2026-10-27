@@ -58,6 +58,8 @@ jobs:
           cp customer-churn-prediction/README.md _site/customer-churn-prediction/
           cp customer-churn-prediction/README.pt-BR.md _site/customer-churn-prediction/
           cp -a customer-churn-prediction/notebooks _site/customer-churn-prediction/
+          mkdir -p _site/Consumer_Complaint_Intelligence
+          cp -a Consumer_Complaint_Intelligence/site/. _site/Consumer_Complaint_Intelligence/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

@@ -131,6 +131,8 @@ de inferência e duas avaliações seladas pré-registradas. Nenhum ciclo foi
 promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
 4; ambos permanecem `NOT_CONFIRMED` e `deploy=false`.
 
+**Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) · [README pt-BR](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.pt-BR.md) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/en.html)
+
 **Métodos:** NLP multiclasse desbalanceado · TF-IDF por palavras e caracteres · LinearSVC · Regressão logística SGD · Divisão temporal · Deduplicação por grupos · Mineração de hard negatives · Classificação hierárquica · Calibração de threshold · Intervalos bootstrap · Avaliação confirmatória selada
 
 **Tecnologias:** Python · Polars · DuckDB · scikit-learn · imbalanced-learn · joblib · Kaggle · Jupyter · unittest
