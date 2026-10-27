@@ -53,6 +53,8 @@ jobs:
           cp -a Customer_Segmentation_and_Next_Best_Action/site/. _site/Customer_Segmentation_and_Next_Best_Action/
           mkdir -p _site/Marketing_Promotion_Campaign_Uplift_Modelling
           cp -a Marketing_Promotion_Campaign_Uplift_Modelling/site/. _site/Marketing_Promotion_Campaign_Uplift_Modelling/
+          mkdir -p _site/customer-churn-prediction
+          cp -a customer-churn-prediction/site/. _site/customer-churn-prediction/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

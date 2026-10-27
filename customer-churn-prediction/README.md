@@ -1,14 +1,14 @@
-# Customer Churn Prediction – Production-Grade End-to-End ML Project
+# Customer Churn Prediction – Reproducible End-to-End ML Project
 
 [🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-PT.ipynb)
 
 ## 🎯 Executive Summary
 
-This project demonstrates a **production-ready machine learning pipeline** that predicts customer churn with **76.4% Recall Macro** and quantifiable business impact: **≈$3M revenue preserved annually**.
+This project demonstrates an **exploratory, reproducible machine learning pipeline** that predicts customer churn. The current materialized artifact reaches **76.6% Macro Recall** and **84.6% ROC AUC** on the deterministic hold-out test.
 
 The work showcases expertise in reframing ML problems as **business optimization challenges**, moving beyond accuracy metrics to deliver actionable insights that drive real revenue impact.
 
-**Key Achievement:** Transforms predictions into a **90-day implementation roadmap** with ≈$3M revenue preservation and ≈4.7x ROI on retention investments.
+**Key boundary:** The project translates model scores into a retention prioritization hypothesis. Revenue preservation and ROI are illustrative scenarios, not observed or causally validated outcomes.
 
 ---
 
@@ -16,12 +16,12 @@ The work showcases expertise in reframing ML problems as **business optimization
 
 | Metric | Value | Significance |
 |--------|-------|--------------|
-| **Model Recall (Macro)** | 76.4% | Identifies 3 out of 4 actual churners |
-| **Balanced Accuracy** | 76.4% | Handles 26.5% class imbalance effectively |
-| **ROC AUC** | 83.5% | Strong overall discrimination |
-| **Precision (Macro)** | 71.2% | Balanced Precision-Recall trade-off |
-| **Annual Revenue Preserved** | ≈$3M | From retention of ~856 customers/year |
-| **Retention ROI** | ≈4.7x | ~$3M saved vs ~$634K intervention cost |
+| **Model Recall (Macro)** | 76.6% | Hold-out result at threshold 0.52 |
+| **Balanced Accuracy** | 76.6% | Class-balanced hold-out result |
+| **ROC AUC** | 84.6% | Hold-out discrimination using probabilities |
+| **Precision (Macro)** | 71.7% | Hold-out result at threshold 0.52 |
+| **Annual Revenue Preserved** | Scenario only | Depends on unvalidated retention assumptions |
+| **Retention ROI** | Scenario only | Not observed; requires a controlled experiment |
 | **Implementation Timeline** | 90 days | Realistic, phased deployment plan |
 
 ---
@@ -87,7 +87,7 @@ Two-Year:       2.8% churn   ← Lowest risk (15x improvement)
 
 ### Phase 2: Data Processing & Feature Engineering (Winning Pipeline)
 
-The winning preprocessing pipeline was discovered via exhaustive search with `optpipe` (Optuna TPE, 100 trials, 6-fold Stratified CV):
+The winning preprocessing pipeline was discovered via exhaustive search with `opt_binary_clf_pipe` (Optuna TPE, 100 trials, 6-fold Stratified CV):
 
 | Stage | Component | Configuration |
 |-------|-----------|---------------|
@@ -111,7 +111,7 @@ The winning preprocessing pipeline was discovered via exhaustive search with `op
 
 ### Phase 3: Model Development & Selection
 
-Experiments tracked with `optpipe` + MLflow across 35 configurations. Top results:
+Experiments tracked with `opt_binary_clf_pipe` + MLflow across 35 configurations. Top results:
 
 | Model | Configuration | Pipeline | Test Recall |
 |-------|--------------|---------|------------|
@@ -124,10 +124,10 @@ Experiments tracked with `optpipe` + MLflow across 35 configurations. Top result
 #### Why BalancedRandomForestClassifier?
 
 1. **Class Imbalance by Design:** Bootstrap sampling with class balancing at the tree level — no external SMOTE needed
-2. **Performance Advantage:** +6.4pp recall improvement over LogisticRegression baseline (76.4% vs 70.0%)
-3. **Generalization:** Minimal train/test gap (76.8% train vs 76.4% test) — no overfitting
-4. **ROC AUC 83.5%:** Strong overall discrimination power
-5. **Production Ready:** From `imbalanced-learn`, stable and well-maintained
+2. **Hold-out evidence:** the current saved artifact reaches 76.6% Macro Recall and 84.6% ROC AUC
+3. **Validation boundary:** this is a single deterministic hold-out, not temporal or production validation
+4. **ROC AUC 84.6%:** measured from continuous hold-out probabilities
+5. **Deployment boundary:** requires temporal validation, monitoring and a controlled retention experiment
 
 **Scientific Reference:** BalancedRandomForestClassifier (Chen et al., 2004) addresses class imbalance by performing balanced bootstrap sampling at each tree, making it inherently robust without external resampling.
 
@@ -135,7 +135,7 @@ Experiments tracked with `optpipe` + MLflow across 35 configurations. Top result
 
 ### Phase 4: Hyperparameter Optimization
 
-Systematic hyperparameter search using `optpipe` with Optuna's Tree-structured Parzen Estimator (TPE):
+Systematic hyperparameter search using `opt_binary_clf_pipe` with Optuna's Tree-structured Parzen Estimator (TPE):
 
 ```python
 study = optuna.create_study(direction='maximize')
@@ -151,14 +151,14 @@ study.optimize(
 | Parameter | Value | Justification |
 |-----------|-------|---------------|
 | `n_estimators` | 306 | Larger ensemble reduces variance on ~5,600 training samples |
-| `max_depth` | 7 | Moderate depth balances bias-variance — captures `Contract × tenure × InternetService` interactions |
+| `max_depth` | 9 | Configuration in the current saved training artifact |
 | `max_features` | `log2` | Logarithmic feature sampling per split — introduces diversity, reduces inter-tree correlation |
 | `min_samples_leaf` | 2 | Prevents over-segmentation while allowing fine-grained splits |
 | `min_samples_split` | 6 | Controls tree growth; regularizes against overfitting |
 | `random_state` | 738 | Fixed seed ensures full reproducibility |
 | `class_weight` | `balanced` (implicit) | Inherent class balancing at tree level — 73/27 imbalance handled internally |
 
-**Performance Gain:** Optimized model achieves **+6.4pp improvement in Recall Macro** over baseline LogisticRegression (76.4% vs 70.0%).
+**Performance note:** The current saved artifact reaches **76.6% Macro Recall** on the hold-out split. Comparisons with earlier notebook outputs should be treated as historical until the notebook is rerun end to end.
 
 ---
 
@@ -175,7 +175,7 @@ Threshold = 0.50 (Default)
   → Minimal change from optimized model
 
 Threshold = 0.52 (Optimized)
-  → Recall Macro: 76.4%, Precision Macro: 71.2%
+  → Recall Macro: 76.6%, Precision Macro: 71.7%
   → Strongly asymmetric cost profile: catches 80.7% of actual churners
 ```
 
@@ -220,35 +220,35 @@ cv = StratifiedKFold(n_splits=6, shuffle=True, random_state=42)
 
 | Metric | Winner | Baseline (LR) | Δ |
 |--------|--------|---------------|---|
-| Recall Macro | **76.4%** | 70.0% | +6.4pp |
-| Balanced Accuracy | **76.4%** | 70.0% | +6.4pp |
-| ROC AUC | **83.5%** | 70.0% | +13.5pp |
-| Precision Macro | 71.2% | 74.4% | -3.2pp |
+| Recall Macro | **76.6%** | historical comparison | — |
+| Balanced Accuracy | **76.6%** | historical comparison | — |
+| ROC AUC | **84.6%** | historical comparison | — |
+| Precision Macro | 71.7% | historical comparison | — |
 
 ### Confusion Matrix Analysis
 
 ```
 Prediction Breakdown (Test Set):
-  Correct (TN + TP):  1,033
-  FP (False Alarm):     302    ← non-churners flagged (unnecessary retention cost)
-  FN (Missed Churner):   72    ← churners missed (most costly error)
+  Correct (TN + TP):  1,065
+  FP (False Alarm):     262    ← non-churners flagged (unnecessary retention cost)
+  FN (Missed Churner):   80    ← churners missed (most costly error)
 
 Derived:
-  True  Positives (TP): 302   — churners correctly identified
-  False Negatives (FN):  72   — churners missed
-  False  Positives (FP): 302  — non-churners falsely flagged
-  True  Negatives (TN): 731   — non-churners correctly dismissed
+  True  Positives (TP): 294   — churners correctly identified
+  False Negatives (FN):  80   — churners missed
+  False  Positives (FP): 262  — non-churners falsely flagged
+  True  Negatives (TN): 771   — non-churners correctly dismissed
 ```
 
 **Class-level Recall:**
-- Churner class recall: 302 / (302+72) = **80.7%** — model catches 4 out of 5 actual churners
-- Non-churner class recall: 731 / (731+302) = **70.8%**
+- Churner class recall: 294 / (294+80) = **78.6%**
+- Non-churner class recall: 771 / (771+262) = **74.6%**
 
 **Interpretation:**
-- **True Positives (302):** Correctly identified churners with intervention window ✓
-- **False Negatives (72):** Missed churners ✗ (dramatically reduced vs. prior versions)
-- **False Positives (302):** Over-predicted (acceptable given LTV >> retention cost)
-- **True Negatives (731):** Correctly identified non-churners ✓
+- **True Positives (294):** Correctly identified churners with intervention window ✓
+- **False Negatives (80):** Missed churners ✗
+- **False Positives (262):** Non-churners flagged; cost acceptability requires real intervention economics
+- **True Negatives (771):** Correctly identified non-churners ✓
 
 ### Feature Importance (Permutation Importance, Recall Macro scorer)
 
@@ -292,15 +292,15 @@ Derived:
 Annual loss from unmanaged churn: ≈$12M on $50M ARR
 ```
 
-### With Model (76.4% Recall Macro)
+### Illustrative scenario using the hold-out recall (not observed impact)
 
 **Retention Campaign Economics (full dataset scale):**
-- Total customers flagged: ≈2,536 (TP + FP)
-- Intervention cost: 2,536 × $250 = **$634,000**
-- Churners retained (60% success rate × 1,426 identified): ≈856 customers
-- Revenue preserved: 856 × $3,500 LTV = **≈$3,000,000**
+- The scenario assumes a full-dataset campaign scale and is not a measured campaign result.
+- Intervention cost and LTV are assumed inputs, not observed costs.
+- A 60% retention-success assumption is illustrative and must be tested prospectively.
+- Any revenue-preservation value is therefore a scenario, not a result.
 
-**Return on Investment: ≈$3M / $634K = ≈4.7x**
+**No observed ROI is reported.** Replace assumptions with controlled-experiment results before business use.
 
 ### Model vs. No-Model Comparison
 
@@ -405,13 +405,13 @@ This project is grounded in peer-reviewed research:
 - **Recommendation:** Pilot with 1,000 customers; measure actual results before full rollout
 
 **6. False Positive Volume**
-- 302/1,033 non-churners flagged (29.2% FP rate)
+- 262/1,033 non-churners flagged (25.4% FP rate)
 - If retention budget is constrained, threshold adjustment may be needed
 
 ### Model Capabilities: What It CAN vs CANNOT Do
 
 **✅ The Model CAN:**
-- Identify 80.7% of churners (class-level recall) with >1 month lead time
+- Identify 78.6% of churners in this hold-out (class-level recall); lead time is not established
 - Prioritize retention spending on high-risk segments
 - Estimate revenue impact and ROI of interventions
 - Inform contract and pricing strategies
@@ -454,7 +454,7 @@ This project is grounded in peer-reviewed research:
 - category_encoders (SumEncoder and other encoders)
 
 **Optimization & Experiment Tracking:**
-- optpipe (custom library — full experiment loop)
+- opt_binary_clf_pipe (custom library — full experiment loop)
 - Optuna (Bayesian hyperparameter optimization)
 - MLflow (experiment tracking and model registry)
 
@@ -507,7 +507,7 @@ All analytical decisions, business interpretations, modeling choices, validation
 ```bibtex
 @misc{rubens2024churn,
   author = {Rubens, Enio},
-  title = {Customer Churn Prediction: Production-Grade End-to-End ML Project},
+  title = {Customer Churn Prediction: Reproducible End-to-End ML Project},
   year = {2024},
   note = {Portfolio Project}
 }
@@ -525,9 +525,9 @@ All analytical decisions, business interpretations, modeling choices, validation
 
 ---
 
-**Last Updated:** May 2026  
-**Project Status:** ✅ Complete & Portfolio-Ready  
-**Model Performance:** 76.4% Recall Macro | 76.4% Balanced Accuracy | 83.5% ROC AUC | ≈4.7x ROI
+**Last Updated:** October 2026
+**Project Status:** ✅ Exploratory portfolio artifact
+**Model Performance:** 76.6% Recall Macro | 76.6% Balanced Accuracy | 84.6% ROC AUC | ROI not validated
 
 ---
 
