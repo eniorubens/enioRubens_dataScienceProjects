@@ -39,7 +39,7 @@ Predicts customer churn (26.5% base rate) with **76.4% Recall Macro**, translati
 
 Estimates expected future revenue per customer over a **180-day horizon** using probabilistic Buy-Till-You-Die models with temporal holdout validation.
 
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html)
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [README pt-BR](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/README.pt-BR.md) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html)
 
 **Methods:** RFM feature engineering · BG/NBD model (purchase frequency & P(alive)) · Gamma-Gamma model (monetary value) · MAP & MCMC fitting · Customer segmentation on CLTV × P(alive) matrix
 
@@ -52,7 +52,7 @@ Estimates expected future revenue per customer over a **180-day horizon** using 
 
 End-to-end pipeline from transactional data to actionable marketing decisions: **RFM → K-Means segmentation → Repurchase probability → Budget-constrained prescriptive optimization**. The project reports expected-profit simulations under explicit assumptions; causal uplift and superiority over a uniform campaign are not established.
 
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html)
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [README pt-BR](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer_Segmentation_and_Next_Best_Action/README.pt-BR.md) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html)
 
 **Methods:** K-Means clustering (Elbow + Silhouette, k=6) · Calibrated probabilistic classifier · Incentive simulation · Expected profit calculation · Budget optimizer
 
@@ -65,7 +65,7 @@ End-to-end pipeline from transactional data to actionable marketing decisions: *
 
 A four-layer analytics pipeline — **descriptive → inferential → predictive → prescriptive** — for campaign performance analysis and user retention, with automated user classification into 6 action categories and multi-sheet Excel export.
 
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html)
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [README pt-BR](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/README.pt-BR.md) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html)
 
 **Methods:** Channel performance analysis · Z-test A/B testing · Supervised retention modeling · False positive / bias diagnosis · Financial ROI simulation · Automated recommendation system
 
@@ -78,7 +78,7 @@ A four-layer analytics pipeline — **descriptive → inferential → predictive
 
 Identifies genuine cross-selling opportunities in retail transactional data using Association Rules. The core insight: **high item frequency ≠ meaningful association** — whole milk and vegetables, the two most popular items, show lift of 0.77, proving popularity alone misleads. Rules are filtered by lift > 1 and Zhang's metric > 0.2 to surface meaningful associations supported by lift and Zhang filters without treating them as causal evidence.
 
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [README pt-BR](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/README.pt-BR.md) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
 
 **Methods:** Apriori algorithm · Frequent itemset mining · Multi-metric evaluation (Support, Confidence, Lift, Conviction, Zhang's metric) · One-hot encoding · Transaction aggregation
 
@@ -91,7 +91,7 @@ Identifies genuine cross-selling opportunities in retail transactional data usin
 
 Forecasts hourly bicycle demand under normal operating conditions using nine years of mobility and meteorological data. A sealed temporal holdout confirmed CatBoost with **MAE 1,118.1** and **R² 0.839**. On the development folds, adaptive conformal calibration raised 90% interval coverage from **81.0% to 90.1%** while reducing mean interval width by **25.6%**.
 
-**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)
+**Read:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [README pt-BR](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Bike-Sharing-Demand/README.pt-BR.md) · [English report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)
 
 **Methods:** Expanding meteorological-year CV · Dynamic estimator-specific preprocessing · Optuna · MLflow · CatBoost · Residual diagnostics · SHAP · Adaptive conformal inference · Operational replay
 
@@ -137,7 +137,7 @@ gates and V2.1-C passed 3 of 4, so both remain `NOT_CONFIRMED` and
 
 Estimates remaining useful life on simulated FD001 engine trajectories using causal sensor histories. An Extra Trees pipeline selected 93 of 205 attributes and achieved **MAE 16.23 cycles** and **RMSE 23.80 cycles** in the official 100-engine benchmark. Model selection followed that comparison; the result is not an additional independent post-selection evaluation. Alerts, hypothetical costs and empirical uncertainty bands remain exploratory, not industrial validation.
 
-**Read:** [Interactive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html) · [English summary notebook](CMAPSS_Predictive_Maintenance/notebooks/en-US/27_conclusion_delivery_fd001.ipynb) · [Português](CMAPSS_Predictive_Maintenance/README.md)
+**Read:** [Interactive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html) · [English summary notebook](CMAPSS_Predictive_Maintenance/notebooks/en-US/27_conclusion_delivery_fd001.ipynb) · [Português](CMAPSS_Predictive_Maintenance/README.pt-BR.md)
 
 **Methods:** Engine-grouped validation · Causal rolling features · Optuna · Feature selection · Residual diagnostics · Permutation importance · Illustrative maintenance alerts and costs
 
@@ -149,7 +149,7 @@ Estimates remaining useful life on simulated FD001 engine trajectories using cau
 
 Audits calibration, fairness, uncertainty and final-test isolation on the UCI Adult dataset. The bilingual portfolio documents a frozen HistGradientBoosting evaluation, threshold 0.31 and 18 automated contract tests. The result is explicitly exploratory and `production_eligible=false`.
 
-**Read:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/en.html) · [Português](ModelRisk_ResponsibleML/README.md) · [English](ModelRisk_ResponsibleML/site/en.html)
+**Read:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/en.html) · [Português](ModelRisk_ResponsibleML/README.pt-BR.md) · [English](ModelRisk_ResponsibleML/site/en.html)
 
 **Methods:** Group-aware partitions · Platt calibration · Threshold audit · Wilson interval for group proportions · Fairness diagnostics · Contract tests
 
