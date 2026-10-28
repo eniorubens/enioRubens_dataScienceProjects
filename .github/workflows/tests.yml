@@ -26,6 +26,9 @@ jobs:
           - project: Customer_Segmentation_and_Next_Best_Action
             python: "3.11"
             install: pip install -e ".[dev]"
+          - project: ds_toolkit/opt_binary_clf_pipe
+            python: "3.11"
+            install: pip install -e ".[dev]"
           - project: Customer Lifetime Value
             python: "3.11"
             install: pip install -e . pymc-marketing pandas numpy matplotlib seaborn flask pytest arviz
