@@ -210,3 +210,7 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 ---
 
 *Português é o idioma canônico dos notebooks recém-desenvolvidos; edições em inglês são publicadas como entregáveis separados do portfólio quando concluídas.*
+
+## Licença
+
+O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData) permanecem sob seus termos originais; as fontes estão no README de cada projeto.
