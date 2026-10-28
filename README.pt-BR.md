@@ -80,7 +80,7 @@ Pipeline completo de dados transacionais a decisões acionáveis de marketing: *
 
 **Métodos:** Clusterização K-Means (Elbow + Silhouette, k=6) · Classificador probabilístico calibrado · Simulação de incentivos · Cálculo de lucro esperado · Otimizador de orçamento
 
-**Tecnologias:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest · GitHub Actions CI
+**Tecnologias:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
 
 ---
 

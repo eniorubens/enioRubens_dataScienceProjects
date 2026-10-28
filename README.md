@@ -80,7 +80,7 @@ End-to-end pipeline from transactional data to actionable marketing decisions: *
 
 **Methods:** K-Means clustering (Elbow + Silhouette, k=6) · Calibrated probabilistic classifier · Incentive simulation · Expected profit calculation · Budget optimizer
 
-**Technologies:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest · GitHub Actions CI
+**Technologies:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
 
 ---
 
