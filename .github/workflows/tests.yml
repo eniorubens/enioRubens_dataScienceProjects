@@ -12,6 +12,7 @@ permissions:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -22,6 +23,29 @@ jobs:
           - project: Consumer_Complaint_Intelligence
             python: "3.11"
             install: pip install -e . pytest
+          - project: Customer_Segmentation_and_Next_Best_Action
+            python: "3.11"
+            install: pip install -e ".[dev]"
+          - project: Customer Lifetime Value
+            python: "3.11"
+            install: pip install -e . pymc-marketing pandas numpy matplotlib seaborn flask pytest arviz
+          - project: Marketing_Promotion_Campaign_Uplift_Modelling
+            python: "3.11"
+            install: >-
+              pip install numpy pandas scipy "scikit-learn>=1.6" pyarrow matplotlib seaborn
+              plotly xgboost lightgbm causalml==0.15.5 econml==0.16.0 mlflow optuna
+              optuna-integration shap statsmodels tqdm joblib scikit-uplift deep-translator
+              pytest nbformat -e ../ds_toolkit/multilang
+            # The Hillstrom CSV is not redistributed (no explicit license): the script downloads it from the
+            # publisher and rebuilds the exact analysis copy, verifying both SHA-256 values.
+            prepare: python scripts/fetch_hillstrom.py
+          - project: ModelRisk_ResponsibleML
+            python: "3.11"
+            install: pip install numpy pandas scipy scikit-learn matplotlib seaborn nbformat nbconvert pyarrow fairlearn pytest
+            # UCI Adult is not versioned; the test contract pins the SHA-256 of the official zip.
+            prepare: >-
+              curl -sSL --retry 3 -o data/raw/adult.zip https://archive.ics.uci.edu/static/public/2/adult.zip
+              && unzip -q -o data/raw/adult.zip -d data/raw/adult_uci
     defaults:
       run:
         working-directory: ${{ matrix.project }}
@@ -34,5 +58,37 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           ${{ matrix.install }}
+      - name: Prepare data
+        if: ${{ matrix.prepare != '' }}
+        run: ${{ matrix.prepare }}
       - name: Run tests
         run: python -m pytest -q
+
+  # Bike-Sharing-Demand refuses to run outside a conda environment named
+  # "Bike-Sharing" (src/environment.py), so it gets its own conda job. The env is
+  # created from inside the project folder because environment.yml installs
+  # ../ds_toolkit/multilang by relative path.
+  bike-sharing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: Bike-Sharing-Demand
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          auto-activate-base: false
+      - name: Create environment
+        shell: bash -el {0}
+        run: conda env create -f environment.yml
+      - name: Install test dependency missing from environment.yml
+        # shap is imported by tests/test_final_validation.py but is not declared in
+        # environment.yml. That file is part of the provenance fingerprint
+        # (src/environment.py), so it is left untouched here.
+        shell: bash -el {0}
+        run: conda run -n Bike-Sharing pip install "numpy==1.26.4" "shap==0.49.1" "numba==0.66.0" "llvmlite==0.48.0"
+      - name: Run tests
+        shell: bash -el {0}
+        run: conda run --no-capture-output -n Bike-Sharing python -m pytest -q

@@ -503,7 +503,10 @@ class TestTheModelLoadsAndPredictsOutsideTheRepository:
         return json.loads(completed.stdout.strip().splitlines()[-1])
 
     def test_the_subprocess_ran_under_the_project_environment(self):
-        assert Path(sys.executable).parent.name == ENVIRONMENT_NAME
+        executable = Path(sys.executable)
+        # Windows: <env>/python.exe. POSIX: <env>/bin/python.
+        environment_dir = executable.parent.parent if executable.parent.name in {"bin", "Scripts"} else executable.parent
+        assert environment_dir.name == ENVIRONMENT_NAME
 
     def test_src_is_unreachable_before_the_model_is_loaded(self, portability):
         assert portability["src_importable_before"] is False
