@@ -50,7 +50,7 @@ def build_pipeline() -> Pipeline:
 def compute_column_defaults(df) -> dict:
     defaults = {}
     for col in df.columns:
-        if df[col].dtype == object:
+        if not pd.api.types.is_numeric_dtype(df[col]):
             defaults[col] = df[col].mode()[0]
         else:
             defaults[col] = float(df[col].median())

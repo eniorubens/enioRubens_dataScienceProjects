@@ -65,7 +65,7 @@ def split_telecom_dataset(
 
     data = df.copy(deep=True)
 
-    if 'TotalCharges' in data.columns and data['TotalCharges'].dtype == object:
+    if 'TotalCharges' in data.columns and not pd.api.types.is_numeric_dtype(data['TotalCharges']):
         data['TotalCharges'] = pd.to_numeric(data['TotalCharges'], errors='coerce')
         data = data.dropna(subset=['TotalCharges'])
 
