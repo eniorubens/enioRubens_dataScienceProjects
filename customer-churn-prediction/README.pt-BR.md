@@ -50,8 +50,10 @@ Este projeto reenquadra a previsão de churn de clientes de um **problema purame
 técnico de classificação** para um **desafio de otimização de negócio**:
 
 ### A realidade do negócio
-- **Falso negativo (não identificar um churner):** perda do customer lifetime value (~US$ 2–5 mil)
-- **Falso positivo (sinalizar um não churner):** custo de desconto de retenção (~US$ 150–300)
+- **Falso negativo (não identificar um churner):** perda do customer lifetime value (~US$ 2–5 mil, *assumido*)
+- **Falso positivo (sinalizar um não churner):** custo de desconto de retenção (~US$ 150–300, *assumido*)
+
+> Os valores em dólar acima são premissas ilustrativas, não valores do dataset nem de uma fonte.
 - **Assimetria de custos:** 10–30 vezes mais caro não identificar um churner
 
 ### Abordagem da solução
@@ -74,7 +76,7 @@ Em vez de maximizar a acurácia (um erro comum de ML em dados desbalanceados), e
 - **Fonte:** [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja19/telecom-customer-churn)
 - **Escala:** 7.043 clientes com 20 atributos (demografia, serviços e cobrança)
 - **Alvo:** Churn (classificação binária)
-- **Distribuição das classes:** 26,5% churn, 73,5% retenção (desbalanceamento moderado)
+- **Distribuição das classes:** 26,5% de churn nas 7.043 linhas brutas (26,6% após remover 11 linhas com `TotalCharges` em branco; 7.032 linhas usadas)
 
 #### Principais insights de negócio descobertos
 
@@ -112,7 +114,7 @@ O pipeline vencedor de pré-processamento foi descoberto por busca exaustiva com
 | Etapa | Componente | Configuração |
 |-------|-----------|---------------|
 | **Encoder** | `SumEncoder` | Codificação por soma/contraste para 15 atributos categóricos — captura contrastes binários e ordinais sem aumentar a esparsidade |
-| **Scaler 1** | `Normalizer` | Escala cada amostra para norma unitária — reduz o impacto de outliers de magnitude entre amostras |
+| **Scaler 1** | `Normalizer` | Escala cada *amostra* (linha) para norma unitária; não trata outliers por variável. Mantido porque foi selecionado pela busca, não por um argumento mecanístico |
 | **Scaler 2** | `MaxAbsScaler` | Escala cada atributo pelo maior valor absoluto — preserva sinal e esparsidade |
 | **Seletor de atributos** | `SelectFromModel` | Mantém 13 atributos usando as próprias importâncias do modelo (threshold = média) |
 | **Classificador** | `BalancedRandomForestClassifier` | Random forest balanceada com hiperparâmetros otimizados |
@@ -123,7 +125,7 @@ O pipeline vencedor de pré-processamento foi descoberto por busca exaustiva com
 - Captura informação ordinal implicitamente (por exemplo, ordenação da duração do contrato)
 
 **Por que Normalizer + MaxAbsScaler?**
-- `Normalizer` escala cada amostra para norma unitária — reduz outliers de magnitude
+- `Normalizer` reescala cada linha para norma unitária (por linha, não por variável). Ensembles de árvores são pouco sensíveis a isso; ele aparece porque o Optuna o selecionou, e sua contribuição não foi isolada por ablação
 - `MaxAbsScaler` alinha magnitudes — preserva uma escala favorável à esparsidade
 - Juntos formam uma cadeia de normalização adequada para ensembles de árvores
 
@@ -142,10 +144,12 @@ Principais resultados:
 | BalancedRandomForestClassifier | Opt Over-sampling + Threshold | JamesStein MinMax Robust SFM 10 SMOTE \| thr=0,44 | 0,758 |
 | LogisticRegression | Opt Balanced + Threshold | BinaryEncoder QuantileN SFS 13 \| thr=0,47 | 0,756 |
 
+> **Protocolo de seleção e seu limite.** Dentro da busca, cada trial é avaliado por CV de 6 folds apenas no treino, o pipeline inteiro (encoder, scalers, seletor, sampler, modelo) é reajustado por fold e cada threshold é escolhido em predições out-of-fold do treino. O teste só é usado para reportar. A exceção é o *ranking final acima*: o campeão foi escolhido por `Recall de teste`. Os três melhores candidatos otimizados estão estatisticamente empatados (teste 0,764 / 0,762 / 0,758; out-of-fold 0,768 / 0,769 / 0,768 para BRF / LDA / BRF-SMOTE), então a escolha do BRF é um desempate, não superioridade demonstrada. As linhas `Baseline + Threshold tuning` da LogisticRegression (thr=0,22 / 0,42) tiveram o threshold ajustado no teste e devem ser ignoradas nas comparações. Nas linhas de baseline, as métricas de `Train` são in-fold (ex.: RF 0,998); nas linhas otimizadas são out-of-fold.
+
 #### Por que BalancedRandomForestClassifier?
 
 1. **Desbalanceamento de classes por construção:** bootstrap com balanceamento por classe no nível da árvore — não exige SMOTE externo
-2. **Evidência hold-out:** o artefato salvo atual alcança 76,6% de Recall Macro e 84,6% de ROC AUC
+2. **Evidência hold-out:** o artefato salvo atual alcança 76,6% de Recall Macro (IC95% bootstrap 74,2–79,1%) e 84,6% de ROC AUC (IC95% 82,3–86,8%) em 1.407 clientes de teste (374 churners). O recall out-of-fold de 6 folds do mesmo pipeline no treino é 76,6%, sem indício de viés otimista no número reportado
 3. **Fronteira de validação:** é um único hold-out determinístico, não validação temporal ou produtiva
 4. **ROC AUC 84,6%:** medida a partir de probabilidades contínuas no hold-out
 5. **Fronteira de deployment:** exige validação temporal, monitoramento e experimento controlado de retenção

@@ -43,8 +43,10 @@ The work showcases expertise in reframing ML problems as **business optimization
 This project reframes customer churn prediction from a **purely technical classification problem** into a **business optimization challenge**:
 
 ### The Business Reality
-- **False Negative (Missing a churner):** Lost customer lifetime value (~$2-5K)
-- **False Positive (Flagging a non-churner):** Retention discount cost (~$150-300)
+- **False Negative (Missing a churner):** Lost customer lifetime value (~$2-5K, *assumed*)
+- **False Positive (Flagging a non-churner):** Retention discount cost (~$150-300, *assumed*)
+
+> The dollar figures above are illustrative assumptions, not values from the dataset or a source.
 - **Cost Asymmetry:** 10-30x more expensive to miss a churner
 
 ### Solution Approach
@@ -67,7 +69,7 @@ Rather than maximizing accuracy (a common ML mistake for imbalanced data), this 
 - **Source:** [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja19/telecom-customer-churn)
 - **Scale:** 7,043 customers with 20 features (demographics, services, billing)
 - **Target:** Churn (binary classification)
-- **Class Distribution:** 26.5% churn, 73.5% retention (moderate imbalance)
+- **Class Distribution:** 26.5% churn on the 7,043 raw rows (26.6% after dropping 11 rows with blank `TotalCharges`; 7,032 rows used)
 
 #### Key Business Insights Discovered
 
@@ -104,7 +106,7 @@ The winning preprocessing pipeline was discovered via exhaustive search with `op
 | Stage | Component | Configuration |
 |-------|-----------|---------------|
 | **Encoder** | `SumEncoder` | Sum/contrast coding for 15 categorical features — captures binary and ordinal contrasts without increasing sparsity |
-| **Scaler 1** | `Normalizer` | Scales each sample to unit norm — reduces the impact of magnitude outliers across samples |
+| **Scaler 1** | `Normalizer` | Scales each *sample* (row) to unit norm; it does not address per-feature outliers. Kept because it was selected by the search, not because of a mechanistic argument |
 | **Scaler 2** | `MaxAbsScaler` | Scales each feature by its maximum absolute value — preserves sign and sparsity |
 | **Feature Selector** | `SelectFromModel` | Retains 13 features using the model's own feature importances (threshold = mean) |
 | **Classifier** | `BalancedRandomForestClassifier` | Balanced random forest with optimized hyperparameters |
@@ -115,7 +117,7 @@ The winning preprocessing pipeline was discovered via exhaustive search with `op
 - Captures ordinal information implicitly (e.g., contract duration ordering)
 
 **Why Normalizer + MaxAbsScaler?**
-- `Normalizer` scales each sample to unit norm — mitigates magnitude outliers
+- `Normalizer` rescales each row to unit norm (row-wise, not per-feature). Tree ensembles are largely insensitive to it; it appears because the Optuna search selected it, and its contribution was not isolated by an ablation
 - `MaxAbsScaler` aligns feature magnitudes — preserves sparsity-friendly scaling
 - Together they form a clean normalization chain well-suited for tree ensembles
 
@@ -133,10 +135,12 @@ Experiments tracked with `opt_binary_clf_pipe` + MLflow across 35 configurations
 | BalancedRandomForestClassifier | Opt Over-sampling + Threshold | JamesStein MinMax Robust SFM 10 SMOTE \| thr=0.44 | 0.758 |
 | LogisticRegression | Opt Balanced + Threshold | BinaryEncoder QuantileN SFS 13 \| thr=0.47 | 0.756 |
 
+> **Selection protocol and its limit.** Inside the search, every trial is scored by 6-fold CV on the training split only, the whole pipeline (encoder, scalers, selector, sampler, model) is refit per fold, and each threshold is chosen on out-of-fold training predictions. The test split is used only to report. The one exception is the *final ranking above*: the champion was picked by `Test Recall`. The top three optimized candidates are statistically tied (test 0.764 / 0.762 / 0.758; out-of-fold 0.768 / 0.769 / 0.768 for BRF / LDA / BRF-SMOTE), so the choice of BRF is a tie-break, not a demonstrated superiority. `Baseline + Threshold tuning` rows for LogisticRegression (thr=0.22 / 0.42) were tuned on the test split and should be ignored in comparisons. In the baseline rows, `Train` metrics are in-fold scores (e.g. RF 0.998), whereas optimized rows report out-of-fold values.
+
 #### Why BalancedRandomForestClassifier?
 
 1. **Class Imbalance by Design:** Bootstrap sampling with class balancing at the tree level — no external SMOTE needed
-2. **Hold-out evidence:** the current saved artifact reaches 76.6% Macro Recall and 84.6% ROC AUC
+2. **Hold-out evidence:** the current saved artifact reaches 76.6% Macro Recall (95% bootstrap CI 74.2–79.1%) and 84.6% ROC AUC (95% CI 82.3–86.8%) on 1,407 test customers (374 churners). The 6-fold out-of-fold recall of the same pipeline on the training split is 76.6%, so there is no sign of optimistic bias in the reported figure
 3. **Validation boundary:** this is a single deterministic hold-out, not temporal or production validation
 4. **ROC AUC 84.6%:** measured from continuous hold-out probabilities
 5. **Deployment boundary:** requires temporal validation, monitoring and a controlled retention experiment
