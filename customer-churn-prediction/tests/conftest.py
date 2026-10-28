@@ -67,7 +67,7 @@ def df():
 
 @pytest.fixture(scope="session")
 def splits(df):
-    return split_telecom_dataset(df, random_state=738)
+    return split_telecom_dataset(df, random_state=42)
 
 
 @pytest.fixture(scope="session")

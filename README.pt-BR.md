@@ -48,7 +48,7 @@ Um toolkit Python modular com componentes reutilizáveis compartilhados entre os
 ### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction) — Pipeline de ML ponta a ponta
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Prevê churn de clientes, com taxa base de 26,6%, usando **76,6% de Recall Macro** e **84,6% de ROC AUC** no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
+Prevê churn de clientes, com taxa base de 26,6%, usando **76,4% de Recall Macro** e **83,5% de ROC AUC** no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
 
 📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
 

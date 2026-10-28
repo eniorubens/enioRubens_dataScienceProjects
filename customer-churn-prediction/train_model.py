@@ -18,7 +18,8 @@ from churn_project.data import compute_class_ratio, read_telecom_data, split_tel
 
 MODEL_PATH = Path("models/churn_pipeline.pkl.gz")
 DATA_PATH = Path("dataset/telco.csv")
-RANDOM_STATE = 738
+RANDOM_STATE = 738  # model seed
+SPLIT_STATE = 42    # split seed; must match the notebooks (hyperparameters were tuned on this train split)
 THRESHOLD = 0.52
 
 
@@ -62,7 +63,7 @@ def main() -> None:
 
     print("Loading data...")
     df = read_telecom_data(str(DATA_PATH))
-    splits = split_telecom_dataset(df, random_state=RANDOM_STATE)
+    splits = split_telecom_dataset(df, random_state=SPLIT_STATE)
 
     X_train = splits["train_features"]
     y_train = splits["train_labels"]
