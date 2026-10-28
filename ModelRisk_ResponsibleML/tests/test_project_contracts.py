@@ -33,7 +33,12 @@ class ProjectContractTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.frame = load_adult(ROOT / "data" / "raw" / "adult_uci")
+        raw_dir = ROOT / "data" / "raw" / "adult_uci"
+        if not (raw_dir / "adult.data").exists():
+            raise unittest.SkipTest(
+                "UCI Adult is not versioned; download it into data/raw/adult_uci/ (see README, seção Reprodução)"
+            )
+        cls.frame = load_adult(raw_dir)
 
     def test_dataset_contract(self):
         self.assertEqual(self.frame.shape, (48842, 16))
