@@ -313,16 +313,17 @@ Annual loss from unmanaged churn: ≈$12M on $50M ARR
 - Intervention cost and LTV are assumed inputs, not observed costs.
 - A 60% retention-success assumption is illustrative and must be tested prospectively.
 - Any revenue-preservation value is therefore a scenario, not a result.
+- Basis: at the hold-out threshold (0.52) the model captures 80.5% of churners (301 of 374) and flags 27.7% of non-churners (286 of 1,033). Scale: ≈7,043 customers (≈1,866 churners). Assumed inputs: US$250 per intervention, US$3,500 LTV per churner, 60% retention success.
 
 **No observed ROI is reported.** Replace assumptions with controlled-experiment results before business use.
 
 ### Model vs. No-Model Comparison
 
-| Scenario | Missed Churners | LTV Lost | Intervention Cost |
+| Scenario | Churners lost | LTV Lost | Intervention Cost |
 |----------|----------------|----------|-------------------|
 | No model | ~1,866 | ≈$6.5M | $0 |
-| With model | ≈440 (23.6%) | ≈$1.54M | ≈$634K |
-| **Net benefit** | **−1,426 churners rescued** | **≈$4.9M preserved** | |
+| With model | ≈965 (≈364 missed + ≈601 flagged but not retained) | ≈$3.4M | ≈$734K (≈2,935 flagged) |
+| **Net benefit** | **≈901 churners retained** | **≈$3.2M preserved** | **≈4.3x (preserved LTV / intervention cost)** |
 
 ---
 
@@ -490,7 +491,7 @@ This project is grounded in peer-reviewed research:
 | Competency | Evidence |
 |------------|---------|
 | **ML Engineering** | End-to-end pipeline from EDA → optimization → validation → API |
-| **Business Thinking** | Translates ML into revenue (≈$3M impact, ≈4.7x ROI) |
+| **Business Thinking** | Translates ML into revenue (≈$3.2M illustrative impact, ≈4.3x ROI) |
 | **Statistical Rigor** | Appropriate metrics for imbalanced data, justified choices |
 | **Communication** | Clear documentation, executive vs technical explanations |
 | **Problem-Solving** | Identifies churn drivers, recommends specific actions |

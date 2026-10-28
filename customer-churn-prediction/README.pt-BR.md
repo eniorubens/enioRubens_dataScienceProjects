@@ -333,17 +333,18 @@ Perda anual por churn não gerenciado: ≈US$ 12M sobre US$ 50M de ARR
 - Custo de intervenção e LTV são entradas assumidas, não custos observados.
 - A premissa de 60% de sucesso de retenção é ilustrativa e deve ser testada prospectivamente.
 - Qualquer valor de preservação de receita é, portanto, um cenário e não um resultado.
+- Base: no limiar do hold-out (0,52) o modelo captura 80,5% dos churners (301 de 374) e sinaliza 27,7% dos não churners (286 de 1.033). Escala: ≈7.043 clientes (≈1.866 churners). Entradas assumidas: US$ 250 por intervenção, LTV de US$ 3.500 por churner, 60% de sucesso de retenção.
 
 **Nenhum ROI observado é reportado.** Substitua as premissas por resultados de
 experimento controlado antes do uso de negócio.
 
 ### Comparação entre modelo e ausência de modelo
 
-| Cenário | Churners não identificados | LTV perdido | Custo de intervenção |
+| Cenário | Churners perdidos | LTV perdido | Custo de intervenção |
 |----------|----------------|----------|-------------------|
 | Sem modelo | ~1.866 | ≈US$ 6,5M | US$ 0 |
-| Com modelo | ≈440 (23,6%) | ≈US$ 1,54M | ≈US$ 634K |
-| **Benefício líquido** | **−1.426 churners resgatados** | **≈US$ 4,9M preservados** | |
+| Com modelo | ≈965 (≈364 não identificados + ≈601 sinalizados e não retidos) | ≈US$ 3,4M | ≈US$ 734K (≈2.935 sinalizados) |
+| **Benefício líquido** | **≈901 churners retidos** | **≈US$ 3,2M preservados** | **≈4,3x (LTV preservado / custo de intervenção)** |
 
 ---
 
@@ -511,7 +512,7 @@ Este projeto se apoia em pesquisa revisada por pares:
 | Competência | Evidência |
 |------------|---------|
 | **Engenharia de ML** | Pipeline de ponta a ponta, de EDA → otimização → validação → API |
-| **Visão de negócio** | Traduz ML em receita (≈US$ 3M de impacto, ≈4,7x de ROI) |
+| **Visão de negócio** | Traduz ML em receita (≈US$ 3,2M de impacto ilustrativo, ≈4,3x de ROI) |
 | **Rigor estatístico** | Métricas adequadas para dados desbalanceados e escolhas justificadas |
 | **Comunicação** | Documentação clara, explicações executivas e técnicas |
 | **Resolução de problemas** | Identifica fatores de churn e recomenda ações específicas |
