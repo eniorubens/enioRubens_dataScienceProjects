@@ -2,17 +2,15 @@
 
 [🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-PT.ipynb)
 
-## 💡 Project philosophy
-
-**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) states which hold-out evidence supports and why revenue/ROI remain illustrative.
-
-**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
-
-**Engineering surface:** reusable `churn_project/` modules, a persisted training artifact, FastAPI endpoints in `serve_model.py`, and automated tests.
+## 🎯 Scope and evidence
 
 **Can support:** exploratory churn-risk prioritization and reproducible inference for a controlled retention pilot.
 
 **Does not support:** causal retention claims, observed revenue preservation, or production use without temporal validation, monitoring and a controlled experiment.
+
+**Engineering surface:** reusable `churn_project/` modules, a persisted training artifact, FastAPI endpoints in `serve_model.py`, and automated tests.
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) states which hold-out evidence supports and why revenue/ROI remain illustrative.
 
 ## 🎯 Executive Summary
 

@@ -117,7 +117,7 @@ def main():
         notebook = ROOT / "notebooks" / ("pt-BR/27_conclusao_entrega_fd001.ipynb" if key == "pt" else "en-US/27_conclusion_delivery_fd001.ipynb")
         summary_name = f"summary-{key}.ipynb"
         shutil.copyfile(notebook, ASSETS / summary_name)
-        shutil.copyfile(ROOT / ("README.md" if key == "pt" else "README.en.md"), ASSETS / f"README-{key}.md")
+        shutil.copyfile(ROOT / ("README.pt-BR.md" if key == "pt" else "README.md"), ASSETS / f"README-{key}.md")
         charts = []
         fig = px.bar(benchmark.melt(id_vars="model", value_vars=["MAE", "RMSE"], var_name="metric", value_name="value"),
                      x="model", y="value", color="metric", barmode="group",

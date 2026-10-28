@@ -1,12 +1,22 @@
 # NASA C-MAPSS — remaining useful life prediction — FD001
 
-[Português](README.md) · [English HTML report](site/en.html) · [Technical summary](notebooks/en-US/27_conclusion_delivery_fd001.ipynb)
+[Português](README.pt-BR.md) · [English HTML report](site/en.html) · [Technical summary](notebooks/en-US/27_conclusion_delivery_fd001.ipynb)
 
 This portfolio project estimates the remaining useful life (RUL) of simulated turbofan engines in operating cycles. The FD001 stage uses Extra Trees and temporal features built exclusively from current and past measurements. The delivery supports reproducible analysis and local point predictions.
 
+## 🎯 Scope and evidence
+
+**Can support:** exploratory RUL estimation on simulated FD001 trajectories and auditable maintenance hypotheses.
+
+**Does not support:** an industrial safety limit, fleet-wide generalization, or production maintenance decisions without external validation.
+
+**Engineering surface:** reusable `src/` modules, reconstruction scripts and a versioned CLI/artifact input contract; no general-purpose web API is exposed.
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) separates the official benchmark from post-selection diagnostics and illustrative alerts.
+
 ## Data source
 
-+The project uses the **Turbofan Engine Degradation Simulation Data Set**, provided by the Prognostics Center of Excellence (PCoE) at NASA Ames Research Center (Saxena and Goebel, 2008). NASA stands for **National Aeronautics and Space Administration**, the United States agency for space and aeronautics. In this project's title, it identifies the data source; the analysis and model are independent portfolio work. [Official NASA repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/).
+The project uses the **Turbofan Engine Degradation Simulation Data Set**, provided by the Prognostics Center of Excellence (PCoE) at NASA Ames Research Center (Saxena and Goebel, 2008). NASA stands for **National Aeronautics and Space Administration**, the United States agency for space and aeronautics. In this project's title, it identifies the data source; the analysis and model are independent portfolio work. [Official NASA repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/).
 
 The time series were generated with **C-MAPSS — Commercial Modular Aero-Propulsion System Simulation**, which models the operation and degradation of commercial aircraft turbofan engines. These are simulated data: training trajectories continue until failure, while test histories stop earlier and the true RUL at the last cycle is supplied separately. [Official dataset catalog](https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data).
 

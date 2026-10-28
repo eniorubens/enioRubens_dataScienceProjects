@@ -9,17 +9,15 @@
 
 **Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [Relatório em inglês](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html)
 
-## 💡 Filosofia do projeto
-
-**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) separa os outputs observados em holdout das simulações sob restrição de orçamento.
-
-**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
-
-**Superfície de engenharia:** módulos reutilizáveis em `src/`, notebooks bilíngues e uma suíte pytest; este projeto não expõe uma API de serving.
+## 🎯 Escopo e evidências
 
 **Pode sustentar:** segmentação RFM/K-Means, score exploratório de recompra e simulações de ações sob premissas.
 
 **Não sustenta:** uplift causal, superioridade sobre uma campanha uniforme ou prescrição produtiva automatizada.
+
+**Superfície de engenharia:** módulos reutilizáveis em `src/`, notebooks bilíngues e uma suíte pytest; este projeto não expõe uma API de serving.
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) separa os outputs observados em holdout das simulações sob restrição de orçamento.
 
 ## Outputs observados e status da simulação
 

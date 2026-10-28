@@ -18,7 +18,7 @@ A publicação preserva os projetos já existentes. Os arquivos de código, note
 
 ## Organização editorial
 
-O README em português é `README.md`; a versão em inglês é `README.en.md`. O notebook 27 possui uma edição canônica em `notebooks/pt-BR` e uma tradução em `notebooks/en-US`. Os demais notebooks preservam a edição canônica em português. A tradução das instruções não altera os nomes das colunas, os comandos ou o comportamento do pipeline.
+O README em inglês é `README.md`; a versão em português é `README.pt-BR.md`. O notebook 27 possui uma edição canônica em `notebooks/pt-BR` e uma tradução em `notebooks/en-US`. Os demais notebooks preservam a edição canônica em português. A tradução das instruções não altera os nomes das colunas, os comandos ou o comportamento do pipeline.
 
 As cópias do notebook e do README oferecidas no site são arquivos para download. Seus links internos relativos pertencem à estrutura do repositório completo; para seguir esses links, leia os documentos no GitHub ou mantenha a estrutura original após baixar o projeto.
 

@@ -2,17 +2,15 @@
 
 **Leitura:** [Relatório executivo · Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [Relatório em inglês](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html)
 
-## 💡 Filosofia do projeto
-
-**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) apresenta as regras como associações comportamentais, não como evidência de intervenção.
-
-**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
-
-**Superfície de engenharia:** análise reprodutível em notebook e dataset; este projeto não expõe pacote modular `src`, API de serving ou suíte automatizada de testes.
+## 🎯 Escopo e evidências
 
 **Pode sustentar:** análise exploratória de cesta de compras e hipóteses candidatas de cross-sell.
 
 **Não sustenta:** incrementalidade causal, uplift garantido de conversão ou deployment automático de ofertas.
+
+**Superfície de engenharia:** análise reprodutível em notebook e dataset; este projeto não expõe pacote modular `src`, API de serving ou suíte automatizada de testes.
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) apresenta as regras como associações comportamentais, não como evidência de intervenção.
 
 ## Visão geral
 

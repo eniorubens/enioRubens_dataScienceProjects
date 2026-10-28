@@ -15,17 +15,15 @@ pré-registrada em teste selado. Sua conclusão principal é deliberadamente
 conservadora: a hipótese confirmatória primária não foi sustentada, e as
 políticas resultantes **não estão prontas para deployment direto**.
 
-## 💡 Filosofia do projeto
-
-**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) preserva o resultado do teste selado e a fronteira `not_ready_for_direct_deployment`.
-
-**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
-
-**Superfície de engenharia:** componentes modulares em `src/`, workflow de notebooks bilíngue, artefatos persistidos e testes automatizados; não há API produtiva de serving exposta.
+## 🎯 Escopo e evidências
 
 **Pode sustentar:** pesquisa de targeting causal e desenho de um piloto randomizado prospectivo.
 
 **Não sustenta:** deployment automático de política, ROI validado ou alegações retrospectivas de superioridade.
+
+**Superfície de engenharia:** componentes modulares em `src/`, workflow de notebooks bilíngue, artefatos persistidos e testes automatizados; não há API produtiva de serving exposta.
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) preserva o resultado do teste selado e a fronteira `not_ready_for_direct_deployment`.
 
 ## Resultado Executivo
 

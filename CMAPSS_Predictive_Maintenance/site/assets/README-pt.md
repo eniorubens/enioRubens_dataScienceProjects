@@ -1,10 +1,20 @@
 # NASA C-MAPSS — previsão de vida útil restante — FD001
 
-[English](README.en.md) · [Relatório HTML em português](site/index.html) · [Síntese técnica](notebooks/pt-BR/27_conclusao_entrega_fd001.ipynb)
+[English](README.md) · [Relatório HTML em português](site/index.html) · [Síntese técnica](notebooks/pt-BR/27_conclusao_entrega_fd001.ipynb)
 
 [Abrir relatório publicado](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) · [English online](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html)
 
 O projeto foi desenvolvido para estimar a vida útil restante de motores simulados, expressa em ciclos de operação. A etapa FD001 foi concluída com um Extra Trees e uma representação temporal construída exclusivamente a partir do ciclo atual e dos anteriores. O objetivo desta entrega é permitir a reprodução da análise e a execução local da previsão pontual.
+
+## 🎯 Escopo e evidências
+
+**Pode sustentar:** estimativa exploratória de RUL em trajetórias simuladas FD001 e hipóteses auditáveis de manutenção.
+
+**Não sustenta:** limite de segurança industrial, generalização para toda a frota ou decisões produtivas de manutenção sem validação externa.
+
+**Superfície de engenharia:** módulos reutilizáveis em `src/`, scripts de reconstrução e contrato versionado de entrada para CLI/artefato; não há API web geral exposta.
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) separa o benchmark oficial dos diagnósticos pós-seleção e dos alertas ilustrativos.
 
 ## Fonte dos dados
 

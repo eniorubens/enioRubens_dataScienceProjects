@@ -9,17 +9,15 @@
 
 ---
 
-## 💡 Filosofia do projeto
-
-**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) documenta o holdout temporal, as premissas e as decisões sustentadas.
-
-**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
-
-**Superfície de engenharia:** módulos reutilizáveis em `src`, uma API Flask em `serve_model.py`, fluxo de modelo persistido e uma suíte pytest.
+## 🎯 Escopo e evidências
 
 **Pode sustentar:** estimativa exploratória de customer lifetime value em 180 dias e segmentação para priorização analítica.
 
 **Não sustenta:** garantia de receita futura, alegações causais sobre o comportamento dos clientes ou uso produtivo sem monitoramento e revalidação temporal.
+
+**Superfície de engenharia:** módulos reutilizáveis em `src`, uma API Flask em `serve_model.py`, fluxo de modelo persistido e uma suíte pytest.
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) documenta o holdout temporal, as premissas e as decisões sustentadas.
 
 ## Visão geral
 

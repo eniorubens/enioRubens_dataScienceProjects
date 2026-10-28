@@ -16,17 +16,15 @@ Two full cycles were run against that question. Both returned
 `NOT_CONFIRMED`. The deliverable is the protocol and the evidence, not a
 deployable model.
 
-## 💡 Project philosophy
-
-**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) preserves sealed partitions, confirmatory gates and the `deploy=false` decision.
-
-**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
-
-**Engineering surface:** modular `src/` stages, public result manifests, artifact contracts and automated test coverage; the frozen study does not authorize serving.
+## 🎯 Scope and evidence
 
 **Can support:** protocol audit, rare-class evaluation and design of a future study on unconsumed partitions.
 
 **Does not support:** confirmed production deployment, reopening consumed verdicts, or treating development metrics as performance.
+
+**Engineering surface:** modular `src/` stages, public result manifests, artifact contracts and automated test coverage; the frozen study does not authorize serving.
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) preserves sealed partitions, confirmatory gates and the `deploy=false` decision.
 
 ## Executive Result
 
