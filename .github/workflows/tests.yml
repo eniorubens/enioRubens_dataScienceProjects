@@ -39,6 +39,11 @@ jobs:
               plotly xgboost lightgbm causalml==0.15.5 econml==0.16.0 mlflow optuna
               optuna-integration shap statsmodels tqdm joblib scikit-uplift deep-translator
               pytest nbformat -e ../ds_toolkit/multilang
+            # The Hillstrom CSV is not redistributed (no explicit license): fetch it from the publisher
+            # and verify its SHA-256 (the transport is plain http, the hash is the integrity check).
+            prepare: >-
+              curl -sSL --retry 3 -o dataset/Kevin_Hillstrom_MineThatData.csv http://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv
+              && echo "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece  dataset/Kevin_Hillstrom_MineThatData.csv" | sha256sum -c -
           - project: ModelRisk_ResponsibleML
             python: "3.11"
             install: pip install numpy pandas scipy scikit-learn matplotlib seaborn nbformat nbconvert pyarrow fairlearn pytest
