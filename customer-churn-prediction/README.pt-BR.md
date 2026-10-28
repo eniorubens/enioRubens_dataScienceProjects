@@ -2,17 +2,15 @@
 
 [🇺🇸 English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-EN.ipynb) | [🇧🇷 Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/notebooks/Customer-Churn-Prediction-PT.ipynb)
 
-## 💡 Filosofia do projeto
-
-**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) explicita o que o hold-out sustenta e por que receita/ROI permanecem ilustrativos.
-
-**Produção orientada a contratos:** nos projetos com superfície de serving, APIs FastAPI/Flask expõem contratos de entrada e saída validados por testes. Nos demais, contratos de dados, artefatos, partições seladas e gates de avaliação controlam o que pode ser concluído, reproduzido e publicado.
-
-**Superfície de engenharia:** módulos reutilizáveis em `churn_project/`, artefato de treino persistido, endpoints FastAPI em `serve_model.py` e testes automatizados.
+## 🎯 Escopo e evidências
 
 **Pode sustentar:** priorização exploratória de risco de churn e inferência reprodutível para um piloto controlado de retenção.
 
 **Não sustenta:** alegações causais de retenção, receita preservada observada ou uso produtivo sem validação temporal, monitoramento e experimento controlado.
+
+**Superfície de engenharia:** módulos reutilizáveis em `churn_project/`, artefato de treino persistido, endpoints FastAPI em `serve_model.py` e testes automatizados.
+
+**Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) explicita o que o hold-out sustenta e por que receita/ROI permanecem ilustrativos.
 
 ## 🎯 Resumo executivo
 

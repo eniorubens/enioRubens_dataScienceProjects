@@ -1,10 +1,27 @@
 # Projetos de Data Science
 
+[![Tests](https://github.com/eniorubens/enioRubens_dataScienceProjects/actions/workflows/tests.yml/badge.svg)](https://github.com/eniorubens/enioRubens_dataScienceProjects/actions/workflows/tests.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Autor:** [Enio Rubens](https://github.com/eniorubens)
 
 **Idioma:** [English](README.md) | Português (Brasil)
 
 Um portfólio de projetos completos de data science cobrindo todo o espectro analítico, de estatística descritiva e testes inferenciais a modelagem preditiva e otimização prescritiva. Os projetos incluem notebooks reprodutíveis, código-fonte modular e suítes de testes automatizados; o status de idioma de cada edição é documentado em seu próprio README.
+
+---
+
+## Projetos em destaque
+
+Quatro projetos que mostram como trato evidência, não só modelos:
+
+| Projeto | O que demonstra | Resultado |
+| :--- | :--- | :--- |
+| [**Consumer Complaint Intelligence**](./Consumer_Complaint_Intelligence) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/)) | NLP desbalanceado em escala (3,8 mi de linhas) com avaliações seladas pré-registradas | Dois ciclos selados, ambos reportados como `NOT_CONFIRMED` e `deploy=false`, sem promoção retroativa |
+| [**Marketing Campaign Uplift Modeling**](./Marketing_Promotion_Campaign_Uplift_Modelling) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/)) | Segmentação causal sobre experimento randomizado, com teste selado | Sem superioridade sobre o baseline; a recomendação é um piloto randomizado prospectivo |
+| [**Seoul Bike Sharing Demand**](./Bike-Sharing-Demand) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/)) | Validação temporal e intervalos de predição conformais | Holdout selado com MAE 1.118,1 e R² 0,839; cobertura do intervalo de 90% de 81,0% para 90,1% nos folds de desenvolvimento |
+| [**NASA C-MAPSS**](./CMAPSS_Predictive_Maintenance) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/)) | Validação agrupada por motor e atributos causais de sensores para vida útil restante | MAE 16,23 e RMSE 23,80 ciclos no benchmark oficial de 100 motores (FD001, simulado) |
+
+Os demais projetos estão na tabela a seguir.
 
 ---
 

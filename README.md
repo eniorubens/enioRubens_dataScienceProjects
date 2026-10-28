@@ -1,10 +1,27 @@
 # Data Science Projects
 
+[![Tests](https://github.com/eniorubens/enioRubens_dataScienceProjects/actions/workflows/tests.yml/badge.svg)](https://github.com/eniorubens/enioRubens_dataScienceProjects/actions/workflows/tests.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Author:** [Enio Rubens](https://github.com/eniorubens)
 
 **Language:** English | [Português (Brasil)](README.pt-BR.md)
 
 A portfolio of end-to-end data science projects covering the full analytics spectrum — from descriptive statistics and inferential testing to predictive modeling and prescriptive optimization. Projects include reproducible notebooks, modular source code and automated test suites; the language status of each edition is documented in its own README.
+
+---
+
+## Featured projects
+
+Four projects that show how I handle evidence, not only models:
+
+| Project | What it demonstrates | Result |
+| :--- | :--- | :--- |
+| [**Consumer Complaint Intelligence**](./Consumer_Complaint_Intelligence) ([report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/en.html)) | Imbalanced NLP at scale (3.8M rows) with pre-registered sealed evaluations | Two sealed cycles, both reported as `NOT_CONFIRMED` and `deploy=false` instead of being promoted after the fact |
+| [**Marketing Campaign Uplift Modeling**](./Marketing_Promotion_Campaign_Uplift_Modelling) ([report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/en.html)) | Causal targeting on a randomized experiment, with a sealed test | No superiority over the baseline, so the recommendation is a prospective randomized pilot |
+| [**Seoul Bike Sharing Demand**](./Bike-Sharing-Demand) ([report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html)) | Time-series validation and conformal prediction intervals | Sealed holdout MAE 1,118.1 and R² 0.839; 90% interval coverage from 81.0% to 90.1% on development folds |
+| [**NASA C-MAPSS**](./CMAPSS_Predictive_Maintenance) ([report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html)) | Engine-grouped validation and causal sensor features for remaining useful life | MAE 16.23 and RMSE 23.80 cycles on the official 100-engine benchmark (FD001, simulated) |
+
+The other projects are listed in the table below.
 
 ---
 
@@ -161,7 +178,7 @@ gates and V2.1-C passed 3 of 4, so both remain `NOT_CONFIRMED` and
 
 ---
 
-### 10. [NASA C-MAPSS — Predictive Maintenance](CMAPSS_Predictive_Maintenance/README.en.md) — Remaining Useful Life
+### 10. [NASA C-MAPSS — Predictive Maintenance](CMAPSS_Predictive_Maintenance/README.md) — Remaining Useful Life
 
 Estimates remaining useful life on simulated FD001 engine trajectories using causal sensor histories. An Extra Trees pipeline selected 93 of 205 attributes and achieved **MAE 16.23 cycles** and **RMSE 23.80 cycles** in the official 100-engine benchmark. Model selection followed that comparison; the result is not an additional independent post-selection evaluation. Alerts, hypothetical costs and empirical uncertainty bands remain exploratory, not industrial validation.
 

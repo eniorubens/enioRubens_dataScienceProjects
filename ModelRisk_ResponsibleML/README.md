@@ -4,17 +4,15 @@ Auditoria reproduzível de risco, calibração e fairness aplicada ao conjunto [
 
 O objetivo não é produzir um modelo para decisões reais. O objetivo é mostrar como uma avaliação responsável separa desenvolvimento e teste, comunica incerteza e limita honestamente o que os dados permitem concluir.
 
-## 💡 Project philosophy
-
-**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) documents calibration, fairness, uncertainty and the final-test boundary.
-
-**Contract-oriented production:** where a serving surface exists, FastAPI/Flask APIs expose input/output contracts validated by tests. Elsewhere, data contracts, artifact contracts, sealed partitions and evaluation gates control what can be concluded, reproduced and published.
-
-**Engineering surface:** reusable `src/` audit/report modules and contract tests; this project is an audit artifact, not a serving API.
+## 🎯 Scope and evidence
 
 **Can support:** responsible model-risk review and reproducible evidence about calibration, groups and uncertainty.
 
 **Does not support:** credit, employment or benefit decisions, production authorization, or causal fairness claims.
+
+**Engineering surface:** reusable `src/` audit/report modules and contract tests; this project is an audit artifact, not a serving API.
+
+**Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) documents calibration, fairness, uncertainty and the final-test boundary.
 
 ## Resultado resumido
 

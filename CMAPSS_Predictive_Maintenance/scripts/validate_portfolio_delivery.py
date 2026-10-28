@@ -67,7 +67,7 @@ def main():
                 assert anchor in page.ids, link
         assert "#2CA02C" in text and "#D62728" in text and "#FF7F0E" in text
         assert "91.3" in text or "91,3" in text
-    for name in ["README.md", "README.en.md"]:
+    for name in ["README.md", "README.pt-BR.md"]:
         markdown_links(ROOT / name)
     pt = ROOT / "notebooks/pt-BR/27_conclusao_entrega_fd001.ipynb"
     en = ROOT / "notebooks/en-US/27_conclusion_delivery_fd001.ipynb"
