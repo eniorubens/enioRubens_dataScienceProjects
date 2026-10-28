@@ -389,6 +389,7 @@ Prohibited:
 | `src/consumer_complaint_intelligence/kaggle_execution.py` | Bundle assembly for remote execution |
 | `src/consumer_complaint_intelligence/contracts.py`, `service.py`, `tracking.py` | `Predictor` / `PredictionBatch` / `ArtifactManifest`, serving surface, optional tracker |
 | `config/*.json` | Frozen protocols and public result manifests with hashes |
+| `temp/*/*.json` | Frozen stage result manifests. Despite the name, this is not a scratch directory: protocols, tests and notebooks reference these paths and their SHA-256 hashes, so the folder is kept as is |
 | `docs/ADR-001` to `ADR-014` | Every decision, with its rationale and its cost |
 | `tests/` | 348 tests across 28 test modules |
 
@@ -405,6 +406,8 @@ Three architectural boundaries hold across the whole project:
 The `score` field means `critical_margin` and nothing else. It is not a
 probability and not a confidence. Estimator input is `en-US` only, even though
 the API and documentation are bilingual.
+
+A few of those frozen manifests (for example `temp/v2/v2_stress_results.json`) record absolute paths from the machine that executed the stage. They are left untouched on purpose: editing them would change their SHA-256 and invalidate the pre-registered hash chain.
 
 ## Execution Environments
 
