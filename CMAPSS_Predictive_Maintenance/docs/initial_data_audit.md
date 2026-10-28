@@ -1,12 +1,11 @@
-# Handoff — Análise de viabilidade do projeto C-MAPSS
+# Auditoria inicial dos dados — C-MAPSS (fase de viabilidade)
 
 ## Objetivo
 
 Construir um projeto de portfólio sobre manutenção preditiva industrial usando o conjunto NASA C-MAPSS — Turbofan Engine Degradation Simulation. O escopo previsto inclui previsão de Remaining Useful Life (RUL), validação por motor, early warning, custo de falso alarme versus falha não detectada, explicabilidade e intervalos de incerteza.
 
-## Localização
+## Localização dos dados
 
-- Projeto: `D:\Projetos\CMAPSS_Predictive_Maintenance`
 - ZIP original: `data\raw\CMAPSSData.zip`
 - Dados extraídos: `data\raw\dataset`
 - Fonte oficial: https://phm-datasets.s3.amazonaws.com/NASA/6.+Turbofan+Engine+Degradation+Simulation+Data+Set.zip
@@ -41,5 +40,3 @@ O projeto é computacionalmente pequeno e não requer Spark, GPU ou cloud. O pri
 ## Limites do que foi verificado
 
 Até aqui foi feita apenas inspeção estrutural local de arquivos, linhas, motores e ciclos. Ainda não foi feita análise estatística dos sensores, verificação detalhada de valores ausentes, modelagem, validação preditiva ou avaliação de desempenho.
-
-Não instalar plugins neste momento: a análise local pode ser feita com Python/PowerShell e scikit-learn. Plugins só seriam úteis para publicação, armazenamento externo ou versionamento remoto.

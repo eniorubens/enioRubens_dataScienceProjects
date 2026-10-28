@@ -28,7 +28,7 @@ Foi utilizado o subconjunto **FD001**, com 100 motores de treinamento e 100 de t
 
 **Referência do dataset:** Saxena, A.; Goebel, K. (2008). *Turbofan Engine Degradation Simulation Data Set*. NASA Ames, Prognostics Data Repository. [Fonte e crédito original](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/).
 
-Os dados locais foram preservados em `data/raw/CMAPSSData.zip` e `data/raw/dataset`. A auditoria inicial e o endereço da distribuição utilizada estão em `CONTEXT_HANDOFF.md`. Este arquivo registra a fase inicial e não descreve o estado final do projeto.
+Os dados locais foram preservados em `data/raw/CMAPSSData.zip` e `data/raw/dataset`. A auditoria inicial e o endereço da distribuição utilizada estão em `docs/initial_data_audit.md`. Este arquivo registra a fase inicial e não descreve o estado final do projeto.
 
 ## Resultado registrado
 
@@ -61,8 +61,8 @@ O exemplo incluído foi extraído de um prefixo do treinamento e serve exclusiva
 No PowerShell, a partir da raiz do projeto:
 
 ```powershell
-Set-Location -LiteralPath "D:\Projetos\CMAPSS_Predictive_Maintenance"
-$python = "C:\Users\enior\miniforge3\envs\CMAPSS_Py312_Experimental\python.exe"
+Set-Location -LiteralPath "<caminho-do-clone>\CMAPSS_Predictive_Maintenance"
+$python = "python"  # ambiente com as dependências de environment.yml
 & $python scripts\predict_final_extra_trees_fd001.py --input outputs\models\extra_trees_fd001_v1\historico_exemplo.csv --output outputs\reports\previsao_demonstracao_fd001.csv
 ```
 

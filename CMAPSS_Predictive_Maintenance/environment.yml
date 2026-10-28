@@ -17,4 +17,4 @@ dependencies:
   - ipykernel
   - pip
   - pip:
-      - -e D:/Projetos/ds_toolkit/multilang
+      - -e ../ds_toolkit/multilang

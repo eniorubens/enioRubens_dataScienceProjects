@@ -14,7 +14,7 @@ This project uses **FD001**, with 100 training engines and 100 test engines, one
 
 **Dataset reference:** Saxena, A.; Goebel, K. (2008). *Turbofan Engine Degradation Simulation Data Set*. NASA Ames, Prognostics Data Repository. [Original source and credit](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/).
 
-Original local files are preserved in `data/raw/CMAPSSData.zip` and `data/raw/dataset`. The initial audit and the distribution URL used are recorded in `CONTEXT_HANDOFF.md`. That document describes the starting phase, not the final project state.
+Original local files are preserved in `data/raw/CMAPSSData.zip` and `data/raw/dataset`. The initial audit and the distribution URL used are recorded in `docs/initial_data_audit.md`. That document describes the starting phase, not the final project state.
 
 ## Recorded results
 
