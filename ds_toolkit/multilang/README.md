@@ -6,7 +6,7 @@ Dictionary-based text translator with persistent cache for multi-language notebo
 
 ```bash
 pip install deep-translator
-pip install -e "D:\Cursos\DataCamp\Data Scientist with Python\Projects\ds_toolkit\multilang"
+pip install -e ./ds_toolkit/multilang
 ```
 
 ## Quick Start

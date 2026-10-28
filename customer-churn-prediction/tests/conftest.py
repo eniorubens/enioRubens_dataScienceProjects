@@ -67,7 +67,7 @@ def df():
 
 @pytest.fixture(scope="session")
 def splits(df):
-    return split_telecom_dataset(df, random_state=738)
+    return split_telecom_dataset(df, random_state=42)
 
 
 @pytest.fixture(scope="session")
@@ -100,7 +100,7 @@ def artifact(splits, trained_pipeline):
 
     col_defaults = {}
     for col in X_train.columns:
-        if X_train[col].dtype == object:
+        if not pd.api.types.is_numeric_dtype(X_train[col]):
             col_defaults[col] = X_train[col].mode()[0]
         else:
             col_defaults[col] = float(X_train[col].median())

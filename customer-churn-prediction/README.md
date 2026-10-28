@@ -16,7 +16,7 @@
 
 ## 🎯 Executive Summary
 
-This project demonstrates an **exploratory, reproducible machine learning pipeline** that predicts customer churn. The current materialized artifact reaches **76.6% Macro Recall** and **84.6% ROC AUC** on the deterministic hold-out test.
+This project demonstrates an **exploratory, reproducible machine learning pipeline** that predicts customer churn. The current materialized artifact reaches **76.4% Macro Recall** and **83.5% ROC AUC** on the deterministic hold-out test.
 
 The work showcases expertise in reframing ML problems as **business optimization challenges**, moving beyond accuracy metrics to deliver actionable insights that drive real revenue impact.
 
@@ -28,10 +28,10 @@ The work showcases expertise in reframing ML problems as **business optimization
 
 | Metric | Value | Significance |
 |--------|-------|--------------|
-| **Model Recall (Macro)** | 76.6% | Hold-out result at threshold 0.52 |
-| **Balanced Accuracy** | 76.6% | Class-balanced hold-out result |
-| **ROC AUC** | 84.6% | Hold-out discrimination using probabilities |
-| **Precision (Macro)** | 71.7% | Hold-out result at threshold 0.52 |
+| **Model Recall (Macro)** | 76.4% | Hold-out result at threshold 0.52 |
+| **Balanced Accuracy** | 76.4% | Class-balanced hold-out result |
+| **ROC AUC** | 83.5% | Hold-out discrimination using probabilities |
+| **Precision (Macro)** | 71.2% | Hold-out result at threshold 0.52 |
 | **Annual Revenue Preserved** | Scenario only | Depends on unvalidated retention assumptions |
 | **Retention ROI** | Scenario only | Not observed; requires a controlled experiment |
 | **Implementation Timeline** | 90 days | Realistic, phased deployment plan |
@@ -43,8 +43,10 @@ The work showcases expertise in reframing ML problems as **business optimization
 This project reframes customer churn prediction from a **purely technical classification problem** into a **business optimization challenge**:
 
 ### The Business Reality
-- **False Negative (Missing a churner):** Lost customer lifetime value (~$2-5K)
-- **False Positive (Flagging a non-churner):** Retention discount cost (~$150-300)
+- **False Negative (Missing a churner):** Lost customer lifetime value (~$2-5K, *assumed*)
+- **False Positive (Flagging a non-churner):** Retention discount cost (~$150-300, *assumed*)
+
+> The dollar figures above are illustrative assumptions, not values from the dataset or a source.
 - **Cost Asymmetry:** 10-30x more expensive to miss a churner
 
 ### Solution Approach
@@ -67,7 +69,7 @@ Rather than maximizing accuracy (a common ML mistake for imbalanced data), this 
 - **Source:** [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja19/telecom-customer-churn)
 - **Scale:** 7,043 customers with 20 features (demographics, services, billing)
 - **Target:** Churn (binary classification)
-- **Class Distribution:** 26.5% churn, 73.5% retention (moderate imbalance)
+- **Class Distribution:** 26.5% churn on the 7,043 raw rows (26.6% after dropping 11 rows with blank `TotalCharges`; 7,032 rows used)
 
 #### Key Business Insights Discovered
 
@@ -104,7 +106,7 @@ The winning preprocessing pipeline was discovered via exhaustive search with `op
 | Stage | Component | Configuration |
 |-------|-----------|---------------|
 | **Encoder** | `SumEncoder` | Sum/contrast coding for 15 categorical features — captures binary and ordinal contrasts without increasing sparsity |
-| **Scaler 1** | `Normalizer` | Scales each sample to unit norm — reduces the impact of magnitude outliers across samples |
+| **Scaler 1** | `Normalizer` | Scales each *sample* (row) to unit norm; it does not address per-feature outliers. Kept because it was selected by the search, not because of a mechanistic argument |
 | **Scaler 2** | `MaxAbsScaler` | Scales each feature by its maximum absolute value — preserves sign and sparsity |
 | **Feature Selector** | `SelectFromModel` | Retains 13 features using the model's own feature importances (threshold = mean) |
 | **Classifier** | `BalancedRandomForestClassifier` | Balanced random forest with optimized hyperparameters |
@@ -115,7 +117,7 @@ The winning preprocessing pipeline was discovered via exhaustive search with `op
 - Captures ordinal information implicitly (e.g., contract duration ordering)
 
 **Why Normalizer + MaxAbsScaler?**
-- `Normalizer` scales each sample to unit norm — mitigates magnitude outliers
+- `Normalizer` rescales each row to unit norm (row-wise, not per-feature). Tree ensembles are largely insensitive to it; it appears because the Optuna search selected it, and its contribution was not isolated by an ablation
 - `MaxAbsScaler` aligns feature magnitudes — preserves sparsity-friendly scaling
 - Together they form a clean normalization chain well-suited for tree ensembles
 
@@ -133,12 +135,14 @@ Experiments tracked with `opt_binary_clf_pipe` + MLflow across 35 configurations
 | BalancedRandomForestClassifier | Opt Over-sampling + Threshold | JamesStein MinMax Robust SFM 10 SMOTE \| thr=0.44 | 0.758 |
 | LogisticRegression | Opt Balanced + Threshold | BinaryEncoder QuantileN SFS 13 \| thr=0.47 | 0.756 |
 
+> **Selection protocol and its limit.** Inside the search, every trial is scored by 6-fold CV on the training split only, the whole pipeline (encoder, scalers, selector, sampler, model) is refit per fold, and each threshold is chosen on out-of-fold training predictions. The test split is used only to report. The one exception is the *final ranking above*: the champion was picked by `Test Recall`. The top three optimized candidates are statistically tied (test 0.764 / 0.762 / 0.758; out-of-fold 0.768 / 0.769 / 0.768 for BRF / LDA / BRF-SMOTE), so the choice of BRF is a tie-break, not a demonstrated superiority. `Baseline + Threshold tuning` rows for LogisticRegression (thr=0.22 / 0.42) were tuned on the test split and should be ignored in comparisons. In the baseline rows, `Train` metrics are in-fold scores (e.g. RF 0.998), whereas optimized rows report out-of-fold values.
+
 #### Why BalancedRandomForestClassifier?
 
 1. **Class Imbalance by Design:** Bootstrap sampling with class balancing at the tree level — no external SMOTE needed
-2. **Hold-out evidence:** the current saved artifact reaches 76.6% Macro Recall and 84.6% ROC AUC
+2. **Hold-out evidence:** the notebook champion (artifact rebuilt by `train_model.py` on the same stratified 80/20 split, seed 42) reaches 76.4% Macro Recall (95% bootstrap CI 74.0–78.7%) and 83.5% ROC AUC (95% CI 81.4–85.6%) on 1,407 test customers (374 churners). The 6-fold out-of-fold recall on the training split is 76.8% (AUC 84.2%), so there is no sign of optimistic bias in the reported figure
 3. **Validation boundary:** this is a single deterministic hold-out, not temporal or production validation
-4. **ROC AUC 84.6%:** measured from continuous hold-out probabilities
+4. **ROC AUC 83.5%:** measured from continuous hold-out probabilities
 5. **Deployment boundary:** requires temporal validation, monitoring and a controlled retention experiment
 
 **Scientific Reference:** BalancedRandomForestClassifier (Chen et al., 2004) addresses class imbalance by performing balanced bootstrap sampling at each tree, making it inherently robust without external resampling.
@@ -170,7 +174,7 @@ study.optimize(
 | `random_state` | 738 | Fixed seed ensures full reproducibility |
 | `class_weight` | `balanced` (implicit) | Inherent class balancing at tree level — 73/27 imbalance handled internally |
 
-**Performance note:** The current saved artifact reaches **76.6% Macro Recall** on the hold-out split. Comparisons with earlier notebook outputs should be treated as historical until the notebook is rerun end to end.
+**Performance note:** The current saved artifact reaches **76.4% Macro Recall** on the hold-out split. Comparisons with earlier notebook outputs should be treated as historical until the notebook is rerun end to end.
 
 ---
 
@@ -187,8 +191,8 @@ Threshold = 0.50 (Default)
   → Minimal change from optimized model
 
 Threshold = 0.52 (Optimized)
-  → Recall Macro: 76.6%, Precision Macro: 71.7%
-  → Strongly asymmetric cost profile: catches 80.7% of actual churners
+  → Recall Macro: 76.4%, Precision Macro: 71.2%
+  → Strongly asymmetric cost profile: catches 80.5% of actual churners (301 of 374)
 ```
 
 **Business Decision:** Threshold = **0.52** chosen because:
@@ -232,35 +236,35 @@ cv = StratifiedKFold(n_splits=6, shuffle=True, random_state=42)
 
 | Metric | Winner | Baseline (LR) | Δ |
 |--------|--------|---------------|---|
-| Recall Macro | **76.6%** | historical comparison | — |
-| Balanced Accuracy | **76.6%** | historical comparison | — |
-| ROC AUC | **84.6%** | historical comparison | — |
-| Precision Macro | 71.7% | historical comparison | — |
+| Recall Macro | **76.4%** | historical comparison | — |
+| Balanced Accuracy | **76.4%** | historical comparison | — |
+| ROC AUC | **83.5%** | historical comparison | — |
+| Precision Macro | 71.2% | historical comparison | — |
 
 ### Confusion Matrix Analysis
 
 ```
 Prediction Breakdown (Test Set):
-  Correct (TN + TP):  1,065
-  FP (False Alarm):     262    ← non-churners flagged (unnecessary retention cost)
-  FN (Missed Churner):   80    ← churners missed (most costly error)
+  Correct (TN + TP):  1.048
+  FP (False Alarm):     286    ← non-churners flagged (unnecessary retention cost)
+  FN (Missed Churner):   73    ← churners missed (most costly error)
 
 Derived:
-  True  Positives (TP): 294   — churners correctly identified
-  False Negatives (FN):  80   — churners missed
-  False  Positives (FP): 262  — non-churners falsely flagged
-  True  Negatives (TN): 771   — non-churners correctly dismissed
+  True  Positives (TP): 301   — churners correctly identified
+  False Negatives (FN):  73   — churners missed
+  False  Positives (FP): 286  — non-churners falsely flagged
+  True  Negatives (TN): 747   — non-churners correctly dismissed
 ```
 
 **Class-level Recall:**
-- Churner class recall: 294 / (294+80) = **78.6%**
-- Non-churner class recall: 771 / (771+262) = **74.6%**
+- Churner class recall: 301 / (301+73) = **80.5%**
+- Non-churner class recall: 747 / (747+286) = **72.3%**
 
 **Interpretation:**
-- **True Positives (294):** Correctly identified churners with intervention window ✓
-- **False Negatives (80):** Missed churners ✗
-- **False Positives (262):** Non-churners flagged; cost acceptability requires real intervention economics
-- **True Negatives (771):** Correctly identified non-churners ✓
+- **True Positives (301):** Correctly identified churners with intervention window ✓
+- **False Negatives (73):** Missed churners ✗
+- **False Positives (286):** Non-churners flagged; cost acceptability requires real intervention economics
+- **True Negatives (747):** Correctly identified non-churners ✓
 
 ### Feature Importance (Permutation Importance, Recall Macro scorer)
 
@@ -417,13 +421,13 @@ This project is grounded in peer-reviewed research:
 - **Recommendation:** Pilot with 1,000 customers; measure actual results before full rollout
 
 **6. False Positive Volume**
-- 262/1,033 non-churners flagged (25.4% FP rate)
+- 286/1,033 non-churners flagged (27.7% FP rate)
 - If retention budget is constrained, threshold adjustment may be needed
 
 ### Model Capabilities: What It CAN vs CANNOT Do
 
 **✅ The Model CAN:**
-- Identify 78.6% of churners in this hold-out (class-level recall); lead time is not established
+- Identify 80.5% of churners in this hold-out (class-level recall); lead time is not established
 - Prioritize retention spending on high-risk segments
 - Estimate revenue impact and ROI of interventions
 - Inform contract and pricing strategies
@@ -539,7 +543,7 @@ All analytical decisions, business interpretations, modeling choices, validation
 
 **Last Updated:** October 2026
 **Project Status:** ✅ Exploratory portfolio artifact
-**Model Performance:** 76.6% Recall Macro | 76.6% Balanced Accuracy | 84.6% ROC AUC | ROI not validated
+**Model Performance:** 76.4% Recall Macro | 76.4% Balanced Accuracy | 83.5% ROC AUC | ROI not validated
 
 ---
 

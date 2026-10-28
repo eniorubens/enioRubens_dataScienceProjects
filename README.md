@@ -48,7 +48,7 @@ A modular Python toolkit providing reusable components shared across all project
 ### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction) — End-to-End ML Pipeline
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Predicts customer churn (26.6% base rate) with **76.6% Recall Macro** and **84.6% ROC AUC** on the current hold-out artifact. Revenue preservation and ROI remain illustrative, not causally validated.
+Predicts customer churn (26.6% base rate) with **76.4% Recall Macro** and **83.5% ROC AUC** on the current hold-out artifact. Revenue preservation and ROI remain illustrative, not causally validated.
 
 📊 **Executive report:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
 
@@ -80,7 +80,7 @@ End-to-end pipeline from transactional data to actionable marketing decisions: *
 
 **Methods:** K-Means clustering (Elbow + Silhouette, k=6) · Calibrated probabilistic classifier · Incentive simulation · Expected profit calculation · Budget optimizer
 
-**Technologies:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest · GitHub Actions CI
+**Technologies:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
 
 ---
 
@@ -210,3 +210,7 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 ---
 
 *Portuguese is the canonical language of newly developed notebooks; English editions are published as separate portfolio deliverables when completed.*
+
+## License
+
+Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData) remain under their original terms; see each project's README for sources.

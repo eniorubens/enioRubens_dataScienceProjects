@@ -17,8 +17,8 @@
 ## 🎯 Resumo executivo
 
 Este projeto demonstra um **pipeline exploratório e reprodutível de machine learning**
-para prever churn de clientes. O artefato materializado atual alcança **76,6% de Recall
-Macro** e **84,6% de ROC AUC** no teste hold-out determinístico.
+para prever churn de clientes. O artefato materializado atual alcança **76,4% de Recall
+Macro** e **83,5% de ROC AUC** no teste hold-out determinístico.
 
 O trabalho demonstra experiência em reenquadrar problemas de ML como **desafios de
 otimização de negócio**, indo além de métricas de acurácia para produzir insights
@@ -34,10 +34,10 @@ não resultados observados ou validados causalmente.
 
 | Métrica | Valor | Significado |
 |--------|-------|--------------|
-| **Recall do modelo (Macro)** | 76,6% | Resultado hold-out no threshold 0,52 |
-| **Acurácia balanceada** | 76,6% | Resultado hold-out balanceado por classe |
-| **ROC AUC** | 84,6% | Discriminação hold-out usando probabilidades |
-| **Precisão (Macro)** | 71,7% | Resultado hold-out no threshold 0,52 |
+| **Recall do modelo (Macro)** | 76,4% | Resultado hold-out no threshold 0,52 |
+| **Acurácia balanceada** | 76,4% | Resultado hold-out balanceado por classe |
+| **ROC AUC** | 83,5% | Discriminação hold-out usando probabilidades |
+| **Precisão (Macro)** | 71,2% | Resultado hold-out no threshold 0,52 |
 | **Receita anual preservada** | Apenas cenário | Depende de premissas de retenção não validadas |
 | **ROI de retenção** | Apenas cenário | Não observado; exige experimento controlado |
 | **Prazo de implementação** | 90 dias | Plano de deployment realista e faseado |
@@ -50,8 +50,10 @@ Este projeto reenquadra a previsão de churn de clientes de um **problema purame
 técnico de classificação** para um **desafio de otimização de negócio**:
 
 ### A realidade do negócio
-- **Falso negativo (não identificar um churner):** perda do customer lifetime value (~US$ 2–5 mil)
-- **Falso positivo (sinalizar um não churner):** custo de desconto de retenção (~US$ 150–300)
+- **Falso negativo (não identificar um churner):** perda do customer lifetime value (~US$ 2–5 mil, *assumido*)
+- **Falso positivo (sinalizar um não churner):** custo de desconto de retenção (~US$ 150–300, *assumido*)
+
+> Os valores em dólar acima são premissas ilustrativas, não valores do dataset nem de uma fonte.
 - **Assimetria de custos:** 10–30 vezes mais caro não identificar um churner
 
 ### Abordagem da solução
@@ -74,7 +76,7 @@ Em vez de maximizar a acurácia (um erro comum de ML em dados desbalanceados), e
 - **Fonte:** [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja19/telecom-customer-churn)
 - **Escala:** 7.043 clientes com 20 atributos (demografia, serviços e cobrança)
 - **Alvo:** Churn (classificação binária)
-- **Distribuição das classes:** 26,5% churn, 73,5% retenção (desbalanceamento moderado)
+- **Distribuição das classes:** 26,5% de churn nas 7.043 linhas brutas (26,6% após remover 11 linhas com `TotalCharges` em branco; 7.032 linhas usadas)
 
 #### Principais insights de negócio descobertos
 
@@ -112,7 +114,7 @@ O pipeline vencedor de pré-processamento foi descoberto por busca exaustiva com
 | Etapa | Componente | Configuração |
 |-------|-----------|---------------|
 | **Encoder** | `SumEncoder` | Codificação por soma/contraste para 15 atributos categóricos — captura contrastes binários e ordinais sem aumentar a esparsidade |
-| **Scaler 1** | `Normalizer` | Escala cada amostra para norma unitária — reduz o impacto de outliers de magnitude entre amostras |
+| **Scaler 1** | `Normalizer` | Escala cada *amostra* (linha) para norma unitária; não trata outliers por variável. Mantido porque foi selecionado pela busca, não por um argumento mecanístico |
 | **Scaler 2** | `MaxAbsScaler` | Escala cada atributo pelo maior valor absoluto — preserva sinal e esparsidade |
 | **Seletor de atributos** | `SelectFromModel` | Mantém 13 atributos usando as próprias importâncias do modelo (threshold = média) |
 | **Classificador** | `BalancedRandomForestClassifier` | Random forest balanceada com hiperparâmetros otimizados |
@@ -123,7 +125,7 @@ O pipeline vencedor de pré-processamento foi descoberto por busca exaustiva com
 - Captura informação ordinal implicitamente (por exemplo, ordenação da duração do contrato)
 
 **Por que Normalizer + MaxAbsScaler?**
-- `Normalizer` escala cada amostra para norma unitária — reduz outliers de magnitude
+- `Normalizer` reescala cada linha para norma unitária (por linha, não por variável). Ensembles de árvores são pouco sensíveis a isso; ele aparece porque o Optuna o selecionou, e sua contribuição não foi isolada por ablação
 - `MaxAbsScaler` alinha magnitudes — preserva uma escala favorável à esparsidade
 - Juntos formam uma cadeia de normalização adequada para ensembles de árvores
 
@@ -142,12 +144,14 @@ Principais resultados:
 | BalancedRandomForestClassifier | Opt Over-sampling + Threshold | JamesStein MinMax Robust SFM 10 SMOTE \| thr=0,44 | 0,758 |
 | LogisticRegression | Opt Balanced + Threshold | BinaryEncoder QuantileN SFS 13 \| thr=0,47 | 0,756 |
 
+> **Protocolo de seleção e seu limite.** Dentro da busca, cada trial é avaliado por CV de 6 folds apenas no treino, o pipeline inteiro (encoder, scalers, seletor, sampler, modelo) é reajustado por fold e cada threshold é escolhido em predições out-of-fold do treino. O teste só é usado para reportar. A exceção é o *ranking final acima*: o campeão foi escolhido por `Recall de teste`. Os três melhores candidatos otimizados estão estatisticamente empatados (teste 0,764 / 0,762 / 0,758; out-of-fold 0,768 / 0,769 / 0,768 para BRF / LDA / BRF-SMOTE), então a escolha do BRF é um desempate, não superioridade demonstrada. As linhas `Baseline + Threshold tuning` da LogisticRegression (thr=0,22 / 0,42) tiveram o threshold ajustado no teste e devem ser ignoradas nas comparações. Nas linhas de baseline, as métricas de `Train` são in-fold (ex.: RF 0,998); nas linhas otimizadas são out-of-fold.
+
 #### Por que BalancedRandomForestClassifier?
 
 1. **Desbalanceamento de classes por construção:** bootstrap com balanceamento por classe no nível da árvore — não exige SMOTE externo
-2. **Evidência hold-out:** o artefato salvo atual alcança 76,6% de Recall Macro e 84,6% de ROC AUC
+2. **Evidência hold-out:** o campeão do notebook (artefato reproduzido por `train_model.py` com a mesma divisão estratificada 80/20, semente 42) alcança 76,4% de Recall Macro (IC95% bootstrap 74,0–78,7%) e 83,5% de ROC AUC (IC95% 81,4–85,6%) em 1.407 clientes de teste (374 churners). O recall out-of-fold de 6 folds no treino é 76,8% (AUC 84,2%), sem indício de viés otimista no número reportado
 3. **Fronteira de validação:** é um único hold-out determinístico, não validação temporal ou produtiva
-4. **ROC AUC 84,6%:** medida a partir de probabilidades contínuas no hold-out
+4. **ROC AUC 83,5%:** medida a partir de probabilidades contínuas no hold-out
 5. **Fronteira de deployment:** exige validação temporal, monitoramento e experimento controlado de retenção
 
 **Referência científica:** o BalancedRandomForestClassifier (Chen et al., 2004)
@@ -182,7 +186,7 @@ study.optimize(
 | `random_state` | 738 | Seed fixa garante reprodutibilidade completa |
 | `class_weight` | `balanced` (implícito) | Balanceamento inerente no nível da árvore — desbalanceamento 73/27 tratado internamente |
 
-**Nota de desempenho:** o artefato salvo atual alcança **76,6% de Recall Macro**
+**Nota de desempenho:** o artefato salvo atual alcança **76,4% de Recall Macro**
 no hold-out. Comparações com outputs anteriores dos notebooks devem ser tratadas
 como históricas até que o notebook seja reexecutado de ponta a ponta.
 
@@ -204,8 +208,8 @@ Threshold = 0,50 (Padrão)
   → Mudança mínima em relação ao modelo otimizado
 
 Threshold = 0,52 (Otimizado)
-  → Recall Macro: 76,6%, Precision Macro: 71,7%
-  → Perfil de custos fortemente assimétrico: captura 80,7% dos churners reais
+  → Recall Macro: 76,4%, Precision Macro: 71,2%
+  → Perfil de custos fortemente assimétrico: captura 80,5% dos churners reais (301 de 374)
 ```
 
 **Decisão de negócio:** o threshold = **0,52** foi escolhido porque:
@@ -251,35 +255,35 @@ cv = StratifiedKFold(n_splits=6, shuffle=True, random_state=42)
 
 | Métrica | Vencedor | Baseline (LR) | Δ |
 |--------|--------|---------------|---|
-| Recall Macro | **76,6%** | comparação histórica | — |
-| Acurácia balanceada | **76,6%** | comparação histórica | — |
-| ROC AUC | **84,6%** | comparação histórica | — |
-| Precision Macro | 71,7% | comparação histórica | — |
+| Recall Macro | **76,4%** | comparação histórica | — |
+| Acurácia balanceada | **76,4%** | comparação histórica | — |
+| ROC AUC | **83,5%** | comparação histórica | — |
+| Precision Macro | 71,2% | comparação histórica | — |
 
 ### Análise da matriz de confusão
 
 ```
 Distribuição das previsões (Conjunto de teste):
-  Corretas (TN + TP):  1.065
-  FP (Alarme falso):     262    ← não churners sinalizados (custo de retenção desnecessário)
-  FN (Churner não identificado): 80    ← churners não identificados (erro mais caro)
+  Corretas (TN + TP):  1,048
+  FP (Alarme falso):     286    ← não churners sinalizados (custo de retenção desnecessário)
+  FN (Churner não identificado): 73    ← churners não identificados (erro mais caro)
 
 Derivados:
-  Verdadeiros positivos (TP): 294   — churners identificados corretamente
-  Falsos negativos (FN):       80   — churners não identificados
-  Falsos positivos (FP):      262   — não churners sinalizados incorretamente
-  Verdadeiros negativos (TN): 771   — não churners dispensados corretamente
+  Verdadeiros positivos (TP): 301   — churners identificados corretamente
+  Falsos negativos (FN):       73   — churners não identificados
+  Falsos positivos (FP):      286   — não churners sinalizados incorretamente
+  Verdadeiros negativos (TN): 747   — não churners dispensados corretamente
 ```
 
 **Recall por classe:**
-- Recall da classe churner: 294 / (294+80) = **78,6%**
-- Recall da classe não churner: 771 / (771+262) = **74,6%**
+- Recall da classe churner: 301 / (301+73) = **80,5%**
+- Recall da classe não churner: 747 / (747+286) = **72,3%**
 
 **Interpretação:**
-- **Verdadeiros positivos (294):** churners identificados corretamente com janela de intervenção ✓
-- **Falsos negativos (80):** churners não identificados ✗
-- **Falsos positivos (262):** não churners sinalizados; aceitabilidade do custo exige economia real de intervenção
-- **Verdadeiros negativos (771):** não churners identificados corretamente ✓
+- **Verdadeiros positivos (301):** churners identificados corretamente com janela de intervenção ✓
+- **Falsos negativos (73):** churners não identificados ✗
+- **Falsos positivos (286):** não churners sinalizados; aceitabilidade do custo exige economia real de intervenção
+- **Verdadeiros negativos (747):** não churners identificados corretamente ✓
 
 ### Importância dos atributos (Permutation Importance, scorer Recall Macro)
 
@@ -438,13 +442,13 @@ Este projeto se apoia em pesquisa revisada por pares:
 - **Recomendação:** piloto com 1.000 clientes; medir resultados reais antes do rollout completo
 
 **6. Volume de falsos positivos**
-- 262/1.033 não churners sinalizados (taxa FP de 25,4%)
+- 286/1.033 não churners sinalizados (taxa FP de 27,7%)
 - Se o orçamento de retenção for limitado, pode ser necessário ajustar o threshold
 
 ### Capacidades do modelo: o que ele PODE e NÃO PODE fazer
 
 **✅ O modelo PODE:**
-- Identificar 78,6% dos churners neste hold-out (recall por classe); o lead time não está estabelecido
+- Identificar 80,5% dos churners neste hold-out (recall por classe); o lead time não está estabelecido
 - Priorizar investimento de retenção em segmentos de alto risco
 - Estimar impacto de receita e ROI de intervenções
 - Informar estratégias de contrato e preço
@@ -562,7 +566,7 @@ procedimentos de validação e integração do projeto foram conduzidos e revisa
 
 **Última atualização:** outubro de 2026
 **Status do projeto:** ✅ Artefato exploratório de portfólio
-**Desempenho do modelo:** 76,6% Recall Macro | 76,6% Acurácia Balanceada | 84,6% ROC AUC | ROI não validado
+**Desempenho do modelo:** 76,4% Recall Macro | 76,4% Acurácia Balanceada | 83,5% ROC AUC | ROI não validado
 
 ---
 

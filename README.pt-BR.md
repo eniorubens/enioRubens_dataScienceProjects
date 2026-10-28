@@ -48,7 +48,7 @@ Um toolkit Python modular com componentes reutilizáveis compartilhados entre os
 ### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction) — Pipeline de ML ponta a ponta
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Prevê churn de clientes, com taxa base de 26,6%, usando **76,6% de Recall Macro** e **84,6% de ROC AUC** no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
+Prevê churn de clientes, com taxa base de 26,6%, usando **76,4% de Recall Macro** e **83,5% de ROC AUC** no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
 
 📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
 
@@ -80,7 +80,7 @@ Pipeline completo de dados transacionais a decisões acionáveis de marketing: *
 
 **Métodos:** Clusterização K-Means (Elbow + Silhouette, k=6) · Classificador probabilístico calibrado · Simulação de incentivos · Cálculo de lucro esperado · Otimizador de orçamento
 
-**Tecnologias:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest · GitHub Actions CI
+**Tecnologias:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
 
 ---
 
@@ -210,3 +210,7 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 ---
 
 *Português é o idioma canônico dos notebooks recém-desenvolvidos; edições em inglês são publicadas como entregáveis separados do portfólio quando concluídas.*
+
+## Licença
+
+O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData) permanecem sob seus termos originais; as fontes estão no README de cada projeto.
