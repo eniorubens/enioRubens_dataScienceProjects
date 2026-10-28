@@ -12,10 +12,10 @@ import pandas as pd
 from sklearn.metrics import (
     balanced_accuracy_score,
     f1_score,
+    get_scorer,
     make_scorer,
     precision_score,
     recall_score,
-    roc_auc_score,
 )
 
 
@@ -33,7 +33,10 @@ def get_classification_scoring() -> dict:
         Mapping of scorer name → sklearn scorer.
     """
     return {
-        "roc_auc": make_scorer(roc_auc_score, average="macro"),
+        # The built-in scorer ranks by decision_function / predict_proba. A plain
+        # make_scorer(roc_auc_score) would score the hard 0/1 predictions, which
+        # makes "AUC" equal to the balanced accuracy.
+        "roc_auc": get_scorer("roc_auc"),
         "precision_macro": make_scorer(precision_score, average="macro"),
         "recall_macro": make_scorer(recall_score, average="macro"),
         "f1_macro": make_scorer(f1_score, average="macro"),
