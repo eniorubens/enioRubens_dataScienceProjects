@@ -209,7 +209,7 @@ Threshold = 0,50 (Padrão)
 
 Threshold = 0,52 (Otimizado)
   → Recall Macro: 76,6%, Precision Macro: 71,7%
-  → Perfil de custos fortemente assimétrico: captura 80,7% dos churners reais
+  → Perfil de custos fortemente assimétrico: captura 78,6% dos churners reais (294 de 374)
 ```
 
 **Decisão de negócio:** o threshold = **0,52** foi escolhido porque:

@@ -192,7 +192,7 @@ Threshold = 0.50 (Default)
 
 Threshold = 0.52 (Optimized)
   → Recall Macro: 76.6%, Precision Macro: 71.7%
-  → Strongly asymmetric cost profile: catches 80.7% of actual churners
+  → Strongly asymmetric cost profile: catches 78.6% of actual churners (294 of 374)
 ```
 
 **Business Decision:** Threshold = **0.52** chosen because:
