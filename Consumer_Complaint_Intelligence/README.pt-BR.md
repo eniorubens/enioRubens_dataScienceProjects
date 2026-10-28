@@ -394,6 +394,7 @@ Proibido:
 | `src/consumer_complaint_intelligence/kaggle_execution.py` | Montagem do bundle para execução remota |
 | `src/consumer_complaint_intelligence/contracts.py`, `service.py`, `tracking.py` | `Predictor` / `PredictionBatch` / `ArtifactManifest`, superfície de serving, tracker opcional |
 | `config/*.json` | Protocolos congelados e manifestos públicos de resultado com hashes |
+| `temp/*/*.json` | Manifestos congelados de resultado por etapa. Apesar do nome, não é uma pasta de rascunho: protocolos, testes e notebooks referenciam esses caminhos e seus hashes SHA-256, por isso a pasta é mantida como está |
 | `docs/ADR-001` a `ADR-014` | Cada decisão, com sua razão e seu custo |
 | `tests/` | 348 testes em 28 módulos de teste |
 
@@ -410,6 +411,8 @@ Três fronteiras arquiteturais valem para todo o projeto:
 O campo `score` significa `critical_margin` e nada mais. Não é probabilidade
 nem confiança. A entrada do estimador é exclusivamente `en-US`, ainda que a API
 e a documentação sejam bilíngues.
+
+Alguns desses manifestos congelados (por exemplo `temp/v2/v2_stress_results.json`) registram caminhos absolutos da máquina que executou a etapa. Foram deixados intactos de propósito: editá-los mudaria o SHA-256 e invalidaria a cadeia de hashes pré-registrada.
 
 ## Ambientes de execução
 
