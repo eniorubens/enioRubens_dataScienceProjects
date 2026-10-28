@@ -25,17 +25,21 @@ Expected SHA-256 for the dataset used in this analysis:
 
 
 The file served by the publisher today is not byte-identical to the copy used in
-the analysis: it writes `spend` as `0` where the analysis copy has `0.0`, and its
+the analysis: it writes `spend` as `0` where the analysis copy has `0.0`. Its
 SHA-256 is:
 
 ```text
 0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece
 ```
 
-Both load as identical DataFrames (64,000 rows, 12 columns, equal values). The
-pre-registered fingerprints in `artifacts/` refer to the analysis copy
-(`9bd6dd74...`) and are not changed. The test workflow downloads the publisher
-file and verifies the second hash.
+Both load as identical DataFrames (64,000 rows, 12 columns), and re-serializing the
+publisher file with pandas (CRLF line endings, `index=False`) reproduces the
+analysis copy byte for byte. The pre-registered fingerprints in `artifacts/` refer to
+that copy. To fetch and rebuild it, verifying both hashes:
+
+```bash
+python scripts/fetch_hillstrom.py
+```
 
 The project license applies to the repository's code and documentation, not to
 the third-party dataset.

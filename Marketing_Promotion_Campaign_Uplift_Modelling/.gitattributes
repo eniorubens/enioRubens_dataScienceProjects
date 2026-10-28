@@ -1,0 +1,4 @@
+# The pre-registered SHA-256 values of these files were computed on the Windows
+# (CRLF) working copies. Check them out with CRLF on every platform so the hash
+# checks in tests/test_suite.py hold on Linux CI as well. The repository keeps LF.
+artifacts/s6/*.json text eol=crlf
