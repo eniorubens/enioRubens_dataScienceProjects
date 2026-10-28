@@ -9,7 +9,8 @@ def test_public_path_renders_project_files_relatively():
 
 
 def test_public_path_hides_external_directory_layout():
-    path = Path("C:/external/private/artifact.csv")
+    # An absolute path outside the project on any OS ("C:/..." is relative on POSIX).
+    path = Path(Path.cwd().anchor) / "external" / "private" / "artifact.csv"
     assert public_path(path) == "artifact.csv"
 
 
