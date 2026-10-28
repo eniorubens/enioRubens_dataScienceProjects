@@ -10,21 +10,6 @@ Um portfólio de projetos completos de data science cobrindo todo o espectro ana
 
 ---
 
-## Projetos em destaque
-
-Quatro projetos que mostram como trato evidência, não só modelos:
-
-| Projeto | O que demonstra | Resultado |
-| :--- | :--- | :--- |
-| [**Consumer Complaint Intelligence**](./Consumer_Complaint_Intelligence) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/)) | NLP desbalanceado em escala (3,8 mi de linhas) com avaliações seladas pré-registradas | Dois ciclos selados, ambos reportados como `NOT_CONFIRMED` e `deploy=false`, sem promoção retroativa |
-| [**Marketing Campaign Uplift Modeling**](./Marketing_Promotion_Campaign_Uplift_Modelling) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/)) | Segmentação causal sobre experimento randomizado, com teste selado | Sem superioridade sobre o baseline; a recomendação é um piloto randomizado prospectivo |
-| [**Seoul Bike Sharing Demand**](./Bike-Sharing-Demand) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/)) | Validação temporal e intervalos de predição conformais | Holdout selado com MAE 1.118,1 e R² 0,839; cobertura do intervalo de 90% de 81,0% para 90,1% nos folds de desenvolvimento |
-| [**NASA C-MAPSS**](./CMAPSS_Predictive_Maintenance) ([relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/)) | Validação agrupada por motor e atributos causais de sensores para vida útil restante | MAE 16,23 e RMSE 23,80 ciclos no benchmark oficial de 100 motores (FD001, simulado) |
-
-Os demais projetos estão na tabela a seguir.
-
----
-
 ## Filosofia do portfólio
 
 Este não é um conjunto de notebooks isolados. Os projetos analíticos combinam enquadramento de negócio, implementação modular, validação baseada em evidências e uma camada executiva de comunicação. Cada relatório explicita o que os resultados sustentam, suas limitações e o caminho de reprodução; a prontidão para deployment é declarada por projeto, nunca presumida.
@@ -127,7 +112,7 @@ Identifica oportunidades genuínas de cross-selling em dados transacionais de va
 
 ---
 
-### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) — Previsão temporal de demanda
+### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) — Previsão temporal de demanda ⭐ Destaque
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Prevê a demanda horária de bicicletas em condições operacionais normais usando nove anos de dados de mobilidade e meteorologia. Um holdout temporal selado confirmou CatBoost com **MAE 1.118,1** e **R² 0,839**. Nos folds de desenvolvimento, a calibração conformal adaptativa elevou a cobertura de intervalos de 90% de **81,0% para 90,1%**, reduzindo a largura média dos intervalos em **25,6%**.
@@ -140,7 +125,7 @@ Prevê a demanda horária de bicicletas em condições operacionais normais usan
 
 ---
 
-### 8. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) — Targeting causal e policy learning
+### 8. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) — Targeting causal e policy learning ⭐ Destaque
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Estima quem deve receber um e-mail porque o tratamento muda seu resultado,
@@ -159,7 +144,7 @@ projeto recomenda um piloto randomizado prospectivo em vez de deployment.
 
 ---
 
-### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) — NLP desbalanceado e avaliação confirmatória
+### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) — NLP desbalanceado e avaliação confirmatória ⭐ Destaque
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre
@@ -178,7 +163,7 @@ promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
 
 ---
 
-### 10. [NASA C-MAPSS — Manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) — Vida útil restante
+### 10. [NASA C-MAPSS — Manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) — Vida útil restante ⭐ Destaque
 
 Estima a vida útil restante de motores simulados do FD001 com histórico causal dos sensores. Um pipeline Extra Trees selecionou 93 de 205 atributos e registrou **MAE de 16,23 ciclos** e **RMSE de 23,80 ciclos** no benchmark oficial de 100 motores. A escolha final ocorreu após essa comparação; o resultado não é uma avaliação independente adicional após a seleção. Alertas, custos hipotéticos e faixas empíricas de incerteza permanecem exploratórios, sem validação industrial.
 
