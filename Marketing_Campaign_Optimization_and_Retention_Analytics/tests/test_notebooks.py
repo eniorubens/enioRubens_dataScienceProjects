@@ -8,22 +8,6 @@ import pytest
 NOTEBOOKS = sorted(
     (Path(__file__).resolve().parents[1] / "notebooks").glob("*.ipynb")
 )
-# Chart and narrative helpers that still live in the notebooks. Everything
-# that computes a result has to come from the package.
-PRESENTATION_HELPERS = {
-    "set_corporate_theme",
-    "add_titles",
-    "plot_z_test_distribution",
-    "get_transformed_feature_names",
-    "plot_retention_diagnostics",
-    "plot_model_signal_summary",
-    "plot_retention_experiment_comparison",
-    "_safe_float",
-    "_normalize_lang_flag",
-    "_norm_text",
-    "_metric_column_name",
-    "get_metric_value",
-}
 ALGORITHM_CALLS = [
     "KMeans(",
     "LogisticRegression(",
@@ -127,17 +111,16 @@ def test_both_language_notebooks_are_present():
 
 
 @pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)
-def test_notebook_defines_only_presentation_helpers(notebook):
-    """No class and no result-computing function is defined inline."""
+def test_notebook_defines_no_function_or_class(notebook):
+    """Calculations, charts and narrative helpers all come from the package."""
     tree = ast.parse(_code(notebook))
-    defined = {
+    defined = [
         node.name
         for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.ClassDef))
-    }
+    ]
 
-    assert defined <= PRESENTATION_HELPERS, defined - PRESENTATION_HELPERS
-    assert not [n for n in tree.body if isinstance(n, ast.ClassDef)]
+    assert defined == []
 
 
 @pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)
@@ -176,3 +159,62 @@ def test_notebook_outputs_hold_the_published_figures(notebook):
 def test_notebook_outputs_include_the_language_fix_action(notebook):
     """The recommendations show users routed to the language fix."""
     assert LANGUAGE_FIX[_language(notebook)] in _output_text(notebook)
+
+
+DRAWING_CALLS = [
+    "plt.subplots(",
+    "plt.show(",
+    "add_titles(",
+    ".barh(",
+    ".bar(",
+    ".boxplot(",
+    ".axvline(",
+    ".set_xlabel(",
+    ".set_ylabel(",
+]
+
+
+@pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)
+def test_notebook_draws_no_chart_itself(notebook):
+    """Charts are drawn by the package, so no drawing call remains."""
+    code = _code(notebook)
+
+    for call in DRAWING_CALLS:
+        assert call not in code, call
+
+
+def _code_cells(notebook: Path) -> dict[int, str]:
+    """Return the source of every code cell, keyed by its position.
+
+    Parameters
+    ----------
+    notebook : Path
+        Path of an ``.ipynb`` file.
+
+    Returns
+    -------
+    dict of int to str
+        Cell position and source, with the language line neutralised.
+    """
+    cells = {}
+    for position, cell in enumerate(_cells(notebook)):
+        if cell["cell_type"] != "code":
+            continue
+        source = "".join(cell["source"])
+        cells[position] = source.replace(
+            f'LANG = "{_language(notebook).lower()}"', 'LANG = "xx"'
+        )
+    return cells
+
+
+def test_both_notebooks_run_the_same_code():
+    """Only the ``LANG`` line tells the two notebooks apart."""
+    english, portuguese = (_code_cells(path) for path in NOTEBOOKS)
+
+    assert english.keys() == portuguese.keys()
+    different = {
+        position
+        for position in english
+        if english[position] != portuguese[position]
+    }
+    assert different == set()

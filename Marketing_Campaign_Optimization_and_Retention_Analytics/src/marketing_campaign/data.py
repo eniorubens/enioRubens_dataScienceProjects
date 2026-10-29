@@ -171,3 +171,26 @@ def aggregate_stable_users(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
         users["date_served"].dt.to_period("M").astype(str)
     )
     return users, switcher_count
+
+
+def missing_values_table(df: pd.DataFrame) -> pd.DataFrame:
+    """Summarise the share of missing values of every column.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Any table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Columns ``Column`` and ``% Missing``, sorted from the most to the
+        least incomplete column.
+    """
+    missing_percent = df.isnull().sum() / len(df) * 100
+    return pd.DataFrame(
+        {
+            "Column": missing_percent.index,
+            "% Missing": missing_percent.values,
+        }
+    ).sort_values("% Missing", ascending=False)

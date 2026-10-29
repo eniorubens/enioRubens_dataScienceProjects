@@ -1,8 +1,7 @@
-"""Portuguese labels for the tables and texts produced by the analysis.
+"""Apply the texts of :mod:`marketing_campaign.catalog` to the results.
 
-The package computes everything with English names. The Portuguese
-notebook asks for the same results and localises them here, so both
-notebooks share one implementation.
+The package computes everything with English names. Both notebooks run
+the same code and ask for the results in their language here.
 """
 from __future__ import annotations
 
@@ -10,123 +9,16 @@ import unicodedata
 
 import pandas as pd
 
-SUPPORTED_LANGUAGES = ("en", "pt")
-
-SEGMENT_LABELS = {
-    "en": ["High Value", "Medium Value", "Low Value"],
-    "pt": ["Alto Valor", "Médio Valor", "Baixo Valor"],
-}
-
-COLUMNS_PT = {
-    "Column": "Coluna",
-    "% Missing": "% Faltantes",
-    "Metric": "Métrica",
-    "Value": "Valor",
-    "Parameter": "Parametro",
-    "impacted_users": "impactados",
-    "conversions": "conversoes",
-    "retained": "retidos",
-    "cancellations": "cancelamentos",
-    "Variant_A": "Variante_A",
-    "Variant_B": "Variante_B",
-    "Significance": "Significante",
-    "total_cost": "custo_total",
-    "estimated_revenue": "receita_estimada",
-    "incremental_revenue": "receita_incremental",
-    "estimated_profit": "lucro_estimado",
-    "majority_segment": "segmento_majoritario",
-    "ltv_reference": "ltv_referencia",
-    "coefficient": "coeficiente",
-    "absolute_coefficient": "coeficiente_abs",
-    "quantity": "quantidade",
-    "percentage": "percentual",
-    "category": "categoria",
-    "base_count": "qtd_base",
-    "base_pct": "perc_base",
-    "false_positive_count": "qtd_false_positive",
-    "false_positive_pct": "perc_false_positive",
-    "interpretation": "interpretacao",
-    "Variant": "Variante",
-}
-
-VALUES_PT = {
-    "Impacted Users": "Usuários Impactados",
-    "Conversions": "Conversões",
-    "Retained (among converted)": "Retidos (entre convertidos)",
-    "Conversion Rate (%)": "Taxa de Conversão (%)",
-    "Retention Rate (%)": "Taxa de Retenção (%)",
-    "High Value": "Alto Valor",
-    "Medium Value": "Médio Valor",
-    "Low Value": "Baixo Valor",
-    "Not segmented": "Nao segmentado",
-    "Unidentified segment": "Segmento nao identificado",
-    "YES": "SIM",
-    "NO": "NÃO",
-    "Correct Language": "Idioma Correto",
-    "Wrong Language": "Idioma Incorreto",
-    "Not informed": "Não informado",
-    "Over-represented in false positives": (
-        "Super-representado nos falsos positivos"
-    ),
-    "Under-represented in false positives": (
-        "Sub-representado nos falsos positivos"
-    ),
-    "Proportional distribution": "Distribuicao proporcional",
-    "Loyalty Campaign": "Campanha de Fidelização",
-    "Promotional Offer": "Oferta Promocional",
-    "Win-Back Campaign or No Action": "Campanha de Win-Back ou Nao Agir",
-    "No Action - Negative Incremental Profit": (
-        "Nao Agir - Lucro Incremental Negativo"
-    ),
-    "High-value customers - maintain engagement and reduce churn.": (
-        "Clientes de alto valor - manter engajamento e reduzir churn."
-    ),
-    "Customers with potential - increase conversion and average ticket.": (
-        "Clientes com potencial - aumentar conversão e ticket medio."
-    ),
-    "Low ROI - evaluate whether reactivation cost is justified.": (
-        "ROI baixo - avaliar se custo de reativação se justifica."
-    ),
-}
-VALUES_PT.update(
-    {
-        "Accuracy": "Acurácia",
-        "Precision": "Precisão",
-        "Precision - Not Retained": "Precisão - Não Retido",
-        "Recall - Not Retained": "Recall - Não Retido",
-        "F1 - Not Retained": "F1 - Não Retido",
-        "False Positives": "Falsos Positivos",
-        "False Negatives": "Falsos Negativos",
-        "with converted": "com converted",
-        "without converted": "sem converted",
-        "without SMOTE": "sem SMOTE",
-        "Missing": "Missing",
-    }
+from marketing_campaign.catalog import (
+    COLUMNS_PT,
+    FIX_LANGUAGE_PREFIX,
+    MESSAGES,
+    SEGMENT_LABELS,
+    SUPPORTED_LANGUAGES,
+    VALUE_COLUMNS,
+    VALUES_PT,
+    CANONICAL_SEGMENTS,
 )
-FIX_LANGUAGE_PREFIX = {
-    "en": "Fix Language -> then ",
-    "pt": "Corrigir Idioma -> depois ",
-}
-VALUE_COLUMNS = {
-    "Metric",
-    "experiment",
-    "Segment",
-    "majority_segment",
-    "Significance",
-    "label",
-    "interpretation",
-    "recommended_action",
-    "strategy_rationale",
-}
-
-_CANONICAL_SEGMENTS = {
-    "high value": "High Value",
-    "alto valor": "High Value",
-    "medium value": "Medium Value",
-    "medio valor": "Medium Value",
-    "low value": "Low Value",
-    "baixo valor": "Low Value",
-}
 
 
 def _fold(text: str) -> str:
@@ -163,7 +55,7 @@ def canonical_segment(name: object) -> str | None:
     """
     if not isinstance(name, str):
         return None
-    return _CANONICAL_SEGMENTS.get(_fold(name))
+    return CANONICAL_SEGMENTS.get(_fold(name))
 
 
 def translate_text(text: object, lang: str = "pt") -> object:
@@ -229,3 +121,65 @@ def localize(df: pd.DataFrame, lang: str = "pt") -> pd.DataFrame:
             lambda value: translate_text(value, lang)
         )
     return localized.rename(columns=COLUMNS_PT)
+
+
+def t(key: str, lang: str = "en", **values: object) -> str:
+    """Return a message of the catalog in the requested language.
+
+    Parameters
+    ----------
+    key : str
+        Message identifier, for example ``"funnel.title"``.
+    lang : {"en", "pt"}, default="en"
+        Target language.
+    **values : object
+        Values for the ``str.format`` fields of the message.
+
+    Returns
+    -------
+    str
+        The message with its fields filled in.
+
+    Raises
+    ------
+    ValueError
+        If ``lang`` is not supported.
+    KeyError
+        If ``key`` is not in the catalog.
+    """
+    if lang not in SUPPORTED_LANGUAGES:
+        raise ValueError(f"lang must be one of {SUPPORTED_LANGUAGES}.")
+    message = MESSAGES[lang][key]
+    return message.format(**values) if values else message
+
+
+def say(key: str, lang: str = "en", **values: object) -> None:
+    """Print a message of the catalog.
+
+    Parameters
+    ----------
+    key : str
+        Message identifier.
+    lang : {"en", "pt"}, default="en"
+        Target language.
+    **values : object
+        Values for the fields of the message.
+    """
+    print(t(key, lang, **values))
+
+
+def banner(key: str, lang: str = "en", width: int = 80) -> None:
+    """Print a message between two lines of ``=``.
+
+    Parameters
+    ----------
+    key : str
+        Message identifier of the title.
+    lang : {"en", "pt"}, default="en"
+        Target language.
+    width : int, default=80
+        Length of the lines.
+    """
+    print("\n" + "=" * width)
+    print(t(key, lang))
+    print("=" * width)

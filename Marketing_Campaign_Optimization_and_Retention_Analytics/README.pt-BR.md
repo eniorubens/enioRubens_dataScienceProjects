@@ -16,7 +16,7 @@ e geração de recomendações operacionais.
 
 **Não sustenta:** serviço produtivo de scoring, impacto causal de campanha ou decisões automáticas sem engenharia e validação adicionais.
 
-**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 107 testes pytest que reproduzem os números do relatório executivo. Os dois notebooks chamam esse pacote para todos os cálculos (limpeza, segmentação, funil, teste A/B, valor e ROI, modelo de retenção, análise de erros, recomendações e exportações); só os auxiliares de gráfico e de narrativa ficam inline. A refatoração também corrigiu um defeito: usuários sinalizados com idioma errado (`is_correct_lang` = "No") agora vão para "Fix Language", ramo que o código original dos notebooks nunca alcançava. Não há API de serving.
+**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 205 testes pytest que reproduzem os números do relatório executivo. Os dois notebooks chamam esse pacote para todos os cálculos (limpeza, segmentação, funil, teste A/B, valor e ROI, modelo de retenção, análise de erros, recomendações, exportações e gráficos). Os dois notebooks executam exatamente o mesmo código e diferem só na linha `LANG`; todos os textos, inclusive os parágrafos de insights que citam os números calculados, ficam no catálogo de mensagens, e um teste falha se o código dos dois notebooks divergir. A refatoração também corrigiu um defeito: usuários sinalizados com idioma errado (`is_correct_lang` = "No") agora vão para "Fix Language", ramo que o código original dos notebooks nunca alcançava. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) conecta os achados analíticos às limitações de negócio explícitas.
 
@@ -142,9 +142,14 @@ Marketing_Campaign_Optimization_and_Retention_Analytics/
 │   ├── retention_model.py          # Regressão logística de retenção
 │   ├── recommendations.py          # Valor esperado, ações e exportações
 │   ├── diagnostics.py              # Impacto do idioma, erros do modelo, viés dos falsos positivos
-│   ├── i18n.py                     # Rótulos em português para tabelas e textos
+│   ├── catalog.py                  # Textos dos dois idiomas (apenas dados)
+│   ├── i18n.py                     # Aplica o catálogo: localize, t, say
+│   ├── reports.py                  # Tabelas do experimento e mensagens pré-teste
+│   ├── insights.py                 # Textos de insights e do sumário executivo
+│   ├── plots.py                    # Gráficos (textos em EN e PT)
+│   ├── narrative.py                # Auxiliares das células de narrativa
 │   └── pipeline.py                 # Executa a análise completa
-├── tests/                          # Suíte pytest (107 testes)
+├── tests/                          # Suíte pytest (205 testes)
 └── pyproject.toml                  # Configuração do pacote e dos testes
 ```
 
