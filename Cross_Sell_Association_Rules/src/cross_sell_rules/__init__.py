@@ -14,6 +14,7 @@ from cross_sell_rules.mining import (
     generate_rules,
     item_support,
     joint_support,
+    rules_to_coordinates,
     select_cross_sell_candidates,
 )
 from cross_sell_rules.report import compute_report_figures
@@ -33,6 +34,7 @@ __all__ = [
     "joint_support",
     "lift",
     "load_groceries",
+    "rules_to_coordinates",
     "select_cross_sell_candidates",
     "summarize_baskets",
     "zhang",

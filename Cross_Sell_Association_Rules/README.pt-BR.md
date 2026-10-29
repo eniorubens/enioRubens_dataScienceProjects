@@ -8,7 +8,7 @@
 
 **Não sustenta:** incrementalidade causal, uplift garantido de conversão ou deployment automático de ofertas.
 
-**Superfície de engenharia:** análise reprodutível em notebook e dataset, mais um pequeno pacote `src/cross_sell_rules` (construção das cestas, métricas de associação, mineração Apriori, seleção de candidatas) coberto por 29 testes pytest que reproduzem os números do relatório executivo. Os notebooks mantêm o código inline como narrativa da análise; o pacote reimplementa e testa as mesmas etapas. Não há API de serving.
+**Superfície de engenharia:** análise reprodutível em notebook e dataset, mais um pequeno pacote `src/cross_sell_rules` (construção das cestas, métricas de associação, mineração Apriori, seleção de candidatas) coberto por 36 testes pytest que reproduzem os números do relatório executivo. Os dois notebooks chamam esse pacote para leitura, cestas, métricas, mineração e seleção de regras, então a análise e os testes executam o mesmo código. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) apresenta as regras como associações comportamentais, não como evidência de intervenção.
 
@@ -90,7 +90,7 @@ Cross_Sell_Association_Rules/
 │   ├── metrics.py                                       # Confidence, lift, conviction, Zhang
 │   ├── mining.py                                        # Apriori, regras, seleção de candidatas
 │   └── report.py                                        # Recalcula os números do relatório
-├── tests/                                               # Suíte pytest (29 testes)
+├── tests/                                               # Suíte pytest (36 testes)
 ├── pyproject.toml                                       # Configuração do pacote e dos testes
 └── README.md                                            # Documentação do projeto
 ```
@@ -119,4 +119,4 @@ produtos, apoiando decisões de negócio mais eficazes.
 Ambos os notebooks usam o mesmo caminho relativo para o dataset a partir do
 diretório `notebooks/` e os mesmos thresholds analíticos. Os outputs salvos foram
 verificados quanto à consistência numérica; uma nova execução ainda exige um
-ambiente funcional com NumPy, pandas, mlxtend, SciPy, Matplotlib e Seaborn.
+ambiente funcional com NumPy, pandas, mlxtend, SciPy, Matplotlib e Seaborn. Os notebooks importam `cross_sell_rules` (instale com `pip install -e .` na pasta do projeto; sem instalar, eles usam `../src`). A ordem das regras é determinística: o mlxtend as devolve numa ordem que muda entre execuções, então o pacote as ordena por antecedente e consequente.

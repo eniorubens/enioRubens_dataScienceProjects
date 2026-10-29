@@ -129,3 +129,47 @@ def test_mlxtend_columns_agree_with_the_metric_functions(candidates):
         assert metrics.lift(*args) == pytest.approx(row["lift"])
         assert metrics.conviction(*args) == pytest.approx(row["conviction"])
         assert metrics.zhang(*args) == pytest.approx(row["zhangs_metric"])
+
+
+def test_rules_to_coordinates_describes_each_rule_by_its_items():
+    """Each rule becomes its antecedent, consequent and rule index."""
+    rules = pd.DataFrame(
+        {
+            "antecedents": [frozenset({"a"}), frozenset({"c"})],
+            "consequents": [frozenset({"b"}), frozenset({"d"})],
+            "lift": [1.2, 1.5],
+        },
+        index=[4, 9],
+    )
+
+    coordinates = mining.rules_to_coordinates(rules)
+
+    assert coordinates.columns.tolist() == [
+        "antecedent",
+        "consequent",
+        "rule",
+    ]
+    assert coordinates["antecedent"].tolist() == ["a", "c"]
+    assert coordinates["consequent"].tolist() == ["b", "d"]
+    assert coordinates["rule"].tolist() == [4, 9]
+    assert "antecedent" not in rules.columns  # the input is not modified
+
+
+def test_generated_rules_do_not_depend_on_the_input_row_order():
+    """Shuffling the itemsets gives the same rules in the same order."""
+    onehot = mining.encode_baskets(
+        [["a", "b"], ["a", "b", "c"], ["a", "c"], ["b", "c"], ["a", "b"]]
+    )
+    itemsets = mining.find_frequent_itemsets(onehot, 0.2, max_len=2)
+    shuffled = itemsets.sample(frac=1, random_state=3).reset_index(drop=True)
+
+    first = mining.generate_rules(itemsets, len(onehot), "lift", 0.0)
+    second = mining.generate_rules(shuffled, len(onehot), "lift", 0.0)
+
+    pd.testing.assert_frame_equal(first, second)
+    names = [
+        (mining.format_itemset(a), mining.format_itemset(c))
+        for a, c in zip(first["antecedents"], first["consequents"])
+    ]
+    assert names == sorted(names)
+    assert first.index.tolist() == list(range(len(first)))
