@@ -21,14 +21,17 @@ pipeline optimisation, threshold tuning, and metric persistence.
 
 ## Installation (local, editable)
 
+Run from the folder that contains `ds_toolkit/`:
+
 ```bash
-pip install -e "path"
+pip install -e ./ds_toolkit/opt_binary_clf_pipe
 ```
 
-Add to each project's `requirements.txt`:
+To pin it in a consuming project's `requirements.txt`, pip needs an absolute
+`file://` URL (replace the placeholder with your own location):
 
 ```
-opt_binary_clf_pipe @ file:///c:path
+opt_binary_clf_pipe @ file:///<absolute-path-to>/ds_toolkit/opt_binary_clf_pipe
 ```
 
 ---
