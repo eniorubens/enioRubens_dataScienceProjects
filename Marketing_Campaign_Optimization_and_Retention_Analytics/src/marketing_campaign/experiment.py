@@ -225,3 +225,29 @@ def simulate_power_curve(
                 rejections += 1
         powers.append(rejections / n_simulations)
     return powers
+
+
+def estimate_runtime_days(df: pd.DataFrame, required_per_group: int) -> int:
+    """Estimate the days needed to reach the sample of both groups.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        User-level base with ``date_served`` and ``user_id``.
+    required_per_group : int
+        Users needed per group.
+
+    Returns
+    -------
+    int
+        Days at the recent daily pace (mean of the last 30 days with
+        data), never less than 7 so that every weekday is covered.
+    """
+    daily_users = (
+        df.groupby(df["date_served"].dt.date)["user_id"]
+        .nunique()
+        .tail(30)
+        .mean()
+    )
+    days = np.ceil((required_per_group * 2) / max(daily_users, 1))
+    return max(int(days), 7)

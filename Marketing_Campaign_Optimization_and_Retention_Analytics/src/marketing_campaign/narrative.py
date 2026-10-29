@@ -10,6 +10,8 @@ import unicodedata
 import numpy as np
 import pandas as pd
 
+from marketing_campaign.i18n import t
+
 TRUE_TOKENS = {"1", "true", "yes", "y", "correct", "right", "certo", "sim"}
 FALSE_TOKENS = {"0", "false", "no", "n", "wrong", "incorrect", "errado", "nao"}
 METRIC_HEADERS = {"metric", "metrica"}
@@ -151,3 +153,42 @@ def get_metric_value(
     if values.empty:
         return default
     return float(values.iloc[0])
+
+
+def bias_finding(
+    comparison: pd.DataFrame,
+    column: str,
+    lang: str = "en",
+    threshold_pp: float = 10.0,
+) -> str:
+    """Describe the largest false-positive difference of a variable.
+
+    Parameters
+    ----------
+    comparison : pd.DataFrame
+        Output of
+        :func:`marketing_campaign.diagnostics.compare_false_positives`,
+        largest difference first (English names).
+    column : str
+        Name of the compared variable.
+    lang : {"en", "pt"}, default="en"
+        Language of the text.
+    threshold_pp : float, default=10.0
+        Difference in percentage points that counts as over-representation.
+
+    Returns
+    -------
+    str
+        A sentence about the category with the largest difference.
+    """
+    top = comparison.iloc[0]
+    key = "bias.over" if top["diff_pp"] >= threshold_pp else "bias.within"
+    return t(
+        key,
+        lang,
+        category=top["category"],
+        fp=top["false_positive_pct"],
+        base=top["base_pct"],
+        diff=top["diff_pp"],
+        column=column,
+    )

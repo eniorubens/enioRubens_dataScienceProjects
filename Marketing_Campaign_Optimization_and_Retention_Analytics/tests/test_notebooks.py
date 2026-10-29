@@ -159,3 +159,66 @@ def test_notebook_outputs_hold_the_published_figures(notebook):
 def test_notebook_outputs_include_the_language_fix_action(notebook):
     """The recommendations show users routed to the language fix."""
     assert LANGUAGE_FIX[_language(notebook)] in _output_text(notebook)
+
+
+DRAWING_CALLS = [
+    "plt.subplots(",
+    "plt.show(",
+    "add_titles(",
+    ".barh(",
+    ".bar(",
+    ".boxplot(",
+    ".axvline(",
+    ".set_xlabel(",
+    ".set_ylabel(",
+]
+# Narrative cells (insights written with the computed numbers) still hold
+# language-specific code. Each index leaves this set when the cell moves to
+# the catalog; the goal is an empty set.
+PENDING_NARRATIVE = {19, 22, 25, 30, 34, 37, 40, 43, 46, 47, 54, 55}
+
+
+@pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)
+def test_notebook_draws_no_chart_itself(notebook):
+    """Charts are drawn by the package, so no drawing call remains."""
+    code = _code(notebook)
+
+    for call in DRAWING_CALLS:
+        assert call not in code, call
+
+
+def _code_cells(notebook: Path) -> dict[int, str]:
+    """Return the source of every code cell, keyed by its position.
+
+    Parameters
+    ----------
+    notebook : Path
+        Path of an ``.ipynb`` file.
+
+    Returns
+    -------
+    dict of int to str
+        Cell position and source, with the language line neutralised.
+    """
+    cells = {}
+    for position, cell in enumerate(_cells(notebook)):
+        if cell["cell_type"] != "code":
+            continue
+        source = "".join(cell["source"])
+        cells[position] = source.replace(
+            f'LANG = "{_language(notebook).lower()}"', 'LANG = "xx"'
+        )
+    return cells
+
+
+def test_both_notebooks_run_the_same_code():
+    """Only ``LANG`` tells the notebooks apart, except pending narratives."""
+    english, portuguese = (_code_cells(path) for path in NOTEBOOKS)
+
+    assert english.keys() == portuguese.keys()
+    different = {
+        position
+        for position in english
+        if english[position] != portuguese[position]
+    }
+    assert different == PENDING_NARRATIVE

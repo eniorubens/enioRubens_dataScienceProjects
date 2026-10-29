@@ -32,9 +32,10 @@ def _texts(figure) -> list[str]:
     return found
 
 
-def test_both_languages_define_the_same_keys():
-    """Every label exists in English and in Portuguese."""
-    assert set(plots.TEXT["en"]) == set(plots.TEXT["pt"])
+def test_chart_texts_exist_in_both_languages():
+    """The ``plots.*`` messages are defined for English and Portuguese."""
+    assert set(plots._texts("en")) == set(plots._texts("pt"))
+    assert "z_title" in plots._texts("en")
 
 
 def test_set_corporate_theme_applies_the_style_and_display_options():
@@ -237,3 +238,142 @@ def test_feature_names_fall_back_to_generic_names():
 
     assert names.tolist() == ["feature_0", "feature_1", "feature_2"]
     assert len(plots.get_transformed_feature_names(pipeline)) == 0
+
+
+def _all_texts(figure) -> str:
+    """Join every title, label and annotation of a figure."""
+    parts = []
+    for axis in figure.axes:
+        parts += [axis.get_title(loc="left"), axis.get_xlabel(),
+                  axis.get_ylabel()]
+        parts += [text.get_text() for text in axis.texts]
+        legend = axis.get_legend()
+        if legend:
+            parts += [text.get_text() for text in legend.get_texts()]
+    return "\n".join(parts)
+
+
+@pytest.fixture
+def small(result):
+    """Return a few real tables to feed the chart functions."""
+    return result
+
+
+@pytest.mark.parametrize(
+    ("lang", "needle"), [("en", "Funnel: From Impact"), ("pt", "Funil:")]
+)
+def test_funnel_chart_follows_the_language(small, figures, lang, needle):
+    """Title and stage names come from the catalog."""
+    plots.plot_funnel(small.funnel, lang)
+
+    texts = _all_texts(figures[0])
+    assert needle in texts
+    assert "{:,}".format(int(small.funnel.iloc[0, 1])) in texts
+
+
+@pytest.mark.parametrize(
+    ("lang", "needle"),
+    [
+        ("en", "Conversion Rate by Channel"),
+        ("pt", "Taxa de Conversão por Canal"),
+    ],
+)
+def test_channel_chart_has_one_bar_per_channel(small, figures, lang, needle):
+    """Two panels with a bar for every marketing channel."""
+    plots.plot_channel_performance(small.channels, lang)
+
+    assert needle in _all_texts(figures[0])
+    assert len(figures[0].axes[0].patches) == len(small.channels)
+
+
+def test_k_diagnostics_and_boxplots_use_segment_names(small, figures):
+    """The boxplot x labels are the segment names of the language."""
+    from marketing_campaign.i18n import SEGMENT_LABELS
+    from marketing_campaign.segmentation import (
+        assign_segments, build_rfm, evaluate_k,
+    )
+
+    rfm = assign_segments(
+        build_rfm(small.exposures), labels=SEGMENT_LABELS["pt"]
+    )
+    plots.plot_k_diagnostics(evaluate_k(rfm, range(2, 4)), "pt")
+    plots.plot_rfm_boxplots(rfm, "pt")
+
+    assert "Inercia" in _all_texts(figures[0])
+    labels = [t.get_text() for t in figures[1].axes[0].get_xticklabels()]
+    assert labels == ["Alto Valor", "Médio Valor", "Baixo Valor"]
+
+
+def test_ltv_chart_marks_the_global_average(small, figures):
+    """The legend carries the global mean value."""
+    plots.plot_ltv_by_segment(small.ltv.by_segment, small.ltv.global_ltv, "en")
+
+    assert "Global average LTV" in _all_texts(figures[0])
+
+
+def test_exploration_chart_skips_missing_columns(small, figures):
+    """Only the panels whose column exists get a title."""
+    plots.plot_exploration(small.users[["converted_flag", "variant"]], "en")
+
+    titles = [a.get_title(loc="left") for a in figures[0].axes]
+    assert titles == [
+        "Conversion Distribution", "", "", "Distribution by A/B Variant",
+    ]
+
+
+def test_language_chart_translates_the_bar_labels(small, figures):
+    """Bars are labelled with the language of the chart."""
+    from marketing_campaign.diagnostics import analyze_language_performance
+
+    summary = analyze_language_performance(small.users)
+    plots.plot_language_performance(summary, "pt")
+
+    labels = [t.get_text() for t in figures[0].axes[0].get_xticklabels()]
+    assert labels == ["Idioma Correto", "Idioma Incorreto"]
+
+
+def test_power_curve_chart_marks_the_current_sample(figures):
+    """A reference line and its label show the experiment sample."""
+    plots.plot_power_curve([100, 200, 300], [0.2, 0.5, 0.9], 250, "pt")
+
+    assert "Amostra atual por grupo (250)" in _all_texts(figures[0])
+
+
+def test_variant_and_roi_charts_draw_two_panels(small, figures):
+    """Variant rates and ROI/profit both have two panels."""
+    plots.plot_variant_rates(small.users, "en")
+    plots.plot_roi(small.roi, "pt")
+
+    assert [len(f.axes) for f in figures] == [2, 2]
+    assert "ROI Incremental por Canal" in _all_texts(figures[1])
+
+
+def test_sample_adequacy_chart_paints_short_variants_red(figures):
+    """Variants below the requirement are drawn in red."""
+    counts = pd.Series({"control": 100, "personalization": 5000})
+
+    plots.plot_sample_adequacy(counts, 3916, "en")
+
+    bars = figures[0].axes[0].patches
+    assert bars[0].get_facecolor()[:3] != bars[1].get_facecolor()[:3]
+    assert "Required (3,916)" in _all_texts(figures[0])
+
+
+def test_false_positive_bias_chart_and_finding_agree(figures):
+    """The chart compares base and false positives per category."""
+    from marketing_campaign.diagnostics import compare_false_positives
+    from marketing_campaign.narrative import bias_finding
+
+    base = pd.DataFrame({"group": ["a"] * 60 + ["b"] * 40})
+    errors = pd.DataFrame({"group": ["a"] * 2 + ["b"] * 8})
+    comparison = compare_false_positives(base, errors, "group")
+
+    plots.plot_false_positive_bias(comparison, "group", "pt")
+
+    assert "Base total vs Falsos Positivos: group" in _all_texts(figures[0])
+    assert bias_finding(comparison, "group", "en").startswith(
+        "b represents 80.0% of false positives, but only 40.0%"
+    )
+    assert bias_finding(comparison.iloc[1:], "group", "pt").startswith(
+        "Maior diferença em group"
+    )

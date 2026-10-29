@@ -17,7 +17,8 @@ from sklearn.metrics import (
     roc_curve,
 )
 
-from marketing_campaign.i18n import localize
+from marketing_campaign.catalog import MESSAGES, SEGMENT_LABELS
+from marketing_campaign.i18n import localize, t, translate_text
 
 try:
     import seaborn as sns
@@ -32,141 +33,25 @@ except ImportError:  # plain Python session
         print(value)
 
 
-TEXT = {
-    "en": {
-        "alternative_error": (
-            "alternative should be 'two-sided', 'greater' or 'less'."
-        ),
-        "normal": "Standard normal distribution",
-        "critical_region": "Critical region",
-        "z_critical": "Z critical = {z:.2f}",
-        "z_observed": "Z observed = {z:.2f}",
-        "outside_scale": "Z observed = {z:.2f}\noutside the scale [-4, 4]",
-        "reject": "Reject H0",
-        "fail_to_reject": "Fail to reject H0",
-        "h0": "H0: The conversion rates are equal",
-        "h1": "H1: The conversion rates are different",
-        "z_title": "Standard Normal Distribution for Z-Test",
-        "z_subtitle": (
-            "Visualization of the observed Z statistic and critical "
-            "regions for interpreting the hypothesis test"
-        ),
-        "z_statistic": "Z Statistic",
-        "density": "Density",
-        "z_result": "Z-TEST RESULT",
-        "z_line": "Z Statistic: {z:.4f}",
-        "critical_value": "Critical Value: {value}",
-        "conclusion": "\nConclusion:",
-        "significant": (
-            "There are statistically significant evidence to reject H0."
-        ),
-        "not_significant": "There is not enough evidence to reject H0.",
-        "classes": ["Not Retained", "Retained"],
-        "confusion_title": "Confusion Matrix",
-        "confusion_subtitle": (
-            "Comparison between actual and predicted retention classes"
-        ),
-        "roc_unavailable": "ROC AUC unavailable",
-        "fpr": "False Positive Rate",
-        "tpr": "True Positive Rate",
-        "roc_title": "ROC Curve",
-        "roc_subtitle": (
-            "Model ability to distinguish retained vs not-retained users"
-        ),
-        "no_experiments": "No experiments available for visualization.",
-        "auc_title": "ROC AUC by Experiment",
-        "auc_subtitle": (
-            "Comparison of predictive performance across experiments"
-        ),
-        "recall_title": "Not Retained Recall by Experiment",
-        "recall_subtitle": "Sensitivity in identifying non-retained users",
-        "recall_axis": "Recall - Not Retained",
-        "importance_title": "Top {n} Feature Importances - {name}",
-        "importance_subtitle": (
-            "Most relevant features used by the model for retention "
-            "prediction"
-        ),
-        "importance_axis": "Importance",
-        "coefficient_title": "Top {n} Absolute Coefficients - {name}",
-        "coefficient_subtitle": (
-            "Features most strongly associated with retention in logistic "
-            "regression, regardless of direction"
-        ),
-        "coefficient_axis": "Absolute coefficient",
-        "no_signal": (
-            "{name} does not expose direct feature importances or "
-            "coefficients."
-        ),
-    },
-    "pt": {
-        "alternative_error": (
-            "alternative deve ser 'two-sided', 'greater' ou 'less'."
-        ),
-        "normal": "Distribuição normal padrão",
-        "critical_region": "Região crítica",
-        "z_critical": "Z crítico = {z:.2f}",
-        "z_observed": "Z observado = {z:.2f}",
-        "outside_scale": "Z observado = {z:.2f}\nfora da escala [-4, 4]",
-        "reject": "Rejeita H0",
-        "fail_to_reject": "Não rejeita H0",
-        "h0": "H0: As proporções de conversão são iguais",
-        "h1": "H1: As proporções de conversão são diferentes",
-        "z_title": "Distribuição Normal Padrão do Teste Z",
-        "z_subtitle": (
-            "Visualização da estatística Z observada e regiões críticas "
-            "para interpretação do teste de hipóteses"
-        ),
-        "z_statistic": "Estatística Z",
-        "density": "Densidade",
-        "z_result": "RESULTADO DO TESTE Z",
-        "z_line": "Estatística Z: {z:.4f}",
-        "critical_value": "Valor crítico: {value}",
-        "conclusion": "\nConclusão:",
-        "significant": (
-            "Há evidências estatisticamente significativas para rejeitar H0."
-        ),
-        "not_significant": "Não há evidências suficientes para rejeitar H0.",
-        "classes": ["Não Retido", "Retido"],
-        "confusion_title": "Matriz de Confusão",
-        "confusion_subtitle": (
-            "Comparação entre as classes reais e previstas para retenção"
-        ),
-        "roc_unavailable": "ROC AUC indisponível",
-        "fpr": "Taxa de Falsos Positivos",
-        "tpr": "Taxa de Verdadeiros Positivos",
-        "roc_title": "Curva ROC",
-        "roc_subtitle": (
-            "Avaliação da capacidade do modelo de distinguir entre "
-            "usuários retidos e não retidos"
-        ),
-        "no_experiments": "Nenhum experimento disponível para visualização.",
-        "auc_title": "ROC AUC por Experimento",
-        "auc_subtitle": (
-            "Comparação da capacidade preditiva entre os experimentos"
-        ),
-        "recall_title": "Recall de Não Retido por Experimento",
-        "recall_subtitle": (
-            "Sensibilidade na identificação de usuários não retidos"
-        ),
-        "recall_axis": "Recall - Não Retido",
-        "importance_title": "Top {n} Importâncias - {name}",
-        "importance_subtitle": (
-            "Principais features que o modelo considera para prever "
-            "retenção"
-        ),
-        "importance_axis": "Importância",
-        "coefficient_title": "Top {n} Coeficientes Absolutos - {name}",
-        "coefficient_subtitle": (
-            "Principais features que o modelo de regressão logística "
-            "associa com retenção, considerando a magnitude do efeito "
-            "independentemente do sinal"
-        ),
-        "coefficient_axis": "Coeficiente absoluto",
-        "no_signal": (
-            "{name} nao expõe importâncias ou coeficientes diretos."
-        ),
-    },
-}
+def _texts(lang: str) -> dict[str, str]:
+    """Return the chart messages of one language, without their prefix.
+
+    Parameters
+    ----------
+    lang : {"en", "pt"}
+        Language of the messages.
+
+    Returns
+    -------
+    dict of str to str
+        The ``plots.*`` messages of the catalog keyed by their short name.
+    """
+    prefix = "plots."
+    return {
+        key[len(prefix):]: value
+        for key, value in MESSAGES[lang].items()
+        if key.startswith(prefix)
+    }
 
 
 def set_corporate_theme() -> None:
@@ -327,7 +212,7 @@ def plot_z_test_distribution(
     """
     from scipy import stats
 
-    text = TEXT[lang]
+    text = _texts(lang)
     alternative = alternative.lower()
     if alternative not in {"two-sided", "greater", "less"}:
         raise ValueError(text["alternative_error"])
@@ -500,12 +385,16 @@ def plot_retention_diagnostics(
     lang : {"en", "pt"}, default="en"
         Language of the chart texts.
     """
-    text = TEXT[lang]
+    text = _texts(lang)
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
     matrix = confusion_matrix(y_test, y_pred, labels=[0, 1])
     ConfusionMatrixDisplay(
-        matrix, display_labels=text["classes"]
+        matrix,
+        display_labels=[
+            t("model.not_retained", lang),
+            t("model.retained", lang),
+        ],
     ).plot(ax=axes[0], cmap="Blues", values_format="d", colorbar=False)
     add_titles(
         axes[0], text["confusion_title"], subtitle=text["confusion_subtitle"]
@@ -548,7 +437,7 @@ def plot_model_signal_summary(
     lang : {"en", "pt"}, default="en"
         Language of the chart and table texts.
     """
-    text = TEXT[lang]
+    text = _texts(lang)
     classifier = pipeline.named_steps["classifier"]
 
     if hasattr(classifier, "feature_importances_"):
@@ -622,7 +511,7 @@ def plot_retention_experiment_comparison(
     lang : {"en", "pt"}, default="en"
         Language of the chart texts.
     """
-    text = TEXT[lang]
+    text = _texts(lang)
     if results_df.empty:
         print(text["no_experiments"])
         return
@@ -650,6 +539,548 @@ def plot_retention_experiment_comparison(
     )
     axes[1].set_xlabel(text["recall_axis"])
 
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_k_diagnostics(k_diagnostics: pd.DataFrame, lang: str = "en") -> None:
+    """Draw the elbow and silhouette curves of the K-Means search.
+
+    Parameters
+    ----------
+    k_diagnostics : pd.DataFrame
+        Output of :func:`marketing_campaign.segmentation.evaluate_k`.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    subtitle = t("chart.rfm.subtitle", lang)
+    _, axes = plt.subplots(1, 2, figsize=(14, 4))
+
+    axes[0].plot(
+        k_diagnostics["k"],
+        k_diagnostics["inertia"],
+        marker=".",
+        linewidth=0.5,
+        color="#0667A7",
+    )
+    add_titles(axes[0], "Elbow: K-Means RFM", subtitle=subtitle)
+    axes[0].set_xlabel("k")
+    axes[0].set_ylabel(t("chart.k.inertia", lang))
+    axes[0].grid(alpha=0.25)
+
+    axes[1].plot(
+        k_diagnostics["k"],
+        k_diagnostics["silhouette"],
+        marker=".",
+        linewidth=0.5,
+        color="#06A77D",
+    )
+    add_titles(axes[1], "Silhouette: K-Means RFM", subtitle=subtitle)
+    axes[1].set_xlabel("k")
+    axes[1].set_ylabel(t("chart.k.silhouette", lang))
+    axes[1].grid(alpha=0.25)
+
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_rfm_boxplots(rfm: pd.DataFrame, lang: str = "en") -> None:
+    """Draw recency, frequency and monetary boxplots by segment.
+
+    Parameters
+    ----------
+    rfm : pd.DataFrame
+        Output of :func:`marketing_campaign.segmentation.assign_segments`
+        built with the segment names of ``lang``.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts and of the segment names.
+    """
+    order = SEGMENT_LABELS[lang]
+    colors = ["#06A77D", "#2E86AB", "#A23B72"]
+    _, axes = plt.subplots(1, 3, figsize=(16, 5))
+    for ax, metric in zip(axes, ["Recency", "Frequency", "Monetary"]):
+        data = [rfm.loc[rfm["Segment"] == name, metric] for name in order]
+        boxes = ax.boxplot(
+            data, tick_labels=order, patch_artist=True, showfliers=False
+        )
+        for patch, color in zip(boxes["boxes"], colors):
+            patch.set_facecolor(color)
+            patch.set_alpha(0.65)
+        add_titles(
+            ax,
+            t("chart.rfm.box_title", lang, metric=metric),
+            subtitle=t("chart.rfm.subtitle", lang),
+        )
+        ax.grid(axis="y", alpha=0.25)
+        ax.tick_params(axis="x", rotation=20)
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_ltv_by_segment(
+    by_segment: pd.DataFrame, global_ltv: float, lang: str = "en"
+) -> None:
+    """Draw the mean historical value of each segment.
+
+    Parameters
+    ----------
+    by_segment : pd.DataFrame
+        ``by_segment`` table of
+        :class:`marketing_campaign.economics.LtvSummary`.
+    global_ltv : float
+        Mean value of all customers, drawn as a reference line.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    _, ax = plt.subplots(figsize=(10, 5))
+    ordered = by_segment.sort_values("ltv_mean", ascending=True)
+    ax.barh(ordered["segment"], ordered["ltv_mean"], color="#2E86AB")
+    ax.axvline(
+        global_ltv,
+        color="#D62828",
+        linestyle="--",
+        linewidth=0.5,
+        label=t("chart.ltv.global", lang, value=global_ltv),
+    )
+    ax.set_xlabel(t("chart.ltv.xlabel", lang), fontweight="bold")
+    add_titles(
+        ax,
+        t("chart.ltv.title", lang),
+        subtitle=t("chart.ltv.subtitle", lang),
+    )
+    ax.grid(axis="x", alpha=0.25)
+    ax.legend()
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_exploration(df: pd.DataFrame, lang: str = "en") -> None:
+    """Draw the distribution of conversion, retention, channel and variant.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        User-level base. Each panel is drawn only when its column exists.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    _, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+    def panel(position, column, kind, colors, name, xlabel=False):
+        """Draw one distribution if its column is available."""
+        if column not in df.columns:
+            return
+        ax = axes[position]
+        df[column].value_counts().plot(
+            kind=kind, ax=ax, color=colors
+        )
+        add_titles(
+            ax,
+            t(f"chart.explore.{name}.title", lang),
+            subtitle=t(f"chart.explore.{name}.subtitle", lang),
+        )
+        if xlabel:
+            ax.set_xlabel(t(f"chart.explore.{name}.xlabel", lang))
+
+    panel((0, 0), "converted_flag", "bar", ["#2E86AB", "#A23B72"],
+          "conversion", xlabel=True)
+    panel((0, 1), "retained_flag", "bar", ["#F18F01", "#C73E1D"],
+          "retention", xlabel=True)
+    panel((1, 0), "marketing_channel", "barh", "#2E86AB", "channel")
+    panel((1, 1), "variant", "bar", ["#06A77D", "#D62828"], "variant")
+
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_funnel(funnel: pd.DataFrame, lang: str = "en") -> None:
+    """Draw the funnel from impacted to retained users.
+
+    Parameters
+    ----------
+    funnel : pd.DataFrame
+        Output of :func:`marketing_campaign.funnel.build_funnel`
+        (English); the first three values are the stage counts.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    stages = [
+        t("chart.funnel.impacted", lang),
+        t("chart.funnel.converted", lang),
+        t("chart.funnel.retained", lang),
+    ]
+    counts = funnel.iloc[:3, 1].astype(int).tolist()
+    colors = ["#2E86AB", "#A23B72", "#06A77D"]
+
+    _, ax = plt.subplots(figsize=(10, 6))
+    bars = ax.bar(stages, counts, color=colors, alpha=0.8, edgecolor="black")
+    for bar, count in zip(bars, counts):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height(),
+            f"{int(count):,}",
+            ha="center",
+            va="bottom",
+            fontweight="bold",
+            fontsize=11,
+        )
+    ax.set_ylabel(t("chart.funnel.ylabel", lang), fontweight="bold")
+    add_titles(
+        ax,
+        t("chart.funnel.title", lang),
+        subtitle=t("chart.funnel.subtitle", lang),
+    )
+    ax.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_channel_performance(channels: pd.DataFrame, lang: str = "en") -> None:
+    """Draw the conversion and retention rate of each channel.
+
+    Parameters
+    ----------
+    channels : pd.DataFrame
+        Output of
+        :func:`marketing_campaign.funnel.analyze_channel_performance`.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    _, axes = plt.subplots(1, 2, figsize=(15, 6))
+    for ax, color, name, column in (
+        (axes[0], "#2E86AB", "conversion", "conversion_rate_%"),
+        (axes[1], "#06A77D", "retention", "retention_rate_%"),
+    ):
+        ordered = channels.sort_values(column, ascending=True)
+        ax.barh(ordered["marketing_channel"], ordered[column], color=color)
+        ax.set_xlabel(
+            t(f"chart.channel.{name}.xlabel", lang), fontweight="bold"
+        )
+        add_titles(
+            ax,
+            t(f"chart.channel.{name}.title", lang),
+            subtitle=t(f"chart.channel.{name}.subtitle", lang),
+        )
+        ax.grid(axis="x", alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_language_performance(
+    summary: pd.DataFrame, lang: str = "en"
+) -> None:
+    """Draw conversion and retention for correct and wrong language.
+
+    Parameters
+    ----------
+    summary : pd.DataFrame
+        Output of
+        :func:`marketing_campaign.diagnostics.analyze_language_performance`
+        (English labels).
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts and of the bar labels.
+    """
+    ordered = (
+        summary.set_index("label")
+        .reindex(["Correct Language", "Wrong Language"])
+        .fillna(0)
+        .reset_index()
+    )
+    ordered["label"] = ordered["label"].map(
+        lambda value: translate_text(value, lang)
+    )
+    colors = ["#06A77D", "#D62828"]
+    _, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+    for ax, name, column in (
+        (axes[0], "conversion", "conversion_rate_%"),
+        (axes[1], "retention", "retention_rate_%"),
+    ):
+        ax.bar(ordered["label"], ordered[column], color=colors)
+        ax.set_ylabel(t("chart.language.rate", lang), fontweight="bold")
+        add_titles(
+            ax,
+            t(f"chart.language.{name}.title", lang),
+            subtitle=t(f"chart.language.{name}.subtitle", lang),
+        )
+        top = max(100, ordered[column].max() * 1.15) if name == (
+            "conversion"
+        ) else 105
+        ax.set_ylim(0, top)
+        for position, value in enumerate(ordered[column]):
+            ax.text(
+                position,
+                value + 1,
+                f"{value:.1f}%",
+                ha="center",
+                fontweight="bold",
+            )
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_power_curve(
+    sample_sizes: list[int] | np.ndarray,
+    powers: list[float],
+    sample_per_group: int,
+    lang: str = "en",
+) -> None:
+    """Draw the simulated power against the sample size.
+
+    Parameters
+    ----------
+    sample_sizes : list of int or numpy.ndarray
+        Users per group.
+    powers : list of float
+        Simulated power for each size, from
+        :func:`marketing_campaign.experiment.simulate_power_curve`.
+    sample_per_group : int
+        Sample size of the experiment, drawn as a reference line.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    _, ax = plt.subplots(figsize=(12, 5))
+    ax.plot(sample_sizes, powers, color="#2E86AB", linewidth=2.5)
+    ax.axhline(
+        0.80,
+        color="#D62828",
+        linestyle="--",
+        linewidth=1.5,
+        label=t("chart.power.minimum", lang),
+    )
+    ax.axvline(
+        sample_per_group,
+        color="#06A77D",
+        linestyle="--",
+        linewidth=1.5,
+        label=t("chart.power.current", lang, n=sample_per_group),
+    )
+    ax.fill_between(
+        sample_sizes,
+        powers,
+        0.80,
+        where=[power >= 0.80 for power in powers],
+        alpha=0.15,
+        color="#06A77D",
+    )
+    ax.set_xlabel(t("chart.power.xlabel", lang), fontweight="bold")
+    ax.set_ylabel(t("chart.power.ylabel", lang), fontweight="bold")
+    add_titles(
+        ax,
+        t("chart.power.title", lang),
+        subtitle=t("chart.power.subtitle", lang),
+    )
+    ax.legend()
+    ax.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_variant_rates(df: pd.DataFrame, lang: str = "en") -> None:
+    """Draw the observed conversion and retention rate of each variant.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        User-level base with ``variant``, ``converted_flag`` and
+        ``retained_flag``.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    _, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+    conversion = df.groupby("variant")["converted_flag"].agg(["sum", "count"])
+    conversion["rate"] = conversion["sum"] / conversion["count"] * 100
+    retention = (
+        df[df["converted_flag"] == 1]
+        .groupby("variant")["retained_flag"]
+        .agg(["sum", "count"])
+    )
+    retention["rate"] = retention["sum"] / retention["count"] * 100
+
+    for ax, stats, name, colors, share, headroom in (
+        (axes[0], conversion, "conversion", ["#2E86AB", "#A23B72"],
+         0.06, 2.8),
+        (axes[1], retention, "retention", ["#06A77D", "#D62828"],
+         0.03, 2.5),
+    ):
+        ax.bar(stats.index, stats["rate"], color=colors[: len(stats)])
+        ax.set_ylabel(t("chart.variant.rate", lang), fontweight="bold")
+        add_titles(
+            ax,
+            t(f"chart.variant.{name}.title", lang),
+            subtitle=t(f"chart.variant.{name}.subtitle", lang),
+        )
+        top = float(stats["rate"].max())
+        offset = max(top * share, 0.8)
+        ax.set_ylim(0, top + offset * headroom)
+        for position, value in enumerate(stats["rate"]):
+            ax.text(
+                position,
+                value + offset,
+                f"{value:.1f}%",
+                ha="center",
+                va="bottom",
+                fontweight="bold",
+            )
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_roi(roi: pd.DataFrame, lang: str = "en") -> None:
+    """Draw the incremental ROI and the estimated profit by channel.
+
+    Parameters
+    ----------
+    roi : pd.DataFrame
+        Output of :func:`marketing_campaign.economics.simulate_roi`
+        (English names).
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    _, axes = plt.subplots(1, 2, figsize=(14, 6))
+    for ax, column, name in (
+        (axes[0], "roi_incremental_%", "incremental"),
+        (axes[1], "estimated_profit", "profit"),
+    ):
+        ordered = roi.sort_values(column, ascending=True)
+        ax.barh(
+            ordered["marketing_channel"],
+            ordered[column],
+            color=[
+                "#06A77D" if value > 0 else "#D62828"
+                for value in ordered[column]
+            ],
+        )
+        ax.set_xlabel(t(f"chart.roi.{name}.xlabel", lang), fontweight="bold")
+        add_titles(
+            ax,
+            t(f"chart.roi.{name}.title", lang),
+            subtitle=t(f"chart.roi.{name}.subtitle", lang),
+        )
+        ax.axvline(x=0, color="black", linestyle="--")
+        ax.grid(axis="x", alpha=0.25)
+    plt.tight_layout()
+    plt.show()
+    plt.close()
+
+
+def plot_sample_adequacy(
+    variant_counts: pd.Series, required_per_group: int, lang: str = "en"
+) -> None:
+    """Compare the users of each variant with the power-analysis need.
+
+    Parameters
+    ----------
+    variant_counts : pd.Series
+        Users per variant.
+    required_per_group : int
+        Users needed per group; variants below it are drawn in red.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    fig, ax = plt.subplots(figsize=(10, 4))
+    positions = range(len(variant_counts))
+    bars = ax.bar(
+        positions,
+        variant_counts.values,
+        color="#2E86AB",
+        label=t("chart.sample.available", lang),
+        zorder=3,
+    )
+    ax.axhline(
+        required_per_group,
+        color="#D62828",
+        linestyle="--",
+        linewidth=2,
+        label=t("chart.sample.required", lang, n=required_per_group),
+        zorder=4,
+    )
+    for bar, count in zip(bars, variant_counts.values):
+        if required_per_group > 0 and int(count) < required_per_group:
+            bar.set_color("#D62828")
+            bar.set_alpha(0.7)
+    for bar, count in zip(bars, variant_counts.values):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + max(variant_counts.values) * 0.02,
+            f"{int(count):,}",
+            ha="center",
+            va="bottom",
+            fontweight="bold",
+            fontsize=11,
+        )
+    ax.set_xticks(list(positions))
+    ax.set_xticklabels(variant_counts.index.tolist(), fontsize=11)
+    ax.set_ylabel(t("chart.sample.ylabel", lang), fontweight="bold")
+    add_titles(
+        ax,
+        t("chart.sample.title", lang),
+        subtitle=t("chart.sample.subtitle", lang),
+    )
+    ax.legend(loc="center", frameon=False)
+    ax.grid(axis="y", alpha=0.3)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    plt.tight_layout()
+    plt.show()
+    plt.close(fig)
+
+
+def plot_false_positive_bias(
+    comparison: pd.DataFrame, column: str, lang: str = "en"
+) -> None:
+    """Compare the mix of a variable in the base and in the false positives.
+
+    Parameters
+    ----------
+    comparison : pd.DataFrame
+        Output of
+        :func:`marketing_campaign.diagnostics.compare_false_positives`
+        (English names).
+    column : str
+        Name of the compared variable, used in the title.
+    lang : {"en", "pt"}, default="en"
+        Language of the chart texts.
+    """
+    ordered = comparison.sort_values("diff_pp", ascending=True)
+    positions = np.arange(len(ordered))
+    bar_height = 0.38
+
+    _, ax = plt.subplots(figsize=(10, max(4, len(ordered) * 0.45)))
+    ax.barh(
+        positions - bar_height / 2,
+        ordered["base_pct"],
+        height=bar_height,
+        color="#2E86AB",
+        label=t("chart.bias.base", lang),
+    )
+    ax.barh(
+        positions + bar_height / 2,
+        ordered["false_positive_pct"],
+        height=bar_height,
+        color="#D62828",
+        label=t("chart.bias.false_positives", lang),
+    )
+    ax.set_yticks(positions)
+    ax.set_yticklabels(ordered["category"].astype(str))
+    ax.set_xlabel(t("chart.bias.xlabel", lang), fontweight="bold")
+    add_titles(
+        ax,
+        t("chart.bias.title", lang, column=column),
+        subtitle=t("chart.bias.subtitle", lang),
+    )
+    ax.grid(axis="x", alpha=0.25)
+    ax.legend()
     plt.tight_layout()
     plt.show()
     plt.close()

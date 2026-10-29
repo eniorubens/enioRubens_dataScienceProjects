@@ -14,7 +14,7 @@ Complete Marketing Analytics pipeline with descriptive, inferential, predictive,
 
 **Does not support:** a production scoring service, causal campaign impact, or automatic decisions without further engineering and validation.
 
-**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 152 pytest tests that reproduce the figures of the executive report. Both notebooks call this package for every calculation (cleaning, segmentation, funnel, A/B test, value and ROI, retention model, error analysis, recommendations, exports, charts and narrative helpers); the notebooks define no function or class. The refactor also fixed one defect: users flagged with the wrong language (`is_correct_lang` = "No") are now routed to "Fix Language", a branch the original notebook code never reached. There is no serving API.
+**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 188 pytest tests that reproduce the figures of the executive report. Both notebooks call this package for every calculation (cleaning, segmentation, funnel, A/B test, value and ROI, retention model, error analysis, recommendations, exports and charts). The two notebooks run the same code and differ only in the `LANG` line; every text lives in the message catalog. Twelve insight cells that write sentences with the computed numbers still carry language-specific code, and a test lists them until they move to the catalog. The refactor also fixed one defect: users flagged with the wrong language (`is_correct_lang` = "No") are now routed to "Fix Language", a branch the original notebook code never reached. There is no serving API.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) connects analytical findings to explicit business limitations.
 
@@ -138,11 +138,13 @@ Marketing_Campaign_Optimization_and_Retention_Analytics/
 │   ├── retention_model.py          # Logistic regression for retention
 │   ├── recommendations.py          # Expected value, actions, exports
 │   ├── diagnostics.py              # Language impact, model errors, false-positive bias
-│   ├── i18n.py                     # Portuguese labels for tables and texts
+│   ├── catalog.py                  # Texts of both languages (data only)
+│   ├── i18n.py                     # Applies the catalog: localize, t, say
+│   ├── reports.py                  # Experiment tables and pre-test messages
 │   ├── plots.py                    # Chart helpers (EN and PT texts)
 │   ├── narrative.py                # Helpers for the narrative cells
 │   └── pipeline.py                 # Runs the whole analysis
-├── tests/                          # pytest suite (152 tests)
+├── tests/                          # pytest suite (188 tests)
 └── pyproject.toml                  # Package and test configuration
 ```
 
