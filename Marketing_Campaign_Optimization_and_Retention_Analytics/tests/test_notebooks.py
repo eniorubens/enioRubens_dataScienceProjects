@@ -8,22 +8,6 @@ import pytest
 NOTEBOOKS = sorted(
     (Path(__file__).resolve().parents[1] / "notebooks").glob("*.ipynb")
 )
-# Chart and narrative helpers that still live in the notebooks. Everything
-# that computes a result has to come from the package.
-PRESENTATION_HELPERS = {
-    "set_corporate_theme",
-    "add_titles",
-    "plot_z_test_distribution",
-    "get_transformed_feature_names",
-    "plot_retention_diagnostics",
-    "plot_model_signal_summary",
-    "plot_retention_experiment_comparison",
-    "_safe_float",
-    "_normalize_lang_flag",
-    "_norm_text",
-    "_metric_column_name",
-    "get_metric_value",
-}
 ALGORITHM_CALLS = [
     "KMeans(",
     "LogisticRegression(",
@@ -127,17 +111,16 @@ def test_both_language_notebooks_are_present():
 
 
 @pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)
-def test_notebook_defines_only_presentation_helpers(notebook):
-    """No class and no result-computing function is defined inline."""
+def test_notebook_defines_no_function_or_class(notebook):
+    """Calculations, charts and narrative helpers all come from the package."""
     tree = ast.parse(_code(notebook))
-    defined = {
+    defined = [
         node.name
         for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.ClassDef))
-    }
+    ]
 
-    assert defined <= PRESENTATION_HELPERS, defined - PRESENTATION_HELPERS
-    assert not [n for n in tree.body if isinstance(n, ast.ClassDef)]
+    assert defined == []
 
 
 @pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)

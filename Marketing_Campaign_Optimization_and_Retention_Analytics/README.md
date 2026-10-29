@@ -14,7 +14,7 @@ Complete Marketing Analytics pipeline with descriptive, inferential, predictive,
 
 **Does not support:** a production scoring service, causal campaign impact, or automatic decisions without further engineering and validation.
 
-**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 107 pytest tests that reproduce the figures of the executive report. Both notebooks call this package for every calculation (cleaning, segmentation, funnel, A/B test, value and ROI, retention model, error analysis, recommendations and exports); only chart and narrative helpers stay inline. The refactor also fixed one defect: users flagged with the wrong language (`is_correct_lang` = "No") are now routed to "Fix Language", a branch the original notebook code never reached. There is no serving API.
+**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 152 pytest tests that reproduce the figures of the executive report. Both notebooks call this package for every calculation (cleaning, segmentation, funnel, A/B test, value and ROI, retention model, error analysis, recommendations, exports, charts and narrative helpers); the notebooks define no function or class. The refactor also fixed one defect: users flagged with the wrong language (`is_correct_lang` = "No") are now routed to "Fix Language", a branch the original notebook code never reached. There is no serving API.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) connects analytical findings to explicit business limitations.
 
@@ -139,8 +139,10 @@ Marketing_Campaign_Optimization_and_Retention_Analytics/
 │   ├── recommendations.py          # Expected value, actions, exports
 │   ├── diagnostics.py              # Language impact, model errors, false-positive bias
 │   ├── i18n.py                     # Portuguese labels for tables and texts
+│   ├── plots.py                    # Chart helpers (EN and PT texts)
+│   ├── narrative.py                # Helpers for the narrative cells
 │   └── pipeline.py                 # Runs the whole analysis
-├── tests/                          # pytest suite (107 tests)
+├── tests/                          # pytest suite (152 tests)
 └── pyproject.toml                  # Package and test configuration
 ```
 
