@@ -14,7 +14,7 @@ Complete Marketing Analytics pipeline with descriptive, inferential, predictive,
 
 **Does not support:** a production scoring service, causal campaign impact, or automatic decisions without further engineering and validation.
 
-**Engineering surface:** notebook-led analysis with generated CRM/Excel outputs; this project does not expose a reusable `src/` package, serving API or automated test suite.
+**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 54 pytest tests that reproduce the figures of the executive report. The notebooks keep their inline code as the analysis narrative; the package re-implements and tests the same steps. There is no serving API.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) connects analytical findings to explicit business limitations.
 
@@ -122,9 +122,39 @@ Generation of operational recommendations based on expected value and ROI.
 
 ---
 
+## Code and Tests
+
+```text
+Marketing_Campaign_Optimization_and_Retention_Analytics/
+├── notebooks/                      # Analysis notebooks (EN and PT-BR)
+├── dataset/marketing_new.csv       # Input dataset
+├── src/marketing_campaign/         # Reusable, documented analysis code
+│   ├── config.py                   # Business constants and segment actions
+│   ├── data.py                     # Loading, cleaning, stable-user base
+│   ├── segmentation.py             # RFM proxies and K-Means segments
+│   ├── funnel.py                   # Funnel and channel performance
+│   ├── experiment.py               # Z-test, sample size, Monte Carlo power
+│   ├── economics.py                # Customer value and simulated ROI
+│   ├── retention_model.py          # Logistic regression for retention
+│   ├── recommendations.py          # Expected value, actions, exports
+│   └── pipeline.py                 # Runs the whole analysis
+├── tests/                          # pytest suite (54 tests)
+└── pyproject.toml                  # Package and test configuration
+```
+
+The suite protects the numbers of the executive report: 10,037 raw records, 9,757 cleaned exposures, 6,849 stable users (460 variant switchers excluded), 703 conversions (10.26%), 463 retained (65.86%), z = 0.0779 with p = 0.937870, 3,916 users per group and 80.0% simulated power, the incremental ROI by channel, ROC-AUC 0.956 with 2 false positives, and the 6,849-row recommendation table.
+
+```bash
+cd Marketing_Campaign_Optimization_and_Retention_Analytics
+pip install -e ".[dev]"
+python -m pytest -q
+```
+
+---
+
 ## Key Results
 
-- Identification of statistically significant differences between A/B variants
+- No statistically significant difference between the A/B variants (z = 0.0779, p = 0.94), with both groups below the planned sample size
 - Better performance in campaigns using the correct language
 - Identification of segments over-represented in false positives
 - ROI simulation showing strong variation across channels
