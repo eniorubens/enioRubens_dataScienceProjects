@@ -20,6 +20,7 @@ from marketing_campaign.retention_model import (
 )
 
 CRM_FILENAME = "crm_next_best_action.csv"
+WRONG_LANGUAGE_VALUES = frozenset({"0", "0.0", "no", "n", "false"})
 BASE_COLUMNS = [
     "user_id",
     "marketing_channel",
@@ -94,13 +95,37 @@ def score_users(
     return scored
 
 
+def is_wrong_language(value: object) -> bool:
+    """Tell whether an ``is_correct_lang`` value marks the wrong language.
+
+    The dataset stores the flag as the strings ``"Yes"`` and ``"No"``;
+    derived frames use ``1`` and ``0``. Both spellings are understood.
+
+    Parameters
+    ----------
+    value : object
+        Flag such as ``"No"``, ``"yes"``, ``0``, ``1``, ``False`` or a
+        missing value.
+
+    Returns
+    -------
+    bool
+        ``True`` only when the flag explicitly says the language shown
+        differs from the preferred one. Missing or unknown values are
+        not treated as wrong.
+    """
+    if pd.isna(value):
+        return False
+    return str(value).strip().lower() in WRONG_LANGUAGE_VALUES
+
+
 def recommend_action(row: pd.Series) -> str:
     """Choose the action for one scored user.
 
     A user whose expected profit is not positive gets no action. Users
-    flagged with the wrong language (``is_correct_lang == 0``) are sent
-    to a language fix first. Everyone else receives the action of their
-    segment.
+    flagged with the wrong language (see :func:`is_wrong_language`) are
+    sent to a language fix first. Everyone else receives the action of
+    their segment.
 
     Parameters
     ----------
@@ -115,17 +140,16 @@ def recommend_action(row: pd.Series) -> str:
 
     Notes
     -----
-    The comparison ``is_correct_lang == 0`` only matches numeric flags.
-    The dataset stores the flag as the strings ``"Yes"`` and ``"No"``, so
-    in practice the language-fix branch is never taken, exactly as in the
-    notebooks.
+    The flag is read as text or number, so the ``"No"`` values of the
+    dataset reach the language-fix branch. The first published version
+    compared the flag with ``0`` only and never took that branch.
     """
     config = SEGMENT_ACTIONS.get(
         str(row.get("Segment", "Low Value")), SEGMENT_ACTIONS["Low Value"]
     )
     if row.get("expected_profit", 0) <= 0:
         return NO_ACTION
-    if row.get("is_correct_lang", 1) == 0:
+    if is_wrong_language(row.get("is_correct_lang", 1)):
         return f"Fix Language -> then {config['action']}"
     return str(config["action"])
 

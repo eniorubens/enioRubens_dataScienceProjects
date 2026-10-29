@@ -14,7 +14,7 @@ Complete Marketing Analytics pipeline with descriptive, inferential, predictive,
 
 **Does not support:** a production scoring service, causal campaign impact, or automatic decisions without further engineering and validation.
 
-**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 54 pytest tests that reproduce the figures of the executive report. The notebooks keep their inline code as the analysis narrative; the package re-implements and tests the same steps. There is no serving API.
+**Engineering surface:** notebook-led analysis plus a small `src/marketing_campaign` package (data preparation, RFM segmentation, funnel, A/B test and power, customer value and ROI, retention model, recommendations) covered by 68 pytest tests that reproduce the figures of the executive report. The notebooks keep their inline code as the analysis narrative; the package re-implements and tests the same steps, with one deliberate fix: users flagged with the wrong language (`is_correct_lang` = "No") are routed to "Fix Language", a branch the notebook code never reached. There is no serving API.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) connects analytical findings to explicit business limitations.
 
@@ -138,7 +138,7 @@ Marketing_Campaign_Optimization_and_Retention_Analytics/
 │   ├── retention_model.py          # Logistic regression for retention
 │   ├── recommendations.py          # Expected value, actions, exports
 │   └── pipeline.py                 # Runs the whole analysis
-├── tests/                          # pytest suite (54 tests)
+├── tests/                          # pytest suite (68 tests)
 └── pyproject.toml                  # Package and test configuration
 ```
 
@@ -149,6 +149,8 @@ cd Marketing_Campaign_Optimization_and_Retention_Analytics
 pip install -e ".[dev]"
 python -m pytest -q
 ```
+
+The recommendation step writes `output/crm_next_best_action.csv` (one row per user) and the Excel workbook locally. Both files hold user-level rows, so they are kept in the project folder and are not versioned in the GitHub repository. Of the roughly 580 users with a positive expected profit (the exact count moves by a few users across library versions), 22 have the wrong language and receive "Fix Language -> then Loyalty Campaign"; the rest receive "Loyalty Campaign".
 
 ---
 

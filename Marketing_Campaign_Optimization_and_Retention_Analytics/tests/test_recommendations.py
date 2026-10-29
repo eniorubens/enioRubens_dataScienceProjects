@@ -41,18 +41,29 @@ def test_numeric_wrong_language_flag_is_sent_to_a_language_fix():
     assert action == "Fix Language -> then Loyalty Campaign"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "Known limitation reproduced from the notebooks: the dataset stores "
-        "the flag as 'Yes'/'No', which `== 0` never matches."
-    ),
-)
-def test_text_wrong_language_flag_should_also_be_sent_to_a_language_fix():
-    """Intended behaviour: the string "No" is a wrong-language user."""
-    action = rec.recommend_action(_row(is_correct_lang="No"))
+@pytest.mark.parametrize("flag", ["No", "no", " NO ", "0", 0.0, False])
+def test_text_wrong_language_flag_is_sent_to_a_language_fix(flag):
+    """The dataset's "No" (and other spellings) mean the wrong language."""
+    action = rec.recommend_action(_row(is_correct_lang=flag))
 
-    assert action.startswith("Fix Language")
+    assert action == "Fix Language -> then Loyalty Campaign"
+
+
+@pytest.mark.parametrize("flag", ["Yes", "yes", 1, True, None, float("nan")])
+def test_correct_or_missing_language_keeps_the_segment_action(flag):
+    """Only an explicit wrong-language flag changes the action."""
+    assert rec.recommend_action(_row(is_correct_lang=flag)) == (
+        "Loyalty Campaign"
+    )
+
+
+def test_wrong_language_does_not_override_the_no_action_rule():
+    """Without positive expected profit the user is left alone."""
+    action = rec.recommend_action(
+        _row(is_correct_lang="No", expected_profit=-1.0)
+    )
+
+    assert action == "No Action - Negative Incremental Profit"
 
 
 def _scored() -> pd.DataFrame:
@@ -125,19 +136,37 @@ def test_real_recommendations_cover_every_user_once(result):
     assert (acted["expected_profit"] > 0).all()
 
 
-def test_real_action_distribution_matches_the_exported_file(result):
-    """About 580 users get the loyalty action; the rest get none.
+def test_real_action_distribution_fixes_language_before_loyalty(result):
+    """About 580 users are worth acting on; ~22 need a language fix first.
 
     The split depends on logistic-regression probabilities near the
     break-even point, which move by a few users across library versions.
     """
     counts = result.recommendations["recommended_action"].value_counts()
+    fix = "Fix Language -> then Loyalty Campaign"
 
     assert set(counts.index) == {
         "No Action - Negative Incremental Profit",
         "Loyalty Campaign",
+        fix,
     }
-    assert counts["Loyalty Campaign"] == pytest.approx(580, abs=10)
+    assert counts["Loyalty Campaign"] + counts[fix] == pytest.approx(
+        580, abs=10
+    )
+    assert counts[fix] == pytest.approx(22, abs=4)
     assert counts["No Action - Negative Incremental Profit"] == pytest.approx(
         6269, abs=10
     )
+
+
+def test_every_fix_language_user_has_the_wrong_language(result):
+    """The language fix is only recommended for flagged users."""
+    recs = result.recommendations
+    fixed = recs[recs["recommended_action"].str.startswith("Fix Language")]
+    wrong_and_acted = recs[
+        (recs["is_correct_lang"] == "No") & (recs["expected_profit"] > 0)
+    ]
+
+    assert len(fixed) > 0
+    assert (fixed["is_correct_lang"] == "No").all()
+    assert len(wrong_and_acted) == len(fixed)
