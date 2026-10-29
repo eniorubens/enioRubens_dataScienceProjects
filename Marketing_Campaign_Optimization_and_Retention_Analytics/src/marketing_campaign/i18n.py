@@ -46,6 +46,7 @@ COLUMNS_PT = {
     "false_positive_count": "qtd_false_positive",
     "false_positive_pct": "perc_false_positive",
     "interpretation": "interpretacao",
+    "Variant": "Variante",
 }
 
 VALUES_PT = {
@@ -87,12 +88,28 @@ VALUES_PT = {
         "ROI baixo - avaliar se custo de reativação se justifica."
     ),
 }
+VALUES_PT.update(
+    {
+        "Accuracy": "Acurácia",
+        "Precision": "Precisão",
+        "Precision - Not Retained": "Precisão - Não Retido",
+        "Recall - Not Retained": "Recall - Não Retido",
+        "F1 - Not Retained": "F1 - Não Retido",
+        "False Positives": "Falsos Positivos",
+        "False Negatives": "Falsos Negativos",
+        "with converted": "com converted",
+        "without converted": "sem converted",
+        "without SMOTE": "sem SMOTE",
+        "Missing": "Missing",
+    }
+)
 FIX_LANGUAGE_PREFIX = {
     "en": "Fix Language -> then ",
     "pt": "Corrigir Idioma -> depois ",
 }
 VALUE_COLUMNS = {
     "Metric",
+    "experiment",
     "Segment",
     "majority_segment",
     "Significance",
@@ -172,6 +189,10 @@ def translate_text(text: object, lang: str = "pt") -> object:
     if text.startswith(prefix):
         action = text[len(prefix):]
         return FIX_LANGUAGE_PREFIX[lang] + str(translate_text(action, lang))
+    if " | " in text:
+        return " | ".join(
+            str(translate_text(part, lang)) for part in text.split(" | ")
+        )
     return VALUES_PT.get(text, text)
 
 

@@ -370,6 +370,9 @@ def run_retention_experiments(
         )
         rows.append(
             {
+                "experiment": make_experiment_label(
+                    "LogisticRegression", include_converted, None
+                ),
                 "estimator_name": "LogisticRegression",
                 "include_converted": include_converted,
                 "resampling_strategy": "None",
@@ -383,4 +386,67 @@ def run_retention_experiments(
             ascending=[False, False, False],
         )
         .reset_index(drop=True)
+    )
+
+
+def make_experiment_label(
+    estimator_name: str,
+    include_converted: bool,
+    resampling_strategy: str | None,
+) -> str:
+    """Create a readable label for a retention scenario.
+
+    Parameters
+    ----------
+    estimator_name : str
+        Name of the estimator.
+    include_converted : bool
+        Whether the conversion flag is a feature.
+    resampling_strategy : str or None
+        ``"smote"`` or ``None``.
+
+    Returns
+    -------
+    str
+        Text such as ``"LogisticRegression | with converted | without
+        SMOTE"``.
+    """
+    converted = "with converted" if include_converted else "without converted"
+    resampling = "SMOTE" if resampling_strategy == "smote" else "without SMOTE"
+    return f"{estimator_name} | {converted} | {resampling}"
+
+
+METRIC_LABELS = [
+    ("Accuracy", "accuracy"),
+    ("Precision", "precision"),
+    ("Recall", "recall"),
+    ("F1-Score", "f1"),
+    ("ROC AUC", "roc_auc"),
+    ("Precision - Not Retained", "precision_not_retained"),
+    ("Recall - Not Retained", "recall_not_retained"),
+    ("F1 - Not Retained", "f1_not_retained"),
+    ("False Positives", "false_positives"),
+    ("False Negatives", "false_negatives"),
+]
+
+
+def make_metrics_table(metrics: dict[str, Any]) -> pd.DataFrame:
+    """Format the retention metrics as a two-column table.
+
+    Parameters
+    ----------
+    metrics : dict
+        Output of :func:`calculate_retention_metrics`.
+
+    Returns
+    -------
+    pd.DataFrame
+        Columns ``Metric`` and ``Value`` with the ten metrics, in the
+        order shown in the report.
+    """
+    return pd.DataFrame(
+        {
+            "Metric": [label for label, _ in METRIC_LABELS],
+            "Value": [metrics[key] for _, key in METRIC_LABELS],
+        }
     )

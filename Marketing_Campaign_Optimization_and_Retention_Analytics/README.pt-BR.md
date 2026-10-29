@@ -16,7 +16,7 @@ e geração de recomendações operacionais.
 
 **Não sustenta:** serviço produtivo de scoring, impacto causal de campanha ou decisões automáticas sem engenharia e validação adicionais.
 
-**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 96 testes pytest que reproduzem os números do relatório executivo. Os notebooks mantêm o código inline como narrativa da análise; o pacote reimplementa e testa as mesmas etapas, com uma correção deliberada: usuários sinalizados com idioma errado (`is_correct_lang` = "No") vão para "Fix Language", ramo que o código dos notebooks nunca alcançava. Não há API de serving.
+**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 107 testes pytest que reproduzem os números do relatório executivo. Os dois notebooks chamam esse pacote para todos os cálculos (limpeza, segmentação, funil, teste A/B, valor e ROI, modelo de retenção, análise de erros, recomendações e exportações); só os auxiliares de gráfico e de narrativa ficam inline. A refatoração também corrigiu um defeito: usuários sinalizados com idioma errado (`is_correct_lang` = "No") agora vão para "Fix Language", ramo que o código original dos notebooks nunca alcançava. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) conecta os achados analíticos às limitações de negócio explícitas.
 
@@ -144,7 +144,7 @@ Marketing_Campaign_Optimization_and_Retention_Analytics/
 │   ├── diagnostics.py              # Impacto do idioma, erros do modelo, viés dos falsos positivos
 │   ├── i18n.py                     # Rótulos em português para tabelas e textos
 │   └── pipeline.py                 # Executa a análise completa
-├── tests/                          # Suíte pytest (96 testes)
+├── tests/                          # Suíte pytest (107 testes)
 └── pyproject.toml                  # Configuração do pacote e dos testes
 ```
 
@@ -157,6 +157,8 @@ python -m pytest -q
 ```
 
 A etapa de recomendação grava localmente `output/crm_next_best_action.csv` (uma linha por usuário) e a planilha Excel. Os dois arquivos têm linhas por usuário, então ficam na pasta do projeto e não são versionados no repositório do GitHub. Dos cerca de 580 usuários com lucro esperado positivo (a contagem exata varia em poucos usuários entre versões das bibliotecas), 22 estão com idioma errado e recebem "Fix Language -> then Loyalty Campaign"; os demais recebem "Loyalty Campaign".
+
+Os notebooks importam `marketing_campaign` (instale com `pip install -e .` na pasta do projeto; sem instalar, eles usam `./src`). O notebook em inglês usa `LANG = "en"` e o em português `LANG = "pt"`, o que só muda os rótulos de tabelas e textos, não os cálculos. Executá-los reescreve os exports locais de CRM em `output/`, que não são versionados no repositório.
 
 ---
 

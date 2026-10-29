@@ -9,6 +9,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 
 from marketing_campaign.config import (
@@ -157,4 +158,72 @@ def attach_segments(
         segmented_rfm[["user_id", "RFM_Cluster", "Segment"]],
         on="user_id",
         how="left",
+    )
+
+
+def evaluate_k(
+    rfm: pd.DataFrame,
+    k_values: range | list[int] | None = None,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    """Measure inertia and silhouette for several numbers of clusters.
+
+    Parameters
+    ----------
+    rfm : pd.DataFrame
+        Output of :func:`build_rfm`.
+    k_values : range or list of int, optional
+        Numbers of clusters to try. Defaults to ``range(2, 8)``.
+    random_state : int, default=42
+        Seed of K-Means.
+
+    Returns
+    -------
+    pd.DataFrame
+        One row per ``k`` with ``inertia`` and ``silhouette``, on the
+        same log-transformed and standardised proxies used by
+        :func:`assign_segments`.
+    """
+    scaled = StandardScaler().fit_transform(
+        np.log1p(rfm[["Recency", "Frequency", "Monetary"]])
+    )
+    rows = []
+    for k in k_values if k_values is not None else range(2, 8):
+        model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+        labels = model.fit_predict(scaled)
+        rows.append(
+            {
+                "k": k,
+                "inertia": model.inertia_,
+                "silhouette": silhouette_score(scaled, labels),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def summarize_segments(segmented_rfm: pd.DataFrame) -> pd.DataFrame:
+    """Describe each segment by its customers and mean proxies.
+
+    Parameters
+    ----------
+    segmented_rfm : pd.DataFrame
+        Output of :func:`assign_segments`.
+
+    Returns
+    -------
+    pd.DataFrame
+        One row per cluster and segment with ``customers``,
+        ``recency_mean``, ``frequency_mean`` and ``monetary_mean``,
+        highest monetary mean first.
+    """
+    return (
+        segmented_rfm.groupby(["RFM_Cluster", "Segment"])
+        .agg(
+            customers=("user_id", "nunique"),
+            recency_mean=("Recency", "mean"),
+            frequency_mean=("Frequency", "mean"),
+            monetary_mean=("Monetary", "mean"),
+        )
+        .reset_index()
+        .sort_values("monetary_mean", ascending=False)
     )
