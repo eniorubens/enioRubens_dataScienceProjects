@@ -8,7 +8,7 @@
 
 **Não sustenta:** incrementalidade causal, uplift garantido de conversão ou deployment automático de ofertas.
 
-**Superfície de engenharia:** análise reprodutível em notebook e dataset; este projeto não expõe pacote modular `src`, API de serving ou suíte automatizada de testes.
+**Superfície de engenharia:** análise reprodutível em notebook e dataset, mais um pequeno pacote `src/cross_sell_rules` (construção das cestas, métricas de associação, mineração Apriori, seleção de candidatas) coberto por 29 testes pytest que reproduzem os números do relatório executivo. Os notebooks mantêm o código inline como narrativa da análise; o pacote reimplementa e testa as mesmas etapas. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) apresenta as regras como associações comportamentais, não como evidência de intervenção.
 
@@ -85,7 +85,24 @@ Cross_Sell_Association_Rules/
 │   ├── Cross_Sell_Association_Rules_PT.ipynb            # Notebook de análise em português
 │   └── Cross_Sell_Association_Rules_EN.ipynb            # Notebook de análise em inglês
 ├── dataset/Groceries_dataset.csv                        # Dataset de entrada
+├── src/cross_sell_rules/                                # Código de análise reutilizável e documentado
+│   ├── data.py                                          # Leitura e construção das cestas
+│   ├── metrics.py                                       # Confidence, lift, conviction, Zhang
+│   ├── mining.py                                        # Apriori, regras, seleção de candidatas
+│   └── report.py                                        # Recalcula os números do relatório
+├── tests/                                               # Suíte pytest (29 testes)
+├── pyproject.toml                                       # Configuração do pacote e dos testes
 └── README.md                                            # Documentação do projeto
+```
+
+## Testes
+
+A suíte protege os números publicados no relatório executivo (38.765 ocorrências de itens, 14.963 transações, 167 produtos, lift 0,77 e Zhang −0,2625 para whole milk → other vegetables, 216/750 itemsets, 210/648 regras e as 16 candidatas de cross-sell).
+
+```bash
+cd Cross_Sell_Association_Rules
+pip install -e ".[dev]"
+python -m pytest -q
 ```
 ## Conclusão
 

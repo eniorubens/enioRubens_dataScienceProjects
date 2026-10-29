@@ -8,7 +8,7 @@
 
 **Does not support:** causal incrementality, guaranteed conversion uplift, or automatic offer deployment.
 
-**Engineering surface:** reproducible notebook and dataset analysis; this project does not expose a modular `src/` package, serving API or automated test suite.
+**Engineering surface:** reproducible notebook and dataset analysis, plus a small `src/cross_sell_rules` package (basket construction, association metrics, Apriori mining, candidate selection) covered by 29 pytest tests that reproduce the figures of the executive report. The notebooks keep their inline code as the analysis narrative; the package re-implements and tests the same steps. There is no serving API.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) presents the rules as behavioral associations, not intervention evidence.
 
@@ -73,7 +73,24 @@ Cross_Sell_Association_Rules/
 │   ├── Cross_Sell_Association_Rules_PT.ipynb            # Portuguese analysis notebook
 │   └── Cross_Sell_Association_Rules_EN.ipynb            # English analysis notebook
 ├── dataset/Groceries_dataset.csv                        # Input dataset
+├── src/cross_sell_rules/                                # Reusable, documented analysis code
+│   ├── data.py                                          # Loading and basket construction
+│   ├── metrics.py                                       # Confidence, lift, conviction, Zhang
+│   ├── mining.py                                        # Apriori, rules, candidate selection
+│   └── report.py                                        # Recomputes the report figures
+├── tests/                                               # pytest suite (29 tests)
+├── pyproject.toml                                       # Package and test configuration
 └── README.md                                            # Project documentation
+```
+
+## Tests
+
+The suite protects the numbers published in the executive report (38,765 item occurrences, 14,963 transactions, 167 products, lift 0.77 and Zhang −0.2625 for whole milk → other vegetables, 216/750 itemsets, 210/648 rules and the 16 cross-sell candidates).
+
+```bash
+cd Cross_Sell_Association_Rules
+pip install -e ".[dev]"
+python -m pytest -q
 ```
 ## Conclusion
 
