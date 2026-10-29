@@ -172,10 +172,6 @@ DRAWING_CALLS = [
     ".set_xlabel(",
     ".set_ylabel(",
 ]
-# Narrative cells (insights written with the computed numbers) still hold
-# language-specific code. Each index leaves this set when the cell moves to
-# the catalog; the goal is an empty set.
-PENDING_NARRATIVE = {19, 22, 25, 30, 34, 37, 40, 43, 46, 47, 54, 55}
 
 
 @pytest.mark.parametrize("notebook", NOTEBOOKS, ids=lambda path: path.stem)
@@ -212,7 +208,7 @@ def _code_cells(notebook: Path) -> dict[int, str]:
 
 
 def test_both_notebooks_run_the_same_code():
-    """Only ``LANG`` tells the notebooks apart, except pending narratives."""
+    """Only the ``LANG`` line tells the two notebooks apart."""
     english, portuguese = (_code_cells(path) for path in NOTEBOOKS)
 
     assert english.keys() == portuguese.keys()
@@ -221,4 +217,4 @@ def test_both_notebooks_run_the_same_code():
         for position in english
         if english[position] != portuguese[position]
     }
-    assert different == PENDING_NARRATIVE
+    assert different == set()

@@ -125,6 +125,19 @@ CANONICAL_SEGMENTS = {
 }
 
 
+_SPAN = '<span style="color:steelblue; text-align: left">'
+
+
+def _md(*lines: str) -> str:
+    """Join the lines of a Markdown message."""
+    return "\n".join(lines)
+
+
+def _title(text: str) -> list[str]:
+    """Return the lines of a coloured section title."""
+    return ["", _SPAN, "", f"### {text}", "", "</span>", ""]
+
+
 # Each message is written once as (English, Portuguese), so a key can never
 # exist in one language only. Placeholders use ``str.format`` fields.
 _PAIRS = {
@@ -936,6 +949,718 @@ _PAIRS = {
         "Diretorio CSV exportado: {path}",
     ),
     "export.crm": ("CRM CSV exported: {path}", "CSV CRM exportado: {path}"),
+    # insights: funnel, channels, language -------------------------------
+    "insight.funnel": (
+        _md(
+            *_title("Funnel Insights"),
+            "**What the data shows:** {conv:.1f}% of impacted users convert "
+            "and {ret:.1f}% of converts remain. The biggest loss occurs in "
+            "conversion, not retention.",
+            "",
+            "**Why it matters:** The main bottleneck is qualified "
+            "acquisition, not post-conversion retention. Focusing efforts "
+            "here has greater leverage.",
+            "",
+            "**Recommended action:** Prioritize budget optimization in "
+            "channels and variants that increase initial conversion.",
+            "",
+            "**Estimated impact:** Each +1 p.p. in conversion generates "
+            "approximately \\$ {impact:,.0f} in additional revenue on the "
+            "current base.",
+        ),
+        _md(
+            *_title("Insights do Funil"),
+            "**O que os dados mostram:** {conv:.1f}% dos usuários "
+            "impactados convertem e {ret:.1f}% dos convertidos permanecem. "
+            "A maior perda ocorre na conversão, não na retenção.",
+            "",
+            "**Por que importa:** O gargalo principal é aquisição "
+            "qualificada, não retenção pós-conversão. Concentrar esforços "
+            "aqui tem maior alavancagem.",
+            "",
+            "**Ação recomendada:** Priorizar budget de otimização em "
+            "canais e variantes que aumentam conversão inicial.",
+            "",
+            "**Impacto estimado:** Cada +1 p.p. na conversão gera "
+            "aproximadamente \\$ {impact:,.0f} em receita adicional sobre "
+            "a base atual.",
+        ),
+    ),
+    "channel.action_dominates": (
+        "Email leads in both dimensions (conversion: {email_conv:.1f}% vs "
+        "{house_conv:.1f}%; retention: {email_ret:.1f}% vs "
+        "{house_ret:.1f}%). **Action**: Scale email budget. House Ads does "
+        "not justify budget reallocation while email dominates both "
+        "metrics.",
+        "Email lidera em ambas as dimensões (conversão: {email_conv:.1f}% "
+        "vs {house_conv:.1f}%; retenção: {email_ret:.1f}% vs "
+        "{house_ret:.1f}%). Ação: escalar budget de Email. House Ads não "
+        "justifica realocação de budget enquanto Email dominar ambas as "
+        "métricas.",
+    ),
+    "channel.realloc_dominates": (
+        "from House Ads to Email",
+        "de House Ads para Email",
+    ),
+    "channel.action_tradeoff": (
+        "There's a real tradeoff: {best_conv} leads in conversion "
+        "({best_conv_rate:.1f}%) and {best_ret} leads in retention "
+        "({best_ret_rate:.1f}%). **Action**: Use {best_conv} for "
+        "acquisition and {best_ret} for convert retention.",
+        "Há tradeoff real: {best_conv} lidera conversão "
+        "({best_conv_rate:.1f}%) e {best_ret} lidera retenção "
+        "({best_ret_rate:.1f}%). Ação: usar {best_conv} para aquisição e "
+        "{best_ret} para retenção de convertidos.",
+    ),
+    "channel.realloc_tradeoff": (
+        "from {best_conv} to {best_ret} in retention campaigns",
+        "de {best_conv} para {best_ret} em campanhas de retenção",
+    ),
+    "channel.action_house": (
+        "House Ads leads on both dimensions. Review data; this is an "
+        "uncommon result.",
+        "House Ads lidera em ambas as dimensões. Revisar dados - "
+        "resultado incomum.",
+    ),
+    "channel.realloc_house": (
+        "review data before recommending",
+        "verificar dados antes de recomendar",
+    ),
+    "channel.action2_dominates": (
+        "**Focus budget on Email** - dominant channel in conversion "
+        "({email_conv:.1f}%) and retention ({email_ret:.1f}%). Reduce "
+        "allocation to channels with both metrics below average. Do not "
+        "redirect to House Ads while Email dominates both dimensions.",
+        "**Concentrar budget em Email** - canal dominante em conversão "
+        "({email_conv:.1f}%) e retenção ({email_ret:.1f}%). Reduzir "
+        "alocação em canais com ambas as métricas abaixo da média. Não "
+        "redirecionar para House Ads enquanto Email dominar ambas as "
+        "dimensões.",
+    ),
+    "channel.action2_tradeoff": (
+        "Separate channels by objective: {best_conv} for acquisition, "
+        "{best_ret} for retention. Allocate a percentage of the budget "
+        "proportional to the expected value of each stage of the funnel.",
+        "**Separar canais por objetivo:** {best_conv} para aquisição, "
+        "{best_ret} para retenção. Alocar percentual do budget "
+        "proporcional ao valor esperado de cada etapa do funil.",
+    ),
+    "channel.action2_default": (
+        "Review channel performance data before recommending "
+        "reallocation.",
+        "Revisar dados de performance de canal antes de recomendar "
+        "realocação.",
+    ),
+    "channel.finding_dominates": (
+        "Email dominates conversion ({email_conv:.1f}%) and retention "
+        "({email_ret:.1f}%).",
+        "Email domina conversão ({email_conv:.1f}%) e retenção "
+        "({email_ret:.1f}%).",
+    ),
+    "channel.finding_tradeoff": (
+        "Real tradeoff: {best_conv} leads conversion and {best_ret} leads "
+        "retention.",
+        "Tradeoff real: {best_conv} lidera conversão e {best_ret} lidera "
+        "retenção.",
+    ),
+    "channel.finding_default": (
+        "No clear dominance between Email and House Ads; review by "
+        "channel.",
+        "Sem dominância clara entre Email e House Ads; revisar por canal.",
+    ),
+    "insight.channel": (
+        _md(
+            *_title("Channel Insights"),
+            "**What they show:** {action}",
+            "",
+            "**Why it matters:** The channel with the highest conversion "
+            "and highest retention simultaneously should receive budget "
+            "priority - there is no benefit in diversifying to channels "
+            "with inferior performance in both dimensions.",
+            "",
+            "**Recommended action:** Concentrate the next campaign on the "
+            "dominant channel.",
+            "",
+            "Review current allocation: Is there budget in channels with "
+            "a conversion rate below {mean_conv:.1f}% (overall average)?",
+            "",
+            "**Estimated impact:** Budget reallocation {realloc} can "
+            "increase incremental profit by ~\\$ {ltv_impact:,.0f} per "
+            "user for each additional retained user (conservative "
+            "estimate: 5% gain in average LTV).",
+        ),
+        _md(
+            *_title("Insights por Canal"),
+            "**O que mostram:** {action}",
+            "",
+            "**Por que importa:** Canal com maior conversão e maior "
+            "retenção simultaneamente deve receber prioridade de budget - "
+            "não há benefício em diversificar para canais com performance "
+            "inferior em ambas as dimensões.",
+            "",
+            "**Ação recomendada:** Concentrar próxima campanha no canal "
+            "dominante.",
+            "",
+            "Revisar alocação atual: há budget em canais com "
+            "conversion_rate abaixo de {mean_conv:.1f}% (média geral)?",
+            "",
+            "**Impacto estimado:** Realocação de budget {realloc} pode "
+            "aumentar lucro incremental em ~\\$ {ltv_impact:,.0f} por "
+            "usuário adicional retido (estimativa conservadora de 5% de "
+            "ganho no LTV médio).",
+        ),
+    ),
+    "language.lift_note": (
+        "Measured conversion lift = 0 p.p., but wrong-language exposure "
+        "still has an estimated satisfaction cost of \\$ {value:.0f} "
+        "(5% LTV loss across {users} users).",
+        "Lift de conversao medido = 0 p.p., mas exposicao no idioma "
+        "errado ainda tem custo estimado de satisfacao de \\$ {value:.0f} "
+        "(perda de 5% de LTV em {users} usuarios).",
+    ),
+    "insight.language": (
+        _md(
+            *_title("Language Personalization Insights"),
+            "> **What it shows:** users receiving the correct language "
+            "convert at {correct_conv:.1f}%",
+            "> versus {wrong_conv:.1f}% when exposed to the wrong "
+            "language - a difference of {lift_conv:.1f} p.p.",
+            "> There are {n_wrong:,} users ({pct_wrong:.1f}% of the "
+            "dataset) being impacted in the wrong language.",
+            ">",
+            "> **Why it matters:** incorrect language delivery affects "
+            "both immediate conversion",
+            "> and long-term retention. Even small conversion "
+            "differences may generate meaningful",
+            "> impact on customer lifetime value (LTV).",
+            ">",
+            "> **Recommended action:** implement automatic language "
+            "detection based on",
+            "> `language_preferred` before serving campaigns.",
+            ">",
+            "> **Estimated impact:** correcting language delivery for "
+            "{n_wrong:,.0f} users could generate",
+            "> approximately \\$ {total:,.0f}  in additional estimated "
+            "revenue",
+            "> (conversion: \\$ {impact_conv:,.0f} + retention/LTV: "
+            "\\$ {impact_ret:,.0f}).",
+        ),
+        _md(
+            *_title("Insights de Personalização por Idioma"),
+            "> **O que mostram:** usuarios no idioma correto convertem "
+            "{correct_conv:.1f}%",
+            "> vs {wrong_conv:.1f}% no idioma errado - diferenca de "
+            "{lift_conv:.1f} p.p.",
+            "> Ha {n_wrong:,} usuarios ({pct_wrong:.1f}% da base) sendo "
+            "impactados no idioma errado.",
+            ">",
+            "> **Por que importa:** idioma errado afeta a conversão "
+            "imediata e a retenção de longo prazo.",
+            "> Mesmo com diferenca pequena em conversão, o impacto no "
+            "LTV pode ser relevante.",
+            ">",
+            "> **Ação recomendada:** implementar detecção automática de "
+            "idioma baseada em",
+            "> `language_preferred` antes de servir campanhas.",
+            ">",
+            "> **Impacto estimado:** corrigir idioma para os {n_wrong:,} "
+            "usuarios pode gerar",
+            "> aproximadamente \\$ {total:,.0f} em receita adicional "
+            "estimada",
+            "> (conversão: \\$ {impact_conv:,.0f} + retenção/LTV: "
+            "\\$ {impact_ret:,.0f}).",
+        ),
+    ),
+    # insights: A/B test ---------------------------------------------------
+    "insight.ab_design": (
+        _md(
+            *_title("A/B Test Insight: personalization vs control"),
+            "The experiment design was defined above. The hypothesis: "
+            "customized campaigns generate higher conversion rates than "
+            "the control group with statistical significance and "
+            "sufficient magnitude (>= {lift:.1f} p.p. of lift) to justify "
+            "operational cost.",
+        ),
+        _md(
+            *_title("Insight Teste A/B: personalização vs controle"),
+            "O design do experimento foi definido acima. A hipótese: "
+            "campanhas personalizadas geram conversão superior ao "
+            "controle com significância estatística e magnitude "
+            "suficiente (>= {lift:.1f} p.p. de lift) para justificar "
+            "custo operacional.",
+        ),
+    ),
+    "insight.z_test": (
+        _md(
+            *_title("Inferential Insight from Z-Test"),
+            "> **What it shows:** The Z-test evaluates whether the "
+            "personalization variant",
+            "> produces a statistically significant difference compared "
+            "to the control group.",
+            ">",
+            "> **Why it matters:** Statistical significance does not "
+            "necessarily imply",
+            "> practical relevance. It is also necessary to verify "
+            "whether the lift magnitude",
+            "> (>= {lift:.1f} p.p.) justifies the operational cost.",
+            ">",
+            "> **Recommended action:** If p < 0.05 and lift >= "
+            "{lift:.1f} p.p.,",
+            "> launch the campaign; otherwise, revisit the experimental "
+            "design or increase",
+            "> the sample size.",
+            ">",
+            "> **Business impact:** Each additional percentage point of "
+            "lift may generate",
+            "> approximately \\$ {value:,.0f}, considering the current "
+            "user base.",
+        ),
+        _md(
+            *_title("Insight inferencial do teste Z"),
+            "> **O que mostram:** O teste Z avalia se a variante "
+            "personalização gera diferença estatisticamente significativa "
+            "em relação ao controle.",
+            ">",
+            "> **Por que importa:** Diferença estatística != relevância "
+            "prática. Precisamos também verificar se a magnitude do lift "
+            "(>= {lift:.1f} p.p.) justifica custo operacional.",
+            ">",
+            "> **Ação recomendada:** Se p < 0.05 e lift >= {lift:.1f} "
+            "p.p., lançar campanha; senão, retornar ao design ou aumentar "
+            "sample size.",
+            ">",
+            "> **Impacto:** Cada p.p. de lift adicional pode gerar "
+            "\\$ {value:,.0f} considerando tamanho da base.",
+        ),
+    ),
+    # insights: ROI -------------------------------------------------------
+    "roi.alert": (
+        "ALERT: {channel} has an incremental ROI of {roi:.0f}% with only "
+        "\\$ {cost:,.0f} of total cost. A high ROI on a low-volume "
+        "channel may indicate an underestimated cost or an insufficient "
+        "sample - validate before scaling.",
+        "ALERTA: {channel} tem ROI incremental de {roi:.0f}% com apenas "
+        "\\$ {cost:,.0f} de custo total. ROI alto em canal de baixo "
+        "volume pode indicar custo subestimado ou amostra insuficiente - "
+        "validar antes de escalar.",
+    ),
+    "insight.roi": (
+        _md(
+            *_title("Insights on ROI and Expected Value"),
+            "> **What it shows:** {best} has the highest incremental ROI, "
+            "while",
+            "> {worst} has the lowest among channels with relevant volume",
+            "> (>= 5% of total budget).",
+            ">",
+            "> **Why it matters:** Large ROI differences across channels "
+            "indicate",
+            "> inefficiencies in the current budget allocation, "
+            "suggesting that part",
+            "> of the investment may be generating returns below its "
+            "potential.",
+            ">",
+            "> **Recommended action:** Reallocate {fraction:.0f}% of the "
+            "budget",
+            "> from {worst} to {best}.",
+            ">",
+            "> **Estimated impact:** Reallocating \\$ {moved:,.0f}",
+            "> (10% of the total budget of \\$ {budget:,.0f})",
+            "> may generate approximately \\$ {extra:,.0f}",
+            "> in additional estimated profit, increasing overall ROI "
+            "from",
+            "> {roi_now:.1f}% to approximately {roi_new:.1f}%",
+            "> (+{gain:.1f} p.p.).",
+            ">",
+            "> Additional savings of up to \\$ {savings:,.0f} may also be "
+            "achieved",
+            "> by reducing investment in channels with negative "
+            "incremental ROI.",
+        ),
+        _md(
+            *_title("Insights sobre ROI e Valor Esperado"),
+            "> **O que mostram:** {best} tem o maior ROI incremental; "
+            "{worst} o menor",
+            "> entre canais com volume relevante (>= 5% do budget total).",
+            ">",
+            "> **Por que importa:** Canais com ROI muito diferente "
+            "indicam ineficiência",
+            "> na alocação atual - parte do budget pode estar gerando "
+            "retorno abaixo do potencial.",
+            ">",
+            "> **Ação recomendada:** Realocar {fraction:.0f}% do "
+            "orçamento de",
+            "> {worst} para {best}.",
+            ">",
+            "> **Impacto estimado:** Realocação de \\$ {moved:,.0f} "
+            "(10% do budget total de",
+            "> \\$ {budget:,.0f}) gera ~\\$ {extra:,.0f} em lucro "
+            "adicional estimado,",
+            "> aumentando ROI global de {roi_now:.1f}% para "
+            "~{roi_new:.1f}%",
+            "> (+{gain:.1f} p.p.). Economia adicional de até "
+            "\\$ {savings:,.0f}",
+            "> cortando canais com ROI incremental negativo.",
+        ),
+    ),
+    # insights: model, errors, bias --------------------------------------
+    "insight.model": (
+        _md(
+            "",
+            "> **Selected model:** {estimator} | {with_flag} "
+            "converted_flag | without SMOTE",
+            ">",
+            "> **Metrics:** ROC AUC = {roc_auc:.3f} | Not Retained Recall "
+            "= {recall:.3f} | F1-score Not Retained = {f1:.3f}",
+            ">",
+            "> **Operational implication:** The model identifies "
+            "{recall:.0%} of users",
+            "> who would not remain retained. This enables proactive "
+            "preventive campaigns for this group",
+            "> before churn occurs, with a precision of {precision:.0%}",
+            "> (proportion of correct alerts).",
+            ">",
+            "> **Limitation:** Prediction is not causality. Results "
+            "should be validated with a dedicated",
+            "> retention A/B experiment before scaling preventive "
+            "campaigns.",
+        ),
+        _md(
+            "",
+            "> **Modelo selecionado:** {estimator} | {with_flag} "
+            "converted_flag | sem SMOTE",
+            ">",
+            "> **Métricas:** ROC AUC = {roc_auc:.3f} | Recall Não Retido "
+            "= {recall:.3f} | F1 Não Retido = {f1:.3f}",
+            ">",
+            "> **Implicação operacional:** O modelo identifica "
+            "{recall:.0%} dos usuários",
+            "> que não permaneceriam. Isso permite antecipar campanhas "
+            "preventivas para esse grupo",
+            "> antes do cancelamento, com precisão de {precision:.0%} "
+            "(proporção de alertas corretos).",
+            ">",
+            "> **Limitação:** Predição não é causalidade. Validar com "
+            "experimento A/B dedicado",
+            "> a retenção antes de escalar campanhas preventivas.",
+        ),
+    ),
+    "model.with_converted": ("with", "com"),
+    "model.without_converted": ("without", "sem"),
+    "insight.errors": (
+        _md(
+            *_title("Error Analysis Insights"),
+            ">**What the data shows:** The model generated {fp:,} false "
+            "positives ({pct:.1f}% of converted users). These users were "
+            "predicted as retained but were not retained.",
+            ">**Why this matters:** Each false positive represents "
+            "wasted budget on users who do not benefit from the "
+            "campaign. Reducing FP improves retention ROI.",
+            ">**Recommended action:** Run granular analysis to identify "
+            "channels, segments, or periods with higher FP. Adjust model "
+            "threshold or improve features.",
+            ">**Impact:** Reducing FP by 20% saves \\$ {savings:,.0f} "
+            "without losing predictive capacity in recall.",
+        ),
+        _md(
+            *_title("Insights da Análise de Erros"),
+            ">**O que mostram:** O modelo gerou {fp:,} falsos positivos "
+            "({pct:.1f}% dos convertidos). Estes usuários foram preditos "
+            "como retidos mas não retiveram.",
+            ">**Por que importa:** Cada falso positivo representa budget "
+            "desperdiçado em usuário que não se beneficia da campanha. "
+            "Reduzir FP melhora ROI de retenção.",
+            ">**Ação recomendada:** Análise granular: quais canais, "
+            "segmentos ou períodos geram mais FP? Ajustar threshold do "
+            "modelo ou aprimorar features.",
+            ">**Impacto:** Reduzir FP em 20% economiza "
+            "\\$ {savings:,.0f} sem perder capacidade preditiva no "
+            "recall.",
+        ),
+    ),
+    "insight.bias_action": (
+        _md(
+            "",
+            "> **Action derived from bias diagnosis:**",
+            ">",
+            "> **{category}** is over-represented in false positives",
+            "> ({fp:.1f}% of errors vs {base:.1f}% in the base,",
+            "> difference of {diff:.1f} p.p.).",
+            ">",
+            "> This means the model overestimates retention probability "
+            "for",
+            "> users in this channel. **Action:** apply a more "
+            "conservative classification",
+            "> threshold for this channel - use `prob_retention >= 0.65` "
+            "instead of",
+            "> `0.50` when prioritizing preventive campaigns for users "
+            "of",
+            "> **{category}**. Reassess after 30 days of real data.",
+        ),
+        _md(
+            "",
+            "> **Ação derivada do diagnóstico de viés:**",
+            ">",
+            "> **{category}** está super-representado nos falsos "
+            "positivos",
+            "> ({fp:.1f}% dos erros vs {base:.1f}% na base,",
+            "> diferença de {diff:.1f} p.p.).",
+            ">",
+            "> Isso significa que o modelo superestima probabilidade de "
+            "retenção para",
+            "> usuários desse canal. **Ação:** aplicar threshold de "
+            "classificação mais",
+            "> conservador para esse canal - usar `prob_retention >= "
+            "0.65` em vez de",
+            "> `0.50` ao priorizar campanhas preventivas para usuários "
+            "de",
+            "> **{category}**. Reavaliar após 30 dias de dados reais.",
+        ),
+    ),
+    "bias.no_channel": (
+        "No channel with over-representation > 10 p.p. in false "
+        "positives.",
+        "Nenhum canal com super-representação > 10 p.p. nos falsos "
+        "positivos.",
+    ),
+    "insight.bias_summary": (
+        _md(
+            *_title("False Positive Bias Insights"),
+            ">**What the data shows:** False positives concentrate in "
+            "{segment} (channel={segment}), suggesting model bias in this "
+            "segment.",
+            ">**Why this matters:** If the model systematically fails in "
+            "one segment, recommendations for that group become "
+            "inefficient and waste resources.",
+            ">**Recommended action:** Train a dedicated model for the "
+            "biased segment, increase class weight, or collect more "
+            "representative data.",
+            ">**Impact:** Fixing bias can improve precision by "
+            "~{fix:.1f}% for the affected segment, saving "
+            "\\$ {savings:,.0f} in campaign waste.",
+        ),
+        _md(
+            *_title("Insights de Viés nos Falsos Positivos"),
+            ">**O que mostram:** Falsos positivos concentram-se em "
+            "{segment} (channel={segment}), sugerindo viés do modelo para "
+            "esse segmento.",
+            ">**Por que importa:** Se o modelo sistematicamente erra em "
+            "um segmento, as recomendações para esse grupo serão "
+            "ineficientes, desperdiçando recursos nele.",
+            ">**Ação recomendada:** Treinar modelo separado para "
+            "segmento enviesado, aumentar weight dessa classe, ou coletar "
+            "mais dados representativos.",
+            ">**Impacto:** Corrigir viés pode melhorar precision em "
+            "~{fix:.1f}% para o segmento afetado, economizando "
+            "\\$ {savings:,.0f} em campaign waste.",
+        ),
+    ),
+    "summary.not_available": ("N/D", "N/D"),
+    # executive summary ---------------------------------------------------
+    "summary.crm_ok": ("generated", "gerado"),
+    "summary.crm_missing": (
+        "not generated (run export cell)",
+        "nao gerado (executar celula de export)",
+    ),
+    "summary.pipeline_done": (
+        "FULL PIPELINE EXECUTED SUCCESSFULLY",
+        "PIPELINE COMPLETO EXECUTADO COM SUCESSO",
+    ),
+    "summary.report": (
+        _md(
+            "",
+            _SPAN,
+            "",
+            "EXECUTIVE SUMMARY",
+            "",
+            "</span>",
+            "",
+            "1. Canonical user base: {users} users, {columns} columns; "
+            "exposure base: {exposures} rows; variant switchers "
+            "excluded: {switchers}",
+            "2. RFM segments: {segments} segments",
+            "3. Global Conversion Rate: {conversion:.2f}%",
+            "4. Global Retention Rate: {retention:.2f}%",
+            "",
+            "LTV BY SEGMENT",
+            "    - {high_name}: \\$ {high_ltv:,.2f}",
+            "    - {low_name}: \\$ {low_ltv:,.2f}",
+            "    - Global average LTV: \\$ {global_ltv:,.2f}",
+            "",
+            "DESIGN A/B",
+            "    - Sample size per group: {required_n}",
+            "    - Estimated runtime: {runtime} days",
+            "    - Minimum lift: {lift:.1f} p.p.",
+            "",
+            "ROI SIMULATION",
+            "    - Maximum incremental ROI: {max_roi:.2f}%",
+            "    - Estimated Total Profit: \\$ {profit:.2f}",
+            "",
+            "PREDICTIVE MODEL",
+            "    - ROC AUC: {roc_auc}",
+            "    - Not Retained Recall: {recall}",
+            "",
+            "OUTPUTS",
+            "    - Excel exported: {excel}",
+            "    - CSV CRM: {crm} ({crm_status})",
+            "    - Recommendations generated: {records} records",
+            "",
+        ),
+        _md(
+            "",
+            _SPAN,
+            "",
+            "RESUMO EXECUTIVO",
+            "",
+            "</span>",
+            "",
+            "1. Base canônica: {users} usuários, {columns} colunas; "
+            "base de exposições: {exposures} linhas; trocadores de "
+            "variante excluídos: {switchers}",
+            "2. Segmentos RFM: {segments} segmentos",
+            "3. Taxa de Conversão Global: {conversion:.2f}%",
+            "4. Taxa de Retenção Global: {retention:.2f}%",
+            "",
+            "LTV POR SEGMENTO",
+            "    - {high_name}: \\$ {high_ltv:,.2f}",
+            "    - {low_name}: \\$ {low_ltv:,.2f}",
+            "    - LTV medio global: \\$ {global_ltv:,.2f}",
+            "",
+            "DESIGN A/B",
+            "    - Sample size por grupo: {required_n}",
+            "    - Runtime estimado: {runtime} dias",
+            "    - Lift minimo: {lift:.1f} p.p.",
+            "",
+            "SIMULACAO DE ROI",
+            "    - ROI incremental maximo: {max_roi:.2f}%",
+            "    - Lucro Total Estimado: \\$ {profit:.2f}",
+            "",
+            "MODELO PREDITIVO",
+            "    - ROC AUC: {roc_auc}",
+            "    - Recall Nao Retido: {recall}",
+            "",
+            "OUTPUTS",
+            "    - Excel exportado: {excel}",
+            "    - CSV CRM: {crm} ({crm_status})",
+            "    - Recomendações geradas: {records} registros",
+            "",
+        ),
+    ),
+    "decisions.realloc": (
+        "Reallocating 10% of the budget from **{worst}** to **{best}** "
+        "generates ~\\$ {extra:,.0f} in estimated additional profit "
+        "(+{gain:.1f} pp in global ROI).",
+        "Realocar 10% do budget de **{worst}** para **{best}** gera "
+        "~\\$ {extra:,.0f} em lucro adicional estimado (+{gain:.1f} p.p. "
+        "no ROI global).",
+    ),
+    "decisions.report": (
+        _md(
+            "",
+            _SPAN,
+            "",
+            "## Executive Summary - Recommended Decisions",
+            "",
+            "</span>",
+            "",
+            "### What the data revealed",
+            "",
+            "| Dimension | Key Finding | Confidence |",
+            "|---|---|---|",
+            "| Funnel | Bottleneck is in conversion, not in retention "
+            "| High |",
+            "| Most efficient channel | {channel_finding} | High |",
+            "| Personalization | correct language improves conversion "
+            "and expected retention | High |",
+            "| Most valuable segment | {high_name}: average LTV "
+            "\\$ {high_ltv:,.2f} vs \\$ {low_ltv:,.2f} ({low_name}) "
+            "| Medium |",
+            "| Churn risk | Model identifies {detected:.1f}% of "
+            "not-retained users | Medium |",
+            "",
+            "### 3 priority actions",
+            "",
+            "**1. Implement automatic language detection** (immediate "
+            "impact, low cost)  ",
+            "Fixing language for {n_wrong:,} users currently served in "
+            "the wrong language generates ~\\$ {impact:,.0f} in "
+            "estimated impact (conversion + retention/LTV).",
+            "",
+            "**2. Channel optimization based on real performance** "
+            "(medium impact, 30-60 days)  ",
+            "{action2}",
+            "",
+            "**3. Prioritize execution by incremental profit** (high "
+            "impact, 30-90 days)  ",
+            "{high_name} -> loyalty (max \\$ 15/customer). "
+            "Medium Value -> promotional offer (max \\$ 8/customer). "
+            "{low_name} -> exclude from paid campaigns or minimum "
+            "win-back (max \\$ 3/customer). Do not act where "
+            "incremental_profit <= 0.",
+            "",
+            "{realloc}",
+            "",
+            "### Immediate next step",
+            "",
+            "Export `crm_next_best_action.csv` generated in this "
+            "notebook and import into the CRM. Prioritize the "
+            "{n_action:,} customers with incremental_profit > 0 in the "
+            "next campaign round. Reassess in 30 days with real "
+            "conversion data.",
+            "",
+        ),
+        _md(
+            "",
+            _SPAN,
+            "",
+            "## Sumário executivo - decisões recomendadas",
+            "",
+            "</span>",
+            "",
+            "### O que os dados revelaram",
+            "",
+            "| Dimensao | Achado principal | Confianca |",
+            "|---|---|---|",
+            "| Funil | Gargalo esta na conversão, nao na retenção "
+            "| Alta |",
+            "| Canal mais eficiente | {channel_finding} | Alta |",
+            "| Personalização | Idioma correto melhora conversão e "
+            "retenção esperada | Alta |",
+            "| Segmento mais valioso | {high_name}: LTV medio de "
+            "\\$ {high_ltv:,.2f} vs \\$ {low_ltv:,.2f} ({low_name}) "
+            "| Media |",
+            "| Risco de churn | Modelo identifica {detected:.1f}% dos "
+            "nao-retidos | Media |",
+            "",
+            "### 3 ações prioritárias",
+            "",
+            "**1. Implementar detecção automática de idioma** (impacto "
+            "imediato, custo baixo)  ",
+            "Corrigir o idioma dos {n_wrong:,} usuarios atualmente "
+            "mal-servidos gera ~\\$ {impact:,.0f} de impacto estimado "
+            "(conversao + retencao/LTV).",
+            "",
+            "**2. Otimização de canal com base em performance real** "
+            "(impacto medio, 30-60 dias)  ",
+            "{action2}",
+            "",
+            "**3. Priorizar execução por lucro incremental** (impacto "
+            "alto, 30-90 dias)  ",
+            "{high_name} -> fidelização (max \\$ 15/cliente). "
+            "Medio Valor -> oferta promocional (max \\$ 8/cliente). "
+            "{low_name} -> excluir de campanhas pagas ou win-back minimo "
+            "(max \\$ 3/cliente). Nao agir onde incremental_profit <= 0.",
+            "",
+            "{realloc}",
+            "",
+            "### Próximo passo imediato",
+            "",
+            "Exportar `crm_next_best_action.csv` gerado neste notebook "
+            "e importar no CRM. Priorizar os {n_action:,} clientes com "
+            "incremental_profit > 0 na proxima rodada de campanhas. "
+            "Reavaliar em 30 dias com dados reais de conversao.",
+            "",
+        ),
+    ),
 }
 
 # --- end of message pairs (add new ones above this line) ---
