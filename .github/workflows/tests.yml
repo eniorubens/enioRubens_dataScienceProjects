@@ -32,6 +32,9 @@ jobs:
           - project: Cross_Sell_Association_Rules
             python: "3.11"
             install: pip install -e ".[dev]"
+          - project: Marketing_Campaign_Optimization_and_Retention_Analytics
+            python: "3.11"
+            install: pip install -e ".[dev]"
           - project: Customer Lifetime Value
             python: "3.11"
             install: pip install -e . pymc-marketing pandas numpy matplotlib seaborn flask pytest arviz

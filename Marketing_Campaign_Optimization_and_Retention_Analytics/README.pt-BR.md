@@ -16,7 +16,7 @@ e geração de recomendações operacionais.
 
 **Não sustenta:** serviço produtivo de scoring, impacto causal de campanha ou decisões automáticas sem engenharia e validação adicionais.
 
-**Superfície de engenharia:** análise orientada por notebooks com outputs CRM/Excel; este projeto não expõe pacote reutilizável `src/`, API de serving ou suíte automatizada de testes.
+**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 68 testes pytest que reproduzem os números do relatório executivo. Os notebooks mantêm o código inline como narrativa da análise; o pacote reimplementa e testa as mesmas etapas, com uma correção deliberada: usuários sinalizados com idioma errado (`is_correct_lang` = "No") vão para "Fix Language", ramo que o código dos notebooks nunca alcançava. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) conecta os achados analíticos às limitações de negócio explícitas.
 
@@ -126,9 +126,41 @@ Geração de recomendações operacionais com base em valor esperado e ROI.
 
 ---
 
+## Código e testes
+
+```text
+Marketing_Campaign_Optimization_and_Retention_Analytics/
+├── notebooks/                      # Notebooks de análise (EN e PT-BR)
+├── dataset/marketing_new.csv       # Dataset de entrada
+├── src/marketing_campaign/         # Código de análise reutilizável e documentado
+│   ├── config.py                   # Constantes de negócio e ações por segmento
+│   ├── data.py                     # Leitura, limpeza e base de usuários estáveis
+│   ├── segmentation.py             # Proxies RFM e segmentos K-Means
+│   ├── funnel.py                   # Funil e desempenho por canal
+│   ├── experiment.py               # Teste Z, tamanho de amostra, poder por Monte Carlo
+│   ├── economics.py                # Valor do cliente e ROI simulado
+│   ├── retention_model.py          # Regressão logística de retenção
+│   ├── recommendations.py          # Valor esperado, ações e exportações
+│   └── pipeline.py                 # Executa a análise completa
+├── tests/                          # Suíte pytest (68 testes)
+└── pyproject.toml                  # Configuração do pacote e dos testes
+```
+
+A suíte protege os números do relatório executivo: 10.037 registros brutos, 9.757 exposições limpas, 6.849 usuários estáveis (460 que trocaram de variante excluídos), 703 conversões (10,26%), 463 retidos (65,86%), z = 0,0779 com p = 0,937870, 3.916 usuários por grupo e 80,0% de poder simulado, o ROI incremental por canal, ROC-AUC 0,956 com 2 falsos positivos e a tabela de recomendações de 6.849 linhas.
+
+```bash
+cd Marketing_Campaign_Optimization_and_Retention_Analytics
+pip install -e ".[dev]"
+python -m pytest -q
+```
+
+A etapa de recomendação grava localmente `output/crm_next_best_action.csv` (uma linha por usuário) e a planilha Excel. Os dois arquivos têm linhas por usuário, então ficam na pasta do projeto e não são versionados no repositório do GitHub. Dos cerca de 580 usuários com lucro esperado positivo (a contagem exata varia em poucos usuários entre versões das bibliotecas), 22 estão com idioma errado e recebem "Fix Language -> then Loyalty Campaign"; os demais recebem "Loyalty Campaign".
+
+---
+
 ## Principais resultados
 
-- Identificação de diferenças estatisticamente significativas entre variantes A/B
+- Nenhuma diferença estatisticamente significativa entre as variantes A/B (z = 0,0779, p = 0,94), com os dois grupos abaixo da amostra planejada
 - Melhor desempenho em campanhas que usam o idioma correto
 - Identificação de segmentos sobre-representados nos falsos positivos
 - Simulação de ROI mostrando forte variação entre canais
