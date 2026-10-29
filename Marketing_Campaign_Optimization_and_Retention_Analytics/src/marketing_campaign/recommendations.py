@@ -14,6 +14,7 @@ from marketing_campaign.config import (
     SEGMENT_ACTIONS,
 )
 from marketing_campaign.economics import LtvSummary
+from marketing_campaign.i18n import canonical_segment
 from marketing_campaign.retention_model import (
     RetentionModel,
     prepare_retention_model_frame,
@@ -144,9 +145,8 @@ def recommend_action(row: pd.Series) -> str:
     dataset reach the language-fix branch. The first published version
     compared the flag with ``0`` only and never took that branch.
     """
-    config = SEGMENT_ACTIONS.get(
-        str(row.get("Segment", "Low Value")), SEGMENT_ACTIONS["Low Value"]
-    )
+    segment = canonical_segment(row.get("Segment", "Low Value"))
+    config = SEGMENT_ACTIONS[segment or "Low Value"]
     if row.get("expected_profit", 0) <= 0:
         return NO_ACTION
     if is_wrong_language(row.get("is_correct_lang", 1)):
@@ -186,7 +186,7 @@ def generate_recommendations(
     recommendations["recommended_action"] = recommendations.apply(
         recommend_action, axis=1
     )
-    segments = recommendations["Segment"].astype(str)
+    segments = recommendations["Segment"].map(canonical_segment)
     recommendations["strategy_rationale"] = segments.map(
         {k: v["rationale"] for k, v in SEGMENT_ACTIONS.items()}
     ).fillna("Unidentified segment")

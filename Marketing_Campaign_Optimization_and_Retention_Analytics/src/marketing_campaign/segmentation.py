@@ -74,12 +74,14 @@ def assign_segments(
     rfm: pd.DataFrame,
     n_clusters: int = SELECTED_K,
     random_state: int = RANDOM_STATE,
+    labels: list[str] | None = None,
 ) -> pd.DataFrame:
     """Cluster the RFM proxies and name the clusters by monetary value.
 
     The proxies are log-transformed and standardised before K-Means. The
     cluster with the highest mean ``Monetary`` becomes "High Value", the
-    next "Medium Value" and the last "Low Value".
+    next "Medium Value" and the last "Low Value" (or the names in
+    ``labels``).
 
     Parameters
     ----------
@@ -90,6 +92,9 @@ def assign_segments(
         not exceed ``len(SEGMENT_LABELS)``.
     random_state : int, default=42
         Seed of K-Means.
+    labels : list of str, optional
+        Names from the highest to the lowest value, for example
+        ``i18n.SEGMENT_LABELS["pt"]``. Defaults to the English names.
 
     Returns
     -------
@@ -101,9 +106,10 @@ def assign_segments(
     ValueError
         If ``n_clusters`` is larger than the number of segment labels.
     """
-    if n_clusters > len(SEGMENT_LABELS):
+    names_list = list(labels) if labels else SEGMENT_LABELS
+    if n_clusters > len(names_list):
         raise ValueError(
-            f"n_clusters must be at most {len(SEGMENT_LABELS)}."
+            f"n_clusters must be at most {len(names_list)}."
         )
     scaled = StandardScaler().fit_transform(
         np.log1p(rfm[["Recency", "Frequency", "Monetary"]])
@@ -119,7 +125,7 @@ def assign_segments(
         .sort_values(ascending=False)
     )
     names = {
-        cluster: SEGMENT_LABELS[position]
+        cluster: names_list[position]
         for position, cluster in enumerate(ranked.index)
     }
     segmented["Segment"] = segmented["RFM_Cluster"].map(names)

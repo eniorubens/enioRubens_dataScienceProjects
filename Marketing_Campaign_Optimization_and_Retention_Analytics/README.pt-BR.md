@@ -16,7 +16,7 @@ e geração de recomendações operacionais.
 
 **Não sustenta:** serviço produtivo de scoring, impacto causal de campanha ou decisões automáticas sem engenharia e validação adicionais.
 
-**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 68 testes pytest que reproduzem os números do relatório executivo. Os notebooks mantêm o código inline como narrativa da análise; o pacote reimplementa e testa as mesmas etapas, com uma correção deliberada: usuários sinalizados com idioma errado (`is_correct_lang` = "No") vão para "Fix Language", ramo que o código dos notebooks nunca alcançava. Não há API de serving.
+**Superfície de engenharia:** análise orientada por notebooks mais um pequeno pacote `src/marketing_campaign` (preparação de dados, segmentação RFM, funil, teste A/B e poder, valor do cliente e ROI, modelo de retenção, recomendações) coberto por 96 testes pytest que reproduzem os números do relatório executivo. Os notebooks mantêm o código inline como narrativa da análise; o pacote reimplementa e testa as mesmas etapas, com uma correção deliberada: usuários sinalizados com idioma errado (`is_correct_lang` = "No") vão para "Fix Language", ramo que o código dos notebooks nunca alcançava. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) conecta os achados analíticos às limitações de negócio explícitas.
 
@@ -141,8 +141,10 @@ Marketing_Campaign_Optimization_and_Retention_Analytics/
 │   ├── economics.py                # Valor do cliente e ROI simulado
 │   ├── retention_model.py          # Regressão logística de retenção
 │   ├── recommendations.py          # Valor esperado, ações e exportações
+│   ├── diagnostics.py              # Impacto do idioma, erros do modelo, viés dos falsos positivos
+│   ├── i18n.py                     # Rótulos em português para tabelas e textos
 │   └── pipeline.py                 # Executa a análise completa
-├── tests/                          # Suíte pytest (68 testes)
+├── tests/                          # Suíte pytest (96 testes)
 └── pyproject.toml                  # Configuração do pacote e dos testes
 ```
 
