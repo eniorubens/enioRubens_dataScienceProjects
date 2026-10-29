@@ -9,6 +9,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 
 from marketing_campaign.config import (
@@ -74,12 +75,14 @@ def assign_segments(
     rfm: pd.DataFrame,
     n_clusters: int = SELECTED_K,
     random_state: int = RANDOM_STATE,
+    labels: list[str] | None = None,
 ) -> pd.DataFrame:
     """Cluster the RFM proxies and name the clusters by monetary value.
 
     The proxies are log-transformed and standardised before K-Means. The
     cluster with the highest mean ``Monetary`` becomes "High Value", the
-    next "Medium Value" and the last "Low Value".
+    next "Medium Value" and the last "Low Value" (or the names in
+    ``labels``).
 
     Parameters
     ----------
@@ -90,6 +93,9 @@ def assign_segments(
         not exceed ``len(SEGMENT_LABELS)``.
     random_state : int, default=42
         Seed of K-Means.
+    labels : list of str, optional
+        Names from the highest to the lowest value, for example
+        ``i18n.SEGMENT_LABELS["pt"]``. Defaults to the English names.
 
     Returns
     -------
@@ -101,9 +107,10 @@ def assign_segments(
     ValueError
         If ``n_clusters`` is larger than the number of segment labels.
     """
-    if n_clusters > len(SEGMENT_LABELS):
+    names_list = list(labels) if labels else SEGMENT_LABELS
+    if n_clusters > len(names_list):
         raise ValueError(
-            f"n_clusters must be at most {len(SEGMENT_LABELS)}."
+            f"n_clusters must be at most {len(names_list)}."
         )
     scaled = StandardScaler().fit_transform(
         np.log1p(rfm[["Recency", "Frequency", "Monetary"]])
@@ -119,7 +126,7 @@ def assign_segments(
         .sort_values(ascending=False)
     )
     names = {
-        cluster: SEGMENT_LABELS[position]
+        cluster: names_list[position]
         for position, cluster in enumerate(ranked.index)
     }
     segmented["Segment"] = segmented["RFM_Cluster"].map(names)
@@ -151,4 +158,72 @@ def attach_segments(
         segmented_rfm[["user_id", "RFM_Cluster", "Segment"]],
         on="user_id",
         how="left",
+    )
+
+
+def evaluate_k(
+    rfm: pd.DataFrame,
+    k_values: range | list[int] | None = None,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    """Measure inertia and silhouette for several numbers of clusters.
+
+    Parameters
+    ----------
+    rfm : pd.DataFrame
+        Output of :func:`build_rfm`.
+    k_values : range or list of int, optional
+        Numbers of clusters to try. Defaults to ``range(2, 8)``.
+    random_state : int, default=42
+        Seed of K-Means.
+
+    Returns
+    -------
+    pd.DataFrame
+        One row per ``k`` with ``inertia`` and ``silhouette``, on the
+        same log-transformed and standardised proxies used by
+        :func:`assign_segments`.
+    """
+    scaled = StandardScaler().fit_transform(
+        np.log1p(rfm[["Recency", "Frequency", "Monetary"]])
+    )
+    rows = []
+    for k in k_values if k_values is not None else range(2, 8):
+        model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+        labels = model.fit_predict(scaled)
+        rows.append(
+            {
+                "k": k,
+                "inertia": model.inertia_,
+                "silhouette": silhouette_score(scaled, labels),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def summarize_segments(segmented_rfm: pd.DataFrame) -> pd.DataFrame:
+    """Describe each segment by its customers and mean proxies.
+
+    Parameters
+    ----------
+    segmented_rfm : pd.DataFrame
+        Output of :func:`assign_segments`.
+
+    Returns
+    -------
+    pd.DataFrame
+        One row per cluster and segment with ``customers``,
+        ``recency_mean``, ``frequency_mean`` and ``monetary_mean``,
+        highest monetary mean first.
+    """
+    return (
+        segmented_rfm.groupby(["RFM_Cluster", "Segment"])
+        .agg(
+            customers=("user_id", "nunique"),
+            recency_mean=("Recency", "mean"),
+            frequency_mean=("Frequency", "mean"),
+            monetary_mean=("Monetary", "mean"),
+        )
+        .reset_index()
+        .sort_values("monetary_mean", ascending=False)
     )

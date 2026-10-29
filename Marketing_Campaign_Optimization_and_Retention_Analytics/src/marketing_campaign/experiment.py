@@ -128,6 +128,7 @@ def simulate_power(
     n_simulations: int = MC_N_SIMULATIONS,
     alpha: float = ALPHA,
     seed: int = RANDOM_STATE,
+    rng: np.random.Generator | None = None,
 ) -> float:
     """Estimate the power of the z-test by Monte Carlo simulation.
 
@@ -144,7 +145,10 @@ def simulate_power(
     alpha : float, default=0.05
         Significance level of the test.
     seed : int, default=42
-        Seed of the random generator.
+        Seed of the random generator; ignored when ``rng`` is given.
+    rng : numpy.random.Generator, optional
+        Generator to draw from. Passing the same one to
+        :func:`simulate_power_curve` continues its random stream.
 
     Returns
     -------
@@ -153,7 +157,7 @@ def simulate_power(
         equal conversion was rejected.
     """
     treated_rate = min(baseline_rate + minimum_lift_pp / 100, 0.999)
-    rng = np.random.default_rng(seed)
+    rng = rng if rng is not None else np.random.default_rng(seed)
     rejections = 0
     for _ in range(n_simulations):
         control = rng.binomial(1, baseline_rate, sample_per_group)
@@ -170,3 +174,54 @@ def simulate_power(
         if p_value < alpha:
             rejections += 1
     return rejections / n_simulations
+
+
+def simulate_power_curve(
+    baseline_rate: float,
+    sample_sizes: list[int] | np.ndarray,
+    minimum_lift_pp: float = MINIMUM_LIFT_PP,
+    n_simulations: int = 1_000,
+    alpha: float = ALPHA,
+    rng: np.random.Generator | None = None,
+) -> list[float]:
+    """Estimate the power of the z-test for several sample sizes.
+
+    Parameters
+    ----------
+    baseline_rate : float
+        Control conversion rate, as a fraction.
+    sample_sizes : list of int or numpy.ndarray
+        Users per group to evaluate.
+    minimum_lift_pp : float, default=2.0
+        Absolute lift of the treatment, in percentage points.
+    n_simulations : int, default=1000
+        Simulated experiments per sample size.
+    alpha : float, default=0.05
+        Significance level of the test.
+    rng : numpy.random.Generator, optional
+        Generator to draw from. Defaults to one seeded with the project
+        seed.
+
+    Returns
+    -------
+    list of float
+        The share of rejections of the null hypothesis for each size.
+    """
+    treated_rate = min(baseline_rate + minimum_lift_pp / 100, 0.999)
+    rng = rng if rng is not None else np.random.default_rng(RANDOM_STATE)
+    powers = []
+    for size in sample_sizes:
+        rejections = 0
+        for _ in range(n_simulations):
+            control = rng.binomial(1, baseline_rate, size)
+            treated = rng.binomial(1, treated_rate, size)
+            try:
+                _, p_value = proportions_ztest(
+                    [control.sum(), treated.sum()], [size, size]
+                )
+            except Exception:
+                continue
+            if p_value < alpha:
+                rejections += 1
+        powers.append(rejections / n_simulations)
+    return powers
