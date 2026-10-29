@@ -109,14 +109,25 @@ def generate_rules(
     -------
     pd.DataFrame
         One row per rule with support, confidence, lift, conviction and
-        Zhang's metric, among others.
+        Zhang's metric, among others. Rows are sorted by antecedent and
+        then consequent, and re-indexed, because the order in which mlxtend
+        returns the rules changes between runs (it depends on the hash
+        seed of the Python process).
     """
     options = {}
     if "num_itemsets" in signature(association_rules).parameters:
         options["num_itemsets"] = n_transactions
-    return association_rules(
+    rules = association_rules(
         itemsets, metric=metric, min_threshold=min_threshold, **options
     )
+    if rules.empty:
+        return rules
+    key = (
+        rules["antecedents"].apply(format_itemset)
+        + " -> "
+        + rules["consequents"].apply(format_itemset)
+    )
+    return rules.iloc[key.argsort(kind="stable")].reset_index(drop=True)
 
 
 def select_cross_sell_candidates(
@@ -173,3 +184,30 @@ def format_itemset(itemset: Iterable[str]) -> str:
         Names in alphabetical order joined by ``", "``.
     """
     return ", ".join(sorted(itemset))
+
+
+def rules_to_coordinates(rules: pd.DataFrame) -> pd.DataFrame:
+    """Prepare rules for a parallel-coordinates plot.
+
+    Each rule is described by its first antecedent and first consequent
+    product, so it is meant for rules with a single item on each side.
+
+    Parameters
+    ----------
+    rules : pd.DataFrame
+        Rules from :func:`generate_rules`, with the ``antecedents`` and
+        ``consequents`` columns holding sets of product names.
+
+    Returns
+    -------
+    pd.DataFrame
+        Columns ``antecedent``, ``consequent`` and ``rule`` (the index of
+        the rule in ``rules``). The input is not modified.
+    """
+    return pd.DataFrame(
+        {
+            "antecedent": rules["antecedents"].apply(lambda s: list(s)[0]),
+            "consequent": rules["consequents"].apply(lambda s: list(s)[0]),
+            "rule": rules.index,
+        }
+    )
