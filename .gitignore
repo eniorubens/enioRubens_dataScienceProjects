@@ -1,3 +1,8 @@
 # Local Codex/Maestri orchestration artifacts; never publish.
 .maestri/
 CONTEXTO_MAESTRI.md
+
+# Python build and test caches
+__pycache__/
+*.egg-info/
+.pytest_cache/
