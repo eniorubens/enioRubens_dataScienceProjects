@@ -19,6 +19,8 @@
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) documents the temporal holdout, assumptions and supported decisions.
 
+**Technical manual:** [API, module and validation reference](docs/MANUAL.md)
+
 ## Overview
 
 This project builds a reproducible CLTV (Customer Lifetime Value) pipeline
