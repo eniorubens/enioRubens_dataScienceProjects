@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.coverage
+htmlcov/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+
+# Raw data is obtained manually (see scripts/verify_data.py and data/raw/olist/README.md)
+data/raw/**/*.csv
+data/raw/**/*.zip
+
+# Generated outputs are ignored, except the small frozen final-evaluation results.
+# Git cannot re-include a file whose parent directory is excluded, so each level is
+# ignored by its contents (dir/*) and the directories to keep are re-included.
+outputs/*
+!outputs/runs/
+outputs/runs/*
+!outputs/runs/final_evaluation/
+outputs/runs/final_evaluation/**
+!outputs/runs/final_evaluation/**/
+!outputs/runs/final_evaluation/**/*.csv
+!outputs/runs/final_evaluation/**/metadata.json
+!outputs/runs/final_evaluation/LEDGER.jsonl
+*.pkl
+*.joblib
+
+# Third-party papers kept only locally (cited in the notebooks, not redistributed)
+docs/*.pdf

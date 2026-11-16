@@ -1,0 +1,2 @@
+version,post_hoc,created_at,fingerprint,train_orders,test_orders,train_end_exclusive,test_start,test_end_exclusive,n_boot,seed,model_path
+F1,False,2026-11-14T10:53:16,ddc0ef97cc7c513c9d44ef32843e1fda7ff118cf7c9445bdcbf5da431effcb3c,77867,12507,2018-06-01,2018-07-01,2018-09-01,1000,42,d:\Projetos\E-commerce-Delivery-Network-&-SLA-Risk\outputs\models\catboost_final\F1\model.joblib

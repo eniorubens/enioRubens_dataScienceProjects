@@ -1,0 +1,2 @@
+version,post_hoc,reading,production_eligible,created_at,fingerprint,update_date,eval_start,eval_end_exclusive,known_label_orders,eval_orders,eval_blocks,gate_passed,gate_failed,n_boot,seed,f1_model_path,f1_model_sha256
+F2,True,exploratório,False,2026-11-14T12:02:47,a6fd373f862c7c6a68d92626992dd6bdf08f00b8a26a1113a0821eb6f9cab4f0,2018-08-01,2018-08-01,2018-09-01,88097,6351,29,"C,E",D,1000,42,d:\Projetos\E-commerce-Delivery-Network-&-SLA-Risk\outputs\models\catboost_final\F1\model.joblib,ace91068a027578a40abd579fa968938b332a74c5f484a6085e64b52e2b8cd1f

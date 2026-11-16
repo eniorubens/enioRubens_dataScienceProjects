@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# The raw Olist CSVs are not versioned (Kaggle requires a login), so CI cannot execute the
+# notebooks or rebuild the executive site. It validates what the repository does contain:
+# code, tests, the executed notebooks (structure, PT/EN parity, citations and outputs) and the
+# HTML export of the final report, which reads only the stored outputs of notebook 11.
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install project, notebook and development dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+
+      - name: Lint source, tests and scripts
+        run: python -m ruff check src tests scripts
+
+      - name: Run unit and contract tests, requiring executed notebooks
+        env:
+          REQUIRE_NOTEBOOK_OUTPUTS: "1"
+        run: python -m pytest -q --cov=ecom_delivery_sla --cov=ecom_delivery_sla_viz --cov-report=term-missing
+
+      - name: Export the final report to HTML (smoke test)
+        run: python scripts/export_report.py
+
+      - name: Upload the exported report
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-report-html
+          path: reports/*.html
+          if-no-files-found: error

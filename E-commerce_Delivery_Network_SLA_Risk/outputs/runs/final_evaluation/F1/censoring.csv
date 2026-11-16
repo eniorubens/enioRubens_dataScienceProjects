@@ -1,0 +1,3 @@
+scenario,supervised_orders,breaches,censored_orders,prevalence
+exclude,12507,601,107,0.04805309026944911
+include_as_breach,12614,708,107,0.056128111622007294

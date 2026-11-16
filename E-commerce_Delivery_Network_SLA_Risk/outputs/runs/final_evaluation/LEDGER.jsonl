@@ -1,0 +1,2 @@
+{"version": "F1", "timestamp": "2026-11-14T10:53:17", "fingerprint": "ddc0ef97cc7c513c9d44ef32843e1fda7ff118cf7c9445bdcbf5da431effcb3c", "train_orders": 77867, "test_orders": 12507, "post_hoc": false, "n_boot": 1000, "seed": 42}
+{"version": "F2", "timestamp": "2026-11-14T12:02:47", "fingerprint": "a6fd373f862c7c6a68d92626992dd6bdf08f00b8a26a1113a0821eb6f9cab4f0", "train_orders": 88097, "test_orders": 6351, "post_hoc": true, "n_boot": 1000, "seed": 42, "gate_passed": "C,E"}

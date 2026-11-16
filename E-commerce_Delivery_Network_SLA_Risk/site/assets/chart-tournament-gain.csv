@@ -1,0 +1,8 @@
+model,n_folds,average_precision_mean,average_precision_std,average_precision_gain_vs_baseline,average_precision_folds_won,average_precision_best_baseline
+CatBoost,9,0.17499893041624193,0.10100016696553987,0.13911496916714555,8.0,baseline_logistic_promise_plus_state
+HistGradientBoosting,9,0.15625847475806207,0.09845056548620042,0.01712831748607645,7.0,baseline_logistic_promise_plus_state
+XGBoost,9,0.1545242599091273,0.08689184905058477,0.005839847953863885,6.0,baseline_logistic_promise_plus_state
+LightGBM,9,0.1524691921825185,0.09409526958340143,-0.007537139005224049,4.0,baseline_logistic_promise_plus_state
+LogisticRegression,9,0.15185556218172003,0.08921255533594583,-0.011531421243275471,4.0,baseline_logistic_promise_plus_state
+RandomForest,9,0.15023798122189405,0.09700924712570914,-0.022060689512485885,3.0,baseline_logistic_promise_plus_state
+ExtraTrees,9,0.14960677776700312,0.0957496631627103,-0.026169362076061582,5.0,baseline_logistic_promise_plus_state

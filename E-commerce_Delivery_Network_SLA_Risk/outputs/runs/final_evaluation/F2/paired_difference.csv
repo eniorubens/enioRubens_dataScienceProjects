@@ -1,0 +1,11 @@
+model,reference,metric,estimate_model,estimate_reference,difference,ci_low,ci_high,n_boot,n_valid,n_discarded,difference_sign,ci_excludes_zero,reading,status
+A_f1_frozen,baseline_logistic_promise_plus_state,average_precision,0.06902586694438692,0.09384140616250933,-0.024815539218122407,-0.043786359577690934,-0.010757248738787766,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+A_f1_frozen,baseline_negative_promised_lead_days,average_precision,0.06902586694438692,0.17874838976599197,-0.10972252282160505,-0.20880572828746108,-0.03955572098119107,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+B_retrain,baseline_logistic_promise_plus_state,average_precision,0.06845357231014758,0.09384140616250933,-0.02538783385236175,-0.044838943098819584,-0.009873071407901848,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+B_retrain,baseline_negative_promised_lead_days,average_precision,0.06845357231014758,0.17874838976599197,-0.1102948174558444,-0.2098151668641988,-0.04017684324251562,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+C_recency,baseline_logistic_promise_plus_state,average_precision,0.06745423125379917,0.09384140616250933,-0.026387174908710162,-0.04654814370464566,-0.011401638643628547,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+C_recency,baseline_negative_promised_lead_days,average_precision,0.06745423125379917,0.17874838976599197,-0.1112941585121928,-0.2099724167828844,-0.0418526863278081,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+E_promise_feature,baseline_logistic_promise_plus_state,average_precision,0.06929619795846438,0.09384140616250933,-0.024545208204044947,-0.04378686876322064,-0.009941353670450865,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+E_promise_feature,baseline_negative_promised_lead_days,average_precision,0.06929619795846438,0.17874838976599197,-0.10945219180752759,-0.20980109409536118,-0.039472533312419886,1000.0,1000.0,0.0,negative,True,exploratório,avaliada
+D_recalibration,baseline_logistic_promise_plus_state,average_precision,,,,,,,,,not evaluated,False,exploratório,reprovada no gate
+D_recalibration,baseline_negative_promised_lead_days,average_precision,,,,,,,,,not evaluated,False,exploratório,reprovada no gate

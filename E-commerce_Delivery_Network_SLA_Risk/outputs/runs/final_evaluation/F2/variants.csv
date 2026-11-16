@@ -1,0 +1,6 @@
+code,variant,gated,scored,status
+A,A_f1_frozen,False,True,avaliada
+B,B_retrain,False,True,avaliada
+C,C_recency,True,True,avaliada
+D,D_recalibration,True,False,reprovada no gate
+E,E_promise_feature,True,True,avaliada

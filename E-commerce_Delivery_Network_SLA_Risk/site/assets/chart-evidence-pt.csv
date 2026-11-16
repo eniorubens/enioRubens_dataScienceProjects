@@ -1,0 +1,22 @@
+stage,item,estimate,ci_low,ci_high,note
+Desenvolvimento (folds de 2017-10 a 2018-06),AP média do CatBoost,0.17499893041624193,,,
+Desenvolvimento (folds de 2017-10 a 2018-06),AP média da melhor baseline (baseline_logistic_promise_plus_state),0.15362710099770782,,,
+Desenvolvimento (folds de 2017-10 a 2018-06),Ganho relativo de AP sobre a melhor baseline,0.13911496916714555,,,8 de 9 folds vencidos
+F1 (oficial),AP: CatBoost,0.08198325829192285,0.055835381320939265,0.13369758287673514,
+F1 (oficial),AP: baseline_prevalence,0.04805309026944911,0.02721624568612393,0.06854329442548183,
+F1 (oficial),AP: baseline_negative_promised_lead_days,0.1416208036122828,0.04396463154167859,0.23163430728226386,
+F1 (oficial),AP: baseline_logistic_promise_plus_state,0.08424998768244116,0.05622767798202461,0.11551572903889265,
+F1 (oficial),Diferença pareada de AP: CatBoost menos baseline_logistic_promise_plus_state,-0.0022667293905183072,-0.03249163702584813,0.0639880702973936,inconclusivo
+"F2 (pós-hoc, exploratório)",AP: A_f1_frozen,0.06902586694438692,0.054170306764928254,0.08377747053140426,
+"F2 (pós-hoc, exploratório)",AP: B_retrain,0.06845357231014758,0.05369841218050076,0.08288993541586555,
+"F2 (pós-hoc, exploratório)",AP: C_recency,0.06745423125379917,0.05196775266065651,0.0824929850343817,
+"F2 (pós-hoc, exploratório)",AP: E_promise_feature,0.06929619795846438,0.0553887646388041,0.08327180602664797,
+"F2 (pós-hoc, exploratório)",AP: baseline_prevalence,0.061880018894662256,0.044089544924123335,0.07942441975797812,
+"F2 (pós-hoc, exploratório)",AP: baseline_negative_promised_lead_days,0.17874838976599197,0.1049658665793531,0.2843434858936621,
+"F2 (pós-hoc, exploratório)",AP: baseline_logistic_promise_plus_state,0.09384140616250933,0.07113179826860686,0.12119271731232892,
+"F2 (pós-hoc, exploratório)",AP: D_recalibration,,,,reprovada no gate
+"F2 (pós-hoc, exploratório)",Diferença pareada de AP: A_f1_frozen menos baseline_logistic_promise_plus_state,-0.024815539218122407,-0.043786359577690934,-0.010757248738787766,exploratório; IC exclui zero
+"F2 (pós-hoc, exploratório)",Diferença pareada de AP: B_retrain menos baseline_logistic_promise_plus_state,-0.02538783385236175,-0.044838943098819584,-0.009873071407901848,exploratório; IC exclui zero
+"F2 (pós-hoc, exploratório)",Diferença pareada de AP: C_recency menos baseline_logistic_promise_plus_state,-0.026387174908710162,-0.04654814370464566,-0.011401638643628547,exploratório; IC exclui zero
+"F2 (pós-hoc, exploratório)",Diferença pareada de AP: E_promise_feature menos baseline_logistic_promise_plus_state,-0.024545208204044947,-0.04378686876322064,-0.009941353670450865,exploratório; IC exclui zero
+"F2 (pós-hoc, exploratório)",Diferença pareada de AP: D_recalibration menos baseline_logistic_promise_plus_state,,,,reprovada no gate

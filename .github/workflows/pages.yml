@@ -60,6 +60,8 @@ jobs:
           cp -a customer-churn-prediction/notebooks _site/customer-churn-prediction/
           mkdir -p _site/Consumer_Complaint_Intelligence
           cp -a Consumer_Complaint_Intelligence/site/. _site/Consumer_Complaint_Intelligence/
+          mkdir -p _site/E-commerce_Delivery_Network_SLA_Risk
+          cp -a E-commerce_Delivery_Network_SLA_Risk/site/. _site/E-commerce_Delivery_Network_SLA_Risk/
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

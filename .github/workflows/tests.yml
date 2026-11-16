@@ -55,6 +55,9 @@ jobs:
             prepare: >-
               curl -sSL --retry 3 -o data/raw/adult.zip https://archive.ics.uci.edu/static/public/2/adult.zip
               && unzip -q -o data/raw/adult.zip -d data/raw/adult_uci
+          - project: E-commerce_Delivery_Network_SLA_Risk
+            python: "3.12"
+            install: pip install -e "[dev]"
     defaults:
       run:
         working-directory: ${{ matrix.project }}

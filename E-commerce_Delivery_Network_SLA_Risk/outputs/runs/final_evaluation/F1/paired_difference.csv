@@ -1,0 +1,2 @@
+model,reference,metric,estimate_model,estimate_reference,difference,ci_low,ci_high,n_boot,n_valid,n_discarded,outcome,outcome_en
+CatBoost,baseline_logistic_promise_plus_state,average_precision,0.08198325829192285,0.08424998768244116,-0.0022667293905183072,-0.03249163702584813,0.0639880702973936,1000,1000,0,inconclusivo,inconclusive

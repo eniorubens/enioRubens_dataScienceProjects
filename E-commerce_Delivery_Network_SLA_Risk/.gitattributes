@@ -1,0 +1,6 @@
+# Keep LF in the working tree on every OS: the run_cache fingerprint hashes the
+# bytes of src/ecom_delivery_sla, so a CRLF rewrite would invalidate the caches.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.zip binary

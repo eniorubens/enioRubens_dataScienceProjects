@@ -28,6 +28,7 @@ This is not a collection of isolated notebooks. The analytical projects combine 
 | **Consumer Complaint Intelligence** | Imbalanced NLP | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) | [Repository](./Consumer_Complaint_Intelligence) |
 | **NASA C-MAPSS** | Predictive maintenance | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) | [Repository](./CMAPSS_Predictive_Maintenance) |
 | **Model Risk & Responsible ML** | Model-risk governance | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repository](./ModelRisk_ResponsibleML) |
+| **E-commerce Delivery Network & SLA Risk** | Delivery risk / temporal ML | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repository](./E-commerce_Delivery_Network_SLA_Risk) |
 | **ds_toolkit** | Reusable ML library | [Library README](./ds_toolkit) | [Code](./ds_toolkit) |
 
 ---
@@ -184,6 +185,18 @@ Audits calibration, fairness, uncertainty and final-test isolation on the UCI Ad
 **Methods:** Group-aware partitions · Platt calibration · Threshold audit · Wilson interval for group proportions · Fairness diagnostics · Contract tests
 
 **Technologies:** Python · Pandas · scikit-learn · Matplotlib · Jupyter · unittest · GitHub Pages
+
+---
+
+### 12. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.md) — Delivery risk under temporal drift
+
+Studies whether an Olist order can be classified as a delivery-SLA breach at purchase time using temporal validation, seller-to-destination network features, Haversine distance and calibrated models. The official final evaluation is inconclusive, the post-hoc analysis is exploratory, and `production_eligible=false` remains explicit.
+
+📊 **Executive report:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · [Repository](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/E-commerce_Delivery_Network_SLA_Risk)
+
+**Methods:** Expanding-window validation · Network features as-of purchase · Haversine distance · CatBoost · Logistic baseline · Optuna · Calibration · Contract tests · Bilingual notebooks
+
+**Technologies:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · Plotly · Folium · pytest · GitHub Actions
 
 ---
 
