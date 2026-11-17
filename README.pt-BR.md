@@ -188,11 +188,11 @@ Audita calibração, fairness, incerteza e isolamento do teste final sobre o con
 
 ---
 
-### 12. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.md) — Risco de entrega sob deriva temporal
+### 12. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md) — Risco de entrega sob deriva temporal
 
 Investiga se uma violação do prazo de entrega do Olist pode ser classificada no momento da compra, usando validação temporal, features da rede vendedor–destino, distância Haversine e modelos calibrados. A avaliação final oficial foi inconclusiva, a análise pós-hoc é exploratória e `production_eligible=false` permanece explícito.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · [Repositório](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/E-commerce_Delivery_Network_SLA_Risk)
+📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
 
 **Métodos:** Validação expanding-window · Features de rede as-of da compra · Distância Haversine · CatBoost · Baseline logística · Optuna · Calibração · Testes de contrato · Notebooks bilíngues
 
