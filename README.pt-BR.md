@@ -194,7 +194,7 @@ Investiga se uma violação do prazo de entrega do Olist pode ser classificada n
 
 📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
 
-**Métodos:** Validação expanding-window · Features de rede as-of da compra · Distância Haversine · CatBoost · Baseline logística · Optuna · Calibração · Testes de contrato · Notebooks bilíngues
+**Métodos:** Validação expanding-window · Features de rede vendedor→UF baseadas em teoria de grafos, calculadas as-of da compra · Distância Haversine · CatBoost · Baseline logística · Optuna · Calibração · Testes de contrato · Notebooks bilíngues
 
 **Tecnologias:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · Plotly · Folium · pytest · GitHub Actions
 

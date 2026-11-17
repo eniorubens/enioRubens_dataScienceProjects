@@ -194,7 +194,7 @@ Studies whether an Olist order can be classified as a delivery-SLA breach at pur
 
 📊 **Executive report:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
 
-**Methods:** Expanding-window validation · Network features as-of purchase · Haversine distance · CatBoost · Logistic baseline · Optuna · Calibration · Contract tests · Bilingual notebooks
+**Methods:** Expanding-window validation · Graph-theoretic seller→state network features as-of purchase · Haversine distance · CatBoost · Logistic baseline · Optuna · Calibration · Contract tests · Bilingual notebooks
 
 **Technologies:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · Plotly · Folium · pytest · GitHub Actions
 

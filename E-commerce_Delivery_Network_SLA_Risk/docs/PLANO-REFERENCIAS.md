@@ -104,6 +104,7 @@ As entradas abaixo são a base a conferir. Detalhes não confirmados serão omit
 | Marquardt, 1970 | Marquardt, D. W. (1970). Generalized inverses, ridge regression, biased linear estimation, and nonlinear estimation. *Technometrics*, 12(3), 591–612. |
 | Micci-Barreca, 2001 | Micci-Barreca, D. (2001). A preprocessing scheme for high-cardinality categorical attributes in classification and prediction problems. *ACM SIGKDD Explorations*, 3(1), 27–32. |
 | Moritz, 2000 | Moritz, H. (2000). Geodetic Reference System 1980. *Journal of Geodesy*, 74(1), 128–133. |
+| Newman, 2010 | Newman, M. E. J. (2010). *Networks: An Introduction*. Oxford University Press. |
 | Naeini et al., 2015 | Naeini, M. P., Cooper, G. F. e Hauskrecht, M. (2015). Obtaining well calibrated probabilities using Bayesian binning. *Proceedings of the 29th AAAI Conference*, 2901–2907. |
 | Niculescu-Mizil e Caruana, 2005 | Niculescu-Mizil, A. e Caruana, R. (2005). Predicting good probabilities with supervised learning. *Proceedings of the 22nd ICML*, 625–632. |
 | Nosek et al., 2018 | Nosek, B. A., Ebersole, C. R., DeHaven, A. C. e Mellor, D. T. (2018). The preregistration revolution. *PNAS*, 115(11), 2600–2606. |
