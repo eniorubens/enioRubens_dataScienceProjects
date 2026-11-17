@@ -76,4 +76,4 @@ O conjunto Olist cobre um único marketplace e um período curto, terminando em 
 
 ## Documentação
 
-A pasta docs/ reúne as decisões, contratos de dados, plano do grafo de rotas, arquitetura modular, sequência de trabalho e revisão técnica do projeto.
+Os documentos internos de trabalho permanecem no projeto-fonte e não fazem parte desta cópia pública do portfólio. A reconstrução do site a partir da fonte exige esses documentos locais.

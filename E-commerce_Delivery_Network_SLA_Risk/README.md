@@ -76,4 +76,4 @@ The Olist dataset covers one marketplace and a short period ending in 2018. Righ
 
 ## Documentation
 
-The docs/ directory contains the approved decisions, data contracts, route-graph plan, modular architecture, work sequence, and technical review.
+The internal working documents are retained in the source project and are not part of this public portfolio copy. Rebuilding the site from source requires those local documents.
