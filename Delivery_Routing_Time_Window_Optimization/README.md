@@ -125,15 +125,15 @@ is derived with `python scripts/derive_phase_c_corrections.py` (no solver).
 
 ## Notebook map
 
-| No. | Portuguese notebook | English notebook | Content |
-|---:|---|---|---|
-| 01 | `01_apresentacao_e_pre_analise.ipynb` | `01_presentation_and_pre_analysis.ipynb` | problem, provenance, data contract, objective conventions |
-| 02 | `02_eda_instancias.ipynb` | `02_instance_eda.ipynb` | geography, time windows, capacity vs. time-window-bound fleets |
-| 03 | `03_verificador_e_baselines.ipynb` | `03_verifier_and_baselines.ipynb` | independent verifier, constructive baselines |
-| 04 | `04_torneio_desenvolvimento.ipynb` | `04_development_tournament.ipynb` | pre-registered tournament, frozen configuration, time budget, v2 diagnostics (phase B) |
-| 05 | `05_avaliacao_final.ipynb` | `05_final_evaluation.ipynb` | final evaluation on 42 unseen instances; post-hoc v2 re-evaluation beside it |
-| 06 | `06_cenarios_de_negocio.ipynb` | `06_business_scenarios.ipynb` | wider windows, early delivery, reallocation, warm start between levels (B5) |
-| 07 | `07_robustez_e_cenarios_operacionais.ipynb` | `07_robustness_and_operational_scenarios.ipynb` | layer B: robustness of fixed plans under delays, reduced capacity, limited fleet with priority, soft windows, reoptimisation |
+| Stage | PT-BR | EN-US | What it covers |
+| :--- | :---: | :---: | :--- |
+| 01 — Presentation and pre-analysis | [PT-BR](notebooks/pt_br/01_apresentacao_e_pre_analise.ipynb) | [EN-US](notebooks/en_us/01_presentation_and_pre_analysis.ipynb) | problem, provenance, data contract, objective conventions |
+| 02 — Exploratory analysis of instances | [PT-BR](notebooks/pt_br/02_eda_instancias.ipynb) | [EN-US](notebooks/en_us/02_instance_eda.ipynb) | geography, time windows, capacity vs. time-window-bound fleets |
+| 03 — Verifier and baselines | [PT-BR](notebooks/pt_br/03_verificador_e_baselines.ipynb) | [EN-US](notebooks/en_us/03_verifier_and_baselines.ipynb) | independent verifier, constructive baselines |
+| 04 — Development tournament | [PT-BR](notebooks/pt_br/04_torneio_desenvolvimento.ipynb) | [EN-US](notebooks/en_us/04_development_tournament.ipynb) | pre-registered tournament, frozen configuration, time budget, v2 diagnostics (phase B) |
+| 05 — Final evaluation | [PT-BR](notebooks/pt_br/05_avaliacao_final.ipynb) | [EN-US](notebooks/en_us/05_final_evaluation.ipynb) | final evaluation on 42 unseen instances; post-hoc v2 re-evaluation beside it |
+| 06 — Business scenarios | [PT-BR](notebooks/pt_br/06_cenarios_de_negocio.ipynb) | [EN-US](notebooks/en_us/06_business_scenarios.ipynb) | wider windows, early delivery, reallocation, warm start between levels (B5) |
+| 07 — Robustness and operational scenarios | [PT-BR](notebooks/pt_br/07_robustez_e_cenarios_operacionais.ipynb) | [EN-US](notebooks/en_us/07_robustness_and_operational_scenarios.ipynb) | layer B: robustness of fixed plans under delays, reduced capacity, limited fleet with priority, soft windows, reoptimisation |
 
 ## Method
 

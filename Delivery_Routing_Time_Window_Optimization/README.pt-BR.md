@@ -126,15 +126,15 @@ dependente da carga). Os resultados usados pelos notebooks estão congelados em 
 
 ## Mapa dos notebooks
 
-| Nº | Notebook em português | Notebook em inglês | Conteúdo |
-|---:|---|---|---|
-| 01 | `01_apresentacao_e_pre_analise.ipynb` | `01_presentation_and_pre_analysis.ipynb` | problema, proveniência, contrato de dados, convenções de objetivo |
-| 02 | `02_eda_instancias.ipynb` | `02_instance_eda.ipynb` | geografia, janelas, frota limitada por capacidade × por janelas |
-| 03 | `03_verificador_e_baselines.ipynb` | `03_verifier_and_baselines.ipynb` | verificador independente, heurísticas construtivas |
-| 04 | `04_torneio_desenvolvimento.ipynb` | `04_development_tournament.ipynb` | torneio pré-registrado, configuração congelada, orçamento de tempo, diagnósticos v2 (fase B) |
-| 05 | `05_avaliacao_final.ipynb` | `05_final_evaluation.ipynb` | avaliação final nas 42 instâncias inéditas; reavaliação v2 pós-hoc ao lado |
-| 06 | `06_cenarios_de_negocio.ipynb` | `06_business_scenarios.ipynb` | janelas alargadas, entrega antecipada, realocação, partida a quente entre níveis (B5) |
-| 07 | `07_robustez_e_cenarios_operacionais.ipynb` | `07_robustness_and_operational_scenarios.ipynb` | camada B: robustez de planos fixos sob atrasos, capacidade reduzida, frota limitada com prioridade, janelas flexíveis, reotimização |
+| Etapa | PT-BR | EN-US | O que apresenta |
+| :--- | :---: | :---: | :--- |
+| 01 — Apresentação e pré-análise | [PT-BR](notebooks/pt_br/01_apresentacao_e_pre_analise.ipynb) | [EN-US](notebooks/en_us/01_presentation_and_pre_analysis.ipynb) | problema, proveniência, contrato de dados, convenções de objetivo |
+| 02 — Análise exploratória das instâncias | [PT-BR](notebooks/pt_br/02_eda_instancias.ipynb) | [EN-US](notebooks/en_us/02_instance_eda.ipynb) | geografia, janelas, frota limitada por capacidade × por janelas |
+| 03 — Verificador e baselines | [PT-BR](notebooks/pt_br/03_verificador_e_baselines.ipynb) | [EN-US](notebooks/en_us/03_verifier_and_baselines.ipynb) | verificador independente, heurísticas construtivas |
+| 04 — Torneio de desenvolvimento | [PT-BR](notebooks/pt_br/04_torneio_desenvolvimento.ipynb) | [EN-US](notebooks/en_us/04_development_tournament.ipynb) | torneio pré-registrado, configuração congelada, orçamento de tempo, diagnósticos v2 (fase B) |
+| 05 — Avaliação final | [PT-BR](notebooks/pt_br/05_avaliacao_final.ipynb) | [EN-US](notebooks/en_us/05_final_evaluation.ipynb) | avaliação final nas 42 instâncias inéditas; reavaliação v2 pós-hoc ao lado |
+| 06 — Cenários de negócio | [PT-BR](notebooks/pt_br/06_cenarios_de_negocio.ipynb) | [EN-US](notebooks/en_us/06_business_scenarios.ipynb) | janelas alargadas, entrega antecipada, realocação, partida a quente entre níveis (B5) |
+| 07 — Robustez e cenários operacionais | [PT-BR](notebooks/pt_br/07_robustez_e_cenarios_operacionais.ipynb) | [EN-US](notebooks/en_us/07_robustness_and_operational_scenarios.ipynb) | camada B: robustez de planos fixos sob atrasos, capacidade reduzida, frota limitada com prioridade, janelas flexíveis, reotimização |
 
 ## Método
 
