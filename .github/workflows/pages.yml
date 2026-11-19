@@ -62,6 +62,12 @@ jobs:
           cp -a Consumer_Complaint_Intelligence/site/. _site/Consumer_Complaint_Intelligence/
           mkdir -p _site/E-commerce_Delivery_Network_SLA_Risk
           cp -a E-commerce_Delivery_Network_SLA_Risk/site/. _site/E-commerce_Delivery_Network_SLA_Risk/
+          mkdir -p _site/Delivery_Routing_Time_Window_Optimization
+          cp -a Delivery_Routing_Time_Window_Optimization/site/. _site/Delivery_Routing_Time_Window_Optimization/
+          source_url="https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Delivery_Routing_Time_Window_Optimization"
+          sed -i "s#href=\"\.\./#href=\"$source_url/#g" \
+            _site/Delivery_Routing_Time_Window_Optimization/index.html \
+            _site/Delivery_Routing_Time_Window_Optimization/en.html
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

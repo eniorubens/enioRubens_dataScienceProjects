@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.coverage
+htmlcov/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.venv/
+
+# Os dados brutos são pequenos (56 x ~7,5 KB) e versionados para reprodutibilidade.
+# Os arquivos extraídos são derivados dos arquivos compactados com hash registrado.
+data/raw/**/extracted/
+
+# Execuções exploratórias não são versionadas; resultados congelados ficam em outputs/frozen/.
+outputs/*
+!outputs/frozen/
+
+# Páginas do SINTEF salvas manualmente (a tabela de referência está documentada em docs/*.pdf)
+data/raw/sintef/*.html
+data/raw/sintef/*_files/
+
+# Third-party data: not redistributed here; obtain it with `python scripts/fetch_data.py`.
+/data/raw/sintef/solomon-100.zip
+/data/raw/cvrplib_solomon_100/Solomon.7z
+/data/raw/cvrplib_solomon_100/Solomon-solutions.7z
+/docs/Solomon-html descriptions.pdf
+/data/reference/cvrplib_bks_100.csv

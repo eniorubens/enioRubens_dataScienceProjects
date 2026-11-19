@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How many vehicles does the operation need? | Delivery Routing &amp; Time-Window Optimization</title>
+  <meta name="description" content="With vehicle capacity and delivery windows fixed, OR-Tools used fewer vehicles on average than either simple heuristic and came closer to the SINTEF reference fleet size. Simulations show how delays, priorities and order changes affect a route plan.">
+  <link rel="alternate" hreflang="pt-BR" href="index.html">
+  <link rel="alternate" hreflang="en-US" href="en.html">
+  <link rel="stylesheet" href="assets/report.css">
+</head>
+<body id="top">
+  <a class="skip" href="#content">Skip to content</a>
+  <header>
+    <div class="wrap topbar">
+      <span class="brand" lang="en">Delivery Routing &amp; Time-Window Optimization</span>
+      <a class="language" href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <div class="hero">
+      <div class="wrap">
+        <p class="kicker">Executive report · Solomon benchmark</p>
+        <h1>How many vehicles does the operation need?</h1>
+        <p class="lead">With vehicle capacity and delivery windows fixed, OR-Tools used fewer vehicles on average than either simple heuristic and came closer to the SINTEF reference fleet size. Simulations show how delays, priorities and order changes affect a route plan.</p>
+        <ul class="metrics" role="list">
+          <li><strong>42</strong><span>instances in the primary v1 evaluation</span></li>
+          <li><strong>24/42</strong><span>matched the SINTEF fleet size</span></li>
+          <li><strong>+3.40%</strong><span>median extra distance at equal fleet size</span></li>
+        </ul>
+      </div>
+    </div>
+    <nav class="toc" aria-label="In this report">
+      <div class="wrap">
+        <a href="#decisao">Decision</a>
+        <a href="#avaliacao">v1 evaluation</a>
+        <a href="#cenarios">Operating scenarios</a>
+        <a href="#reavaliacao">v2 re-evaluation</a>
+        <a href="#reproducao">Limits and reproduction</a>
+        <a href="#fontes">Sources</a>
+      </div>
+    </nav>
+
+    <div class="wrap report">
+      <section id="decisao" aria-labelledby="decisao-title">
+        <h2 id="decisao-title">Fleet size first, distance second</h2>
+        <div class="copy">
+          <p>The vehicle routing problem with time windows (VRPTW) determines which customers go on each route and the order in which they are served. The plan must respect vehicle capacity, customer time windows and the return to the depot.</p>
+          <p>Solomon is a synthetic academic benchmark. Each instance has 100 customers. Of the 56 instances across six families, 14 were set aside for development and 42 for the primary evaluation. SINTEF publishes the best known solutions under the same order of objectives.</p>
+        </div>
+        <ol class="objective" role="list">
+          <li><strong>1st · Minimize fleet size</strong><span>Find a feasible plan with the fewest vehicles.</span></li>
+          <li><strong>2nd · Minimize distance</strong><span>Among plans with the same fleet size, prefer the shortest total Euclidean distance.</span></li>
+        </ol>
+      </section>
+
+      <section id="avaliacao" aria-labelledby="avaliacao-title">
+        <h2 id="avaliacao-title">OR-Tools led the local methods</h2>
+        <div class="copy">
+          <p>All three methods found feasible solutions in all 42 instances. The primary result uses the third of five OR-Tools replicates ordered by feasibility, fleet size and distance, with 120 seconds per replicate. The two deterministic baselines are nearest neighbor with time windows and a deadline-first greedy heuristic.</p>
+          <p>OR-Tools matched the fleet size in all 13 instances in the clustered C1 and C2 families. In R1 and RC1, it matched in just 1 of 15 instances. SINTEF remained ahead on the hardest cases.</p>
+        </div>
+        <figure class="evidence" aria-labelledby="fleet-chart" aria-describedby="fleet-note">
+          <figcaption id="fleet-chart">Instances matching the SINTEF fleet size</figcaption>
+          <p class="figure-note" id="fleet-note">Each bar uses a scale from 0 to 42 instances.</p>
+          <ul class="barlist" role="list">
+            <li class="primary">
+              <span class="barlabel">OR-Tools v1</span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--bar: 57.143%"></span></span>
+              <span class="value">24/42</span>
+            </li>
+            <li>
+              <span class="barlabel">Nearest neighbor</span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--bar: 28.571%"></span></span>
+              <span class="value">12/42</span>
+            </li>
+            <li>
+              <span class="barlabel">Deadline-first greedy</span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--bar: 4.762%"></span></span>
+              <span class="value">2/42</span>
+            </li>
+          </ul>
+        </figure>
+        <div class="table-scroll">
+          <table>
+            <caption>Differences relative to SINTEF</caption>
+            <thead>
+              <tr><th scope="col">Method</th><th scope="col" class="num">Extra vehicles (mean)</th><th scope="col" class="num">Extra distance (median)</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">OR-Tools v1</th><td class="num">+0.50</td><td class="num">+3.40%</td></tr>
+              <tr><th scope="row">Nearest neighbor</th><td class="num">+1.36</td><td class="num">+71.59%</td></tr>
+              <tr><th scope="row">Deadline-first greedy</th><td class="num">+3.98</td><td class="num">+94.83%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy">The distance gap uses only instances where each method matched the SINTEF fleet size. The medians describe different subsets.</p>
+      </section>
+
+      <section id="cenarios" aria-labelledby="cenarios-title">
+        <h2 id="cenarios-title">How disruptions affect the plan</h2>
+        <p class="copy">C1 tests fixed v1 evaluation plans under delays. C2 and C3 use the 14 development instances to simulate operating decisions. C1 compares the local heuristics, while C2 and C3 compare variants of the planning approach.</p>
+        <article aria-labelledby="c1-title">
+          <h3 id="c1-title">C1 · Delays under fixed plans</h3>
+          <div class="copy">
+            <p>Each plan and scenario was simulated 1,000 times, with no replanning. When travel times increased by up to 10% per leg, service started after the window closed for 6.3% of OR-Tools customers, 9.3% with nearest neighbor and 21.1% with the greedy heuristic. Late depot returns were 13.4%, 32.9% and 43.3%, respectively.</p>
+            <p>When service times increased by up to 20%, 84.2% of OR-Tools routes had at least one late stop, versus 71.1% and 72.5%. A plan with fewer vehicles can have a lower share of late customers and a higher share of routes with a late stop.</p>
+          </div>
+        </article>
+
+        <article aria-labelledby="c2-title">
+          <h3 id="c2-title">C2 · Who gets served when vehicles are scarce</h3>
+          <div class="copy">
+            <p>The scenario designated 20% of customers as high priority and tested a tenfold penalty for skipping them. The policy protected these customers while increasing the total number of customers left unserved. The heuristic varied across replicates, and the increases in total were small in this sample.</p>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <caption>Unserved customers · totals across 14 instances</caption>
+              <thead>
+                <tr><th scope="col">Available vehicles</th><th scope="col">Penalty</th><th scope="col" class="num">Total</th><th scope="col" class="num">High priority</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">K − 1</th><td>Uniform</td><td class="num">111</td><td class="num">23</td></tr>
+                <tr><th scope="row">K − 1</th><td>Priority-weighted</td><td class="num">122</td><td class="num">0</td></tr>
+                <tr><th scope="row">K − 2</th><td>Uniform</td><td class="num">344</td><td class="num">69</td></tr>
+                <tr><th scope="row">K − 2</th><td>Priority-weighted</td><td class="num">363</td><td class="num">3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="copy">
+            <p>K is the fleet size of each instance's reference plan. In a separate scenario, limiting each vehicle to 80% of its capacity required a larger fleet in 6 of 14 instances.</p>
+            <p>The soft-window scenario was exploratory. Only 3 of 14 instances were solved with one fewer vehicle. Four were infeasible due to capacity, and seven failed to construct an initial solution.</p>
+          </div>
+        </article>
+
+        <article aria-labelledby="c3-title">
+          <h3 id="c3-title">C3 · Replanning with fewer vehicle changes</h3>
+          <div class="copy">
+            <p>When 10% of customers were removed or inserted, searching from the prior plan preserved more route legs and reassigned fewer customers than starting from scratch. Even with that starting point, the median share of common customers who changed vehicles was about 27% to 30%.</p>
+          </div>
+          <figure class="evidence" aria-labelledby="c3-chart" aria-describedby="c3-note">
+          <figcaption id="c3-chart">Common customers reassigned to a different vehicle</figcaption>
+          <p class="figure-note" id="c3-note">The denominator is the customers present in both plans. Median across 14 instances per variant, using one representative replicate per instance. Scale from 0% to 100%.</p>
+            <div class="bar-group" role="group" aria-labelledby="event-0">
+              <p id="event-0">Remove 10% of customers</p>
+              <ul class="barlist" role="list">
+                <li class="primary">
+                  <span class="barlabel">Start from the previous plan</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 26.7%"></span></span>
+                  <span class="value">26.7%</span>
+                </li>
+                <li>
+                  <span class="barlabel">Start from scratch</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 40.6%"></span></span>
+                  <span class="value">40.6%</span>
+                </li>
+              </ul>
+            </div>
+            <div class="bar-group" role="group" aria-labelledby="event-1">
+              <p id="event-1">Insert 10% more customers</p>
+              <ul class="barlist" role="list">
+                <li class="primary">
+                  <span class="barlabel">Start from the previous plan</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 30%"></span></span>
+                  <span class="value">30.0%</span>
+                </li>
+                <li>
+                  <span class="barlabel">Start from scratch</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 36.7%"></span></span>
+                  <span class="value">36.7%</span>
+                </li>
+              </ul>
+            </div>
+          </figure>
+          <div class="callout">
+            <p class="copy">Median reassignment between cold replicates was zero. For removals, 4 of 42 comparisons were above zero, with a maximum of 23.3%. For insertions, all were zero.</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="reavaliacao" aria-labelledby="reavaliacao-title">
+        <h2 id="reavaliacao-title">v2 changed fleet size in one instance</h2>
+        <div class="copy">
+          <p>The post-hoc re-evaluation reused the same 42 previously seen instances. In RC207, fleet size dropped from 4 to 3 vehicles, bringing the number of SINTEF fleet matches from 24 to 25. Mean extra vehicles went from +0.50 to +0.48.</p>
+          <p>The internal scale changed from 100 to 10,000, and the fixed cost per vehicle changed from an absolute amount to one relative to a distance upper bound. The changes were applied together, so the RC207 result reflects the full v2 configuration.</p>
+          <p>The median equal-fleet gap went from +3.40% to +2.23%, with one extra instance in the subset. Of the 41 instances with the same fleet size across versions, 18 had distance changes within ±0.5%, 11 improved beyond that range and 12 worsened. v1 remains the primary evaluation.</p>
+        </div>
+      </section>
+
+      <section id="reproducao" aria-labelledby="reproducao-title">
+        <h2 id="reproducao-title">Benchmark use only</h2>
+        <div class="copy">
+          <p><code>production_eligible = false</code>. The study uses Euclidean distances and synthetic windows. C1 simulates independent delays, while real traffic can affect multiple routes and times at once. A live operation needs road distances, actual fleet and measured service times, field validation, and replanning rules.</p>
+          <p>This report uses frozen results. To inspect them, see the aggregates and protocols below. To reproduce the experiments locally, follow the project guide to set up the environment, obtain the third-party data and run the scripts. The guide also describes tests that can run on synthetic fixtures.</p>
+          <p><a href="../README.md">Project reproduction guide</a></p>
+        </div>
+      </section>
+
+      <section id="fontes" aria-labelledby="fontes-title">
+        <h2 id="fontes-title">Sources and traceability</h2>
+        <ul class="source-list">
+          <li><strong>v1 evaluation protocol and aggregate</strong> · <a href="../reports/protocolo-avaliacao.md">Evaluation protocol</a> · <a href="../outputs/frozen/evaluation/aggregate_table.csv">v1 aggregate</a></li>
+          <li><strong>Delay robustness under fixed plans</strong> · <a href="../reports/fase-c-robustez.md">Operational report and correction note</a> · <a href="../outputs/frozen/phase_c/C1/summary_by_family_method.csv">C1 aggregate</a></li>
+          <li><strong>Capacity, priorities and soft windows</strong> · <a href="../outputs/frozen/phase_c/C2/capacity/aggregate.csv">Capacity</a> · <a href="../outputs/frozen/phase_c/C2/fleet_priority/aggregate.csv">Priority</a> · <a href="../outputs/frozen/phase_c/C2/soft_windows/aggregate.csv">Soft windows</a></li>
+          <li><strong>Reoptimization after removal and insertion</strong> · <a href="../outputs/frozen/phase_c/C3/removal/aggregate_representative.csv">Removal (representative replicate)</a> · <a href="../outputs/frozen/phase_c/C3/insertion/aggregate_representative.csv">Insertion (representative replicate)</a></li>
+          <li><strong>Post-hoc v1 and v2 results</strong> · <a href="../reports/protocolo-fase-d.md">Protocol and correction note</a> · <a href="../outputs/frozen/evaluation_v2/comparison_aggregate.csv">Aggregate comparison</a></li>
+          <li><strong>Analysis notebooks</strong> · <a href="../notebooks/en_us/05_final_evaluation.ipynb">Final evaluation</a> · <a href="../notebooks/en_us/06_business_scenarios.ipynb">Business scenarios</a> · <a href="../notebooks/en_us/07_robustness_and_operational_scenarios.ipynb">Robustness and operational scenarios</a></li>
+          <li><strong>Provenance and frozen results</strong> · <a href="../docs/referencias.md">References</a> · <a href="../data/reference/split.csv">Development and evaluation split</a> · <a href="../outputs/frozen/README.md">Results inventory</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span lang="en">Delivery Routing &amp; Time-Window Optimization</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>

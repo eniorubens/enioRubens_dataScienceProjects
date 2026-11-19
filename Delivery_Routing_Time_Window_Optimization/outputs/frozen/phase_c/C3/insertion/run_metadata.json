@@ -1,0 +1,140 @@
+{
+  "timestamp": "2026-11-18T11:07:06.548454-03:00",
+  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-fase-c.md",
+  "config": {
+    "solver": {
+      "time_limit_s": 30,
+      "first_solution": "SAVINGS",
+      "metaheuristic": "GUIDED_LOCAL_SEARCH",
+      "fleet_strategy": "fixed_cost",
+      "workers": 8
+    },
+    "time_sensitivity": {
+      "budgets_s": [
+        10,
+        30,
+        60,
+        120,
+        300
+      ],
+      "instance_set": "dev"
+    },
+    "window_widening": {
+      "factors": [
+        1.0,
+        1.25,
+        1.5,
+        2.0
+      ],
+      "mode": "symmetric",
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "early_delivery": {
+      "tolerances": [
+        0.0,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "include_full": true,
+      "replicates": 3,
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "evaluation": {
+      "time_limit_s": 120,
+      "replicates": 5,
+      "instance_set": "eval",
+      "include_baselines": true
+    },
+    "v2": {
+      "scales": [
+        100,
+        10000
+      ],
+      "k_levels": [
+        1,
+        10,
+        100
+      ],
+      "k_default": 10,
+      "time_limit_s": 120,
+      "replicates": 3,
+      "workers": 8,
+      "b4_workers": 4,
+      "first_fraction": 0.3333333333333333,
+      "step_time_s": 20,
+      "drop_penalty_factor": 100,
+      "b5_time_limit_s": 30,
+      "protocol": "reports/protocolo-v2.md"
+    },
+    "phase_c": {
+      "seed": 20261118,
+      "scale": 10000,
+      "fixed_cost_k": 10,
+      "time_limit_s": 30,
+      "replicates": 3,
+      "workers": 8,
+      "capacity_factors": [
+        1.0,
+        0.9,
+        0.8
+      ],
+      "fleet_reductions": [
+        1,
+        2
+      ],
+      "priority_share": 0.2,
+      "priority_penalty_multiplier": 10,
+      "soft_cost_multipliers": [
+        1,
+        10
+      ],
+      "soft_fleet_reduction": 1,
+      "reopt_share": 0.1,
+      "c1_draws": 1000,
+      "c1_travel_a": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "c1_service_b": 0.2,
+      "c1_combined_travel_a": 0.1,
+      "protocol": "reports/protocolo-fase-c.md"
+    }
+  },
+  "config_file": "config/experiment.toml",
+  "instances": [
+    "C103",
+    "C106",
+    "C203",
+    "C206",
+    "R108",
+    "R110",
+    "R111",
+    "R201",
+    "R202",
+    "R207",
+    "RC106",
+    "RC108",
+    "RC203",
+    "RC206"
+  ],
+  "ortools": "9.15.6755",
+  "python": "3.13.18",
+  "numpy": "2.5.5",
+  "cpu_count": 16,
+  "argv": [
+    "scripts\\run_reoptimisation.py",
+    "--block",
+    "insertion"
+  ],
+  "block": "insertion",
+  "time_limit_s": 30,
+  "workers": 8,
+  "replicates": 3,
+  "reference_source": "plan90 solved in this block (insertion)",
+  "reopt_share": 0.1,
+  "seed": 20261118
+}

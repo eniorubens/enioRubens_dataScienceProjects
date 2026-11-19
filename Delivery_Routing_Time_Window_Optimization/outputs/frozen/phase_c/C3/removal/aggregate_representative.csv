@@ -1,0 +1,4 @@
+variant,n,realloc_customers_reassigned,realloc_customers_reassigned_share,realloc_pairs_kept,realloc_pair_agreement,realloc_arcs_kept,delta_vehicles_mean,delta_distance_pct_median,runtime_s_mean,noise_n_positive,noise_max_share,noise_instances
+warm,14,24.0,0.26666666666666666,0.6494741757349358,0.9259675405742822,0.6147658035034272,-0.5714285714285714,-3.4193725005328366,30.017307528573188,,,
+cold,14,36.5,0.40555555555555556,0.510112025379201,0.9128589263420723,0.4137463496036713,-0.5,-2.595697495009368,30.009962885719556,,,
+noise,42,0.0,0.0,1.0,1.0,1.0,,,,4.0,0.23333333333333334,R111 23.3% x2; RC203 3.3% x2

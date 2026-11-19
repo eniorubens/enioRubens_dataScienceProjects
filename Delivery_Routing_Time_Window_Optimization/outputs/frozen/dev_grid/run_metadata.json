@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-11-17T14:23:34.915135-03:00",
+  "budget_s": 30.0,
+  "workers": 8,
+  "instances": [
+    "C103",
+    "C106",
+    "C203",
+    "C206",
+    "R108",
+    "R110",
+    "R111",
+    "R201",
+    "R202",
+    "R207",
+    "RC106",
+    "RC108",
+    "RC203",
+    "RC206"
+  ],
+  "include_reference": true,
+  "ortools": "9.15.6755",
+  "python": "3.13.18",
+  "numpy": "2.5.5",
+  "cpu_count": 16,
+  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-grade-dev.md",
+  "argv": [
+    "scripts\\run_dev_grid.py",
+    "--budget",
+    "30",
+    "--workers",
+    "8",
+    "--out",
+    "outputs/dev_grid"
+  ]
+}

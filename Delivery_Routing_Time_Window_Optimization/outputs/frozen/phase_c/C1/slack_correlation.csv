@@ -1,0 +1,16 @@
+scenario,method,spearman_slack_late_rate
+service,greedy_deadline,-0.5407136430256748
+service,nearest_neighbor_tw,-0.4189953885484183
+service,ortools,-0.3743997690065119
+travel_0.05,greedy_deadline,-0.6310232196505071
+travel_0.05,nearest_neighbor_tw,-0.4474329067841336
+travel_0.05,ortools,-0.41150120647378197
+travel_0.10,greedy_deadline,-0.7083263894150412
+travel_0.10,nearest_neighbor_tw,-0.5433550102676588
+travel_0.10,ortools,-0.4770605683160241
+travel_0.10+service,greedy_deadline,-0.6729590322391454
+travel_0.10+service,nearest_neighbor_tw,-0.5401292434481089
+travel_0.10+service,ortools,-0.46657107309260853
+travel_0.20,greedy_deadline,-0.7763198889574834
+travel_0.20,nearest_neighbor_tw,-0.6289928636586578
+travel_0.20,ortools,-0.5696548872472431

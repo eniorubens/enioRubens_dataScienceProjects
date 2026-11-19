@@ -1,0 +1,37 @@
+{
+  "frozen_v1": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\early_delivery\\results.csv",
+  "instances": [
+    "C103",
+    "C106",
+    "C203",
+    "C206",
+    "R108",
+    "R110",
+    "R111",
+    "R201",
+    "R202",
+    "R207",
+    "RC106",
+    "RC108",
+    "RC203",
+    "RC206"
+  ],
+  "warm_start_counts": {
+    "used": 168,
+    "none": 42
+  },
+  "nonmonotonic": [
+    {
+      "version": "v1",
+      "n_nonmonotonic": 14,
+      "n_fleet": 2,
+      "n_distance": 12
+    },
+    {
+      "version": "v2",
+      "n_nonmonotonic": 0,
+      "n_fleet": 0,
+      "n_distance": 0
+    }
+  ]
+}

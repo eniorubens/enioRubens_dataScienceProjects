@@ -1,0 +1,57 @@
+instance,vehicles,distance,reference,note
+C101,10,828.94,RT,
+C102,10,828.94,RT,
+C103,10,828.06,RT,
+C104,10,824.78,RT,
+C105,10,828.94,RT,
+C106,10,828.94,RT,
+C107,10,828.94,RT,
+C108,10,828.94,RT,
+C109,10,828.94,RT,
+C201,3,591.56,RT,
+C202,3,591.56,RT,
+C203,3,591.17,RT,
+C204,3,590.60,RT,
+C205,3,588.88,RT,
+C206,3,588.49,RT,
+C207,3,588.29,RT,
+C208,3,588.32,RT,
+R101,19,1650.80,H,valor corrigido (antes reportado com baixa precisao)
+R102,17,1486.12,RT,
+R103,13,1292.68,LLH,
+R104,9,1007.31,MBD,valor corrigido (antes reportado com baixa precisao)
+R105,14,1377.11,RT,
+R106,12,1252.03,MBD,valor corrigido (antes reportado com baixa precisao)
+R107,10,1104.66,S97,
+R108,9,960.88,BBB,
+R109,11,1194.73,HG,
+R110,10,1118.84,MBD,valor corrigido (antes reportado com baixa precisao)
+R111,10,1096.73,RGP,checker SINTEF 1096.72658305008 (antes citado 1096.72)
+R112,9,982.14,GTA,
+R201,4,1252.37,HG,
+R202,3,1191.70,RGP,
+R203,3,939.50,WL,
+R204,2,825.52,BVH,
+R205,3,994.43,RGP,solucao detalhada B. Conijn; 994.42 reportado por RGP atribuido a arredondamento
+R206,3,906.14,SSSD,
+R207,2,890.61,RP,
+R208,2,726.82,MBD,valor corrigido (antes reportado com baixa precisao)
+R209,3,909.16,H,
+R210,3,939.37,MBD,valor corrigido (antes reportado com baixa precisao)
+R211,2,885.71,WL,
+RC101,14,1696.95,TBGGP,solucao detalhada B. Conijn; 1696.94 reportado por TBGGP atribuido a arredondamento
+RC102,12,1554.75,TBGGP,
+RC103,11,1261.67,S98,
+RC104,10,1135.48,CLM,
+RC105,13,1629.44,BBB,
+RC106,11,1424.73,BBB,
+RC107,11,1230.48,S97,
+RC108,10,1139.82,TBGGP,
+RC201,4,1406.94,MBD,valor corrigido (antes reportado com baixa precisao)
+RC202,3,1365.65,GCC,
+RC203,3,1049.62,CC,
+RC204,3,798.46,MBD,valor corrigido (antes reportado com baixa precisao)
+RC205,4,1297.65,MBD,valor corrigido (antes reportado com baixa precisao)
+RC206,3,1146.32,H,
+RC207,3,1061.14,BVH,
+RC208,3,828.14,IKMUY,

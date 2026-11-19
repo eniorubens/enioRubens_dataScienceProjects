@@ -1,0 +1,4 @@
+level,n_cells,n_feasible,n_capacity_infeasible,n_search_failed
+0.8,14,14,0,0
+0.9,14,14,0,0
+1,14,14,0,0

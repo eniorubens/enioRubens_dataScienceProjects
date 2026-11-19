@@ -1,0 +1,35 @@
+{
+  "config": {
+    "fleet_strategy": "fixed_cost",
+    "first_solution": "SAVINGS",
+    "metaheuristic": "GUIDED_LOCAL_SEARCH"
+  },
+  "selection_stats": {
+    "mean_rank": 5.607142857142857,
+    "mean_delta_vehicles": 0.8571428571428571,
+    "n_fleet_equal_ref": 5.0,
+    "median_gap_equal_fleet": 1.5285116680821358,
+    "mean_runtime": 30.007407349999994,
+    "n_instances": 14.0
+  },
+  "n_configurations": 18,
+  "instances": [
+    "C103",
+    "C106",
+    "C203",
+    "C206",
+    "R108",
+    "R110",
+    "R111",
+    "R201",
+    "R202",
+    "R207",
+    "RC106",
+    "RC108",
+    "RC203",
+    "RC206"
+  ],
+  "results_file": "outputs\\dev_grid\\results.csv",
+  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-grade-dev.md",
+  "timestamp": "2026-11-17T14:34:28.609990-03:00"
+}

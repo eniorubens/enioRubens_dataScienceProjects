@@ -1,0 +1,309 @@
+{
+  "block": "B1",
+  "level_column": "scale",
+  "scale": null,
+  "k": null,
+  "rule": "representative replicate (position ceil(R/2), lexicographic); mean lexicographic rank; ties: mean delta vehicles, median gap; then protocol preference",
+  "preference": 10000,
+  "strict": false,
+  "winner": 10000,
+  "decided_by": "mean_rank",
+  "n_instances": 14,
+  "ranking": [
+    {
+      "scale": 10000,
+      "mean_rank": 1.3214285714285714,
+      "mean_delta_vehicles": 0.5714285714285714,
+      "n_fleet_equal_ref": 7,
+      "median_gap_equal_fleet": 1.2156300149446417,
+      "mean_runtime": 120.00456382856854,
+      "n_instances": 14
+    },
+    {
+      "scale": 100,
+      "mean_rank": 1.6785714285714286,
+      "mean_delta_vehicles": 0.6428571428571429,
+      "n_fleet_equal_ref": 7,
+      "median_gap_equal_fleet": 1.5285116680821358,
+      "mean_runtime": 120.0062924142902,
+      "n_instances": 14
+    }
+  ],
+  "representatives": [
+    {
+      "instance": "C103",
+      "scale": 100,
+      "vehicles": 10,
+      "distance": 859.0029119698551,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C103",
+      "scale": 10000,
+      "vehicles": 10,
+      "distance": 858.130927225105,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C106",
+      "scale": 100,
+      "vehicles": 10,
+      "distance": 828.936866942834,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C106",
+      "scale": 10000,
+      "vehicles": 10,
+      "distance": 828.936866942834,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C203",
+      "scale": 100,
+      "vehicles": 3,
+      "distance": 600.2061024282011,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "C203",
+      "scale": 10000,
+      "vehicles": 3,
+      "distance": 594.8486369267911,
+      "feasible": true,
+      "replicate": 2,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "C206",
+      "scale": 100,
+      "vehicles": 3,
+      "distance": 588.4928487625538,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "C206",
+      "scale": 10000,
+      "vehicles": 3,
+      "distance": 588.4928487625538,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "R108",
+      "scale": 100,
+      "vehicles": 10,
+      "distance": 970.3116414005694,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 9
+    },
+    {
+      "instance": "R108",
+      "scale": 10000,
+      "vehicles": 10,
+      "distance": 972.5625549024458,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 9
+    },
+    {
+      "instance": "R110",
+      "scale": 100,
+      "vehicles": 12,
+      "distance": 1102.831315349197,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R110",
+      "scale": 10000,
+      "vehicles": 11,
+      "distance": 1113.8781961064335,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R111",
+      "scale": 100,
+      "vehicles": 11,
+      "distance": 1070.3188566618821,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R111",
+      "scale": 10000,
+      "vehicles": 11,
+      "distance": 1075.5776423477964,
+      "feasible": true,
+      "replicate": 2,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R201",
+      "scale": 100,
+      "vehicles": 4,
+      "distance": 1267.594185618162,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 4
+    },
+    {
+      "instance": "R201",
+      "scale": 10000,
+      "vehicles": 4,
+      "distance": 1267.594185618162,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 4
+    },
+    {
+      "instance": "R202",
+      "scale": 100,
+      "vehicles": 4,
+      "distance": 1114.6456678509849,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "R202",
+      "scale": 10000,
+      "vehicles": 4,
+      "distance": 1096.2239345226267,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "R207",
+      "scale": 100,
+      "vehicles": 3,
+      "distance": 830.5159957561,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 2
+    },
+    {
+      "instance": "R207",
+      "scale": 10000,
+      "vehicles": 3,
+      "distance": 823.9479527946185,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 2
+    },
+    {
+      "instance": "RC106",
+      "scale": 100,
+      "vehicles": 13,
+      "distance": 1422.594179905608,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 11
+    },
+    {
+      "instance": "RC106",
+      "scale": 10000,
+      "vehicles": 13,
+      "distance": 1429.802492786216,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 11
+    },
+    {
+      "instance": "RC108",
+      "scale": 100,
+      "vehicles": 11,
+      "distance": 1181.7021080278619,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "RC108",
+      "scale": 10000,
+      "vehicles": 11,
+      "distance": 1177.7903013945097,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "RC203",
+      "scale": 100,
+      "vehicles": 3,
+      "distance": 1125.210480479751,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "RC203",
+      "scale": 10000,
+      "vehicles": 3,
+      "distance": 1101.8235189903976,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "RC206",
+      "scale": 100,
+      "vehicles": 3,
+      "distance": 1268.2332244374927,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "RC206",
+      "scale": 10000,
+      "vehicles": 3,
+      "distance": 1225.200049410658,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    }
+  ],
+  "r110": {
+    "100": {
+      "vehicles_by_replicate": [
+        12,
+        12,
+        12
+      ],
+      "representative_vehicles": 12,
+      "ref_vehicles": 10
+    },
+    "10000": {
+      "vehicles_by_replicate": [
+        11,
+        11,
+        11
+      ],
+      "representative_vehicles": 11,
+      "ref_vehicles": 10
+    }
+  },
+  "inputs": [
+    "outputs/v2/B1/results.csv"
+  ]
+}

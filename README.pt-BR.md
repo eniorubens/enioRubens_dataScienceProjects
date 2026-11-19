@@ -29,6 +29,7 @@ Este não é um conjunto de notebooks isolados. Os projetos analíticos combinam
 | **NASA C-MAPSS** | Manutenção preditiva | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) | [Repositório](./CMAPSS_Predictive_Maintenance) |
 | **Model Risk & Responsible ML** | Governança de risco de modelo | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repositório](./ModelRisk_ResponsibleML) |
 | **E-commerce Delivery Network & SLA Risk** | Risco de entrega / ML temporal | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repositório](./E-commerce_Delivery_Network_SLA_Risk) |
+| **Delivery Routing & Time-Window Optimization** | Logística / otimização prescritiva | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) | [Repositório](./Delivery_Routing_Time_Window_Optimization) |
 | **ds_toolkit** | Biblioteca reutilizável de ML | [README da biblioteca](./ds_toolkit) | [Código](./ds_toolkit) |
 
 ---
@@ -200,6 +201,18 @@ Investiga se uma violação do prazo de entrega do Olist pode ser classificada n
 
 ---
 
+### 13. [Delivery Routing & Time-Window Optimization](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md) — Roteamento com capacidade e janelas de tempo
+
+Compara o OR-Tools com duas heurísticas construtivas no benchmark Solomon. Na avaliação principal v1, o OR-Tools igualou a frota de referência do SINTEF em **24 de 42** instâncias, com **3,40%** de diferença mediana de distância nesse subconjunto. Simulações de atrasos e de reotimização mostram como os planos respondem a mudanças operacionais. A reavaliação v2 é pós-hoc e o estudo é de benchmark, com `production_eligible = false`.
+
+📊 **Relatório executivo** · [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) · README · [English](Delivery_Routing_Time_Window_Optimization/README.md) · [Português](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
+
+**Métodos** · Roteamento com janelas de tempo · Avaliação lexicográfica · Verificação independente de viabilidade · Penalidades por prioridade · Reotimização com partida a quente
+
+**Tecnologias** · Python · OR-Tools · NumPy · pandas · pytest · Jupyter · GitHub Pages
+
+---
+
 ## Resumo de competências
 
 | Área | Métodos e técnicas |
@@ -228,4 +241,4 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 
 ## Licença
 
-O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData) permanecem sob seus termos originais; as fontes estão no README de cada projeto.
+O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB) permanecem sob seus termos originais; as fontes estão no README de cada projeto.

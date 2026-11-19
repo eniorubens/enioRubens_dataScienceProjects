@@ -58,6 +58,9 @@ jobs:
           - project: E-commerce_Delivery_Network_SLA_Risk
             python: "3.12"
             install: pip install -e ".[dev]"
+          - project: Delivery_Routing_Time_Window_Optimization
+            python: "3.13"
+            install: pip install -e ".[dev]"
     defaults:
       run:
         working-directory: ${{ matrix.project }}

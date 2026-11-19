@@ -1,0 +1,291 @@
+{
+  "block": "B3",
+  "level_column": "fleet_strategy",
+  "scale": 10000,
+  "k": 10.0,
+  "rule": "representative replicate (position ceil(R/2), lexicographic); mean lexicographic rank; ties: mean delta vehicles, median gap; then protocol preference",
+  "preference": "fixed_cost",
+  "strict": true,
+  "winner": "fixed_cost",
+  "decided_by": "not_strictly_better",
+  "n_instances": 14,
+  "ranking": [
+    {
+      "fleet_strategy": "fixed_cost",
+      "mean_rank": 1.3214285714285714,
+      "mean_delta_vehicles": 0.5714285714285714,
+      "n_fleet_equal_ref": 7,
+      "median_gap_equal_fleet": 1.2156300149446417,
+      "mean_runtime": 120.00456382856854,
+      "n_instances": 14
+    },
+    {
+      "fleet_strategy": "reduce_fleet_v2",
+      "mean_rank": 1.6785714285714286,
+      "mean_delta_vehicles": 0.5,
+      "n_fleet_equal_ref": 8,
+      "median_gap_equal_fleet": 1.851647621074405,
+      "mean_runtime": 112.87690825714215,
+      "n_instances": 14
+    }
+  ],
+  "representatives": [
+    {
+      "instance": "C103",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 10,
+      "distance": 858.130927225105,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C103",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 10,
+      "distance": 858.130927225105,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C106",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 10,
+      "distance": 828.936866942834,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C106",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 10,
+      "distance": 828.936866942834,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "C203",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 3,
+      "distance": 594.8486369267911,
+      "feasible": true,
+      "replicate": 2,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "C203",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 3,
+      "distance": 600.2061024282011,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "C206",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 3,
+      "distance": 588.4928487625538,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "C206",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 3,
+      "distance": 588.4928487625538,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "R108",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 10,
+      "distance": 972.5625549024458,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 9
+    },
+    {
+      "instance": "R108",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 10,
+      "distance": 974.936137302538,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 9
+    },
+    {
+      "instance": "R110",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 11,
+      "distance": 1113.8781961064335,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R110",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 11,
+      "distance": 1113.8781961064335,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R111",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 11,
+      "distance": 1075.5776423477964,
+      "feasible": true,
+      "replicate": 2,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R111",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 11,
+      "distance": 1107.9916798801005,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "R201",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 4,
+      "distance": 1267.594185618162,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 4
+    },
+    {
+      "instance": "R201",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 4,
+      "distance": 1274.2018551143872,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 4
+    },
+    {
+      "instance": "R202",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 4,
+      "distance": 1096.2239345226267,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "R202",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 3,
+      "distance": 1215.0579399478777,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "R207",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 3,
+      "distance": 823.9479527946185,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 2
+    },
+    {
+      "instance": "R207",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 3,
+      "distance": 860.018614135906,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 2
+    },
+    {
+      "instance": "RC106",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 13,
+      "distance": 1429.802492786216,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 11
+    },
+    {
+      "instance": "RC106",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 13,
+      "distance": 1424.4512535503125,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 11
+    },
+    {
+      "instance": "RC108",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 11,
+      "distance": 1177.7903013945097,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "RC108",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 11,
+      "distance": 1177.7903013945097,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 10
+    },
+    {
+      "instance": "RC203",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 3,
+      "distance": 1101.8235189903976,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "RC203",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 3,
+      "distance": 1236.2864873998374,
+      "feasible": true,
+      "replicate": 0,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "RC206",
+      "fleet_strategy": "fixed_cost",
+      "vehicles": 3,
+      "distance": 1225.200049410658,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    },
+    {
+      "instance": "RC206",
+      "fleet_strategy": "reduce_fleet_v2",
+      "vehicles": 3,
+      "distance": 1259.4354264762403,
+      "feasible": true,
+      "replicate": 1,
+      "ref_vehicles": 3
+    }
+  ],
+  "inputs": [
+    "outputs/v2/B1/results.csv",
+    "outputs/v2/B2/results.csv",
+    "outputs/v2/B3/results.csv"
+  ]
+}

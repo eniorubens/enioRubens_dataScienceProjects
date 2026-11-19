@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantos veículos a operação precisa? | Delivery Routing &amp; Time-Window Optimization</title>
+  <meta name="description" content="Com capacidade e janelas de entrega definidas, o OR-Tools usou menos veículos que as duas heurísticas simples em média e ficou mais perto da frota de referência do SINTEF. Simulações mostram onde atrasos, prioridades e mudanças de pedidos afetam o plano.">
+  <link rel="alternate" hreflang="pt-BR" href="index.html">
+  <link rel="alternate" hreflang="en-US" href="en.html">
+  <link rel="stylesheet" href="assets/report.css">
+</head>
+<body id="top">
+  <a class="skip" href="#content">Ir para o conteúdo</a>
+  <header>
+    <div class="wrap topbar">
+      <span class="brand" lang="en">Delivery Routing &amp; Time-Window Optimization</span>
+      <a class="language" href="en.html" lang="en-US" hreflang="en-US">English</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <div class="hero">
+      <div class="wrap">
+        <p class="kicker">Relatório executivo · Benchmark Solomon</p>
+        <h1>Quantos veículos a operação precisa?</h1>
+        <p class="lead">Com capacidade e janelas de entrega definidas, o OR-Tools usou menos veículos que as duas heurísticas simples em média e ficou mais perto da frota de referência do SINTEF. Simulações mostram onde atrasos, prioridades e mudanças de pedidos afetam o plano.</p>
+        <ul class="metrics" role="list">
+          <li><strong>42</strong><span>instâncias na avaliação principal v1</span></li>
+          <li><strong>24/42</strong><span>com a mesma frota do SINTEF</span></li>
+          <li><strong>+3,40%</strong><span>de distância adicional mediana com frota igual</span></li>
+        </ul>
+      </div>
+    </div>
+    <nav class="toc" aria-label="Neste relatório">
+      <div class="wrap">
+        <a href="#decisao">Decisão</a>
+        <a href="#avaliacao">Avaliação v1</a>
+        <a href="#cenarios">Cenários operacionais</a>
+        <a href="#reavaliacao">Reavaliação v2</a>
+        <a href="#reproducao">Limites e reprodução</a>
+        <a href="#fontes">Fontes</a>
+      </div>
+    </nav>
+
+    <div class="wrap report">
+      <section id="decisao" aria-labelledby="decisao-title">
+        <h2 id="decisao-title">Primeiro a frota, depois a distância</h2>
+        <div class="copy">
+          <p>O problema de roteamento de veículos com janelas de tempo (VRPTW) decide quais clientes entram em cada rota e em que ordem serão atendidos. O plano precisa respeitar a capacidade, as janelas de atendimento e o retorno ao depósito.</p>
+          <p>O benchmark acadêmico Solomon é sintético. Cada instância tem 100 clientes. Das 56 instâncias em seis famílias, 14 foram reservadas para desenvolvimento e 42 para a avaliação principal. O SINTEF publica as melhores soluções conhecidas sob a mesma ordem de objetivos.</p>
+        </div>
+        <ol class="objective" role="list">
+          <li><strong>1º · Minimizar a frota</strong><span>Encontrar um plano viável com o menor número de veículos.</span></li>
+          <li><strong>2º · Minimizar a distância</strong><span>Entre planos com a mesma frota, preferir a menor distância euclidiana total.</span></li>
+        </ol>
+      </section>
+
+      <section id="avaliacao" aria-labelledby="avaliacao-title">
+        <h2 id="avaliacao-title">O OR-Tools liderou entre os métodos locais</h2>
+        <div class="copy">
+          <p>Os três métodos encontraram soluções viáveis nas 42 instâncias. A comparação principal usa a terceira de cinco réplicas do OR-Tools, ordenadas por viabilidade, frota e distância, com 120 segundos por réplica. As baselines determinísticas são o vizinho mais próximo com janelas e a gulosa por prazo.</p>
+          <p>O OR-Tools igualou a frota nas 13 instâncias das famílias agrupadas C1/C2. Nas famílias R1 e RC1, igualou em apenas 1 de 15 instâncias. O SINTEF continuou à frente nos casos mais difíceis.</p>
+        </div>
+        <figure class="evidence" aria-labelledby="fleet-chart" aria-describedby="fleet-note">
+          <figcaption id="fleet-chart">Instâncias com frota igual à referência SINTEF</figcaption>
+          <p class="figure-note" id="fleet-note">Cada barra usa a escala de 0 a 42 instâncias.</p>
+          <ul class="barlist" role="list">
+            <li class="primary">
+              <span class="barlabel">OR-Tools v1</span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--bar: 57.143%"></span></span>
+              <span class="value">24/42</span>
+            </li>
+            <li>
+              <span class="barlabel">Vizinho mais próximo</span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--bar: 28.571%"></span></span>
+              <span class="value">12/42</span>
+            </li>
+            <li>
+              <span class="barlabel">Gulosa por prazo</span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--bar: 4.762%"></span></span>
+              <span class="value">2/42</span>
+            </li>
+          </ul>
+        </figure>
+        <div class="table-scroll">
+          <table>
+            <caption>Diferenças em relação ao SINTEF</caption>
+            <thead>
+              <tr><th scope="col">Método</th><th scope="col" class="num">Veículos extras (média)</th><th scope="col" class="num">Distância adicional (mediana)</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">OR-Tools v1</th><td class="num">+0,50</td><td class="num">+3,40%</td></tr>
+              <tr><th scope="row">Vizinho mais próximo</th><td class="num">+1,36</td><td class="num">+71,59%</td></tr>
+              <tr><th scope="row">Gulosa por prazo</th><td class="num">+3,98</td><td class="num">+94,83%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy">O gap de distância usa apenas as instâncias em que cada método igualou a frota do SINTEF. As medianas usam subconjuntos diferentes.</p>
+      </section>
+
+      <section id="cenarios" aria-labelledby="cenarios-title">
+        <h2 id="cenarios-title">O plano muda quando o dia muda</h2>
+        <p class="copy">C1 testa planos fixos da avaliação v1 sob atrasos. C2 e C3 usam as 14 instâncias de desenvolvimento para simular decisões operacionais. Os comparadores são as heurísticas locais em C1 e as variantes de planejamento em C2 e C3.</p>
+        <article aria-labelledby="c1-title">
+          <h3 id="c1-title">C1 · Atrasos em planos fixos</h3>
+          <div class="copy">
+            <p>Foram simulados mil sorteios por plano e cenário, sem replanejar. Com tempos de viagem até 10% maiores por trecho, o atendimento começou após o fim da janela para 6,3% dos clientes no OR-Tools, 9,3% no vizinho mais próximo e 21,1% na gulosa. A parcela de retornos tardios ao depósito foi de 13,4%, 32,9% e 43,3%, respectivamente.</p>
+            <p>Com aumento de até 20% nos tempos de serviço, 84,2% das rotas do OR-Tools tiveram pelo menos um cliente atrasado, ante 71,1% e 72,5%. Um plano com menos veículos pode ter uma proporção menor de clientes atrasados e uma proporção maior de rotas com algum atraso.</p>
+          </div>
+        </article>
+
+        <article aria-labelledby="c2-title">
+          <h3 id="c2-title">C2 · Quem atender quando faltam veículos</h3>
+          <div class="copy">
+            <p>O cenário designou 20% dos clientes como prioritários e testou uma penalidade dez vezes maior por deixar de atendê-los. A prioridade protegeu esses clientes, mas aumentou o total de clientes sem atendimento. A solução heurística variou entre réplicas e os aumentos no total foram pequenos na amostra.</p>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <caption>Clientes sem atendimento · total nas 14 instâncias</caption>
+              <thead>
+                <tr><th scope="col">Veículos disponíveis</th><th scope="col">Penalidade</th><th scope="col" class="num">Total</th><th scope="col" class="num">Prioritários</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">K − 1</th><td>Uniforme</td><td class="num">111</td><td class="num">23</td></tr>
+                <tr><th scope="row">K − 1</th><td>Com prioridade</td><td class="num">122</td><td class="num">0</td></tr>
+                <tr><th scope="row">K − 2</th><td>Uniforme</td><td class="num">344</td><td class="num">69</td></tr>
+                <tr><th scope="row">K − 2</th><td>Com prioridade</td><td class="num">363</td><td class="num">3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="copy">
+            <p>K é a quantidade de veículos do plano de referência de cada instância. Em outro cenário, limitar a capacidade de cada veículo a 80% exigiu uma frota maior em 6 das 14 instâncias.</p>
+            <p>A flexibilização de janelas foi exploratória. Apenas 3 de 14 instâncias foram resolvidas com um veículo a menos. Quatro eram inviáveis por capacidade e sete falharam na construção inicial.</p>
+          </div>
+        </article>
+
+        <article aria-labelledby="c3-title">
+          <h3 id="c3-title">C3 · Replanejar com menos trocas de veículo</h3>
+          <div class="copy">
+            <p>Ao remover ou inserir 10% dos clientes, iniciar a busca pelo plano anterior preservou mais trechos e reduziu a realocação em relação a recomeçar do zero. Mesmo assim, a proporção mediana de clientes em comum que mudaram de veículo ficou entre 27% e 30%.</p>
+          </div>
+          <figure class="evidence" aria-labelledby="c3-chart" aria-describedby="c3-note">
+          <figcaption id="c3-chart">Clientes em comum realocados entre veículos</figcaption>
+          <p class="figure-note" id="c3-note">O denominador são os clientes presentes nos dois planos. Mediana das 14 instâncias por variante, com uma réplica representativa por instância. Escala de 0% a 100%.</p>
+            <div class="bar-group" role="group" aria-labelledby="event-0">
+              <p id="event-0">Remover 10% dos clientes</p>
+              <ul class="barlist" role="list">
+                <li class="primary">
+                  <span class="barlabel">Partir do plano anterior</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 26.7%"></span></span>
+                  <span class="value">26,7%</span>
+                </li>
+                <li>
+                  <span class="barlabel">Recomeçar do zero</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 40.6%"></span></span>
+                  <span class="value">40,6%</span>
+                </li>
+              </ul>
+            </div>
+            <div class="bar-group" role="group" aria-labelledby="event-1">
+              <p id="event-1">Inserir 10% de clientes</p>
+              <ul class="barlist" role="list">
+                <li class="primary">
+                  <span class="barlabel">Partir do plano anterior</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 30%"></span></span>
+                  <span class="value">30,0%</span>
+                </li>
+                <li>
+                  <span class="barlabel">Recomeçar do zero</span>
+                  <span class="track" aria-hidden="true"><span class="fill" style="--bar: 36.7%"></span></span>
+                  <span class="value">36,7%</span>
+                </li>
+              </ul>
+            </div>
+          </figure>
+          <div class="callout">
+            <p class="copy">A mediana da realocação entre réplicas a frio foi zero. Na remoção, 4 de 42 comparações ficaram acima de zero, com máximo de 23,3%. Na inserção, todas ficaram em zero.</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="reavaliacao" aria-labelledby="reavaliacao-title">
+        <h2 id="reavaliacao-title">A v2 mudou a frota em um caso</h2>
+        <div class="copy">
+          <p>A reavaliação pós-hoc reutilizou as mesmas 42 instâncias já vistas. Em RC207, a frota caiu de 4 para 3 veículos, elevando a contagem de frotas iguais ao SINTEF de 24 para 25. A média de veículos extras passou de +0,50 para +0,48.</p>
+          <p>A escala interna passou de 100 para 10.000 e o custo fixo por veículo mudou de absoluto para relativo a um limite superior da distância. As mudanças foram aplicadas juntas, então o resultado de RC207 é da configuração v2 como um todo.</p>
+          <p>O gap mediano com a mesma frota passou de +3,40% para +2,23%, com uma instância a mais no subconjunto. Entre as 41 instâncias com frota igual entre versões, 18 ficaram dentro de ±0,5% na distância, 11 melhoraram e 12 pioraram fora dessa faixa. A v1 permanece a avaliação principal.</p>
+        </div>
+      </section>
+
+      <section id="reproducao" aria-labelledby="reproducao-title">
+        <h2 id="reproducao-title">Uso restrito ao benchmark</h2>
+        <div class="copy">
+          <p><code>production_eligible = false</code>. O estudo usa distâncias euclidianas e janelas sintéticas. Os atrasos simulados em C1 são independentes, enquanto o trânsito real pode afetar rotas e horários simultaneamente. Uma operação real exige distâncias viárias, frota e tempos de serviço medidos, validação de campo e regras de replanejamento.</p>
+          <p>Este relatório usa somente resultados congelados. Para inspecioná-los, consulte os agregados e protocolos abaixo. Para reproduzir os experimentos localmente, siga o guia do projeto para preparar o ambiente, obter os dados de terceiros e executar os scripts. Ele também descreve os testes que podem ser executados com dados sintéticos.</p>
+          <p><a href="../README.pt-BR.md">Guia de reprodução do projeto</a></p>
+        </div>
+      </section>
+
+      <section id="fontes" aria-labelledby="fontes-title">
+        <h2 id="fontes-title">Fontes e rastreabilidade</h2>
+        <ul class="source-list">
+          <li><strong>Protocolo e agregado da avaliação v1</strong> · <a href="../reports/protocolo-avaliacao.md">Protocolo da avaliação</a> · <a href="../outputs/frozen/evaluation/aggregate_table.csv">Agregado v1</a></li>
+          <li><strong>Robustez e atrasos em planos fixos</strong> · <a href="../reports/fase-c-robustez.md">Relatório operacional e nota de correção</a> · <a href="../outputs/frozen/phase_c/C1/summary_by_family_method.csv">Agregado C1</a></li>
+          <li><strong>Capacidade, prioridade e janelas flexíveis</strong> · <a href="../outputs/frozen/phase_c/C2/capacity/aggregate.csv">Capacidade</a> · <a href="../outputs/frozen/phase_c/C2/fleet_priority/aggregate.csv">Prioridade</a> · <a href="../outputs/frozen/phase_c/C2/soft_windows/aggregate.csv">Janelas flexíveis</a></li>
+          <li><strong>Reotimização com remoção e inserção</strong> · <a href="../outputs/frozen/phase_c/C3/removal/aggregate_representative.csv">Remoção (réplica representativa)</a> · <a href="../outputs/frozen/phase_c/C3/insertion/aggregate_representative.csv">Inserção (réplica representativa)</a></li>
+          <li><strong>Resultados pós-hoc v1 × v2</strong> · <a href="../reports/protocolo-fase-d.md">Protocolo e nota de correção</a> · <a href="../outputs/frozen/evaluation_v2/comparison_aggregate.csv">Comparação agregada</a></li>
+          <li><strong>Notebooks da análise</strong> · <a href="../notebooks/pt_br/05_avaliacao_final.ipynb">Avaliação final</a> · <a href="../notebooks/pt_br/06_cenarios_de_negocio.ipynb">Cenários de negócio</a> · <a href="../notebooks/pt_br/07_robustez_e_cenarios_operacionais.ipynb">Robustez e cenários operacionais</a></li>
+          <li><strong>Proveniência e resultados congelados</strong> · <a href="../docs/referencias.md">Referências</a> · <a href="../data/reference/split.csv">Divisão desenvolvimento/avaliação</a> · <a href="../outputs/frozen/README.md">Inventário dos resultados</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span lang="en">Delivery Routing &amp; Time-Window Optimization</span>
+      <a href="#top">Voltar ao topo</a>
+    </div>
+  </footer>
+</body>
+</html>

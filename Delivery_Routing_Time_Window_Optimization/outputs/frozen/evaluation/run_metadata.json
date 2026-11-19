@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-11-17T16:22:43.407764-03:00",
+  "config": {
+    "solver": {
+      "time_limit_s": 120,
+      "first_solution": "SAVINGS",
+      "metaheuristic": "GUIDED_LOCAL_SEARCH",
+      "fleet_strategy": "fixed_cost",
+      "workers": 8
+    },
+    "time_sensitivity": {
+      "budgets_s": [
+        10,
+        30,
+        60,
+        120,
+        300
+      ],
+      "instance_set": "dev"
+    },
+    "window_widening": {
+      "factors": [
+        1.0,
+        1.25,
+        1.5,
+        2.0
+      ],
+      "mode": "symmetric",
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "early_delivery": {
+      "tolerances": [
+        0.0,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "include_full": true,
+      "replicates": 3,
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "evaluation": {
+      "time_limit_s": 120,
+      "replicates": 5,
+      "instance_set": "eval",
+      "include_baselines": true
+    }
+  },
+  "config_file": "config/experiment.toml",
+  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-avaliacao.md",
+  "frozen_config": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\selected_config.json",
+  "instances": [
+    "C101",
+    "C102",
+    "C104",
+    "C105",
+    "C107",
+    "C108",
+    "C109",
+    "C201",
+    "C202",
+    "C204",
+    "C205",
+    "C207",
+    "C208",
+    "R101",
+    "R102",
+    "R103",
+    "R104",
+    "R105",
+    "R106",
+    "R107",
+    "R109",
+    "R112",
+    "R203",
+    "R204",
+    "R205",
+    "R206",
+    "R208",
+    "R209",
+    "R210",
+    "R211",
+    "RC101",
+    "RC102",
+    "RC103",
+    "RC104",
+    "RC105",
+    "RC107",
+    "RC201",
+    "RC202",
+    "RC204",
+    "RC205",
+    "RC207",
+    "RC208"
+  ],
+  "ortools": "9.15.6755",
+  "python": "3.13.18",
+  "numpy": "2.5.5",
+  "pandas": "3.1.1",
+  "cpu_count": 16,
+  "argv": [
+    "scripts\\run_evaluation.py",
+    "--confirm-eval",
+    "--workers",
+    "8",
+    "--out",
+    "outputs/evaluation"
+  ]
+}
