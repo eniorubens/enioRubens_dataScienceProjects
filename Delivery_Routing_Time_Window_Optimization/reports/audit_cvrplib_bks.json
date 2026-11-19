@@ -1,0 +1,970 @@
+[
+ {
+  "inst": "C101",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C102",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C103",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 826.3,
+  "trunc": 826.3,
+  "exact": 828.06,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C104",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 822.9,
+  "trunc": 822.9,
+  "exact": 824.78,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C105",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C106",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C107",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C108",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C109",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 1236,
+  "s": [
+   90
+  ],
+  "routes": 10,
+  "ref": 827.3,
+  "trunc": 827.3,
+  "exact": 828.94,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C201",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 589.1,
+  "trunc": 589.1,
+  "exact": 591.56,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C202",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 589.1,
+  "trunc": 589.1,
+  "exact": 591.56,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C203",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 588.7,
+  "trunc": 588.7,
+  "exact": 591.17,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C204",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 588.1,
+  "trunc": 588.1,
+  "exact": 590.6,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C205",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 586.4,
+  "trunc": 586.4,
+  "exact": 588.88,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C206",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 586.0,
+  "trunc": 586.0,
+  "exact": 588.49,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C207",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 585.8,
+  "trunc": 585.8,
+  "exact": 588.29,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "C208",
+  "n": 100,
+  "K": 25,
+  "Q": 700,
+  "depot_b": 3390,
+  "s": [
+   90
+  ],
+  "routes": 3,
+  "ref": 585.8,
+  "trunc": 585.8,
+  "exact": 588.32,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R101",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 20,
+  "ref": 1637.7,
+  "trunc": 1637.7,
+  "exact": 1642.88,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R102",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 18,
+  "ref": 1466.6,
+  "trunc": 1466.6,
+  "exact": 1471.75,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 14"
+  ]
+ },
+ {
+  "inst": "R103",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 14,
+  "ref": 1208.7,
+  "trunc": 1208.7,
+  "exact": 1213.62,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R104",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 11,
+  "ref": 971.5,
+  "trunc": 971.5,
+  "exact": 976.69,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R105",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 15,
+  "ref": 1355.3,
+  "trunc": 1355.3,
+  "exact": 1360.12,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 83"
+  ]
+ },
+ {
+  "inst": "R106",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 13,
+  "ref": 1234.6,
+  "trunc": 1234.6,
+  "exact": 1239.37,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R107",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 11,
+  "ref": 1064.6,
+  "trunc": 1064.6,
+  "exact": 1069.09,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 74"
+  ]
+ },
+ {
+  "inst": "R108",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 10,
+  "ref": 932.1,
+  "trunc": 932.1,
+  "exact": 936.69,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 28"
+  ]
+ },
+ {
+  "inst": "R109",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 13,
+  "ref": 1146.9,
+  "trunc": 1146.9,
+  "exact": 1151.91,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R110",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 12,
+  "ref": 1068.0,
+  "trunc": 1068.0,
+  "exact": 1072.48,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R111",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 12,
+  "ref": 1048.7,
+  "trunc": 1048.7,
+  "exact": 1053.5,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R112",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 230,
+  "s": [
+   10
+  ],
+  "routes": 10,
+  "ref": 948.6,
+  "trunc": 948.6,
+  "exact": 953.44,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 5"
+  ]
+ },
+ {
+  "inst": "R201",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 8,
+  "ref": 1143.2,
+  "trunc": 1143.2,
+  "exact": 1147.82,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R202",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 8,
+  "ref": 1029.6,
+  "trunc": 1029.6,
+  "exact": 1034.35,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R203",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 6,
+  "ref": 870.8,
+  "trunc": 870.8,
+  "exact": 874.87,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R204",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 5,
+  "ref": 731.3,
+  "trunc": 731.3,
+  "exact": 735.86,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R205",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 5,
+  "ref": 949.8,
+  "trunc": 949.8,
+  "exact": 954.16,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R206",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 5,
+  "ref": 875.9,
+  "trunc": 875.9,
+  "exact": 879.89,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R207",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 4,
+  "ref": 794.0,
+  "trunc": 794.0,
+  "exact": 798.08,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R208",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 4,
+  "ref": 701.0,
+  "trunc": 701.0,
+  "exact": 705.33,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R209",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 5,
+  "ref": 854.8,
+  "trunc": 854.8,
+  "exact": 859.39,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R210",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 6,
+  "ref": 900.5,
+  "trunc": 900.5,
+  "exact": 904.81,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "R211",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 1000,
+  "s": [
+   10
+  ],
+  "routes": 4,
+  "ref": 746.7,
+  "trunc": 746.7,
+  "exact": 751.29,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 94"
+  ]
+ },
+ {
+  "inst": "RC101",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 15,
+  "ref": 1619.8,
+  "trunc": 1619.8,
+  "exact": 1623.56,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 46"
+  ]
+ },
+ {
+  "inst": "RC102",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 14,
+  "ref": 1457.4,
+  "trunc": 1457.4,
+  "exact": 1461.33,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC103",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 11,
+  "ref": 1258.0,
+  "trunc": 1258.0,
+  "exact": 1261.67,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC104",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 10,
+  "ref": 1132.3,
+  "trunc": 1132.3,
+  "exact": 1135.48,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC105",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 15,
+  "ref": 1513.7,
+  "trunc": 1513.7,
+  "exact": 1517.93,
+  "feas_trunc": true,
+  "feas_exact": false,
+  "viol_exact": [
+   "tw 6"
+  ]
+ },
+ {
+  "inst": "RC106",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 12,
+  "ref": 1372.7,
+  "trunc": 1372.7,
+  "exact": 1376.26,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC107",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 12,
+  "ref": 1207.8,
+  "trunc": 1207.8,
+  "exact": 1211.13,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC108",
+  "n": 100,
+  "K": 25,
+  "Q": 200,
+  "depot_b": 240,
+  "s": [
+   10
+  ],
+  "routes": 11,
+  "ref": 1114.2,
+  "trunc": 1114.2,
+  "exact": 1117.53,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC201",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 9,
+  "ref": 1261.8,
+  "trunc": 1261.8,
+  "exact": 1265.56,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC202",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 8,
+  "ref": 1092.3,
+  "trunc": 1092.3,
+  "exact": 1095.64,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC203",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 5,
+  "ref": 923.7,
+  "trunc": 923.7,
+  "exact": 926.9,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC204",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 4,
+  "ref": 783.5,
+  "trunc": 783.5,
+  "exact": 786.54,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC205",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 7,
+  "ref": 1154.0,
+  "trunc": 1154.0,
+  "exact": 1157.66,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC206",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 7,
+  "ref": 1051.1,
+  "trunc": 1051.1,
+  "exact": 1054.61,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC207",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 6,
+  "ref": 962.9,
+  "trunc": 962.9,
+  "exact": 966.37,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ },
+ {
+  "inst": "RC208",
+  "n": 100,
+  "K": 25,
+  "Q": 1000,
+  "depot_b": 960,
+  "s": [
+   10
+  ],
+  "routes": 4,
+  "ref": 776.1,
+  "trunc": 776.1,
+  "exact": 778.93,
+  "feas_trunc": true,
+  "feas_exact": true,
+  "viol_exact": []
+ }
+]

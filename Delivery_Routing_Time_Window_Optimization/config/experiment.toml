@@ -1,0 +1,78 @@
+# Configuração central dos experimentos (lida com tomllib; sem dependências novas).
+# Qualquer valor pode ser sobrescrito na linha de comando dos scripts
+# (--config, --time-limit, --budgets, --factors, --tolerances, --replicates, --workers, --set).
+
+[solver]
+# Deve ser igual à configuração congelada em outputs/frozen/selected_config.json.
+time_limit_s = 30                       # orçamento de busca por instância (s)
+first_solution = "SAVINGS"              # estratégia da solução inicial do OR-Tools
+metaheuristic = "GUIDED_LOCAL_SEARCH"   # metaheurística de busca local
+fleet_strategy = "fixed_cost"           # "fixed_cost" | "reduce_fleet"
+workers = 8                             # processos paralelos (instâncias simultâneas)
+
+[time_sensitivity]
+# Camada A (benchmark): mais tempo de busca reduz a frota? Compara com a BKS da SINTEF.
+budgets_s = [10, 30, 60, 120, 300]      # orçamentos testados (s)
+instance_set = "dev"                    # "dev" | "eval" | "all" (eval só após o protocolo liberar)
+
+[window_widening]
+# Camada B (cenário de negócio): janelas de clientes mais largas. Sem comparação com a SINTEF.
+factors = [1.0, 1.25, 1.5, 2.0]         # multiplicador da largura da janela; deve incluir 1.0
+mode = "symmetric"                      # "symmetric" (abre antes e fecha depois) | "later_due" (só fecha depois)
+instance_set = "dev"                    # "dev" | "eval" | "all"
+time_limit_s = 30                       # orçamento de busca por instância (s)
+
+[early_delivery]
+# Camada B (cenário de negócio): entrega antes da abertura da janela é aceita. Sem comparação com a SINTEF.
+tolerances = [0.0, 0.25, 0.5, 1.0]      # fração da largura da janela que pode ser antecipada; deve incluir 0.0
+include_full = true                     # acrescenta o nível "full": pode entregar a qualquer hora antes do fim da janela
+replicates = 3                          # réplicas por célula (variabilidade por relógio)
+instance_set = "dev"                    # "dev" | "eval" | "all"
+time_limit_s = 30                       # orçamento de busca por instância (s)
+
+[evaluation]
+# Avaliação final nas instâncias de avaliação. Pré-registrada em reports/protocolo-avaliacao.md
+# (registrada antes de qualquer execução sobre o conjunto "eval"); não alterar após ver resultados.
+# A configuração do solver é a de [solver] (congelada), exceto o orçamento, que vem daqui.
+time_limit_s = 120                      # orçamento de busca por execução do OR-Tools (s)
+replicates = 5                          # réplicas do OR-Tools por instância (mediana lexicográfica = resultado principal)
+instance_set = "eval"                   # "dev" | "eval" | "all"; "eval" exige --confirm-eval no script
+include_baselines = true                # roda gulosa por prazo e vizinho mais próximo (1 execução por instância)
+
+[v2]
+# Diagnósticos do solver, pré-registrados em reports/protocolo-v2.md (blocos B1-B5; somente instâncias dev).
+# Não alterar após ver resultados. A configuração v1 acima continua congelada.
+scales = [100, 10000]                   # B1: escalas inteiras comparadas (empate -> 10000)
+k_levels = [1, 10, 100]                 # B2: custo fixo por veículo = k * escala * D_ub; k = 10 é reutilizado de B1
+k_default = 10                          # k padrão (empate em B2 mantém este valor)
+time_limit_s = 120                      # B1-B4: orçamento por execução (s)
+replicates = 3                          # B1-B4: réplicas por célula (réplica representativa = posição 2 de 3)
+workers = 8                             # B1-B3 e B5: processos paralelos
+b4_workers = 4                          # B4: processos paralelos (teste de throttling)
+first_fraction = 0.3333333333333333     # B3: fração do orçamento da primeira resolução (fria)
+step_time_s = 20                        # B3: limite nominal de cada tentativa de reduzir a frota (s)
+drop_penalty_factor = 100               # B3: penalidade de descarte = fator * custo fixo por veículo
+b5_time_limit_s = 30                    # B5: orçamento por nível (s), o mesmo da v1
+protocol = "reports/protocolo-v2.md"    # protocolo pré-registrado (gravado nos metadados das execuções)
+
+[phase_c]
+# Fase C (robustez e cenários operacionais, Camada B), pré-registrada em reports/protocolo-fase-c.md.
+# C1 não usa solver; C2 e C3 usam somente instâncias dev. Não alterar após ver resultados.
+seed = 20261118                         # semente de todos os sorteios (prioridades, amostras, Monte Carlo)
+scale = 10000                           # configuração v2 do solver: escala inteira
+fixed_cost_k = 10                       # configuração v2: custo fixo por veículo = k * escala * D_ub
+time_limit_s = 30                       # C2/C3: orçamento por execução do solver (s)
+replicates = 3                          # C2/C3: réplicas por célula (representativa = posição 2 de 3, lexicográfica)
+workers = 8                             # processos paralelos
+capacity_factors = [1.0, 0.9, 0.8]      # C2.1: Q x fator; 1.0 é a referência
+fleet_reductions = [1, 2]               # C2.2: K = veículos da referência - r
+priority_share = 0.2                    # C2.2: fração de clientes prioritários (sorteio por instância)
+priority_penalty_multiplier = 10        # C2.2: penalidade dos prioritários = 10x a dos comuns
+soft_cost_multipliers = [1, 10]         # C2.3: custo por unidade de atraso = m x custo por unidade de distância (baixo, alto)
+soft_fleet_reduction = 1                # C2.3: K = veículos da referência - 1
+reopt_share = 0.1                       # C3: fração de clientes removidos/inseridos
+c1_draws = 1000                         # C1: sorteios de Monte Carlo por plano e cenário
+c1_travel_a = [0.05, 0.10, 0.20]        # C1: choque de viagem, eps ~ U(0, a)
+c1_service_b = 0.20                     # C1: choque de serviço, eta ~ U(0, b)
+c1_combined_travel_a = 0.10             # C1: viagem do cenário combinado (viagem + serviço)
+protocol = "reports/protocolo-fase-c.md"  # protocolo pré-registrado (gravado nos metadados das execuções)

@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-11-17T15:52:50.288138-03:00",
+  "config": {
+    "solver": {
+      "time_limit_s": 30,
+      "first_solution": "SAVINGS",
+      "metaheuristic": "GUIDED_LOCAL_SEARCH",
+      "fleet_strategy": "fixed_cost",
+      "workers": 8
+    },
+    "time_sensitivity": {
+      "budgets_s": [
+        10,
+        30,
+        60,
+        120,
+        300
+      ],
+      "instance_set": "dev"
+    },
+    "window_widening": {
+      "factors": [
+        1.0,
+        1.25,
+        1.5,
+        2.0
+      ],
+      "mode": "symmetric",
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "early_delivery": {
+      "tolerances": [
+        0.0,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "include_full": true,
+      "replicates": 3,
+      "instance_set": "dev",
+      "time_limit_s": 30
+    }
+  },
+  "config_file": "config/experiment.toml",
+  "instances": [
+    "C103",
+    "C106",
+    "C203",
+    "C206",
+    "R108",
+    "R110",
+    "R111",
+    "R201",
+    "R202",
+    "R207",
+    "RC106",
+    "RC108",
+    "RC203",
+    "RC206"
+  ],
+  "levels": [
+    "0",
+    "0.25",
+    "0.5",
+    "1",
+    "full"
+  ],
+  "ortools": "9.15.6755",
+  "python": "3.13.18",
+  "numpy": "2.5.5",
+  "cpu_count": 16,
+  "argv": [
+    "scripts\\run_early_delivery.py",
+    "--out",
+    "outputs/early_delivery"
+  ]
+}

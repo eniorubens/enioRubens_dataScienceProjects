@@ -1,0 +1,177 @@
+{
+  "timestamp": "2026-11-18T11:32:31.813306-03:00",
+  "config": {
+    "solver": {
+      "time_limit_s": 120,
+      "first_solution": "SAVINGS",
+      "metaheuristic": "GUIDED_LOCAL_SEARCH",
+      "fleet_strategy": "fixed_cost",
+      "workers": 8
+    },
+    "time_sensitivity": {
+      "budgets_s": [
+        10,
+        30,
+        60,
+        120,
+        300
+      ],
+      "instance_set": "dev"
+    },
+    "window_widening": {
+      "factors": [
+        1.0,
+        1.25,
+        1.5,
+        2.0
+      ],
+      "mode": "symmetric",
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "early_delivery": {
+      "tolerances": [
+        0.0,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "include_full": true,
+      "replicates": 3,
+      "instance_set": "dev",
+      "time_limit_s": 30
+    },
+    "evaluation": {
+      "time_limit_s": 120,
+      "replicates": 5,
+      "instance_set": "eval",
+      "include_baselines": true
+    },
+    "v2": {
+      "scales": [
+        100,
+        10000
+      ],
+      "k_levels": [
+        1,
+        10,
+        100
+      ],
+      "k_default": 10,
+      "time_limit_s": 120,
+      "replicates": 3,
+      "workers": 8,
+      "b4_workers": 4,
+      "first_fraction": 0.3333333333333333,
+      "step_time_s": 20,
+      "drop_penalty_factor": 100,
+      "b5_time_limit_s": 30,
+      "protocol": "reports/protocolo-v2.md"
+    },
+    "phase_c": {
+      "seed": 20261118,
+      "scale": 10000,
+      "fixed_cost_k": 10,
+      "time_limit_s": 30,
+      "replicates": 3,
+      "workers": 8,
+      "capacity_factors": [
+        1.0,
+        0.9,
+        0.8
+      ],
+      "fleet_reductions": [
+        1,
+        2
+      ],
+      "priority_share": 0.2,
+      "priority_penalty_multiplier": 10,
+      "soft_cost_multipliers": [
+        1,
+        10
+      ],
+      "soft_fleet_reduction": 1,
+      "reopt_share": 0.1,
+      "c1_draws": 1000,
+      "c1_travel_a": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "c1_service_b": 0.2,
+      "c1_combined_travel_a": 0.1,
+      "protocol": "reports/protocolo-fase-c.md"
+    }
+  },
+  "config_file": "config/experiment.toml",
+  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-fase-d.md",
+  "frozen_config": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\selected_config.json",
+  "instances": [
+    "C101",
+    "C102",
+    "C104",
+    "C105",
+    "C107",
+    "C108",
+    "C109",
+    "C201",
+    "C202",
+    "C204",
+    "C205",
+    "C207",
+    "C208",
+    "R101",
+    "R102",
+    "R103",
+    "R104",
+    "R105",
+    "R106",
+    "R107",
+    "R109",
+    "R112",
+    "R203",
+    "R204",
+    "R205",
+    "R206",
+    "R208",
+    "R209",
+    "R210",
+    "R211",
+    "RC101",
+    "RC102",
+    "RC103",
+    "RC104",
+    "RC105",
+    "RC107",
+    "RC201",
+    "RC202",
+    "RC204",
+    "RC205",
+    "RC207",
+    "RC208"
+  ],
+  "ortools": "9.15.6755",
+  "python": "3.13.18",
+  "numpy": "2.5.5",
+  "pandas": "3.1.1",
+  "cpu_count": 16,
+  "argv": [
+    "scripts\\run_evaluation.py",
+    "--version",
+    "v2",
+    "--confirm-eval",
+    "--post-hoc",
+    "--workers",
+    "8",
+    "--out",
+    "outputs/evaluation_v2"
+  ],
+  "version": "v2",
+  "label": "v2, p\u00f3s-hoc",
+  "post_hoc": true,
+  "protocol_v1": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-avaliacao.md",
+  "protocol_v2": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-v2.md",
+  "scale": 10000,
+  "fixed_cost_k": 10,
+  "baselines": "reused from D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\evaluation\\results.csv"
+}

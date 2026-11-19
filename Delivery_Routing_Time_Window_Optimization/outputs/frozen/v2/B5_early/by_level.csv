@@ -1,0 +1,5 @@
+level,n_instances,vehicles_saved_mean,n_with_saving,n_with_extra,n_equal
+0.25,14,0.29,4,0,10
+0.5,14,0.29,4,0,10
+1,14,0.64,8,0,6
+full,14,0.71,8,0,6

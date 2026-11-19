@@ -1,0 +1,25 @@
+name: delivery-routing-vrptw
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - numpy=2.5
+  - pandas=3.1
+  - matplotlib=3.11
+  - jupyterlab
+  - ipykernel
+  - nbformat
+  - nbclient
+  - pytest
+  - pytest-cov
+  - ruff
+  - pip
+  - pip:
+      # OR-Tools não é publicado no conda-forge; wheel oficial do PyPI (cp313),
+      # fixada em pyproject.toml. O pacote do projeto entra em modo editável.
+      - -e .[dev]
+variables:
+  # Ignora pacotes do diretório do usuário, que podem sobrepor os do ambiente.
+  PYTHONNOUSERSITE: "1"
+  # Evita crash (0xc06d007f) de dgemm com MKL 2026.1 + llvm-openmp 23 no Windows.
+  MKL_THREADING_LAYER: "SEQUENTIAL"

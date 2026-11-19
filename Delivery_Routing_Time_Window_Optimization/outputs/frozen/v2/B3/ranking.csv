@@ -1,0 +1,3 @@
+fleet_strategy,mean_rank,mean_delta_vehicles,n_fleet_equal_ref,median_gap_equal_fleet,mean_runtime,n_instances
+fixed_cost,1.3214285714285714,0.5714285714285714,7,1.2156300149446417,120.00456382856854,14
+reduce_fleet_v2,1.6785714285714286,0.5,8,1.851647621074405,112.87690825714215,14

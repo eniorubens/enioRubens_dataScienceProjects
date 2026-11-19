@@ -29,6 +29,7 @@ This is not a collection of isolated notebooks. The analytical projects combine 
 | **NASA C-MAPSS** | Predictive maintenance | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) | [Repository](./CMAPSS_Predictive_Maintenance) |
 | **Model Risk & Responsible ML** | Model-risk governance | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repository](./ModelRisk_ResponsibleML) |
 | **E-commerce Delivery Network & SLA Risk** | Delivery risk / temporal ML | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repository](./E-commerce_Delivery_Network_SLA_Risk) |
+| **Delivery Routing & Time-Window Optimization** | Logistics / prescriptive optimization | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) | [Repository](./Delivery_Routing_Time_Window_Optimization) |
 | **ds_toolkit** | Reusable ML library | [Library README](./ds_toolkit) | [Code](./ds_toolkit) |
 
 ---
@@ -200,6 +201,18 @@ Studies whether an Olist order can be classified as a delivery-SLA breach at pur
 
 ---
 
+### 13. [Delivery Routing & Time-Window Optimization](Delivery_Routing_Time_Window_Optimization/README.md) — Vehicle routing with capacity and time windows
+
+Compares OR-Tools with two constructive heuristics on the Solomon benchmark. In the primary v1 evaluation, OR-Tools matched the SINTEF reference fleet on **24 of 42** instances, with a **3.40%** median distance gap among those matches. Fixed-plan delay simulations and reoptimization show how route plans respond to operational changes. The v2 re-evaluation is post-hoc and the project is a benchmark study with `production_eligible = false`.
+
+📊 **Executive report** · [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) · README · [English](Delivery_Routing_Time_Window_Optimization/README.md) · [Português](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
+
+**Methods** · Vehicle routing with time windows · Lexicographic evaluation · Independent feasibility checks · Priority penalties · Warm-start reoptimization
+
+**Technologies** · Python · OR-Tools · NumPy · pandas · pytest · Jupyter · GitHub Pages
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
@@ -228,4 +241,4 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 
 ## License
 
-Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData) remain under their original terms; see each project's README for sources.
+Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB) remain under their original terms; see each project's README for sources.

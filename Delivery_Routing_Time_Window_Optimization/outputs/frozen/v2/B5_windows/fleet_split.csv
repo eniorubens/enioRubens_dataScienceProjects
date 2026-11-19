@@ -1,0 +1,7 @@
+factor,fleet_class,n_instances,vehicles_saved_mean,distance_change_mean,distance_change_median
+1.25×,equal fleet,10,0.0,-4.0,-2.8
+1.25×,reduced fleet,4,1.0,-2.6,-6.4
+1.5×,equal fleet,8,0.0,-5.7,-2.8
+1.5×,reduced fleet,6,1.17,-6.4,-5.9
+2×,equal fleet,5,0.0,-1.6,-2.0
+2×,reduced fleet,9,1.33,-12.1,-10.5
