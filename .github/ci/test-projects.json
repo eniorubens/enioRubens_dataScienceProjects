@@ -1,0 +1,59 @@
+{
+  "_comment": [
+    "Source of truth for the Tests workflow (.github/workflows/tests.yml).",
+    "matrix_projects: one entry per pip-based suite; 'project', 'python', 'install' and 'prepare' are passed verbatim to the matrix job.",
+    "conda_jobs: suites that run in their own job (not in the matrix).",
+    "shared: ds_toolkit packages and the suites that consume them (tests, install commands, conda envs or notebooks).",
+    "no_suite: project folders that have no CI suite; changes there run nothing.",
+    "editorial: root-level files that are pure presentation (root READMEs, LICENSE, static showcase); changes there run nothing.",
+    "Any other path (including .github/**, root config files and unknown folders) runs the full suite."
+  ],
+  "matrix_projects": [
+    {"project": "customer-churn-prediction", "python": "3.11", "install": "pip install -e \".[dev]\""},
+    {"project": "Consumer_Complaint_Intelligence", "python": "3.11", "install": "pip install -e . pytest"},
+    {"project": "Customer_Segmentation_and_Next_Best_Action", "python": "3.11", "install": "pip install -e \".[dev]\""},
+    {"project": "ds_toolkit/opt_binary_clf_pipe", "python": "3.11", "install": "pip install -e \".[dev]\""},
+    {"project": "Cross_Sell_Association_Rules", "python": "3.11", "install": "pip install -e \".[dev]\""},
+    {"project": "Marketing_Campaign_Optimization_and_Retention_Analytics", "python": "3.11", "install": "pip install -e \".[dev]\""},
+    {"project": "Customer Lifetime Value", "python": "3.11", "install": "pip install -e . pymc-marketing pandas numpy matplotlib seaborn flask pytest arviz"},
+    {
+      "project": "Marketing_Promotion_Campaign_Uplift_Modelling",
+      "python": "3.11",
+      "install": "pip install numpy pandas scipy \"scikit-learn>=1.6\" pyarrow matplotlib seaborn plotly xgboost lightgbm causalml==0.15.5 econml==0.16.0 mlflow optuna optuna-integration shap statsmodels tqdm joblib scikit-uplift deep-translator pytest nbformat -e ../ds_toolkit/multilang",
+      "_note": "The Hillstrom CSV is not redistributed (no explicit license): the script downloads it from the publisher and rebuilds the exact analysis copy, verifying both SHA-256 values.",
+      "prepare": "python scripts/fetch_hillstrom.py"
+    },
+    {
+      "project": "ModelRisk_ResponsibleML",
+      "python": "3.11",
+      "install": "pip install numpy pandas scipy scikit-learn matplotlib seaborn nbformat nbconvert pyarrow fairlearn pytest",
+      "_note": "UCI Adult is not versioned; the test contract pins the SHA-256 of the official zip.",
+      "prepare": "curl -sSL --retry 3 -o data/raw/adult.zip https://archive.ics.uci.edu/static/public/2/adult.zip && unzip -q -o data/raw/adult.zip -d data/raw/adult_uci"
+    },
+    {"project": "E-commerce_Delivery_Network_SLA_Risk", "python": "3.12", "install": "pip install -e \".[dev]\""},
+    {"project": "Delivery_Routing_Time_Window_Optimization", "python": "3.13", "install": "pip install -e \".[dev]\""}
+  ],
+  "conda_jobs": {
+    "bike-sharing": "Bike-Sharing-Demand"
+  },
+  "shared": {
+    "ds_toolkit/opt_binary_clf_pipe": [
+      "ds_toolkit/opt_binary_clf_pipe",
+      "customer-churn-prediction"
+    ],
+    "ds_toolkit/multilang": [
+      "Marketing_Promotion_Campaign_Uplift_Modelling",
+      "Bike-Sharing-Demand",
+      "Customer Lifetime Value"
+    ]
+  },
+  "no_suite": [
+    "CMAPSS_Predictive_Maintenance"
+  ],
+  "editorial": [
+    "README.md",
+    "README.pt-BR.md",
+    "LICENSE",
+    "pages-publicacao/"
+  ]
+}

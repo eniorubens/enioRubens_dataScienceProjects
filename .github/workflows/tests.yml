@@ -10,57 +10,79 @@ permissions:
   contents: read
 
 jobs:
+  # Decides which suites this run needs. Suite definitions and path rules live in
+  # .github/ci/test-projects.json; the selection logic is .github/ci/select_tests.py.
+  # Manual dispatch, changes to CI/global config, uncertain ds_toolkit impact and
+  # any diff that cannot be computed safely all fall back to the full battery.
+  detect:
+    name: Select test suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      matrix: ${{ steps.select.outputs.matrix }}
+      has_matrix: ${{ steps.select.outputs.has_matrix }}
+      bike: ${{ steps.select.outputs.bike }}
+      mode: ${{ steps.select.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compute changed paths
+        id: diff
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_AFTER: ${{ github.event.after || github.sha }}
+        run: |
+          set -u
+          full() { echo "full_reason=$1" >> "$GITHUB_OUTPUT"; echo "Full battery: $1"; exit 0; }
+          have() { git cat-file -e "$1^{commit}" 2>/dev/null || git fetch --no-tags --quiet origin "$1" 2>/dev/null; git cat-file -e "$1^{commit}" 2>/dev/null; }
+          zero=0000000000000000000000000000000000000000
+          case "$EVENT" in
+            pull_request)
+              [ -n "$PR_BASE" ] && [ -n "$PR_HEAD" ] || full "pull request SHAs missing"
+              have "$PR_BASE" && have "$PR_HEAD" || full "pull request commits not available"
+              base=$(git merge-base "$PR_BASE" "$PR_HEAD") || full "no merge base between base and head"
+              head="$PR_HEAD" ;;
+            push)
+              [ -n "$PUSH_BEFORE" ] && [ "$PUSH_BEFORE" != "$zero" ] || full "push without a previous commit"
+              have "$PUSH_BEFORE" && have "$PUSH_AFTER" || full "pushed commits not available (force push?)"
+              base="$PUSH_BEFORE"; head="$PUSH_AFTER" ;;
+            workflow_dispatch)
+              full "manual dispatch" ;;
+            *)
+              full "unsupported event $EVENT" ;;
+          esac
+          git diff --name-status -z -M "$base" "$head" > "$RUNNER_TEMP/changed.z" || full "git diff failed"
+          echo "Comparing $base..$head"
+          git diff --name-status -M "$base" "$head" || true
+          echo "diff_file=$RUNNER_TEMP/changed.z" >> "$GITHUB_OUTPUT"
+      - name: Self-test selector
+        run: python3 -m unittest discover -s .github/ci -p "test_*.py"
+      - name: Select suites
+        id: select
+        env:
+          FULL_REASON: ${{ steps.diff.outputs.full_reason }}
+          DIFF_FILE: ${{ steps.diff.outputs.diff_file }}
+        run: |
+          if [ -n "$FULL_REASON" ]; then
+            python3 .github/ci/select_tests.py --full "$FULL_REASON"
+          else
+            python3 .github/ci/select_tests.py --diff-file "$DIFF_FILE"
+          fi
+          cat "$GITHUB_OUTPUT"
+
   tests:
+    name: tests (${{ matrix.project }})
+    needs: detect
+    if: needs.detect.outputs.has_matrix == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - project: customer-churn-prediction
-            python: "3.11"
-            install: pip install -e ".[dev]"
-          - project: Consumer_Complaint_Intelligence
-            python: "3.11"
-            install: pip install -e . pytest
-          - project: Customer_Segmentation_and_Next_Best_Action
-            python: "3.11"
-            install: pip install -e ".[dev]"
-          - project: ds_toolkit/opt_binary_clf_pipe
-            python: "3.11"
-            install: pip install -e ".[dev]"
-          - project: Cross_Sell_Association_Rules
-            python: "3.11"
-            install: pip install -e ".[dev]"
-          - project: Marketing_Campaign_Optimization_and_Retention_Analytics
-            python: "3.11"
-            install: pip install -e ".[dev]"
-          - project: Customer Lifetime Value
-            python: "3.11"
-            install: pip install -e . pymc-marketing pandas numpy matplotlib seaborn flask pytest arviz
-          - project: Marketing_Promotion_Campaign_Uplift_Modelling
-            python: "3.11"
-            install: >-
-              pip install numpy pandas scipy "scikit-learn>=1.6" pyarrow matplotlib seaborn
-              plotly xgboost lightgbm causalml==0.15.5 econml==0.16.0 mlflow optuna
-              optuna-integration shap statsmodels tqdm joblib scikit-uplift deep-translator
-              pytest nbformat -e ../ds_toolkit/multilang
-            # The Hillstrom CSV is not redistributed (no explicit license): the script downloads it from the
-            # publisher and rebuilds the exact analysis copy, verifying both SHA-256 values.
-            prepare: python scripts/fetch_hillstrom.py
-          - project: ModelRisk_ResponsibleML
-            python: "3.11"
-            install: pip install numpy pandas scipy scikit-learn matplotlib seaborn nbformat nbconvert pyarrow fairlearn pytest
-            # UCI Adult is not versioned; the test contract pins the SHA-256 of the official zip.
-            prepare: >-
-              curl -sSL --retry 3 -o data/raw/adult.zip https://archive.ics.uci.edu/static/public/2/adult.zip
-              && unzip -q -o data/raw/adult.zip -d data/raw/adult_uci
-          - project: E-commerce_Delivery_Network_SLA_Risk
-            python: "3.12"
-            install: pip install -e ".[dev]"
-          - project: Delivery_Routing_Time_Window_Optimization
-            python: "3.13"
-            install: pip install -e ".[dev]"
+      matrix: ${{ fromJSON(needs.detect.outputs.matrix) }}
     defaults:
       run:
         working-directory: ${{ matrix.project }}
@@ -84,6 +106,8 @@ jobs:
   # created from inside the project folder because environment.yml installs
   # ../ds_toolkit/multilang by relative path.
   bike-sharing:
+    needs: detect
+    if: needs.detect.outputs.bike == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     defaults:
@@ -107,3 +131,28 @@ jobs:
       - name: Run tests
         shell: bash -el {0}
         run: conda run --no-capture-output -n Bike-Sharing python -m pytest -q
+
+  # Single stable check for branch rules: always reports, passes when every
+  # selected suite passed or was skipped by selection, fails on any real failure.
+  result:
+    name: Tests result
+    needs: [detect, tests, bike-sharing]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Aggregate
+        env:
+          DETECT: ${{ needs.detect.result }}
+          TESTS: ${{ needs.tests.result }}
+          BIKE: ${{ needs.bike-sharing.result }}
+          MODE: ${{ needs.detect.outputs.mode }}
+        run: |
+          echo "mode=$MODE detect=$DETECT tests=$TESTS bike-sharing=$BIKE"
+          [ "$DETECT" = success ] || { echo "::error::suite selection did not succeed"; exit 1; }
+          for r in "$TESTS" "$BIKE"; do
+            case "$r" in
+              success|skipped) ;;
+              *) echo "::error::a selected suite ended with '$r'"; exit 1 ;;
+            esac
+          done
