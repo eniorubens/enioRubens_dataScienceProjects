@@ -242,3 +242,5 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 ## License
 
 Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB) remain under their original terms; see each project's README for sources.
+
+<!-- CI selective-test probe: throwaway change, do not merge. -->
