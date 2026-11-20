@@ -5,7 +5,8 @@ Input is the output of ``git diff --name-status -z -M <base> <head>`` (read from
 file), or ``--full`` to force the whole battery. Output is written as
 ``key=value`` lines to ``$GITHUB_OUTPUT`` (or stdout when unset):
 
-* ``matrix``     JSON ``{"include": [...]}`` for the pip matrix job
+* ``matrix``     JSON ``{"include": [{"project": ...}]}`` for the pip matrix job
+* ``settings``   JSON ``{project: {"python", "install", "prepare"}}`` for that job
 * ``has_matrix`` ``true`` when at least one matrix suite is selected
 * ``bike``       ``true`` when the Bike-Sharing conda job must run
 * ``mode``       ``full`` or ``selective``
@@ -111,11 +112,19 @@ def select(paths: list[str], cfg: dict) -> tuple[set[str], str]:
 
 
 def build_outputs(selected: set[str], mode: str, reason: str, cfg: dict) -> dict[str, str]:
-    include = [p for p in cfg["matrix_projects"] if p["project"] in selected]
-    include = [{k: v for k, v in p.items() if not k.startswith("_")} for p in include]
+    chosen = [p for p in cfg["matrix_projects"] if p["project"] in selected]
+    # The matrix carries only the project name, so GitHub names each job
+    # "tests (<project>)" by itself and a skipped matrix shows a plain "tests".
+    # Per-project settings travel in a separate map keyed by project.
+    include = [{"project": p["project"]} for p in chosen]
+    settings = {
+        p["project"]: {"python": p["python"], "install": p["install"], "prepare": p.get("prepare", "")}
+        for p in chosen
+    }
     bike = cfg["conda_jobs"]["bike-sharing"] in selected
     return {
         "matrix": json.dumps({"include": include}, ensure_ascii=False, separators=(",", ":")),
+        "settings": json.dumps(settings, ensure_ascii=False, separators=(",", ":")),
         "has_matrix": "true" if include else "false",
         "bike": "true" if bike else "false",
         "mode": mode,
