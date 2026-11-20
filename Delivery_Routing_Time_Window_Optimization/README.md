@@ -285,3 +285,5 @@ the time/time-window sensitivity study and the early-delivery scenario.
 
 The works cited in the README and in the notebooks, in author-year format, are listed in
 [`docs/referencias.md`](docs/referencias.md) (curated list; each notebook ends with a References section).
+
+<!-- CI selective-test probe: throwaway change, do not merge. -->
