@@ -117,9 +117,18 @@ class SelectionTests(unittest.TestCase):
     def test_full_matrix_matches_config(self):
         out = run(full="x")
         include = json.loads(out["matrix"])["include"]
-        self.assertEqual(len(include), len(CFG["matrix_projects"]))
-        self.assertTrue(all(not k.startswith("_") for p in include for k in p))
+        settings = json.loads(out["settings"])
+        self.assertEqual(include, [{"project": p["project"]} for p in CFG["matrix_projects"]])
+        for p in CFG["matrix_projects"]:
+            self.assertEqual(
+                settings[p["project"]],
+                {"python": p["python"], "install": p["install"], "prepare": p.get("prepare", "")},
+            )
 
+    def test_settings_follow_selection(self):
+        out = run(ns(("M", f"{VRPTW}/README.md")))
+        self.assertEqual(set(json.loads(out["settings"])), {VRPTW})
+        self.assertEqual(json.loads(run(ns(("M", "README.md")))["settings"]), {})
 
 if __name__ == "__main__":
     unittest.main()
