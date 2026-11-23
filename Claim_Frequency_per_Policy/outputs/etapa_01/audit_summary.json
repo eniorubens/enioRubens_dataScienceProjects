@@ -1,0 +1,281 @@
+{
+  "audit_version": "0.1.0",
+  "claimnb": {
+    "claims_excess_over_4": 46.0,
+    "claims_in_rows_gt_4": 82.0,
+    "claims_in_rows_gt_4_share": 0.002271342307905379,
+    "denominator": "linhas com ClaimNb valido",
+    "max": 16.0,
+    "mean": 0.05324676665491664,
+    "positives": 34060,
+    "positives_share": 0.05023502499214617,
+    "rows_gt_4": 9,
+    "rows_gt_4_share_of_valid": 1.3274081765393879e-05,
+    "total_claims": 36102.0,
+    "valid_rows": 678013,
+    "validity": {
+      "fractional": 0,
+      "missing": 0,
+      "negative": 0,
+      "non_finite": 0,
+      "non_numeric": 0,
+      "rows": 678013,
+      "valid": 678013,
+      "zero_valid": 643953
+    },
+    "variance_ddof0": 0.057656247343670704,
+    "variance_ddof1": 0.057656332380878514,
+    "variance_to_mean_ratio_ddof1": 1.0828137744877455,
+    "zeros": 643953,
+    "zeros_share": 0.9497649750078538
+  },
+  "dictionary_checks": {
+    "BonusMalus_eq_50": 384156,
+    "BonusMalus_max": 230.0,
+    "BonusMalus_min": 50.0,
+    "BonusMalus_outside_50_350": 0,
+    "Density_nonpositive": 0,
+    "DrivAge_below_18": 0,
+    "DrivAge_ge_100": 3,
+    "DrivAge_max": 100.0,
+    "DrivAge_min": 18.0,
+    "VehAge_ge_100": 25,
+    "VehAge_gt_30": 1116,
+    "VehAge_max": 100.0,
+    "VehAge_negative": 0
+  },
+  "dimensions": {
+    "column_names": [
+      "IDpol",
+      "ClaimNb",
+      "Exposure",
+      "Area",
+      "VehPower",
+      "VehAge",
+      "DrivAge",
+      "BonusMalus",
+      "VehBrand",
+      "VehGas",
+      "Density",
+      "Region"
+    ],
+    "columns": 12,
+    "rows": 678013
+  },
+  "exposure": {
+    "equal_1": {
+      "claims": 11776.0,
+      "exposure": 168125.0,
+      "positives": 11211,
+      "rows": 168125,
+      "rows_claim_valid": 168125,
+      "zeros": 156914
+    },
+    "invalid_rows_detail": {
+      "claims_in_rows_with_valid_claimnb": 0.0,
+      "exposure_defined_sum": 0.0,
+      "rows": 0
+    },
+    "long_gt_1": {
+      "claims": 54.0,
+      "exposure": 1363.34,
+      "positives": 51,
+      "rows": 1224,
+      "rows_claim_valid": 1224,
+      "zeros": 1173
+    },
+    "max": 2.01,
+    "min_positive": 0.00273224043715847,
+    "quantiles": {
+      "p1": 0.00821917808219178,
+      "p25": 0.18,
+      "p5": 0.04,
+      "p50": 0.49,
+      "p75": 0.99,
+      "p95": 1.0,
+      "p99": 1.0,
+      "p99.9": 1.03
+    },
+    "short_le_0.02": {
+      "claims": 535.0,
+      "exposure": 214.3654629837563,
+      "positives": 510,
+      "rows": 19259,
+      "rows_claim_valid": 19259,
+      "zeros": 18749
+    },
+    "short_le_0.08": {
+      "claims": 2815.0,
+      "exposure": 6317.435462983756,
+      "positives": 2663,
+      "rows": 114793,
+      "rows_claim_valid": 114793,
+      "zeros": 112130
+    },
+    "sum_positive_finite": 358499.4454629838,
+    "thresholds_declared": {
+      "long_gt": 1.0,
+      "short_le": [
+        0.02,
+        0.08
+      ]
+    },
+    "unit": "anos (dicionario CASdatasets)",
+    "valid_rows": 678013,
+    "validity": {
+      "missing": 0,
+      "negative": 0,
+      "non_finite": 0,
+      "non_numeric": 0,
+      "rows": 678013,
+      "valid": 678013,
+      "zero": 0
+    }
+  },
+  "identifier": {
+    "fully_duplicated_rows_incl_id": 0,
+    "id_max": 6114330,
+    "id_min": 1,
+    "ids_distinct": 678013,
+    "ids_present": 678013,
+    "ids_repeated": 0,
+    "profile_groups": {
+      "covariates_used": [
+        "Area",
+        "VehPower",
+        "VehAge",
+        "DrivAge",
+        "BonusMalus",
+        "VehBrand",
+        "VehGas",
+        "Density",
+        "Region"
+      ],
+      "distinct_profiles": 528765,
+      "max_profile_size": 22,
+      "profile_size_distribution": {
+        "1": 420102,
+        "10": 283,
+        "11": 140,
+        "12": 200,
+        "13": 3,
+        "14": 1,
+        "15": 3,
+        "2": 87628,
+        "3": 14516,
+        "4": 2535,
+        "5": 963,
+        "6": 772,
+        "7": 723,
+        "8": 495,
+        "9": 399
+      },
+      "profiles_with_more_than_one_row": 108663,
+      "rows_in_profiles_with_exposure_sum_gt_1": 18703,
+      "rows_in_shared_profiles": 257911,
+      "share_rows_in_shared_profiles": 0.3803924113549445
+    },
+    "read_id_dtype": "int64",
+    "read_id_non_integer_or_unsafe": 0,
+    "read_id_roundtrip_mismatch": 1,
+    "read_noncanonical_id_tokens": [
+      "1e+05"
+    ],
+    "repeated_id_groups_with_conflicting_values": 0,
+    "rows": 678013,
+    "rows_excess_over_distinct": 0,
+    "rows_in_repeated_ids": 0
+  },
+  "production_eligible": false,
+  "rate_subset": {
+    "claims": 36102.0,
+    "definition": "ClaimNb valido e Exposure valida (>0, finita)",
+    "exposure": 358499.4454629838,
+    "rate_per_100_policy_years": 10.070308464041306,
+    "rows": 678013,
+    "rows_outside_subset": 0
+  },
+  "raw_file": {
+    "manifest_match": true,
+    "path": "data/raw/freMTPL2freq_v1.arff",
+    "sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+    "size_bytes": 36288567
+  },
+  "read_diagnostics": {
+    "chunks": 7,
+    "id_non_integer_or_unsafe": 0,
+    "id_noncanonical_tokens": [
+      "1e+05"
+    ],
+    "id_roundtrip_mismatch": 1,
+    "nominal_missing": {
+      "Area": 0,
+      "Region": 0,
+      "VehBrand": 0
+    },
+    "numeric": {
+      "BonusMalus": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "ClaimNb": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "Density": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "DrivAge": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "Exposure": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "IDpol": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "VehAge": {
+        "missing": 0,
+        "non_numeric": 0
+      },
+      "VehPower": {
+        "missing": 0,
+        "non_numeric": 0
+      }
+    },
+    "out_of_domain": {
+      "Area": 0,
+      "Region": 0,
+      "VehBrand": 0
+    },
+    "parsed_rows": 678013,
+    "raw_data_lines": 678013,
+    "rows_rejected": 0,
+    "string_missing": {
+      "VehGas": 0
+    }
+  },
+  "structure": {
+    "columns": [
+      "IDpol",
+      "ClaimNb",
+      "Exposure",
+      "Area",
+      "VehPower",
+      "VehAge",
+      "DrivAge",
+      "BonusMalus",
+      "VehBrand",
+      "VehGas",
+      "Density",
+      "Region"
+    ],
+    "date_or_group_like_columns": [],
+    "has_date_columns": false,
+    "has_higher_unit_id": false
+  }
+}

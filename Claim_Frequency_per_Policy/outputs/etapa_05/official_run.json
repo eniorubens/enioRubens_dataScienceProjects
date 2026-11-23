@@ -1,0 +1,37 @@
+{
+  "bootstrap": {
+    "replicas": 1000,
+    "seed": 20261121
+  },
+  "code_sha256": {
+    "arff": "a24d0fb2dfb3fa5fc0809fc7543bd13f1e5cdfafb4222e815d4197e6fa42a923",
+    "compare": "f6d516598476bcf19f34f7064b0ace585af7a60858cd0cbd9b0f277d8af34c04",
+    "freeze": "ad44566d990037ee8379b11d9b9c93f4f8ad010708ccd4a74b23d9848e9af31c",
+    "metrics": "e5ede6df4a2e64e0ea73fef597fd08215303546e40809308665ac031d2131576",
+    "models": "ad9aec5016d2de1cf0996b6f9a02195bbd254657f83d951d3366b081c0daf28b",
+    "prep": "2b6919a82bd5c28c4097cbd8647ba0a181e56757d25eea710930cc9f1acf3ffa",
+    "profiles": "5841136473ff529c489e95960d40a3cef2dca535ca5a9faf9f2affbc4ca6aca3",
+    "segments": "28c2ad24534c3d3c5cfb9f45f0c66a8bd2d4f05739cd40a2c6ea9bb2c9646635",
+    "stage4": "ee423001f4d9ec64b9e397a1bfaaf65d9108925ffcf13564106536d58f8917ac",
+    "stage5": "30b018f91de2084989204b44e530284c8e410bfd37ac2d003e92b810ef5dbb7b"
+  },
+  "environment": {
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "finished_utc": "2026-11-21T17:13:49+00:00",
+  "frozen_model_sha256": "8ac94b7e59e55becdd0319f05f9d958483ea4042dc0abaad1a2f075994efe80a",
+  "package_version": "0.1.0",
+  "peak_rss_mib": 236.4,
+  "process_peak_rss_mib": 236.4,
+  "reconciliation_all_ok": true,
+  "stage5_script_sha256": "c0365ad5566e32e5099c48bb1d007367e646ce63ee8b040bc95dc38ba13c1ed8",
+  "started_utc": "2026-11-21T17:12:21+00:00",
+  "status": "completed",
+  "test_ids_sha256": "11808b8102160e12da25942da6ae0d841919600d64a1a77d410d4d9381283fb8",
+  "test_rows": 101859,
+  "test_rows_read": true,
+  "wall_s": 88.474
+}

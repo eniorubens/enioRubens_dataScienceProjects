@@ -1,0 +1,29 @@
+{
+  "environment": {
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "psutil": "7.2.2",
+    "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "note": "peak_wset do processo; CPU; sem rede",
+  "peak_rss_mib": 485.8,
+  "stages": [
+    {
+      "peak_rss_mib_cumulative": 196.2,
+      "stage": "verify_and_read",
+      "wall_s": 3.674
+    },
+    {
+      "peak_rss_mib_cumulative": 286.0,
+      "stage": "partition_and_checks",
+      "wall_s": 7.675
+    },
+    {
+      "peak_rss_mib_cumulative": 485.8,
+      "stage": "development_evidence",
+      "wall_s": 10.182
+    }
+  ],
+  "total_wall_s": 21.531
+}

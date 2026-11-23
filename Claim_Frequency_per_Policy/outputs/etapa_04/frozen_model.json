@@ -1,0 +1,463 @@
+{
+  "code": {
+    "modules_sha256": {
+      "audit": "fd4242a2f4c6fcca86523de33dd502579af995c612520470ff1f2b2c8a7cfdcc",
+      "data": "88d7021952d73af6034d64ef80b5a75d5dbeec3812cc106a0c7d4e92a7ce0199",
+      "metrics": "e5ede6df4a2e64e0ea73fef597fd08215303546e40809308665ac031d2131576",
+      "models": "ad9aec5016d2de1cf0996b6f9a02195bbd254657f83d951d3366b081c0daf28b",
+      "partition": "ba12a270939c0be145fedef12eba53781dba9cfd8525bcbb1d87c388fa53874c",
+      "prep": "2b6919a82bd5c28c4097cbd8647ba0a181e56757d25eea710930cc9f1acf3ffa",
+      "protocol": "07a3176e00dcade1715a308b40e7fffab86e48719587fa3388e940c4ad1bfce0",
+      "segments": "28c2ad24534c3d3c5cfb9f45f0c66a8bd2d4f05739cd40a2c6ea9bb2c9646635"
+    },
+    "numpy": "2.5.5",
+    "package_version": "0.1.0",
+    "pandas": "3.1.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.16"
+  },
+  "decision_basis": "regra aprovada; maior degrau viavel; particao principal por IDpol",
+  "estimator": {
+    "bonus_malus_included": false,
+    "coefficient_precision": "repr de float64 (17 digitos), exato na ida e na volta",
+    "coefficients": [
+      -2.031765393641386,
+      -8.048800961147292e-05,
+      0.01882373605173487,
+      0.030572337720142635,
+      0.03076923853739876,
+      -0.02029406373440374,
+      0.02000945810867198,
+      -0.11416622994821402,
+      -0.36776857135355295,
+      -0.2585794045175996,
+      -0.1390026151176594,
+      -0.42340702089704946,
+      -0.19176552481522854,
+      -0.012712370986008517,
+      -0.07804289017269425,
+      -0.29837689428361863,
+      0.07934277528805171,
+      -0.18853641197167012,
+      -0.10822076665217874,
+      -0.06982362927724532,
+      -0.14165366493520484,
+      -0.31249821934247857,
+      -0.19101873107475614,
+      -0.17358289367285273,
+      -0.1890369572761035,
+      -0.1021486177685379,
+      -0.1770491042241058,
+      -0.0663982404470132,
+      -0.0381589408597057,
+      0.14275095896045936,
+      0.03261441407257102,
+      -0.11399050120092048,
+      -0.05493278897718358,
+      -0.05475179741324905,
+      -0.13261463874727167,
+      -0.39527835341810313,
+      -0.010569299418269309,
+      -0.056489690832870545,
+      -0.06156220954805845,
+      0.016576091248292752,
+      -0.09273088272983362,
+      -0.15172650853439504,
+      -0.14106982533065995,
+      0.14264427108319466,
+      0.045778153632686204,
+      -0.37639060633835897,
+      -0.03453283083327275,
+      -0.06758252443864378,
+      0.05468197051981249,
+      1.1465657901920965,
+      -0.095623263800309,
+      -0.053123334777819636,
+      -0.06297233044508624,
+      0.06281789883037643,
+      0.0337470208451146,
+      0.034702663569600896,
+      -0.08485936626778515,
+      -0.27604481430164785,
+      0.37022244889371403,
+      -0.09045121144797766,
+      -0.1998354670536541,
+      -0.1969305067894138,
+      -0.09781316304164744,
+      0.018995191796854403,
+      -0.09505079989902375,
+      -0.1860540668678303,
+      -0.10580390268197405,
+      0.10563961258517789
+    ],
+    "columns": [
+      "const",
+      "Area=A",
+      "Area=B",
+      "Area=D",
+      "Area=E",
+      "Area=F",
+      "VehPower=10",
+      "VehPower=11",
+      "VehPower=12",
+      "VehPower=13",
+      "VehPower=14",
+      "VehPower=15",
+      "VehPower=4",
+      "VehPower=5",
+      "VehPower=7",
+      "VehPower=8",
+      "VehPower=9",
+      "VehBrand=B1",
+      "VehBrand=B10",
+      "VehBrand=B11",
+      "VehBrand=B13",
+      "VehBrand=B14",
+      "VehBrand=B2",
+      "VehBrand=B3",
+      "VehBrand=B4",
+      "VehBrand=B5",
+      "VehBrand=B6",
+      "VehGas=Diesel",
+      "Region=R11",
+      "Region=R21",
+      "Region=R22",
+      "Region=R23",
+      "Region=R25",
+      "Region=R26",
+      "Region=R31",
+      "Region=R41",
+      "Region=R42",
+      "Region=R43",
+      "Region=R52",
+      "Region=R53",
+      "Region=R54",
+      "Region=R72",
+      "Region=R73",
+      "Region=R74",
+      "Region=R82",
+      "Region=R83",
+      "Region=R91",
+      "Region=R93",
+      "Region=R94",
+      "VehAge=bin0",
+      "VehAge=bin1",
+      "VehAge=bin2",
+      "VehAge=bin3",
+      "VehAge=bin5",
+      "VehAge=bin6",
+      "VehAge=bin7",
+      "VehAge=bin8",
+      "VehAge=bin9",
+      "DrivAge=bin0",
+      "DrivAge=bin1",
+      "DrivAge=bin2",
+      "DrivAge=bin3",
+      "DrivAge=bin4",
+      "DrivAge=bin5",
+      "DrivAge=bin7",
+      "DrivAge=bin8",
+      "DrivAge=bin9",
+      "log_Density_std"
+    ],
+    "converged": true,
+    "exposure_treatment": "Exposure e dado do cenario; mu = Exposure * exp(x'beta)",
+    "family": "Poisson",
+    "iterations": 5,
+    "link": "log",
+    "loglik_fit": -100319.66468132866,
+    "n_fit": 474581,
+    "offset": "log(Exposure), coeficiente fixo 1"
+  },
+  "global_rate": {
+    "definition": "soma(ClaimNb)/soma(Exposure) no mesmo treino",
+    "n_fit": 474581,
+    "rate": 0.10084426409173236
+  },
+  "hashes": {
+    "arff_sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+    "assignments_sha256": "f14f53509d63ff468f025fd43096a5c2d12ba3fdd48529e7644f003c73396ce6",
+    "partition_config_sha256": "3bc52dca60401a3eedbccfc3b689216dc02ddfba0d7a79e89ca27376fb8c87f7",
+    "protocol_config_sha256": "e43e69566690ba98411620e8315bbc27aa00f6702e9cba1d0834e0d7360d4f06",
+    "stage3_coefficients_sha256": "2c080c077a690c440ede9951aa43a6efb9946bac9634484698de006d3638ffad",
+    "stage3_comparison_config_sha256": "c0c5001514f67b4cebfe5649cd60392ee2e272db173ec417ac5aa8d080b8c2e8",
+    "stage3_intervals_sha256": "d31e9e8eb360038263d40d88b8d81e631c70c2f19c5d2c795145c32bd7008354",
+    "stage3_preprocessing_sha256": "86fddf12dc071564df6a758dbcc2264378a1025794ffbd8c20385ee891f2b9b2",
+    "stage3_protocol_amendment_sha256": "b4274c81e4d32e5351e7502dadeeb022665dbc3a93cdd3d6234859ddc7628fdb",
+    "stage3_validation_metrics_sha256": "cea8459863517021cfefd50546f2660d0fc3473ae08290f21b63f6d746a0f451"
+  },
+  "model": "poisson_offset_fixed",
+  "preprocessor": {
+    "bin_edges": {
+      "DrivAge": [
+        28.0,
+        32.0,
+        36.0,
+        40.0,
+        44.0,
+        48.0,
+        53.0,
+        57.0,
+        65.0
+      ],
+      "VehAge": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.0,
+        15.0
+      ]
+    },
+    "bin_reference_index": {
+      "DrivAge": 6,
+      "VehAge": 4
+    },
+    "levels": {
+      "Area": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "Region": [
+        "R11",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R26",
+        "R31",
+        "R41",
+        "R42",
+        "R43",
+        "R52",
+        "R53",
+        "R54",
+        "R72",
+        "R73",
+        "R74",
+        "R82",
+        "R83",
+        "R91",
+        "R93",
+        "R94"
+      ],
+      "VehBrand": [
+        "B1",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "VehGas": [
+        "Diesel",
+        "Regular"
+      ],
+      "VehPower": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    "log_density_mean": 5.981850773385131,
+    "log_density_std": 1.8707489969577007,
+    "medians_for_imputation": {
+      "Density": 393.0,
+      "DrivAge": 44.0,
+      "VehAge": 6.0
+    },
+    "n_columns": 68,
+    "n_fit": 474581,
+    "pooled_into_OTHER": {
+      "Area": [],
+      "Region": [],
+      "VehBrand": [],
+      "VehGas": [],
+      "VehPower": []
+    },
+    "rare_min_rows": 500,
+    "reference_level": {
+      "Area": "C",
+      "Region": "R24",
+      "VehBrand": "B12",
+      "VehGas": "Regular",
+      "VehPower": "6"
+    },
+    "with_bonus_malus": false
+  },
+  "production_eligible": false,
+  "protocol": {
+    "bootstrap": {
+      "replicas": 1000,
+      "seed": 20261121
+    },
+    "document": "reports/etapa_02_protocolo.md (secoes 1-11)"
+  },
+  "reference": "global_rate",
+  "reproduction_of_stage3": {
+    "coefficients_max_abs_diff": 2.0965451597021456e-12,
+    "max_rel_diff_metrics": 2.03677249960154e-12,
+    "ok": true
+  },
+  "training_sample": {
+    "degree": "train_full",
+    "ids_sha256": "2a1dc6791f5f6417818ef6533ad04f14af4daa417c7822d9a195cbeeedb1e120",
+    "matches_stage3_ladder": true,
+    "rows": 474581
+  },
+  "unknown_and_missing_policy": {
+    "invalid_claimnb_exposure_or_mu": "interrompem a avaliacao",
+    "missing_categorical": "__MISSING__ tratado como desconhecido",
+    "missing_numeric": "mediana do ajuste",
+    "unknown_or_rare_category": "OTHER (ou nivel de referencia se nao houver OTHER)"
+  },
+  "verification": {
+    "tolerance": {
+      "atol": 1e-12,
+      "rtol": 1e-09
+    },
+    "validation_reference": {
+      "candidates": {
+        "global": {
+          "by_exposure_band": {
+            "(0, 0.02]": {
+              "exposure": 32.21868178755895,
+              "observed_claims": 77.0,
+              "predicted_claims": 3.249069254872082,
+              "rows": 2873
+            },
+            "(0.02, 0.08]": {
+              "exposure": 916.76,
+              "observed_claims": 332.0,
+              "predicted_claims": 92.44998754873657,
+              "rows": 14314
+            },
+            "(0.08, 0.25]": {
+              "exposure": 2815.94,
+              "observed_claims": 667.0,
+              "predicted_claims": 283.9713970264728,
+              "rows": 16322
+            },
+            "(0.25, 0.50]": {
+              "exposure": 7714.66,
+              "observed_claims": 954.0,
+              "predicted_claims": 777.9792104179239,
+              "rows": 19693
+            },
+            "(0.50, 0.75]": {
+              "exposure": 8784.5,
+              "observed_claims": 876.0,
+              "predicted_claims": 885.8664379138229,
+              "rows": 13882
+            },
+            "(0.75, 1)": {
+              "exposure": 8079.52,
+              "observed_claims": 727.0,
+              "predicted_claims": 814.7732486144334,
+              "rows": 9263
+            },
+            "= 1": {
+              "exposure": 25042.0,
+              "observed_claims": 1728.0,
+              "predicted_claims": 2525.342061385163,
+              "rows": 25042
+            },
+            "> 1": {
+              "exposure": 204.45,
+              "observed_claims": 7.0,
+              "predicted_claims": 20.61760979355468,
+              "rows": 184
+            }
+          },
+          "mean_loglik": -0.21514282963479986,
+          "mean_poisson_deviance": 0.3286257445931947,
+          "predicted_claims": 5404.249021954979,
+          "rate_diff_pred_minus_obs": 0.067641330520564,
+          "zeros_predicted": 96374.87784935512
+        },
+        "poisson": {
+          "by_exposure_band": {
+            "(0, 0.02]": {
+              "exposure": 32.21868178755895,
+              "observed_claims": 77.0,
+              "predicted_claims": 4.5864182906975675,
+              "rows": 2873
+            },
+            "(0.02, 0.08]": {
+              "exposure": 916.76,
+              "observed_claims": 332.0,
+              "predicted_claims": 114.08651111408668,
+              "rows": 14314
+            },
+            "(0.08, 0.25]": {
+              "exposure": 2815.94,
+              "observed_claims": 667.0,
+              "predicted_claims": 339.8078741796221,
+              "rows": 16322
+            },
+            "(0.25, 0.50]": {
+              "exposure": 7714.66,
+              "observed_claims": 954.0,
+              "predicted_claims": 882.4566503727398,
+              "rows": 19693
+            },
+            "(0.50, 0.75]": {
+              "exposure": 8784.5,
+              "observed_claims": 876.0,
+              "predicted_claims": 993.042516752821,
+              "rows": 13882
+            },
+            "(0.75, 1)": {
+              "exposure": 8079.52,
+              "observed_claims": 727.0,
+              "predicted_claims": 861.4329516326843,
+              "rows": 9263
+            },
+            "= 1": {
+              "exposure": 25042.0,
+              "observed_claims": 1728.0,
+              "predicted_claims": 2177.4133797952936,
+              "rows": 25042
+            },
+            "> 1": {
+              "exposure": 204.45,
+              "observed_claims": 7.0,
+              "predicted_claims": 24.30494377123353,
+              "rows": 184
+            }
+          },
+          "mean_loglik": -0.21032397192222416,
+          "mean_poisson_deviance": 0.3189880291680432,
+          "predicted_claims": 5397.131245909179,
+          "rate_diff_pred_minus_obs": 0.054359431696278465,
+          "zeros_predicted": 96406.57326619994
+        }
+      },
+      "exposure": 53590.048681787564,
+      "observed_claims": 5368.0,
+      "rows": 101573
+    }
+  }
+}

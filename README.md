@@ -30,6 +30,7 @@ This is not a collection of isolated notebooks. The analytical projects combine 
 | **Model Risk & Responsible ML** | Model-risk governance | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repository](./ModelRisk_ResponsibleML) |
 | **E-commerce Delivery Network & SLA Risk** | Delivery risk / temporal ML | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repository](./E-commerce_Delivery_Network_SLA_Risk) |
 | **Delivery Routing & Time-Window Optimization** | Logistics / prescriptive optimization | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) | [Repository](./Delivery_Routing_Time_Window_Optimization) |
+| **Claim Frequency per Policy** | Insurance / count regression | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) | [Repository](./Claim_Frequency_per_Policy) |
 | **ds_toolkit** | Reusable ML library | [Library README](./ds_toolkit) | [Code](./ds_toolkit) |
 
 ---
@@ -213,6 +214,18 @@ Compares OR-Tools with two constructive heuristics on the Solomon benchmark. In 
 
 ---
 
+### 14. [Claim Frequency per Policy](Claim_Frequency_per_Policy/README.en-US.md) — Motor insurance claim frequency
+
+Estimates claims per 100 policy-years on the French `freMTPL2freq` benchmark (678,013 records). A global rate, Poisson and NB2 with an exposure offset were compared on validation; the Poisson was frozen and evaluated **once** on the reserved test set, behind an integrity gate and a single-run lock. The test supports a gain in mean Poisson deviance (**0.31902** vs **0.33079**; paired difference −0.01177, 95% CI −0.01317 to −0.01018), while calibration by coverage duration shows strong underestimation for very short exposures. `production_eligible = false`.
+
+📊 **Executive report:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) · README: [English](Claim_Frequency_per_Policy/README.en-US.md) · [Português](Claim_Frequency_per_Policy/README.pt-BR.md)
+
+**Methods:** Poisson and NB2 GLMs with a log(Exposure) offset (own IRLS) · Deterministic hash partition · Poisson deviance and predictive log-likelihood · Paired bootstrap by policy and by profile · Segment calibration · Zero diagnostics · Verifiable freezing and single final evaluation
+
+**Technologies:** Python · NumPy · pandas · SciPy · statsmodels · Matplotlib · pytest · Jupyter · conda
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
@@ -226,6 +239,7 @@ Compares OR-Tools with two constructive heuristics on the Solomon benchmark. In 
 | **Unsupervised Learning** | K-Means Clustering, RFM Segmentation |
 | **Prescriptive Analytics** | Budget Optimization, Expected Profit Simulation, Next Best Action |
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
+| **Count Data Modeling** | Poisson and negative binomial (NB2) GLMs, exposure offset, dispersion and zero diagnostics, segment calibration |
 | **Causal Inference** | CATE Estimation, Meta-Learners, Causal Forests, Uplift Evaluation, Policy Learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
 | **Data Engineering** | Polars, DuckDB, Feature Pipelines, Encoding Strategies, Imbalanced Data Handling |
@@ -241,4 +255,4 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 
 ## License
 
-Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB) remain under their original terms; see each project's README for sources.
+Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB, OpenML/freMTPL2freq) remain under their original terms; see each project's README for sources.

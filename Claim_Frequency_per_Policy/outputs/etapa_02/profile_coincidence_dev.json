@@ -1,0 +1,25 @@
+{
+  "interpretation": "coincidencia de atributos observados; a identidade de apolice ou condutor e indeterminada",
+  "key_columns": [
+    "Area",
+    "VehPower",
+    "VehAge",
+    "DrivAge",
+    "VehBrand",
+    "VehGas",
+    "Density",
+    "Region"
+  ],
+  "missing_policy": "ausente codificado como __MISSING__",
+  "train_distinct_profiles": 366628,
+  "train_rows": 474581,
+  "train_rows_in_profiles_shared_within_train": 189628,
+  "train_rows_in_profiles_shared_within_train_share": 0.3995693042915751,
+  "validation_distinct_profiles": 95031,
+  "validation_distinct_profiles_in_train": 36673,
+  "validation_distinct_profiles_in_train_share": 0.3859056518399259,
+  "validation_exposure_with_profile_in_train_share": 0.25495424653742604,
+  "validation_rows": 101573,
+  "validation_rows_with_profile_in_train": 40126,
+  "validation_rows_with_profile_in_train_share": 0.39504592755948925
+}

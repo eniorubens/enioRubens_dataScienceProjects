@@ -1,0 +1,62 @@
+{
+  "calibration": "totais previstos e observados e diferenca prevista - observada por 100 apolices-ano, com a exposicao total de cada grupo; sem recalibracao",
+  "exposure_bands": [
+    "(0, 0.02]",
+    "(0.02, 0.08]",
+    "(0.08, 0.25]",
+    "(0.25, 0.50]",
+    "(0.50, 0.75]",
+    "(0.75, 1)",
+    "= 1",
+    "> 1",
+    "exposicao_invalida"
+  ],
+  "frozen_model": "outputs/etapa_04/frozen_model.json",
+  "limitations_to_state": [
+    "o offset fixo subestima as exposicoes muito curtas e superestima as longas",
+    "resultados internos ao benchmark",
+    "BonusMalus fora do modelo",
+    "sem ZIP/ZINB"
+  ],
+  "model": "poisson_offset_fixed",
+  "outputs": "outputs/etapa_05",
+  "paired_comparison": "diferenca de desvio Poisson - taxa global, IC 95% por bootstrap pareado por IDpol",
+  "panel_columns": [
+    "segmento",
+    "registros",
+    "apolices-ano",
+    "sinistros observados",
+    "sinistros previstos",
+    "taxa observada por 100",
+    "taxa prevista por 100",
+    "prevista - observada",
+    "IC 95%",
+    "baixo suporte"
+  ],
+  "preconditions": [
+    "aceite do Codex sobre a etapa 4",
+    "verificar SHA-256 do ARFF, das atribuicoes, do artefato congelado e dos arquivos de origem (verify-freeze)",
+    "nenhum reajuste, reaprendizado do pre-processamento ou mudanca de covariaveis apos o aceite"
+  ],
+  "primary_metric": "desvio medio de Poisson por registro, previsoes diretas; mesmas linhas para o Poisson e a taxa global",
+  "production_eligible": false,
+  "reconciliation": "registros, exposicao, sinistros observados e previstos de cada segmentacao com o total do teste; total do teste com 101.859 registros conferido contra a etapa 2",
+  "reference": "global_rate",
+  "segmentations": [
+    "exposure_band",
+    "vehicle_age",
+    "region"
+  ],
+  "shortest_band_visible": "(0, 0.02]",
+  "support": {
+    "exposure_years_lt": 25.0,
+    "rows_lt": 500,
+    "rule": "sinalizar e mostrar; sem IC abaixo do limite"
+  },
+  "test_access": "uma unica execucao sobre a particao de teste, apos o aceite; resultados nao retroalimentam o modelo",
+  "uncertainty": {
+    "replicas": 1000,
+    "seed": 20261121,
+    "sensitivity": "bootstrap por chave de perfil"
+  }
+}

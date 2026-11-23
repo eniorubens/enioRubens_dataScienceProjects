@@ -1,0 +1,66 @@
+{
+  "by_candidate": {
+    "global": {
+      "bands_with_support_ci_below_zero": [
+        "(0.75, 1)",
+        "= 1"
+      ],
+      "numeric_requirement_met": false,
+      "total_ci": [
+        -247.732698615,
+        4.62597780205
+      ],
+      "total_ci_below_zero": false,
+      "total_diff": -121.12215064487827
+    },
+    "nb2": {
+      "bands_with_support_ci_below_zero": [
+        "(0.50, 0.75]",
+        "(0.75, 1)",
+        "= 1"
+      ],
+      "numeric_requirement_met": false,
+      "total_ci": [
+        -52.2875172032,
+        200.657534125
+      ],
+      "total_ci_below_zero": false,
+      "total_diff": 69.52307564696821
+    },
+    "poisson": {
+      "bands_with_support_ci_below_zero": [
+        "(0.50, 0.75]",
+        "(0.75, 1)",
+        "= 1"
+      ],
+      "numeric_requirement_met": false,
+      "total_ci": [
+        -210.56669363,
+        42.9630922509
+      ],
+      "total_ci_below_zero": false,
+      "total_diff": -89.42673380006454
+    },
+    "poisson_free_exposure": {
+      "bands_with_support_ci_below_zero": [
+        "(0.02, 0.08]",
+        "(0.25, 0.50]"
+      ],
+      "numeric_requirement_met": true,
+      "total_ci": [
+        -283.132737071,
+        -29.9693188964
+      ],
+      "total_ci_below_zero": true,
+      "total_diff": -160.2139968099509
+    }
+  },
+  "criterion": "ZIP/ZINB na etapa 4 somente se o modelo de contagem de referencia SUBESTIMAR zeros: IC95% de (zeros previstos - observados) inteiramente abaixo de zero no total e em >= 2 faixas de exposicao com suporte, e hipotese plausivel documentada",
+  "decision": "encerrar com os modelos de contagem ja avaliados; nenhum ZIP ou ZINB ajustado nesta rodada",
+  "plausible_second_process_hypothesis": {
+    "contract_evidence": "O dicionario define ClaimNb como numero de sinistros no periodo de exposicao e Exposure como duracao em anos; nao descreve mecanismo de apolices sem risco, nao ha datas nem identificador de unidade superior, e o instante de medicao de BonusMalus e desconhecido. Nenhuma hipotese de segundo processo e sustentada pelo contrato.",
+    "diagnostic_reading": "As diferencas de zeros acompanham os erros nas contagens por duracao (mean_vs_zero_by_band.csv)",
+    "documented": false
+  },
+  "reference_model": "poisson"
+}

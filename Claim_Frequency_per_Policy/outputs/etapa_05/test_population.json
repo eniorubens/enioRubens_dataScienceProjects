@@ -1,0 +1,21 @@
+{
+  "exposure": 53839.09319934127,
+  "ids_sha256": "11808b8102160e12da25942da6ae0d841919600d64a1a77d410d4d9381283fb8",
+  "observed_claims": 5415.0,
+  "observed_zeros": 96726,
+  "preprocessor_report": {
+    "imputed_numeric": {
+      "Density": 0,
+      "DrivAge": 0,
+      "VehAge": 0
+    },
+    "unknown_levels": {
+      "Area": 0,
+      "Region": 0,
+      "VehBrand": 0,
+      "VehGas": 0,
+      "VehPower": 0
+    }
+  },
+  "rows": 101859
+}

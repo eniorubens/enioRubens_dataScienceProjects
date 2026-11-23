@@ -1,0 +1,7 @@
+{
+  "assignment_sha256": "65ec330ead3a9985522e898abf6e75adea72a2f1c6624dbcd5ff27430c5fd09f",
+  "fit_rows": 474478,
+  "group_train_rows": 474478,
+  "group_validation_rows": 101676,
+  "profile_key_overlap": 0
+}

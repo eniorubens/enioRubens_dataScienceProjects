@@ -1,0 +1,22 @@
+{
+  "test": {
+    "ids": 101859,
+    "note": "so integridade e tamanho; desfechos reservados"
+  },
+  "train": {
+    "claims": 25319.0,
+    "exposure": 251070.30358185497,
+    "rate_per_100_policy_years": 10.084426409173236,
+    "rows": 474581,
+    "rows_claimnb_gt_4": 8,
+    "rows_exposure_gt_1": 869,
+    "rows_exposure_le_0.02": 13465,
+    "zeros": 450731,
+    "zeros_share": 0.9497451436108905
+  },
+  "validation": {
+    "exposure": 53590.048681787564,
+    "note": "sem desfechos nesta etapa",
+    "rows": 101573
+  }
+}

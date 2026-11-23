@@ -1,0 +1,81 @@
+{
+  "decisions_from_stage2_opinion": {
+    "bootstrap": "1000 replicas pareadas por IDpol (principal); por chave de perfil (sensibilidade); intervalos condicionados aos modelos ajustados",
+    "choice_rules": {
+      "convergence": "exigida em todos os candidatos",
+      "nb2_over_poisson": "IC95% pareado da melhora na log-verossimilhanca media exclui zero E desvio medio do NB2 <= Poisson E |diferenca de taxa global| do NB2 <= Poisson (estimativas pontuais)",
+      "nb2_vs_global_if_global_still_selected": "NB2 precisa ganho pareado no desvio medio contra a taxa global",
+      "poisson_over_global": "IC95% pareado da melhora no desvio medio exclui zero E |diferenca de taxa global| do Poisson <= a da taxa global (estimativas pontuais)",
+      "stability": "ganho com IC excluindo zero no maior degrau viavel e estimativa pontual com o mesmo sinal em todos os degraus viaveis; com um unico degrau, estabilidade por tamanho 'nao verificada' e comparacao provisoria"
+    },
+    "fit_limits": {
+      "convergence_required": true,
+      "max_fit_wall_s": 600,
+      "max_peak_ram_gib": 8
+    },
+    "ladder_rule": "ampliar se os tres candidatos convergirem e couberem nos limites; se um degrau falhar, usar o ultimo degrau comum elegivel; se o primeiro falhar, devolver diagnostico",
+    "low_support": {
+      "exposure_years_lt": 25.0,
+      "rows_lt": 500
+    },
+    "sample_ladder": [
+      100000,
+      200000,
+      "train_full"
+    ],
+    "zero_inflation_gate": "ZIP/ZINB na etapa 4 somente se o modelo de contagem de referencia SUBESTIMAR zeros: IC95% de (zeros previstos - observados) inteiramente abaixo de zero no total e em >= 2 faixas de exposicao com suporte, e hipotese plausivel documentada"
+  },
+  "disclosure": "Antes desta emenda foi executado um teste de fumaca do estimador em 100 mil linhas de treino (tempo e equivalencia com o statsmodels), sem uso de validacao.",
+  "eda_derived_checks": {
+    "category_coverage": "niveis com < 500 linhas de ajuste vao para OTHER; niveis desconhecidos vao para OTHER (ou referencia se nao houver OTHER); verificado em linhas de treino fora da amostra de ajuste",
+    "extremes": "caudas validas preservadas; casos com ClaimNb > 4 concentram-se em poucos perfis; bootstrap por perfil e a sensibilidade correspondente",
+    "offset_assumption": {
+      "assumed": "E[ClaimNb] proporcional a Exposure (coeficiente 1 em log(Exposure))",
+      "exploratory_diagnostic": "Poisson com log(Exposure) como covariavel livre, avaliado em validacao e rotulado diagnostico: nao e candidato; seu uso exigiria nova decisao do Codex na etapa 4",
+      "implication": "se o coeficiente livre for bem menor que 1, a taxa por ano e maior nas coberturas curtas e o offset subestima as faixas curtas e superestima as longas",
+      "train_diagnostic_free_coefficient": {
+        "approx_95_high": 0.42465218921522596,
+        "approx_95_low": 0.3604608535150332,
+        "assumed_by_offset": 1.0,
+        "coefficient_log_exposure": 0.3925565213651296,
+        "converged": true,
+        "naive_se": 0.016375340739845104,
+        "sample_rows": 100000
+      },
+      "validation_check": "calibracao por faixa de exposicao (prevista - observada, por 100 apolices-ano, com IC) para os tres candidatos; sem recalibracao pos-hoc nem fatores por segmento"
+    },
+    "short_exposure_vs_profile": {
+      "method": "estratos faixa de idade do condutor x faixa de idade do veiculo; taxa de referencia com Exposure >= 0,75 por estrato com suporte; razao observado/esperado por faixa de exposicao",
+      "result": {
+        "median_ratio_short_over_ref": 4.1968545798228485,
+        "min_ratio_short_over_ref": 2.7132678948123075,
+        "pooled_short_ratio_observed_expected": 5.717713473895241,
+        "reference_exposure_ge": 0.75,
+        "short_limit_exposure_le": 0.08,
+        "strata_short_rate_above_reference": 24,
+        "strata_supported_in_both": 24,
+        "strata_total": 35,
+        "strata_with_reference_support": 30
+      }
+    },
+    "source": "outputs/etapa_03/eda_summary.json (somente treino)"
+  },
+  "eda_summary_sha256": "aedf460bc5de62bdb2199824331a8575b1558cc555c5401b1ab1d07840159e15",
+  "operational_definitions": {
+    "evaluation_population": "todas as 101.573 linhas de validacao com contagens e exposicoes originais",
+    "grouped_partition": "pre-processamento, ajustes e avaliacao refeitos em group_train/group_validation, mesmo tamanho nominal de ajuste, resultados reportados a parte",
+    "rate_difference": "100 * (soma(mu) - soma(ClaimNb)) / soma(Exposure)",
+    "segment_intervals": "apenas segmentos sem baixo suporte na validacao",
+    "sensitivities": [
+      "BonusMalus",
+      "limites didaticos so no ajuste",
+      "bootstrap por perfil",
+      "particao agrupada do desenvolvimento",
+      "faixa (0; 0,02] excluida (descritiva)",
+      "log(Exposure) livre (diagnostico)"
+    ],
+    "sensitivity_degree": "maior degrau viavel"
+  },
+  "production_eligible": false,
+  "reconciliation_scope_correction": "Na etapa 2 foram reconciliados registros e exposicao em treino e validacao e sinistros apenas no treino; nao houve reconciliacao de sinistros na validacao nem qualquer uso do teste alem da contagem de IDs. A reconciliacao de sinistros da validacao ocorre pela primeira vez na etapa 3."
+}
