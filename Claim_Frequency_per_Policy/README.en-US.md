@@ -26,7 +26,7 @@ A reproducible study of **claim frequency** on the French motor insurance benchm
 
 ## 4. Reading map
 
-The [executive report](site/en.html) presents the problem, decision, and main results as a concise read. Open the file locally in a browser: on GitHub an `.html` file is shown as source code (publishing via GitHub Pages is optional). The notebooks preserve the complete analytical narrative:
+The [executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) presents the problem, decision, and main results as a concise read. It is published on GitHub Pages; the source is `site/en.html`, which can also be opened locally in a browser. The notebooks preserve the complete analytical narrative:
 
 1. [Training EDA](notebooks/en_us/01_eda_treino.ipynb) — presents the variables, partition contract, and exploration conducted on training data only.
 2. [Model comparison](notebooks/en_us/02_comparacao_modelos.ipynb) — explains the analytical table and compares the global rate, Poisson, and NB2 on validation.

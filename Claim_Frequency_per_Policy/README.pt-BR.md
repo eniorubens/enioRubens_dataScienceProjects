@@ -26,7 +26,7 @@ Estudo reproduzível de **frequência de sinistros** no benchmark francês de se
 
 ## 4. Mapa de leitura
 
-O [relatório executivo](site/index.html) apresenta o problema, a decisão e os principais resultados em uma leitura breve. Abra o arquivo localmente no navegador: no GitHub um `.html` aparece como código-fonte (publicar via GitHub Pages é opcional). Os notebooks preservam a narrativa analítica completa:
+O [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) apresenta o problema, a decisão e os principais resultados em uma leitura breve. Ele está publicado no GitHub Pages; a fonte é `site/index.html`, que também pode ser aberta localmente no navegador. Os notebooks preservam a narrativa analítica completa:
 
 1. [EDA do treino](notebooks/pt_br/01_eda_treino.ipynb) — apresenta as variáveis, o contrato de partição e a exploração feita somente no treino.
 2. [Comparação de modelos](notebooks/pt_br/02_comparacao_modelos.ipynb) — explica a tabela analítica e compara taxa global, Poisson e NB2 na validação.
