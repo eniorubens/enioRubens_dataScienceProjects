@@ -1,0 +1,40 @@
+{
+  "note": "pico = peak_wset do processo de auditoria (Windows), acumulado ao fim de cada estagio; CPU, sem GPU.",
+  "stages": [
+    {
+      "stage": "verify_hash",
+      "wall_s": 0.871,
+      "peak_rss_mib_cumulative": 76.7
+    },
+    {
+      "stage": "read_arff_chunked",
+      "wall_s": 3.44,
+      "peak_rss_mib_cumulative": 197.1
+    },
+    {
+      "stage": "compute_audit",
+      "wall_s": 2.331,
+      "peak_rss_mib_cumulative": 301.2
+    },
+    {
+      "stage": "write_outputs",
+      "wall_s": 0.048,
+      "peak_rss_mib_cumulative": 301.2
+    }
+  ],
+  "total_wall_s": 6.69,
+  "peak_rss_mib": 301.2,
+  "download_cost_from_manifest": {
+    "wall_s": 114.182,
+    "bytes": 36288567
+  },
+  "environment": {
+    "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "psutil": "7.2.2",
+    "cpu_logical": 16,
+    "ram_total_gib": 15.7
+  }
+}

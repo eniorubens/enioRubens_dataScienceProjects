@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quando a frequência média não conta toda a história | Frequência de Sinistros por Apólice</title>
+  <meta name="description" content="O Poisson com offset fixo de exposição melhora o desvio médio no teste reservado, mas mantém um viés importante nas apólices com exposição muito curta.">
+  <link rel="alternate" hreflang="pt-BR" href="index.html">
+  <link rel="alternate" hreflang="en-US" href="en.html">
+  <link rel="stylesheet" href="assets/report.css">
+</head>
+<body id="top">
+  <a class="skip" href="#content">Ir para o conteúdo</a>
+  <header>
+    <div class="wrap topbar">
+      <span class="brand">Frequência de Sinistros por Apólice</span>
+      <a class="language" href="en.html" lang="en-US" hreflang="en-US">English</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <div class="hero">
+      <div class="wrap">
+        <p class="kicker">Relatório executivo · Seguro automotivo</p>
+        <h1>Frequência de sinistros no seguro automotivo</h1>
+        <p class="lead">Um modelo de Poisson foi congelado antes da abertura do teste e superou a taxa única da carteira no desvio médio. A calibração por duração revelou o limite central: a taxa de sinistros continuou fortemente subestimada nas apólices com exposição muito curta.</p>
+        <ul class="metrics" role="list">
+          <li><strong>−0,01177</strong><span>diferença pareada no desvio médio, Poisson menos referência</span></li>
+          <li><strong>10,108</strong><span>sinistros previstos por 100 apólices-ano, ante 10,058 observados</span></li>
+          <li><strong>1 vez</strong><span>avaliação oficial nos 101.859 registros do teste reservado</span></li>
+        </ul>
+      </div>
+    </div>
+    <nav class="toc" aria-label="Neste relatório">
+      <div class="wrap">
+        <a href="#problema">Problema</a>
+        <a href="#resultado">Resultado</a>
+        <a href="#exposicao">Exposição</a>
+        <a href="#metodo">Método</a>
+        <a href="#limites">Limites</a>
+        <a href="#fontes">Fontes</a>
+      </div>
+    </nav>
+
+    <div class="wrap report">
+      <section id="problema" aria-labelledby="problema-title">
+        <h2 id="problema-title">Uma apólice por dois meses não equivale a uma apólice por um ano</h2>
+        <div class="copy">
+          <p>O conjunto <code>freMTPL2freq</code> registra quantos sinistros ocorreram durante o período de cobertura de cada apólice. Como as durações variam, as contagens precisam ser relacionadas à exposição. A unidade de comparação usada neste estudo é a quantidade de sinistros por 100 apólices-ano.</p>
+          <p>A pergunta avaliada foi objetiva: um modelo que diferencia perfis de veículo, condutor e região prediz melhor as contagens do que aplicar uma única taxa anual a toda a carteira?</p>
+        </div>
+        <div class="candidate-grid">
+          <article><strong>Taxa global</strong><p>Uma frequência anual única, estimada no treino e multiplicada pela exposição de cada apólice. É a referência simples.</p></article>
+          <article><strong>Poisson</strong><p>Uma taxa por perfil, com <code>log(Exposure)</code> como offset de coeficiente fixo 1. A contagem esperada cresce proporcionalmente ao tempo coberto.</p></article>
+          <article><strong>NB2</strong><p>Uma taxa por perfil com dispersão adicional. Na validação principal com o treino completo, melhorou a verossimilhança, mas perdeu no desvio e na calibração global.</p></article>
+        </div>
+      </section>
+
+      <section id="resultado" aria-labelledby="resultado-title">
+        <h2 id="resultado-title">O ganho apareceu na qualidade das médias previstas</h2>
+        <div class="copy">
+          <p>No teste reservado, o Poisson apresentou menor desvio médio que a taxa global. A diferença pareada foi inteiramente negativa no intervalo de 95%, inclusive quando o bootstrap agrupou registros por perfil de covariáveis.</p>
+        </div>
+        <figure class="evidence" aria-labelledby="dev-chart" aria-describedby="dev-note">
+          <figcaption id="dev-chart">Desvio médio de Poisson no teste</figcaption>
+          <p class="figure-note" id="dev-note">Menor é melhor. As barras usam a escala de 0 a 0,34.</p>
+          <ul class="deviance" role="list">
+            <li><span>Poisson com offset</span><span class="track" aria-hidden="true"><span class="fill" style="--bar:93.83%"></span></span><span class="value">0,31902</span></li>
+            <li class="baseline"><span>Taxa global</span><span class="track" aria-hidden="true"><span class="fill" style="--bar:97.29%"></span></span><span class="value">0,33079</span></li>
+          </ul>
+          <div class="paired-result">
+            <strong>−0,01177</strong>
+            <p>Diferença pareada Poisson − taxa global, com IC 95% de <strong>−0,01317 a −0,01018</strong>. O intervalo exclui zero e sustenta o ganho do Poisson no desvio médio.</p>
+          </div>
+        </figure>
+        <div class="rate-summary" aria-label="Calibração global">
+          <div><strong>10,058</strong><span>taxa observada por 100 apólices-ano</span></div>
+          <div><strong>10,108</strong><span>taxa prevista pelo Poisson</span></div>
+          <div><strong>10,084</strong><span>taxa prevista pela referência global</span></div>
+        </div>
+        <div class="callout">
+          <p><strong>A melhora confirmada é no desvio médio.</strong> Na calibração agregada, o erro absoluto pontual foi 0,050 no Poisson e 0,027 na taxa global. Os intervalos de 95% da diferença prevista − observada de cada candidato incluíram zero. Eles avaliam cada candidato separadamente e não constituem um teste de equivalência entre os modelos.</p>
+        </div>
+      </section>
+
+      <section id="exposicao" aria-labelledby="exposicao-title">
+        <h2 id="exposicao-title">A duração da cobertura concentra o principal erro</h2>
+        <div class="copy">
+          <p>O sinal observado na validação reapareceu nas oito faixas do teste. O offset fixo subestimou as taxas nas exposições curtas e superestimou parte das longas. A diferença foi mais intensa na primeira faixa.</p>
+        </div>
+        <figure class="evidence" aria-labelledby="exposure-chart" aria-describedby="exposure-note">
+          <figcaption id="exposure-chart">Taxas observadas e previstas por faixa de exposição</figcaption>
+          <p class="figure-note" id="exposure-note">Taxas por 100 apólices-ano. A primeira faixa é mostrada separadamente por ter escala muito maior. As barras das demais usam escala de 0 a 45.</p>
+          <div class="short-band">
+            <div><strong>255,51</strong><span>observada em (0; 0,02] ano</span></div>
+            <div><strong>14,04</strong><span>prevista pelo Poisson</span></div>
+          </div>
+          <ul class="band-chart" role="list">
+            <li><span>(0,02; 0,08]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:88.46%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:27.56%"></span></span></span><span class="value">39,81 / 12,40</span></li>
+            <li><span>(0,08; 0,25]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:48.05%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:26.77%"></span></span></span><span class="value">21,62 / 12,05</span></li>
+            <li><span>(0,25; 0,50]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:28.87%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:25.35%"></span></span></span><span class="value">12,99 / 11,41</span></li>
+            <li><span>(0,50; 0,75]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:24.06%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:25.34%"></span></span></span><span class="value">10,83 / 11,40</span></li>
+            <li><span>(0,75; 1)</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:18.39%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:24.24%"></span></span></span><span class="value">8,28 / 10,91</span></li>
+            <li><span>= 1</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:15.08%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:19.31%"></span></span></span><span class="value">6,79 / 8,69</span></li>
+          </ul>
+          <ul class="legend" role="list"><li><span class="obs"></span>observada</li><li><span class="pred"></span>prevista</li></ul>
+          <p class="figure-note">A faixa acima de um ano tinha apenas 171 registros e foi classificada como baixo suporte.</p>
+        </figure>
+      </section>
+
+      <section id="metodo" aria-labelledby="metodo-title">
+        <h2 id="metodo-title">O teste foi protegido das decisões de modelagem</h2>
+        <div class="copy">
+          <p>As 678.013 apólices foram atribuídas de forma determinística por <em>hash</em> a treino, validação e teste. A EDA e o pré-processamento foram feitos no treino. Os candidatos foram comparados na validação. A especificação escolhida e o roteiro final foram congelados antes da única execução sobre o teste.</p>
+        </div>
+        <ol class="workflow">
+          <li><strong>Treino · 70%</strong>474.581 registros para EDA, pré-processamento e ajuste. Os modelos foram treinados fora dos notebooks e seus artefatos foram gravados uma vez.</li>
+          <li><strong>Validação · 15%</strong>101.573 registros para comparar taxa global, Poisson e NB2, avaliar zeros e selecionar o modelo.</li>
+          <li><strong>Teste · 15%</strong>101.859 registros abertos uma única vez após 20 verificações de integridade. Foram gravados apenas resultados agregados.</li>
+        </ol>
+        <div class="copy">
+          <p>Os notebooks PT-BR e EN-US carregam os mesmos resultados e não repetem os ajustes. Os <em>checksums</em>, os contratos de dados, a regra de partição, o modelo congelado e o roteiro permitem auditar a origem de cada resultado.</p>
+        </div>
+      </section>
+
+      <section id="limites" aria-labelledby="limites-title">
+        <h2 id="limites-title">Os zeros não exigiram um segundo processo</h2>
+        <div class="copy">
+          <p>Na validação, embora cerca de 95% das apólices não tenham sinistro, a quantidade total de zeros foi compatível com a prevista pelo Poisson de referência. O intervalo da diferença entre zeros previstos e observados incluiu zero. Também não havia, no contrato dos dados, uma hipótese documentada para um grupo de apólices estruturalmente sem risco. Por isso, ZIP e ZINB não foram ajustados.</p>
+          <p><code>production_eligible = false</code>. O resultado mede generalização dentro do benchmark, sem evidência temporal. O instante de medição de <code>BonusMalus</code> é desconhecido, a variável ficou fora do modelo principal e o viés por duração permaneceu sem recalibração. Antes de uso operacional, seriam necessários dados com referência temporal, definição do momento da previsão e validação prospectiva.</p>
+          <p>Os intervalos reportados são condicionados aos modelos já ajustados.</p>
+        </div>
+      </section>
+
+      <section id="fontes" aria-labelledby="fontes-title">
+        <h2 id="fontes-title">Fontes e rastreabilidade</h2>
+        <ul class="source-list">
+          <li><strong>Resultado oficial</strong> · <a href="../outputs/etapa_05/conclusion.json">Conclusão agregada</a> · <a href="../outputs/etapa_05/test_metrics.csv">Métricas do teste</a> · <a href="../outputs/etapa_05/test_intervals.csv">Intervalos do teste</a></li>
+          <li><strong>Calibração por segmento</strong> · <a href="../outputs/etapa_05/test_calibration.csv">Taxas e intervalos por exposição, idade do veículo e região</a> · <a href="../outputs/etapa_05/validation_vs_test_bands.csv">Validação × teste por exposição</a></li>
+          <li><strong>Governança</strong> · <a href="../reports/etapa_02_protocolo.md">Protocolo prévio</a> · <a href="../reports/etapa_04_relatorio.md">Decisão e congelamento</a> · <a href="../reports/etapa_05_relatorio.md">Relatório técnico final</a></li>
+          <li><strong>Notebooks</strong> · <a href="../notebooks/pt_br/01_eda_treino.ipynb">EDA do treino</a> · <a href="../notebooks/pt_br/02_comparacao_modelos.ipynb">Comparação</a> · <a href="../notebooks/pt_br/03_diagnostico_zeros.ipynb">Zeros e decisão</a> · <a href="../notebooks/pt_br/04_avaliacao_final.ipynb">Avaliação final</a></li>
+          <li><strong>Referências metodológicas</strong> · Cameron e Trivedi (2013), <a href="https://doi.org/10.1017/CBO9781139013567">Regression Analysis of Count Data</a> · Dutang e Charpentier (2018), <a href="https://dutangc.github.io/CASdatasets/reference/freMTPL.html">CASdatasets: freMTPL</a> · Wilson (2015), <a href="https://doi.org/10.1016/j.econlet.2014.12.029">The misuse of the Vuong test</a></li>
+          <li><strong>Reprodução</strong> · <a href="../README.pt-BR.md">Guia completo em português</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer><div class="wrap"><span>Frequência de Sinistros por Apólice</span><a href="#top">Voltar ao topo</a></div></footer>
+</body>
+</html>

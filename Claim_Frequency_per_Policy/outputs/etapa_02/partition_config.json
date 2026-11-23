@@ -1,0 +1,60 @@
+{
+  "arff": {
+    "matches_stage1_manifest": true,
+    "path": "data/raw/freMTPL2freq_v1.arff",
+    "sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+    "size_bytes": 36288567
+  },
+  "assignment_file": {
+    "columns": [
+      "IDpol",
+      "partition"
+    ],
+    "path": "data/splits/partition_assignments.csv",
+    "rows": 678013,
+    "sha256_of_ordered_assignments": "f14f53509d63ff468f025fd43096a5c2d12ba3fdd48529e7644f003c73396ce6"
+  },
+  "checks": {
+    "assigned_ids_unique": true,
+    "assigned_rows": 678013,
+    "disjoint": true,
+    "full_coverage": true,
+    "invariant_to_row_order": true,
+    "overlap_ids": 0,
+    "population_ids": 678013,
+    "repeatable": true,
+    "sizes_sum_to_population": true,
+    "token_1e+05_canonical_id": 100000
+  },
+  "grouped_assignment_file": {
+    "path": "data/splits/grouped_dev_assignments.csv",
+    "sha256": "65ec330ead3a9985522e898abf6e75adea72a2f1c6624dbcd5ff27430c5fd09f"
+  },
+  "package_version": "0.1.0",
+  "production_eligible": false,
+  "rule": "bucket = int.from_bytes(sha256(utf8('freMTPL2freq-v1-etapa2|' + str(IDpol)))[:8], 'big') % 10000; train [0,7000), validation [7000,8500), test [8500,10000)",
+  "rule_modulus": 10000,
+  "rule_parameters": {
+    "prefix": "freMTPL2freq-v1-etapa2|",
+    "train_end": 7000,
+    "validation_end": 8500
+  },
+  "sizes": [
+    {
+      "ids": 474581,
+      "partition": "train",
+      "share": 0.6999585553669325
+    },
+    {
+      "ids": 101573,
+      "partition": "validation",
+      "share": 0.1498098119062614
+    },
+    {
+      "ids": 101859,
+      "partition": "test",
+      "share": 0.15023163272680612
+    }
+  ],
+  "stage": 2
+}

@@ -1,0 +1,27 @@
+# Demais arquivos textuais usam LF em novos checkouts.
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+
+# Artefatos e registros cuja integridade e verificada byte a byte.
+outputs/** -text !eol
+
+# Modulos com SHA-256 registrado no modelo congelado ou na execucao oficial.
+# As regras especificas ficam depois de *.py para terem precedencia.
+src/freq_sinistros/arff.py -text !eol
+src/freq_sinistros/audit.py -text !eol
+src/freq_sinistros/compare.py -text !eol
+src/freq_sinistros/data.py -text !eol
+src/freq_sinistros/freeze.py -text !eol
+src/freq_sinistros/metrics.py -text !eol
+src/freq_sinistros/models.py -text !eol
+src/freq_sinistros/partition.py -text !eol
+src/freq_sinistros/prep.py -text !eol
+src/freq_sinistros/profiles.py -text !eol
+src/freq_sinistros/protocol.py -text !eol
+src/freq_sinistros/segments.py -text !eol
+src/freq_sinistros/stage4.py -text !eol
+src/freq_sinistros/stage5.py -text !eol

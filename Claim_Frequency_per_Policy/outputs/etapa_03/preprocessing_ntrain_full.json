@@ -1,0 +1,129 @@
+{
+  "bin_edges": {
+    "DrivAge": [
+      28.0,
+      32.0,
+      36.0,
+      40.0,
+      44.0,
+      48.0,
+      53.0,
+      57.0,
+      65.0
+    ],
+    "VehAge": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      6.0,
+      8.0,
+      10.0,
+      12.0,
+      15.0
+    ]
+  },
+  "bin_reference_index": {
+    "DrivAge": 6,
+    "VehAge": 4
+  },
+  "design_checks": {
+    "all_finite": true,
+    "columns": 68,
+    "condition_number_scaled_gram": 331.3807127814823,
+    "empty_columns": [],
+    "full_column_rank": true,
+    "rank": 68,
+    "rows": 474581
+  },
+  "levels": {
+    "Area": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "Region": [
+      "R11",
+      "R21",
+      "R22",
+      "R23",
+      "R24",
+      "R25",
+      "R26",
+      "R31",
+      "R41",
+      "R42",
+      "R43",
+      "R52",
+      "R53",
+      "R54",
+      "R72",
+      "R73",
+      "R74",
+      "R82",
+      "R83",
+      "R91",
+      "R93",
+      "R94"
+    ],
+    "VehBrand": [
+      "B1",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6"
+    ],
+    "VehGas": [
+      "Diesel",
+      "Regular"
+    ],
+    "VehPower": [
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ]
+  },
+  "log_density_mean": 5.981850773385131,
+  "log_density_std": 1.8707489969577007,
+  "medians_for_imputation": {
+    "Density": 393.0,
+    "DrivAge": 44.0,
+    "VehAge": 6.0
+  },
+  "n_columns": 68,
+  "n_fit": 474581,
+  "pooled_into_OTHER": {
+    "Area": [],
+    "Region": [],
+    "VehBrand": [],
+    "VehGas": [],
+    "VehPower": []
+  },
+  "rare_min_rows": 500,
+  "reference_level": {
+    "Area": "C",
+    "Region": "R24",
+    "VehBrand": "B12",
+    "VehGas": "Regular",
+    "VehPower": "6"
+  },
+  "with_bonus_malus": false
+}

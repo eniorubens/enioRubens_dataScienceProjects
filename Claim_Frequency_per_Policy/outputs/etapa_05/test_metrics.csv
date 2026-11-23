@@ -1,0 +1,3 @@
+degree,population,subset,candidate,rows,exposure,observed_claims,predicted_claims,observed_rate_per_100,predicted_rate_per_100,rate_diff_pred_minus_obs,abs_rate_error,mean_poisson_deviance,mean_loglik,zeros_observed,zeros_predicted
+test,test,all_rows,poisson,101859,53839.0931993,5415,5442.14952,10.0577474066,10.1081745561,0.0504271494757,0.0504271494757,0.3190184279,-0.210741529678,96726,96652.1641019
+test,test,all_rows,global,101859,53839.0931993,5415,5429.36373305,10.0577474066,10.0844264092,0.0266790025615,0.0266790025615,0.330789740254,-0.216627185855,96726,96636.9029292

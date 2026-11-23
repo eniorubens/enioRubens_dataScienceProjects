@@ -1,0 +1,16 @@
+family,indicator,segments_sum,partition_total,ok,partition
+exposure_band,rows,474581,474581,True,train
+exposure_band,exposure,251070.303582,251070.303582,True,train
+exposure_band,claims,25319,25319,True,train
+region,rows,474581,474581,True,train
+region,exposure,251070.303582,251070.303582,True,train
+region,claims,25319,25319,True,train
+vehicle_age,rows,474581,474581,True,train
+vehicle_age,exposure,251070.303582,251070.303582,True,train
+vehicle_age,claims,25319,25319,True,train
+exposure_band,rows,101573,101573,True,validation
+exposure_band,exposure,53590.0486818,53590.0486818,True,validation
+region,rows,101573,101573,True,validation
+region,exposure,53590.0486818,53590.0486818,True,validation
+vehicle_age,rows,101573,101573,True,validation
+vehicle_age,exposure,53590.0486818,53590.0486818,True,validation

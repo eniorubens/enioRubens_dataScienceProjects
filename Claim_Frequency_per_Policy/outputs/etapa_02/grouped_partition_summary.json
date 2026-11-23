@@ -1,0 +1,10 @@
+{
+  "assignment_sha256": "65ec330ead3a9985522e898abf6e75adea72a2f1c6624dbcd5ff27430c5fd09f",
+  "dev_rows": 576154,
+  "distinct_keys": 424986,
+  "group_train_rows": 474478,
+  "group_train_share": 0.8235263488581178,
+  "group_validation_rows": 101676,
+  "key_overlap_between_groups": 0,
+  "rule": "bucket(sha256('freMTPL2freq-v1-etapa2-grupo|'+key)[:8]) % 10000 < 8235 -> group_train"
+}

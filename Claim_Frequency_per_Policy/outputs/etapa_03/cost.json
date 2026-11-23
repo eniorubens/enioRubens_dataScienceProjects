@@ -1,0 +1,66 @@
+{
+  "environment": {
+    "cpu_logical": 16,
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "psutil": "7.2.2",
+    "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+    "ram_total_gib": 15.7
+  },
+  "note": "peak_wset do processo; CPU; sem rede",
+  "peak_rss_mib": 1018.8,
+  "stages": [
+    {
+      "peak_rss_mib_cumulative": 230.1,
+      "stage": "load_verify",
+      "wall_s": 3.64
+    },
+    {
+      "peak_rss_mib_cumulative": 265.7,
+      "stage": "degree_100000",
+      "wall_s": 14.702
+    },
+    {
+      "peak_rss_mib_cumulative": 408.5,
+      "stage": "degree_200000",
+      "wall_s": 17.205
+    },
+    {
+      "peak_rss_mib_cumulative": 702.6,
+      "stage": "degree_train_full",
+      "wall_s": 24.485
+    },
+    {
+      "peak_rss_mib_cumulative": 702.6,
+      "stage": "sens_profile_bootstrap",
+      "wall_s": 79.08
+    },
+    {
+      "peak_rss_mib_cumulative": 727.4,
+      "stage": "sens_bonus_malus",
+      "wall_s": 26.434
+    },
+    {
+      "peak_rss_mib_cumulative": 747.7,
+      "stage": "sens_clipped_fit",
+      "wall_s": 28.775
+    },
+    {
+      "peak_rss_mib_cumulative": 1018.8,
+      "stage": "sens_free_exposure",
+      "wall_s": 15.108
+    },
+    {
+      "peak_rss_mib_cumulative": 1018.8,
+      "stage": "sens_grouped_partition",
+      "wall_s": 26.523
+    },
+    {
+      "peak_rss_mib_cumulative": 1018.8,
+      "stage": "write_outputs",
+      "wall_s": 0.073
+    }
+  ],
+  "total_wall_s": 236.065
+}

@@ -1,0 +1,126 @@
+{
+  "metrics": {
+    "calibration": "totais previstos e observados; diferenca de taxas prevista menos observada, por 100 apolices-ano, com a exposicao total do grupo",
+    "distribution": "log-verossimilhanca preditiva media por registro; zeros previstos = sum P(Y_i=0)",
+    "invalid_policy": "ClaimNb, Exposure ou mu invalidos interrompem a avaliacao; nenhuma linha e descartada em silencio",
+    "population": "mesmas linhas de validacao para todos os candidatos, com contagens e exposicoes originais",
+    "primary": "desvio medio de Poisson por registro: (2/n) sum[y log(y/mu) - (y-mu)]; termo y log(y/mu)=0 se y=0; mu finita e > 0 exigida"
+  },
+  "model_main": {
+    "baseline": "taxa global do treino = sum(ClaimNb)/sum(Exposure); mu_i = taxa * Exposure_i",
+    "covariates": [
+      "Area",
+      "VehPower",
+      "VehAge",
+      "DrivAge",
+      "VehBrand",
+      "VehGas",
+      "Density",
+      "Region"
+    ],
+    "nb2_variance": "mu + alpha*mu^2",
+    "offset": "log(Exposure), coeficiente fixo 1 (Poisson, NB2)",
+    "sensitivity_extra_covariate": "BonusMalus",
+    "target": "ClaimNb (escala de contagem)"
+  },
+  "partition": {
+    "bounds": {
+      "test": [
+        8500,
+        10000
+      ],
+      "train": [
+        0,
+        7000
+      ],
+      "validation": [
+        7000,
+        8500
+      ]
+    },
+    "modulus": 10000,
+    "rule": "bucket = int.from_bytes(sha256(utf8('freMTPL2freq-v1-etapa2|' + str(IDpol)))[:8], 'big') % 10000; train [0,7000), validation [7000,8500), test [8500,10000)",
+    "test_policy": "so integridade e tamanho nesta etapa; avaliado uma unica vez apos congelar modelo e roteiro (etapa 4)",
+    "unit": "IDpol canonico"
+  },
+  "population": "678.013 registros do ARFF OpenML 41214 v1; caudas validas preservadas",
+  "production_eligible": false,
+  "profile_key": {
+    "columns": [
+      "Area",
+      "VehPower",
+      "VehAge",
+      "DrivAge",
+      "VehBrand",
+      "VehGas",
+      "Density",
+      "Region"
+    ],
+    "grouped_partition": {
+      "prefix": "freMTPL2freq-v1-etapa2-grupo|",
+      "rule": "bucket(sha256(prefixo+chave)[:8]) % 10000 < 8235 -> group_train",
+      "scope": "treino + validacao apenas"
+    },
+    "missing_token": "__MISSING__",
+    "separator": "|"
+  },
+  "segments": {
+    "exposure_bands": [
+      "(0, 0.02]",
+      "(0.02, 0.08]",
+      "(0.08, 0.25]",
+      "(0.25, 0.50]",
+      "(0.50, 0.75]",
+      "(0.75, 1)",
+      "= 1",
+      "> 1"
+    ],
+    "exposure_invalid": "exposicao_invalida",
+    "low_support": {
+      "exposure_years_lt": 25.0,
+      "rows_lt": 500
+    },
+    "region": "codigo cadastral; ausente/desconhecido = __MISSING__",
+    "vehicle_age": {
+      "invalid": "idade_ausente_ou_invalida",
+      "labels": [
+        "0-1",
+        "2-5",
+        "6-10",
+        "11-20",
+        "21+"
+      ],
+      "lower_inclusive": [
+        0,
+        2,
+        6,
+        11,
+        21
+      ]
+    }
+  },
+  "training_sample": {
+    "advance_rule": "ampliar ao proximo degrau se o ajuste do degrau atual convergir, levar <= 600 s e usar <= 8 GiB de pico; senao fixar o degrau atual",
+    "ladder": [
+      100000,
+      200000,
+      null
+    ],
+    "limits": {
+      "convergence_required": true,
+      "max_fit_wall_s": 600,
+      "max_peak_ram_gib": 8
+    },
+    "method": "menores SHA-256(prefixo+IDpol) do treino; amostras aninhadas",
+    "prefix": "freMTPL2freq-v1-etapa2-amostra|"
+  },
+  "uncertainty": {
+    "level": 0.95,
+    "method": "bootstrap percentil, modelos ajustados fixos, reamostragem de registros (IDpol) com reposicao",
+    "paired": "mesmos indices para todos os modelos; diferencas pareadas",
+    "replicas": 1000,
+    "seed": 20261121,
+    "sensitivity": "bootstrap por chave de perfil (conglomerados)",
+    "undefined_policy": "replicas com denominador zero ficam fora do indicador e sao contadas; intervalo so e informado se <= 1% das replicas"
+  }
+}

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "freq-sinistros"
+version = "0.1.0"
+description = "Frequencia de sinistros por apolice no freMTPL2freq: auditoria, desenho da avaliacao, comparacao de modelos de contagem, congelamento e avaliacao final unica."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "psutil>=5.9",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.5", "statsmodels>=0.14",
+       "nbformat>=5.9", "nbclient>=0.10", "ipykernel>=6.29",
+       "matplotlib-inline>=0.1.7", "pyyaml>=6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=freq_sinistros --cov-report=term-missing --basetemp=.pytest_tmp"
+
+[tool.ruff]
+line-length = 79
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "D", "N", "B"]
+ignore = ["D401"]  # heuristica de modo imperativo e so para ingles
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+# a célula inicial posiciona imports após os magics/configuração Retina
+"notebooks/**/*.ipynb" = ["E402", "I001"]
+# narrativa bilingue longa em strings
+"scripts/build_*.py" = ["E501"]

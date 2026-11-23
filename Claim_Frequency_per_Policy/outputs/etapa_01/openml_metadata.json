@@ -1,0 +1,314 @@
+{
+  "data": {
+    "data_set_description": {
+      "id": "41214",
+      "name": "freMTPL2freq",
+      "version": "1",
+      "description": "The dataset freMTPL2freq contains risk features for 677,991 motor third-part liability policies (observed mostly on one year). See https://github.com/dutangc/CASdatasets for more details. The dataset is associated with 'Computational Actuarial Science with R' edited by Arthur Charpentier, CRC, 2018.",
+      "description_version": "2",
+      "format": "ARFF",
+      "upload_date": "2018-11-05T23:20:37",
+      "licence": "CC0",
+      "url": "https://openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+      "parquet_url": "https://data.openml.org/datasets/0004/41214/dataset_41214.pq",
+      "file_id": "20649148",
+      "version_label": "1",
+      "citation": "C. Dutang and A. Charpentier (2018), CASdatasets: Insurance datasets.",
+      "tag": [
+        "Actuarial Science",
+        "Data Science",
+        "Finance",
+        "freMTPL2freq",
+        "Kaggle",
+        "Risk Management",
+        "Statistics"
+      ],
+      "visibility": "public",
+      "original_data_url": "https://github.com/dutangc/CASdatasets",
+      "paper_url": "https://www.routledge.com/Computational-Actuarial-Science-with-R/Charpentier/p/book/9781466592599",
+      "status": "active",
+      "processing_date": "2021-04-28 14:52:24",
+      "md5_checksum": "f8875568bf0ca622929105197e2db613"
+    }
+  },
+  "features": {
+    "data_features": {
+      "feature": [
+        {
+          "index": "0",
+          "name": "IDpol",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "1",
+          "name": "ClaimNb",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "2",
+          "name": "Exposure",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "3",
+          "name": "Area",
+          "data_type": "nominal",
+          "nominal_value": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "4",
+          "name": "VehPower",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "5",
+          "name": "VehAge",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "6",
+          "name": "DrivAge",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "7",
+          "name": "BonusMalus",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "8",
+          "name": "VehBrand",
+          "data_type": "nominal",
+          "nominal_value": [
+            "B1",
+            "B10",
+            "B11",
+            "B12",
+            "B13",
+            "B14",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6",
+            "B1",
+            "B10",
+            "B11",
+            "B12",
+            "B13",
+            "B14",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6"
+          ],
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "9",
+          "name": "VehGas",
+          "data_type": "string",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "10",
+          "name": "Density",
+          "data_type": "numeric",
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        },
+        {
+          "index": "11",
+          "name": "Region",
+          "data_type": "nominal",
+          "nominal_value": [
+            "R11",
+            "R21",
+            "R22",
+            "R23",
+            "R24",
+            "R25",
+            "R26",
+            "R31",
+            "R41",
+            "R42",
+            "R43",
+            "R52",
+            "R53",
+            "R54",
+            "R72",
+            "R73",
+            "R74",
+            "R82",
+            "R83",
+            "R91",
+            "R93",
+            "R94",
+            "R11",
+            "R21",
+            "R22",
+            "R23",
+            "R24",
+            "R25",
+            "R26",
+            "R31",
+            "R41",
+            "R42",
+            "R43",
+            "R52",
+            "R53",
+            "R54",
+            "R72",
+            "R73",
+            "R74",
+            "R82",
+            "R83",
+            "R91",
+            "R93",
+            "R94"
+          ],
+          "is_target": "false",
+          "is_ignore": "false",
+          "is_row_identifier": "false",
+          "number_of_missing_values": "0"
+        }
+      ]
+    }
+  },
+  "qualities": {
+    "data_qualities": {
+      "quality": [
+        {
+          "name": "AutoCorrelation",
+          "value": []
+        },
+        {
+          "name": "Dimensionality",
+          "value": "1.769877568719184E-5"
+        },
+        {
+          "name": "MajorityClassPercentage",
+          "value": []
+        },
+        {
+          "name": "MajorityClassSize",
+          "value": []
+        },
+        {
+          "name": "MinorityClassPercentage",
+          "value": []
+        },
+        {
+          "name": "MinorityClassSize",
+          "value": []
+        },
+        {
+          "name": "NumberOfBinaryFeatures",
+          "value": "0.0"
+        },
+        {
+          "name": "NumberOfClasses",
+          "value": []
+        },
+        {
+          "name": "NumberOfFeatures",
+          "value": "12.0"
+        },
+        {
+          "name": "NumberOfInstances",
+          "value": "678013.0"
+        },
+        {
+          "name": "NumberOfInstancesWithMissingValues",
+          "value": "0.0"
+        },
+        {
+          "name": "NumberOfMissingValues",
+          "value": "0.0"
+        },
+        {
+          "name": "NumberOfNumericFeatures",
+          "value": "8.0"
+        },
+        {
+          "name": "NumberOfSymbolicFeatures",
+          "value": "3.0"
+        },
+        {
+          "name": "PercentageOfBinaryFeatures",
+          "value": "0.0"
+        },
+        {
+          "name": "PercentageOfInstancesWithMissingValues",
+          "value": "0.0"
+        },
+        {
+          "name": "PercentageOfMissingValues",
+          "value": "0.0"
+        },
+        {
+          "name": "PercentageOfNumericFeatures",
+          "value": "66.66666666666666"
+        },
+        {
+          "name": "PercentageOfSymbolicFeatures",
+          "value": "25.0"
+        }
+      ]
+    }
+  }
+}

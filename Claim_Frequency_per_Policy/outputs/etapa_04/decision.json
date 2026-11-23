@@ -1,0 +1,13 @@
+{
+  "exposure_treatment": "offset fixo congelado; coeficiente livre permanece diagnostico",
+  "grouped_partition_sensitivity_preferred": "nb2",
+  "model": "poisson_offset_fixed",
+  "production_eligible": false,
+  "reference": "global_rate",
+  "rule_result_main_full": {
+    "nb2_over_poisson": false,
+    "poisson_over_global": true,
+    "preferred_by_rules": "poisson"
+  },
+  "zero_inflation": "nao autorizado"
+}

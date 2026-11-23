@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>When the average frequency does not tell the whole story | Claim Frequency per Policy</title>
+  <meta name="description" content="The Poisson model with a fixed exposure offset improves mean deviance on the reserved test set but retains substantial bias for very short exposures.">
+  <link rel="alternate" hreflang="pt-BR" href="index.html">
+  <link rel="alternate" hreflang="en-US" href="en.html">
+  <link rel="stylesheet" href="assets/report.css">
+</head>
+<body id="top">
+  <a class="skip" href="#content">Skip to content</a>
+  <header>
+    <div class="wrap topbar">
+      <span class="brand">Claim Frequency per Policy</span>
+      <a class="language" href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <div class="hero">
+      <div class="wrap">
+        <p class="kicker">Executive report · Motor insurance</p>
+        <h1>Claim frequency in motor insurance</h1>
+        <p class="lead">A Poisson model was frozen before the test set was opened and outperformed a single portfolio rate on mean deviance. Calibration by duration revealed the central limitation: the claim rate remained severely underestimated for policies with very short exposure.</p>
+        <ul class="metrics" role="list">
+          <li><strong>−0.01177</strong><span>paired mean-deviance difference, Poisson minus baseline</span></li>
+          <li><strong>10.108</strong><span>predicted claims per 100 policy-years, versus 10.058 observed</span></li>
+          <li><strong>once</strong><span>official evaluation on 101,859 reserved test records</span></li>
+        </ul>
+      </div>
+    </div>
+    <nav class="toc" aria-label="In this report">
+      <div class="wrap">
+        <a href="#problem">Problem</a>
+        <a href="#result">Result</a>
+        <a href="#exposure">Exposure</a>
+        <a href="#method">Method</a>
+        <a href="#limits">Limits</a>
+        <a href="#sources">Sources</a>
+      </div>
+    </nav>
+
+    <div class="wrap report">
+      <section id="problem" aria-labelledby="problem-title">
+        <h2 id="problem-title">A two-month policy is not equivalent to a one-year policy</h2>
+        <div class="copy">
+          <p>The <code>freMTPL2freq</code> dataset records how many claims occurred during each policy's coverage period. Since durations vary, counts must be related to exposure. This study compares rates as claims per 100 policy-years.</p>
+          <p>The evaluation question was direct: does a model that differentiates vehicle, driver, and regional profiles predict claim counts better than applying one annual rate across the portfolio?</p>
+        </div>
+        <div class="candidate-grid">
+          <article><strong>Global rate</strong><p>A single annual frequency estimated on training data and multiplied by each policy's exposure. This is the simple baseline.</p></article>
+          <article><strong>Poisson</strong><p>A profile-specific rate with <code>log(Exposure)</code> as an offset whose coefficient is fixed at 1. Expected count grows proportionally with coverage time.</p></article>
+          <article><strong>NB2</strong><p>A profile-specific rate with additional dispersion. On the main validation split with the full training set, it improved likelihood but lost on deviance and overall calibration.</p></article>
+        </div>
+      </section>
+
+      <section id="result" aria-labelledby="result-title">
+        <h2 id="result-title">The gain appeared in the quality of predicted means</h2>
+        <div class="copy">
+          <p>On the reserved test set, Poisson had lower mean deviance than the global rate. The paired difference was entirely negative within the 95% interval, including when the bootstrap clustered records by covariate profile.</p>
+        </div>
+        <figure class="evidence" aria-labelledby="dev-chart" aria-describedby="dev-note">
+          <figcaption id="dev-chart">Mean Poisson deviance on test</figcaption>
+          <p class="figure-note" id="dev-note">Lower is better. Bars use a scale from 0 to 0.34.</p>
+          <ul class="deviance" role="list">
+            <li><span>Poisson with offset</span><span class="track" aria-hidden="true"><span class="fill" style="--bar:93.83%"></span></span><span class="value">0.31902</span></li>
+            <li class="baseline"><span>Global rate</span><span class="track" aria-hidden="true"><span class="fill" style="--bar:97.29%"></span></span><span class="value">0.33079</span></li>
+          </ul>
+          <div class="paired-result">
+            <strong>−0.01177</strong>
+            <p>Paired Poisson − global rate difference, with a 95% CI from <strong>−0.01317 to −0.01018</strong>. The interval excludes zero and supports a Poisson gain in mean deviance.</p>
+          </div>
+        </figure>
+        <div class="rate-summary" aria-label="Overall calibration">
+          <div><strong>10.058</strong><span>observed rate per 100 policy-years</span></div>
+          <div><strong>10.108</strong><span>rate predicted by Poisson</span></div>
+          <div><strong>10.084</strong><span>rate predicted by the global baseline</span></div>
+        </div>
+        <div class="callout">
+          <p><strong>The confirmed improvement is in mean deviance.</strong> For overall calibration, the point absolute error was 0.050 for Poisson and 0.027 for the global rate. Each candidate's 95% interval for predicted − observed included zero. These intervals assess candidates separately and are not an equivalence test between models.</p>
+        </div>
+      </section>
+
+      <section id="exposure" aria-labelledby="exposure-title">
+        <h2 id="exposure-title">Coverage duration concentrates the main error</h2>
+        <div class="copy">
+          <p>The direction observed on validation reappeared in all eight test bands. The fixed offset underestimated rates for short exposures and overestimated part of the long exposures. The difference was strongest in the first band.</p>
+        </div>
+        <figure class="evidence" aria-labelledby="exposure-chart" aria-describedby="exposure-note">
+          <figcaption id="exposure-chart">Observed and predicted rates by exposure band</figcaption>
+          <p class="figure-note" id="exposure-note">Rates per 100 policy-years. The first band is shown separately because its scale is much larger. The remaining bars use a scale from 0 to 45.</p>
+          <div class="short-band">
+            <div><strong>255.51</strong><span>observed for (0, 0.02] year</span></div>
+            <div><strong>14.04</strong><span>predicted by Poisson</span></div>
+          </div>
+          <ul class="band-chart" role="list">
+            <li><span>(0.02, 0.08]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:88.46%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:27.56%"></span></span></span><span class="value">39.81 / 12.40</span></li>
+            <li><span>(0.08, 0.25]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:48.05%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:26.77%"></span></span></span><span class="value">21.62 / 12.05</span></li>
+            <li><span>(0.25, 0.50]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:28.87%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:25.35%"></span></span></span><span class="value">12.99 / 11.41</span></li>
+            <li><span>(0.50, 0.75]</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:24.06%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:25.34%"></span></span></span><span class="value">10.83 / 11.40</span></li>
+            <li><span>(0.75, 1)</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:18.39%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:24.24%"></span></span></span><span class="value">8.28 / 10.91</span></li>
+            <li><span>= 1</span><span class="pair-bars" aria-hidden="true"><span class="mini-track"><span class="observed" style="--observed:15.08%"></span></span><span class="mini-track"><span class="predicted" style="--predicted:19.31%"></span></span></span><span class="value">6.79 / 8.69</span></li>
+          </ul>
+          <ul class="legend" role="list"><li><span class="obs"></span>observed</li><li><span class="pred"></span>predicted</li></ul>
+          <p class="figure-note">The band above one year had only 171 records and was classified as low support.</p>
+        </figure>
+      </section>
+
+      <section id="method" aria-labelledby="method-title">
+        <h2 id="method-title">The test set was protected from modeling decisions</h2>
+        <div class="copy">
+          <p>The 678,013 policies were assigned deterministically by hash to training, validation, and test. EDA and preprocessing were conducted on training. Candidates were compared on validation. The selected specification and final script were frozen before the single test execution.</p>
+        </div>
+        <ol class="workflow">
+          <li><strong>Training · 70%</strong>474,581 records for EDA, preprocessing, and fitting. Models were trained outside the notebooks, and their artifacts were saved once.</li>
+          <li><strong>Validation · 15%</strong>101,573 records to compare the global rate, Poisson, and NB2, assess zeros, and select the model.</li>
+          <li><strong>Test · 15%</strong>101,859 records opened once after 20 integrity checks. Only aggregated results were saved.</li>
+        </ol>
+        <div class="copy">
+          <p>The PT-BR and EN-US notebooks load the same results and do not repeat model fits. Checksums, data contracts, the partition rule, the frozen model, and the final script make each result traceable.</p>
+        </div>
+      </section>
+
+      <section id="limits" aria-labelledby="limits-title">
+        <h2 id="limits-title">The zeros did not require a second process</h2>
+        <div class="copy">
+          <p>On validation, although about 95% of policies had no claims, the total number of zeros was consistent with the reference Poisson prediction. The interval for the difference between predicted and observed zeros included zero. The data contract also provided no documented hypothesis for a group of policies that was structurally risk-free. Therefore, ZIP and ZINB were not fitted.</p>
+          <p><code>production_eligible = false</code>. The result measures generalization within the benchmark, with no temporal evidence. The measurement time of <code>BonusMalus</code> is unknown, so the variable was excluded from the main model, and duration bias remained without recalibration. Operational use would require temporally referenced data, a defined prediction time, and prospective validation.</p>
+          <p>Reported intervals are conditional on the fitted models.</p>
+        </div>
+      </section>
+
+      <section id="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Sources and traceability</h2>
+        <ul class="source-list">
+          <li><strong>Official result</strong> · <a href="../outputs/etapa_05/conclusion.json">Aggregate conclusion</a> · <a href="../outputs/etapa_05/test_metrics.csv">Test metrics</a> · <a href="../outputs/etapa_05/test_intervals.csv">Test intervals</a></li>
+          <li><strong>Segment calibration</strong> · <a href="../outputs/etapa_05/test_calibration.csv">Rates and intervals by exposure, vehicle age, and region</a> · <a href="../outputs/etapa_05/validation_vs_test_bands.csv">Validation × test by exposure</a></li>
+          <li><strong>Governance</strong> · <a href="../reports/etapa_02_protocolo.md">Pre-specified protocol</a> · <a href="../reports/etapa_04_relatorio.md">Decision and freeze</a> · <a href="../reports/etapa_05_relatorio.md">Final technical report</a></li>
+          <li><strong>Notebooks</strong> · <a href="../notebooks/en_us/01_eda_treino.ipynb">Training EDA</a> · <a href="../notebooks/en_us/02_comparacao_modelos.ipynb">Comparison</a> · <a href="../notebooks/en_us/03_diagnostico_zeros.ipynb">Zeros and decision</a> · <a href="../notebooks/en_us/04_avaliacao_final.ipynb">Final evaluation</a></li>
+          <li><strong>Methodological references</strong> · Cameron and Trivedi (2013), <a href="https://doi.org/10.1017/CBO9781139013567">Regression Analysis of Count Data</a> · Dutang and Charpentier (2018), <a href="https://dutangc.github.io/CASdatasets/reference/freMTPL.html">CASdatasets: freMTPL</a> · Wilson (2015), <a href="https://doi.org/10.1016/j.econlet.2014.12.029">The misuse of the Vuong test</a></li>
+          <li><strong>Reproduction</strong> · <a href="../README.en-US.md">Complete English guide</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer><div class="wrap"><span>Claim Frequency per Policy</span><a href="#top">Back to top</a></div></footer>
+</body>
+</html>

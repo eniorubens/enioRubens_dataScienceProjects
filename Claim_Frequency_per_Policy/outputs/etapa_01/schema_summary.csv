@@ -1,0 +1,13 @@
+column,arff_type,openml_type,read_dtype,role,unit_or_category,rows,missing,non_numeric,out_of_domain,distinct,min,max,mean,declared_levels,notes
+IDpol,numeric,numeric,int64,identificador do registro de apolice,inteiro (rastreabilidade),678013,0,0,0,678013,1,6114330,2621856.92107,,
+ClaimNb,numeric,numeric,float64,alvo: numero de sinistros no periodo de exposicao,contagem inteira >= 0,678013,0,0,0,11,0,16,0.0532467666549,,
+Exposure,numeric,numeric,float64,exposicao (offset log) e dado do cenario de previsao,anos de cobertura,678013,0,0,0,181,0.00273224043716,2.01,0.528750105769,,
+Area,nominal,nominal,category,covariavel territorial (densidade ordinal),categoria A (rural) a F (centro urbano),678013,0,0,0,6,,,,6,OpenML lista os niveis nominais em duplicata
+VehPower,numeric,numeric,float64,covariavel do veiculo,valores ordenados (sem unidade publicada),678013,0,0,0,12,4,15,6.45463140087,,
+VehAge,numeric,numeric,float64,covariavel do veiculo,anos,678013,0,0,0,78,0,100,7.04426463799,,
+DrivAge,numeric,numeric,float64,covariavel do condutor,anos,678013,0,0,0,83,18,100,45.4991216983,,
+BonusMalus,numeric,numeric,float64,covariavel do condutor (historico de sinistros),"indice 50-350; <100 bonus, >100 malus",678013,0,0,0,115,50,230,59.7615016231,,
+VehBrand,nominal,nominal,category,covariavel do veiculo,"11 categorias B1-B6, B10-B14 (significado nao publicado)",678013,0,0,0,11,,,,11,OpenML lista os niveis nominais em duplicata
+VehGas,string,string,category,covariavel do veiculo,categoria Diesel ou Regular,678013,0,0,0,2,,,,,
+Density,numeric,numeric,float64,covariavel territorial,habitantes por km2 da cidade do condutor,678013,0,0,0,1607,1,27000,1792.42240488,,
+Region,nominal,nominal,category,covariavel territorial,regiao francesa (classificacao 1970-2015),678013,0,0,0,22,,,,22,OpenML lista os niveis nominais em duplicata

@@ -1,0 +1,157 @@
+{
+  "claimnb": {
+    "claims_excess_over_4": 39.0,
+    "claims_in_rows_gt_4": 71.0,
+    "claims_in_rows_gt_4_share": 0.0028042181760733046,
+    "denominator": "linhas com ClaimNb valido",
+    "max": 16.0,
+    "mean": 0.05335021840318091,
+    "positives": 23850,
+    "positives_share": 0.05025485638910955,
+    "rows_gt_4": 8,
+    "rows_gt_4_share_of_valid": 1.685697488942878e-05,
+    "total_claims": 25319.0,
+    "valid_rows": 474581,
+    "validity": {
+      "fractional": 0,
+      "missing": 0,
+      "negative": 0,
+      "non_finite": 0,
+      "non_numeric": 0,
+      "rows": 474581,
+      "valid": 474581,
+      "zero_valid": 450731
+    },
+    "variance_ddof0": 0.05815703919931448,
+    "variance_ddof1": 0.05815716174354138,
+    "variance_to_mean_ratio_ddof1": 1.0901016618907386,
+    "zeros": 450731,
+    "zeros_share": 0.9497451436108905
+  },
+  "extremes": {
+    "bonusmalus_eq_50_share": 0.566996993137104,
+    "claimnb_gt_4_claims": 71.0,
+    "claimnb_gt_4_rows": 8,
+    "claimnb_gt_4_table": [
+      {
+        "ClaimNb": 16.0,
+        "DrivAge": 52.0,
+        "Exposure": 0.33,
+        "VehAge": 12.0
+      },
+      {
+        "ClaimNb": 11.0,
+        "DrivAge": 65.0,
+        "Exposure": 1.0,
+        "VehAge": 6.0
+      },
+      {
+        "ClaimNb": 11.0,
+        "DrivAge": 53.0,
+        "Exposure": 0.07,
+        "VehAge": 13.0
+      },
+      {
+        "ClaimNb": 9.0,
+        "DrivAge": 52.0,
+        "Exposure": 0.08,
+        "VehAge": 12.0
+      },
+      {
+        "ClaimNb": 8.0,
+        "DrivAge": 52.0,
+        "Exposure": 0.41,
+        "VehAge": 12.0
+      },
+      {
+        "ClaimNb": 6.0,
+        "DrivAge": 52.0,
+        "Exposure": 0.33,
+        "VehAge": 12.0
+      },
+      {
+        "ClaimNb": 5.0,
+        "DrivAge": 67.0,
+        "Exposure": 1.0,
+        "VehAge": 9.0
+      },
+      {
+        "ClaimNb": 5.0,
+        "DrivAge": 52.0,
+        "Exposure": 0.08,
+        "VehAge": 12.0
+      }
+    ],
+    "drivage_ge_100_rows": 3,
+    "exposure_gt_1_rows": 869,
+    "exposure_le_0.02_rows": 13465,
+    "vehage_ge_100_rows": 11
+  },
+  "offset_check": {
+    "approx_95_high": 0.42465218921522596,
+    "approx_95_low": 0.3604608535150332,
+    "assumed_by_offset": 1.0,
+    "coefficient_log_exposure": 0.3925565213651296,
+    "converged": true,
+    "naive_se": 0.016375340739845104,
+    "sample_rows": 100000
+  },
+  "package_version": "0.1.0",
+  "partition_used": "train",
+  "provenance": {
+    "arff_sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+    "arff_size_bytes": 36288567,
+    "assignment_sha256": "f14f53509d63ff468f025fd43096a5c2d12ba3fdd48529e7644f003c73396ce6",
+    "partition_rule": "bucket = int.from_bytes(sha256(utf8('freMTPL2freq-v1-etapa2|' + str(IDpol)))[:8], 'big') % 10000; train [0,7000), validation [7000,8500), test [8500,10000)",
+    "protocol_sha256": "e43e69566690ba98411620e8315bbc27aa00f6702e9cba1d0834e0d7360d4f06"
+  },
+  "short_exposure_check": {
+    "median_ratio_short_over_ref": 4.1968545798228485,
+    "min_ratio_short_over_ref": 2.7132678948123075,
+    "pooled_short_ratio_observed_expected": 5.717713473895241,
+    "reference_exposure_ge": 0.75,
+    "short_limit_exposure_le": 0.08,
+    "strata_short_rate_above_reference": 24,
+    "strata_supported_in_both": 24,
+    "strata_total": 35,
+    "strata_with_reference_support": 30
+  },
+  "train_claims": 25319.0,
+  "train_exposure": 251070.30358185497,
+  "train_rows": 474581,
+  "train_zeros": 450731,
+  "unknown_level_check": {
+    "design_all_finite": true,
+    "fit_rows": 100000,
+    "has_other": {
+      "Area": false,
+      "Region": true,
+      "VehBrand": false,
+      "VehGas": false,
+      "VehPower": true
+    },
+    "heldout_train_rows": 374581,
+    "pooled_levels_in_fit": {
+      "Area": [],
+      "Region": [
+        "R21",
+        "R42",
+        "R43"
+      ],
+      "VehBrand": [],
+      "VehGas": [],
+      "VehPower": [
+        "13",
+        "14",
+        "15"
+      ]
+    },
+    "unknown_levels_heldout": {
+      "Area": 0,
+      "Region": 3618,
+      "VehBrand": 0,
+      "VehGas": 0,
+      "VehPower": 4700
+    }
+  }
+}

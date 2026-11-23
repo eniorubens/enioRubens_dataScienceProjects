@@ -31,7 +31,13 @@
       "prepare": "curl -sSL --retry 3 -o data/raw/adult.zip https://archive.ics.uci.edu/static/public/2/adult.zip && unzip -q -o data/raw/adult.zip -d data/raw/adult_uci"
     },
     {"project": "E-commerce_Delivery_Network_SLA_Risk", "python": "3.12", "install": "pip install -e \".[dev]\""},
-    {"project": "Delivery_Routing_Time_Window_Optimization", "python": "3.13", "install": "pip install -e \".[dev]\""}
+    {"project": "Delivery_Routing_Time_Window_Optimization", "python": "3.13", "install": "pip install -e \".[dev]\""},
+    {
+      "project": "Claim_Frequency_per_Policy",
+      "python": "3.12",
+      "install": "pip install -e \".[dev]\"",
+      "_note": "The freMTPL2freq ARFF is not versioned; tests use synthetic data and the published aggregates in outputs/ (byte-exact via the folder's .gitattributes)."
+    }
   ],
   "conda_jobs": {
     "bike-sharing": "Bike-Sharing-Demand"

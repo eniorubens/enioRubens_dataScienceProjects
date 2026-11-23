@@ -1,0 +1,23 @@
+{
+  "abs_rate_error": {
+    "global": 0.02667900256153999,
+    "poisson": 0.05042714947566651
+  },
+  "mean_poisson_deviance": {
+    "global": 0.33078974025399666,
+    "poisson": 0.3190184278995421
+  },
+  "note": "conclusao restrita ao benchmark; intervalos condicionados aos modelos ajustados",
+  "primary": {
+    "ci_high": -0.010180740313014565,
+    "ci_low": -0.013166572261096274,
+    "d_dev_poisson_minus_global": -0.011771312354454555,
+    "verdict": "ganho_sustentado"
+  },
+  "profile_cluster_bootstrap": {
+    "ci_high": -0.010279244356215057,
+    "ci_low": -0.013380751807658051,
+    "d_dev_poisson_minus_global": -0.011771312354454555,
+    "verdict": "ganho_sustentado"
+  }
+}

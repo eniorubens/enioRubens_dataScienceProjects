@@ -68,6 +68,12 @@ jobs:
           sed -i "s#href=\"\.\./#href=\"$source_url/#g" \
             _site/Delivery_Routing_Time_Window_Optimization/index.html \
             _site/Delivery_Routing_Time_Window_Optimization/en.html
+          mkdir -p _site/Claim_Frequency_per_Policy
+          cp -a Claim_Frequency_per_Policy/site/. _site/Claim_Frequency_per_Policy/
+          source_url="https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Claim_Frequency_per_Policy"
+          sed -i "s#href=\"\.\./#href=\"$source_url/#g" \
+            _site/Claim_Frequency_per_Policy/index.html \
+            _site/Claim_Frequency_per_Policy/en.html
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

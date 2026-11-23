@@ -1,0 +1,48 @@
+{
+  "dataset": {
+    "name": "freMTPL2freq",
+    "version": "1",
+    "dataset_id": 41214,
+    "file_id": "20649148",
+    "licence": "CC0",
+    "format": "ARFF",
+    "upload_date": "2018-11-05T23:20:37",
+    "status": "active",
+    "original_data_url": "https://github.com/dutangc/CASdatasets",
+    "description": "The dataset freMTPL2freq contains risk features for 677,991 motor third-part liability policies (observed mostly on one year). See https://github.com/dutangc/CASdatasets for more details. The dataset is associated with 'Computational Actuarial Science with R' edited by Arthur Charpentier, CRC, 2018."
+  },
+  "source": {
+    "metadata_url": "https://www.openml.org/api/v1/json/data/41214",
+    "features_url": "https://www.openml.org/api/v1/json/data/features/41214",
+    "qualities_url": "https://www.openml.org/api/v1/json/data/qualities/41214",
+    "download_url_declared": "https://openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+    "download_url_final": "https://www.openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+    "parquet_url_declared_not_used": "https://data.openml.org/datasets/0004/41214/dataset_41214.pq"
+  },
+  "artifact": {
+    "representation": "ARFF (rota registrada no metadado 'url')",
+    "local_path": "data/raw/freMTPL2freq_v1.arff",
+    "local_path_absolute": "D:\\Projetos\\Frequência_de_Sinistros_por_Apólice\\data\\raw\\freMTPL2freq_v1.arff",
+    "acquired_at_utc": "2026-11-21T14:03:33+00:00",
+    "size_bytes": 36288567,
+    "sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+    "md5": "f8875568bf0ca622929105197e2db613",
+    "http_headers": {
+      "Content-Length": "36288567",
+      "Content-Type": "text/plain;charset=UTF-8"
+    },
+    "download_elapsed_s": 114.182
+  },
+  "checksum_verification": {
+    "algorithm": "md5",
+    "declared_by_openml": "f8875568bf0ca622929105197e2db613",
+    "computed_on_downloaded_bytes": "f8875568bf0ca622929105197e2db613",
+    "match": true,
+    "note": "O OpenML publica apenas MD5, referente a representacao ARFF; o SHA-256 foi calculado localmente."
+  },
+  "environment": {
+    "python": "3.15.1 (tags/v3.15.1:c37e74c, Oct 21 2026, 06:24:08) [MSC v.1951 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "note": "Aquisicao executada com Python 3.15.1 (venv provisoria, apenas biblioteca padrao). A auditoria roda no ambiente conda freq-sinistros (ver outputs/etapa_01/cost.json). O caminho absoluto foi corrigido apos a aquisicao (codificacao do caminho com acentos)."
+  }
+}

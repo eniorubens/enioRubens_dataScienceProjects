@@ -1,0 +1,9 @@
+item,raw_summary,band_table,abs_diff,ok
+linhas_brutas,678013,678013,0,True
+linhas_claimnb_valido,678013,678013,0,True
+sinistros_claimnb_valido,36102,36102,0,True
+exposicao_valida,358499.445463,358499.445463,0,True
+linhas_subconjunto_taxa,678013,678013,0,True
+sinistros_subconjunto_taxa,36102,36102,0,True
+exposicao_subconjunto_taxa,358499.445463,358499.445463,0,True
+linhas_fora_subconjunto,0,0,0,True

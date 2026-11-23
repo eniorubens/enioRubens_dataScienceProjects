@@ -1,0 +1,35 @@
+{
+  "approved": {
+    "frozen_model_sha256": "8ac94b7e59e55becdd0319f05f9d958483ea4042dc0abaad1a2f075994efe80a",
+    "modules": {
+      "arff": "a24d0fb2dfb3fa5fc0809fc7543bd13f1e5cdfafb4222e815d4197e6fa42a923",
+      "freeze": "ad44566d990037ee8379b11d9b9c93f4f8ad010708ccd4a74b23d9848e9af31c",
+      "profiles": "5841136473ff529c489e95960d40a3cef2dca535ca5a9faf9f2affbc4ca6aca3"
+    },
+    "stage5_script_sha256": "c0365ad5566e32e5099c48bb1d007367e646ce63ee8b040bc95dc38ba13c1ed8"
+  },
+  "checks": {
+    "arff_sha256": true,
+    "assignments_sha256": true,
+    "code_modules_match_frozen": true,
+    "frozen_model_sha256_approved": true,
+    "module_arff_approved": true,
+    "module_freeze_approved": true,
+    "module_profiles_approved": true,
+    "partition_config_sha256": true,
+    "production_eligible_false": true,
+    "protocol_config_sha256": true,
+    "stage3_coefficients_sha256": true,
+    "stage3_comparison_config_sha256": true,
+    "stage3_intervals_sha256": true,
+    "stage3_preprocessing_sha256": true,
+    "stage3_protocol_amendment_sha256": true,
+    "stage3_validation_metrics_sha256": true,
+    "stage5_script_sha256_approved": true,
+    "verify_freeze_code_modules_unchanged": true,
+    "verify_freeze_exit_0": true,
+    "verify_freeze_ok": true
+  },
+  "ok": true,
+  "test_rows_read": 0
+}

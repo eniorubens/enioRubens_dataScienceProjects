@@ -1,0 +1,17 @@
+candidate,indicator,bands_sum,total,ok
+global,rows,101573,101573,True
+global,exposure,53590.0486818,53590.0486818,True
+global,zeros_observed,96496,96496,True
+global,zeros_predicted,96374.8778494,96374.8778494,True
+poisson,rows,101573,101573,True
+poisson,exposure,53590.0486818,53590.0486818,True
+poisson,zeros_observed,96496,96496,True
+poisson,zeros_predicted,96406.5732662,96406.5732662,True
+nb2,rows,101573,101573,True
+nb2,exposure,53590.0486818,53590.0486818,True
+nb2,zeros_observed,96496,96496,True
+nb2,zeros_predicted,96565.5230756,96565.5230756,True
+poisson_free_exposure,rows,101573,101573,True
+poisson_free_exposure,exposure,53590.0486818,53590.0486818,True
+poisson_free_exposure,zeros_observed,96496,96496,True
+poisson_free_exposure,zeros_predicted,96335.7860032,96335.7860032,True

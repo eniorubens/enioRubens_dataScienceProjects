@@ -1,0 +1,133 @@
+{
+  "bin_edges": {
+    "DrivAge": [
+      28.0,
+      32.0,
+      36.0,
+      40.0,
+      44.0,
+      48.0,
+      52.0,
+      57.0,
+      65.0
+    ],
+    "VehAge": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      6.0,
+      8.0,
+      10.0,
+      12.0,
+      15.0
+    ]
+  },
+  "bin_reference_index": {
+    "DrivAge": 7,
+    "VehAge": 4
+  },
+  "design_checks": {
+    "all_finite": true,
+    "columns": 64,
+    "condition_number_scaled_gram": 333.1572255897191,
+    "empty_columns": [],
+    "full_column_rank": true,
+    "rank": 64,
+    "rows": 100000
+  },
+  "levels": {
+    "Area": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "Region": [
+      "R11",
+      "R22",
+      "R23",
+      "R24",
+      "R25",
+      "R26",
+      "R31",
+      "R41",
+      "R52",
+      "R53",
+      "R54",
+      "R72",
+      "R73",
+      "R74",
+      "R82",
+      "R83",
+      "R91",
+      "R93",
+      "R94",
+      "OTHER"
+    ],
+    "VehBrand": [
+      "B1",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6"
+    ],
+    "VehGas": [
+      "Diesel",
+      "Regular"
+    ],
+    "VehPower": [
+      "10",
+      "11",
+      "12",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "OTHER"
+    ]
+  },
+  "log_density_mean": 5.975028019481341,
+  "log_density_std": 1.8680699188419814,
+  "medians_for_imputation": {
+    "Density": 388.0,
+    "DrivAge": 44.0,
+    "VehAge": 6.0
+  },
+  "n_columns": 64,
+  "n_fit": 100000,
+  "pooled_into_OTHER": {
+    "Area": [],
+    "Region": [
+      "R21",
+      "R42",
+      "R43"
+    ],
+    "VehBrand": [],
+    "VehGas": [],
+    "VehPower": [
+      "13",
+      "14",
+      "15"
+    ]
+  },
+  "rare_min_rows": 500,
+  "reference_level": {
+    "Area": "C",
+    "Region": "R24",
+    "VehBrand": "B12",
+    "VehGas": "Regular",
+    "VehPower": "6"
+  },
+  "with_bonus_malus": false
+}

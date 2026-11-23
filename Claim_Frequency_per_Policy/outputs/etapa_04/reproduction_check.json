@@ -1,0 +1,143 @@
+{
+  "free_exposure_coefficient": {
+    "abs_diff": 3.5138558729386205e-13,
+    "reproduced": 0.3811030607503514,
+    "stage3": 0.38110306075
+  },
+  "max_rel_diff_metrics": 2.03677249960154e-12,
+  "metrics": [
+    {
+      "abs_diff": 1.9473311851925246e-13,
+      "candidate": "global",
+      "metric": "mean_poisson_deviance",
+      "reproduced": 0.3286257445931947,
+      "stage3": 0.328625744593
+    },
+    {
+      "abs_diff": 2.001454557643001e-13,
+      "candidate": "global",
+      "metric": "mean_loglik",
+      "reproduced": -0.21514282963479986,
+      "stage3": -0.215142829635
+    },
+    {
+      "abs_diff": 4.979483492206782e-09,
+      "candidate": "global",
+      "metric": "predicted_claims",
+      "reproduced": 5404.249021954979,
+      "stage3": 5404.24902195
+    },
+    {
+      "abs_diff": 4.487810656428337e-08,
+      "candidate": "global",
+      "metric": "zeros_predicted",
+      "reproduced": 96374.87784935512,
+      "stage3": 96374.8778494
+    },
+    {
+      "abs_diff": 4.318767565791859e-14,
+      "candidate": "poisson",
+      "metric": "mean_poisson_deviance",
+      "reproduced": 0.3189880291680432,
+      "stage3": 0.318988029168
+    },
+    {
+      "abs_diff": 2.241540286718191e-13,
+      "candidate": "poisson",
+      "metric": "mean_loglik",
+      "reproduced": -0.21032397192222416,
+      "stage3": -0.210323971922
+    },
+    {
+      "abs_diff": 8.212737157009542e-10,
+      "candidate": "poisson",
+      "metric": "predicted_claims",
+      "reproduced": 5397.131245909179,
+      "stage3": 5397.13124591
+    },
+    {
+      "abs_diff": 5.820766091346741e-11,
+      "candidate": "poisson",
+      "metric": "zeros_predicted",
+      "reproduced": 96406.57326619994,
+      "stage3": 96406.5732662
+    },
+    {
+      "abs_diff": 3.54605234065275e-13,
+      "candidate": "nb2",
+      "metric": "mean_poisson_deviance",
+      "reproduced": 0.31909653766735463,
+      "stage3": 0.319096537667
+    },
+    {
+      "abs_diff": 4.2685299739275706e-13,
+      "candidate": "nb2",
+      "metric": "mean_loglik",
+      "reproduced": -0.20957323288542684,
+      "stage3": -0.209573232885
+    },
+    {
+      "abs_diff": 4.48198989033699e-09,
+      "candidate": "nb2",
+      "metric": "predicted_claims",
+      "reproduced": 5506.457595855518,
+      "stage3": 5506.45759586
+    },
+    {
+      "abs_diff": 4.69735823571682e-08,
+      "candidate": "nb2",
+      "metric": "zeros_predicted",
+      "reproduced": 96565.52307564697,
+      "stage3": 96565.5230756
+    },
+    {
+      "abs_diff": 6.483702463810914e-14,
+      "candidate": "poisson_free_exposure",
+      "metric": "mean_poisson_deviance",
+      "reproduced": 0.30783136793906485,
+      "stage3": 0.307831367939
+    },
+    {
+      "abs_diff": 2.6501023597802487e-13,
+      "candidate": "poisson_free_exposure",
+      "metric": "mean_loglik",
+      "reproduced": -0.20474564130773498,
+      "stage3": -0.204745641308
+    },
+    {
+      "abs_diff": 2.6275301934219897e-09,
+      "candidate": "poisson_free_exposure",
+      "metric": "predicted_claims",
+      "reproduced": 5413.249325332627,
+      "stage3": 5413.24932533
+    },
+    {
+      "abs_diff": 9.953510016202927e-09,
+      "candidate": "poisson_free_exposure",
+      "metric": "zeros_predicted",
+      "reproduced": 96335.78600319005,
+      "stage3": 96335.7860032
+    }
+  ],
+  "ok": true,
+  "origin": {
+    "all_ok": true,
+    "arff_sha256": "a45363e056e2ea56408b38eeb9d4d04d7f6c6982eb7a14ed5e807c7c71807cdd",
+    "assignment_sha256": "f14f53509d63ff468f025fd43096a5c2d12ba3fdd48529e7644f003c73396ce6",
+    "checks": {
+      "arff_sha256_matches_comparison": true,
+      "arff_sha256_matches_stage1_manifest": true,
+      "assignment_file_hash_matches": true,
+      "assignments_match_stage2_config": true,
+      "protocol_amendment_matches_comparison": true,
+      "stage2_validation_totals_match": true,
+      "test_partition_not_returned": true
+    },
+    "partition_rule": "bucket = int.from_bytes(sha256(utf8('freMTPL2freq-v1-etapa2|' + str(IDpol)))[:8], 'big') % 10000; train [0,7000), validation [7000,8500), test [8500,10000)"
+  },
+  "poisson_coefficients_max_abs_diff_vs_stage3_csv": 2.0965451597021456e-12,
+  "tolerance": {
+    "atol": 1e-10,
+    "rtol": 1e-09
+  }
+}

@@ -30,6 +30,7 @@ Este não é um conjunto de notebooks isolados. Os projetos analíticos combinam
 | **Model Risk & Responsible ML** | Governança de risco de modelo | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repositório](./ModelRisk_ResponsibleML) |
 | **E-commerce Delivery Network & SLA Risk** | Risco de entrega / ML temporal | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repositório](./E-commerce_Delivery_Network_SLA_Risk) |
 | **Delivery Routing & Time-Window Optimization** | Logística / otimização prescritiva | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) | [Repositório](./Delivery_Routing_Time_Window_Optimization) |
+| **Claim Frequency per Policy** | Seguros / regressão de contagem | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) | [Repositório](./Claim_Frequency_per_Policy) |
 | **ds_toolkit** | Biblioteca reutilizável de ML | [README da biblioteca](./ds_toolkit) | [Código](./ds_toolkit) |
 
 ---
@@ -213,6 +214,18 @@ Compara o OR-Tools com duas heurísticas construtivas no benchmark Solomon. Na a
 
 ---
 
+### 14. [Claim Frequency per Policy](Claim_Frequency_per_Policy/README.pt-BR.md) — Frequência de sinistros no seguro automotivo
+
+Estima sinistros por 100 apólices-ano no benchmark francês `freMTPL2freq` (678.013 registros). Taxa global, Poisson e NB2 com offset de exposição foram comparados em validação; o Poisson foi congelado e avaliado **uma única vez** no teste reservado, com portão de integridade e trava de execução. O teste sustenta ganho no desvio médio de Poisson (**0,31902** contra **0,33079**; diferença pareada −0,01177, IC 95% −0,01317 a −0,01018), mas a calibração por duração mostra forte subestimação nas exposições muito curtas. `production_eligible = false`.
+
+📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) · README: [English](Claim_Frequency_per_Policy/README.en-US.md) · [Português](Claim_Frequency_per_Policy/README.pt-BR.md)
+
+**Métodos:** GLM Poisson e NB2 com offset log(Exposure) (IRLS próprio) · Partição determinística por hash · Desvio de Poisson e log-verossimilhança preditiva · Bootstrap pareado por apólice e por perfil · Calibração por segmento · Diagnóstico de zeros · Congelamento verificável e avaliação final única
+
+**Tecnologias:** Python · NumPy · pandas · SciPy · statsmodels · Matplotlib · pytest · Jupyter · conda
+
+---
+
 ## Resumo de competências
 
 | Área | Métodos e técnicas |
@@ -226,6 +239,7 @@ Compara o OR-Tools com duas heurísticas construtivas no benchmark Solomon. Na a
 | **Aprendizado não supervisionado** | Clusterização K-Means, segmentação RFM |
 | **Analytics prescritivo** | Otimização de orçamento, simulação de lucro esperado, Next Best Action |
 | **Estatística inferencial** | Teste Z, A/B testing, testes de hipótese |
+| **Modelos de contagem** | GLM Poisson e binomial negativo (NB2), offset de exposição, diagnóstico de dispersão e de zeros, calibração por segmento |
 | **Inferência causal** | Estimação de CATE, meta-learners, causal forests, avaliação de uplift, policy learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
 | **Engenharia de dados** | Polars, DuckDB, pipelines de features, estratégias de encoding, tratamento de dados desbalanceados |
@@ -241,4 +255,4 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 
 ## Licença
 
-O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB) permanecem sob seus termos originais; as fontes estão no README de cada projeto.
+O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB, OpenML/freMTPL2freq) permanecem sob seus termos originais; as fontes estão no README de cada projeto.

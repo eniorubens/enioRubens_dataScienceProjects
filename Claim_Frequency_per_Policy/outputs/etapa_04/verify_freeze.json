@@ -1,0 +1,40 @@
+{
+  "approved_stage3_abs_diff": {
+    "global": {
+      "mean_loglik": 2.001454557643001e-13,
+      "mean_poisson_deviance": 1.9473311851925246e-13,
+      "predicted_claims": 4.979483492206782e-09,
+      "rate_diff_pred_minus_obs": 3.59989815734707e-14,
+      "zeros_predicted": 4.487810656428337e-08
+    },
+    "poisson": {
+      "mean_loglik": 2.241540286718191e-13,
+      "mean_poisson_deviance": 4.318767565791859e-14,
+      "predicted_claims": 8.212737157009542e-10,
+      "rate_diff_pred_minus_obs": 2.153138778382413e-14,
+      "zeros_predicted": 5.820766091346741e-11
+    }
+  },
+  "approved_stage3_ok": true,
+  "code_modules_unchanged": true,
+  "frozen_reference": {
+    "max_abs_diff": 0.0,
+    "max_rel_diff": 0.0,
+    "n_compared": 77,
+    "ok": true
+  },
+  "hash_checks": {
+    "arff_sha256": true,
+    "assignments_sha256": true,
+    "stage3_coefficients_sha256": true,
+    "stage3_comparison_config_sha256": true,
+    "stage3_intervals_sha256": true,
+    "stage3_preprocessing_sha256": true,
+    "stage3_protocol_amendment_sha256": true,
+    "stage3_validation_metrics_sha256": true
+  },
+  "ok": true,
+  "preprocessor_relearned": false,
+  "refit_performed": false,
+  "test_used": false
+}
