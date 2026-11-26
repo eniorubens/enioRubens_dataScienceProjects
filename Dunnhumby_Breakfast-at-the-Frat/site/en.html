@@ -121,13 +121,13 @@
       <div class="wrap">
         <p class="eyebrow">Executive report · Panel data</p>
         <h1>Does modeling stores and products improve sales prediction?</h1>
-        <p class="lead">In the temporal evaluation, the random-intercept multilevel model (C0) reduced error compared with ordinary least squares (OLS) regressions. GPBoost had a slight edge when each pair counted equally. C0 had lower error when each row counted equally and on unseen pairs.</p>
+        <p class="lead">In the final window, the multilevel model with random intercepts (C0) had lower overall error than the ordinary least squares (OLS) regressions. Among store–product pairs seen in training, GPBoost had a slight edge when each pair counted equally. C0 had lower error with equal weight per row and on unseen pairs.</p>
         <dl class="kpis">
           <div><dt>C0 per-pair MAE across 3,820 seen pairs</dt><dd>0.4541</dd></div>
           <div><dt>GPBoost per-pair MAE on the same population</dt><dd>0.4520</dd></div>
           <div><dt>C0 per-pair MAE across 50 unseen pairs</dt><dd>0.6260</dd></div>
         </dl>
-        <p class="hero-note">Predictions are conditional on the prices and promotions observed in each week.</p>
+        <p class="hero-note">The predictions use the prices and promotions observed each week.</p>
       </div>
     </div>
     <nav class="toc" aria-label="In this report">
@@ -142,7 +142,7 @@
     <div class="wrap report">
       <section id="results" aria-labelledby="results-title">
         <h2 id="results-title">C0 outperformed the OLS benchmarks</h2>
-        <p class="copy">The primary metric is mean absolute error (MAE) of log units sold. Every store and product code (UPC) combination receives the same weight, regardless of how many weeks were recorded. Lower MAE indicates lower error.</p>
+        <p class="copy">The main metric is mean absolute error (MAE) in log units sold. Per-pair MAE gives each store and product code (UPC) combination equal weight, even when pairs have different numbers of recorded weeks.</p>
         <figure class="chart" aria-labelledby="chart-label" aria-describedby="chart-detail">
           <figcaption id="chart-label">Final window · 3,820 pairs seen in training</figcaption>
           <p class="detail" id="chart-detail">MAE with equal weight per pair on a scale from 0 to 1.</p>
@@ -154,7 +154,7 @@
         </figure>
         <div class="table-shell">
           <table>
-            <caption>Comparisons on the same populations</caption>
+            <caption>Comparisons within each evaluation group</caption>
             <thead>
               <tr><th scope="col">Population and metric</th><th scope="col" class="num">C0</th><th scope="col" class="num">GPBoost</th><th scope="col" class="num">Per-pair OLS</th></tr>
             </thead>
@@ -165,13 +165,13 @@
             </tbody>
           </table>
         </div>
-        <p class="copy detail">The per-pair OLS comparison uses 3,779 pairs and 174,206 rows, covering 98.7% of seen-pair rows.</p>
-        <div class="note"><p>GPBoost had <strong>0.47% lower</strong> per-pair MAE on seen pairs. These are observed differences in one evaluation window. Uncertainty in the C0–GPBoost performance comparison was left unestimated.</p></div>
+        <p class="copy detail">The per-pair OLS comparison covers 3,779 pairs and 174,206 rows, or 98.7% of all rows for seen pairs.</p>
+        <div class="note"><p>In the final window, GPBoost had <strong>0.47% lower</strong> per-pair MAE than C0 among seen pairs. The uncertainty around that difference remains unestimated.</p></div>
       </section>
 
       <section id="short-history" aria-labelledby="short-history-title">
         <h2 id="short-history-title">Weighting changes the result for pairs with limited history</h2>
-        <p class="copy">Across the 98 seen pairs with fewer than 26 training weeks, GPBoost had a per-pair MAE of <strong>0.4376</strong>, compared with <strong>0.5430</strong> for C0. When per-pair OLS is included, the comparison uses the same rows it covers, spanning 59 of those pairs.</p>
+        <p class="copy">Across the 98 seen pairs with fewer than 26 training weeks, per-pair MAE was <strong>0.4376</strong> for GPBoost and <strong>0.5430</strong> for C0. To include per-pair OLS, the table uses only the rows that model covers, spanning 59 of the 98 pairs.</p>
         <div class="table-shell">
           <table>
             <caption>Subset of 59 short-history pairs · 1,008 rows</caption>
@@ -185,20 +185,20 @@
             </tbody>
           </table>
         </div>
-        <p class="copy detail">GPBoost led when each pair counted equally. C0 led when each row counted equally. Per-pair OLS coverage follows operational rule E2. An estimability criterion would change coverage for 175 of the 176,529 seen-pair rows in the final window. The published metrics use the original rule.</p>
+        <p class="copy detail">In this subset, GPBoost had the lowest per-pair MAE and C0 had the lowest row-level MAE. The metrics use operational rule E2 to define per-pair OLS coverage. An estimability criterion would change coverage for 175 of the 176,529 seen-pair rows in the final window.</p>
       </section>
 
       <section id="pricing" aria-labelledby="pricing-title">
-        <h2 id="pricing-title">The panel helps interpret price and promotion</h2>
-        <p class="copy">Weeks repeat within each store × UPC pair. The model accounts for differences in baseline sales across stores, products, and pairs, and C0 estimates common price and discount slopes. Under the null model, the estimated correlation between two weeks for the same pair was 75.4%.</p>
+        <h2 id="pricing-title">How do price and promotion relate to sales?</h2>
+        <p class="copy">The panel follows each store × UPC pair over several weeks. Under the null model, the estimated correlation between two weeks for the same pair was 75.4%. C0 allows sales levels to vary by store, product and pair. Price and discount slopes are shared across pairs.</p>
         <div class="split">
           <div class="card">
             <h3>Sensitivity to price and discount</h3>
-            <p>In F3, the coefficient on the log ratio of paid price to base price was <strong>−1.685</strong>. For log base price variation within a pair, it was <strong>−1.592</strong>. The sensitivity model with pair and week fixed effects produced similar values (−1.703 and −1.598, respectively).</p>
+            <p>In F3, the coefficient for the log ratio of paid price to base price was <strong>−1.685</strong>. The coefficient for within-pair variation in log base price was <strong>−1.592</strong>. With pair and week fixed effects, the estimates were similar (−1.703 and −1.598, respectively).</p>
           </div>
           <div class="card">
             <h3>Promotion types</h3>
-            <p>Feature advertising, in-store display, and shelf-tag-only temporary price reductions (TPR) enter as indicators. In training, every <code>TPR_ONLY</code> week had a discount. Compare scenarios that combine promotion type and discount depth within observed ranges.</p>
+            <p>The model uses indicators for feature advertising, in-store display and shelf-tag-only temporary price reductions (TPR). In training, every <code>TPR_ONLY</code> week had a discount. The scenarios in the table combine promotion type and discount depth within observed ranges.</p>
           </div>
         </div>
         <div class="table-shell">
@@ -213,13 +213,13 @@
             </tbody>
           </table>
         </div>
-        <p class="copy detail">Unit differences are back-transformed from the F3 log scale. Support counts training rows with the same promotion type and a discount of 20% ± 3 percentage points. The retailer’s choice of when and where to promote can influence the estimates.</p>
-        <div class="note"><p><strong>Use of the results.</strong> The coefficients describe conditional associations in weeks with recorded transactions. Pricing decisions, incremental impact, and ROI require a causal design and, for ROI, margin data.</p></div>
+        <p class="copy detail">The percentages give the estimated difference in units sold after converting from the F3 log scale. The counts come from notebook 03 and include training rows with the same promotion type and a discount of 20% ± 3 percentage points. The retailer's choice of when and where to promote can influence the estimates.</p>
+        <div class="note"><p>The coefficients describe conditional associations in weeks with recorded transactions. Measuring incremental impact to inform pricing decisions requires a causal design. Calculating ROI also requires margin data.</p></div>
       </section>
 
       <section id="method" aria-labelledby="method-title">
-        <h2 id="method-title">How the comparison was conducted</h2>
-        <p class="copy">The cleaned panel covers <strong>524,926 observations, 77 stores, 55 UPCs, and 156 weeks</strong>. P1 established the candidate order and selection rule before fitting the candidates. Two internal folds used the first 104 weeks.</p>
+        <h2 id="method-title">How P1 compared the models</h2>
+        <p class="copy">After cleaning, the panel had <strong>524,926 observations, 77 stores, 55 UPCs and 156 weeks</strong>. P1 set the order and selection rule before fitting the candidate models. The two validation folds used the first 104 weeks.</p>
         <div class="table-shell">
           <table>
             <caption>Discount slopes by store and UPC (C1) versus C0</caption>
@@ -232,22 +232,22 @@
             </tbody>
           </table>
         </div>
-        <p class="copy">C1 improved for pairs with fewer than 26 weeks in both folds. Across eligible pairs, the average gain was <strong>−0.49%</strong>. The protocol required improvement in both folds and an average gain of at least 0.5%. C0 was selected. Random slopes for short-history pairs remain an open question in the final window.</p>
+        <p class="copy">C1 reduced error for pairs with fewer than 26 weeks of training in both folds. Across all eligible pairs, the average gain was <strong>−0.49%</strong>. The protocol required gains in both folds and an average gain of at least 0.5%, so P1 selected C0. Whether random slopes would help pairs with limited history in the final window remains open.</p>
         <div class="split">
           <div class="card">
             <h3>Retrospective final window</h3>
-            <p>C0 and the benchmarks were fitted on weeks 0–103. Weeks 104–155 (January 12, 2011 to January 4, 2012) were scored once after the specification was frozen. The initial exploration, including the OLS in the project brief, had already used the full panel.</p>
+            <p>P1 fitted C0 and the benchmarks on weeks 0–103. After freezing the specification, P1 evaluated weeks 104–155 (January 12, 2011 to January 4, 2012) once. The initial exploration, which included the OLS in the project brief, had already used the full panel.</p>
           </div>
           <div class="card">
             <h3>Coverage and uncertainty</h3>
-            <p>Weeks without a transaction record may reflect zero sales or a stockout. In training, residuals from consecutive weeks within the same pair had a correlation of 0.196. The within-pair sensitivity analysis produced larger standard errors with pair and week clustering than the F3 Wald estimates.</p>
+            <p>Weeks without a recorded transaction may reflect zero sales or a stockout. In training, residuals from consecutive weeks for the same pair had a correlation of 0.196. The within-pair sensitivity analysis used standard errors clustered by pair and week, which were larger than the F3 Wald standard errors.</p>
           </div>
         </div>
       </section>
 
       <section id="sources" aria-labelledby="sources-title">
         <h2 id="sources-title">Sources and traceability</h2>
-        <p class="copy">Aggregated results from the final P1 run on November 24, 2026 (<code>20261124-144615-0aba3b28</code>). The notebooks reproduce the tables from the recorded runs.</p>
+        <p class="copy">The final-window metrics come from the November 24, 2026 P1 run (<code>20261124-144615-0aba3b28</code>). The notebooks reproduce the tables from the saved runs.</p>
         <ul class="source-list">
           <li><a href="https://www.dunnhumby.com/source-files/">Data · dunnhumby Source Files, Breakfast at the Frat</a></li>
           <li><a href="../notebooks/en_us/01_panel_eda.ipynb">Notebook 01 · Data and panel exploration</a></li>

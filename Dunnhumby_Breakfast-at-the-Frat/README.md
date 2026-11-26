@@ -2,30 +2,32 @@
 
 [Português](README.pt-BR.md) · [Executive report](site/en.html)
 
-> **Status:** protocol P1 (model selection and final evaluation) and the training-only analyses of notebooks 05 and 06 are concluded. Open and not executed items are listed at the end of this README.
+> Model selection and final evaluation under protocol P1 are complete, as are the training-only analyses in notebooks 05 and 06.
 
 ## Business question
 
-How strongly are **price** and **promotion** (feature/flyer, in-store display and temporary price reduction, TPR) associated with unit sales **across stores and products**, and how do comparable pricing and promotion scenarios rank, given the observed support for each? Margin, promotion cost, ROI and causal price recommendations are out of scope.
+How do **price** and **promotion** relate to unit sales across stores and products? The study compares feature advertising, in-store displays and temporary price reductions (TPR). It also compares pricing and promotion scenarios and checks how often similar conditions occurred in the data. Margin, promotion cost, ROI and causal price recommendations are outside the scope of the study.
 
-The central argument is **partial pooling (shrinkage)**. Elasticities estimated store by store with OLS are noisy and sometimes positive, which makes no economic sense. A multilevel (mixed-effects) model stabilises them by borrowing strength from the whole panel. The project tests this claim with evidence, including out-of-sample.
+A separate ordinary least squares (OLS) regression for each store–product pair can yield unstable discount elasticities, including positive estimates. With **partial pooling**, a multilevel model draws on the full panel to estimate differences across stores and products. The study tests whether that improves out-of-sample predictions and whether allowing discount slopes to vary by store and product improves them further.
 
 ## Approach (summary)
 
-- Response: `log(UNITS)` (linear mixed model). The planned negative binomial GLMM robustness check was not run.
-- Steps actually run: null models and ICCs with boundary-corrected likelihood-ratio tests → fixed effects (discount depth, base price split into within-pair deviation and pair mean, feature, display, TPR, Fourier seasonality and trend) with crossed random intercepts (store, product, store×product) → random discount slopes by store and product (C1), judged by out-of-sample error in protocol P1 and later by a parametric-bootstrap likelihood-ratio test in training → planned interactions of the discount slope with store segment, private label and category (Holm) → category × week shock sensitivity → scenarios. Promotion-lift slopes, store-size interactions and covariance-structure extensions were not fitted.
-- Comparison: separate OLS per store×product vs pooled OLS vs multilevel (BLUP), plus a GPBoost challenger. Model selection uses two internal folds inside the first 104 weeks. The final comparison uses the last 52 weeks, which are a **retrospective temporal evaluation window with prior exploratory exposure** (decision D11, revised). The models of P1's formal evaluation were fitted on the first 104 weeks. The brief's exploratory OLS used the whole panel. The comparison followed protocol P1, registered before any candidate was fitted. **P1 is concluded.** The selected specification, the GPBoost parameters and the hashes of the code and panel were frozen **before the formal scoring** of the final window, which was then scored once. Predictions are conditional on the realised price and promotion of each week.
-- Engine: `lme4` (R, installed inside the conda env from conda-forge) called from Python through `rpy2`; `statsmodels.MixedLM` cross-checks the store-only null model.
-- Weeks without a row (zero sales or stock-out cannot be told apart) are left out of the model, so estimates are conditional on recorded sales. The planned sensitivity on pairs with a complete 156-week panel was not run.
+- The linear mixed model uses `log(UNITS)` as its response. The analysis starts with null models and intraclass correlations (ICCs), using likelihood-ratio tests adjusted for parameters at the boundary.
+- The fixed effects include discount depth, feature, display, TPR, Fourier seasonality and trend. Base price enters as the pair mean and the deviation from that mean. The model includes crossed random intercepts for store, product and store × product.
+- P1 tested random discount slopes by store and product (C1) using out-of-sample error. A follow-up likelihood-ratio test used a parametric bootstrap on the training weeks. Other training analyses tested planned discount-slope interactions with store segment, private label and category using Holm's correction, checked sensitivity to category × week shocks and compared pricing and promotion scenarios.
+- The prediction comparison includes OLS by store–product pair, pooled OLS, a multilevel model with BLUPs and GPBoost. P1 set the rules before any candidate was fitted. Model selection used two internal folds within the first 104 weeks. The models in the final comparison were fitted on those 104 weeks.
+- The last 52 weeks form a **retrospective evaluation window**. The exploratory OLS in the project brief had already used the whole panel, as noted in revised decision D11. Before scoring the final window once, the project froze the selected specification, GPBoost parameters and the code and panel hashes. Predictions use the price and promotion observed each week.
+- Python calls `lme4` through `rpy2`. R is installed from conda-forge in the conda environment. `statsmodels.MixedLM` provides a cross-check for the store-only null model.
+- Weeks without a record can reflect zero sales or a stockout. The model uses only weeks with recorded sales.
 
 ## How to get the data
 
-The data are **not** included in this repository (dunnhumby licence).
+Reproduction uses the original dunnhumby spreadsheet and its user guide.
 
 1. Register and download *Breakfast at the Frat: A Time Series Analysis* from https://www.dunnhumby.com/source-files/.
 2. Put `dunnhumby - Breakfast at the Frat.xlsx` (and the user guide PDF) into `dataset/`.
 
-Data: dunnhumby Source Files – Breakfast at the Frat.
+*Breakfast at the Frat* is part of the dunnhumby Source Files collection.
 
 ## Reproduction
 
@@ -38,9 +40,9 @@ python scripts/validate_data.py # data-quality contract on the real panel (local
 pytest                          # synthetic fixtures only; this is what CI runs
 ~~~
 
-Models are fitted by scripts, once per experiment, into `outputs/runs/`. The PT and EN notebooks only read those stored runs and never refit.
+The scripts fit the models once per experiment and save the runs in `outputs/runs/`. Both notebook editions read those saved runs.
 
-On Windows, the conda env ships its own R; `retail_multilevel.rbridge` points `R_HOME` to it even if a system R is installed. Cleaning rules and their row counts are shown in notebook 01.
+On Windows, `retail_multilevel.rbridge` sets `R_HOME` to the R installation in the conda environment, even if R is also installed on the system. Notebook 01 shows the cleaning rules and the row counts for each rule.
 
 ## Notebook map
 
@@ -55,26 +57,28 @@ On Windows, the conda env ships its own R; `retail_multilevel.rbridge` points `R
 
 ## Main results (protocol P1)
 
-In the internal folds, adding random discount slopes by store and product (C1) improved pairs with less than 26 weeks of history in both folds, but failed the pre-registered global rule. The intercept-only multilevel model (C0, with a common discount slope) was therefore selected. The final window evaluated C0, so the question of random slopes for short pairs remains **open**.
+In both internal folds, C1 reduced prediction error for pairs with fewer than 26 weeks of training history. Across eligible pairs, C1 fell short of the pre-registered selection rule. P1 selected C0, which has random intercepts and a common discount slope. C0 was the multilevel specification evaluated in the final window. Whether random slopes would help pairs with limited history in that window remains open.
 
-In the final window, the multilevel model clearly beat pooled OLS and per-store×product OLS. C0 and the GPBoost challenger performed closely, and the leader depends on the metric. GPBoost had a per-pair MAE 0.47% lower on seen pairs (0.4520 against 0.4541). C0 had a lower row MAE (0.4446 against 0.4478) and a lower error on unseen pairs (0.626 against 0.688). These differences are observed; no uncertainty analysis was run for them. For short pairs, the result depends on the population and on the weighting; see notebook 04 and the decision log.
+In the final window, C0 had lower overall error than pooled OLS and OLS by store–product pair. Among pairs seen in training, GPBoost had a 0.47% lower mean absolute error (MAE) in log units sold when each pair counted equally (0.4520 versus C0's 0.4541). When each row counted equally, C0 had the lower MAE (0.4446 versus 0.4478). C0 also had the lower per-pair MAE among pairs unseen in training (0.626 versus 0.688). The uncertainty around the C0–GPBoost differences remains unestimated. For pairs with limited history, notebook 04 and the decision log show how the result varies with the comparison population and weighting.
 
 ## Contrasts and scenarios (notebooks 05 and 06, training weeks only)
 
-After Holm, the three planned global tests rejected a common discount slope across store segments, between private label and manufacturer brands, and across categories. Slopes ranged from about −1.1 in BAG SNACKS to −2.4 in FROZEN PIZZA. When a category × week random intercept was added, the common weekly shocks were absorbed and the price and promotion coefficients barely moved. In the scenarios, display at a 20% discount was associated with sales 119% above a regular week, and TPR at 20% with sales 40% above. The modelled ratio between the two was 1.57. All eight scenarios have observed support in training, although promotional ones cover only 0.3% to 3% of the rows.
+After Holm's correction, each of the three planned global tests rejected a common discount slope. The tests covered store segment, private label versus manufacturer brand and product category. The category estimates ranged from about −1.1 for BAG SNACKS to −2.4 for FROZEN PIZZA. Adding a category × week random intercept accounted for shared weekly shocks, with little change in the price and promotion coefficients.
+
+At a 20% discount, the model estimated unit sales 119% above a regular week for display and 40% above for TPR. The estimated ratio of display sales to TPR sales was 1.57. All eight scenarios had comparable observations in training. Each promotional scenario covered 0.3% to 3% of training rows.
 
 ## Random discount slopes in training (notebook 04, section 9)
 
-A complementary joint test, run after P1 on training weeks only, compared C0 and C1 by maximum likelihood and calibrated the likelihood ratio by parametric bootstrap under C0 (39 replicates). The observed statistic was 12,974 against a largest simulated value of 5.18, so the Monte Carlo p-value was 0.025, the finest resolution of the design: the hypothesis that both slope variances are zero was rejected. C1 estimates a discount-slope standard deviation of 0.88 across products and 0.27 across stores. C1 fits the training data much better, yet it did not lower the out-of-sample error consistently, so C0 remains the selected model.
+A follow-up test after P1 compared C0 and C1 on the training weeks. It fitted both models by maximum likelihood and calibrated the likelihood-ratio statistic with 39 parametric bootstrap replicates under C0. The observed statistic was 12,974 and the largest simulated statistic was 5.18. The Monte Carlo p-value of 0.025 is the smallest the design can resolve. Under the C0 residual structure, the joint test rejects the hypothesis that both slope variances are zero. The residual autocorrelation documented in notebook 03 limits that inference.
 
-Coefficients are conditional associations in weeks with recorded transactions, not causal effects. Still deferred, pending approval: scoring C1 on the final window and the long pair bootstrap.
+C1 estimated a discount-slope standard deviation of 0.88 across products and 0.27 across stores. The p-value applies to the joint hypothesis about the two variances. C1 fit the training data better. The P1 selection was based on out-of-sample error, where C1's gains were inconsistent. The coefficients describe associations conditional on recorded sales. Estimating causal effects would require a causal design.
 
 ## Open and not executed items
 
-Pending approval: scoring C1 on the final window, as a later exploration, and the long pair bootstrap for the uncertainty of the difference in predictive error. Also open: a general rule for weeks with abnormally low sales (possible stock-outs); week 61 was audited and kept.
+Two analyses are pending approval. One would score C1 on the final window as a follow-up exploration. The other would use a long pair bootstrap to estimate uncertainty in the difference in predictive error. The audit kept week 61. A general rule for abnormally low sales that may indicate stockouts is still open.
 
-Planned but not executed, with no published result depending on them: the negative binomial GLMM robustness check; the sensitivities on pairs with a complete 156-week panel, without imputed base-price rows and with the `OUTLIER_UPV` rows (only the sensitivity without fallback rows was run); the comparison of per-pair OLS slopes with multilevel slopes, since C0 has no per-pair slope (the per-pair OLS slopes themselves are in notebook 01); extensions C2 to C4 of protocol P1, stopped by its rule after C1 was rejected; and store-size interactions and covariance-structure extensions.
+The planned negative binomial GLMM robustness check and three sensitivity analyses were left open. The sensitivity analyses would restrict the data to pairs with a complete 156-week panel, exclude rows with imputed base prices, or include `OUTLIER_UPV` rows. The sensitivity analysis that ran excluded fallback rows. Notebook 01 reports the OLS slopes by pair. Comparing them with multilevel slopes by pair would require a specification with pair-specific slopes. P1 stopped at C1 under its selection rule, before extensions C2 to C4. Promotion-lift slopes, store-size interactions and covariance-structure extensions were left unfitted.
 
-## Licence
+## License
 
-Code under the MIT licence. The dunnhumby data are subject to dunnhumby's own terms and are not redistributed.
+The code is under the MIT License. The data are subject to dunnhumby's terms and are not redistributed in this repository.
