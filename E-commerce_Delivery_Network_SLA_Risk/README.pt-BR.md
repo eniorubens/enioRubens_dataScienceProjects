@@ -64,6 +64,12 @@ O relatório executivo bilíngue, em páginas estáticas com gráficos interativ
 python scripts/build_site.py
 ~~~
 
+Os notebooks executados registram caminhos da máquina local nas saídas (avisos e tabelas de procedência). Antes da publicação, esses caminhos são substituídos por marcadores neutros, como PROJECT_ROOT e CONDA_ENV:
+
+~~~
+python scripts/anonymize_local_paths.py
+~~~
+
 ## Resultados
 
 O torneio de desenvolvimento usa nove folds temporais com embargo de 30 dias. Na classificação, CatBoost foi o único candidato segundo o gate pré-registrado, com AP média de 0,175 contra 0,154 da melhor baseline. Na regressão, nenhum modelo foi candidato.
