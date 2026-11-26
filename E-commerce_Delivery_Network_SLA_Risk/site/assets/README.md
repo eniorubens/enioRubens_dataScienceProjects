@@ -64,6 +64,12 @@ The bilingual static report with interactive charts is available at site/index.h
 python scripts/build_site.py
 ~~~
 
+Executed notebooks record machine-specific paths in their outputs (warnings and provenance tables). Before publishing, they are replaced with neutral placeholders such as PROJECT_ROOT and CONDA_ENV:
+
+~~~
+python scripts/anonymize_local_paths.py
+~~~
+
 ## Results
 
 The development tournament uses nine temporal folds with a 30-day embargo. CatBoost was the only classification candidate under the preregistered gate, with mean AP of 0.175 versus 0.154 for the best baseline. No regression model was a candidate.
