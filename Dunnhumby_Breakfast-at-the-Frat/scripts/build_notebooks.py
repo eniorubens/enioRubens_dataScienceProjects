@@ -126,17 +126,12 @@ def eda_cells() -> list[Cell]:
             pt="""
 # 01 · Análise exploratória do painel
 
-*Dados: dunnhumby Source Files – Breakfast at the Frat.* Os dados brutos são licenciados e não são redistribuídos \
-com o repositório; apenas resultados agregados são exibidos. Este notebook descreve o painel e não ajusta nenhum \
-modelo. Toda a lógica está em `src/retail_multilevel`; as células apenas carregam os dados, chamam as funções e \
-exibem tabelas e gráficos.
+*Dados: dunnhumby Source Files – Breakfast at the Frat.* A análise descreve o painel sem ajuste de modelos. As funções de `src/retail_multilevel` geram as tabelas e os gráficos agregados. Os dados brutos são licenciados e ficam fora do repositório.
 """,
             en="""
 # 01 · Exploratory analysis of the panel
 
-*Data: dunnhumby Source Files – Breakfast at the Frat.* The raw data are licensed and are not redistributed with \
-the repository; only aggregated results are shown. This notebook describes the panel and fits no model. All logic \
-lives in `src/retail_multilevel`; the cells only load the data, call the functions and display tables and charts.
+*Data: dunnhumby Source Files – Breakfast at the Frat.* The analysis describes the panel without fitting models. The functions in `src/retail_multilevel` generate aggregate tables and charts. The raw data are licensed and kept outside the repository.
 """,
         ),
         lang_cell(),
@@ -145,28 +140,16 @@ lives in `src/retail_multilevel`; the cells only load the data, call the functio
             pt="""
 ## Briefing: como funciona o negócio
 
-Para contextualizar a atividade comercial, esta seção descreve a rede, os produtos, o que é registrado a cada \
-semana e as alavancas de preço e promoção. As definições vêm do guia do usuário e da aba \
-*Glossary* do arquivo da dunnhumby; os números vêm do painel, e as tabelas abaixo os exibem.
+As definições vêm do guia do usuário e da aba *Glossary* do arquivo da dunnhumby. As contagens foram calculadas a partir do painel.
 
-**Quem.** Os dados representam as vendas de uma rede varejista, que o guia não identifica pelo nome, em lojas de \
-quatro estados dos EUA. O painel tem 77 lojas, embora a tabela de lojas do guia liste 79 registros. Cada loja \
-recebeu da rede um segmento (*Value*, *Mainstream* ou *Upscale*), que o guia apresenta como o patamar de preço da \
-loja, sem explicar como ele foi definido. Em duas lojas (4503 e 17627) o cadastro traz dois segmentos diferentes, \
-e por isso o segmento delas é tratado como ambíguo.
+O painel reúne vendas de 77 lojas de uma rede varejista em quatro estados dos EUA. O guia omite o nome da rede e registra 79 linhas na tabela de lojas. A rede classificou cada loja como *Value*, *Mainstream* ou *Upscale*. O guia descreve esses segmentos como patamares de preço e deixa em aberto como foram definidos. Nas lojas 4503 e 17627, o cadastro traz dois segmentos distintos, tratados como ambíguos.
 """,
             en="""
 ## Briefing: how the business works
 
-To set the commercial context, this section describes the chain, the products, what is recorded each week and the \
-price and promotion levers. Definitions come from dunnhumby's user guide \
-and the *Glossary* sheet of its file; the numbers come from the panel, and the tables below display them.
+Definitions come from dunnhumby's user guide and the *Glossary* sheet of its file. Counts were calculated from the panel.
 
-**Who.** The data represent the sales of a retail chain, which the guide does not identify by name, in stores in \
-four US states. The panel has 77 stores, although the guide's store table lists 79 records. Each store was assigned \
-a segment by the chain (*Value*, *Mainstream* or *Upscale*), which the guide presents as the store's pricing level \
-without explaining how it was defined. For two stores (4503 and 17627) the store table carries two different \
-segments, so their segment is treated as ambiguous.
+The panel records sales from 77 stores of a retail chain in four US states. The guide leaves the chain unnamed and lists 79 rows in the store table. The chain assigned each store to *Value*, *Mainstream* or *Upscale*. The guide describes these segments as pricing levels and leaves their definition open. The store table assigns two different segments to stores 4503 and 17627, so both assignments are treated as ambiguous.
 """,
         ),
         code("""
@@ -182,16 +165,10 @@ display(
 """),
         md(
             pt="""
-**O quê.** Quatro categorias são acompanhadas: enxaguantes bucais (`ORAL HYGIENE \
-PRODUCTS`), pretzels (`BAG SNACKS`), pizza congelada (`FROZEN PIZZA`) e cereal em caixa (`COLD CEREAL`). São 55 \
-produtos (UPCs): 43 de marcas nacionais e 12 de marca própria da rede (fabricante `PRIVATE LABEL`), 3 em cada \
-categoria, além de 15 outros fabricantes.
+São acompanhadas quatro categorias, que incluem enxaguantes bucais (`ORAL HYGIENE PRODUCTS`), pretzels (`BAG SNACKS`), pizza congelada (`FROZEN PIZZA`) e cereal em caixa (`COLD CEREAL`). Dos 55 produtos (UPCs), 43 são de marcas nacionais e 12 de marca própria da rede (`PRIVATE LABEL` no campo de fabricante), com três de marca própria em cada categoria. Há 15 outros fabricantes.
 """,
             en="""
-**What.** Four categories are tracked: mouthwash (`ORAL HYGIENE PRODUCTS`), pretzels (`BAG SNACKS`), frozen pizza \
-(`FROZEN PIZZA`) and boxed cereal (`COLD CEREAL`). There are 55 products (UPCs): 43 national brands and 12 \
-private-label products of the retailer (manufacturer `PRIVATE LABEL`), 3 in each category, besides 15 other \
-manufacturers.
+Four categories are tracked, covering mouthwash (`ORAL HYGIENE PRODUCTS`), pretzels (`BAG SNACKS`), frozen pizza (`FROZEN PIZZA`) and boxed cereal (`COLD CEREAL`). Of the 55 products (UPCs), 43 are national-brand products and 12 are the retailer's private-label products (`PRIVATE LABEL` in the manufacturer field), with three private-label products in each category. There are 15 other manufacturers.
 """,
         ),
         code("""
@@ -207,109 +184,57 @@ display(pd.Series({t("n_manufacturers", LANG): products["MANUFACTURER"].nunique(
 """),
         md(
             pt="""
-**O que é registrado.** Cada linha do painel é um produto (UPC) em uma loja em uma semana (156 semanas, com datas \
-de fim de semana de 2009-01-14 a 2012-01-04, segundo a tabela de visão geral abaixo). Para cada linha, o guia define \
-as variáveis descritas a seguir.
+Cada linha do painel corresponde a um produto (UPC) em uma loja em uma semana. O painel cobre 156 semanas, de 2009-01-14 a 2012-01-04 pelas datas de encerramento.
 
-O volume aparece em duas medidas: `UNITS` conta as unidades vendidas, e `SPEND` traz o faturamento em dólares. O \
-alcance da demanda também aparece em duas: `VISITS` conta quantas cestas de compra levaram o produto pelo menos uma \
-vez, e `HHS` conta quantos domicílios diferentes o compraram. O preço, por fim, é descrito por `PRICE`, o que o \
-cliente de fato pagou na loja, e por `BASE_PRICE`, o preço de referência do item; a diferença entre os dois mostra \
-se houve desconto e de quanto.
+`UNITS` conta as unidades vendidas e `SPEND` registra o faturamento em dólares. `VISITS` conta as cestas que incluíram ao menos uma unidade do produto, e `HHS` conta os domicílios que o compraram. O desconto é calculado comparando `PRICE`, o preço pago na loja, com `BASE_PRICE`, o preço de referência do item.
 """,
             en="""
-**What is recorded.** Each row of the panel is one product (UPC) in one store in one week (156 weeks, with \
-week-ending dates from 2009-01-14 to 2012-01-04, according to the overview table below). For each row, the guide \
-defines the variables described below.
+Each row of the panel represents one product (UPC) in one store in one week. The panel covers 156 weeks, from 2009-01-14 to 2012-01-04 by week-ending date.
 
-Volume appears in two measures: `UNITS` counts the units sold, and `SPEND` holds the revenue in dollars. The reach \
-of demand also appears in two: `VISITS` counts how many shopping baskets contained the product at least once, and \
-`HHS` counts how many different households bought it. Price, finally, is described by `PRICE`, what the customer \
-actually paid in the store, and by `BASE_PRICE`, the item's reference price; the gap between the two shows whether \
-there was a discount and how large it was.
+`UNITS` counts units sold and `SPEND` records revenue in dollars. `VISITS` counts baskets containing at least one unit of the product, and `HHS` counts the households that bought it. The discount is calculated by comparing `PRICE`, the price paid in the store, with `BASE_PRICE`, the item's reference price.
 """,
         ),
         md(
             pt="""
-**As alavancas semanais.** O guia registra três formas de apoio promocional por produto, loja e semana. A primeira \
-é a **TPR** (*temporary price reduction*, `TPR_ONLY`), um corte de preço por tempo limitado que o cliente só \
-percebe pelo preço marcado na prateleira, sem destaque físico nem divulgação. A segunda é o **encarte** \
-(*feature*, `FEATURE`), quando o produto é anunciado no folheto de ofertas da loja. A terceira é o **display** \
-(`DISPLAY`), quando o produto ganha um ponto de exposição especial dentro da loja.
+### Promoções semanais
 
-`TPR_ONLY` é codificada como exclusiva de encarte e display: a seção 4 mostra que as duas situações nunca \
-coincidem nas linhas do painel. Já encarte e display podem ocorrer juntos.
+A **TPR** (*temporary price reduction*, `TPR_ONLY`) é um corte temporário de preço, comunicado pelo valor na prateleira. O **encarte** (*feature*, `FEATURE`) indica que o produto apareceu no folheto de ofertas. O **display** (`DISPLAY`) indica que o produto teve um ponto de exposição especial na loja.
+
+A seção 4 confirma que `TPR_ONLY` só aparece em linhas sem encarte nem display. Encarte e display podem ocorrer juntos.
 """,
             en="""
-**The weekly levers.** The guide records three forms of promotional support per product, store and week. The first \
-is **TPR** (temporary price reduction, `TPR_ONLY`), a time-limited price cut that customers notice only through the \
-price marked on the shelf, with no physical highlight and no advertising. The second is the **feature** \
-(`FEATURE`), when the product is advertised in the store's weekly flyer. The third is the **display** (`DISPLAY`), \
-when the product gets a special exhibition spot inside the store.
+### Weekly promotions
 
-`TPR_ONLY` is coded as exclusive of feature and display: section 4 shows that the two situations never coincide \
-in the rows of the panel. Feature and display, however, can occur together.
+A **TPR** (temporary price reduction, `TPR_ONLY`) is a temporary price cut communicated through the price on the shelf. A **feature** (`FEATURE`) records that the product appeared in the store's weekly flyer. A **display** (`DISPLAY`) records that the product was given a special display location in the store.
+
+Section 4 confirms that `TPR_ONLY` occurs only in rows with neither feature nor display. Feature and display can occur together.
 """,
         ),
         md(
             pt="""
-**O dilema.** Preço menor ou promoção costuma vender mais unidades, mas com margem unitária menor e, em alguns \
-casos, com custos da própria promoção. Se compensa depende de quão forte é a resposta da demanda. Duas medidas \
-resumem essa resposta. A **elasticidade-preço** é a variação percentual das unidades associada a uma \
-variação de 1% no preço (Tellis, 1988; Bijmolt et al., 2005): com elasticidade de −2, uma redução de 10% no preço \
-eleva as unidades em cerca de 20% \
-(regra prática: −2 × −10%), e, no modelo em logaritmos, com elasticidade constante, o valor exato é \
-0,9<sup>−2</sup> − 1 ≈ 23,5%. Já o **lift de promoção** (Blattberg & Neslin, 1989) descreve o efeito das promoções \
-e é medido pelo aumento \
-das unidades em semanas com a promoção, em relação a semanas sem ela.
+### Preço, promoção e margem
 
-**Por que é difícil.** A resposta difere entre lojas e produtos. Muitos pares loja × produto têm poucas semanas \
-ou pouca variação de preço, e estimar cada par separadamente pode dar elasticidades muito ruidosas, inclusive \
-positivas, o que não faz sentido econômico (a seção 8 apresenta a evidência nas semanas de treino). Usar uma única elasticidade para tudo ignora as diferenças. Os \
-**modelos multinível** (*partial pooling*, ou agrupamento parcial; Gelman & Hill, 2007; Raudenbush & Bryk, 2002) \
-ficam no meio: cada par é estimado \
-aproveitando a informação dos demais, e pares com pouca informação são puxados para a média do grupo.
+Um preço menor ou uma promoção pode aumentar as unidades vendidas, com redução da margem unitária e, em alguns casos, custos de promoção. A **elasticidade-preço** mede a variação percentual das unidades associada a uma variação de 1% no preço (Tellis, 1988; Bijmolt et al., 2005). Com elasticidade de −2, um corte de 10% no preço corresponde a cerca de 20% mais unidades pela aproximação −2 × −10%. No modelo logarítmico de elasticidade constante, o cálculo exato é 0,9<sup>−2</sup> − 1 ≈ 23,5%. O **lift de promoção** mede o aumento das unidades em semanas com promoção em relação a semanas sem ela (Blattberg & Neslin, 1989).
+
+A resposta ao preço e às promoções pode variar entre lojas e produtos. Muitos pares loja × produto têm poucas semanas ou pouca variação de preço. Quando cada par é ajustado separadamente, as elasticidades podem ficar muito dispersas e até trocar de sinal, como mostra a seção 8. Uma elasticidade única, por sua vez, deixa de representar diferenças entre pares. Com *partial pooling* (agrupamento parcial), os **modelos multinível** combinam a informação de vários grupos. As estimativas dos grupos com menos informação ficam mais próximas da média (Gelman & Hill, 2007; Raudenbush & Bryk, 2002).
 """,
             en="""
-**The trade-off.** A lower price or a promotion usually sells more units, but with a lower unit margin and, in \
-some cases, with the cost of the promotion itself. Whether it pays depends on how strongly demand responds. Two \
-measures summarise that response. The **price elasticity** is the percentage change in units associated with a \
-1% change in price (Tellis, 1988; Bijmolt et al., 2005): with an elasticity of −2, a 10% price cut raises units by \
-about 20% (rule of thumb: \
-−2 × −10%), and, in the log model, under constant elasticity, the exact value is 0.9<sup>−2</sup> − 1 ≈ 23.5%. \
-The **promotion lift** (Blattberg & Neslin, 1989), in turn, describes the effect of promotions and is measured by \
-the increase in units in \
-weeks with the promotion, relative to weeks without it.
+### Price, promotions and margins
 
-**Why it is hard.** The response differs across stores and products. Many store × product pairs have few weeks \
-or little price variation, and estimating each pair separately can give very noisy elasticities, even positive \
-ones, which makes no economic sense (section 8 presents the evidence from the training weeks). Using a single elasticity for everything ignores the differences. \
-**Multilevel models** (partial pooling; Gelman & Hill, 2007; Raudenbush & Bryk, 2002) sit in between: each pair is \
-estimated borrowing information from the \
-others, and pairs with little information are pulled toward the group average.
+A lower price or a promotion can increase units sold, with a lower unit margin and, in some cases, promotion costs. **Price elasticity** measures the percentage change in units associated with a 1% change in price (Tellis, 1988; Bijmolt et al., 2005). With an elasticity of −2, a 10% price cut corresponds to about 20% more units using the approximation −2 × −10%. In a log model with constant elasticity, the exact calculation is 0.9<sup>−2</sup> − 1 ≈ 23.5%. **Promotion lift** measures the increase in units in weeks with a promotion relative to weeks without it (Blattberg & Neslin, 1989).
+
+The response to price and promotions can vary across stores and products. Many store × product pairs have few weeks or little price variation. When each pair is fitted separately, the elasticities can vary widely and even change sign, as section 8 shows. A single elasticity, in turn, misses differences across pairs. With partial pooling, **multilevel models** combine information from several groups. Estimates for groups with less information are pulled closer to the mean (Gelman & Hill, 2007; Raudenbush & Bryk, 2002).
 """,
         ),
         md(
             pt="""
 ## A pergunta-chave
 
-**Quanto o preço e as promoções movem as vendas em cada loja e em cada produto, e onde vale baixar o preço, \
-aumentá-lo ou promover?** O guia propõe perguntas dessa natureza (por exemplo, para quais produtos reduzir o preço \
-para aumentar as vendas e para quais aumentá-lo para melhorar o lucro). O projeto as organiza em cinco perguntas \
-analíticas.
+**Como as vendas se associam ao preço e às promoções em cada loja e produto?** O guia pergunta para quais produtos vale reduzir o preço para vender mais ou aumentá-lo para melhorar o lucro. Essas perguntas orientam a análise de cenários do projeto.
 
-A primeira trata de onde as vendas variam: quanto da variação está entre lojas, entre produtos e entre pares loja \
-× produto, e quanto é movimento semana a semana. A segunda pergunta é qual é a elasticidade-preço média e qual é o \
-efeito de encarte, display e TPR. A terceira diz respeito à heterogeneidade desses efeitos, isto é, como variam \
-entre lojas e produtos e o que explica a variação (por exemplo, segmento da loja, categoria, marca própria).
+A análise começa pela variação das vendas entre lojas, produtos e pares loja × produto, e entre semanas do mesmo par. Em seguida são estimadas a elasticidade-preço média e as associações com encarte, display e TPR. Segmento da loja, categoria e marca própria entram na análise das diferenças de elasticidade.
 
-A quarta pergunta compara métodos: se os modelos multinível preveem melhor, fora da amostra, do que um modelo \
-único (OLS) e do que um modelo de *boosting* (GPBoost; Sigrist, 2022). Por fim, a quinta pergunta é como \
-transformar as \
-estimativas em decisões (baixar, manter ou aumentar preço, promover ou não). Os coeficientes estimados são \
-associações condicionais em semanas com transações registradas. Uma recomendação de preço ou um ROI incremental \
-exige identificação causal e dados de margem, de modo que a camada de decisão do projeto é tratada como análise de \
-cenários.
+A previsão fora da amostra compara o multinível com uma regressão de nível único (OLS) e com o GPBoost (Sigrist, 2022). Nos cenários, os coeficientes representam associações condicionais em semanas com transações registradas. Identificação causal e dados de margem seriam necessários para recomendar preços ou calcular o ROI incremental.
 
 ## Guia de leitura
 
@@ -343,23 +268,11 @@ cenários.
             en="""
 ## The key question
 
-**How much do price and promotions move sales in each store and each product, and where is it worth cutting the \
-price, raising it or promoting?** The guide poses questions of this nature (for example, for which products to \
-lower the price to increase sales and for which to raise it to improve profit). The project organises them into \
-five analytical questions.
+**How are sales associated with price and promotions in each store and product?** The guide asks which products should have their prices lowered to sell more or raised to improve profit. These questions guide the project's scenario analysis.
 
-The first concerns where sales vary: how much of the variation lies between stores, between products and between \
-store × product pairs, and how much is week-to-week movement. The second asks what the average price elasticity is \
-and what the effect of feature, display and TPR is. The third concerns the heterogeneity of these effects, that \
-is, how they vary across stores and products and what explains the variation (for example, store segment, \
-category, private label).
+The analysis starts with variation in sales across stores, products and store × product pairs, and across weeks within the same pair. It then estimates the average price elasticity and the associations with feature, display and TPR. Store segment, category and private label enter the analysis of differences in elasticity.
 
-The fourth question compares methods: whether multilevel models predict better out of sample than a single model \
-(OLS) and than a boosting model (GPBoost; Sigrist, 2022). Finally, the fifth is how the estimates can be turned \
-into decisions \
-(cut, keep or raise the price, promote or not). The estimated coefficients are conditional associations in weeks \
-with recorded transactions. A pricing recommendation or an incremental ROI requires causal identification and \
-margin data, so the decision layer of the project is treated as a scenario analysis.
+Out-of-sample prediction compares the multilevel model with a single-level regression (OLS) and with GPBoost (Sigrist, 2022). In the scenarios, the coefficients represent conditional associations in weeks with recorded transactions. Pricing recommendations or an estimate of incremental ROI would require causal identification and margin data.
 
 ## Reading guide
 
@@ -550,30 +463,12 @@ Of the 524,926 rows, 524,859 form the modelling sample (`IN_MODEL`), that is, al
             pt="""
 ## 2. Divisão temporal (D11, revisada)
 
-As primeiras 104 semanas formam o treino, e somente elas foram usadas para ajustar modelos e selecionar \
-especificações. As últimas 52 semanas (um ciclo sazonal completo, de 2011-01-12 a 2012-01-04) formam a **janela de \
-avaliação temporal retrospectiva com exposição exploratória prévia**. Nenhum modelo foi ajustado nelas, mas esta \
-análise exploratória (as unidades semanais, a visão geral e as taxas de promoção) e o OLS exploratório do \
-`PROJECT_BRIEF.md`, com o perfil de variação de preço, usaram o painel inteiro, de modo que a janela não é um \
-conjunto de teste intocado. As formulações motivadas por essa exploração, a decomposição de preço da D12 incluída, \
-são decisões de desenvolvimento. Nenhuma comparação preditiva foi calculada nessa janela até aqui, e a comparação \
-fora da amostra (Tashman, 2000) seguirá um protocolo registrado antes do ajuste dos candidatos (Nosek et al., \
-2018; Weston et al., 2019). Nas tabelas e nos gráficos, o \
-rótulo "teste" designa essa janela.
+As primeiras 104 semanas foram usadas para ajustar os modelos e selecionar as especificações. As últimas 52 semanas, de 2011-01-12 a 2012-01-04, cobrem um ciclo sazonal completo e formam a **janela de avaliação temporal retrospectiva com exposição exploratória prévia**, chamada de "teste" nas tabelas e nos gráficos. O painel inteiro foi usado nos resumos exploratórios de unidades semanais, tamanho do painel e taxas de promoção, e no OLS exploratório e no perfil de variação de preço de `PROJECT_BRIEF.md`. A exploração motivou decisões de desenvolvimento como a decomposição de preço de D12. A avaliação fora da amostra (Tashman, 2000) é apresentada no notebook 04 e segue um protocolo registrado antes do ajuste dos candidatos (Nosek et al., 2018; Weston et al., 2019).
 """,
             en="""
 ## 2. Temporal split (D11, revised)
 
-The first 104 weeks form the training sample, and only they were used to fit models and select specifications. The \
-last 52 weeks (one full seasonal cycle, from 2011-01-12 to 2012-01-04) form the **retrospective temporal \
-evaluation window with prior exploratory exposure**. No model was fitted on them, but this exploratory analysis \
-(the weekly units, the overview and the promotion rates) and the exploratory OLS of `PROJECT_BRIEF.md`, with the \
-price-variation profile, used the whole panel, so the window is not an untouched test set. The formulations \
-motivated by that exploration, the price decomposition of D12 included, are development decisions. No predictive \
-comparison has been computed on this window so far, and the out-of-sample comparison (Tashman, 2000) will follow a \
-protocol \
-recorded before the candidates are fitted (Nosek et al., 2018; Weston et al., 2019). In the tables and charts, the \
-label "test" designates this window.
+The first 104 weeks were used to fit the models and select specifications. The final 52 weeks, from 2011-01-12 to 2012-01-04, cover a full seasonal cycle and form the **retrospective temporal evaluation window with prior exploratory exposure**, labelled "test" in tables and charts. The full panel was used for exploratory summaries of weekly units, panel size and promotion rates, as well as the exploratory OLS and price-variation profile in `PROJECT_BRIEF.md`. That exploration informed development decisions such as the D12 price decomposition. Out-of-sample evaluation (Tashman, 2000) is presented in notebook 04 and follows a protocol registered before the candidates were fitted (Nosek et al., 2018; Weston et al., 2019).
 """,
         ),
         code("""
@@ -590,14 +485,10 @@ display(pd.Series({"pairs_only_in_test": len(set(test["PAIR_ID"]) - set(train["P
 """),
         md(
             pt="""
-A amostra de treino tem 347.092 linhas em 3.859 pares, e a de teste tem 177.767 linhas em 3.870 pares. Cinquenta \
-pares aparecem apenas na janela de avaliação: para eles não há histórico de treino, e as previsões dependerão só \
-dos efeitos de loja e de produto.
+A amostra de treino tem 347.092 linhas em 3.859 pares, e a janela de avaliação tem 177.767 linhas em 3.870 pares. Cinquenta pares só aparecem na avaliação. Para esses pares, a parte aleatória da previsão usa os efeitos de loja e produto disponíveis, pois o par não tem histórico no treino.
 """,
             en="""
-The training sample has 347,092 rows in 3,859 pairs, and the test sample has 177,767 rows in 3,870 pairs. Fifty \
-pairs appear only in the evaluation window: they have no training history, so their predictions will rely only on \
-the store and product effects.
+The training sample has 347,092 rows in 3,859 pairs, and the evaluation window has 177,767 rows in 3,870 pairs. Fifty pairs appear only in the evaluation window. For these pairs, the random part of the prediction uses the available store and product effects because the pair has no training history.
 """,
         ),
         md(
@@ -619,14 +510,10 @@ coverage["n_weeks_train"].describe().to_frame()
 """),
         md(
             pt="""
-A mediana é de 102 semanas de treino por par, e 1.537 pares têm as 104 semanas. O painel é, portanto, \
-desbalanceado: 25% dos pares têm 86 semanas ou menos, e há pares com uma única semana. Esses pares têm pouca \
-informação própria, o que é justamente onde o *partial pooling* ajuda.
+A mediana é de 102 semanas de treino por par, e 1.537 pares têm as 104 semanas. Um quarto dos pares tem até 86 semanas, e alguns têm uma só. Com *partial pooling*, os pares de histórico curto são estimados também com a informação dos demais.
 """,
             en="""
-The median is 102 training weeks per pair, and 1,537 pairs have all 104 weeks. The panel is therefore unbalanced: \
-25% of the pairs have 86 weeks or fewer, and some pairs have a single week. Such pairs carry little information of \
-their own, which is where partial pooling helps.
+The median is 102 training weeks per pair, and 1,537 pairs have all 104 weeks. A quarter of the pairs have at most 86 weeks, and some have just one. With partial pooling, estimates for pairs with short histories also use information from other pairs.
 """,
         ),
         md(
@@ -659,34 +546,22 @@ display(pd.crosstab(below_base, any_promo))
 """),
         md(
             pt="""
-Alguma promoção está ativa em 28,5% das linhas: encarte em 8,4%, display em 11,0% e TPR em 13,5%. A primeira \
-tabela cruzada mostra que `TPR_ONLY` nunca coincide com encarte ou display (0 linhas), pela própria definição da \
-variável. A segunda mostra que preço abaixo de 95% do base nunca ocorre sem promoção (0 linhas), embora 19.555 \
-linhas com promoção não tenham redução de preço de 5% ou mais; as 129.830 linhas restantes com promoção têm preço \
-abaixo do base. As taxas diferem entre categorias (por exemplo, pizza congelada tem a maior participação de \
-encarte, 16,7%, e snacks a menor, 2,5%), de modo que o tipo de promoção depende do produto.
+Há alguma promoção em 28,5% das linhas, com encarte em 8,4%, display em 11,0% e TPR em 13,5%. A primeira tabela confirma que `TPR_ONLY` nunca coincide com encarte ou display (0 linhas). A segunda mostra 129.830 linhas com preço abaixo de 95% do base, todas com promoção. As outras 19.555 linhas com promoção ficaram no limiar de 95% ou acima dele. A frequência de encarte varia por categoria, de 2,5% em snacks a 16,7% em pizza congelada.
 """,
             en="""
-Some promotion is active in 28.5% of the rows: feature in 8.4%, display in 11.0% and TPR in 13.5%. The first \
-cross-tabulation shows that `TPR_ONLY` never coincides with feature or display (0 rows), by definition of the \
-variable. The second shows that a price below 95% of base never occurs without a promotion (0 rows), although \
-19,555 rows with a promotion have no price cut of 5% or more; the remaining 129,830 promotion rows have a price \
-below base. The rates differ across categories (for instance, frozen pizza has the highest feature share, 16.7%, \
-and bag snacks the lowest, 2.5%), so the type of promotion depends on the product.
+A promotion appears in 28.5% of rows, with feature in 8.4%, display in 11.0% and TPR in 13.5%. The first table confirms that `TPR_ONLY` never coincides with feature or display (0 rows). The second shows 129,830 rows with prices below 95% of base, all with a promotion. The other 19,555 promotion rows were at or above the 95% threshold. The frequency of feature varies by category, from 2.5% in bag snacks to 16.7% in frozen pizza.
 """,
         ),
         md(
             pt="""
 ## 5. Variação de preço
 
-A variação de preço dentro de cada par (desvio-padrão de `LOG_PRICE`, na amostra de treino) é o sinal que \
-identifica a elasticidade.
+O desvio-padrão de `LOG_PRICE` mede quanta variação de preço dentro de cada par está disponível no treino para estimar a elasticidade.
 """,
             en="""
 ## 5. Price variation
 
-The price variation within each pair (standard deviation of `LOG_PRICE`, in the training sample) is the signal that \
-identifies the elasticity.
+The standard deviation of `LOG_PRICE` measures how much within-pair price variation is available in the training sample to estimate elasticity.
 """,
         ),
         code("""
@@ -695,16 +570,10 @@ variation[["sd_log_price", "share_below_base"]].describe()
 """),
         md(
             pt="""
-O desvio-padrão mediano de log(preço) dentro do par é de 0,111 (cerca de 11%), e os pares ficam em média 24% das \
-semanas com preço abaixo do base. Há variação suficiente para estimar a elasticidade na maioria dos pares, mas \
-ela se concentra nas semanas de promoção, o que dificulta separar o efeito do preço do efeito da própria \
-promoção.
+A mediana do desvio-padrão de log(preço) dentro do par é de 0,111 (cerca de 11%). Em média, 24% das semanas de cada par têm preço abaixo de 95% do base. Essa variação concentra-se em semanas de promoção, o que dificulta distinguir a associação com preço da associação com encarte e display.
 """,
             en="""
-The median standard deviation of log(price) within a pair is 0.111 (about 11%), and pairs spend 24% of their \
-weeks, on average, with a price below base. There is enough variation to estimate the elasticity in most pairs, but \
-it is concentrated in promotion weeks, which makes it harder to separate the effect of price from the effect of the \
-promotion itself.
+The median within-pair standard deviation of log(price) is 0.111 (about 11%). On average, 24% of a pair's weeks have prices below 95% of base. This variation is concentrated in promotion weeks, which makes it harder to distinguish the association with price from the associations with feature and display.
 """,
         ),
         md(
@@ -730,18 +599,10 @@ fig = viz.plot_variance_shares(shares, LANG, share_col="between_share")
 """),
         md(
             pt="""
-O produto explica 53,3% da variância de log(unidades), a loja 6,7% e o par loja × produto 72,7% (o par contém \
-os dois e a sua interação). Essas frações não vêm de um modelo e não separam efeitos: o par tem 3.859 médias e, \
-por isso, tende a ser maior. Elas motivam o modelo nulo de efeitos aleatórios cruzados (Baayen et al., 2008) do \
-notebook 02, que \
-decompõe a variância em loja, produto, interação e resíduo de forma consistente.
+As diferenças entre as médias de cada produto respondem por 53,3% da variância de log(unidades), as diferenças entre lojas por 6,7% e as diferenças entre pares por 72,7%. As 3.859 médias de par incorporam diferenças de loja e produto e a interação entre os dois. O modelo nulo com efeitos aleatórios cruzados (Baayen et al., 2008), no notebook 02, estima componentes separados de loja, produto, interação e resíduo.
 """,
             en="""
-The product explains 53.3% of the variance of log(units), the store 6.7% and the store × product pair 72.7% (the \
-pair contains both and their interaction). These shares do not come from a model and do not separate effects: the \
-pair has 3,859 means and therefore tends to be larger. They motivate the crossed random-effects null model (Baayen \
-et al., 2008) of \
-notebook 02, which decomposes the variance into store, product, interaction and residual consistently.
+Differences between product means account for 53.3% of log(units) variance, differences between stores for 6.7% and differences between pairs for 72.7%. The 3,859 pair means incorporate differences between stores and products as well as their interaction. The crossed random-effects null model (Baayen et al., 2008) in notebook 02 estimates separate components for store, product, interaction and residual.
 """,
         ),
         md(
@@ -765,28 +626,22 @@ fig = viz.plot_raw_promo_lift(lift, LANG)
 """),
         md(
             pt="""
-O lift bruto foi de 195% para encarte, 129% para display e 33% para TPR. Esses números são descritivos e não \
-causais: cada promoção está confundida com a redução de preço e com as demais promoções, e encarte e display \
-podem ser aplicados nos produtos e semanas de maior demanda. Separar o efeito do preço do efeito de cada promoção \
-é tarefa dos modelos.
+No treino, o lift bruto foi de 195% para encarte, 129% para display e 33% para TPR. A comparação descritiva inclui as reduções de preço, a ocorrência conjunta de encarte e display e a possibilidade de concentrar essas promoções em produtos ou semanas de maior demanda.
 """,
             en="""
-The raw lift was 195% for feature, 129% for display and 33% for TPR. These numbers are descriptive and not causal: \
-each promotion is confounded with the price cut and with the other promotions, and feature and display may be \
-applied to the products and weeks with the highest demand. Separating the effect of price from the effect of each \
-promotion is the task of the models.
+In the training sample, raw lift was 195% for feature, 129% for display and 33% for TPR. This descriptive comparison includes price cuts, weeks with both feature and display, and the possibility that these promotions were concentrated in products or weeks of higher demand.
 """,
         ),
         md(
             pt="""
 ## 8. Inclinações do desconto estimadas par a par
 
-A seção de briefing afirma que estimar cada par loja × produto separadamente pode dar elasticidades ruidosas. Para verificar essa afirmação, ajustou-se um OLS para cada par nas semanas de treino (0 a 103), com a especificação `LOG_UNITS ~ LOG_DISC + FEATURE + DISPLAY + TPR_ONLY`, em que `LOG_DISC = log(preço / preço base)`. Entram pares com ao menos 8 semanas, e um termo sem variação no par, ou colinear com os anteriores, deixa de ser estimado (o par fica sem inclinação quando é o `LOG_DISC` que não varia). O ajuste é feito por script (`scripts/fit_pair_ols_slopes.py`), que grava a execução lida abaixo, e o notebook apenas lê os resultados. Como `LOG_DISC` é negativo nas semanas de desconto, uma inclinação negativa significa que mais desconto vem com mais unidades; uma inclinação positiva significa o oposto.
+Foi estimado um OLS para cada par loja × produto com ao menos 8 semanas de treino (semanas 0 a 103). A especificação é `LOG_UNITS ~ LOG_DISC + FEATURE + DISPLAY + TPR_ONLY`, com `LOG_DISC = log(preço / preço base)`. São omitidos termos constantes no par ou colineares com os anteriores. Se `LOG_DISC` for constante, o par fica sem inclinação estimada. Os resultados foram gravados por `scripts/fit_pair_ols_slopes.py`. Como `LOG_DISC` diminui quando o desconto aumenta, uma inclinação negativa associa descontos maiores a mais unidades. Uma inclinação positiva associa descontos maiores a menos unidades.
 """,
             en="""
 ## 8. Discount slopes estimated pair by pair
 
-The briefing section states that estimating each store × product pair separately can give noisy elasticities. To check that statement, one OLS was fitted for each pair on the training weeks (0 to 103), with the specification `LOG_UNITS ~ LOG_DISC + FEATURE + DISPLAY + TPR_ONLY`, where `LOG_DISC = log(price / base price)`. Pairs with at least 8 weeks enter, and a term without variation in the pair, or collinear with the previous ones, is not estimated (the pair is left without a slope when it is `LOG_DISC` that does not vary). The fit is done by a script (`scripts/fit_pair_ols_slopes.py`), which stores the run read below, and the notebook only reads the results. Because `LOG_DISC` is negative in discount weeks, a negative slope means that more discount comes with more units; a positive slope means the opposite.
+One OLS was fitted for each store × product pair with at least 8 training weeks (weeks 0 to 103). The specification is `LOG_UNITS ~ LOG_DISC + FEATURE + DISPLAY + TPR_ONLY`, with `LOG_DISC = log(price / base price)`. Terms that are constant within the pair or collinear with preceding terms are omitted. If `LOG_DISC` is constant, no slope is estimated for the pair. The results were saved by `scripts/fit_pair_ols_slopes.py`. Since `LOG_DISC` decreases as the discount increases, a negative slope associates deeper discounts with more units. A positive slope associates deeper discounts with fewer units.
 """,
         ),
         code("""
@@ -806,12 +661,12 @@ fig = viz.plot_pair_slopes(pair_slopes, LANG)
             pt="""
 Das 3.859 combinações de treino, 3.788 tiveram a inclinação do desconto estimada: 42 pares têm menos de 8 semanas e 29 foram ajustados sem variação de desconto estimável. A mediana das inclinações é de −1,65, mas a dispersão é grande, com o percentil 5 em −5,40 e o percentil 95 em +3,18. Um total de 751 pares (19,8%) tem inclinação positiva. A participação é de 36,2% nos pares com menos de 26 semanas (25 de 69), de 27,3% nos de 26 a 77 semanas (148 de 543) e de 18,2% nos de 78 semanas ou mais (578 de 3.176). Ela diminui com o histórico, mas ainda alcança quase um par em cada cinco entre os mais longos. Inclinações exatamente nulas, que ocorrem em pares com unidades constantes, e coeficientes nulos a menos de arredondamento não são contados como positivos.
 
-Uma inclinação positiva do desconto não tem sentido econômico: ela diz que a redução de preço vem acompanhada de menos unidades. Em um par isolado, isso sinaliza ruído, pelo número reduzido de semanas com desconto, ou confusão com outros fatores, como a época em que as promoções ocorrem. É esse comportamento que motiva o *partial pooling* (Gelman & Hill, 2007) testado nos notebooks 02 a 04, em que cada par toma emprestada informação dos demais em vez de ser estimado sozinho.
+Uma inclinação positiva vai na direção oposta à relação de demanda esperada. Em um par isolado, ela pode refletir poucas semanas com desconto ou fatores como a época das promoções. Essa dispersão motiva o uso de *partial pooling* nos notebooks 02 a 04 (Gelman & Hill, 2007).
 """,
             en="""
 Of the 3,859 training pairs, 3,788 had the discount slope estimated: 42 pairs have fewer than 8 weeks and 29 were fitted without estimable discount variation. The median slope is −1.65, but the dispersion is large, with the 5th percentile at −5.40 and the 95th percentile at +3.18. A total of 751 pairs (19.8%) have a positive slope. The share is 36.2% among pairs with fewer than 26 weeks (25 of 69), 27.3% among those with 26 to 77 weeks (148 of 543) and 18.2% among those with 78 weeks or more (578 of 3,176). It decreases with history, but it still reaches almost one pair in five among the longest ones. Slopes that are exactly zero, which occur in pairs with constant units, and coefficients that are zero up to rounding are not counted as positive.
 
-A positive discount slope has no economic sense: it says that a price cut comes with fewer units. In a single pair, this signals noise, because of the small number of discount weeks, or confounding with other factors, such as the timing of promotions. This behaviour motivates the partial pooling (Gelman & Hill, 2007) tested in notebooks 02 to 04, in which each pair borrows information from the others instead of being estimated alone.
+A positive slope runs counter to the expected demand relationship. For an individual pair, it may reflect few discount weeks or factors such as promotion timing. This spread motivates partial pooling in notebooks 02 to 04 (Gelman & Hill, 2007).
 """,
         ),
         md(
@@ -823,10 +678,7 @@ linhas. As últimas 52 semanas formam a janela de avaliação retrospectiva, com
 pares só aparecem nesse período. O painel de treino é desbalanceado (mediana de 102 semanas por par), o que \
 favorece o *partial pooling*. Estimadas par a par, 19,8% das inclinações do desconto são positivas, o que reforça essa motivação.
 
-Alguma promoção está ativa em 28,5% das linhas; `TPR_ONLY` nunca coincide com encarte ou display, e o preço abaixo \
-do base só ocorre sob promoção. O lift bruto de promoção é alto, mas está confundido com o preço. Quanto à \
-variância de log(unidades), ela se encontra sobretudo entre produtos e pares, e as frações descritivas não são \
-aditivas.
+Em 28,5% das linhas há alguma promoção. Todo preço abaixo de 95% do base foi observado em semanas com promoção, e `TPR_ONLY` ocorre sem encarte nem display. O lift bruto combina a associação promocional com a de preço. Na análise descritiva de log(unidades), produtos e pares respondem pelas maiores frações de variância entre grupos. Essas frações não são aditivas.
 
 O notebook 02 lê os modelos nulos ajustados por script (`runs.load_run("null_models", "20261124-114105-b15be79c")`) e decompõe a variância \
 entre loja, produto, interação e resíduo.
@@ -839,9 +691,7 @@ The panel has 524,926 rows, 77 stores, 55 products, 3,909 pairs and 156 weeks, a
 appear only in that period. The training panel is unbalanced (median of 102 weeks per pair), which favours partial \
 pooling. Estimated pair by pair, 19.8% of the discount slopes are positive, which reinforces this motivation.
 
-Some promotion is active in 28.5% of the rows; `TPR_ONLY` never coincides with feature or display, and a price \
-below base occurs only under promotion. The raw promotion lift is large but is confounded with price. As for the \
-variance of log(units), it lies mostly between products and pairs, and the descriptive shares are not additive.
+A promotion appears in 28.5% of rows. All prices below 95% of base were observed in promotion weeks, and `TPR_ONLY` occurs without feature or display. Raw lift combines the promotion and price associations. In the descriptive analysis of log(units), products and pairs account for the largest between-group variance shares. These shares are not additive.
 
 Notebook 02 reads the null models fitted by script (`runs.load_run("null_models", "20261124-114105-b15be79c")`) and decomposes the variance \
 into store, product, interaction and residual.
@@ -881,36 +731,18 @@ def null_model_cells() -> list[Cell]:
             pt="""
 # 02 · Modelo nulo: decomposição da variância
 
-Na estratégia de seleção por etapas (*step-up*) de modelos multinível (Raudenbush & Bryk, 2002), o passo inicial é \
-o modelo nulo, sem \
-preditores, que decompõe a variância da resposta entre os níveis da hierarquia. Aqui, porém, a hierarquia é \
-**cruzada** (Baayen et al., 2008): as semanas estão aninhadas em pares loja × produto, e cada par pertence a uma \
-loja e a um produto, que \
-se cruzam entre si. Isso difere das hierarquias puramente aninhadas, de dois ou três níveis, em que cada unidade \
-pertence a um único grupo do nível acima. Somente a amostra de treino (as 104 semanas iniciais, D11 \
-revisada) foi usada, e nenhum ajuste tocou as 52 semanas finais.
+Na seleção por etapas (*step-up*) de modelos multinível, o modelo nulo contém apenas o intercepto na parte fixa e reparte a variância da resposta entre os componentes do modelo (Raudenbush & Bryk, 2002). As observações semanais estão aninhadas nos pares loja × produto, e os pares pertencem a dois agrupamentos cruzados, loja e produto (Baayen et al., 2008). O ajuste foi feito com as 104 semanas iniciais de treino (D11 revisada).
 
-Este notebook **não ajusta modelos**: os ajustes foram feitos por `scripts/fit_null_models.py` e gravados em \
-`outputs/runs/null_models`. O notebook apenas lê essa execução, o que torna as versões em português e em inglês \
-idênticas em resultados.
+As duas versões do notebook leem a mesma execução, gravada por `scripts/fit_null_models.py` em `outputs/runs/null_models`.
 
 *Dados: dunnhumby Source Files – Breakfast at the Frat.*
 """,
             en="""
 # 02 · Null model: variance decomposition
 
-In the step-up selection strategy for multilevel models (Raudenbush & Bryk, 2002), the first step is the null \
-model, with no predictors, \
-which splits the variance of the response across the levels of the hierarchy. Here, however, the hierarchy is \
-**crossed** (Baayen et al., 2008): weeks are nested in store × product pairs, and each pair belongs to one store \
-and one product, which \
-cross each other. This differs from purely nested hierarchies, with two or three levels, in which each unit belongs \
-to a single group of the level above. Only the training sample (the initial 104 weeks, D11 \
-revised) was used, and no fit touched the final 52 weeks.
+In step-up selection for multilevel models, the null model has only an intercept in the fixed part and partitions the response variance into model components (Raudenbush & Bryk, 2002). Weekly observations are nested within store × product pairs, and the pairs belong to two crossed groupings, store and product (Baayen et al., 2008). The models were fitted on the first 104 weeks of training data (D11, revised).
 
-This notebook **fits no models**: the fits were made by `scripts/fit_null_models.py` and stored in \
-`outputs/runs/null_models`. The notebook only reads that run, so the Portuguese and English versions show \
-identical results.
+Both language versions of the notebook read the same run, saved by `scripts/fit_null_models.py` in `outputs/runs/null_models`.
 
 *Data: dunnhumby Source Files – Breakfast at the Frat.*
 """,
@@ -919,32 +751,22 @@ identical results.
         code(SETUP_02),
         md(
             pt="""
-A execução lida está identificada acima (identificador e horário de término), e a amostra de treino tem 347.092 \
-linhas, 77 lojas, 55 produtos e 3.859 pares, de 2009-01-14 a 2011-01-05.
+O identificador e o horário de término da execução são mostrados acima. O treino reúne 347.092 linhas, 77 lojas, 55 produtos e 3.859 pares, de 2009-01-14 a 2011-01-05.
 """,
             en="""
-The run that was read is identified above (identifier and finish time), and the training sample has 347,092 rows, \
-77 stores, 55 products and 3,859 pairs, from 2009-01-14 to 2011-01-05.
+The run identifier and finish time are shown above. The training sample has 347,092 rows, 77 stores, 55 products and 3,859 pairs, from 2009-01-14 to 2011-01-05.
 """,
         ),
         md(
             pt="""
 ## 1. Os modelos M0 a M4
 
-Cinco modelos foram ajustados, todos por REML (Bates et al., 2015) e com a mesma parte fixa (apenas o intercepto), \
-de modo que as \
-verossimilhanças REML são comparáveis (Pinheiro & Bates, 2000). M0 é a regressão de nível único (OLS); de M1 a M4, \
-efeitos aleatórios de \
-loja, de produto, de ambos e, por fim, de ambos mais a interação loja × produto (o par) foram adicionados.
+Os cinco modelos foram ajustados por REML (Bates et al., 2015). Como todos têm apenas o intercepto na parte fixa, as verossimilhanças REML são comparáveis (Pinheiro & Bates, 2000). M0 é a regressão de nível único (OLS). M1 tem efeito aleatório de loja e M2, de produto. M3 inclui os dois, e M4 acrescenta a interação loja × produto (o par).
 """,
             en="""
 ## 1. Models M0 to M4
 
-Five models were fitted, all by REML (Bates et al., 2015) and with the same fixed part (intercept only), so that \
-the REML likelihoods \
-are comparable (Pinheiro & Bates, 2000). M0 is the single-level regression (OLS); from M1 to M4, random effects \
-were added for store, for \
-product, for both and, finally, for both plus the store × product interaction (the pair).
+The five models were fitted by REML (Bates et al., 2015). Their REML likelihoods are comparable because each has only an intercept in the fixed part (Pinheiro & Bates, 2000). M0 is a single-level regression (OLS). M1 has a store random effect and M2 a product random effect. M3 includes both, and M4 adds the store × product interaction (the pair).
 """,
         ),
         code("""
@@ -970,14 +792,10 @@ display(fits[["name", "npar", "loglik", "aic", "bic", "seconds", "n_messages"]])
 """),
         md(
             pt="""
-A log-verossimilhança sobe de −563.135 (M0) para −346.786 (M4), e AIC e BIC diminuem a cada modelo adicionado (AIC \
-de 1.126.273 para 693.583). Nenhum ajuste gerou mensagens de convergência (0 em todos). O M4, o maior, levou cerca \
-de 29 segundos.
+A log-verossimilhança sobe de −563.135 (M0) para −346.786 (M4). O AIC cai de 1.126.273 para 693.583, e AIC e BIC diminuem a cada modelo adicionado. Nenhum ajuste gerou mensagens de convergência. O M4 levou cerca de 29 segundos.
 """,
             en="""
-The log-likelihood rises from −563,135 (M0) to −346,786 (M4), and AIC and BIC fall with every added model (AIC \
-from 1,126,273 to 693,583). No fit produced convergence messages (0 in all). M4, the largest, took about 29 \
-seconds.
+The log-likelihood rises from −563,135 (M0) to −346,786 (M4). AIC drops from 1,126,273 to 693,583, and both AIC and BIC decrease with each added model. No fit produced convergence messages. M4 took about 29 seconds.
 """,
         ),
         md(
@@ -1010,32 +828,22 @@ display(lr.assign(p_value=lr["p_value"].map(format_p), p_naive=lr["p_naive"].map
 """),
         md(
             pt="""
-Todas as estatísticas são enormes (de 23.545 para M0 contra M1 a 322.868 para M1 contra M3), e todos os valores p \
-são menores que 1e-300. Cada componente de variância (loja, produto e interação loja × produto) é, portanto, \
-claramente diferente de zero. Com 347.092 linhas, porém, o teste tem poder para detectar qualquer variância, e o \
-que importa é o tamanho dos componentes, mostrado a seguir.
+As estatísticas vão de 23.545 (M0 contra M1) a 322.868 (M1 contra M3), com valores p abaixo de 1e-300 em todas as comparações. Os testes dão evidência de componentes de variância de loja, produto e interação loja × produto. Com 347.092 linhas de treino, mesmo componentes pequenos podem ser detectados. A decomposição de M4 quantifica a participação de cada componente.
 """,
             en="""
-All statistics are huge (from 23,545 for M0 against M1 to 322,868 for M1 against M3), and every p-value is below \
-1e-300. Each variance component (store, product and store × product interaction) is therefore clearly different \
-from zero. With 347,092 rows, however, the test has the power to detect any variance, and what matters is the size \
-of the components, shown next.
+The statistics range from 23,545 (M0 versus M1) to 322,868 (M1 versus M3), with p-values below 1e-300 in every comparison. The tests provide evidence for store, product and store × product variance components. With 347,092 training rows, even small components can be detected. The M4 decomposition quantifies each component's share.
 """,
         ),
         md(
             pt="""
 ## 4. Correlação intraclasse (ICC)
 
-O gráfico mostra a participação de cada componente na variância total de log(unidades) (Raudenbush & Bryk, 2002), \
-por modelo de M1 a M4. \
-Diferentemente da seção descritiva do notebook 01, as participações aqui vêm de um modelo e somam 1.
+O gráfico mostra os componentes da variância de log(unidades) em cada modelo de M1 a M4 (Raudenbush & Bryk, 2002). Em cada modelo, as participações somam 1.
 """,
             en="""
 ## 4. Intraclass correlation (ICC)
 
-The chart shows the share of each component in the total variance of log(units) (Raudenbush & Bryk, 2002), for \
-each model from M1 to M4. \
-Unlike the descriptive section of notebook 01, the shares here come from a model and sum to 1.
+The chart shows the log(units) variance components for each model from M1 to M4 (Raudenbush & Bryk, 2002). The shares sum to 1 within each model.
 """,
         ),
         code("""
@@ -1060,22 +868,14 @@ No M4, o produto responde por 57,2% da variância, o resíduo por 24,6%, a loja 
 por 8,5%. A correlação entre duas semanas do mesmo par é (loja + produto + par) / total = 75,4%, e a correlação \
 entre dois produtos diferentes na mesma loja é a participação da loja, 9,6%.
 
-Do ponto de vista do negócio, a maior parte da variação no volume vem de qual produto se trata. Apenas o \
-componente intra-par (resíduo), de cerca de 25%, é movimento semana a semana, e é nele que preço e promoção \
-precisam atuar. Esse é o foco dos próximos notebooks. Os componentes mudam de um modelo para outro porque os \
-modelos parciais atribuem ao resíduo a variância que os componentes omitidos explicariam (por exemplo, o resíduo \
-cai de 93,3% em M1 para 24,6% em M4).
+No modelo nulo, as diferenças entre produtos respondem pela maior parcela da variância de log(unidades). O resíduo, de cerca de 25% no M4, capta a variação semanal dentro do par que o modelo deixa sem explicar. Essa parcela será reavaliada com preço e promoção no notebook 03. A participação do resíduo cai de 93,3% em M1 para 24,6% em M4 à medida que são acrescentados outros componentes.
 """,
             en="""
 In M4, the product accounts for 57.2% of the variance, the residual for 24.6%, the store for 9.6% and the store × \
 product interaction for 8.5%. The correlation between two weeks of the same pair is (store + product + pair) / \
 total = 75.4%, and the correlation between two different products in the same store is the store share, 9.6%.
 
-From a business point of view, most of the variation in volume comes from which product it is. Only the within-pair \
-component (the residual), about 25%, is week-to-week movement, and that is where price and promotion have to act. \
-This frames the next notebooks. The components change from one model to another because the partial models assign \
-to the residual the variance that the omitted components would explain (for instance, the residual falls from \
-93.3% in M1 to 24.6% in M4).
+In the null model, differences between products account for the largest share of log(units) variance. The residual, about 25% in M4, captures the week-to-week variation within a pair that the model leaves unexplained. This share is re-examined with price and promotion in notebook 03. The residual share falls from 93.3% in M1 to 24.6% in M4 as other components are added.
 """,
         ),
         md(
@@ -1102,22 +902,10 @@ fig = viz.plot_caterpillar(run.load_table("ranef_product"), LANG, "UPC", labels=
 """),
         md(
             pt="""
-Os BLUPs (Henderson, 1975; Robinson, 1991) não são médias observadas: cada desvio observado do grupo é \
-multiplicado por um fator de encolhimento \
-(*shrinkage*), que num modelo de um único agrupamento é σ²ᵤ / (σ²ᵤ + σ²ₑ/n). Quanto menos observações um grupo \
-tem, menor é esse fator e mais o seu valor é puxado para a média geral, e esse \
-encolhimento, o *partial pooling*, é o tema central do projeto. Os intervalos são estreitos em relação à dispersão \
-entre grupos (desvio-padrão condicional de cerca de 0,07 para lojas e 0,06 para produtos), o que indica que os \
-grupos são bem distinguíveis entre si, em especial os produtos.
+Os BLUPs são desvios previstos para os grupos, encolhidos em direção à média geral (Henderson, 1975; Robinson, 1991). No caso ilustrativo de um único agrupamento com intercepto aleatório, o desvio observado é multiplicado por σ²ᵤ / (σ²ᵤ + σ²ₑ/n). Quanto menor o número de observações do grupo (n), maior é o encolhimento, chamado de *partial pooling*. No M4, os desvios-padrão condicionais são de cerca de 0,07 para lojas e 0,06 para produtos. Os intervalos são estreitos em relação à dispersão entre grupos, sobretudo entre produtos.
 """,
             en="""
-BLUPs (Henderson, 1975; Robinson, 1991) are not observed means: each group's observed deviation is multiplied by a \
-shrinkage factor, which in a \
-single-grouping model is σ²ᵤ / (σ²ᵤ + σ²ₑ/n). The fewer observations a group has, the smaller this factor and the \
-more its value is pulled toward the overall mean, and this \
-shrinkage, partial pooling, is the central theme of the project. The intervals are narrow relative to the spread \
-between groups (conditional standard deviation of about 0.07 for stores and 0.06 for products), which indicates \
-that the groups are clearly distinguishable from each other, especially the products.
+BLUPs are predicted group deviations shrunk towards the overall mean (Henderson, 1975; Robinson, 1991). As an illustration, in a random-intercept model with a single grouping factor, the observed deviation is multiplied by σ²ᵤ / (σ²ᵤ + σ²ₑ/n). The fewer observations the group has (n), the greater the shrinkage from partial pooling. In M4, the conditional standard deviations are about 0.07 for stores and 0.06 for products. The intervals are narrow relative to the spread across groups, especially across products.
 """,
         ),
         md(
@@ -1141,29 +929,19 @@ display(run.load_table("crosscheck"))
 """),
         md(
             pt="""
-A variância residual difere em 1,3e-6 (diferença relativa), e a variância de loja difere em 0,6% (0,1001 contra \
-0,1007). O statsmodels só foi usado nesta verificação de um único agrupamento. O `MixedLM` não tem sintaxe direta \
-para efeitos cruzados (eles exigem um grupo único com `vc_formula`), e por isso o lme4 foi escolhido como motor \
-dos demais modelos (decisão D1). O desempenho do `MixedLM` com efeitos cruzados neste volume não foi testado.
+A diferença relativa entre as estimativas da variância residual é de 1,3e-6. Para a variância de loja, a diferença é de 0,6% (0,1001 contra 0,1007). O `MixedLM` foi usado nessa verificação com um único agrupamento. Efeitos cruzados no `MixedLM` exigem um grupo único com `vc_formula`. A sintaxe direta de efeitos cruzados motivou a escolha do lme4 para os demais modelos (decisão D1). O desempenho de `MixedLM` com efeitos cruzados neste volume ficou fora da verificação.
 """,
             en="""
-The residual variance differs by 1.3e-6 (relative difference), and the store variance differs by 0.6% (0.1001 \
-against 0.1007). Statsmodels was used only in this single-grouping check. `MixedLM` has no direct syntax for \
-crossed effects (they require a single group with `vc_formula`), so lme4 was chosen as the engine for the \
-remaining models (decision D1). The performance of `MixedLM` with crossed effects at this size was not tested.
+The relative difference between the residual variance estimates is 1.3e-6. For the store variance, the difference is 0.6% (0.1001 versus 0.1007). `MixedLM` was used for this single-grouping check. Crossed effects in `MixedLM` require a single group with `vc_formula`. The direct syntax for crossed effects motivated the choice of lme4 for the other models (decision D1). The performance of `MixedLM` with crossed effects at this size fell outside the check.
 """,
         ),
         md(
             pt="""
 ## 7. Conclusões e próximo passo
 
-A variação de log(unidades) está sobretudo entre produtos (57,2% no M4); lojas respondem por 9,6%, a interação \
-loja × produto por 8,5% e o resíduo, por 24,6%. Todos os componentes são significativos pelo teste de razão de \
-verossimilhanças com correção de fronteira, mas o relevante é o seu tamanho, não o valor p.
+No M4, produtos respondem por 57,2% da variância de log(unidades), lojas por 9,6%, a interação loja × produto por 8,5% e o resíduo por 24,6%. Os testes de razão de verossimilhanças com correção de fronteira dão evidência para cada componente de agrupamento.
 
-Essa estrutura se traduz em correlações: duas semanas do mesmo par são correlacionadas em 75,4%, enquanto produtos \
-diferentes na mesma loja o são em 9,6%. Por fim, o ajuste do statsmodels coincide com o do lme4 no modelo de um \
-único agrupamento.
+O M4 estima uma correlação de 75,4% entre duas semanas do mesmo par e de 9,6% entre produtos diferentes na mesma loja. Na verificação com um único agrupamento, lme4 e statsmodels produziram estimativas próximas.
 
 O notebook 03 acrescentará os efeitos fixos de preço e promoção. Depois, serão estudadas inclinações aleatórias, \
 cuja especificação exige cuidado no `MixedLM`. Com `groups='g'` e `re_formula='x'`, um componente \
@@ -1177,13 +955,9 @@ no lme4.
             en="""
 ## 7. Conclusions and next step
 
-The variation in log(units) lies mostly between products (57.2% in M4); stores account for 9.6%, the store × \
-product interaction for 8.5% and the residual for 24.6%. All components are significant under the \
-boundary-corrected likelihood-ratio test, but what matters is their size, not the p-value.
+In M4, products account for 57.2% of log(units) variance, stores for 9.6%, the store × product interaction for 8.5% and the residual for 24.6%. The boundary-corrected likelihood-ratio tests provide evidence for each grouping component.
 
-This structure translates into correlations: two weeks of the same pair are correlated at 75.4%, whereas different \
-products in the same store are correlated at 9.6%. Finally, the statsmodels fit agrees with lme4 on the \
-single-grouping model.
+M4 estimates a correlation of 75.4% between two weeks of the same pair and 9.6% between different products in the same store. In the single-grouping check, lme4 and statsmodels produced similar estimates.
 
 Notebook 03 will add the fixed effects of price and promotion. Random slopes will be studied afterwards, and their \
 specification needs care in `MixedLM`. With `groups='g'` and `re_formula='x'`, a component \
@@ -1230,35 +1004,18 @@ def fixed_effects_cells() -> list[Cell]:
             pt="""
 # 03 · Efeitos fixos de preço e promoção
 
-Este é o segundo passo da seleção de modelos por etapas (*step-up*; Raudenbush & Bryk, 2002). Depois do modelo \
-nulo do notebook 02, preditores \
-do nível 1 \
-(a semana) são acrescentados à parte fixa, e os interceptos aleatórios de loja, de produto e do par loja × produto \
-(o M4) são mantidos. Somente a amostra de treino foi usada para ajustar os modelos: as 104 semanas iniciais (D11 \
-revisada). As 52 semanas finais formam uma janela de avaliação temporal retrospectiva com exposição exploratória \
-prévia, e nenhum dos ajustes deste notebook as utilizou.
+No segundo passo da seleção por etapas (*step-up*), os preditores da observação semanal entram na parte fixa (Raudenbush & Bryk, 2002). São mantidos os interceptos aleatórios de loja, produto e par loja × produto do modelo nulo M4. Os modelos foram ajustados nas 104 semanas iniciais de treino (D11 revisada). As 52 semanas finais formam a janela de avaliação temporal retrospectiva com exposição exploratória prévia.
 
-Este notebook **não ajusta modelos**: os ajustes foram feitos por scripts (`scripts/fit_fixed_effects.py` e os das \
-sensibilidades) e gravados em `outputs/runs`. O notebook apenas lê essas execuções, o que torna as versões em \
-português e em inglês idênticas em resultados. Os coeficientes apresentados são associações condicionais em \
-semanas com transações registradas, e não efeitos causais.
+As duas versões do notebook leem as execuções gravadas em `outputs/runs` por `scripts/fit_fixed_effects.py` e pelos scripts de sensibilidade. Os coeficientes representam associações condicionais em semanas com transações registradas.
 
 *Dados: dunnhumby Source Files – Breakfast at the Frat.*
 """,
             en="""
 # 03 · Fixed effects of price and promotion
 
-This is the second step of step-up model selection (Raudenbush & Bryk, 2002). After the null model of notebook 02, \
-level-1 predictors \
-(the week) are added to the fixed part, while the random intercepts for store, product and the store × product \
-pair (M4) are kept. Only the training sample was used to fit the models: the initial 104 weeks (D11, revised). The \
-final 52 weeks form a retrospective temporal evaluation window with prior exploratory exposure, and none of the \
-fits in this notebook used them.
+In the second step of model selection, predictors at the weekly observation level enter the fixed part (Raudenbush & Bryk, 2002). The random intercepts for store, product and store × product pair are carried over from the M4 null model. The models were fitted on the first 104 weeks of training data (D11, revised). The final 52 weeks form the retrospective temporal evaluation window with prior exploratory exposure.
 
-This notebook **fits no models**: the fits were made by scripts (`scripts/fit_fixed_effects.py` and those of the \
-sensitivity analyses) and stored in `outputs/runs`. The notebook only reads those runs, so the Portuguese and \
-English versions show identical results. The coefficients presented are conditional associations in weeks with \
-recorded transactions, not causal effects.
+Both language versions of the notebook read the runs saved in `outputs/runs` by `scripts/fit_fixed_effects.py` and the sensitivity scripts. The coefficients represent conditional associations in weeks with recorded transactions.
 
 *Data: dunnhumby Source Files – Breakfast at the Frat.*
 """,
@@ -1267,50 +1024,19 @@ recorded transactions, not causal effects.
         code(SETUP_03),
         md(
             pt="""
-A execução lida está identificada acima (identificador e horário de término). A amostra de treino tem 347.092 \
-linhas e 3.859 pares loja × produto. O log do desconto (`LOG_DISC`, a seguir) tem média de −0,069 e desvio-padrão \
-de 0,147, e 25,0% das semanas têm `LOG_DISC` abaixo de −0,05, isto é, um desconto de cerca de 5% ou mais sobre o \
-preço regular. Há, portanto, muita variação de desconto de onde extrair a associação. Das linhas de treino, 111 \
-usam o preço-base de fallback (`BASE_PRICE = PRICE`), tratadas na seção 8.
+O identificador e o horário de término da execução são mostrados acima. O treino reúne 347.092 linhas em 3.859 pares loja × produto. `LOG_DISC`, o logaritmo da razão entre preço e preço base, tem média de −0,069 e desvio-padrão de 0,147. Em 25,0% das linhas de treino, `LOG_DISC` fica abaixo de −0,05, o equivalente a um desconto de cerca de 5% ou mais. Em 111 linhas, o preço base foi preenchido com o preço observado (`BASE_PRICE = PRICE`). A seção 8 avalia a sensibilidade a essa regra.
 """,
             en="""
-The run that was read is identified above (identifier and finish time). The training sample has 347,092 rows and \
-3,859 store × product pairs. The log of the discount (`LOG_DISC`, below) has a mean of −0.069 and a standard \
-deviation of 0.147, and 25.0% of the weeks have `LOG_DISC` below −0.05, that is, a discount of about 5% or more \
-off the regular price. There is, therefore, plenty of discount variation from which to extract the association. Of \
-the training rows, 111 use the fallback base price (`BASE_PRICE = PRICE`), which section 8 addresses.
+The run identifier and finish time are shown above. The training sample has 347,092 rows in 3,859 store × product pairs. `LOG_DISC`, the log ratio of price to base price, has a mean of −0.069 and a standard deviation of 0.147. In 25.0% of training rows, `LOG_DISC` is below −0.05, equivalent to a discount of about 5% or more. In 111 rows, the base price was filled with the observed price (`BASE_PRICE = PRICE`). Section 8 checks sensitivity to this rule.
 """,
         ),
         md(
             pt="""
 ## 1. A especificação
 
-A resposta é log(unidades), de modo que cada coeficiente é uma variação logarítmica, convertida em variação \
-percentual mais adiante. A parte fixa foi construída com base nas decisões D12 a D14, que são decisões de \
-desenvolvimento, motivadas pela exploração inicial do painel (D11 revisada). O preço não entra como um único \
-termo, porque o log do preço varia sobretudo entre produtos, e essa diferença se confunde com as características \
-do produto. Por isso, o log do preço é decomposto em três partes. A primeira é a profundidade do desconto \
-temporário, `LOG_DISC = log(preço / preço base)`, cujo coeficiente é a elasticidade ao desconto (Tellis, 1988; \
-Bijmolt et al., 2005). A segunda é o \
-desvio do preço regular em relação à média do próprio par, `LOG_BASE_DEV`, cujo coeficiente é a elasticidade ao \
-preço regular dentro do par ao longo do tempo. A terceira é a própria média do par, `LOG_BASE_MEAN` (um termo de \
-Mundlak), que absorve a associação entre o nível de preço e o par e impede que essa diferença entre pares \
-contamine os coeficientes dentro do par (Mundlak, 1978). As médias de par foram calculadas só com o treino, e o \
-preço-base ausente \
-foi preenchido apenas com o histórico do par (D8 revisada), para que nada posterior ao instante da observação \
-entre na especificação.
+A variável-resposta é log(unidades). As decisões D12 a D14 definem a parte fixa com base na exploração inicial do painel (D11 revisada). Como o log do preço varia sobretudo entre produtos, uma diferença de preço também pode refletir características dos produtos. Por isso o preço foi decomposto em três termos. `LOG_DISC = log(preço / preço base)` mede o desconto temporário e seu coeficiente estima a elasticidade ao desconto (Tellis, 1988; Bijmolt et al., 2005). `LOG_BASE_DEV` mede o desvio do log do preço regular em relação à média do próprio par e seu coeficiente estima a associação com mudanças do preço regular dentro do par ao longo do tempo. `LOG_BASE_MEAN` é a média do log do preço regular do par. Esse termo de Mundlak separa a associação com o nível médio de preço das mudanças dentro do par (Mundlak, 1978). As médias foram calculadas com as linhas de treino. Os valores ausentes de preço base foram preenchidos pela regra D8 revisada, que usa o histórico anterior do par quando disponível.
 
-Somente o preço regular foi decomposto em termos dentro e entre pares. O desconto e as variáveis de promoção \
-entram como estão, e a leitura dentro do par desses regressores é examinada por uma sensibilidade com efeitos \
-fixos de par e de semana (seção 9). As três variáveis de promoção (`FEATURE`, `DISPLAY` e `TPR_ONLY`) são \
-indicadores de 0 ou 1. Como o desconto já entra pela sua profundidade, esses indicadores medem a associação \
-**além** da redução de preço, com o desconto mantido constante. Essa separação resolve em parte a quase \
-colinearidade entre desconto e promoção observada na limpeza dos dados, porque o preço só fica abaixo do base em \
-semanas com promoção, mas a sobreposição entre tipos de promoção e faixas de desconto continua limitada (seção 4). \
-A sazonalidade é representada por três pares de termos de Fourier (Hyndman & Athanasopoulos, 2021) da semana do \
-ano (`SIN_k` e `COS_k`, com k de 1 \
-a 3), globais, e a tendência por uma variável linear em anos (`TREND`). Dessa forma, evitam-se 52 variáveis \
-binárias de semana, pesadas e ruidosas para dois anos de treino.
+O desconto e os indicadores de promoção (`FEATURE`, `DISPLAY` e `TPR_ONLY`, todos 0 ou 1) entram sem decomposição entre e dentro de pares. A seção 9 reestima essas associações com efeitos fixos de par e de semana. Cada indicador de promoção é interpretado com o desconto mantido constante. Como o preço fica abaixo do base só em semanas com promoção, são poucas as faixas de desconto em que certas promoções podem ser comparadas (seção 4). Três pares de termos de Fourier (`SIN_k` e `COS_k`, com k de 1 a 3) representam a sazonalidade da semana do ano, e `TREND` representa a tendência linear em anos. O perfil de Fourier é comum a todo o painel e usa seis coeficientes para os dois anos de treino (Hyndman & Athanasopoulos, 2021).
 
 Os testes de razão de verossimilhanças (LR) que comparam parte fixa diferente usam ajustes por **máxima \
 verossimilhança (ML)**, porque a verossimilhança restrita (REML) depende da parte fixa e, por isso, não é \
@@ -1322,32 +1048,9 @@ mostrados a seguir.
             en="""
 ## 1. The specification
 
-The response is log(units), so each coefficient is a log-change, converted to a percentage change further on. The \
-fixed part was built from decisions D12 to D14, which are development decisions motivated by the initial \
-exploration of the panel (D11, revised). Price does not enter as a single term, because the log price varies \
-mostly between products, and that difference is entangled with the characteristics of the product. The log price \
-is therefore decomposed into three parts. The first is the depth of the temporary discount, `LOG_DISC = log(price \
-/ base price)`, whose coefficient is the elasticity to the discount (Tellis, 1988; Bijmolt et al., 2005). The \
-second is the deviation of the regular \
-price from the mean of its own pair, `LOG_BASE_DEV`, whose coefficient is the elasticity to the regular price \
-within the pair over time. The third is the pair mean itself, `LOG_BASE_MEAN` (a Mundlak term), which absorbs the \
-association between the price level and the pair and keeps this difference between pairs from contaminating the \
-within-pair coefficients (Mundlak, 1978). The pair means were computed on the training rows only, and a missing \
-base price was \
-filled using only the history of the pair (D8, revised), so that nothing posterior to the time of the observation \
-enters the specification.
+The response is log(units). Decisions D12 to D14 specify the fixed part based on the initial exploration of the panel (D11, revised). Since log price varies mainly between products, a difference in price can also reflect product characteristics. Price was therefore decomposed into three terms. `LOG_DISC = log(price / base price)` measures the temporary discount, and its coefficient estimates discount elasticity (Tellis, 1988; Bijmolt et al., 2005). `LOG_BASE_DEV` measures the deviation of log regular price from its pair mean, and its coefficient estimates the association with changes in regular price over time within a pair. `LOG_BASE_MEAN` is the pair mean of log regular price. This Mundlak term separates the association with the average price level from changes within a pair (Mundlak, 1978). The means were calculated from training rows. Missing base prices were filled under revised rule D8, which uses the pair's prior history when available.
 
-Only the regular price was decomposed into within-pair and between-pair terms. The discount and the promotion \
-variables enter as they are, and the within-pair reading of those regressors is examined by a sensitivity analysis \
-with pair and week fixed effects (section 9). The three promotion variables (`FEATURE`, `DISPLAY` and `TPR_ONLY`) \
-are 0/1 indicators. Because the discount already enters through its depth, these indicators measure the \
-association **beyond** the price cut, with the discount held constant. This separation partly resolves the \
-near-collinearity between discount and promotion seen in the data cleaning, because the price only falls below \
-base in weeks with a promotion, but the overlap between promotion types and discount bands remains limited \
-(section 4). Seasonality is represented by three pairs of Fourier terms (Hyndman & Athanasopoulos, 2021) of the \
-week of the year (`SIN_k` and \
-`COS_k`, with k from 1 to 3), global, and the trend by a linear variable in years (`TREND`). In this way, 52 \
-weekly dummy variables, heavy and noisy for two years of training, are avoided.
+The discount and the promotion indicators (`FEATURE`, `DISPLAY` and `TPR_ONLY`, all 0 or 1) enter without a within- and between-pair decomposition. Section 9 re-estimates these associations using pair and week fixed effects. Each promotion indicator is interpreted with the discount held constant. As price falls below base only in promotion weeks, some promotions can be compared over only a few discount bands (section 4). Three pairs of Fourier terms (`SIN_k` and `COS_k`, with k from 1 to 3) represent week-of-year seasonality, and `TREND` represents a linear trend in years. The Fourier profile is shared across the panel and uses six coefficients for the two training years (Hyndman & Athanasopoulos, 2021).
 
 The likelihood-ratio (LR) tests that compare different fixed parts use **maximum likelihood (ML)** fits, because \
 the restricted likelihood (REML) depends on the fixed part and is therefore not comparable across these models \
@@ -1411,9 +1114,7 @@ efeitos fixos, e a referência é um χ² comum, razão pela qual `p_value` e `p
 de 101.800 (F0 contra F1, 3 graus de liberdade), 41.481 (F1 contra F2, 3 graus) e 1.225 (F2 contra F3, 7 graus). \
 Os dois primeiros valores p são menores que 1e-300 e o terceiro é de 2,69e-260.
 
-Com 347.092 linhas, porém, qualquer termo teria valor p desprezível, de modo que a significância, por si só, \
-informa pouco. O critério relevante é a magnitude: o bloco de preço é o de maior contribuição (101.800), seguido \
-pelo de promoções (41.481), enquanto a sazonalidade, com 1.225, é cerca de 83 vezes menor que a do preço.
+Os 347.092 registros de treino dão aos testes sensibilidade para detectar contribuições pequenas. Pela estatística de razão de verossimilhanças, o bloco de preço acrescenta mais ao ajuste (101.800), seguido pelo de promoções (41.481). A estatística do bloco de sazonalidade e tendência (1.225) é cerca de 1/83 da do preço.
 """,
             en="""
 Here, unlike in notebook 02, the tests do not involve variances on the boundary of the parameter space: they \
@@ -1421,9 +1122,7 @@ concern fixed effects, and the reference is an ordinary χ², which is why `p_va
 statistics are 101,800 (F0 against F1, 3 degrees of freedom), 41,481 (F1 against F2, 3 degrees) and 1,225 (F2 \
 against F3, 7 degrees). The first two p-values are below 1e-300 and the third is 2.69e-260.
 
-With 347,092 rows, however, any term would have a negligible p-value, so significance alone says little. The \
-relevant criterion is magnitude: the price block makes the largest contribution (101,800), followed by the \
-promotion block (41,481), while seasonality, at 1,225, is about 83 times smaller than price.
+The 347,092 training rows give the tests sensitivity to detect small contributions. By the likelihood-ratio statistic, the price block adds the most to fit (101,800), followed by the promotion block (41,481). The statistic for the seasonality and trend block (1,225) is about 1/83 that of price.
 """,
         ),
         md(
@@ -1450,16 +1149,10 @@ display(fixef[~fixef["term"].str.startswith(("SIN_", "COS_"))])
 """),
         md(
             pt="""
-Como a resposta está em log, um coeficiente de log-desconto é uma elasticidade, e a tabela a seguir converte cada \
-coeficiente (e os seus limites de confiança, pela mesma transformação) em variação percentual das unidades: uma \
-redução de 10% no preço dentro do desconto, um aumento de 10% no preço regular, e a presença de cada promoção ou \
-de mais um ano. Cada linha mantém constantes as demais covariáveis.
+A tabela converte coeficientes e limites de confiança para variações percentuais nas unidades. A comparação usa uma redução de 10% na razão entre preço e preço base, um aumento de 10% no preço regular, a presença de cada promoção ou a passagem de um ano. Em cada linha, as demais covariáveis ficam constantes.
 """,
             en="""
-Because the response is in logs, a log-discount coefficient is an elasticity, and the following table converts \
-each coefficient (and its confidence limits, through the same transformation) into a percentage change in units: a \
-10% price cut through the discount, a 10% rise in the regular price, and the presence of each promotion or of one \
-more year. Each row holds the other covariates constant.
+The table converts coefficients and confidence limits to percentage changes in units. The comparisons use a 10% reduction in the price-to-base-price ratio, a 10% increase in regular price, the presence of each promotion or the passage of one year. The other covariates are held constant in each row.
 """,
         ),
         code("""
@@ -1468,14 +1161,14 @@ with pd.option_context("display.float_format", "{:,.1f}".format):
 """),
         md(
             pt="""
-O coeficiente do desconto é −1,685 (IC 95% de Wald: −1,706 a −1,664), de modo que um desconto 10% mais profundo \
+O coeficiente do desconto é −1,685 (IC 95% de Wald: −1,706 a −1,664), de modo que uma redução de 10% na razão entre preço e preço base \
 está associado a cerca de 19,4% mais unidades (IC 95%: 19,2% a 19,7%). O preço regular, medido dentro do par, tem \
 coeficiente −1,592, e um preço regular 10% maior está associado a cerca de 14,1% menos unidades. O encarte tem \
 coeficiente 0,497, ou seja, cerca de 64,4% mais unidades, e o display, 0,409, ou cerca de 50,5% mais, ambos com o \
 desconto e as demais covariáveis mantidos constantes. A tendência é de −0,021 por ano, cerca de 2,1% menos \
 unidades a cada ano.
 
-**TPR.** O coeficiente de `TPR_ONLY` é −0,041, ou seja, −4,0% nas unidades (IC 95%: −4,7% a −3,3%). Esse valor é a \
+O coeficiente de `TPR_ONLY` é −0,041, ou seja, −4,0% nas unidades (IC 95%: −4,7% a −3,3%). Esse valor é a \
 transformação do coeficiente da flag com a profundidade do desconto e as demais covariáveis mantidas constantes, \
 isto é, a comparação entre duas semanas com o mesmo desconto, uma marcada como TPR e outra sem promoção. Essa \
 comparação praticamente não existe nos dados de treino: as 47.610 linhas `TPR_ONLY` têm todas desconto (nenhuma \
@@ -1498,13 +1191,13 @@ com preços regulares médios diferentes e, por isso, é uma associação **entr
 preço de um item.
 """,
             en="""
-The discount coefficient is −1.685 (95% Wald CI: −1.706 to −1.664), so a 10% deeper discount is associated with \
+The discount coefficient is −1.685 (95% Wald CI: −1.706 to −1.664), so a 10% reduction in the price-to-base-price ratio is associated with \
 about 19.4% more units (95% CI: 19.2% to 19.7%). The regular price, measured within the pair, has a coefficient of \
 −1.592, and a 10% higher regular price is associated with about 14.1% fewer units. Feature has a coefficient of \
 0.497, that is, about 64.4% more units, and display 0.409, or about 50.5% more, both with the discount and the \
 other covariates held constant. The trend is −0.021 per year, about 2.1% fewer units each year.
 
-**TPR.** The coefficient of `TPR_ONLY` is −0.041, that is, −4.0% in units (95% CI: −4.7% to −3.3%). This value is \
+The coefficient of `TPR_ONLY` is −0.041, that is, −4.0% in units (95% CI: −4.7% to −3.3%). This value is \
 the transformation of the flag coefficient with the depth of the discount and the other covariates held constant, \
 that is, the comparison between two weeks with the same discount, one flagged as TPR and one with no \
 promotion. That comparison practically does not exist in the training data: all 47,610 `TPR_ONLY` rows have a \
@@ -1531,17 +1224,12 @@ changing the price of an item.
             pt="""
 ## 4. Cenários conjuntos de desconto e promoção
 
-Como o desconto e o tipo de promoção variam juntos nos dados, a leitura de negócio se apoia em cenários que \
-combinam os dois, e não em contrastes isolados de um coeficiente. A tabela cruzada a seguir mostra a sobreposição \
-nas linhas de treino: o número de linhas de cada tipo de promoção em cada faixa de desconto (`1 − PRICE / \
-BASE_PRICE`).
+As combinações de desconto e promoção são usadas para comparar cenários de negócio. A tabela cruzada conta as linhas de treino por tipo de promoção e faixa de desconto (`1 − PRICE / BASE_PRICE`).
 """,
             en="""
 ## 4. Joint discount-and-promotion scenarios
 
-Because the discount and the promotion type vary together in the data, the business reading rests on scenarios \
-that combine the two, not on isolated contrasts of one coefficient. The cross-tabulation below shows the overlap \
-in the training rows: the number of rows of each promotion type in each discount band (`1 − PRICE / BASE_PRICE`).
+Business scenarios compare combinations of discount and promotion. The cross-tabulation counts training rows by promotion type and discount band (`1 − PRICE / BASE_PRICE`).
 """,
         ),
         code("""
@@ -1584,12 +1272,7 @@ with pd.option_context("display.float_format", "{:,.1f}".format):
 """),
         md(
             pt="""
-Uma TPR com 10% de desconto está associada a 14,6% mais unidades que a semana regular (9.393 linhas de treino, \
-2,7%), e com 20% de desconto a 39,8% mais (10.185 linhas, 2,9%); os dois cenários estão dentro das faixas \
-observadas. O encarte com 20% de desconto (+139,5%, 2.574 linhas), o display com 20% (+119,2%, 2.272 linhas) e o \
-encarte com display e 25% de desconto (+301,8%, 2.767 linhas) também têm suporte, embora pequeno, de 0,7% a 0,8% \
-das linhas cada um. Sem desconto, o display (+50,5%, 8.622 linhas, 2,5%) e o encarte (+64,4%, 1.055 linhas, 0,3%) \
-têm o suporte mais baixo entre os cenários, sobretudo o encarte.
+Em relação à semana regular, uma TPR com 10% de desconto está associada a 14,6% mais unidades (9.393 linhas de treino, 2,7%). Com 20%, a diferença estimada é de 39,8% (10.185 linhas, 2,9%). Encarte com 20% (+139,5%, 2.574 linhas), display com 20% (+119,2%, 2.272 linhas) e encarte com display e 25% (+301,8%, 2.767 linhas) têm entre 0,7% e 0,8% das linhas cada. Sem desconto, o display está associado a +50,5% (8.622 linhas, 2,5%) e o encarte a +64,4% (1.055 linhas, 0,3%). O encarte sem desconto tem o menor suporte observado.
 
 Os valores dependem da forma funcional. A elasticidade é constante em log(1 − d), as flags e o desconto são \
 aditivos na escala logarítmica, e encarte e display não têm interação estimada: o valor de 301,8% para encarte com \
@@ -1602,12 +1285,7 @@ exigiria identificação causal e dados de margem. A camada de decisão do proje
 cenários.
 """,
             en="""
-A TPR with a 10% discount is associated with 14.6% more units than the regular week (9,393 training rows, 2.7%), \
-and with a 20% discount with 39.8% more (10,185 rows, 2.9%); both scenarios lie within the observed ranges. \
-Feature with a 20% discount (+139.5%, 2,574 rows), display with 20% (+119.2%, 2,272 rows) and feature with display \
-at a 25% discount (+301.8%, 2,767 rows) also have support, although small, of 0.7% to 0.8% of the rows each. \
-Without a discount, display (+50.5%, 8,622 rows, 2.5%) and feature (+64.4%, 1,055 rows, 0.3%) have the lowest \
-support among the scenarios, especially feature.
+Relative to a regular week, TPR at a 10% discount is associated with 14.6% more units (9,393 training rows, 2.7%). At 20%, the estimated difference is 39.8% (10,185 rows, 2.9%). Feature at 20% (+139.5%, 2,574 rows), display at 20% (+119.2%, 2,272 rows) and feature with display at 25% (+301.8%, 2,767 rows) each account for 0.7% to 0.8% of rows. Without a discount, display is associated with +50.5% (8,622 rows, 2.5%) and feature with +64.4% (1,055 rows, 0.3%). Feature without a discount has the lowest observed support.
 
 The values depend on the functional form. The elasticity is constant in log(1 − d), the flags and the discount are \
 additive on the log scale, and feature and display have no estimated interaction: the 301.8% for feature with \
@@ -1624,14 +1302,12 @@ analysis.
             pt="""
 ## 5. Sazonalidade e tendência
 
-Os seis termos de Fourier não têm leitura direta individualmente. O perfil sazonal que eles implicam é calculado a \
-seguir, como efeito percentual sobre as unidades em relação à semana média do ano.
+Os seis termos de Fourier são combinados em um perfil sazonal, expresso como a diferença percentual nas unidades em relação à semana média do ano.
 """,
             en="""
 ## 5. Seasonality and trend
 
-The six Fourier terms have no direct reading individually. The seasonal profile they imply is computed next, as a \
-percentage effect on units relative to the average week of the year.
+The six Fourier terms are combined into a seasonal profile, expressed as the percentage difference in units from the average week of the year.
 """,
         ),
         code("""
@@ -1644,8 +1320,7 @@ display(fixef[fixef["term"].str.startswith(("SIN_", "COS_"))])
             pt="""
 A amplitude da sazonalidade é pequena frente às associações de preço e de promoção: a semana mais fraca do ano (a \
 semana 29) tem cerca de 4,2% menos unidades que a semana média, e a mais forte (a semana 2), cerca de 6,6% mais. A \
-diferença entre os extremos é de cerca de 11 pontos percentuais, a ser comparada ao valor de 19,4% de um desconto \
-10% mais profundo. Alguns termos individuais têm coeficientes pequenos (por exemplo, `SIN_1`, −0,002, cujo \
+diferença entre os extremos é de cerca de 11 pontos percentuais, frente aos 19,4% associados a uma redução de 10% na razão entre preço e preço base. Alguns termos individuais têm coeficientes pequenos (por exemplo, `SIN_1`, −0,002, cujo \
 intervalo inclui o zero), mas o bloco como um todo é claramente diferente de zero pelo teste de razão de \
 verossimilhanças (1.225). A tendência, por fim, é de uma queda de cerca de 2,1% por ano (IC 95%: −2,5% a −1,8%) \
 nas duas temporadas de treino, após o controle de preço, promoção e sazonalidade.
@@ -1653,8 +1328,7 @@ nas duas temporadas de treino, após o controle de preço, promoção e sazonali
             en="""
 The amplitude of seasonality is small compared with the price and promotion associations: the weakest week of the \
 year (week 29) has about 4.2% fewer units than the average week, and the strongest (week 2) about 6.6% more. The \
-difference between the extremes is about 11 percentage points, to be compared with the 19.4% associated with a 10% \
-deeper discount. Some individual terms have small coefficients (for example, `SIN_1`, −0.002, whose interval \
+difference between the extremes is about 11 percentage points, to be compared with the 19.4% associated with a 10% reduction in the price-to-base-price ratio. Some individual terms have small coefficients (for example, `SIN_1`, −0.002, whose interval \
 includes zero), but the block as a whole is clearly different from zero by the likelihood-ratio test (1,225). The \
 trend, finally, is a decline of about 2.1% per year (95% CI: −2.5% to −1.8%) over the two training seasons, after \
 controlling for price, promotion and seasonality.
@@ -1691,11 +1365,7 @@ preço e promoção explicam cerca de um terço da variância semanal dentro do 
 do par explicando parte da diferença entre produtos. Já as variâncias de loja (−2,6%) e de par (−4,2%) aumentam \
 levemente.
 
-Esses valores negativos pequenos são um artefato conhecido do pseudo-R² em modelos multinível: quando um preditor \
-absorve variância em um nível, a variância pode ser redistribuída entre os níveis, e o componente de outro nível \
-pode crescer um pouco sem que isso indique um modelo pior. Não se deve interpretá-los como perda de informação, \
-apenas como indicação de que preço e promoção atuam sobretudo no resíduo e no produto, e muito pouco na loja e no \
-par.
+Os pseudo-R² negativos correspondem a aumentos pequenos nos componentes estimados de loja e par. Ao acrescentar preditores, a variância pode se redistribuir entre os níveis. Neste ajuste, as maiores reduções ocorreram no resíduo e no componente de produto.
 """,
             en="""
 The residual, which represents the week-to-week movement within the pair, falls by 34.4% (from 0.415 to 0.272), so \
@@ -1704,11 +1374,7 @@ price and promotion explain about a third of the weekly variance within the pair
 average price of the pair explaining part of the difference between products. The store (−2.6%) and pair (−4.2%) \
 variances, in contrast, increase slightly.
 
-These small negative values are a known artefact of pseudo-R² in multilevel models: when a predictor absorbs \
-variance at one level, the variance can be reallocated between levels, and the component of another level can grow \
-a little without indicating a worse model. They should not be read as a loss of information, only as an indication \
-that price and promotion act mostly on the residual and on the product, and very little on the store and on the \
-pair.
+The negative pseudo-R² values correspond to small increases in the estimated store and pair components. Adding predictors can redistribute variance across levels. In this fit, the largest reductions were in the residual and product components.
 """,
         ),
         md(
@@ -1745,11 +1411,7 @@ preço regular dentro do par (−1,459 contra −1,592). Nenhum dos intervalos d
 multinível do desconto, e esses intervalos, além disso, supõem linhas independentes, hipótese que o próprio \
 notebook 02 mostrou ser inadequada (correlação de 75,4% entre semanas do mesmo par).
 
-Esses resultados são consistentes com a ideia de que o OLS agrupado mistura variação entre pares e variação dentro \
-do par: se descontos e promoções se concentram em pares cujos níveis de vendas já diferem, essa composição se \
-confunde com a associação do desconto. Essa é uma explicação compatível com os números, e não uma demonstração. O \
-que os números mostram, de forma concreta, é que ignorar a hierarquia altera a resposta: a elasticidade ao \
-desconto estimada, a base de qualquer análise de preço, muda de −0,36 para −1,69 conforme o método.
+O OLS agrupado combina variação entre pares e dentro dos pares. Se descontos e promoções se concentram em pares com níveis de vendas diferentes, a composição dos pares pode mudar a associação estimada. Essa é uma explicação possível para a diferença observada entre a elasticidade de −0,36 no OLS agrupado e a de −1,69 no multinível.
 """,
             en="""
 The elasticity to the discount is −0.359 in the pooled OLS, −1.405 in the OLS with product fixed effects and \
@@ -1761,12 +1423,7 @@ feature (0.454), but still diverges on display (0.551) and on the within-pair re
 intervals, moreover, assume independent rows, a hypothesis that notebook 02 itself showed to be inadequate (a \
 correlation of 75.4% between weeks of the same pair).
 
-These results are consistent with the idea that the pooled OLS mixes variation between pairs and variation within \
-the pair: if discounts and promotions are concentrated in pairs whose sales levels already differ, this \
-composition is entangled with the association of the discount. This is an explanation compatible with the numbers, \
-not a demonstration. What the numbers show, concretely, is that ignoring the hierarchy changes the answer: the \
-estimated elasticity to the discount, the basis of any price analysis, changes from −0.36 to −1.69 depending on \
-the method.
+Pooled OLS combines between-pair and within-pair variation. If discounts and promotions are concentrated in pairs with different sales levels, the mix of pairs can change the estimated association. This is one possible explanation for the observed difference between the elasticity of −0.36 in pooled OLS and −1.69 in the multilevel model.
 """,
         ),
         md(
@@ -1793,18 +1450,10 @@ display(interpret.promo_by_discount_band(fallback, LANG))
 """),
         md(
             pt="""
-O painel tem 141 linhas de fallback, das quais 111 estão no treino. Todas estão em semanas com promoção: 18 só com \
-encarte, 69 só com display e 24 com os dois, nenhuma com TPR, e todas registram desconto zero, ainda que um \
-desconto possa ter ocorrido. O preço-base parece faltar justamente em semanas promocionais, e esse é o custo da \
-regra. A sensibilidade reajusta o F3 por REML sem essas 111 linhas (execução `fixed_effects_no_fallback`), e a \
-tabela a seguir a coloca ao lado do F3.
+O painel tem 141 linhas com preço base de fallback, das quais 111 estão no treino. As linhas de treino têm 18 ocorrências só de encarte, 69 só de display e 24 dos dois. Todas registram desconto zero, mesmo nas semanas em que pode ter havido desconto. Para medir a sensibilidade ao fallback, o F3 foi reajustado por REML após excluir essas 111 linhas (`fixed_effects_no_fallback`).
 """,
             en="""
-The panel has 141 fallback rows, of which 111 are in the training sample. All of them are in promotion weeks: 18 \
-with feature only, 69 with display only and 24 with both, none with TPR, and all record a zero discount, although \
-a discount may have occurred. The base price appears to be missing precisely in promotion weeks, and that is the \
-cost of the rule. The sensitivity analysis refits F3 by REML without those 111 rows (run \
-`fixed_effects_no_fallback`), and the following table places it next to F3.
+The panel has 141 fallback base-price rows, of which 111 are in training. The training rows include 18 with feature only, 69 with display only and 24 with both. All record a zero discount, even in weeks when a discount may have occurred. To assess sensitivity to the fallback, F3 was refitted by REML after excluding those 111 rows (`fixed_effects_no_fallback`).
 """,
         ),
         code("""
@@ -1968,14 +1617,7 @@ desvio-padrão esperado de 0,009.
 Os resíduos marginais, que não descontam os efeitos aleatórios, também foram guardados na execução. Eles refletem \
 sobretudo os efeitos de loja, produto e par, e não informam sobre os intervalos de Wald.
 
-Em conjunto, os resíduos condicionais do F3 não são independentes: há correlação serial positiva dentro do par e \
-choques comuns de semana e de categoria. Essa dependência diz respeito à incerteza, e não às estimativas pontuais, \
-que coincidem com as de um estimador de efeitos fixos de par e de semana (seção 9). Os intervalos de Wald do F3 \
-são condicionais à especificação do F3 e estreitos demais. Depois deste notebook, foram calculados erros-padrão \
-agrupados por par e por semana (Cameron et al., 2011) no estimador de efeitos fixos (execução `fe_sensitivity`, \
-registro de decisões, \
-emenda E4): eles ficam de 4,1 a 7,4 vezes os de Wald do F3, com o agrupamento por semana dominante, e os sinais \
-das estimativas se mantêm.
+Os resíduos condicionais de F3 têm correlação serial positiva dentro do par e choques comuns de semana e categoria. Os diagnósticos indicam que a dependência residual amplia a incerteza em relação aos intervalos de Wald, embora as estimativas pontuais fiquem próximas das do modelo com efeitos fixos de par e de semana (seção 9). No estimador de efeitos fixos, os erros-padrão agrupados por par e por semana (Cameron et al., 2011) ficam de 4,1 a 7,4 vezes os de Wald do F3, com maior contribuição do agrupamento por semana. Os sinais das estimativas se mantêm (`fe_sensitivity`, emenda E4 do registro de decisões).
 """,
             en="""
 The second chart shows the mean residual of each training week with the 95% band expected if the rows were \
@@ -1990,27 +1632,14 @@ standard deviation of 0.009.
 The marginal residuals, which do not subtract the random effects, were also stored in the run. They mostly reflect \
 the store, product and pair effects, and are not informative about the Wald intervals.
 
-Taken together, the conditional residuals of F3 are not independent: there is positive serial correlation within \
-the pair and shocks common to the week and the category. This dependence concerns the uncertainty, not the point \
-estimates, which coincide with those of a pair and week fixed-effects estimator (section 9). The Wald intervals of \
-F3 are conditional on the F3 specification and too narrow. After this notebook, standard errors clustered by pair \
-and by week (Cameron et al., 2011) were computed on the fixed-effects estimator (run `fe_sensitivity`, decision \
-register, amendment E4): \
-they are 4.1 to 7.4 times the F3 Wald ones, with week clustering dominant, and the signs of the estimates hold.
+F3's conditional residuals show positive within-pair serial correlation and shocks shared by week and category. The diagnostics indicate that residual dependence increases uncertainty relative to the Wald intervals, while point estimates are close to those from the model with pair and week fixed effects (section 9). In the fixed-effects estimator, standard errors clustered by pair and week (Cameron et al., 2011) are 4.1 to 7.4 times the F3 Wald standard errors, with week clustering contributing more. The signs of the estimates are unchanged (`fe_sensitivity`, amendment E4 of the decision log).
 """,
         ),
         md(
             pt="""
 ## 11. Limitações
 
-Preço e promoção são decididos pela própria rede, e não atribuídos ao acaso. Se as promoções são planejadas para \
-semanas de demanda já alta (ou se os descontos são aplicados em resposta a estoques e à concorrência), parte da \
-associação estimada reflete essa seleção, e os coeficientes descrevem associações condicionais, não efeitos \
-causais (endogeneidade; Villas-Boas & Winer, 1999). Uma recomendação de preço ou um ROI incremental exigiria \
-identificação causal e dados de \
-margem, que o projeto não tem. A especificação log-log também impõe uma elasticidade constante: um desconto de 10% \
-e um de 30% atuam com a mesma elasticidade, o que é uma aproximação, e a sobreposição entre tipos de promoção e \
-faixas de desconto (seção 4) limita as comparações entre promoções.
+A rede decide preços e promoções. Ela pode planejar promoções para semanas de demanda alta ou aplicar descontos em resposta a estoques e à concorrência. Nesse caso, parte da associação estimada reflete os critérios de seleção das promoções e dos preços (endogeneidade, Villas-Boas & Winer, 1999). Uma recomendação de preço ou um ROI incremental exige identificação causal e dados de margem. A especificação log-log aproxima a relação com uma elasticidade constante para descontos como 10% e 30%. As comparações entre promoções ficam restritas pelas faixas de desconto em que elas aparecem (seção 4).
 
 A dependência residual foi medida (seção 10): há correlação serial de 0,196 entre semanas consecutivas do mesmo \
 par e choques comuns de semana. Ela não foi modelada, e os intervalos de Wald do F3 são condicionais à sua \
@@ -2019,20 +1648,10 @@ Além disso, a formulação (a decomposição de preço da D12 e as demais) foi 
 painel, que incluiu as 52 semanas finais, e é uma decisão de desenvolvimento. Nenhum modelo foi ajustado nessas \
 semanas, e nenhuma comparação preditiva foi calculada nelas.
 
-Somente as semanas observadas foram modeladas (D3), de modo que as estimativas são condicionais a haver venda no \
-par naquela semana, e não incluem semanas sem registro, que poderiam ser vendas zero ou ruptura. Por fim, o modelo \
-estima uma única elasticidade para todas as lojas e produtos, ao passo que o interesse do projeto está justamente \
-em como o efeito de preço varia entre eles. Essa última limitação motiva o notebook 04.
+Foram modeladas as semanas com vendas registradas no par (D3). Semanas sem registro podem corresponder a vendas zero ou a ruptura. O F3 estima uma elasticidade comum a lojas e produtos. A variação da elasticidade entre eles é examinada no notebook 04.
 """,
             en="""
-Price and promotion are decided by the retailer itself, and are not assigned at random. If promotions are planned \
-for weeks of already high demand (or if discounts are applied in response to inventory and competition), part of \
-the estimated association reflects this selection, and the coefficients describe conditional associations, not \
-causal effects (endogeneity; Villas-Boas & Winer, 1999). A pricing recommendation or an incremental ROI would \
-require causal identification \
-and margin data, which the project does not have. The log-log specification also imposes a constant elasticity: a \
-10% discount and a 30% discount act with the same elasticity, which is an approximation, and the overlap between \
-promotion types and discount bands (section 4) limits the comparisons between promotions.
+The retailer sets prices and promotions. It may plan promotions for high-demand weeks or offer discounts in response to inventory and competition. In that case, part of the estimated association reflects how prices and promotions are selected (endogeneity, Villas-Boas & Winer, 1999). Pricing recommendations or incremental ROI require causal identification and margin data. The log-log specification approximates the relationship using a constant elasticity at discounts such as 10% and 30%. Comparisons between promotions are limited by the discount bands in which they appear (section 4).
 
 Residual dependence was measured (section 10): there is a serial correlation of 0.196 between consecutive weeks of \
 the same pair and shocks common to the week. It was not modelled, and the Wald intervals of F3 are conditional on \
@@ -2041,34 +1660,25 @@ indicate. In addition, the formulation (the price decomposition of D12 and the o
 initial exploration of the panel, which included the final 52 weeks, and is a development decision. No model was \
 fitted on those weeks, and no predictive comparison was computed on them.
 
-Only the observed weeks were modelled (D3), so the estimates are conditional on there being a sale in the pair \
-that week, and do not include weeks without a record, which could be zero sales or a stock-out. Finally, the model \
-estimates a single elasticity for all stores and products, whereas the interest of the project lies precisely in \
-how the price effect varies among them. This last limitation motivates notebook 04.
+The model was fitted to weeks with recorded sales within a pair (D3). Weeks without records may reflect zero sales or stock-outs. F3 estimates a common elasticity across stores and products. Variation in elasticity across stores and products is examined in notebook 04.
 """,
         ),
         md(
             pt="""
 ## 12. Conclusões e próximo passo
 
-Com a hierarquia mantida (interceptos aleatórios de loja, de produto e de par), um desconto 10% mais profundo está \
+Com a hierarquia mantida (interceptos aleatórios de loja, de produto e de par), uma redução de 10% na razão entre preço e preço base está \
 associado a cerca de 19,4% mais unidades (elasticidade de −1,685), e um preço regular 10% maior a cerca de 14,1% \
 menos. O encarte (+64,4%) e o display (+50,5%) estão associados a mais unidades além do desconto, e a flag de TPR \
 tem coeficiente de −0,041 (−4,0%), valor que depende de comparar semanas sem promoção com o mesmo desconto, \
-comparação que os dados quase não contêm. Para a leitura de negócio, os cenários conjuntos de desconto e promoção \
-da seção 4 (por exemplo, TPR com 10% de desconto, +14,6%, e com 20%, +39,8%) têm suporte nos dados, e os que \
-combinam encarte ou display sem desconto têm suporte menor. A tendência é de −2,1% por ano, e a sazonalidade, de \
-−4,2% a +6,6% sobre a semana média, é pequena frente às associações de preço. Todos esses valores são associações \
+comparação que os dados quase não contêm. Os cenários de TPR da seção 4 estimam +14,6% com 10% de desconto e +39,8% com 20%. Ambos têm suporte nos dados. O encarte sem desconto tem o menor suporte observado (0,3% do treino). A tendência é de −2,1% por ano. A sazonalidade varia de −4,2% a +6,6% em relação à semana média, uma faixa menor que a variação de 19,4% associada ao preço. Todos esses valores são associações \
 condicionais em semanas com transações registradas.
 
 Preço e promoção explicam 34,4% da variância semanal dentro do par e 29,3% da variância entre produtos, e os \
 pequenos valores negativos de pseudo-R² nos níveis de loja e de par são um artefato conhecido. O OLS agrupado \
 estima uma elasticidade ao desconto de −0,36, contra −1,69 do multinível. A exclusão das 111 linhas de fallback \
 quase não altera as estimativas, e a regressão com efeitos fixos de par e de semana reproduz as estimativas \
-pontuais do F3 em até 0,02, com erros-padrão agrupados de 2,2 a 4,1 vezes maiores. Os resíduos condicionais têm \
-correlação de 0,196 entre semanas consecutivas e choques comuns de semana. A dependência afeta a incerteza, e não \
-as estimativas pontuais, e os intervalos de Wald do F3 são condicionais à especificação e estreitos demais; os \
-erros-padrão agrupados por par e por semana, registrados na emenda E4, ficam de 4,1 a 7,4 vezes maiores.
+pontuais do F3 em até 0,02, com erros-padrão agrupados de 2,2 a 4,1 vezes maiores. Os resíduos condicionais têm correlação de 0,196 entre semanas consecutivas e apresentam choques comuns de semana. A dependência residual indica que os intervalos de Wald do F3 subestimam a incerteza. Os erros-padrão agrupados por par e por semana, registrados na emenda E4, são de 4,1 a 7,4 vezes os de Wald do F3.
 
 O notebook 04 apresenta os resultados do protocolo pré-registrado P1, aprovado com emendas, sobre se deixar a \
 elasticidade ao desconto variar entre lojas e produtos melhora a previsão fora da amostra.
@@ -2076,24 +1686,18 @@ elasticidade ao desconto variar entre lojas e produtos melhora a previsão fora 
             en="""
 ## 12. Conclusions and next step
 
-With the hierarchy kept (random intercepts for store, product and pair), a 10% deeper discount is associated with \
+With the hierarchy kept (random intercepts for store, product and pair), a 10% reduction in the price-to-base-price ratio is associated with \
 about 19.4% more units (elasticity of −1.685), and a 10% higher regular price with about 14.1% fewer. Feature \
 (+64.4%) and display (+50.5%) are associated with more units beyond the discount, and the TPR flag has a \
 coefficient of −0.041 (−4.0%), a value that depends on comparing weeks with no promotion at the same discount, a \
-comparison that the data hardly contain. For the business reading, the joint discount-and-promotion scenarios of \
-section 4 (for example, TPR with a 10% discount, +14.6%, and with 20%, +39.8%) have support in the data, and those \
-that combine feature or display without a discount have lower support. The trend is −2.1% per year, and \
-seasonality, from −4.2% to +6.6% around the average week, is small compared with the price associations. All these \
+comparison that the data hardly contain. The TPR scenarios in section 4 estimate +14.6% at a 10% discount and +39.8% at 20%. Both have support in the data. Feature without a discount has the lowest observed support (0.3% of training rows). The trend is −2.1% per year. Seasonality ranges from −4.2% to +6.6% relative to the average week, a narrower range than the 19.4% change associated with price. All these \
 values are conditional associations in weeks with recorded transactions.
 
 Price and promotion explain 34.4% of the weekly variance within the pair and 29.3% of the variance between \
 products, and the small negative pseudo-R² values at the store and pair levels are a known artefact. The pooled \
 OLS estimates a discount elasticity of −0.36, against −1.69 for the multilevel model. Excluding the 111 fallback \
 rows barely changes the estimates, and the regression with pair and week fixed effects reproduces the F3 point \
-estimates within 0.02, with clustered standard errors 2.2 to 4.1 times larger. The conditional residuals have a \
-correlation of 0.196 between consecutive weeks and shocks common to the week. The dependence affects the \
-uncertainty, not the point estimates, and the Wald intervals of F3 are conditional on the specification and too \
-narrow; the standard errors clustered by pair and by week, recorded in amendment E4, are 4.1 to 7.4 times larger.
+estimates within 0.02, with clustered standard errors 2.2 to 4.1 times larger. The conditional residuals have a correlation of 0.196 between consecutive weeks and show shocks shared within weeks. Residual dependence indicates that the F3 Wald intervals understate uncertainty. The standard errors clustered by pair and week, recorded in amendment E4, are 4.1 to 7.4 times the F3 Wald standard errors.
 
 Notebook 04 presents the results of the pre-registered protocol P1, approved with amendments, on whether letting \
 the discount elasticity vary across stores and products improves out-of-sample prediction.
@@ -2138,24 +1742,14 @@ def protocol_p1_cells() -> list[Cell]:
             pt="""
 # 04 · Protocolo P1: inclinações aleatórias e comparação fora da amostra
 
-Este notebook apresenta o protocolo pré-registrado P1 a partir de artefatos gravados. Nenhum modelo é ajustado ou \
-pontuado aqui: os ajustes e a pontuação final foram feitos por scripts, uma vez cada, e gravados em `outputs/runs`. \
-Para o P1, são lidas três execuções (`p1_folds`, `gpboost_tuning` e `p1_final`), nas duas versões de idioma. \
-As métricas do P1 são erros de previsão de log(unidades), \
-condicionais ao preço e à promoção realizados na semana. A seção 9 lê uma quarta execução com um teste \
-inferencial complementar, feito somente no treino depois da conclusão do P1.
+O protocolo pré-registrado P1 mede o erro de previsão de log(unidades), condicionada ao preço e à promoção observados na semana. Os scripts ajustaram os modelos e fizeram a avaliação final uma vez cada. As duas versões deste notebook leem as mesmas três execuções em `outputs/runs` (`p1_folds`, `gpboost_tuning` e `p1_final`). A seção 9 consulta uma quarta execução, com o teste inferencial complementar feito somente no treino após a conclusão do P1.
 
 *Dados: dunnhumby Source Files – Breakfast at the Frat.*
 """,
             en="""
 # 04 · Protocol P1: random slopes and out-of-sample comparison
 
-This notebook presents the pre-registered protocol P1 from stored artefacts. No model is fitted or scored here: \
-the fits and the final scoring were made by scripts, once each, and stored in `outputs/runs`. Both language \
-versions read the same three P1 runs (`p1_folds`, `gpboost_tuning` and `p1_final`). The P1 metrics are \
-prediction errors of log(units), conditional on the price and promotion \
-realised in the week. Section 9 reads a fourth run for a supplementary inferential test conducted only on the \
-training data after P1 was completed.
+The pre-registered P1 protocol measures prediction error for log(units), conditional on the price and promotion observed that week. Scripts fitted the models and ran the final evaluation once each. Both language versions of this notebook read the same three runs in `outputs/runs` (`p1_folds`, `gpboost_tuning` and `p1_final`). Section 9 reads a fourth run for the supplementary inferential test conducted on training data alone after P1 ended.
 
 *Data: dunnhumby Source Files – Breakfast at the Frat.*
 """,
@@ -2169,20 +1763,9 @@ fixados no código, de modo que reexecutar o notebook lê sempre os mesmos artef
 
 ## 1. A pergunta e o pré-registro
 
-A pergunta do protocolo é se permitir que a elasticidade ao desconto varie entre lojas e produtos (inclinações \
-aleatórias de `LOG_DISC`; Gelman & Hill, 2007) melhora a previsão fora da amostra, em especial para os pares loja \
-× produto com pouco \
-histórico. A razão é que, num par curto, uma elasticidade estimada só com as semanas do próprio par é instável, e o \
-encolhimento (Robinson, 1991) em direção à média da loja e do produto poderia estabilizá-la. O notebook 03 estimou \
-uma única \
-elasticidade comum a todos os pares, e é essa limitação que o P1 examina.
+O notebook 03 estimou uma elasticidade ao desconto comum a todos os pares loja × produto. O P1 avalia se permitir que essa elasticidade varie entre lojas e produtos melhora a previsão fora da amostra, sobretudo para pares com pouco histórico. Para isso, testa inclinações aleatórias de `LOG_DISC` (Gelman & Hill, 2007). Quando há poucas semanas no histórico, a elasticidade ajustada só com os dados do par pode ser instável. O encolhimento em direção às médias da loja e do produto pode estabilizar a estimativa (Robinson, 1991).
 
-O protocolo foi pré-registrado (Nosek et al., 2018; Weston et al., 2019): foi escrito e aprovado, com seis emendas \
-(E1 a E6), antes de qualquer candidato ser \
-ajustado, e fixou de antemão os candidatos, a ordem de comparação, a regra de parada, a métrica e as populações. As \
-emendas definiram, entre outros pontos, que o candidato inicial C0 é o F3 do notebook 03 (E1), como a cobertura do \
-OLS por par é medida (E2), a regra sequencial de parada (E3) e o congelamento anterior à avaliação final (E6). \
-Nenhum limiar nem fórmula foi alterado depois de ver os resultados das dobras internas.
+O protocolo e suas seis emendas (E1 a E6) foram aprovados antes do ajuste de qualquer candidato, conforme a prática de pré-registro (Nosek et al., 2018; Weston et al., 2019). O registro fixou os candidatos, a ordem de comparação, a regra de parada, a métrica e as populações. As emendas definiram o F3 do notebook 03 como candidato inicial C0 (E1), a cobertura do OLS por par (E2), a regra sequencial de parada (E3) e o congelamento antes da avaliação final (E6). Os limiares e as fórmulas já estavam definidos quando saíram os resultados das dobras internas.
 
 Todos os candidatos compartilham a parte fixa do F3 (decisões D12 a D14) e as mesmas linhas.
 
@@ -2197,12 +1780,7 @@ rejeitado |
 | C4 | O melhor anterior, mais inclinações aleatórias de `FEATURE` e `DISPLAY` por produto | Não ajustado (a \
 sequência parou) |
 
-Cada candidato é comparado com o último modelo aceito, na ordem C1, C2, C3, C4. Para ser aceito, precisa convergir \
-sem singularidade (Bates et al., 2015) e, em caso de aviso, com uma nova tentativa com o otimizador `nloptwrap`, \
-ter MAE por par menor nas \
-duas dobras internas e reduzir o MAE relativo em pelo menos 0,5% na média das dobras. Se falhar em qualquer \
-condição, o último modelo aceito é mantido e a sequência termina, de modo que um candidato posterior não é ajustado \
-quando o anterior falha.
+A sequência compara C1, C2, C3 e C4, nessa ordem, sempre com o último modelo aceito. Para ser aceito, o candidato precisa convergir sem singularidade (Bates et al., 2015), com nova tentativa pelo otimizador `nloptwrap` em caso de aviso. O MAE por par deve ser menor nas duas dobras internas, com redução relativa de pelo menos 0,5% na média das dobras. Se alguma condição falhar, a sequência termina e mantém o último modelo aceito.
 
 A seleção usa duas dobras internas (Tashman, 2000) dentro das 104 semanas de treino. Na dobra A, o ajuste usa as \
 semanas 0 a 51 e a \
@@ -2216,21 +1794,9 @@ code, so re-running the notebook always reads the same artefacts.
 
 ## 1. The question and the pre-registration
 
-The question of the protocol is whether letting the discount elasticity vary across stores and products (random \
-slopes of `LOG_DISC`; Gelman & Hill, 2007) improves out-of-sample prediction, especially for store × product pairs \
-with little history. \
-The reason is that, in a short pair, an elasticity estimated only from the weeks of the pair itself is unstable, \
-and shrinkage (Robinson, 1991) towards the mean of the store and of the product could stabilise it. Notebook 03 \
-estimated a single \
-elasticity common to all pairs, and it is this limitation that P1 examines.
+Notebook 03 estimated a common discount elasticity across all store × product pairs. P1 asks whether allowing that elasticity to vary across stores and products improves out-of-sample prediction, especially for pairs with little history. It tests random slopes for `LOG_DISC` (Gelman & Hill, 2007). With few weeks of history, an elasticity fitted using only the pair's own data can be unstable. Shrinkage towards the store and product means can stabilise the estimate (Robinson, 1991).
 
-The protocol was pre-registered (Nosek et al., 2018; Weston et al., 2019): it was written and approved, with six \
-amendments (E1 to E6), before any candidate \
-was fitted, and it fixed in advance the candidates, the order of comparison, the stopping rule, the metric and the \
-populations. The amendments defined, among other points, that the initial candidate C0 is the F3 of notebook 03 \
-(E1), how the coverage of the per-pair OLS is measured (E2), the sequential stopping rule (E3) and the freeze that \
-precedes the final evaluation (E6). No threshold or formula was changed after the results of the internal folds \
-were seen.
+The protocol and its six amendments (E1 to E6) were approved before any candidate was fitted, in line with pre-registration practice (Nosek et al., 2018; Weston et al., 2019). The record fixed the candidates, comparison order, stopping rule, metric and populations. The amendments defined F3 from notebook 03 as the initial candidate C0 (E1), specified coverage for per-pair OLS (E2), and set the sequential stopping rule (E3) and the freeze before final evaluation (E6). The thresholds and formulae were already in place when the internal fold results came in.
 
 All candidates share the fixed part of F3 (decisions D12 to D14) and the same rows.
 
@@ -2245,12 +1811,7 @@ rejected |
 | C4 | The best earlier model, plus random slopes of `FEATURE` and `DISPLAY` by product | Not fitted (the \
 sequence stopped) |
 
-Each candidate is compared with the last accepted model, in the order C1, C2, C3, C4. To be accepted, it has to \
-converge without singularity (Bates et al., 2015) and, in case of a warning, with a new attempt using the \
-`nloptwrap` optimiser, have a \
-lower per-pair MAE in both internal folds and reduce the relative MAE by at least 0.5% on average over the folds. \
-If it fails any condition, the last accepted model is kept and the sequence ends, so a later candidate is not \
-fitted when the earlier one fails.
+The sequence compares C1, C2, C3 and C4 in that order, each against the last accepted model. To qualify, a candidate must converge without singularity (Bates et al., 2015), with a retry using the `nloptwrap` optimiser if a warning occurs. The per-pair MAE must be lower in both internal folds, with a relative reduction of at least 0.5% on average across folds. If any condition fails, the sequence ends and retains the last accepted model.
 
 The selection uses two internal folds (Tashman, 2000) within the 104 training weeks. In fold A, the fit uses weeks \
 0 to 51 and the \
@@ -2286,7 +1847,7 @@ produto e de par. Os \
 hiperparâmetros do GPBoost foram calibrados somente nas dobras internas, e ele não participa da sequência de \
 seleção.
 
-**Congelamento e estatuto da janela final.** Antes da avaliação final, o modelo selecionado (C0), os parâmetros do \
+Antes da avaliação final, o modelo selecionado (C0), os parâmetros do \
 GPBoost, as versões do código e o painel foram congelados e registrados no registro de decisões, e a avaliação das \
 semanas 104 a 155 foi prevista uma única vez, com o resultado publicado em qualquer direção. A tabela a seguir \
 compara os hashes de congelamento (12 primeiros caracteres do SHA-256) com os calculados no momento da pontuação. \
@@ -2320,7 +1881,7 @@ GPBoost (Sigrist, 2022), a secondary machine-learning challenger with group effe
 The GPBoost \
 hyperparameters were tuned only on the internal folds, and it does not take part in the selection sequence.
 
-**The freeze and the status of the final window.** Before the final evaluation, the selected model (C0), the \
+Before the final evaluation, the selected model (C0), the \
 GPBoost parameters, the code versions and the panel were frozen and recorded in the decision register, and the \
 evaluation of weeks 104 to 155 was planned to be made once, with the result published in either direction. The \
 table below compares the freeze hashes (first 12 characters of the SHA-256) with those computed at scoring time. \
@@ -2574,19 +2135,14 @@ to +0.0229.
         ),
         md(
             pt="""
-## 6. Primeira conclusão: o C0 foi escolhido pelo desempenho nas dobras, e as inclinações aleatórias para pares \
-curtos continuam em aberto
+## 6. Primeira conclusão sobre a seleção de C0 e os pares curtos
 
-O C0 foi selecionado pelo desempenho nas dobras internas. O C1 melhorou o estrato de histórico curto (menos de 26 \
-semanas) nas duas dobras, mas falhou na regra global: piorou na dobra A, e o ganho médio de −0,49% ficou abaixo do \
-limiar de 0,5%. A tabela repete os MAEs por par que sustentam a decisão.
+A regra do P1 selecionou o C0 pelo desempenho nas dobras internas. O C1 reduziu o MAE por par no estrato com menos de 26 semanas nas duas dobras. Considerando todos os pares vistos, o erro aumentou na dobra A e o ganho médio de −0,49% ficou abaixo do limiar de 0,5%.
 """,
             en="""
-## 6. First conclusion: C0 was selected on fold performance, and random slopes for short pairs remain open
+## 6. First conclusion on C0 selection and short-history pairs
 
-C0 was selected on the performance in the internal folds. C1 improved the short-history stratum (fewer than 26 \
-weeks) in both folds, but failed the global rule: it was worse in fold A, and the mean gain of −0.49% fell below \
-the 0.5% threshold. The table repeats the per-pair MAEs that support the decision.
+The P1 rule selected C0 based on performance in the internal folds. C1 reduced per-pair MAE in the stratum with fewer than 26 weeks in both folds. Across all seen pairs, error rose in fold A and the average gain of −0.49% fell below the 0.5% threshold.
 """,
         ),
         code("""
@@ -2599,42 +2155,26 @@ display(pd.Series(short, name=label).to_frame())
 """),
         md(
             pt="""
-No estrato com menos de 26 semanas, o C1 teve MAE por par 3,70% menor que o do C0 na dobra A e 0,85% menor na \
-dobra B. Esse estrato reúne 246 pares na dobra A e 221 na dobra B, e as diferenças são pontuais, sem análise de \
-incerteza. Na dobra A, o C1 piorou o estrato de 26 a 77 semanas, que concentra a maior parte dos pares, e o ganho \
-global ficou negativo.
+No estrato com menos de 26 semanas, o MAE por par do C1 foi 3,70% menor na dobra A (246 pares) e 0,85% menor na dobra B (221 pares), em relação ao C0. São diferenças pontuais, sem análise de incerteza. Na dobra A, o estrato de 26 a 77 semanas concentra a maior parte dos pares, e ali o erro do C1 aumentou.
 
-A janela final avaliou o C0, que compartilha informação pelos interceptos e tem uma inclinação de desconto **comum** \
-a todos os pares. Por isso, a janela final deixa em aberto a questão das inclinações aleatórias para pares curtos: o \
-C1 não foi pontuado nela, por determinação do protocolo, e o resultado da janela final não informa se o ganho do C1 \
-nos pares curtos das dobras se manteria.
+Pela regra do P1, a janela final avaliou apenas o candidato selecionado, o C0. Ele compartilha informação pelos interceptos e estima uma inclinação de desconto **comum** a todos os pares. A questão de saber se o ganho do C1 nos pares curtos das dobras se manteria na janela final continua em aberto.
 """,
             en="""
-In the stratum with fewer than 26 weeks, C1 had a per-pair MAE 3.70% lower than that of C0 in fold A and 0.85% \
-lower in fold B. This stratum holds 246 pairs in fold A and 221 in fold B, and the differences are point values, \
-without an uncertainty analysis. In fold A, C1 worsened the 26 to 77 weeks stratum, which holds most of the pairs, \
-and the overall gain was negative.
+In the stratum with fewer than 26 weeks, C1's per-pair MAE was 3.70% lower in fold A (246 pairs) and 0.85% lower in fold B (221 pairs) than C0's. These are point differences without an uncertainty analysis. In fold A, most pairs are in the 26 to 77 weeks stratum, where C1's error rose.
 
-The final window evaluated C0, which shares information through the intercepts and has a discount slope that is \
-**common** to all pairs. The final window therefore leaves the question of random slopes for short pairs open: C1 \
-was not scored there, by the protocol, and the result of the final window does not say whether the gain of C1 on \
-the short pairs of the folds would hold.
+Under the P1 rule, the final window evaluated only the selected candidate, C0. It shares information through the intercepts and estimates a discount slope **common** to all pairs. Whether C1's gain on short-history pairs in the folds would hold in the final window remains an open question.
 """,
         ),
         md(
             pt="""
-## 7. Segunda conclusão: C0 e GPBoost tiveram resultados próximos, que diferem conforme a métrica
+## 7. Segunda conclusão sobre C0 e GPBoost na janela final
 
-Nos pares vistos, o GPBoost teve MAE por par 0,47% menor que o do C0 (0,4520 contra 0,4541). O C0, por sua vez, \
-teve o menor MAE por linha (0,4446 contra 0,4478) e o menor erro nos pares inéditos (0,6260 contra 0,6876). A \
-tabela reúne essas medidas.
+Nos pares vistos, o GPBoost teve MAE por par 0,47% menor que o do C0 (0,4520 contra 0,4541). O C0 teve menor MAE por linha (0,4446 contra 0,4478) e menor MAE por par nos pares inéditos (0,6260 contra 0,6876).
 """,
             en="""
-## 7. Second conclusion: C0 and GPBoost performed closely, with results that differ by metric
+## 7. Second conclusion on C0 and GPBoost in the final window
 
-On the seen pairs, GPBoost had a per-pair MAE 0.47% lower than that of C0 (0.4520 against 0.4541). C0, in turn, \
-had the lowest MAE per row (0.4446 against 0.4478) and the lowest error on the unseen pairs (0.6260 against \
-0.6876). The table brings these measures together.
+On seen pairs, GPBoost's per-pair MAE was 0.47% lower than C0's (0.4520 versus 0.4541). C0 had lower MAE per row (0.4446 versus 0.4478) and lower per-pair MAE on unseen pairs (0.6260 versus 0.6876).
 """,
         ),
         code("""
@@ -2704,8 +2244,8 @@ display(
 """),
         md(
             pt="""
-**Ressalva de cobertura (E2).** A cobertura do OLS por par segue a regra operacional aplicada na execução: um termo \
-sem variação na janela de ajuste do par, ou descartado por colinearidade, conta como não estimado, e uma linha fica \
+A cobertura do OLS por par segue a regra operacional da emenda E2. A regra trata como não estimado um termo \
+sem variação na janela de ajuste do par ou descartado por colinearidade. Uma linha fica \
 sem cobertura quando tem valor diferente de zero nesse termo. Só 59 dos 98 pares curtos vistos são cobertos, de \
 modo que o subconjunto é selecionado pela própria regra do OLS local e não é uma amostra aleatória dos pares curtos. \
 A regra operacional não equivale a um critério de estimabilidade. Se uma promoção esteve sempre ativa no treino de \
@@ -2727,8 +2267,8 @@ ideia de que o encolhimento do C0 favorece sobretudo os pares de pouco históric
 por par, e a conclusão não se estende aos pares curtos sem cobertura do OLS local.
 """,
             en="""
-**Coverage caveat (E2).** Per-pair OLS coverage follows the operational rule applied in the run: a term without \
-variation in the pair's fit window, or dropped by collinearity, counts as not estimated, and a row is uncovered when \
+Per-pair OLS coverage follows the operational rule in amendment E2. The rule treats a term as unestimated if it has no \
+variation in the pair's fit window or was dropped because of collinearity. A row is uncovered when \
 it has a non-zero value on that term. Only 59 of the 98 short seen pairs are covered, so the subset is selected by \
 the local OLS's own rule and is not a random sample of the short pairs. The operational rule is not equivalent to an \
 estimability criterion. If a promotion was always active in a pair's training window, or always came with the same \
@@ -2821,32 +2361,16 @@ Weeks 104 to 155 were outside this supplementary test.
             pt="""
 ## 10. O que permanece adiado
 
-Permanecem adiados a pontuação do C1 na janela final, que seria uma exploração posterior e exige aprovação, e o \
-bootstrap por pares para a incerteza da diferença de erro preditivo entre os modelos. As análises que este notebook \
-deixava em aberto já foram concluídas, todas nas semanas de treino e sem alterar o C0 nem o ranking registrado \
-aqui. O notebook 05 executou os contrastes secundários do P1, as interações do desconto com segmento, marca \
-própria e categoria, com correção de Holm (Holm, 1979), e a sensibilidade com o efeito aleatório de categoria × \
-semana. O notebook 06 executou a camada de decisão por cenários.
+O bootstrap por pares para medir a incerteza da diferença de erro preditivo continua adiado. Pontuar o C1 na janela final seria uma exploração posterior e exige aprovação.
 
-Em resumo, a seleção pré-registrada manteve o C0, e a janela final, que é retrospectiva e teve exposição \
-exploratória prévia, mostrou o C0 melhor que os dois OLS no agregado e próximo do GPBoost, com \
-resultados que diferem conforme a métrica e a população. A pergunta sobre as inclinações aleatórias para pares \
-curtos continua em aberto.
+Os notebooks 05 e 06 concluíram as demais análises nas semanas de treino, preservando o C0 e o resultado da comparação preditiva. O notebook 05 testou os contrastes secundários do P1 para as interações do desconto com segmento, marca própria e categoria, com correção de Holm (Holm, 1979). Também avaliou a sensibilidade ao efeito aleatório de categoria × semana. O notebook 06 comparou cenários de preço e promoção.
 """,
             en="""
 ## 10. What remains deferred
 
-Still deferred are the scoring of C1 on the final window, which would be a later exploration and needs approval, \
-and the pair bootstrap for uncertainty in the difference in predictive error between models. The analyses \
-that this notebook left open have since been completed, all on the training weeks and without changing C0 or the \
-ranking recorded here. Notebook 05 ran the secondary contrasts of P1, the interactions of the discount with \
-segment, private label and category, with the Holm correction (Holm, 1979), and the sensitivity with the category \
-× week random effect. Notebook 06 ran the decision layer by scenarios.
+The pair bootstrap to measure uncertainty in the difference in prediction error remains deferred. Scoring C1 in the final window would be a later exploratory analysis and requires approval.
 
-In summary, the pre-registered selection kept C0, and the final window, which is retrospective and had prior \
-exploratory exposure, showed C0 better than both OLS references in the aggregate and \
-close to GPBoost, with results that \
-differ by metric and by population. The question about random slopes for short pairs remains open.
+Notebooks 05 and 06 completed the remaining analyses in the training weeks, retaining C0 and the results of the predictive comparison. Notebook 05 tested P1's secondary contrasts for discount interactions with segment, private label and category, using the Holm correction (Holm, 1979). It also assessed sensitivity to a category × week random effect. Notebook 06 compared price and promotion scenarios.
 """,
         ),
     ]
@@ -2901,18 +2425,18 @@ def contrasts_cells() -> list[Cell]:
             pt="""
 # 05 · Contrastes planejados e sensibilidade a choques de categoria × semana
 
-Este notebook reúne duas análises secundárias do projeto, as duas motivadas pelos resultados dos notebooks 03 e 04. A primeira examina se a associação entre desconto e vendas difere entre segmentos de loja, entre marca de fabricante e marca própria e entre categorias, por meio de três contrastes planejados, com correção de Holm sobre essa família fixa de três testes. A segunda compara o F3 do notebook 03 com uma versão que acrescenta um intercepto aleatório de categoria × semana, como sensibilidade motivada pelo diagnóstico residual do notebook 03.
+Os contrastes planejados avaliam se a associação entre desconto e vendas varia por segmento da loja, tipo de marca (de fabricante ou própria) ou categoria. A correção de Holm abrange essa família fixa de três testes. O diagnóstico residual do notebook 03 motiva a segunda análise, que compara o F3 com uma versão que acrescenta um intercepto aleatório de categoria × semana.
 
-Este notebook **não ajusta modelos**: os ajustes foram feitos por scripts (`scripts/fit_contrasts.py` e `scripts/fit_catweek_sensitivity.py`) e gravados em `outputs/runs`. O notebook apenas lê essas duas execuções, o que torna as versões em português e em inglês idênticas em resultados. Somente as 104 semanas de treino (semanas 0 a 103) entram nos cálculos, e as estimativas são associações condicionais em semanas com transações registradas, e não efeitos causais. A especificação oficial do C0 e o ranking preditivo gravado no protocolo P1 permanecem como foram registrados.
+Os scripts `scripts/fit_contrasts.py` e `scripts/fit_catweek_sensitivity.py` ajustaram os modelos nas 104 semanas de treino (0 a 103) e gravaram os resultados em `outputs/runs`. As duas versões do notebook leem as mesmas execuções. As estimativas descrevem associações condicionais nas semanas com transações registradas. A seleção do C0 e a classificação dos modelos no P1 se baseiam no erro de previsão fora da amostra, documentado no notebook 04.
 
 *Dados: dunnhumby Source Files – Breakfast at the Frat.*
 """,
             en="""
 # 05 · Planned contrasts and sensitivity to category × week shocks
 
-This notebook gathers two secondary analyses of the project, both motivated by the results of notebooks 03 and 04. The first examines whether the association between discount and sales differs across store segments, between manufacturer brand and private label, and across categories, through three planned contrasts, with a Holm correction over this fixed family of three tests. The second compares the F3 of notebook 03 with a version that adds a random category × week intercept, as a sensitivity analysis motivated by the residual diagnostic of notebook 03.
+The planned contrasts test whether the association between discount and sales varies by store segment, brand type (manufacturer brand or private label) or category. The Holm correction covers this fixed family of three tests. The residual diagnostic in notebook 03 motivates the second analysis, which compares F3 with a version that adds a category × week random intercept.
 
-This notebook **fits no models**: the fits were made by scripts (`scripts/fit_contrasts.py` and `scripts/fit_catweek_sensitivity.py`) and stored in `outputs/runs`. The notebook only reads these two runs, so the Portuguese and English versions show identical results. Only the 104 training weeks (weeks 0 to 103) enter the computations, and the estimates are conditional associations in weeks with recorded transactions, not causal effects. The official C0 specification and the predictive ranking recorded in protocol P1 stay as they were registered.
+The scripts `scripts/fit_contrasts.py` and `scripts/fit_catweek_sensitivity.py` fitted the models on the 104 training weeks (0 to 103) and stored the results in `outputs/runs`. Both language versions read the same runs. The estimates describe conditional associations in weeks with recorded transactions. The selection of C0 and the P1 model ranking are based on out-of-sample prediction error, documented in notebook 04.
 
 *Data: dunnhumby Source Files – Breakfast at the Frat.*
 """,
@@ -2927,9 +2451,9 @@ As duas execuções lidas estão identificadas acima (identificador e horário d
 
 A pergunta é se a inclinação do log das unidades em relação ao log do desconto (`LOG_DISC`) é a mesma em todos os níveis de um moderador. Os moderadores são o segmento da loja (referência `MAINSTREAM`), o tipo de marca (referência: marca de fabricante) e a categoria (referência `BAG SNACKS`, a primeira em ordem alfabética). Para cada moderador foi ajustado um modelo próprio, por mínimos quadrados com efeitos fixos de par loja × produto e de semana, obtidos pela transformação *within* (Wooldridge, 2010). A resposta é `LOG_UNITS`, e os controles são `LOG_DISC`, `LOG_BASE_PRICE`, `FEATURE`, `DISPLAY` e `TPR_ONLY`, os mesmos da sensibilidade intrapar do notebook 03. O modelo com interação acrescenta `LOG_DISC` multiplicado pelo indicador de cada nível diferente da referência, e a versão restrita, com a mesma amostra e os mesmos controles, omite essas interações.
 
-Um ponto de identificação merece registro. O segmento, o tipo de marca e a categoria são constantes dentro de cada par loja × produto, de modo que o efeito principal do moderador é absorvido pelo efeito fixo do par e não é estimado. A interação com `LOG_DISC` permanece identificada, porque o desconto varia ao longo das semanas dentro do par: a diferença de inclinação é estimada comparando, entre níveis, como as vendas de um mesmo par respondem às próprias variações de desconto.
+Os efeitos fixos de par absorvem os efeitos principais de segmento, tipo de marca e categoria, pois cada um desses atributos é constante dentro do par. O desconto varia ao longo das semanas do par. Essa variação permite estimar a interação com `LOG_DISC` comparando, entre níveis, a relação entre vendas e descontos dentro de cada par.
 
-Uma diferença de inclinação descreve a heterogeneidade condicional de uma associação entre grupos. Ela responde a uma pergunta distinta da que motivou o candidato C1 do protocolo P1 (notebook 04), no qual a elasticidade ao desconto varia aleatoriamente entre lojas e produtos (Gelman & Hill, 2007) e é avaliada pelo erro de previsão fora da amostra. Nenhum resultado deste notebook altera a seleção preditiva do P1 nem o ranking gravado nele.
+Os contrastes comparam inclinações entre grupos definidos pelos moderadores. No protocolo P1 (notebook 04), o candidato C1 permite que a elasticidade ao desconto varie aleatoriamente entre lojas e produtos (Gelman & Hill, 2007). O P1 avalia aquele candidato pelo erro de previsão fora da amostra.
 
 ## 2. As populações e o suporte por nível
 
@@ -2942,9 +2466,9 @@ The two runs that were read are identified above (identifier and finish time). T
 
 The question is whether the slope of log(units) on the log of the discount (`LOG_DISC`) is the same at every level of a moderator. The moderators are the store segment (reference `MAINSTREAM`), the brand type (reference: manufacturer brand) and the category (reference `BAG SNACKS`, the first in alphabetical order). One model was fitted for each moderator, by least squares with store × product pair and week fixed effects, obtained through the within transformation (Wooldridge, 2010). The response is `LOG_UNITS`, and the controls are `LOG_DISC`, `LOG_BASE_PRICE`, `FEATURE`, `DISPLAY` and `TPR_ONLY`, the same as in the within-pair sensitivity of notebook 03. The model with interaction adds `LOG_DISC` multiplied by the indicator of each level other than the reference, and the restricted version, with the same sample and the same controls, omits those interactions.
 
-One identification point deserves a record. Segment, brand type and category are constant within each store × product pair, so the main effect of the moderator is absorbed by the pair fixed effect and is not estimated. The interaction with `LOG_DISC` remains identified, because the discount varies over the weeks within the pair: the slope difference is estimated by comparing, across levels, how the sales of a given pair respond to its own discount variations.
+Pair fixed effects absorb the main effects of segment, brand type and category because each attribute is constant within a pair. Discounts vary across weeks within a pair. That variation identifies the interaction with `LOG_DISC` by comparing the within-pair relationship between sales and discounts across levels.
 
-A slope difference describes the conditional heterogeneity of an association between groups. It answers a question distinct from the one that motivated candidate C1 of protocol P1 (notebook 04), in which the discount elasticity varies randomly across stores and products (Gelman & Hill, 2007) and is judged by out-of-sample prediction error. No result of this notebook changes the predictive selection of P1 or the ranking recorded in it.
+The contrasts compare slopes across groups defined by the moderators. In protocol P1 (notebook 04), candidate C1 allows discount elasticity to vary randomly across stores and products (Gelman & Hill, 2007). P1 evaluates that candidate using out-of-sample prediction error.
 
 ## 2. Populations and support by level
 
@@ -3047,12 +2571,12 @@ display(localized(restricted.drop(columns=["model", "term"]).rename(columns={"es
             pt="""
 ## 4. As inclinações por nível
 
-Dado que os testes globais rejeitam, a questão seguinte é descritiva: como são as inclinações do desconto em cada nível. Uma inclinação mais negativa indica uma resposta maior das unidades a uma mesma variação do desconto. A tabela mostra, por nível, a inclinação estimada, seus erros-padrão, o intervalo de 95%, a diferença em relação à referência e o intervalo dessa diferença. Todos os intervalos são pontuais, calculados com o erro-padrão em duas vias, sem ajuste para multiplicidade. Para esta entrega, a inferência se encerra na família planejada de três testes, e as diferenças por nível são apresentadas de forma descritiva, sem uma bateria de comparações par a par.
+Uma inclinação mais negativa indica que uma mesma variação do desconto está associada a uma variação maior nas unidades vendidas. A tabela mostra, por nível, a inclinação estimada, seus erros-padrão, a diferença em relação à referência e os respectivos intervalos de 95%. Os intervalos são pontuais, calculados com o erro-padrão em duas vias e sem ajuste para multiplicidade. As diferenças por nível são descritivas. A inferência se limita à família planejada de três testes globais.
 """,
             en="""
 ## 4. Slopes by level
 
-Given that the global tests reject, the next question is descriptive: what the discount slopes look like at each level. A more negative slope indicates a larger response of units to the same discount change. The table shows, by level, the estimated slope, its standard errors, the 95% interval, the difference from the reference and the interval of that difference. All intervals are pointwise, computed with the two-way standard error, without adjustment for multiplicity. For this deliverable, inference ends at the planned family of three tests, and the level differences are presented descriptively, without a battery of pairwise comparisons.
+A more negative slope indicates that the same discount change is associated with a larger change in units sold. For each level, the table reports the estimated slope, its standard errors, the difference from the reference and the corresponding 95% intervals. The intervals are pointwise, calculated using the two-way standard error, with no multiplicity adjustment. Differences by level are descriptive. Inference is limited to the planned family of three global tests.
 """,
         ),
         code("""
@@ -3066,7 +2590,7 @@ Por segmento, as inclinações são −1,746 (MAINSTREAM, a referência), −1,5
 
 Por tipo de marca, a inclinação é de −1,906 para marca de fabricante e de −1,411 para marca própria, uma diferença de 0,494 (intervalo de 0,316 a 0,673): a associação do desconto com as unidades é menos intensa para a marca própria. Por categoria, as inclinações são −1,083 (BAG SNACKS, a referência), −2,044 (COLD CEREAL), −2,416 (FROZEN PIZZA) e −1,387 (ORAL HYGIENE PRODUCTS), com diferenças em relação à referência de −0,961 (intervalo de −1,215 a −0,708), −1,333 (de −1,603 a −1,064) e −0,305 (de −0,458 a −0,152). O desconto está associado a uma resposta maior em pizza congelada e em cereal do que em pretzels.
 
-Esses números descrevem diferenças condicionais de inclinação, e não explicam por que elas ocorrem. Parte delas pode refletir características dos níveis que o modelo não representa, como a distribuição dos descontos praticados (a seção 2 mostrou que o desvio-padrão intrapar do desconto varia entre os níveis) e o calendário promocional. A inclinação comum de `LOG_DISC` no OLS intrapar restrito, de cerca de −1,70, resume essas inclinações nesse estimador, com efeitos fixos de par e de semana e o log do preço-base como controle. Ela não é a inclinação do F3, de −1,685, estimada pelo modelo multinível com interceptos aleatórios, com o preço-base decomposto em desvio e média do par e com tendência e sazonalidade. As duas são próximas, mas vêm de estimadores e controles diferentes, e os cenários do notebook 06 usam a do F3.
+As diferenças condicionais entre níveis podem refletir fatores que o modelo não representa, como a distribuição dos descontos praticados e o calendário promocional. A seção 2 mostrou que o desvio-padrão intrapar do desconto varia entre níveis. A inclinação comum de `LOG_DISC` no OLS intrapar restrito é de cerca de −1,70, com efeitos fixos de par e semana e controle pelo log do preço-base. Para os cenários do notebook 06, a inclinação vem do F3 (−1,685). O F3 usa interceptos aleatórios, decompõe o preço-base em desvio e média do par e inclui tendência e sazonalidade. Os valores são próximos e vêm de estimadores e controles distintos.
 
 ## 5. Sensibilidade a choques comuns de categoria × semana
 
@@ -3079,7 +2603,7 @@ By segment, the slopes are −1.746 (MAINSTREAM, the reference), −1.580 (UPSCA
 
 By brand type, the slope is −1.906 for manufacturer brand and −1.411 for private label, a difference of 0.494 (interval from 0.316 to 0.673): the association of the discount with units is less intense for the private label. By category, the slopes are −1.083 (BAG SNACKS, the reference), −2.044 (COLD CEREAL), −2.416 (FROZEN PIZZA) and −1.387 (ORAL HYGIENE PRODUCTS), with differences from the reference of −0.961 (interval from −1.215 to −0.708), −1.333 (from −1.603 to −1.064) and −0.305 (from −0.458 to −0.152). The discount is associated with a larger response in frozen pizza and in cereal than in pretzels.
 
-These numbers describe conditional slope differences, and do not explain why they occur. Part of them may reflect characteristics of the levels that the model does not represent, such as the distribution of the discounts applied (section 2 showed that the within-pair standard deviation of the discount varies across levels) and the promotional calendar. The common `LOG_DISC` slope of the restricted within-pair OLS, of about −1.70, summarises these slopes in that estimator, with pair and week fixed effects and the log base price as a control. It is not the F3 slope of −1.685, which is estimated by the multilevel model with random intercepts, with the base price split into the pair deviation and pair mean and with trend and seasonality. The two are close, but they come from different estimators and controls, and the scenarios of notebook 06 use the F3 one.
+Conditional differences across levels may reflect factors outside the model, such as the distribution of discounts and the promotional calendar. Section 2 showed that the within-pair standard deviation of the discount varies across levels. The common `LOG_DISC` slope in restricted within-pair OLS is about −1.70, with pair and week fixed effects and log base price as a control. The scenarios in notebook 06 use the slope from F3 (−1.685). F3 uses random intercepts, splits base price into the pair deviation and mean, and includes trend and seasonality. The values are close and come from different estimators and controls.
 
 ## 5. Sensitivity to common category × week shocks
 
@@ -3180,20 +2704,20 @@ display(
             pt="""
 ## 6. O que a evidência permite concluir
 
-Nos contrastes, os três testes globais rejeitam a igualdade das inclinações do desconto a 5%, depois da correção de Holm sobre a família fixa de três: por segmento (valor-p ajustado de 0,0031), por tipo de marca (5,51e-07) e por categoria (7,83e-16). Sob a aproximação descrita, isso sustenta que as inclinações não são todas iguais dentro de cada moderador. Não sustenta, por si só, qual nível difere de qual, nem uma explicação para a diferença: as inclinações por nível são descritivas, com intervalos pontuais, e a heterogeneidade descrita é condicional e associativa. A conclusão do segmento é a mais fraca das três e indica heterogeneidade no conjunto dos segmentos. A diferença de UPSCALE, a única com intervalo pontual que exclui zero, é descritiva e não identifica, por si só, o segmento que difere. A inferência é aproximada, porque a dependência entre pares diferentes em semanas diferentes, como choques comuns que persistem de uma semana para outra, não é coberta pelo agrupamento em duas vias.
+Após a correção de Holm sobre a família fixa de três testes, cada teste global rejeita a 5% a hipótese de inclinações iguais entre os níveis do seu moderador. Os valores-p ajustados são 0,0031 para segmento, 5,51e-07 para tipo de marca e 7,83e-16 para categoria. O teste de segmento tem a evidência mais fraca dos três. As diferenças por nível descrevem associações condicionais com intervalos pontuais. A inferência global é aproximada, pois o agrupamento em duas vias pode deixar de fora a dependência entre pares diferentes em semanas diferentes, como choques comuns que persistem entre semanas.
 
-Na sensibilidade, a introdução de um intercepto aleatório de categoria × semana, que absorve os choques comuns contemporâneos, altera pouco as associações do F3: o desconto e o preço regular dentro do par ficam um pouco mais negativos (de −1,685 para −1,727 e de −1,592 para −1,660), as promoções mudam menos de 0,007, e só a tendência perde precisão. As associações do F3 não se mostram sensíveis, em sinal e em ordem de grandeza, à representação desses choques. Esse resultado não é um teste da especificação oficial, que o C0 e o ranking preditivo do P1 preservam, e a persistência residual dentro do par continua sem tratamento por esse termo.
+Ao acrescentar o intercepto aleatório de categoria × semana, o coeficiente do desconto vai de −1,685 a −1,727 e o do preço regular dentro do par, de −1,592 a −1,660. Os coeficientes de promoção mudam menos de 0,007. O sinal e a ordem de grandeza das associações do F3 se mantêm nessa análise de sensibilidade. Só a tendência perde precisão. O intercepto absorve choques comuns da mesma semana, e a persistência residual dentro do par continua presente.
 
-Os contrastes por nível mostram, enfim, que a inclinação comum do F3 (−1,685) resume associações que, no OLS intrapar, variam de −1,083 a −2,416 entre categorias. Essa informação acompanha a leitura dos cenários do notebook 06, que usa a inclinação comum.
+No OLS intrapar, as inclinações estimadas por categoria variam de −1,083 a −2,416. Os cenários do notebook 06 usam a inclinação comum do F3 (−1,685) para resumir associações que variam entre categorias.
 """,
             en="""
 ## 6. What the evidence allows one to conclude
 
-In the contrasts, the three global tests reject the equality of the discount slopes at 5%, after the Holm correction over the fixed family of three: by segment (adjusted p-value of 0.0031), by brand type (5.51e-07) and by category (7.83e-16). Under the approximation described, this supports that the slopes are not all equal within each moderator. It does not support, by itself, which level differs from which, nor an explanation for the difference: the slopes by level are descriptive, with pointwise intervals, and the heterogeneity described is conditional and associative. The segment conclusion is the weakest of the three and indicates heterogeneity across the set of segments. The UPSCALE difference, the only one with a pointwise interval that excludes zero, is descriptive and does not, by itself, identify the segment that differs. The inference is approximate, because dependence between different pairs in different weeks, such as common shocks that persist from one week to the next, is not covered by the two-way clustering.
+After the Holm correction for the fixed family of three tests, each global test rejects equal slopes across the levels of its moderator at the 5% level. Adjusted p-values are 0.0031 for segment, 5.51e-07 for brand type and 7.83e-16 for category. The segment test has the weakest evidence of the three. Differences by level describe conditional associations with pointwise intervals. Global inference is approximate because two-way clustering can miss dependence between different pairs in different weeks, such as common shocks that persist across weeks.
 
-In the sensitivity analysis, the introduction of a random category × week intercept, which absorbs the contemporaneous common shocks, changes the associations of the F3 little: the discount and the regular price within the pair become slightly more negative (from −1.685 to −1.727 and from −1.592 to −1.660), the promotions change by less than 0.007, and only the trend loses precision. The associations of the F3 do not appear sensitive, in sign or in order of magnitude, to the representation of these shocks. This result is not a test of the official specification, which C0 and the predictive ranking of P1 preserve, and the residual persistence within the pair remains untreated by this term.
+Adding the category × week random intercept moves the discount coefficient from −1.685 to −1.727 and the within-pair regular price coefficient from −1.592 to −1.660. The promotion coefficients change by less than 0.007. The sign and order of magnitude of the F3 associations hold in this sensitivity analysis. Only the trend loses precision. The intercept absorbs common shocks in the same week, and within-pair residual persistence remains.
 
-The contrasts by level finally show that the common slope of the F3 (−1.685) summarises associations that, in the within-pair OLS, range from −1.083 to −2.416 across categories. This information accompanies the reading of the scenarios of notebook 06, which uses the common slope.
+In within-pair OLS, the estimated category slopes range from −1.083 to −2.416. The scenarios in notebook 06 use the common F3 slope (−1.685) to summarise associations that vary across categories.
 """,
         ),
     ]
@@ -3238,18 +2762,18 @@ def scenario_cells() -> list[Cell]:
             pt="""
 # 06 · Cenários de preço e promoção
 
-Este notebook traduz as estimativas do F3 do notebook 03 em cenários comparáveis de preço e promoção, cada um acompanhado do apoio empírico que encontra nos dados de treino. A leitura executiva compara uma TPR com 20% de desconto com um display com 20% de desconto, e os demais cenários são apresentados com a mesma profundidade.
+A partir das estimativas do F3 no notebook 03, este notebook compara cenários de preço e promoção e mostra quantas observações do treino sustentam cada combinação. A seção 4 compara TPR e display com o mesmo desconto de 20%.
 
-Este notebook **não ajusta modelos**: o F3 foi reajustado por REML pelo script `scripts/fit_scenarios.py`, que gravou em `outputs/runs` os coeficientes, a covariância conjunta, a tabela de cenários e a conciliação com o notebook 03. O notebook apenas lê essa execução e a do F3 original, o que torna as versões em português e em inglês idênticas em resultados. Somente as semanas de treino (0 a 103) entram nos cálculos. As estimativas são associações condicionais em semanas com vendas registradas, e não efeitos causais: o calendário promocional, as rupturas de estoque e outros fatores podem influenciar as estimativas. Margem, custo de promoção, retorno sobre o investimento e recomendação causal de preço estão fora do escopo.
+O script `scripts/fit_scenarios.py` reajustou o F3 por REML nas semanas de treino (0 a 103). Em `outputs/runs`, gravou os coeficientes, a covariância conjunta, a tabela de cenários e a conciliação com o notebook 03. As duas versões do notebook leem esse reajuste e a execução do F3 original. As estimativas descrevem associações condicionais nas semanas com vendas registradas.
 
 *Dados: dunnhumby Source Files – Breakfast at the Frat.*
 """,
             en="""
 # 06 · Pricing and promotion scenarios
 
-This notebook translates the estimates of the F3 of notebook 03 into comparable price and promotion scenarios, each accompanied by the empirical support it finds in the training data. The executive reading compares a TPR with a 20% discount with a display with a 20% discount, and the other scenarios are presented with the same depth.
+Using the F3 estimates from notebook 03, this notebook compares price and promotion scenarios and shows how many training observations support each combination. Section 4 compares TPR and display at the same 20% discount.
 
-This notebook **fits no models**: the F3 was refitted by REML by the script `scripts/fit_scenarios.py`, which stored in `outputs/runs` the coefficients, the joint covariance, the scenario table and the reconciliation with notebook 03. The notebook only reads that run and the one of the original F3, so the Portuguese and English versions show identical results. Only the training weeks (0 to 103) enter the computations. The estimates are conditional associations in weeks with recorded sales, not causal effects: the promotional calendar, stockouts and other factors may influence the estimates. Margin, promotion cost, return on investment and causal price recommendations are out of scope.
+The script `scripts/fit_scenarios.py` refitted F3 by REML on the training weeks (0 to 103). It stored the coefficients, joint covariance, scenario table and reconciliation with notebook 03 in `outputs/runs`. Both language versions read this refit and the original F3 run. The estimates describe conditional associations in weeks with recorded sales.
 
 *Data: dunnhumby Source Files – Breakfast at the Frat.*
 """,
@@ -3262,18 +2786,18 @@ As duas execuções lidas estão identificadas acima (identificador e horário d
 
 ## 1. A pergunta e a definição dos cenários
 
-A pergunta é quanto as vendas modeladas diferem, em cada combinação de desconto e promoção, de uma semana regular, definida como uma semana sem desconto e sem promoção, e quanto apoio cada combinação tem nos dados. Para um cenário com desconto d e indicadores de encarte f, de display s e de TPR r, a diferença no log das unidades é Δlog = β_desconto · log(1 − d) + β_encarte · f + β_display · s + β_TPR · r, com o preço-base e os demais controles mantidos constantes. O efeito é `100 × expm1(Δlog)`, uma razão modelada de vendas na escala retransformada, expressa como variação percentual. A modalidade TPR corresponde ao indicador `TPR_ONLY`, isto é, uma redução temporária de preço sem encarte nem display, e os indicadores de cada cenário respeitam essa exclusividade.
+A referência é uma semana regular, sem desconto e sem promoção. Cada cenário estima quanto as vendas modeladas diferem dessa semana e verifica o suporte da combinação no treino. Para um desconto d e indicadores de encarte f, display s e TPR r, a diferença no log das unidades é Δlog = β_desconto · log(1 − d) + β_encarte · f + β_display · s + β_TPR · r. O preço-base e os demais controles ficam constantes. A fórmula `100 × expm1(Δlog)` expressa a variação percentual associada à razão modelada de vendas. O indicador `TPR_ONLY` representa uma redução temporária de preço sem encarte nem display. A tabela mostra como os oito cenários aplicam essa regra.
 
-Os oito cenários são os registrados no notebook 03. Eles foram fixados antes dos resultados do notebook 05 e mantidos sem alteração depois deles: nenhum foi acrescentado, removido ou modificado em função dos contrastes. A tabela mostra o desenho de cada cenário.
+O notebook 03 registrou os oito cenários antes dos resultados dos contrastes do notebook 05.
 """,
             en="""
 The two runs that were read are identified above (identifier and finish time), and the identifiers are fixed in the code, so re-running the notebook always reads the same artefacts.
 
 ## 1. The question and the definition of the scenarios
 
-The question is how much the modelled sales differ, under each combination of discount and promotion, from a regular week, defined as a week with no discount and no promotion, and how much support each combination has in the data. For a scenario with discount d and indicators of feature f, display s and TPR r, the difference in the log of units is Δlog = β_discount · log(1 − d) + β_feature · f + β_display · s + β_TPR · r, with the base price and the other controls held constant. The effect is `100 × expm1(Δlog)`, a modelled sales ratio on the back-transformed scale, expressed as a percentage change. The TPR modality corresponds to the `TPR_ONLY` indicator, that is, a temporary price reduction without feature or display, and the indicators of each scenario respect this exclusivity.
+The reference is a regular week with no discount or promotion. Each scenario estimates how much modelled sales differ from that week and checks support for the combination in training. For a discount d and indicators for feature f, display s and TPR r, the difference in log(units) is Δlog = β_discount · log(1 − d) + β_feature · f + β_display · s + β_TPR · r. Base price and other controls are held constant. The formula `100 × expm1(Δlog)` expresses the percentage change associated with the modelled sales ratio. The `TPR_ONLY` indicator represents a temporary price reduction without feature or display. The table shows how the eight scenarios apply that rule.
 
-The eight scenarios are those registered in notebook 03. They were fixed before the results of notebook 05 and kept unchanged after them: none was added, removed or modified as a function of the contrasts. The table shows the design of each scenario.
+Notebook 03 registered all eight scenarios before the contrast results in notebook 05.
 """,
         ),
         code("""
@@ -3282,18 +2806,18 @@ display(localized(design.assign(discount=design["discount"] * 100)))
 """),
         md(
             pt="""
-Os intervalos de cada cenário usam a covariância conjunta dos coeficientes do F3 ajustado por REML com o `lme4` (Bates et al., 2015): o erro-padrão de Δlog é obtido da combinação linear dos coeficientes com essa covariância, e os limites, retransformados pela mesma fórmula do efeito. Eles não são construídos a partir dos limites marginais de cada coeficiente, que ignoram as covariâncias entre eles. São intervalos pontuais de 95%, baseados no modelo.
+Os intervalos pontuais de 95% usam a covariância conjunta dos coeficientes do F3, ajustado por REML com o `lme4` (Bates et al., 2015). Essa matriz fornece o erro-padrão da combinação linear Δlog e leva em conta as covariâncias entre os coeficientes. A mesma fórmula usada para calcular o efeito percentual retransforma os limites.
 
 ## 2. Conciliação com o notebook 03
 
-Antes de ler os cenários, convém verificar se o reajuste que gerou a covariância conjunta reproduz o F3 do notebook 03. A tabela compara os 14 coeficientes gravados naquele notebook com os do reajuste.
+A tabela verifica se os 14 coeficientes do reajuste que gerou a covariância conjunta coincidem com os coeficientes do F3 gravados no notebook 03.
 """,
             en="""
-The intervals of each scenario use the joint covariance of the coefficients of the F3 fitted by REML with `lme4` (Bates et al., 2015): the standard error of Δlog is obtained from the linear combination of the coefficients with that covariance, and the limits are back-transformed by the same formula as the effect. They are not built from the marginal limits of each coefficient, which ignore the covariances among them. They are pointwise 95% intervals, based on the model.
+The pointwise 95% intervals use the joint covariance of the F3 coefficients fitted by REML with `lme4` (Bates et al., 2015). This matrix gives the standard error of the linear combination Δlog and accounts for covariance between coefficients. The interval limits are back-transformed with the same formula used for the percentage effect.
 
 ## 2. Reconciliation with notebook 03
 
-Before reading the scenarios, it is worth checking that the refit that produced the joint covariance reproduces the F3 of notebook 03. The table compares the 14 coefficients stored in that notebook with those of the refit.
+The table checks whether the 14 coefficients from the refit that produced the joint covariance match the stored F3 coefficients from notebook 03.
 """,
         ),
         code("""
@@ -3392,14 +2916,14 @@ with pd.option_context("display.float_format", "{:,.4f}".format):
 """),
         md(
             pt="""
-A TPR com 20% de desconto está associada a +39,8% nas vendas modeladas (de 39,0% a 40,5%) e o display com 20%, a +119,2% (de 117,7% a 120,7%). A razão modelada de vendas do display frente à TPR é de 1,568, com intervalo pontual de 1,555 a 1,581, ou seja, vendas modeladas cerca de 57% maiores no cenário de display. Os dois cenários têm suporte nos dados, como mostra a seção seguinte, mas a diferença continua sendo uma associação condicional, sujeita à seleção de quando e onde cada modalidade é aplicada, e não um efeito causal da escolha entre elas.
+Com 20% de desconto, a TPR está associada a +39,8% nas vendas modeladas em relação à semana regular (de 39,0% a 40,5%). Para display, a variação é de +119,2% (de 117,7% a 120,7%). A razão modelada de vendas de display em relação à TPR é de 1,568 (intervalo pontual de 1,555 a 1,581), o que corresponde a cerca de 57% a mais no cenário de display. Há observações para os dois cenários. A escolha de quando e onde cada modalidade foi aplicada pode influenciar essa associação condicional.
 
 ## 5. O suporte observado
 
 A leitura dos cenários só faz sentido se houver linhas observadas que os realizem. O suporte é contado nas semanas 0 a 103, para a combinação exata de modalidades e com desconto dentro de ± 3 pontos percentuais do valor do cenário. A tabela mostra as linhas, os pares distintos e a participação nas linhas de treino, o mesmo suporte restrito às linhas com preço-base observado (sem `BASE_IMPUTED`), o número de linhas de suporte que vieram do preço-base de fallback (`BASE_PRICE = PRICE`, que zera o desconto da linha) e a indicação de cenário fora do suporte observado.
 """,
             en="""
-The TPR with a 20% discount is associated with +39.8% in modelled sales (from 39.0% to 40.5%) and the display with 20%, with +119.2% (from 117.7% to 120.7%). The modelled sales ratio of the display relative to the TPR is 1.568, with a pointwise interval from 1.555 to 1.581, that is, modelled sales about 57% higher in the display scenario. Both scenarios have support in the data, as the next section shows, but the difference remains a conditional association, subject to the selection of when and where each modality is applied, not a causal effect of choosing between them.
+At a 20% discount, TPR is associated with +39.8% in modelled sales relative to a regular week (39.0% to 40.5%). For display, the change is +119.2% (117.7% to 120.7%). The modelled sales ratio for display relative to TPR is 1.568 (pointwise interval 1.555 to 1.581), or about 57% higher modelled sales in the display scenario. Both scenarios have observed support. The choice of when and where each promotion ran can influence this conditional association.
 
 ## 5. The observed support
 
@@ -3420,7 +2944,7 @@ with pd.option_context("display.float_format", "{:,.2f}".format):
 """),
         md(
             pt="""
-Nenhum cenário está fora do suporte observado. A semana regular tem 247.331 linhas (71,26% do treino, 3.858 pares), e os cenários promocionais têm de 0,30% a 2,93% das linhas: TPR com 10% de desconto tem 9.393 linhas (2,71%, 2.005 pares), TPR com 20% tem 10.185 (2,93%, 2.261 pares), encarte sem desconto tem 1.057 (0,30%, 641 pares), encarte com 20% tem 2.574 (0,74%, 1.212 pares), display sem desconto tem 8.624 (2,48%, 1.648 pares), display com 20% tem 2.273 (0,65%, 883 pares) e encarte com display e 25% tem 2.770 (0,80%, 968 pares). O suporte dos cenários de interesse executivo, TPR e display com 20%, é de 10.185 e 2.273 linhas, respectivamente. Restringir o suporte às linhas com preço-base observado muda pouco as contagens.
+Todos os cenários têm suporte observado. A semana regular reúne 247.331 linhas (71,26% do treino, 3.858 pares). Cada cenário promocional reúne entre 0,30% e 2,93% das linhas. Com desconto de 10% e 20%, a TPR tem 9.393 linhas (2,71%, 2.005 pares) e 10.185 linhas (2,93%, 2.261 pares), respectivamente. Sem desconto, o encarte tem 1.057 linhas (0,30%, 641 pares) e o display, 8.624 (2,48%, 1.648 pares). Com 20%, o encarte tem 2.574 linhas (0,74%, 1.212 pares) e o display, 2.273 (0,65%, 883 pares). Encarte com display e desconto de 25% tem 2.770 linhas (0,80%, 968 pares). Restringir o suporte às linhas com preço-base observado muda pouco as contagens.
 
 As linhas com preço-base de fallback, que têm desconto zero por construção, aparecem apenas nos cenários sem desconto: 18 linhas no encarte sem desconto (de 1.057) e 69 no display sem desconto (de 8.624). Em relação à tabela do notebook 03, quatro contagens diferem em 1 a 3 linhas (encarte sem desconto, 1.057 contra 1.055; display sem desconto, 8.624 contra 8.622; display com 20%, 2.273 contra 2.272; encarte com display e 25%, 2.770 contra 2.767), porque a borda da janela de ± 3 pontos percentuais passou a ser contada como incluída, com tolerância numérica.
 
@@ -3428,10 +2952,12 @@ O tratamento de um cenário sem suporte está implementado no código e coberto 
 
 ## 6. Limites e escopo
 
-Os cenários são associações condicionais, calculadas em semanas com vendas registradas, e a retransformação para a escala original dá uma razão modelada de vendas, e não uma previsão de vendas em um futuro controlado. Cada estimativa depende da forma funcional aditiva em log, do calendário promocional observado, das rupturas e de outros fatores que o modelo não representa, e a seleção de quando e onde cada promoção foi aplicada pode contaminar a associação, em especial a de preço (Villas-Boas & Winer, 1999). Os intervalos são pontuais, baseados no modelo e com cobertura nominal de 95%. Como os erros-padrão agrupados da sensibilidade intrapar ficam muito acima dos do modelo, a incerteza total é maior que a mostrada. O efeito promocional estimado é o de um incremento nas vendas (Blattberg & Neslin, 1989), sem custo, margem ou canibalização, de modo que nenhum ranking de rentabilidade decorre destes números. Margem, custo de promoção, retorno sobre o investimento e recomendação causal de preço permanecem fora do escopo, e a camada de decisão do projeto é uma leitura comparável de cenários com o apoio empírico de cada um.
+Os cenários estimam razões modeladas de vendas entre condições, usando semanas com vendas registradas e uma forma aditiva em log. O calendário promocional, as rupturas e outros fatores podem influenciar essas associações. A seleção de quando e onde aplicar uma promoção pode enviesar as estimativas, em especial a de preço (Villas-Boas & Winer, 1999). Os intervalos pontuais têm cobertura nominal de 95% sob o modelo. Na sensibilidade intrapar, os erros-padrão agrupados foram muito maiores, o que limita a leitura dos intervalos como medida de incerteza total.
+
+O incremento estimado é de vendas (Blattberg & Neslin, 1989). Uma análise de rentabilidade precisaria considerar custos de promoção, margem, canibalização e retorno sobre o investimento. O suporte observado informa a comparação entre cenários. Prever vendas em condições controladas ou recomendar preços com base em efeitos causais exigiria outro desenho.
 """,
             en="""
-No scenario is outside the observed support. The regular week has 247,331 rows (71.26% of training, 3,858 pairs), and the promotional scenarios have from 0.30% to 2.93% of the rows: TPR with a 10% discount has 9,393 rows (2.71%, 2,005 pairs), TPR with 20% has 10,185 (2.93%, 2,261 pairs), feature without discount has 1,057 (0.30%, 641 pairs), feature with 20% has 2,574 (0.74%, 1,212 pairs), display without discount has 8,624 (2.48%, 1,648 pairs), display with 20% has 2,273 (0.65%, 883 pairs) and feature with display at 25% has 2,770 (0.80%, 968 pairs). The support of the scenarios of executive interest, TPR and display with 20%, is 10,185 and 2,273 rows, respectively. Restricting the support to rows with an observed base price changes the counts little.
+All scenarios have observed support. The regular week accounts for 247,331 rows (71.26% of training rows, 3,858 pairs). Each promotional scenario accounts for between 0.30% and 2.93% of rows. At discounts of 10% and 20%, TPR has 9,393 rows (2.71%, 2,005 pairs) and 10,185 rows (2.93%, 2,261 pairs), respectively. Without a discount, feature has 1,057 rows (0.30%, 641 pairs) and display has 8,624 (2.48%, 1,648 pairs). At 20%, feature has 2,574 rows (0.74%, 1,212 pairs) and display has 2,273 (0.65%, 883 pairs). Feature with display at a 25% discount has 2,770 rows (0.80%, 968 pairs). Restricting support to rows with an observed base price changes the counts little.
 
 The rows with a fallback base price, which have zero discount by construction, appear only in the scenarios without a discount: 18 rows in feature without discount (of 1,057) and 69 in display without discount (of 8,624). Relative to the table of notebook 03, four counts differ by 1 to 3 rows (feature without discount, 1,057 against 1,055; display without discount, 8,624 against 8,622; display with 20%, 2,273 against 2,272; feature with display at 25%, 2,770 against 2,767), because the edge of the ± 3 percentage-point window is now counted as included, with numerical tolerance.
 
@@ -3439,7 +2965,9 @@ The handling of a scenario without support is implemented in the code and covere
 
 ## 6. Limits and scope
 
-The scenarios are conditional associations, computed in weeks with recorded sales, and the back-transformation to the original scale gives a modelled sales ratio, not a forecast of sales in a controlled future. Each estimate depends on the additive log functional form, on the observed promotional calendar, on stockouts and on other factors that the model does not represent, and the selection of when and where each promotion was applied may contaminate the association, in particular the price one (Villas-Boas & Winer, 1999). The intervals are pointwise, model-based and with nominal 95% coverage. Because the clustered standard errors of the within-pair sensitivity analysis are far above the model ones, the total uncertainty is larger than the one shown. The estimated promotional effect is that of an increment in sales (Blattberg & Neslin, 1989), with no cost, margin or cannibalisation, so no profitability ranking follows from these numbers. Margin, promotion cost, return on investment and causal price recommendations remain out of scope, and the decision layer of the project is a comparable reading of scenarios with the empirical support of each.
+The scenarios estimate modelled sales ratios across conditions using weeks with recorded sales and an additive log specification. The promotional calendar, stockouts and other factors can influence these associations. Selection of when and where to run a promotion can bias the estimates, particularly the price estimate (Villas-Boas & Winer, 1999). The pointwise intervals have nominal 95% coverage under the model. The clustered standard errors in the within-pair sensitivity analysis were much larger, which limits the interpretation of the intervals as a measure of total uncertainty.
+
+The estimated increment is in sales (Blattberg & Neslin, 1989). A profitability analysis would need to account for promotion costs, margins, cannibalisation and return on investment. Observed support informs the comparison across scenarios. Forecasting sales under controlled conditions or recommending prices based on causal effects would require a different design.
 """,
         ),
         code("""
@@ -3455,12 +2983,12 @@ display(localize_columns(dispersion.reset_index(drop=True), LANG))
             pt="""
 ### Dispersão da inclinação do desconto entre produtos
 
-Os cenários usam a inclinação comum do desconto do F3 (−1,685), e os intervalos estreitos refletem a precisão dessa inclinação comum. O teste complementar do notebook 04 (execução `discount_slope_lr`) ajustou o candidato C1, que acrescenta ao C0 inclinações aleatórias do desconto por produto e por loja (Gelman & Hill, 2007), e estimou um desvio-padrão da inclinação de 0,884 entre produtos e de 0,274 entre lojas. Em relação à inclinação comum, esses desvios equivalem a cerca de 52% e 16% do seu valor absoluto. Sob o C1, portanto, a inclinação do desconto de um produto individual se afasta da inclinação comum com desvio-padrão em torno de 0,88 (lojas, 0,27), o que é grande diante de −1,69. Os efeitos dos cenários descrevem, assim, uma associação média, e a resposta de um produto específico pode diferir substancialmente dela. Os intervalos estreitos referem-se à inclinação comum, não à de um produto em particular. A execução não grava a estimativa fixa de `LOG_DISC` do C1, de modo que nenhum efeito de cenário por produto é calculado sob esse modelo. O C0 permanece o modelo selecionado pelo protocolo P1.
+Os cenários usam a inclinação comum do desconto do F3 (−1,685). Os intervalos estreitos medem a precisão dos contrastes construídos com os coeficientes do F3. No teste complementar do notebook 04 (execução `discount_slope_lr`), o C1 acrescenta ao C0 inclinações aleatórias do desconto por produto e por loja (Gelman & Hill, 2007). No C1, as inclinações variam em torno da própria inclinação fixa do C1, com desvios-padrão estimados de 0,884 entre produtos e 0,274 entre lojas. Como comparação descritiva de escala, esses desvios equivalem a cerca de 52% e 16% do módulo da inclinação do F3, respectivamente. A associação estimada para um produto específico pode diferir substancialmente da associação média dos cenários. Como a execução não gravou a estimativa fixa de `LOG_DISC` do C1, os cálculos de cenário se limitam ao F3, o C0 selecionado pelo protocolo P1.
 """,
             en="""
 ### Dispersion of the discount slope across products
 
-The scenarios use the common discount slope of the F3 (−1.685), and the narrow intervals reflect the precision of that common slope. The complementary test of notebook 04 (run `discount_slope_lr`) fitted the candidate C1, which adds to the C0 random discount slopes by product and by store (Gelman & Hill, 2007), and estimated a standard deviation of the slope of 0.884 across products and 0.274 across stores. Relative to the common slope, these deviations amount to about 52% and 16% of its absolute value. Under the C1, therefore, the discount slope of an individual product is estimated to deviate from the common slope with a standard deviation of about 0.88 (stores, 0.27), which is large against −1.69. The scenario effects thus describe an average association, and the response of a specific product can differ substantially from it. The narrow intervals refer to the common slope, not to that of a particular product. The run does not store the fixed `LOG_DISC` estimate of the C1, so no per-product scenario effect is computed under that model. The C0 remains the model selected by the P1 protocol.
+The scenarios use F3's common discount slope (−1.685). The narrow intervals measure the precision of contrasts built from the F3 coefficients. In the supplementary test in notebook 04 (run `discount_slope_lr`), C1 adds random discount slopes by product and store to C0 (Gelman & Hill, 2007). In C1, the slopes vary around C1's own fixed slope, with estimated standard deviations of 0.884 across products and 0.274 across stores. For a descriptive comparison of scale, those standard deviations are about 52% and 16% of the absolute F3 slope, respectively. The estimated association for an individual product can differ substantially from the average association in the scenarios. Because the run lacks a stored fixed `LOG_DISC` estimate for C1, the scenario calculations use F3, the C0 selected by the P1 protocol.
 """,
         ),
     ]

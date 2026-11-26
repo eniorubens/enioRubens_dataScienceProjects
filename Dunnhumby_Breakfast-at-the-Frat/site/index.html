@@ -121,13 +121,13 @@
       <div class="wrap">
         <p class="eyebrow">Relatório executivo · Dados de painel</p>
         <h1>Modelar lojas e produtos melhora a previsão de vendas?</h1>
-        <p class="lead">Na avaliação temporal, o modelo multinível com interceptos aleatórios (C0) reduziu o erro frente às regressões por mínimos quadrados (OLS). O GPBoost ficou ligeiramente à frente com peso igual por par. O C0 teve menor erro com peso por linha e nos pares inéditos.</p>
+        <p class="lead">Na janela final, o modelo multinível com interceptos aleatórios (C0) teve menor erro no agregado que as regressões por mínimos quadrados (OLS). Nos pares loja–produto vistos no treino, o GPBoost teve uma pequena vantagem com peso igual por par. O C0 teve menor erro com peso igual por linha e também nos pares inéditos.</p>
         <dl class="kpis">
           <div><dt>MAE por par do C0 nos 3.820 pares vistos</dt><dd>0,4541</dd></div>
           <div><dt>MAE por par do GPBoost na mesma população</dt><dd>0,4520</dd></div>
           <div><dt>MAE por par do C0 nos 50 pares inéditos</dt><dd>0,6260</dd></div>
         </dl>
-        <p class="hero-note">As previsões são condicionais aos preços e às promoções realizados em cada semana.</p>
+        <p class="hero-note">As previsões usam os preços e as promoções observados em cada semana.</p>
       </div>
     </div>
     <nav class="toc" aria-label="Neste relatório">
@@ -142,7 +142,7 @@
     <div class="wrap report">
       <section id="results" aria-labelledby="results-title">
         <h2 id="results-title">O C0 superou as referências OLS</h2>
-        <p class="copy">O indicador principal é o erro absoluto médio (MAE) do logaritmo das unidades vendidas. Cada combinação de loja e código de produto (UPC) recebe o mesmo peso, independentemente da quantidade de semanas registradas. Quanto menor o MAE, menor o erro.</p>
+        <p class="copy">A métrica principal é o erro absoluto médio (MAE) no logaritmo das unidades vendidas. Ao calcular o MAE por par, cada combinação de loja e código de produto (UPC) tem o mesmo peso, mesmo quando os pares têm números diferentes de semanas registradas.</p>
         <figure class="chart" aria-labelledby="chart-label" aria-describedby="chart-detail">
           <figcaption id="chart-label">Janela final · 3.820 pares vistos no treino</figcaption>
           <p class="detail" id="chart-detail">MAE com peso igual por par, em escala de 0 a 1.</p>
@@ -154,7 +154,7 @@
         </figure>
         <div class="table-shell">
           <table>
-            <caption>Comparações na mesma população</caption>
+            <caption>Comparações dentro de cada recorte</caption>
             <thead>
               <tr><th scope="col">População e métrica</th><th scope="col" class="num">C0</th><th scope="col" class="num">GPBoost</th><th scope="col" class="num">OLS por par</th></tr>
             </thead>
@@ -165,13 +165,13 @@
             </tbody>
           </table>
         </div>
-        <p class="copy detail">A comparação com o OLS por par usa 3.779 pares e 174.206 linhas, 98,7% das linhas de pares vistos.</p>
-        <div class="note"><p>O GPBoost teve MAE por par <strong>0,47% menor</strong> nos pares vistos. São diferenças observadas em uma janela. A comparação de desempenho entre C0 e GPBoost ficou sem estimativa de incerteza.</p></div>
+        <p class="copy detail">A comparação com o OLS por par cobre 3.779 pares e 174.206 linhas, o equivalente a 98,7% das linhas de pares vistos.</p>
+        <div class="note"><p>Na janela final, o GPBoost teve MAE por par <strong>0,47% menor</strong> que o C0 nos pares vistos. A incerteza dessa diferença não foi estimada.</p></div>
       </section>
 
       <section id="short-history" aria-labelledby="short-history-title">
         <h2 id="short-history-title">Nos pares com pouco histórico, o peso muda a leitura</h2>
-        <p class="copy">Entre os 98 pares vistos com menos de 26 semanas de treino, o GPBoost teve MAE por par de <strong>0,4376</strong>, frente a <strong>0,5430</strong> no C0. Ao incluir o OLS por par, a comparação usa os mesmos dados cobertos por ele, que abrangem 59 desses pares.</p>
+        <p class="copy">Entre os 98 pares vistos com menos de 26 semanas de treino, o MAE por par foi de <strong>0,4376</strong> para o GPBoost e de <strong>0,5430</strong> para o C0. Para incluir o OLS por par, a tabela restringe a comparação às linhas cobertas por esse modelo, em 59 dos 98 pares.</p>
         <div class="table-shell">
           <table>
             <caption>Subconjunto de 59 pares curtos · 1.008 linhas</caption>
@@ -185,20 +185,20 @@
             </tbody>
           </table>
         </div>
-        <p class="copy detail">O GPBoost liderou com o mesmo peso para cada par. O C0 liderou com o mesmo peso para cada linha. A cobertura do OLS segue a regra operacional E2. Um critério de estimabilidade mudaria a classificação de 175 das 176.529 linhas de pares vistos na janela final. As métricas publicadas usam a regra original.</p>
+        <p class="copy detail">Nesse subconjunto, o GPBoost teve o menor MAE por par e o C0 teve o menor MAE por linha. As métricas usam a regra operacional E2 para definir a cobertura do OLS por par. Um critério de estimabilidade mudaria a cobertura de 175 das 176.529 linhas de pares vistos na janela final.</p>
       </section>
 
       <section id="pricing" aria-labelledby="pricing-title">
-        <h2 id="pricing-title">O painel ajuda a interpretar preço e promoção</h2>
-        <p class="copy">As semanas se repetem dentro de cada par loja × UPC. O modelo separa diferenças de nível entre lojas, produtos e pares e estima inclinações comuns para preço e desconto no C0. Sob o modelo nulo, a correlação estimada entre duas semanas do mesmo par foi de 75,4%.</p>
+        <h2 id="pricing-title">Como preço e promoção se relacionam com as vendas?</h2>
+        <p class="copy">O painel acompanha cada par loja × UPC ao longo de várias semanas. No modelo nulo, a correlação estimada entre duas semanas do mesmo par foi de 75,4%. O C0 permite que o nível de vendas varie por loja, produto e par. As inclinações de preço e desconto são comuns aos pares.</p>
         <div class="split">
           <div class="card">
             <h3>Sensibilidade a preço e desconto</h3>
-            <p>No F3, o coeficiente do log da razão entre preço pago e preço-base foi <strong>−1,685</strong>. Para o log do preço-base, na variação dentro do par, foi <strong>−1,592</strong>. A sensibilidade com efeitos fixos de par e semana obteve valores próximos (−1,703 e −1,598, respectivamente).</p>
+            <p>No F3, o coeficiente para o logaritmo da razão entre preço pago e preço-base foi <strong>−1,685</strong>. O coeficiente para a variação do logaritmo do preço-base dentro do par foi <strong>−1,592</strong>. Com efeitos fixos de par e semana, as estimativas foram próximas (−1,703 e −1,598, respectivamente).</p>
           </div>
           <div class="card">
             <h3>Modalidades promocionais</h3>
-            <p>Encarte, display e redução temporária só na etiqueta (TPR) entram como indicadores. No treino, toda semana com <code>TPR_ONLY</code> tinha desconto. Compare cenários que combinem modalidade e profundidade do desconto em faixas observadas.</p>
+            <p>O modelo usa indicadores para encarte, display e redução temporária de preço só na etiqueta (TPR). No treino, toda semana com <code>TPR_ONLY</code> tinha desconto. Os cenários da tabela combinam a modalidade da promoção e a profundidade do desconto em faixas observadas.</p>
           </div>
         </div>
         <div class="table-shell">
@@ -213,13 +213,13 @@
             </tbody>
           </table>
         </div>
-        <p class="copy detail">Diferenças nas unidades obtidas ao converter a escala logarítmica do F3. O suporte conta linhas de treino da mesma modalidade com desconto de 20% ± 3 pontos percentuais. A escolha do varejista de onde e quando promover pode influenciar as estimativas.</p>
-        <div class="note"><p><strong>Uso dos resultados.</strong> Os coeficientes descrevem associações condicionais nas semanas com transações registradas. Decisões de preço, impacto incremental e ROI exigem um desenho de identificação causal e, para ROI, dados de margem.</p></div>
+        <p class="copy detail">Os percentuais expressam a diferença estimada nas unidades vendidas após a conversão da escala logarítmica do F3. As contagens são do notebook 03 e incluem linhas de treino da mesma modalidade com desconto de 20% ± 3 pontos percentuais. A escolha do varejista de onde e quando promover pode influenciar as estimativas.</p>
+        <div class="note"><p>Os coeficientes descrevem associações condicionais nas semanas com transações registradas. Medir o impacto incremental para embasar decisões de preço requer um desenho de identificação causal. O cálculo do ROI também exige dados de margem.</p></div>
       </section>
 
       <section id="method" aria-labelledby="method-title">
-        <h2 id="method-title">Como a comparação foi conduzida</h2>
-        <p class="copy">O painel limpo inclui <strong>524.926 observações, 77 lojas, 55 UPCs e 156 semanas</strong>. O P1 definiu a ordem dos modelos e a regra de seleção antes dos ajustes dos candidatos. Foram usadas duas dobras internas nas primeiras 104 semanas.</p>
+        <h2 id="method-title">Como o P1 comparou os modelos</h2>
+        <p class="copy">Após a limpeza, o painel tinha <strong>524.926 observações, 77 lojas, 55 UPCs e 156 semanas</strong>. O P1 definiu a ordem e o critério de seleção antes de ajustar os modelos candidatos. As duas dobras de validação usaram as primeiras 104 semanas.</p>
         <div class="table-shell">
           <table>
             <caption>Inclinações de desconto por loja e UPC (C1) frente ao C0</caption>
@@ -232,22 +232,22 @@
             </tbody>
           </table>
         </div>
-        <p class="copy">O C1 melhorou nos pares com menos de 26 semanas nas duas dobras. No conjunto de pares elegíveis, o ganho médio foi <strong>−0,49%</strong>. O protocolo exigia melhora nas duas dobras e ganho médio de pelo menos 0,5%. O C0 foi selecionado. O resultado sobre inclinações aleatórias nos pares curtos permanece em aberto na janela final.</p>
+        <p class="copy">O C1 reduziu o erro dos pares com menos de 26 semanas de treino nas duas dobras. Considerando todos os pares elegíveis, o ganho médio foi de <strong>−0,49%</strong>. Como o protocolo exigia melhora nas duas dobras e ganho médio de pelo menos 0,5%, o P1 selecionou o C0. Ainda fica em aberto se as inclinações aleatórias ajudariam os pares com pouco histórico na janela final.</p>
         <div class="split">
           <div class="card">
             <h3>Janela final retrospectiva</h3>
-            <p>O C0 e as referências foram ajustados nas semanas 0–103. As semanas 104–155 (12/01/2011 a 04/01/2012) foram pontuadas uma vez após o congelamento. A exploração inicial, incluindo o OLS do brief, já havia usado o painel completo.</p>
+            <p>O P1 ajustou o C0 e os modelos de referência nas semanas 0–103. Após congelar a especificação, avaliou uma única vez as semanas 104–155 (12/01/2011 a 04/01/2012). A exploração inicial, que incluiu o OLS do briefing, já havia usado o painel completo.</p>
           </div>
           <div class="card">
             <h3>Cobertura e incerteza</h3>
-            <p>Semanas sem registro de transação podem refletir venda zero ou ruptura. No treino, os resíduos de semanas consecutivas do mesmo par tiveram correlação de 0,196. Na sensibilidade intrapar, os erros-padrão agrupados por par e semana foram maiores que os de Wald do F3.</p>
+            <p>Semanas sem transação registrada podem indicar venda zero ou ruptura. Nas semanas de treino, os resíduos de semanas consecutivas do mesmo par tiveram correlação de 0,196. A análise de sensibilidade dentro do par usou erros-padrão agrupados por par e semana, maiores que os erros-padrão de Wald do F3.</p>
           </div>
         </div>
       </section>
 
       <section id="sources" aria-labelledby="sources-title">
         <h2 id="sources-title">Fontes e rastreabilidade</h2>
-        <p class="copy">Resultados agregados da execução final do P1 de 24/11/2026 (<code>20261124-144615-0aba3b28</code>). Os notebooks reproduzem as tabelas a partir das execuções registradas.</p>
+        <p class="copy">As métricas da janela final vêm da execução do P1 de 24/11/2026 (<code>20261124-144615-0aba3b28</code>). Os notebooks reproduzem as tabelas a partir das execuções salvas.</p>
         <ul class="source-list">
           <li><a href="https://www.dunnhumby.com/source-files/">Dados · dunnhumby Source Files, Breakfast at the Frat</a></li>
           <li><a href="../notebooks/pt_br/01_eda_painel.ipynb">Notebook 01 · Dados e exploração do painel</a></li>
