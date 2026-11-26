@@ -31,6 +31,7 @@ This is not a collection of isolated notebooks. The analytical projects combine 
 | **E-commerce Delivery Network & SLA Risk** | Delivery risk / temporal ML | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repository](./E-commerce_Delivery_Network_SLA_Risk) |
 | **Delivery Routing & Time-Window Optimization** | Logistics / prescriptive optimization | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) | [Repository](./Delivery_Routing_Time_Window_Optimization) |
 | **Claim Frequency per Policy** | Insurance / count regression | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) | [Repository](./Claim_Frequency_per_Policy) |
+| **Retail Pricing & Promotion (Multilevel)** | Retail / multilevel models | [📊 View report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/en.html) | [Repository](./Dunnhumby_Breakfast-at-the-Frat) |
 | **ds_toolkit** | Reusable ML library | [Library README](./ds_toolkit) | [Code](./ds_toolkit) |
 
 ---
@@ -226,6 +227,18 @@ Estimates claims per 100 policy-years on the French `freMTPL2freq` benchmark (67
 
 ---
 
+### 15. [Retail Pricing & Promotion with Multilevel Models](Dunnhumby_Breakfast-at-the-Frat/README.md) — Discount elasticity and promotion lift across stores and products
+
+Estimates how discount depth, feature, display and temporary price reductions are associated with unit sales in the dunnhumby *Breakfast at the Frat* panel (524,926 store × product × week rows, 77 stores, 55 products), with crossed random intercepts for store, product and store × product. Under a pre-registered protocol, the intercept-only multilevel model was kept over random discount slopes on two internal temporal folds and scored **once** on the last 52 weeks: per-pair MAE of log units **0.454**, against **0.917** for pooled OLS and close to a GPBoost challenger (**0.452**). Planned contrasts with Holm show that the discount slope differs across categories (−1.08 to −2.42), and the scenarios read a display at 20% off as about **1.57×** the modelled sales of a 20% TPR, as conditional associations.
+
+📊 **Executive report:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/en.html) · README: [English](Dunnhumby_Breakfast-at-the-Frat/README.md) · [Português](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
+
+**Methods:** Crossed linear mixed models (lme4) · ICC and boundary-corrected likelihood-ratio tests · Within/between (Mundlak) price decomposition · Two-way cluster-robust inference · Pre-registered temporal validation with hash freezing and a single final scoring · Parametric-bootstrap test of random slopes · Holm-adjusted planned contrasts · Scenario contrasts with joint covariance and observed support
+
+**Technologies:** Python · R · lme4 · rpy2 · pandas · NumPy · SciPy · statsmodels · GPBoost · Optuna · Matplotlib · pytest · Jupyter · conda
+
+---
+
 ## Skills Summary
 
 | Area | Methods & Techniques |
@@ -240,6 +253,7 @@ Estimates claims per 100 policy-years on the French `freMTPL2freq` benchmark (67
 | **Prescriptive Analytics** | Budget Optimization, Expected Profit Simulation, Next Best Action |
 | **Inferential Statistics** | Z-test, A/B Testing, Hypothesis Testing |
 | **Count Data Modeling** | Poisson and negative binomial (NB2) GLMs, exposure offset, dispersion and zero diagnostics, segment calibration |
+| **Multilevel Models** | Crossed random effects, partial pooling (shrinkage), ICC, boundary likelihood-ratio tests, random slopes, parametric bootstrap |
 | **Causal Inference** | CATE Estimation, Meta-Learners, Causal Forests, Uplift Evaluation, Policy Learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
 | **Data Engineering** | Polars, DuckDB, Feature Pipelines, Encoding Strategies, Imbalanced Data Handling |
@@ -247,7 +261,7 @@ Estimates claims per 100 policy-years on the French `freMTPL2freq` benchmark (67
 
 ## Core Technologies
 
-Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
+Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · R/lme4 · rpy2 · GPBoost · category_encoders · MLxtend · Jupyter
 
 ---
 
@@ -255,4 +269,4 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 
 ## License
 
-Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB, OpenML/freMTPL2freq) remain under their original terms; see each project's README for sources.
+Code is released under the [MIT License](LICENSE). Third-party datasets (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB, OpenML/freMTPL2freq, dunnhumby Source Files) remain under their original terms; see each project's README for sources.

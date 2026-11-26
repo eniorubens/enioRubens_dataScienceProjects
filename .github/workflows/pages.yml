@@ -74,6 +74,12 @@ jobs:
           sed -i "s#href=\"\.\./#href=\"$source_url/#g" \
             _site/Claim_Frequency_per_Policy/index.html \
             _site/Claim_Frequency_per_Policy/en.html
+          mkdir -p _site/Dunnhumby_Breakfast-at-the-Frat
+          cp -a Dunnhumby_Breakfast-at-the-Frat/site/. _site/Dunnhumby_Breakfast-at-the-Frat/
+          source_url="https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Dunnhumby_Breakfast-at-the-Frat"
+          sed -i "s#href=\"\.\./#href=\"$source_url/#g" \
+            _site/Dunnhumby_Breakfast-at-the-Frat/index.html \
+            _site/Dunnhumby_Breakfast-at-the-Frat/en.html
           cp pages-publicacao/index.html _site/index.html
           touch _site/.nojekyll
       - name: Upload website

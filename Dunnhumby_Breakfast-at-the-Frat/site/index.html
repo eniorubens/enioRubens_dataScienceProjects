@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Precificação e promoção no varejo | Relatório executivo</title>
+  <meta name="description" content="Relatório executivo do estudo dunnhumby Breakfast at the Frat. Modelos multinível, avaliação temporal e limites para decisões de preço e promoção.">
+  <link rel="alternate" hreflang="pt-BR" href="index.html">
+  <link rel="alternate" hreflang="en-US" href="en.html">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f6f1;
+      --paper: #fff;
+      --ink: #14292a;
+      --muted: #425b58;
+      --line: #d9e3db;
+      --dark: #102d2b;
+      --accent: #ffe1a0;
+      --teal: #087664;
+      --olive: #64744a;
+      --slate: #788684;
+      --wrap: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 1.25rem; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 1rem/1.65 system-ui, sans-serif; }
+    a { color: #075e50; text-underline-offset: .22em; }
+    a:focus-visible { outline: 3px solid #c88819; outline-offset: 4px; }
+    header, .hero, footer { background: var(--dark); color: #f5f7ed; }
+    header { border-bottom: 1px solid #41615a; }
+    header a, footer a { color: var(--accent); }
+    .wrap { width: min(var(--wrap), calc(100% - 3.5rem)); margin-inline: auto; }
+    .topbar, .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+    .brand, .language { font-weight: 650; }
+    .language { padding: .35rem .8rem; border: 1px solid #7b8469; border-radius: 5px; white-space: nowrap; }
+    .skip { position: absolute; top: .5rem; left: .5rem; transform: translateY(-200%); background: var(--paper); padding: .5rem 1rem; z-index: 2; }
+    .skip:focus { transform: none; }
+    .hero { padding: clamp(2.8rem, 7vw, 5.5rem) 0 2.8rem; background: linear-gradient(127deg, #102d2b 38%, #1c493d 100%); }
+    .eyebrow { color: var(--accent); font-size: .82rem; font-weight: 720; letter-spacing: .085em; text-transform: uppercase; }
+    h1, h2 { font-family: Georgia, serif; font-weight: 500; letter-spacing: -.03em; text-wrap: balance; }
+    h1 { font-size: clamp(2.4rem, 6.3vw, 4.6rem); max-width: 20ch; margin: .6rem 0 1.1rem; line-height: 1.02; }
+    h2 { font-size: clamp(2rem, 3.9vw, 3rem); line-height: 1.13; margin: 0 0 1rem; }
+    h3 { font-size: 1.06rem; line-height: 1.35; margin: 0 0 .4rem; }
+    p { margin: 0 0 1rem; }
+    .lead { max-width: 66ch; font-size: clamp(1.04rem, 2vw, 1.24rem); color: #edeee4; }
+    .hero-note { margin-top: 1.1rem; margin-bottom: 0; color: #e0e9d9; font-size: .91rem; }
+    .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0 0; }
+    .kpis div { display: flex; flex-direction: column; padding: .9rem 1rem; border: 1px solid #51756a; border-top: 3px solid #d3b16d; background: #1e453c; border-radius: 6px; }
+    .kpis dt { color: #eff2e8; font-size: .9rem; order: 2; }
+    .kpis dd { margin: 0; color: var(--accent); font-weight: 750; font-size: clamp(1.5rem, 3vw, 2.25rem); font-variant-numeric: tabular-nums; }
+    .toc { border-bottom: 1px solid var(--line); background: #eeeee7; }
+    .toc .wrap { display: flex; flex-wrap: wrap; column-gap: 1.6rem; row-gap: .6rem; padding-block: .9rem; }
+    .toc a { font-weight: 650; }
+    .report { padding: 0 0 3rem; }
+    section { padding: clamp(2rem, 6vw, 3.65rem) 0; border-bottom: 1px solid #cddad1; }
+    section:last-child { border-bottom: 0; padding-bottom: 0; }
+    .copy { max-width: 77ch; }
+    .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; margin: 1.25rem 0; }
+    .card, .chart, .table-shell { border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    .card, .chart { padding: clamp(.9rem, 3vw, 1.4rem); }
+    .card p:last-child, .note p:last-child { margin-bottom: 0; }
+    .note { margin: 1.25rem 0 0; padding: .85rem 1rem; border-left: 4px solid var(--teal); background: #e9f1e9; border-radius: 0 6px 6px 0; }
+    .chart { margin: 1.3rem 0 .85rem; }
+    figcaption, caption { color: var(--ink); font-weight: 720; text-align: left; }
+    .detail { color: var(--muted); font-size: .91rem; }
+    .bars { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: .65rem; }
+    .bars li { display: grid; grid-template-columns: minmax(8.5rem, 10rem) minmax(2rem, 1fr) 4.35rem; align-items: center; gap: .75rem; }
+    .track { display: block; min-width: 0; height: .8rem; background: #edf1ec; border-radius: 2px; overflow: hidden; }
+    .fill { display: block; width: var(--value); height: 100%; border-radius: 2px; background: var(--teal); }
+    .alternative .fill { background: var(--olive); }
+    .baseline .fill { background: var(--slate); }
+    .bars strong, .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .table-shell { overflow-x: auto; margin: 1.2rem 0 .7rem; }
+    table { width: 100%; border-collapse: collapse; }
+    caption { padding: .85rem 1rem; }
+    th, td { padding: .55rem .95rem; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+    thead th { background: #edf3ed; }
+    tbody th { font-weight: 600; }
+    .source-list { padding-left: 1.25rem; }
+    .source-list li { margin-block: .35rem; }
+    footer .detail { color: #e0e9d9; }
+
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 2rem); }
+      .kpis, .split { grid-template-columns: 1fr; }
+      .topbar, .footer-inner { align-items: flex-start; }
+      .bars li { grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .65rem; }
+      .bars .track { grid-column: 1 / -1; grid-row: 2; }
+      .bars strong { grid-column: 2; grid-row: 1; }
+      th, td { padding: .55rem .65rem; }
+    }
+
+    @media print {
+      :root { --bg: #fff; --wrap: none; }
+      body { font-size: 10pt; }
+      .wrap { width: 100%; }
+      header, nav, footer, .skip { display: none; }
+      .hero { background: #fff; color: var(--ink); padding: 0 0 1rem; border-bottom: 1px solid var(--line); }
+      .hero p, .kpis dt, .kpis dd { color: var(--ink); }
+      .kpis div { background: #fff; }
+      h1 { font-size: 27pt; }
+      h2 { font-size: 19pt; }
+      section { padding: 1.25rem 0; }
+      .card, .chart, table, .note { break-inside: avoid; }
+      .track, .fill { print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#content">Ir para o conteúdo</a>
+  <header>
+    <div class="wrap topbar">
+      <span class="brand" lang="en">dunnhumby · Breakfast at the Frat</span>
+      <a class="language" href="en.html" lang="en-US" hreflang="en-US">English</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <div class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Relatório executivo · Dados de painel</p>
+        <h1>Modelar lojas e produtos melhora a previsão de vendas?</h1>
+        <p class="lead">Na avaliação temporal, o modelo multinível com interceptos aleatórios (C0) reduziu o erro frente às regressões por mínimos quadrados (OLS). O GPBoost ficou ligeiramente à frente com peso igual por par. O C0 teve menor erro com peso por linha e nos pares inéditos.</p>
+        <dl class="kpis">
+          <div><dt>MAE por par do C0 nos 3.820 pares vistos</dt><dd>0,4541</dd></div>
+          <div><dt>MAE por par do GPBoost na mesma população</dt><dd>0,4520</dd></div>
+          <div><dt>MAE por par do C0 nos 50 pares inéditos</dt><dd>0,6260</dd></div>
+        </dl>
+        <p class="hero-note">As previsões são condicionais aos preços e às promoções realizados em cada semana.</p>
+      </div>
+    </div>
+    <nav class="toc" aria-label="Neste relatório">
+      <div class="wrap">
+        <a href="#results">Resultados</a>
+        <a href="#short-history">Pares com pouco histórico</a>
+        <a href="#pricing">Preço e promoção</a>
+        <a href="#method">Método e limites</a>
+        <a href="#sources">Fontes</a>
+      </div>
+    </nav>
+    <div class="wrap report">
+      <section id="results" aria-labelledby="results-title">
+        <h2 id="results-title">O C0 superou as referências OLS</h2>
+        <p class="copy">O indicador principal é o erro absoluto médio (MAE) do logaritmo das unidades vendidas. Cada combinação de loja e código de produto (UPC) recebe o mesmo peso, independentemente da quantidade de semanas registradas. Quanto menor o MAE, menor o erro.</p>
+        <figure class="chart" aria-labelledby="chart-label" aria-describedby="chart-detail">
+          <figcaption id="chart-label">Janela final · 3.820 pares vistos no treino</figcaption>
+          <p class="detail" id="chart-detail">MAE com peso igual por par, em escala de 0 a 1.</p>
+          <ul class="bars" role="list">
+            <li><span>C0 multinível</span><span class="track" aria-hidden="true"><span class="fill" style="--value: 45.4092%"></span></span><strong>0,4541</strong></li>
+            <li class="alternative"><span>GPBoost</span><span class="track" aria-hidden="true"><span class="fill" style="--value: 45.1979%"></span></span><strong>0,4520</strong></li>
+            <li class="baseline"><span>OLS agrupado</span><span class="track" aria-hidden="true"><span class="fill" style="--value: 91.7193%"></span></span><strong>0,9172</strong></li>
+          </ul>
+        </figure>
+        <div class="table-shell">
+          <table>
+            <caption>Comparações na mesma população</caption>
+            <thead>
+              <tr><th scope="col">População e métrica</th><th scope="col" class="num">C0</th><th scope="col" class="num">GPBoost</th><th scope="col" class="num">OLS por par</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Pares vistos · MAE por linha</th><td class="num">0,4446</td><td class="num">0,4478</td><td class="num">—</td></tr>
+              <tr><th scope="row">Linhas cobertas pelo OLS por par · MAE por par</th><td class="num">0,4510</td><td class="num">0,4506</td><td class="num">0,4941</td></tr>
+              <tr><th scope="row">Pares inéditos com UPC conhecido · MAE por par</th><td class="num">0,6260</td><td class="num">0,6876</td><td class="num">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy detail">A comparação com o OLS por par usa 3.779 pares e 174.206 linhas, 98,7% das linhas de pares vistos.</p>
+        <div class="note"><p>O GPBoost teve MAE por par <strong>0,47% menor</strong> nos pares vistos. São diferenças observadas em uma janela. A comparação de desempenho entre C0 e GPBoost ficou sem estimativa de incerteza.</p></div>
+      </section>
+
+      <section id="short-history" aria-labelledby="short-history-title">
+        <h2 id="short-history-title">Nos pares com pouco histórico, o peso muda a leitura</h2>
+        <p class="copy">Entre os 98 pares vistos com menos de 26 semanas de treino, o GPBoost teve MAE por par de <strong>0,4376</strong>, frente a <strong>0,5430</strong> no C0. Ao incluir o OLS por par, a comparação usa os mesmos dados cobertos por ele, que abrangem 59 desses pares.</p>
+        <div class="table-shell">
+          <table>
+            <caption>Subconjunto de 59 pares curtos · 1.008 linhas</caption>
+            <thead>
+              <tr><th scope="col">Modelo</th><th scope="col" class="num">MAE por par</th><th scope="col" class="num">MAE por linha</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">C0 multinível</th><td class="num">0,477</td><td class="num">0,480</td></tr>
+              <tr><th scope="row">GPBoost</th><td class="num">0,400</td><td class="num">0,489</td></tr>
+              <tr><th scope="row">OLS por par</th><td class="num">0,406</td><td class="num">0,525</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy detail">O GPBoost liderou com o mesmo peso para cada par. O C0 liderou com o mesmo peso para cada linha. A cobertura do OLS segue a regra operacional E2. Um critério de estimabilidade mudaria a classificação de 175 das 176.529 linhas de pares vistos na janela final. As métricas publicadas usam a regra original.</p>
+      </section>
+
+      <section id="pricing" aria-labelledby="pricing-title">
+        <h2 id="pricing-title">O painel ajuda a interpretar preço e promoção</h2>
+        <p class="copy">As semanas se repetem dentro de cada par loja × UPC. O modelo separa diferenças de nível entre lojas, produtos e pares e estima inclinações comuns para preço e desconto no C0. Sob o modelo nulo, a correlação estimada entre duas semanas do mesmo par foi de 75,4%.</p>
+        <div class="split">
+          <div class="card">
+            <h3>Sensibilidade a preço e desconto</h3>
+            <p>No F3, o coeficiente do log da razão entre preço pago e preço-base foi <strong>−1,685</strong>. Para o log do preço-base, na variação dentro do par, foi <strong>−1,592</strong>. A sensibilidade com efeitos fixos de par e semana obteve valores próximos (−1,703 e −1,598, respectivamente).</p>
+          </div>
+          <div class="card">
+            <h3>Modalidades promocionais</h3>
+            <p>Encarte, display e redução temporária só na etiqueta (TPR) entram como indicadores. No treino, toda semana com <code>TPR_ONLY</code> tinha desconto. Compare cenários que combinem modalidade e profundidade do desconto em faixas observadas.</p>
+          </div>
+        </div>
+        <div class="table-shell">
+          <table>
+            <caption>Dois cenários de desconto de 20% frente a uma semana regular</caption>
+            <thead>
+              <tr><th scope="col">Modalidade</th><th scope="col" class="num">Diferença estimada</th><th scope="col" class="num">Linhas de suporte</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">TPR sem encarte ou display</th><td class="num">+39,8%</td><td class="num">10.185</td></tr>
+              <tr><th scope="row">Display sem encarte</th><td class="num">+119,2%</td><td class="num">2.272</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy detail">Diferenças nas unidades obtidas ao converter a escala logarítmica do F3. O suporte conta linhas de treino da mesma modalidade com desconto de 20% ± 3 pontos percentuais. A escolha do varejista de onde e quando promover pode influenciar as estimativas.</p>
+        <div class="note"><p><strong>Uso dos resultados.</strong> Os coeficientes descrevem associações condicionais nas semanas com transações registradas. Decisões de preço, impacto incremental e ROI exigem um desenho de identificação causal e, para ROI, dados de margem.</p></div>
+      </section>
+
+      <section id="method" aria-labelledby="method-title">
+        <h2 id="method-title">Como a comparação foi conduzida</h2>
+        <p class="copy">O painel limpo inclui <strong>524.926 observações, 77 lojas, 55 UPCs e 156 semanas</strong>. O P1 definiu a ordem dos modelos e a regra de seleção antes dos ajustes dos candidatos. Foram usadas duas dobras internas nas primeiras 104 semanas.</p>
+        <div class="table-shell">
+          <table>
+            <caption>Inclinações de desconto por loja e UPC (C1) frente ao C0</caption>
+            <thead>
+              <tr><th scope="col">Corte interno</th><th scope="col" class="num">C0</th><th scope="col" class="num">C1</th><th scope="col" class="num">Ganho relativo do C1</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">A · ajuste 0–51, validação 52–77</th><td class="num">0,4230</td><td class="num">0,4294</td><td class="num">−1,52%</td></tr>
+              <tr><th scope="row">B · ajuste 0–77, validação 78–103</th><td class="num">0,4211</td><td class="num">0,4188</td><td class="num">+0,54%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy">O C1 melhorou nos pares com menos de 26 semanas nas duas dobras. No conjunto de pares elegíveis, o ganho médio foi <strong>−0,49%</strong>. O protocolo exigia melhora nas duas dobras e ganho médio de pelo menos 0,5%. O C0 foi selecionado. O resultado sobre inclinações aleatórias nos pares curtos permanece em aberto na janela final.</p>
+        <div class="split">
+          <div class="card">
+            <h3>Janela final retrospectiva</h3>
+            <p>O C0 e as referências foram ajustados nas semanas 0–103. As semanas 104–155 (12/01/2011 a 04/01/2012) foram pontuadas uma vez após o congelamento. A exploração inicial, incluindo o OLS do brief, já havia usado o painel completo.</p>
+          </div>
+          <div class="card">
+            <h3>Cobertura e incerteza</h3>
+            <p>Semanas sem registro de transação podem refletir venda zero ou ruptura. No treino, os resíduos de semanas consecutivas do mesmo par tiveram correlação de 0,196. Na sensibilidade intrapar, os erros-padrão agrupados por par e semana foram maiores que os de Wald do F3.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Fontes e rastreabilidade</h2>
+        <p class="copy">Resultados agregados da execução final do P1 de 24/11/2026 (<code>20261124-144615-0aba3b28</code>). Os notebooks reproduzem as tabelas a partir das execuções registradas.</p>
+        <ul class="source-list">
+          <li><a href="https://www.dunnhumby.com/source-files/">Dados · dunnhumby Source Files, Breakfast at the Frat</a></li>
+          <li><a href="../notebooks/pt_br/01_eda_painel.ipynb">Notebook 01 · Dados e exploração do painel</a></li>
+          <li><a href="../notebooks/pt_br/02_modelo_nulo.ipynb">Notebook 02 · Modelo nulo e variância</a></li>
+          <li><a href="../notebooks/pt_br/03_efeitos_fixos.ipynb">Notebook 03 · Preço, promoção e dependência temporal</a></li>
+          <li><a href="../notebooks/pt_br/04_protocolo_p1.ipynb">Notebook 04 · Protocolo P1 e avaliação temporal</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="detail">Enio Rubens · Breakfast at the Frat</span>
+      <a href="#top">Voltar ao topo</a>
+    </div>
+  </footer>
+</body>
+</html>

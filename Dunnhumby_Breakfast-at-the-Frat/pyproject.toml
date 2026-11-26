@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retail-multilevel"
+version = "0.1.0"
+description = "Multilevel (mixed-effects) models of price elasticity and promotion lift in retail panel data (dunnhumby Breakfast at the Frat)"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.26,<2.4",
+    "pandas>=2.2,<3",
+    "pyarrow>=16",
+    "openpyxl>=3.1,<4",
+    "scipy>=1.12,<1.17",
+    "statsmodels>=0.14,<1",
+    "scikit-learn>=1.6,<2",
+    "matplotlib>=3.8,<4",
+    "seaborn>=0.13,<1",
+    "plotly>=6,<8",
+]
+
+[project.optional-dependencies]
+# R bridge for lme4/glmmTMB (R packages themselves come from conda-forge, see environment.yml).
+r = ["rpy2>=3.5"]
+ml = ["lightgbm>=4.3,<5", "gpboost>=1.5", "optuna>=3.6,<6"]
+notebooks = [
+    "jupyterlab>=4,<5",
+    "ipykernel>=6.29,<7",
+    "ipywidgets>=8.1,<9",
+    "nbformat>=5.10,<6",
+    "nbclient>=0.10,<1",
+    "nbconvert>=7,<8",
+]
+dev = [
+    "retail-multilevel[notebooks]",
+    "pytest>=8,<9",
+    "pytest-cov>=5,<7",
+    "ruff>=0.6,<1",
+    "pyyaml>=6,<7",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.format]
+# These modules enter the code fingerprints of stored runs (runs.module_files) and, for
+# p1/gpb/cleaning, the sha256 freeze recorded before the P1 final scoring. Reformatting them
+# would change those hashes without changing behaviour, so they keep their original layout.
+exclude = [
+    "src/retail_multilevel/cleaning.py",
+    "src/retail_multilevel/contrasts.py",
+    "src/retail_multilevel/gpb.py",
+    "src/retail_multilevel/interpret.py",
+    "src/retail_multilevel/p1.py",
+    "src/retail_multilevel/sensitivity.py",
+    "src/retail_multilevel/week_audit.py",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "D"]
+per-file-ignores = {"tests/*" = ["D"], "scripts/*" = ["D"]}
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --basetemp=.pytest_tmp"
+markers = [
+    "r: needs the R bridge (rpy2 + lme4); skipped when rpy2 is not installed",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
