@@ -37,6 +37,12 @@
       "python": "3.12",
       "install": "pip install -e \".[dev]\"",
       "_note": "The freMTPL2freq ARFF is not versioned; tests use synthetic data and the published aggregates in outputs/ (byte-exact via the folder's .gitattributes)."
+    },
+    {
+      "project": "Dunnhumby_Breakfast-at-the-Frat",
+      "python": "3.12",
+      "install": "pip install -e \".[dev,ml]\"",
+      "_note": "The dunnhumby data are licensed and not versioned; tests use synthetic fixtures and the committed notebooks. Tests marked r skip because rpy2/R are not installed."
     }
   ],
   "conda_jobs": {

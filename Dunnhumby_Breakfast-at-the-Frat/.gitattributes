@@ -1,0 +1,4 @@
+# Store every file byte for byte, with no end-of-line conversion. The source modules enter
+# sha256 code fingerprints of stored runs and the freeze recorded before the P1 final scoring,
+# so a checkout must reproduce their exact bytes on any platform.
+* -text

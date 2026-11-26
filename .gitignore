@@ -14,3 +14,6 @@ __pycache__/
 # kept in the source project folder, never versioned in the public repository.
 Marketing_Campaign_Optimization_and_Retention_Analytics/output/crm_next_best_action.csv
 Marketing_Campaign_Optimization_and_Retention_Analytics/output/marketing_campaign_recommendations.xlsx
+
+# Internal working documents of the retail multilevel project stay in the source project only.
+/Dunnhumby_Breakfast-at-the-Frat/docs/

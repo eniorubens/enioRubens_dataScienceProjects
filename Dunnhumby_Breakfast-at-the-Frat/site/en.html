@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retail pricing and promotion | Executive report</title>
+  <meta name="description" content="Executive report on dunnhumby Breakfast at the Frat. Multilevel models, temporal evaluation, and limits for pricing and promotion decisions.">
+  <link rel="alternate" hreflang="pt-BR" href="index.html">
+  <link rel="alternate" hreflang="en-US" href="en.html">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f6f1;
+      --paper: #fff;
+      --ink: #14292a;
+      --muted: #425b58;
+      --line: #d9e3db;
+      --dark: #102d2b;
+      --accent: #ffe1a0;
+      --teal: #087664;
+      --olive: #64744a;
+      --slate: #788684;
+      --wrap: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 1.25rem; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 1rem/1.65 system-ui, sans-serif; }
+    a { color: #075e50; text-underline-offset: .22em; }
+    a:focus-visible { outline: 3px solid #c88819; outline-offset: 4px; }
+    header, .hero, footer { background: var(--dark); color: #f5f7ed; }
+    header { border-bottom: 1px solid #41615a; }
+    header a, footer a { color: var(--accent); }
+    .wrap { width: min(var(--wrap), calc(100% - 3.5rem)); margin-inline: auto; }
+    .topbar, .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+    .brand, .language { font-weight: 650; }
+    .language { padding: .35rem .8rem; border: 1px solid #7b8469; border-radius: 5px; white-space: nowrap; }
+    .skip { position: absolute; top: .5rem; left: .5rem; transform: translateY(-200%); background: var(--paper); padding: .5rem 1rem; z-index: 2; }
+    .skip:focus { transform: none; }
+    .hero { padding: clamp(2.8rem, 7vw, 5.5rem) 0 2.8rem; background: linear-gradient(127deg, #102d2b 38%, #1c493d 100%); }
+    .eyebrow { color: var(--accent); font-size: .82rem; font-weight: 720; letter-spacing: .085em; text-transform: uppercase; }
+    h1, h2 { font-family: Georgia, serif; font-weight: 500; letter-spacing: -.03em; text-wrap: balance; }
+    h1 { font-size: clamp(2.4rem, 6.3vw, 4.6rem); max-width: 20ch; margin: .6rem 0 1.1rem; line-height: 1.02; }
+    h2 { font-size: clamp(2rem, 3.9vw, 3rem); line-height: 1.13; margin: 0 0 1rem; }
+    h3 { font-size: 1.06rem; line-height: 1.35; margin: 0 0 .4rem; }
+    p { margin: 0 0 1rem; }
+    .lead { max-width: 66ch; font-size: clamp(1.04rem, 2vw, 1.24rem); color: #edeee4; }
+    .hero-note { margin-top: 1.1rem; margin-bottom: 0; color: #e0e9d9; font-size: .91rem; }
+    .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0 0; }
+    .kpis div { display: flex; flex-direction: column; padding: .9rem 1rem; border: 1px solid #51756a; border-top: 3px solid #d3b16d; background: #1e453c; border-radius: 6px; }
+    .kpis dt { color: #eff2e8; font-size: .9rem; order: 2; }
+    .kpis dd { margin: 0; color: var(--accent); font-weight: 750; font-size: clamp(1.5rem, 3vw, 2.25rem); font-variant-numeric: tabular-nums; }
+    .toc { border-bottom: 1px solid var(--line); background: #eeeee7; }
+    .toc .wrap { display: flex; flex-wrap: wrap; column-gap: 1.6rem; row-gap: .6rem; padding-block: .9rem; }
+    .toc a { font-weight: 650; }
+    .report { padding: 0 0 3rem; }
+    section { padding: clamp(2rem, 6vw, 3.65rem) 0; border-bottom: 1px solid #cddad1; }
+    section:last-child { border-bottom: 0; padding-bottom: 0; }
+    .copy { max-width: 77ch; }
+    .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; margin: 1.25rem 0; }
+    .card, .chart, .table-shell { border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    .card, .chart { padding: clamp(.9rem, 3vw, 1.4rem); }
+    .card p:last-child, .note p:last-child { margin-bottom: 0; }
+    .note { margin: 1.25rem 0 0; padding: .85rem 1rem; border-left: 4px solid var(--teal); background: #e9f1e9; border-radius: 0 6px 6px 0; }
+    .chart { margin: 1.3rem 0 .85rem; }
+    figcaption, caption { color: var(--ink); font-weight: 720; text-align: left; }
+    .detail { color: var(--muted); font-size: .91rem; }
+    .bars { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: .65rem; }
+    .bars li { display: grid; grid-template-columns: minmax(8.5rem, 10rem) minmax(2rem, 1fr) 4.35rem; align-items: center; gap: .75rem; }
+    .track { display: block; min-width: 0; height: .8rem; background: #edf1ec; border-radius: 2px; overflow: hidden; }
+    .fill { display: block; width: var(--value); height: 100%; border-radius: 2px; background: var(--teal); }
+    .alternative .fill { background: var(--olive); }
+    .baseline .fill { background: var(--slate); }
+    .bars strong, .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .table-shell { overflow-x: auto; margin: 1.2rem 0 .7rem; }
+    table { width: 100%; border-collapse: collapse; }
+    caption { padding: .85rem 1rem; }
+    th, td { padding: .55rem .95rem; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+    thead th { background: #edf3ed; }
+    tbody th { font-weight: 600; }
+    .source-list { padding-left: 1.25rem; }
+    .source-list li { margin-block: .35rem; }
+    footer .detail { color: #e0e9d9; }
+
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 2rem); }
+      .kpis, .split { grid-template-columns: 1fr; }
+      .topbar, .footer-inner { align-items: flex-start; }
+      .bars li { grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .65rem; }
+      .bars .track { grid-column: 1 / -1; grid-row: 2; }
+      .bars strong { grid-column: 2; grid-row: 1; }
+      th, td { padding: .55rem .65rem; }
+    }
+
+    @media print {
+      :root { --bg: #fff; --wrap: none; }
+      body { font-size: 10pt; }
+      .wrap { width: 100%; }
+      header, nav, footer, .skip { display: none; }
+      .hero { background: #fff; color: var(--ink); padding: 0 0 1rem; border-bottom: 1px solid var(--line); }
+      .hero p, .kpis dt, .kpis dd { color: var(--ink); }
+      .kpis div { background: #fff; }
+      h1 { font-size: 27pt; }
+      h2 { font-size: 19pt; }
+      section { padding: 1.25rem 0; }
+      .card, .chart, table, .note { break-inside: avoid; }
+      .track, .fill { print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#content">Skip to content</a>
+  <header>
+    <div class="wrap topbar">
+      <span class="brand" lang="en">dunnhumby · Breakfast at the Frat</span>
+      <a class="language" href="index.html" lang="pt-BR" hreflang="pt-BR">Português</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <div class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Executive report · Panel data</p>
+        <h1>Does modeling stores and products improve sales prediction?</h1>
+        <p class="lead">In the temporal evaluation, the random-intercept multilevel model (C0) reduced error compared with ordinary least squares (OLS) regressions. GPBoost had a slight edge when each pair counted equally. C0 had lower error when each row counted equally and on unseen pairs.</p>
+        <dl class="kpis">
+          <div><dt>C0 per-pair MAE across 3,820 seen pairs</dt><dd>0.4541</dd></div>
+          <div><dt>GPBoost per-pair MAE on the same population</dt><dd>0.4520</dd></div>
+          <div><dt>C0 per-pair MAE across 50 unseen pairs</dt><dd>0.6260</dd></div>
+        </dl>
+        <p class="hero-note">Predictions are conditional on the prices and promotions observed in each week.</p>
+      </div>
+    </div>
+    <nav class="toc" aria-label="In this report">
+      <div class="wrap">
+        <a href="#results">Results</a>
+        <a href="#short-history">Pairs with limited history</a>
+        <a href="#pricing">Price and promotion</a>
+        <a href="#method">Method and limitations</a>
+        <a href="#sources">Sources</a>
+      </div>
+    </nav>
+    <div class="wrap report">
+      <section id="results" aria-labelledby="results-title">
+        <h2 id="results-title">C0 outperformed the OLS benchmarks</h2>
+        <p class="copy">The primary metric is mean absolute error (MAE) of log units sold. Every store and product code (UPC) combination receives the same weight, regardless of how many weeks were recorded. Lower MAE indicates lower error.</p>
+        <figure class="chart" aria-labelledby="chart-label" aria-describedby="chart-detail">
+          <figcaption id="chart-label">Final window · 3,820 pairs seen in training</figcaption>
+          <p class="detail" id="chart-detail">MAE with equal weight per pair on a scale from 0 to 1.</p>
+          <ul class="bars" role="list">
+            <li><span>Multilevel C0</span><span class="track" aria-hidden="true"><span class="fill" style="--value: 45.4092%"></span></span><strong>0.4541</strong></li>
+            <li class="alternative"><span>GPBoost</span><span class="track" aria-hidden="true"><span class="fill" style="--value: 45.1979%"></span></span><strong>0.4520</strong></li>
+            <li class="baseline"><span>Pooled OLS</span><span class="track" aria-hidden="true"><span class="fill" style="--value: 91.7193%"></span></span><strong>0.9172</strong></li>
+          </ul>
+        </figure>
+        <div class="table-shell">
+          <table>
+            <caption>Comparisons on the same populations</caption>
+            <thead>
+              <tr><th scope="col">Population and metric</th><th scope="col" class="num">C0</th><th scope="col" class="num">GPBoost</th><th scope="col" class="num">Per-pair OLS</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Seen pairs · row-level MAE</th><td class="num">0.4446</td><td class="num">0.4478</td><td class="num">—</td></tr>
+              <tr><th scope="row">Rows covered by per-pair OLS · per-pair MAE</th><td class="num">0.4510</td><td class="num">0.4506</td><td class="num">0.4941</td></tr>
+              <tr><th scope="row">Unseen pairs with a known UPC · per-pair MAE</th><td class="num">0.6260</td><td class="num">0.6876</td><td class="num">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy detail">The per-pair OLS comparison uses 3,779 pairs and 174,206 rows, covering 98.7% of seen-pair rows.</p>
+        <div class="note"><p>GPBoost had <strong>0.47% lower</strong> per-pair MAE on seen pairs. These are observed differences in one evaluation window. Uncertainty in the C0–GPBoost performance comparison was left unestimated.</p></div>
+      </section>
+
+      <section id="short-history" aria-labelledby="short-history-title">
+        <h2 id="short-history-title">Weighting changes the result for pairs with limited history</h2>
+        <p class="copy">Across the 98 seen pairs with fewer than 26 training weeks, GPBoost had a per-pair MAE of <strong>0.4376</strong>, compared with <strong>0.5430</strong> for C0. When per-pair OLS is included, the comparison uses the same rows it covers, spanning 59 of those pairs.</p>
+        <div class="table-shell">
+          <table>
+            <caption>Subset of 59 short-history pairs · 1,008 rows</caption>
+            <thead>
+              <tr><th scope="col">Model</th><th scope="col" class="num">Per-pair MAE</th><th scope="col" class="num">Row-level MAE</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Multilevel C0</th><td class="num">0.477</td><td class="num">0.480</td></tr>
+              <tr><th scope="row">GPBoost</th><td class="num">0.400</td><td class="num">0.489</td></tr>
+              <tr><th scope="row">Per-pair OLS</th><td class="num">0.406</td><td class="num">0.525</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy detail">GPBoost led when each pair counted equally. C0 led when each row counted equally. Per-pair OLS coverage follows operational rule E2. An estimability criterion would change coverage for 175 of the 176,529 seen-pair rows in the final window. The published metrics use the original rule.</p>
+      </section>
+
+      <section id="pricing" aria-labelledby="pricing-title">
+        <h2 id="pricing-title">The panel helps interpret price and promotion</h2>
+        <p class="copy">Weeks repeat within each store × UPC pair. The model accounts for differences in baseline sales across stores, products, and pairs, and C0 estimates common price and discount slopes. Under the null model, the estimated correlation between two weeks for the same pair was 75.4%.</p>
+        <div class="split">
+          <div class="card">
+            <h3>Sensitivity to price and discount</h3>
+            <p>In F3, the coefficient on the log ratio of paid price to base price was <strong>−1.685</strong>. For log base price variation within a pair, it was <strong>−1.592</strong>. The sensitivity model with pair and week fixed effects produced similar values (−1.703 and −1.598, respectively).</p>
+          </div>
+          <div class="card">
+            <h3>Promotion types</h3>
+            <p>Feature advertising, in-store display, and shelf-tag-only temporary price reductions (TPR) enter as indicators. In training, every <code>TPR_ONLY</code> week had a discount. Compare scenarios that combine promotion type and discount depth within observed ranges.</p>
+          </div>
+        </div>
+        <div class="table-shell">
+          <table>
+            <caption>Two 20% discount scenarios compared with a regular week</caption>
+            <thead>
+              <tr><th scope="col">Promotion type</th><th scope="col" class="num">Estimated difference</th><th scope="col" class="num">Supporting rows</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">TPR without feature or display</th><td class="num">+39.8%</td><td class="num">10,185</td></tr>
+              <tr><th scope="row">Display without feature</th><td class="num">+119.2%</td><td class="num">2,272</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy detail">Unit differences are back-transformed from the F3 log scale. Support counts training rows with the same promotion type and a discount of 20% ± 3 percentage points. The retailer’s choice of when and where to promote can influence the estimates.</p>
+        <div class="note"><p><strong>Use of the results.</strong> The coefficients describe conditional associations in weeks with recorded transactions. Pricing decisions, incremental impact, and ROI require a causal design and, for ROI, margin data.</p></div>
+      </section>
+
+      <section id="method" aria-labelledby="method-title">
+        <h2 id="method-title">How the comparison was conducted</h2>
+        <p class="copy">The cleaned panel covers <strong>524,926 observations, 77 stores, 55 UPCs, and 156 weeks</strong>. P1 established the candidate order and selection rule before fitting the candidates. Two internal folds used the first 104 weeks.</p>
+        <div class="table-shell">
+          <table>
+            <caption>Discount slopes by store and UPC (C1) versus C0</caption>
+            <thead>
+              <tr><th scope="col">Internal fold</th><th scope="col" class="num">C0</th><th scope="col" class="num">C1</th><th scope="col" class="num">C1 relative gain</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">A · fit 0–51, validate 52–77</th><td class="num">0.4230</td><td class="num">0.4294</td><td class="num">−1.52%</td></tr>
+              <tr><th scope="row">B · fit 0–77, validate 78–103</th><td class="num">0.4211</td><td class="num">0.4188</td><td class="num">+0.54%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="copy">C1 improved for pairs with fewer than 26 weeks in both folds. Across eligible pairs, the average gain was <strong>−0.49%</strong>. The protocol required improvement in both folds and an average gain of at least 0.5%. C0 was selected. Random slopes for short-history pairs remain an open question in the final window.</p>
+        <div class="split">
+          <div class="card">
+            <h3>Retrospective final window</h3>
+            <p>C0 and the benchmarks were fitted on weeks 0–103. Weeks 104–155 (January 12, 2011 to January 4, 2012) were scored once after the specification was frozen. The initial exploration, including the OLS in the project brief, had already used the full panel.</p>
+          </div>
+          <div class="card">
+            <h3>Coverage and uncertainty</h3>
+            <p>Weeks without a transaction record may reflect zero sales or a stockout. In training, residuals from consecutive weeks within the same pair had a correlation of 0.196. The within-pair sensitivity analysis produced larger standard errors with pair and week clustering than the F3 Wald estimates.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Sources and traceability</h2>
+        <p class="copy">Aggregated results from the final P1 run on November 24, 2026 (<code>20261124-144615-0aba3b28</code>). The notebooks reproduce the tables from the recorded runs.</p>
+        <ul class="source-list">
+          <li><a href="https://www.dunnhumby.com/source-files/">Data · dunnhumby Source Files, Breakfast at the Frat</a></li>
+          <li><a href="../notebooks/en_us/01_panel_eda.ipynb">Notebook 01 · Data and panel exploration</a></li>
+          <li><a href="../notebooks/en_us/02_null_model.ipynb">Notebook 02 · Null model and variance</a></li>
+          <li><a href="../notebooks/en_us/03_fixed_effects.ipynb">Notebook 03 · Price, promotion, and temporal dependence</a></li>
+          <li><a href="../notebooks/en_us/04_protocol_p1.ipynb">Notebook 04 · P1 protocol and temporal evaluation</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="detail">Enio Rubens · Breakfast at the Frat</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -31,6 +31,7 @@ Este não é um conjunto de notebooks isolados. Os projetos analíticos combinam
 | **E-commerce Delivery Network & SLA Risk** | Risco de entrega / ML temporal | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repositório](./E-commerce_Delivery_Network_SLA_Risk) |
 | **Delivery Routing & Time-Window Optimization** | Logística / otimização prescritiva | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) | [Repositório](./Delivery_Routing_Time_Window_Optimization) |
 | **Claim Frequency per Policy** | Seguros / regressão de contagem | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) | [Repositório](./Claim_Frequency_per_Policy) |
+| **Retail Pricing & Promotion (Multilevel)** | Varejo / modelos multinível | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) | [Repositório](./Dunnhumby_Breakfast-at-the-Frat) |
 | **ds_toolkit** | Biblioteca reutilizável de ML | [README da biblioteca](./ds_toolkit) | [Código](./ds_toolkit) |
 
 ---
@@ -226,6 +227,18 @@ Estima sinistros por 100 apólices-ano no benchmark francês `freMTPL2freq` (678
 
 ---
 
+### 15. [Retail Pricing & Promotion with Multilevel Models](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md) — Elasticidade ao desconto e lift de promoção entre lojas e produtos
+
+Estima como a profundidade do desconto, o encarte, o display e as reduções temporárias de preço se associam às vendas em unidades no painel *Breakfast at the Frat* da dunnhumby (524.926 linhas loja × produto × semana, 77 lojas, 55 produtos), com interceptos aleatórios cruzados de loja, produto e loja × produto. Sob um protocolo pré-registrado, o modelo multinível só com interceptos foi mantido frente às inclinações aleatórias do desconto em duas dobras temporais internas e avaliado **uma única vez** nas últimas 52 semanas: MAE por par do log das unidades de **0,454**, contra **0,917** do OLS agrupado, e próximo do desafiante GPBoost (**0,452**). Contrastes planejados com Holm mostram que a inclinação do desconto difere entre categorias (−1,08 a −2,42), e os cenários indicam um display com 20% de desconto em cerca de **1,57×** as vendas modeladas de uma TPR de 20%, como associações condicionais.
+
+📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/en.html) · README: [English](Dunnhumby_Breakfast-at-the-Frat/README.md) · [Português](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
+
+**Métodos:** Modelos lineares mistos cruzados (lme4) · ICC e testes de razão de verossimilhança corrigidos para a fronteira · Decomposição do preço dentro e entre pares (Mundlak) · Inferência robusta com agrupamento em duas vias · Validação temporal pré-registrada com congelamento por hash e avaliação final única · Teste das inclinações aleatórias por bootstrap paramétrico · Contrastes planejados com ajuste de Holm · Cenários com covariância conjunta e suporte observado
+
+**Tecnologias:** Python · R · lme4 · rpy2 · pandas · NumPy · SciPy · statsmodels · GPBoost · Optuna · Matplotlib · pytest · Jupyter · conda
+
+---
+
 ## Resumo de competências
 
 | Área | Métodos e técnicas |
@@ -240,6 +253,7 @@ Estima sinistros por 100 apólices-ano no benchmark francês `freMTPL2freq` (678
 | **Analytics prescritivo** | Otimização de orçamento, simulação de lucro esperado, Next Best Action |
 | **Estatística inferencial** | Teste Z, A/B testing, testes de hipótese |
 | **Modelos de contagem** | GLM Poisson e binomial negativo (NB2), offset de exposição, diagnóstico de dispersão e de zeros, calibração por segmento |
+| **Modelos multinível** | Efeitos aleatórios cruzados, partial pooling (encolhimento), ICC, testes de razão de verossimilhança na fronteira, inclinações aleatórias, bootstrap paramétrico |
 | **Inferência causal** | Estimação de CATE, meta-learners, causal forests, avaliação de uplift, policy learning |
 | **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
 | **Engenharia de dados** | Polars, DuckDB, pipelines de features, estratégias de encoding, tratamento de dados desbalanceados |
@@ -247,7 +261,7 @@ Estima sinistros por 100 apólices-ano no benchmark francês `freMTPL2freq` (678
 
 ## Tecnologias principais
 
-Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · category_encoders · MLxtend · Jupyter
+Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-learn · CatBoost · XGBoost · LightGBM · EconML · CausalML · Optuna · MLflow · SHAP · feature-engine · pymc-marketing · FastAPI · Flask · pytest · Matplotlib · Seaborn · Statsmodels · R/lme4 · rpy2 · GPBoost · category_encoders · MLxtend · Jupyter
 
 ---
 
@@ -255,4 +269,4 @@ Python · Pandas · Polars · DuckDB · NumPy · scikit-learn · imbalanced-lear
 
 ## Licença
 
-O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB, OpenML/freMTPL2freq) permanecem sob seus termos originais; as fontes estão no README de cada projeto.
+O código é distribuído sob a [Licença MIT](LICENSE). Datasets de terceiros (CFPB, Kaggle, UCI, NASA, Hillstrom/MineThatData, Solomon/SINTEF, CVRPLIB, OpenML/freMTPL2freq, dunnhumby Source Files) permanecem sob seus termos originais; as fontes estão no README de cada projeto.

@@ -1,0 +1,32 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.coverage
+htmlcov/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.Rhistory
+.RData
+
+# dunnhumby data are licensed: never version raw or derived row-level data.
+# See "How to get the data" in README.md.
+dataset/
+data/raw/
+data/interim/
+data/processed/
+
+# Local reference documents (third-party material, not redistributed)
+refs/
+
+# Generated outputs (only small aggregated results are re-included when frozen)
+outputs/*
+!outputs/.gitkeep
+mlruns/
+mlartifacts/
+*.pkl
+*.joblib
+*.rds
