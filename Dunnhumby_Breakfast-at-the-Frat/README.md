@@ -44,14 +44,14 @@ On Windows, the conda env ships its own R; `retail_multilevel.rbridge` points `R
 
 ## Notebook map
 
-| No. | Portuguese | English | Content |
-|---:|---|---|---|
-| 01 | 01_eda_painel.ipynb | 01_panel_eda.ipynb | Business briefing, cleaning rules, temporal split, descriptive EDA |
-| 02 | 02_modelo_nulo.ipynb | 02_null_model.ipynb | Null models, ICCs, likelihood-ratio tests with boundary correction |
-| 03 | 03_efeitos_fixos.ipynb | 03_fixed_effects.ipynb | Price and promotion fixed effects, scenarios, sensitivities, residual dependence |
-| 04 | 04_protocolo_p1.ipynb | 04_protocol_p1.ipynb | Pre-registered protocol P1: random slopes and out-of-sample comparison |
-| 05 | 05_contrastes_e_sensibilidade.ipynb | 05_contrasts_and_sensitivity.ipynb | Planned contrasts of the discount slope (segment, private label, category) with Holm; category × week shock sensitivity |
-| 06 | 06_cenarios_preco_promocao.ipynb | 06_pricing_promotion_scenarios.ipynb | Eight pricing and promotion scenarios with joint covariance and observed support |
+| Stage | PT-BR | EN-US | What it covers |
+| :--- | :---: | :---: | :--- |
+| 01 — Panel and exploration | [PT-BR](notebooks/pt_br/01_eda_painel.ipynb) | [EN-US](notebooks/en_us/01_panel_eda.ipynb) | business briefing, cleaning rules, temporal split, descriptive EDA, discount slopes estimated pair by pair |
+| 02 — Null model | [PT-BR](notebooks/pt_br/02_modelo_nulo.ipynb) | [EN-US](notebooks/en_us/02_null_model.ipynb) | null models, ICCs, likelihood-ratio tests with boundary correction |
+| 03 — Fixed effects | [PT-BR](notebooks/pt_br/03_efeitos_fixos.ipynb) | [EN-US](notebooks/en_us/03_fixed_effects.ipynb) | price and promotion, scenarios, sensitivities, residual dependence |
+| 04 — Protocol P1 | [PT-BR](notebooks/pt_br/04_protocolo_p1.ipynb) | [EN-US](notebooks/en_us/04_protocol_p1.ipynb) | pre-registered protocol, random slopes, single final evaluation, parametric-bootstrap test of the slopes |
+| 05 — Contrasts and sensitivity | [PT-BR](notebooks/pt_br/05_contrastes_e_sensibilidade.ipynb) | [EN-US](notebooks/en_us/05_contrasts_and_sensitivity.ipynb) | planned contrasts of the discount slope (segment, private label, category) with Holm, category × week shocks |
+| 06 — Pricing and promotion scenarios | [PT-BR](notebooks/pt_br/06_cenarios_preco_promocao.ipynb) | [EN-US](notebooks/en_us/06_pricing_promotion_scenarios.ipynb) | eight scenarios with joint covariance, observed support, dispersion of the slope across products |
 
 ## Main results (protocol P1)
 
