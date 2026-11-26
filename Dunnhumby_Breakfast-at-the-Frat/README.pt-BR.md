@@ -44,14 +44,14 @@ No Windows, o env conda traz o próprio R, e o `retail_multilevel.rbridge` apont
 
 ## Mapa dos notebooks
 
-| Nº | Português | Inglês | Conteúdo |
-|---:|---|---|---|
-| 01 | 01_eda_painel.ipynb | 01_panel_eda.ipynb | Briefing do negócio, regras de limpeza, corte temporal, EDA descritiva |
-| 02 | 02_modelo_nulo.ipynb | 02_null_model.ipynb | Modelos nulos, ICCs, testes de razão de verossimilhança com correção de fronteira |
-| 03 | 03_efeitos_fixos.ipynb | 03_fixed_effects.ipynb | Efeitos fixos de preço e promoção, cenários, sensibilidades, dependência residual |
-| 04 | 04_protocolo_p1.ipynb | 04_protocol_p1.ipynb | Protocolo P1 pré-registrado: inclinações aleatórias e comparação fora da amostra |
-| 05 | 05_contrastes_e_sensibilidade.ipynb | 05_contrasts_and_sensitivity.ipynb | Contrastes planejados da inclinação do desconto (segmento, marca própria, categoria) com Holm, sensibilidade a choques de categoria × semana |
-| 06 | 06_cenarios_preco_promocao.ipynb | 06_pricing_promotion_scenarios.ipynb | Oito cenários de preço e promoção com covariância conjunta e suporte observado |
+| Etapa | PT-BR | EN-US | O que apresenta |
+| :--- | :---: | :---: | :--- |
+| 01 — Painel e exploração | [PT-BR](notebooks/pt_br/01_eda_painel.ipynb) | [EN-US](notebooks/en_us/01_panel_eda.ipynb) | briefing do negócio, regras de limpeza, corte temporal, EDA descritiva, inclinações do desconto estimadas par a par |
+| 02 — Modelo nulo | [PT-BR](notebooks/pt_br/02_modelo_nulo.ipynb) | [EN-US](notebooks/en_us/02_null_model.ipynb) | modelos nulos, ICCs, testes de razão de verossimilhança com correção de fronteira |
+| 03 — Efeitos fixos | [PT-BR](notebooks/pt_br/03_efeitos_fixos.ipynb) | [EN-US](notebooks/en_us/03_fixed_effects.ipynb) | preço e promoção, cenários, sensibilidades, dependência residual |
+| 04 — Protocolo P1 | [PT-BR](notebooks/pt_br/04_protocolo_p1.ipynb) | [EN-US](notebooks/en_us/04_protocol_p1.ipynb) | protocolo pré-registrado, inclinações aleatórias, avaliação final única, teste das inclinações por bootstrap paramétrico |
+| 05 — Contrastes e sensibilidade | [PT-BR](notebooks/pt_br/05_contrastes_e_sensibilidade.ipynb) | [EN-US](notebooks/en_us/05_contrasts_and_sensitivity.ipynb) | contrastes planejados da inclinação do desconto (segmento, marca própria, categoria) com Holm, choques de categoria × semana |
+| 06 — Cenários de preço e promoção | [PT-BR](notebooks/pt_br/06_cenarios_preco_promocao.ipynb) | [EN-US](notebooks/en_us/06_pricing_promotion_scenarios.ipynb) | oito cenários com covariância conjunta, suporte observado, dispersão da inclinação entre produtos |
 
 ## Principais resultados (protocolo P1)
 
