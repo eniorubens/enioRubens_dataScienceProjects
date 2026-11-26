@@ -2,7 +2,7 @@
 
 This project investigates delivery delay and the risk of breaching the promised delivery date (SLA) for orders from the Brazilian Olist marketplace. Reusable code lives in the ecom_delivery_sla package, route-network and presentation charts live in ecom_delivery_sla_viz, and the analysis is conducted through bilingual Portuguese and English notebooks.
 
-The project is **exploratory**: production_eligible = false. No model is considered eligible for operational use.
+The project is exploratory: production_eligible = false. No model is considered eligible for operational use.
 
 ## Objective and research question
 
@@ -68,7 +68,7 @@ python scripts/build_site.py
 
 The development tournament uses nine temporal folds with a 30-day embargo. CatBoost was the only classification candidate under the preregistered gate, with mean AP of 0.175 versus 0.154 for the best baseline. No regression model was a candidate.
 
-The official final evaluation was **inconclusive**: CatBoost achieved AP 0.082 versus 0.084 for the logistic baseline, with a paired difference of −0.002 and a 95% CI from −0.032 to +0.064. The complementary F2 analysis is exploratory, and no variant outperformed the references.
+The official final evaluation was inconclusive: CatBoost achieved AP 0.082 versus 0.084 for the logistic baseline, with a paired difference of −0.002 and a 95% CI from −0.032 to +0.064. The complementary F2 analysis is exploratory, and no variant outperformed the references.
 
 ## Limitations
 
