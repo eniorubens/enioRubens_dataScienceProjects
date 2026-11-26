@@ -2,7 +2,7 @@
 
 Este projeto investiga o atraso de entrega e o risco de violação do prazo prometido (SLA) em pedidos do marketplace brasileiro Olist. O código reutilizável fica no pacote ecom_delivery_sla, os gráficos dos notebooks 03 (rede de rotas), 05, 09 e 10 ficam no pacote de apresentação ecom_delivery_sla_viz, e a análise é conduzida em notebooks bilíngues (português e inglês).
 
-O estado do projeto é **exploratório**: production_eligible = false. Nenhum modelo foi considerado elegível para uso operacional.
+O estado do projeto é exploratório: production_eligible = false. Nenhum modelo foi considerado elegível para uso operacional.
 
 ## Objetivo e pergunta de pesquisa
 
@@ -68,7 +68,7 @@ python scripts/build_site.py
 
 O torneio de desenvolvimento usa nove folds temporais com embargo de 30 dias. Na classificação, CatBoost foi o único candidato segundo o gate pré-registrado, com AP média de 0,175 contra 0,154 da melhor baseline. Na regressão, nenhum modelo foi candidato.
 
-A avaliação final oficial foi **inconclusiva**: CatBoost obteve AP 0,082 contra 0,084 da baseline logística, com diferença pareada de −0,002 e IC 95% de −0,032 a +0,064. A análise complementar F2 é exploratória e nenhuma variante superou as referências.
+A avaliação final oficial foi inconclusiva: CatBoost obteve AP 0,082 contra 0,084 da baseline logística, com diferença pareada de −0,002 e IC 95% de −0,032 a +0,064. A análise complementar F2 é exploratória e nenhuma variante superou as referências.
 
 ## Limitações
 

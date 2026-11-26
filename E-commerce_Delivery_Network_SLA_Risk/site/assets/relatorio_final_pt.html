@@ -11532,7 +11532,7 @@ Execução pós-hoc (exploratória): F1 = False; F2 = True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Insight">Insight<a class="anchor-link" href="#Insight">¶</a></h3><p>A procedência mostra que os resultados foram carregados de execuções gravadas, sem treino nesta execução: o F1 foi gerado em 2026-11-14 10:53 e o F2 em 2026-11-14 12:02. O ledger tem uma linha para o F1, com <code>post_hoc</code> falso (77.867 pedidos de treino e 12.507 de teste), e uma para o F2, com <code>post_hoc</code> verdadeiro (88.097 pedidos de treino e 6.351 de teste) e com C e E como variantes aprovadas no gate. Ambos usaram 1.000 reamostragens e a semente 42, e <code>production_eligible</code> permanece falso.</p>
-<p>A presença das duas linhas registra a consulta ao período de teste, e não a qualidade dos modelos: julho e agosto de 2018 já foram avaliados e estão esgotados para novas avaliações confirmatórias.</p>
+<p>As duas linhas registram a consulta ao período de teste, e não a qualidade dos modelos: julho e agosto de 2018 já foram avaliados e estão esgotados para novas avaliações confirmatórias.</p>
 </div>
 </div>
 </div>
@@ -12452,7 +12452,7 @@ Execução pós-hoc (exploratória): F1 = False; F2 = True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>O mapa a seguir é descritivo e agrega todo o período: cada seta representa uma rota entre UFs, com a unidade par pedido-vendedor, espessura proporcional ao volume e cor dada pela taxa de atraso. O intervalo de confiança da taxa de cada rota usa o método de Wilson (Wilson, 1927), visível no <em>hover</em>, e o menu do gráfico alterna o volume mínimo de pares por rota. Como o mapa usa todos os desfechos do período, ele não é uma feature nem alimenta o modelo; serve para mostrar a estrutura da rede da qual as features as-of são extraídas. A tabela mostra as maiores rotas entre UFs.</p>
+<p>O mapa a seguir é descritivo e agrega todo o período: cada seta representa uma rota entre UFs, com a unidade par pedido-vendedor, espessura proporcional ao volume e cor dada pela taxa de atraso. O intervalo de confiança da taxa de cada rota usa o método de Wilson (Wilson, 1927), visível no <em>hover</em>, e o menu do gráfico alterna o volume mínimo de pares por rota. Como o mapa usa todos os desfechos do período, ele não é uma feature nem alimenta o modelo; mostra a estrutura da rede da qual as features as-of são extraídas. A tabela mostra as maiores rotas entre UFs.</p>
 </div>
 </div>
 </div>
@@ -13427,7 +13427,7 @@ Execução pós-hoc (exploratória): F1 = False; F2 = True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Insight">Insight<a class="anchor-link" href="#Insight">¶</a></h3><p>Nenhum modelo de regressão atinge o critério de ganho mínimo em MAE. O ExtraTrees (MAE de 5,953) e o CatBoost (5,947) ficam ligeiramente acima da baseline por UF (5,937), com ganhos de −0,3% e −0,2% e vitória em 5 de 9 folds cada. O HistGradientBoosting vence em 6 folds, mas com ganho de −2,0%, e os modelos lineares ficam piores (Ridge −15,2% e OLS −15,6%). Esse resultado é coerente com o registro de P-04: a regressão não teve candidato.</p>
-<p>As diferenças entre os melhores modelos e a baseline aparecem na terceira casa decimal e são muito menores que o desvio-padrão do MAE entre folds (0,847 no ExtraTrees e 1,396 na baseline por UF). O RMSE conta uma história parecida, com 9,087 no ExtraTrees e 9,091 no CatBoost contra 9,203 da baseline. O atraso em dias permanece como análise descritiva, com a baseline por UF como referência.</p>
+<p>As diferenças entre os melhores modelos e a baseline aparecem na terceira casa decimal e são muito menores que o desvio-padrão do MAE entre folds (0,847 no ExtraTrees e 1,396 na baseline por UF). O RMSE segue um padrão parecido, com 9,087 no ExtraTrees e 9,091 no CatBoost contra 9,203 da baseline. O atraso em dias permanece como análise descritiva, com a baseline por UF como referência.</p>
 </div>
 </div>
 </div>
@@ -13739,7 +13739,7 @@ Execução pós-hoc (exploratória): F1 = False; F2 = True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Insight">Insight<a class="anchor-link" href="#Insight">¶</a></h3><p>Nenhuma variante cumpre a regra de adoção. Na classificação com HistGradientBoosting, a AP média passa de 0,156 (distância média) para 0,157 (máxima) e 0,158 (máxima mais amplitude), ganhos relativos de 0,7% e 1,0%, com vitória em 5 e 6 folds de 9, abaixo do mínimo exigido. Na regressão logística, a AP é de 0,152 nas três versões, com ganhos de 0,2% e 0,0%, e na regressão do atraso os ganhos relativos de MAE ficam entre −0,1% e 0,0%. Essas diferenças são muito menores que o desvio-padrão da AP entre folds (0,089 a 0,098), e a distância média foi mantida, como registrado em P-03.</p>
-<p>O subgrupo multi-vendedor tem em média 89 pedidos por fold e aparece em 5 folds na classificação. Sua AP oscila sem coerência: no HistGradientBoosting, +36,1% com a máxima e −30,9% com a máxima mais amplitude, e na regressão logística, −0,3% e +10,2%, com desvio-padrão entre folds de 0,058 a 0,198. Isso é compatível com ruído de amostra pequena, e não com efeito, e o subgrupo foi reportado à parte, sem decidir a escolha.</p>
+<p>O subgrupo multi-vendedor tem em média 89 pedidos por fold e aparece em 5 folds na classificação. Sua AP oscila sem coerência: no HistGradientBoosting, +36,1% com a máxima e −30,9% com a máxima mais amplitude, e na regressão logística, −0,3% e +10,2%, com desvio-padrão entre folds de 0,058 a 0,198. Isso é compatível com ruído de amostra pequena, sem indício de efeito, e o subgrupo foi reportado à parte, sem decidir a escolha.</p>
 </div>
 </div>
 </div>
@@ -13749,7 +13749,7 @@ Execução pós-hoc (exploratória): F1 = False; F2 = True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Os estudos do Optuna (Akiba et al., 2019) da versão <code>V4_folds</code> exploraram em conjunto o pré-processamento e os hiperparâmetros de cada família de modelos, com o mesmo protocolo de folds. Eles servem para verificar se um ajuste fino alteraria a leitura do torneio, e não para trocar a configuração do F1, que foi fixada antes. A busca da classificação otimiza a AP, a mesma métrica do critério P-01, e a da regressão otimiza o RMSE, métrica diferente da usada no critério de ganho em MAE. A tabela traz o melhor valor de cada estudo e sua posição dentro da tarefa, sem declarar vencedor. Os estudos são apenas lidos do banco SQLite, e nenhuma tentativa nova é executada.</p>
+<p>Os estudos do Optuna (Akiba et al., 2019) da versão <code>V4_folds</code> exploraram em conjunto o pré-processamento e os hiperparâmetros de cada família de modelos, com o mesmo protocolo de folds. Eles verificam se um ajuste fino alteraria a leitura do torneio; a configuração do F1, fixada antes, permanece. A busca da classificação otimiza a AP, a mesma métrica do critério P-01, e a da regressão otimiza o RMSE, métrica diferente da usada no critério de ganho em MAE. A tabela traz o melhor valor de cada estudo e sua posição dentro da tarefa, sem declarar vencedor. Os estudos são apenas lidos do banco SQLite, e nenhuma tentativa nova é executada.</p>
 </div>
 </div>
 </div>
@@ -18309,7 +18309,7 @@ Execução pós-hoc (exploratória): F1 = False; F2 = True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="11.-Hip%C3%B3teses-para-um-pr%C3%B3ximo-ciclo">11. Hipóteses para um próximo ciclo<a class="anchor-link" href="#11.-Hip%C3%B3teses-para-um-pr%C3%B3ximo-ciclo">¶</a></h2><p>As hipóteses a seguir nasceram das observações descritas neste relatório e só podem ser testadas em dados posteriores a agosto de 2018, que não existem no conjunto Olist. A primeira é que a atualização do modelo deve usar apenas coortes de desfecho maduro ou tratar os pedidos em trânsito como censurados, em um modelo de sobrevivência (Kaplan e Meier, 1958), para evitar o viés de rótulos lentos. A segunda é que a regra do prazo prometido pode ser usada como alerta de mudança de política de promessa, e não como modelo. A terceira é que o monitoramento contínuo da prevalência e do PSI das features de rede indicaria a necessidade de recalibração antes da degradação do desempenho. Cada hipótese exige um protocolo próprio, registrado antes da avaliação, e nenhuma delas autoriza uso operacional.</p>
+<h2 id="11.-Hip%C3%B3teses-para-um-pr%C3%B3ximo-ciclo">11. Hipóteses para um próximo ciclo<a class="anchor-link" href="#11.-Hip%C3%B3teses-para-um-pr%C3%B3ximo-ciclo">¶</a></h2><p>As hipóteses a seguir nasceram das observações descritas neste relatório e só podem ser testadas em dados posteriores a agosto de 2018, que não existem no conjunto Olist. A primeira é que a atualização do modelo deve usar apenas coortes de desfecho maduro ou tratar os pedidos em trânsito como censurados, em um modelo de sobrevivência (Kaplan e Meier, 1958), para evitar o viés de rótulos lentos. A segunda é que a regra do prazo prometido pode servir de alerta de mudança de política de promessa, e não como modelo. A terceira é que o monitoramento contínuo da prevalência e do PSI das features de rede indicaria a necessidade de recalibração antes da degradação do desempenho. Cada hipótese exige um protocolo próprio, registrado antes da avaliação, e nenhuma delas autoriza uso operacional.</p>
 </div>
 </div>
 </div>

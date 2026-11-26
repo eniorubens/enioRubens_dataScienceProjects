@@ -2,7 +2,7 @@
   "builder": {
     "plotly_version": "7.1.0",
     "script": "scripts/build_site.py",
-    "sha256": "7d3325a90ff2201d7608cb87c957833148119c511237230f7d595b42730d462f"
+    "sha256": "149dd2187677aed6660458e8efc5f51ccdf18aa071300ced3d8a02492b64aed1"
   },
   "dataset_provenance": {
     "citation": "Olist (2018), Brazilian E-Commerce Public Dataset by Olist, Kaggle",
@@ -10,9 +10,10 @@
     "repository": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce"
   },
   "generated": {
-    "assets/11_final_report.ipynb": "4793d614c44b55ffcea6144eaae2f1d03ff1dc7f71f83e4d15d62060df15c935",
-    "assets/11_relatorio_final.ipynb": "276ec1a5a64559fa6aa613bd7b57512ecbade991ae83b46e85efd13494bfaece",
-    "assets/README.md": "00a005a8a0b1a3cdb82ff909d4f8a61e78e6f2a9f7228268742273fe7db6bdad",
+    "assets/11_final_report.ipynb": "377a5b1c7276556c787f88de37736d3e8597f3a52195067ca002a7d76d042063",
+    "assets/11_relatorio_final.ipynb": "e85bac4d3123911fb8efe4acb59e731bd7636c6d8d544e87edb7ce2171cba92f",
+    "assets/README.md": "c5fc555c954a833dada8de3e00910a32ca04183bcc79c64f53ec43bdfdbc5437",
+    "assets/README.pt-BR.md": "2f45210b7a603e9cd2dafcf57f23b5f078b9c155d9e63265e7e92750b2d3a581",
     "assets/chart-evidence-en.csv": "a4af8d2c48b7eda00a72b8cfea5dd47c2497c08f665608bf3f183d42a77b097f",
     "assets/chart-evidence-pt.csv": "d7d8584ba197866f04d4537c69aa136cbc8a21b989f4564e6a319377028cf9b8",
     "assets/chart-f1-metrics.csv": "97be480050f785192e3b06560c74544d742f66651c7f7c6642d1ca6fd699cbb7",
@@ -27,10 +28,10 @@
     "assets/chart-route-nodes.csv": "de9e91caf25cc68903d533da5672afddc9a73b8fd35ac634b2bd2d928e23eb0e",
     "assets/chart-tournament-ap-by-fold.csv": "5c93c6ca4e6065499875b9ffcd1bd44a4164784b33643544dd5c8bb14ed57efa",
     "assets/chart-tournament-gain.csv": "3d87570c96c765f50a2a5b3f3dd9642abe11738d5d115982fa9f51a3c3a03add",
-    "assets/final_report_en.html": "558b1d056f651fab0896fa7c20542392f05d4c0baa959533893fb5f03c577868",
+    "assets/final_report_en.html": "c1315d627dbee4273d1c595917e4d3c746381b0349d32629e5b58f2ed8390f9e",
     "assets/geo-topojson.js": "b33acb245a4ef29093d7ad80558642902657c6acd4be6f9c938ed639453126b5",
     "assets/plotly.min.js": "3b6e15d45dbb7fca5bd2094291e961ddc5472cd887009e6009a56dab668d721f",
-    "assets/relatorio_final_pt.html": "026bd093859ef099fb0bce971085d1d7eda910609bb079e966672a6067870826",
+    "assets/relatorio_final_pt.html": "00bc334ac8162c0bfa3294fd8535ec50d56bdcd85f9be949aa2c195384620ed0",
     "assets/report.css": "1032405ae77a616933a264182f73d53ccf0db84d97ba389609893e04435f302c",
     "assets/south-america_110m.json": "c21f1509ddb9fea737f898c9fab4d43a4060e9d214712a5acaede11cd8915482"
   },
@@ -44,16 +45,17 @@
   },
   "production_eligible": false,
   "sources": {
-    "README.md": "00a005a8a0b1a3cdb82ff909d4f8a61e78e6f2a9f7228268742273fe7db6bdad",
+    "README.md": "c5fc555c954a833dada8de3e00910a32ca04183bcc79c64f53ec43bdfdbc5437",
+    "README.pt-BR.md": "2f45210b7a603e9cd2dafcf57f23b5f078b9c155d9e63265e7e92750b2d3a581",
     "data/raw/olist/README.md": "d56d09936234fd8f22a6ddf356358e28d4f06e3c8926102b755f2b21276f4bc0",
     "data/raw/olist/csv/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
     "data/raw/olist/csv/olist_geolocation_dataset.csv": "b514f6fc991b9566aeba02aa5d67e2c3630f034b60a0e05aa0d082a3b66d88d6",
     "data/raw/olist/csv/olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
     "data/raw/olist/csv/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
     "data/raw/olist/csv/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
-    "docs/REGISTRO-DE-DECISOES.md": "c131cd1c20f70c687ceba23321a5d9ede7755c70f51dd1e4430b9e83058bcb9f",
-    "notebooks/en_us/11_final_report.ipynb": "4793d614c44b55ffcea6144eaae2f1d03ff1dc7f71f83e4d15d62060df15c935",
-    "notebooks/pt_br/11_relatorio_final.ipynb": "276ec1a5a64559fa6aa613bd7b57512ecbade991ae83b46e85efd13494bfaece",
+    "docs/REGISTRO-DE-DECISOES.md": "87c79e0a4e957b223561e58ce1012535cd0aa05f3b0c9638a88b6d7b1fe850ac",
+    "notebooks/en_us/11_final_report.ipynb": "377a5b1c7276556c787f88de37736d3e8597f3a52195067ca002a7d76d042063",
+    "notebooks/pt_br/11_relatorio_final.ipynb": "e85bac4d3123911fb8efe4acb59e731bd7636c6d8d544e87edb7ce2171cba92f",
     "outputs/runs/distance_ablation/V1/classification_ablation.csv": "10fbb607b6d32bdff57cb7e4f307bff0f3e1d831949ee23c0fe517fe925a6587",
     "outputs/runs/distance_ablation/V1/classification_ablation.pkl": "0a6016ca8f56d57d50f4ca85a691029f62979a50179d9585486d7c9a638794c4",
     "outputs/runs/distance_ablation/V1/metadata.json": "482e859560cddd70720d586d4a93c812f13a3abeb47f2f19060d3c360c844795",
@@ -107,8 +109,8 @@
     "outputs/runs/tournament/V1/metadata.json": "0ffff8b45aa8d389d46e8a8c4efb5052f92d4b126a1ff10f93a87f206103debb",
     "outputs/runs/tournament/V1/regression_results.csv": "80ece65be99a188bff1139630ca6338f61505d068b1e9d1026ae626e97b3dbd1",
     "outputs/runs/tournament/V1/regression_results.pkl": "143bc2d3d23da8df62ec9652cd2cb668dcfa239ff1f58ab35336286997eb0040",
-    "reports/final_report_en.html": "558b1d056f651fab0896fa7c20542392f05d4c0baa959533893fb5f03c577868",
-    "reports/relatorio_final_pt.html": "026bd093859ef099fb0bce971085d1d7eda910609bb079e966672a6067870826"
+    "reports/final_report_en.html": "c1315d627dbee4273d1c595917e4d3c746381b0349d32629e5b58f2ed8390f9e",
+    "reports/relatorio_final_pt.html": "00bc334ac8162c0bfa3294fd8535ec50d56bdcd85f9be949aa2c195384620ed0"
   },
   "test_reopened": false,
   "training_performed": false

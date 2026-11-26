@@ -52,6 +52,8 @@ RAW_FILES = {
 RUNS = (("tournament", "V1"), ("distance_ablation", "V1"), ("final_evaluation", "F1"), ("final_evaluation", "F2"))
 NOTEBOOKS = {"pt": "notebooks/pt_br/11_relatorio_final.ipynb", "en": "notebooks/en_us/11_final_report.ipynb"}
 REPORT_HTML = {"pt": "reports/relatorio_final_pt.html", "en": "reports/final_report_en.html"}
+# Each page offers the README in its own language (falls back to README.md).
+README_FILES = {"pt": "README.pt-BR.md", "en": "README.md"}
 # Plotly basemap (Natural Earth, served by cdn.plot.ly/un/), vendored so the site works offline.
 TOPOJSON_FILES = ("south-america_110m.json",)
 TOPOJSON_SOURCE = Path(__file__).resolve().parent / "vendor"
@@ -880,14 +882,14 @@ TEXT = {
             "exploratória. Todos os valores vêm das tabelas gravadas."
         ),
         "decisao_2": (
-            "Os dados sustentam que, antes de julho de 2018, o CatBoost superou a melhor baseline de forma consistente "
-            "entre os folds e foi o único candidato pelo critério pré-registrado, enquanto a regressão do atraso não "
-            "teve candidato. Sustentam também que esse ganho não foi confirmado no teste oficial, que foi {f1_outcome}, "
-            "e que a regra simples do prazo prometido foi uma referência forte nos períodos recentes. Os dados não "
-            "sustentam que o CatBoost supere as baselines fora do período de desenvolvimento, nem que deva ser usado "
-            "operacionalmente. Não sustentam, ainda, que algum mecanismo de atualização do F2 seja melhor que o modelo "
-            "congelado, que o viés de rótulos lentos seja a causa da piora, nem relações causais entre rota, vendedor, "
-            "promessa e atraso. Por isso, <code>production_eligible = {prod_eligible}</code>."
+            "Antes de julho de 2018, o CatBoost superou a melhor baseline de forma consistente entre os folds e foi o "
+            "único candidato pelo critério pré-registrado, enquanto a regressão do atraso não teve candidato. Esse "
+            "ganho não foi confirmado no teste oficial, que foi {f1_outcome}, e a regra simples do prazo prometido "
+            "foi uma referência forte nos períodos recentes. Os dados não permitem afirmar que o CatBoost supere as "
+            "baselines fora do período de desenvolvimento, nem que deva ser usado operacionalmente. Também não "
+            "permitem afirmar que algum mecanismo de atualização do F2 seja melhor que o modelo congelado, que o viés "
+            "de rótulos lentos seja a causa da piora, nem que haja relações causais entre rota, vendedor, promessa e "
+            "atraso. Por isso, <code>production_eligible = {prod_eligible}</code>."
         ),
         "decisao_3": (
             "Duas hipóteses ficam para um próximo ciclo e só podem ser testadas em dados posteriores a agosto de 2018, "
@@ -898,8 +900,8 @@ TEXT = {
         ),
         "decisao_insight": (
             "Leitura para decisão: nenhum modelo está habilitado para uso operacional. O sinal mais confiável do período "
-            "recente é o próprio prazo prometido, e a mudança de regime dele indica que monitorar a política de promessa "
-            "e a prevalência vale mais do que treinar novos modelos com os dados atuais."
+            "recente é o próprio prazo prometido, e a mudança de regime dele sugere que monitorar a política de "
+            "promessa e a prevalência rende mais do que treinar novos modelos com os dados atuais."
         ),
         "h_repro": "Reprodução",
         "repro_1": (
@@ -945,7 +947,7 @@ TEXT = {
     "en": {
         "html_lang": "en", "other_lang": "pt-BR", "other_file": "index.html", "other_label": "Português",
         "brand": "Olist", "brand_tag": "Delivery SLA",
-        "title": "Can we tell, at purchase time, whether a delivery will be late?",
+        "title": "Can a late delivery be predicted at purchase time?",
         "eyebrow": "Olist · Brazilian e-commerce · Data science portfolio",
         "lead": (
             "During development, a CatBoost model predicted delays better than simple rules, but that gain was not "
@@ -1099,14 +1101,14 @@ TEXT = {
             "exploratory reading. All values come from the stored tables."
         ),
         "decisao_2": (
-            "The data support that, before July 2018, CatBoost beat the best baseline consistently across folds and was "
-            "the only candidate under the pre-registered criterion, while the delay regression had no candidate. They "
-            "also support that this gain was not confirmed in the official test, which was {f1_outcome}, and that the "
-            "simple promised lead time rule was a strong reference in recent periods. The data do not support that "
-            "CatBoost beats the baselines outside the development period, nor that it should be used operationally. "
-            "They do not support, either, that any F2 update mechanism is better than the frozen model, that "
-            "slow-label bias is the cause of the deterioration, or causal relations between route, seller, promise and "
-            "delay. For these reasons, <code>production_eligible = {prod_eligible}</code>."
+            "Before July 2018, CatBoost beat the best baseline consistently across folds and was the only candidate "
+            "under the pre-registered criterion, while the delay regression had no candidate. That gain was not "
+            "confirmed in the official test, which was {f1_outcome}, and the simple promised lead time rule was a "
+            "strong reference in recent periods. The data do not show that CatBoost beats the baselines outside the "
+            "development period, or that it should be used operationally. They also do not show that any F2 update "
+            "mechanism is better than the frozen model, that slow-label bias caused the deterioration, or that route, "
+            "seller, promise and delay are causally related. For these reasons, "
+            "<code>production_eligible = {prod_eligible}</code>."
         ),
         "decisao_3": (
             "Two hypotheses are left for a next cycle and can be tested only on data after August 2018, which the Olist "
@@ -1118,7 +1120,7 @@ TEXT = {
         "decisao_insight": (
             "Reading for decision: no model is cleared for operational use. The most reliable signal of the recent "
             "period is the promised lead time itself, and its change of regime suggests that monitoring the promise "
-            "policy and the prevalence is worth more than training new models on the current data."
+            "policy and the prevalence would pay off more than training new models on the current data."
         ),
         "h_repro": "Reproduction",
         "repro_1": (
@@ -1611,6 +1613,8 @@ def source_paths(root: Path) -> list[str]:
     paths += ["outputs/runs/final_evaluation/LEDGER.jsonl"]
     paths += [f"data/raw/olist/csv/{file}" for file in RAW_FILES.values()]
     paths += ["data/raw/olist/README.md", "docs/REGISTRO-DE-DECISOES.md", "README.md"]
+    if (root / README_FILES["pt"]).is_file():
+        paths.append(README_FILES["pt"])
     paths += list(NOTEBOOKS.values())
     paths += [p for p in REPORT_HTML.values() if (root / p).is_file()]
     return paths
@@ -1685,7 +1689,11 @@ def build_site(root: Path = ROOT, output: Path | None = None) -> Path:
         write_text(assets_dir / name, evidence.to_csv(index=False, lineterminator="\n"))
         chart_files.append(name)
 
-    shutil.copyfile(root / "README.md", assets_dir / "README.md")
+    readme_assets = {}
+    for lang, name in README_FILES.items():
+        source = root / name if (root / name).is_file() else root / "README.md"
+        shutil.copyfile(source, assets_dir / source.name)
+        readme_assets[lang] = f"assets/{source.name}"
     cited_all: set[str] = set()
     for lang in ("pt", "en"):
         notebook = root / NOTEBOOKS[lang]
@@ -1694,7 +1702,7 @@ def build_site(root: Path = ROOT, output: Path | None = None) -> Path:
         if (root / REPORT_HTML[lang]).is_file():
             report_html = f"assets/{Path(REPORT_HTML[lang]).name}"
             shutil.copyfile(root / REPORT_HTML[lang], output / report_html)
-        assets = {"readme": "assets/README.md", "notebook": f"assets/{notebook.name}", "report_html": report_html,
+        assets = {"readme": readme_assets[lang], "notebook": f"assets/{notebook.name}", "report_html": report_html,
                   "charts": sorted(chart_files), "references": parse_references(notebook)}
         document, cited = render_page(lang, raw, data, build_charts(data, lang), assets)
         write_text(output / ("index.html" if lang == "pt" else "en.html"), document)
