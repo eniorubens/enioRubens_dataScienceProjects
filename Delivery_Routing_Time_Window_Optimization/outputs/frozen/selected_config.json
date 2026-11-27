@@ -30,6 +30,6 @@
     "RC206"
   ],
   "results_file": "outputs\\dev_grid\\results.csv",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-grade-dev.md",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-grade-dev.md",
   "timestamp": "2026-11-17T14:34:28.609990-03:00"
 }

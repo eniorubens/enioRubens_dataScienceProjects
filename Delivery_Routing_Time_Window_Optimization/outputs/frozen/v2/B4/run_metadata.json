@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-18T09:30:15.168219-03:00",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-v2.md",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-v2.md",
   "config": {
     "solver": {
       "time_limit_s": 30,

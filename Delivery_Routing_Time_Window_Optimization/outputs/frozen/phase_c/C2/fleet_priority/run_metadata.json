@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-18T10:49:11.515432-03:00",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-fase-c.md",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-fase-c.md",
   "config": {
     "solver": {
       "time_limit_s": 30,
@@ -134,7 +134,7 @@
   "time_limit_s": 30,
   "workers": 8,
   "replicates": 3,
-  "reference_source": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\phase_c\\C2\\capacity\\results.csv",
+  "reference_source": "PROJECT_ROOT\\outputs\\phase_c\\C2\\capacity\\results.csv",
   "representative_order": [
     "not feasible",
     "n_dropped_priority",

@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-18T10:40:57.416810-03:00",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-fase-c.md",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-fase-c.md",
   "config": {
     "solver": {
       "time_limit_s": 30,
@@ -159,7 +159,7 @@
   "block": "C1",
   "draws": 1000,
   "seed": 20261118,
-  "plans_file": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\evaluation\\results.csv",
+  "plans_file": "PROJECT_ROOT\\outputs\\frozen\\evaluation\\results.csv",
   "scenarios": [
     {
       "name": "travel_0.05",

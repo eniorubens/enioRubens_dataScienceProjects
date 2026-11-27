@@ -23,6 +23,9 @@ outputs/*
 data/raw/sintef/*.html
 data/raw/sintef/*_files/
 
+# Imagem de capa local, não publicada
+/Delivery_Window.png
+
 # Third-party data: not redistributed here; obtain it with `python scripts/fetch_data.py`.
 /data/raw/sintef/solomon-100.zip
 /data/raw/cvrplib_solomon_100/Solomon.7z
