@@ -2,60 +2,30 @@
 
 [Português](README.pt-BR.md) · [Executive report](site/en.html)
 
-This project studies how to assign customers to vehicles and sequence deliveries under vehicle
-capacity and customer time windows, minimising **first the fleet and then the total distance**. It is a
-**prescriptive** analysis: the output is a route plan that can be checked independently and compared
-with published reference solutions, not a prediction.
+This project studies how to assign customers to vehicles and sequence deliveries under vehicle capacity and customer time windows, minimising the fleet first and total distance second. It is a prescriptive analysis whose output is an independently verifiable route plan comparable against published reference solutions. Reusable code resides in the `delivery_routing_vrptw` package (`src/`), while the analysis is reported in bilingual Portuguese and English notebooks that share the same executable code.
 
-Reusable code lives in the `delivery_routing_vrptw` package (`src/`); the analysis is told through
-bilingual Portuguese and English notebooks that share the same executable code.
-
-The data are **synthetic academic benchmarks** (Solomon, 1987), not real logistics telemetry. The link
-with the Olist project is thematic only: Olist contains no fleet, capacity, time windows or routes.
-`production_eligible = false`: the method is validated on the benchmark; real operation would require
-road distances, the real fleet, measured service times and intraday re-optimisation.
+The data come from the synthetic Solomon benchmark (1987). Within the portfolio, the project provides thematic continuity to the Olist marketplace study in the delivery domain, relying exclusively on benchmark data because Olist contains no fleet, capacity, time-window or route records. Because the method is validated only on synthetic instances (`production_eligible = false`), real operations would require road distances, an actual fleet, measured service times and intraday re-optimisation.
 
 ## Question
 
-How should customers be allocated to vehicles and deliveries be ordered so that the fleet and then the
-distance are minimised, without violating capacity, time windows or the return to the depot?
+How should customers be allocated to vehicles and deliveries ordered so that fleet size and then distance are minimised, without violating capacity, time windows or the return to the depot?
 
 ## Data
 
-- **Instances:** the 56 Solomon instances with 100 customers (families C1, C2, R1, R2, RC1, RC2), from
-  SINTEF TOP (`data/raw/sintef/solomon-100.zip`, downloaded manually because the site blocks automated
-  clients) and from CVRPLIB (`data/raw/cvrplib_solomon_100/Solomon.7z`). Both sources are numerically
-  identical. Provenance and SHA-256 hashes are in each folder's `MANIFEST.md`.
-- **References:** SINTEF best known solutions (SINTEF, 2008; `data/reference/sintef_bks_100.csv`,
-  transcribed from the SINTEF page) and CVRPLIB solutions (CVRPLIB, s.d.;
-  `data/reference/cvrplib_bks_100.csv`).
-- **License:** no explicit license was found; cite Solomon (1987), *Operations Research* 35(2), SINTEF
-  TOP and CVRPLIB.
-- No Google Maps, traffic data or paid APIs are used. Distances are Euclidean and part of the data
-  contract.
+The study uses the 56 Solomon instances with 100 customers (families C1, C2, R1, R2, RC1 and RC2), obtained from SINTEF TOP (`data/raw/sintef/solomon-100.zip`, downloaded manually because the site blocks automated clients) and from CVRPLIB (`data/raw/cvrplib_solomon_100/Solomon.7z`). Both sources are numerically identical, with provenance and SHA-256 hashes recorded in each folder's `MANIFEST.md`. Reference solutions come from SINTEF (SINTEF, 2008; `data/reference/sintef_bks_100.csv`, transcribed from the SINTEF page) and CVRPLIB (CVRPLIB, s.d.; `data/reference/cvrplib_bks_100.csv`). No explicit license was found in the source files; citations should credit Solomon (1987), *Operations Research* 35(2), SINTEF TOP and CVRPLIB. Distances are planar Euclidean as defined in the data contract, without Google Maps, traffic feeds or paid APIs.
 
 ### Obtaining the data (third-party files are not redistributed)
 
-The public version of this repository does **not** include third-party files: the SINTEF archive
-(`data/raw/sintef/solomon-100.zip`), the CVRPLIB archives (`data/raw/cvrplib_solomon_100/*.7z`), the saved
-SINTEF page (`docs/Solomon-html descriptions.pdf`) and the CVRPLIB solution routes
-(`data/reference/cvrplib_bks_100.csv`, regenerated from the CVRPLIB archives). The `MANIFEST.md` files, the
-transcribed SINTEF table of vehicles and distances (`data/reference/sintef_bks_100.csv`) and the
-development/evaluation split are kept.
+The public version of this repository omits third-party files: the SINTEF archive (`data/raw/sintef/solomon-100.zip`), the CVRPLIB archives (`data/raw/cvrplib_solomon_100/*.7z`), the saved SINTEF page (`docs/Solomon-html descriptions.pdf`) and the CVRPLIB solution routes (`data/reference/cvrplib_bks_100.csv`, regenerated from the CVRPLIB archives). The `MANIFEST.md` files, the transcribed SINTEF table of vehicles and distances (`data/reference/sintef_bks_100.csv`) and the development/evaluation split remain in the repository.
 
 ~~~
 python scripts/fetch_data.py              # verifies SHA-256, downloads the CVRPLIB archives, rebuilds the CVRPLIB csv
 python scripts/fetch_data.py --check-only # only verifies the files already present (no network)
 ~~~
 
-The SINTEF site blocks automated clients (Cloudflare): download `solomon-100.zip` manually from
-https://www.sintef.no/projectweb/top/vrptw/100-customers/ and save it as `data/raw/sintef/solomon-100.zip`
-(the script prints the expected SHA-256). Tests that do not depend on these files run without them.
+Because the SINTEF site blocks automated clients via Cloudflare, `solomon-100.zip` must be downloaded manually from https://www.sintef.no/projectweb/top/vrptw/100-customers/ and saved to `data/raw/sintef/solomon-100.zip` (the script prints the expected SHA-256 digest). Tests that do not depend on these files run without them.
 
-Sources to cite: Solomon, M. M. (1987). Algorithms for the vehicle routing and scheduling problems with time
-window constraints. *Operations Research, 35*(2), 254-265. SINTEF. (2008). *VRPTW - 100 customers: Solomon
-benchmark, best known solutions*. SINTEF TOP. https://www.sintef.no/projectweb/top/vrptw/100-customers/ .
-CVRPLIB. (s.d.). *VRPTW instances - Solomon set*. PUC-Rio. https://galgos.inf.puc-rio.br/cvrplib/
+Sources to cite are Solomon, M. M. (1987), Algorithms for the vehicle routing and scheduling problems with time window constraints (*Operations Research, 35*(2), 254-265); SINTEF (2008), *VRPTW - 100 customers: Solomon benchmark, best known solutions* (SINTEF TOP, https://www.sintef.no/projectweb/top/vrptw/100-customers/); and CVRPLIB (s.d.), *VRPTW instances - Solomon set* (PUC-Rio, https://galgos.inf.puc-rio.br/cvrplib/).
 
 ### Objective conventions (central comparability risk)
 
@@ -64,13 +34,11 @@ CVRPLIB. (s.d.). *VRPTW instances - Solomon set*. PUC-Rio. https://galgos.inf.pu
 | Objective | hierarchical: vehicles, then distance | distance only |
 | Distance | double precision, total rounded to 2 decimals | truncated to 1 decimal |
 
-An independent verifier showed that 8 of the 56 CVRPLIB solutions become **infeasible** under exact
-distance, and that SINTEF uses fewer vehicles in 37 instances. Results are compared only with SINTEF,
-under its convention; the distance gap is reported only when the fleet equals the reference.
+An independent verifier showed that 8 of the 56 CVRPLIB solutions become infeasible under exact distance and that SINTEF uses fewer vehicles on 37 instances. Results are therefore compared exclusively with SINTEF under its hierarchical convention, and the distance gap is reported only when the fleet equals that of the reference.
 
 ## Reproduction
 
-The conda environment uses only conda-forge; OR-Tools comes from PyPI (it is not on conda-forge):
+The conda environment relies strictly on `conda-forge`, while OR-Tools is installed from PyPI:
 
 ~~~
 set CONDA_CHANNELS=conda-forge
@@ -79,20 +47,14 @@ conda env create -f environment.yml
 conda activate delivery-routing-vrptw
 ~~~
 
-`environment.yml` installs the package in editable mode and sets `MKL_THREADING_LAYER=SEQUENTIAL`
-(it avoids a numpy/MKL crash on Windows). Exact versions are in `environment.lock.yml`.
-
-Tests and lint (unit tests use synthetic fixtures; contract tests read the notebooks and
-`data/reference/split.csv`; no network or GUI):
+The `environment.yml` specification installs the package in editable mode and sets `MKL_THREADING_LAYER=SEQUENTIAL` to prevent a numpy/MKL crash on Windows; pinned package versions are recorded in `environment.lock.yml`. Unit tests use synthetic fixtures, whereas contract tests read the notebooks and `data/reference/split.csv`, requiring neither network access nor a graphical interface:
 
 ~~~
 python -m ruff check src tests scripts
 python -m pytest -q --cov=delivery_routing_vrptw
 ~~~
 
-Experiment parameters (solver time limit, budgets, scenario factors, replicates) live in
-`config/experiment.toml` and can be overridden on the command line. Experiments, in the order they
-were run:
+Experiment parameters (solver time limit, budgets, scenario factors and replicates) reside in `config/experiment.toml` and can be overridden via command-line arguments. The table summarises the executed experiments in chronological order:
 
 | Step | Script | Instances |
 |---|---|---|
@@ -112,16 +74,15 @@ were run:
 | Phase D: post-hoc v2 re-evaluation and v1-versus-v2 comparison | `scripts/run_evaluation.py --version v2 --confirm-eval --post-hoc`, `scripts/compare_eval_versions.py` | 42 eval (post hoc) |
 | Notebook execution | `scripts/execute_notebooks.py` | — |
 
-Evaluation instances are guarded: every script refuses them unless explicitly confirmed. Timed runs
-should not share the machine with other workloads (wall-clock limits make results load-dependent).
-Results used by the notebooks are frozen in `outputs/frozen/` (see its `README.md`).
+Runners that resume a folder are protected by a configuration fingerprint (`delivery_routing_vrptw.runs`; legacy folders require `--allow-legacy-resume`). That fingerprint covers all result-determining settings, including the number of worker processes (since wall-clock limits make runs sensitive to CPU contention; block B4 compares 4 versus 8 processes), while ignoring timestamps and file paths. For C3, the protocol aggregate is `aggregate_representative.csv` (representative replicate), whereas `aggregate.csv` pools all replicates for traceability; for the frozen C3 folders, the protocol aggregate is derived with `python scripts/derive_phase_c_corrections.py` without invoking the solver.
 
-Runners that resume a folder are protected by a configuration fingerprint (`delivery_routing_vrptw.runs`; legacy
-folders need `--allow-legacy-resume`). It covers the result-determining configuration, **including the number of
-worker processes** (wall-clock limits make results depend on CPU contention; block B4 compares 4 vs 8), but not
-timestamps or paths. For C3, the protocol aggregate is `aggregate_representative.csv` (representative replicate);
-`aggregate.csv` pools all replicates and is kept for traceability. For the frozen C3 folders the protocol aggregate
-is derived with `python scripts/derive_phase_c_corrections.py` (no solver).
+Evaluation instances are guarded so every script rejects them without explicit confirmation. Timed runs should not share the machine with other workloads because wall-clock stopping makes results load-dependent. Results consumed by the notebooks are frozen under `outputs/frozen/` (documented in the folder's internal `README.md`).
+
+The run metadata recorded the absolute path of the project folder on the local machine. Before publication those paths were replaced with the neutral placeholder PROJECT_ROOT, and the check can be repeated at any time (the exit code is 1 when a local path remains):
+
+~~~
+python scripts/anonymize_local_paths.py --check
+~~~
 
 ## Notebook map
 
@@ -137,22 +98,13 @@ is derived with `python scripts/derive_phase_c_corrections.py` (no solver).
 
 ## Method
 
-- **Verifier:** every plan is checked in double precision (capacity, single visit, time windows, return
-  to the depot, fleet limit); reported metrics come from the verifier, never from the solver objective.
-- **Baselines:** deadline-ordered greedy (earliest-deadline rule, Jackson, 1955; first-fit, Johnson, 1974) and
-  Solomon's time-oriented nearest neighbour (Solomon, 1987).
-- **Solver:** OR-Tools routing (Perron & Furnon, 2026) with a fixed cost per vehicle (fleet first; hierarchical
-  objective as in Bräysy & Gendreau, 2005a), integer costs and travel
-  times rounded up (a solver-feasible plan is feasible in double precision).
-- **Anti-leakage:** stratified 14/42 split drawn before any solver run; configuration chosen on the 14
-  development instances under a rule registered beforehand; evaluation protocol (budget, replicates,
-  main result) registered before opening the 42 evaluation instances.
+Every plan is checked in double precision by an independent verifier covering vehicle capacity, single customer visits, time windows, depot return and fleet limits; reported metrics always come from the verifier rather than the solver objective. The constructive baselines comprise a deadline-ordered greedy heuristic (earliest-deadline rule of Jackson, 1955, with first-fit allocation of Johnson, 1974) and Solomon's time-oriented nearest-neighbour heuristic (Solomon, 1987).
+
+Main optimisation uses OR-Tools routing (Perron & Furnon, 2026) with a fixed cost per vehicle to enforce the hierarchical fleet-then-distance objective (Bräysy & Gendreau, 2005a), using integer costs and travel times rounded up so that every solver-feasible schedule remains feasible in double precision. To prevent data leakage, a stratified 14/42 split was drawn before any solver execution, the solver configuration was selected exclusively on the 14 development instances under a pre-registered rule, and the evaluation protocol (time budget, replicates and main-result definition) was fixed before opening the 42 evaluation instances.
 
 ## Results
 
-Frozen configuration: fixed vehicle cost + `SAVINGS` (savings heuristic; Clarke & Wright, 1964) +
-`GUIDED_LOCAL_SEARCH` (guided local search; Voudouris & Tsang, 1999). Final evaluation: 42
-evaluation instances, 120 s × 5 replicates, main result = median replicate, 294/294 feasible plans.
+The frozen configuration pairs fixed vehicle cost with `SAVINGS` (Clarke & Wright, 1964) and `GUIDED_LOCAL_SEARCH` (Voudouris & Tsang, 1999). In the final evaluation on the 42 unseen instances (120 s × 5 replicates, taking the median replicate as the main result), all 294 generated plans proved feasible.
 
 | Scope | Mean extra vehicles vs. SINTEF | Fleet equal to SINTEF | Median distance gap (equal fleet) |
 |---|---|---|---|
@@ -164,124 +116,36 @@ evaluation instances, 120 s × 5 replicates, main result = median replicate, 294
 | RC1 | 1.50 | 0 / 6 | — |
 | RC2 | 0.33 | 4 / 6 | 4.63% |
 
-- The fleet is never below the reference: +1 vehicle in 15 instances, +2 in 3 (all RC1).
-- In the C families the reference fleet is reached in all 13 instances, and 10 reproduce the reference
-  distance to two decimals; R1 and RC1, where time windows bind, are the limit of the approach.
-- The fleet was identical across the 5 replicates in all 42 instances.
-- Baselines: nearest neighbour +1.36 vehicles (12/42 equal fleet), greedy +3.98 (2/42).
+The OR-Tools fleet never fell below the reference, requiring +1 vehicle on 15 instances and +2 vehicles on 3 instances (all in RC1), with identical fleet counts across all 5 replicates in every instance. On the C families, the reference fleet was matched in all 13 instances and 10 reproduced the reference distance to two decimal places; R1 and RC1, where time windows are binding, defined the limit of the approach. Both baselines trailed behind: nearest neighbour added +1.36 vehicles on average (12/42 equal fleet) and deadline-first greedy added +3.98 (2/42).
 
-**Business scenarios** (development instances, compared with the plan's own baseline, never with
-SINTEF):
-
-- **Wider time windows (×2):** 0.79 vehicles saved on average (8 of 14 instances reduce the fleet).
-  Distance is never averaged across different fleets: −2.0% where the fleet is unchanged (6 instances),
-  −12.3% where it is reduced (8). **Nothing** is saved in the C families, whose fleet is set by capacity.
-- **Early delivery allowed** (the benchmark forces waiting until the window opens; real operations
-  often accept early delivery): free early delivery saves 0.50 vehicles on average; where the fleet is
-  unchanged (7 instances) route duration is −20.8% and distance −18.1%, where it is reduced (6
-  instances) −11.7% and −11.0%, both measured with optimal depot departure (forward time slack; Savelsbergh, 1992) (the naive "depart at 0"
-  measure would overstate the duration gain by 1.0–7.9 points). In R2/RC2 the duration falls by about
-  37% and 35% among the equal-fleet instances. About 40% of customers change vehicle: the gain comes
-  from re-planning, which has an operational cost.
+In the business scenarios (run on the 14 development instances and compared solely with each instance's baseline plan, never with SINTEF), symmetrical window widening by a factor of 2 saved 0.79 vehicles on average (reducing the fleet in 8 of 14 instances). Split by fleet class, distance changed by −2.0% where the fleet remained unchanged (6 instances) and by −12.3% where it shrank (8 instances), with zero savings in the C families where capacity dictates fleet size. Allowing unrestricted early delivery saved 0.50 vehicles on average. Evaluated with optimal depot departure (forward time slack; Savelsbergh, 1992), route duration changed by −20.8% and distance by −18.1% where the fleet stayed constant (7 instances), and by −11.7% and −11.0% where the fleet dropped (6 instances); the naive depart-at-zero measure would overstate duration savings by 1.0 to 7.9 percentage points. Duration fell by roughly 37% in R2 and 35% in RC2 among equal-fleet instances, accompanied by vehicle reassignments for roughly 40% of customers, showing that the gain stems from replanning at a tangible operational cost.
 
 ## Audit and v2
 
-After the final evaluation, an external audit (`reports/plano-sanidade-auditoria.md`) reviewed the
-project. Its ten findings were triaged by reading the code and the frozen results: most were confirmed,
-among them that the integer scale 100 with rounding up prunes valid routes (R106 and R110), that our
-diagnosis of the `reduce_fleet` failure was wrong, that layer-B levels solved without a warm start are
-not monotone (6 + 14 cells), that the evaluation did not record route duration and waiting, and that
-some layer-B averages mixed different fleets; the claim that a very high fixed cost per vehicle distorts
-the search was only a hypothesis. The work followed four phases, each with its protocol registered before
-running (`reports/protocolo-v2.md`, `reports/protocolo-fase-c.md`, `reports/protocolo-fase-d.md`), and the
-v1 results stay frozen as the original result:
+Following the final evaluation, an external audit (`reports/plano-sanidade-auditoria.md`) reviewed the project and saw most of its ten findings confirmed through inspection of code and frozen outputs: integer scale 100 with ceiling rounding pruned valid routes (R106 and R110), the earlier diagnosis of the `reduce_fleet` failure was incorrect, layer-B levels solved without warm starts produced 20 non-monotone cells (6 in widened windows and 14 in early delivery), the evaluation omitted route duration and waiting times, and several layer-B averages pooled different fleet sizes; the claim that a very high fixed vehicle cost distorted local search remained a testable hypothesis. Subsequent corrections followed four phases under pre-registered protocols (`reports/protocolo-v2.md`, `reports/protocolo-fase-c.md` and `reports/protocolo-fase-d.md`), keeping the original v1 outputs frozen.
 
-- **A, corrections without running the solver:** duration and waiting derived from the frozen routes
-  (notebook 05), lexicographic representative replicates and fleet-class separation in layer B (notebook
-  06), a normalised colour bar in notebook 02 and corrected documentation.
-- **B, solver diagnostics on the 14 development instances (v2):** B1 scale 10 000 against 100 (mean
-  rank 1.32 against 1.68; R110 goes from 12 to 11 vehicles), B2 fixed cost k = 1, 10, 100 (same fleet at the
-  three levels; k = 10 kept), B3 corrected `reduce_fleet` (matches SINTEF in R202, 4 → 3, but mean rank 1.68
-  against 1.32, so `fixed_cost` is kept), B4 4 against 8 processes (same fleet in 42/42 cells), B5 warm
-  start between layer-B levels (non-monotone cells 6 → 0 and 14 → 0). **v2 = the v1 configuration with
-  integer scale 10 000 and relative fixed cost k = 10, whose magnitude is about 50–66% of the v1 absolute
-  fixed cost** (corrected on 2026-11-19; only the scale was isolated, in B1).
-- **C, layer B (see below).**
-- **D, post-hoc v2 re-evaluation of the 42 evaluation instances** (already seen, so labelled "v2, post hoc"
-  and shown beside the v1, never in its place): 210/210 feasible; mean extra vehicles 0.50 → 0.48; fleet
-  equal to SINTEF in **25 / 42** instances (24 in the v1), the only fleet change being **RC207, 4 → 3**.
-  With equal fleets the distance moves in both directions (from −4.3% to +2.1%; 18 of 41 instances within
-  ±0.5%, 11 shorter, 12 longer), so the median-gap drop from 3.40% to 2.23% reflects those oscillations and
-  a change in the equal-fleet set, not a consistent gain. The registered expectation of a gain in
-  tight-window instances such as R106 was not confirmed (13 vehicles in both versions). The v2 fixes a
-  demonstrated defect, but its aggregate impact is marginal; the v1 conclusion stands. **Correction
-  (2026-11-19):** the v2 differs from the v1 in the scale **and** in the magnitude of the fixed cost (49.9% to
-  66.2% of the v1 value in distance units, median 57.7%), so the comparison is between two configurations and
-  the change in RC207 is attributable to the v2 configuration, not to the scale alone.
+In Phase A (without running the solver), route duration and waiting times were derived from frozen evaluation routes (notebook 05), lexicographic representative replicates and fleet-class breakdowns were adopted in layer B (notebook 06), the colour bar in notebook 02 was normalised, and documentation was corrected. In Phase B (solver diagnostics on the 14 development instances), block B1 compared integer scale 10 000 against 100 and selected 10 000 (mean rank 1.32 against 1.68, lowering R110 from 12 to 11 vehicles). Block B2 evaluated relative fixed cost k ∈ {1, 10, 100} and retained k = 10 by mean rank, with identical fleets across all three levels. Block B3 tested the corrected `reduce_fleet` (warm start and penalised dropping), matching SINTEF on R202 (4 to 3 vehicles) while losing on mean rank (1.68 against 1.32), thus preserving `fixed_cost`. Block B4 compared 4 against 8 worker processes and found identical fleets in all 42 cells. Block B5 introduced warm starts between layer-B levels and eliminated all non-monotone cells (6 to 0 and 14 to 0). Consequently, the v2 configuration consists of the v1 settings with integer scale 10 000 and relative fixed cost k = 10, whose magnitude corresponds to roughly 50% to 66% of the v1 absolute fixed cost.
+
+In Phase D, a post-hoc v2 re-evaluation was executed on the 42 evaluation instances (already seen, labelled "v2, post hoc" beside v1 without replacing it), achieving 210/210 feasible plans. Mean extra vehicles moved from 0.50 to 0.48, raising equal-fleet matches against SINTEF from 24 to 25 due to a single fleet change in RC207 (4 to 3 vehicles). With equal fleets, distance moved in both directions (−4.3% to +2.1%; 18 of 41 instances within ±0.5%, 11 shorter and 12 longer), showing that the median-gap shift from 3.40% to 2.23% reflects two-way fluctuations and the inclusion of RC207 in the equal-fleet group rather than a consistent distance gain. The pre-registered expectation of gains on tight-window instances such as R106 did not hold (13 vehicles in both versions). As corrected on 2026-11-19, v2 differs from v1 in both integer scale and fixed-cost magnitude (49.9% to 66.2% of the v1 value in distance units, median 57.7%), meaning the RC207 change is attributable to the full v2 configuration rather than scale alone. While v2 resolves a verified rounding defect, its aggregate impact is marginal and the v1 conclusions stand.
 
 ### Phase C: robustness and operational scenarios (layer B, no SINTEF comparison)
 
-Notebook 07 (`reports/fase-c-robustez.md`; each scenario is compared with the reference plan of the same
-instance; C2 and C3 use the 14 development instances, 30 s, 3 replicates):
+Documented in notebook 07 (`reports/fase-c-robustez.md`), Phase C compares each scenario against the reference plan of the same instance, running 30 s × 3 replicates on the 14 development instances for C2 and C3. In C1 (stress testing frozen evaluation plans under delays across 1 000 Monte Carlo draws per plan and scenario), +0–10% travel shocks caused lateness for 6.3% of OR-Tools customers against 9.3% (nearest neighbour) and 21.1% (greedy), and 13.4% late depot returns against 32.9% and 43.3%; per route, OR-Tools accumulated more routes with at least one late visit under service shocks (84.2% against 71.1% and 72.5%). Fragility correlated inversely with nominal slack (Spearman correlation between −0.37 and −0.78).
 
-- **C1, fixed plans under delays** (frozen evaluation plans, used descriptively, 1 000 draws per plan and
-  scenario): with travel +0–10%, 6.3% of the OR-Tools customers are served late against 9.3% (nearest
-  neighbour) and 21.1% (greedy), and 13.4% of the returns to the depot are late against 32.9% and 43.3%;
-  per route, OR-Tools has more routes with some lateness under service shocks (84.2% against 71.1% and
-  72.5%). Nominal slack explains the fragility (Spearman correlation with the late rate from −0.37 to
-  −0.78).
-- **C2.1, reduced capacity:** 90% and 80% of Q need 0.21 and 0.57 extra vehicles per instance (3 and 6 of 14
-  instances), with about +14% distance where the fleet grows.
-- **C2.2, limited fleet with priority:** with K − 1 the uniform penalty leaves 111 customers unserved (23 of
-  them priority) and priority leaves 122 (0 priority); with K − 2, 344 (69) against 363 (3). The number dropped varies a little across replicates of the
-  same cell (RC108, K − 2, uniform penalty: 9, 7 and 7), because the penalty encourages service without
-  guaranteeing a minimal drop.
-- **C2.3, soft windows: exploratory, little information** — only 3 of 14 instances were solved (4 are
-  capacity-infeasible and 7 failed in the initial construction), so no general conclusion is drawn and the
-  result must not be quoted without this caveat.
-- **C3, reoptimisation after removing or inserting 10% of the customers:** a warm start changes the vehicle of
-  26.7% (removal) and 30.0% (insertion) of the common customers, against 40.6% and 36.7% cold (representative replicate
-  of each instance; corrected on 2026-11-19); the noise floor has a median of 0% but is not zero in removal
-  (4 of 42 cold-versus-cold comparisons reassigned customers, up to 23.3%, in R111 and RC203; 0 of 42 in
-  insertion). Replanning has a relevant operational cost either way.
+In the solver-based operational scenarios, reducing capacity to 90% and 80% of Q (C2.1) required 0.21 and 0.57 additional vehicles per instance on average (3 and 6 of 14 instances), increasing distance by roughly 14% where fleets expanded. Under a limited fleet (C2.2), uniform penalties at K − 1 left 111 customers unserved (23 priority), whereas priority penalties left 122 customers unserved with 0 priority customers dropped; at K − 2, counts were 344 (69 priority) versus 363 (3 priority), with minor replicate variability (such as 9, 7 and 7 dropped customers in RC108 under uniform K − 2) because penalties encourage service without guaranteeing a strict minimum drop. The soft-windows block (C2.3) remained exploratory and yielded little information, solving only 3 of 14 instances (4 infeasible by capacity and 7 failing during initial construction), precluding general conclusions without this caveat. In C3 (reoptimisation after removing or inserting 10% of customers, evaluated on the representative replicate per the 2026-11-19 correction), warm starting reassigned 26.7% (removal) and 30.0% (insertion) of common customers against 40.6% and 36.7% cold; although the noise-floor median was 0%, removal showed non-zero churn in 4 of 42 cold-versus-cold comparisons (up to 23.3% in R111 and RC203), confirming substantial operational cost in replanning.
 
 ## Limitations
 
-- Synthetic benchmark (planar Euclidean distance, speed 1, homogeneous fleet).
-- SINTEF values are best known solutions, not proven optima; no optimality claim is made.
-- Wall-clock time limits make results load-dependent: at 30 s, identical runs differed by ±1 vehicle on
-  R/RC instances; at 120 s on an idle machine the fleet was stable.
-- The fleet-reduction strategy (`reduce_fleet`) was not effectively tested in the tournament. The
-  attempt with one vehicle fewer failed almost immediately (total runtime about 10 s of the 30 s
-  budget with `PARALLEL_CHEAPEST_INSERTION` and `SAVINGS`; only `PATH_CHEAPEST_ARC` used its whole 5 s
-  step), and the remaining budget was discarded, so the comparison against the fixed-cost strategy is
-  inconclusive and biased against `reduce_fleet`. An earlier statement that the 5 s step was too
-  short was wrong (corrected on 2026-11-18). Experiment B3 later repeated the comparison with a corrected
-  `reduce_fleet` (warm start, penalised dropping, 120 s): it matched SINTEF in R202 but lost on mean rank,
-  so `fixed_cost` stays (see Audit and v2).
-- In the v1 layer-B runs the scenario levels were solved without a warm start between them, so results are
-  not monotone: 20 cells (6 widened-window and 14 early-delivery) are lexicographically worse (vehicles,
-  then distance) than the best plan of a less permissive level of the same instance. With a warm start
-  (experiment B5) these cells disappear, but the main tables of notebook 06 remain the v1 ones.
-- The post-hoc v2 re-evaluation reuses instances that were already seen; its marginal difference from the v1
-  is descriptive and does not replace the v1 result.
-- Phase C: C2.3 (soft windows) is exploratory (3 of 14 instances solved): it failed in 7 of the 10
-  feasible-by-capacity instances because of the initial construction (not time) and is not conclusive; C1 uses independent shocks without the spatial and temporal
-  correlation of real traffic; C2 and C3 use 14 development instances.
-- Deviation from the pre-analysis rule that the evaluation SINTEF values would be read only in the final
-  tournament: notebooks 01 and 02 read all 56 published values descriptively (conventions and fleet
-  bounds); they were not used to select a configuration, a budget or a parameter.
-- Business scenarios use the 14 development instances only and treat time gains as a by-product (the
-  solver optimises fleet and distance, not duration).
+The project relies on synthetic benchmarks with planar Euclidean distances, unit speed and homogeneous fleets, and SINTEF reference values represent best known heuristic solutions rather than proven optima. Wall-clock time limits induce machine-load sensitivity: identical 30 s runs differed by ±1 vehicle on R and RC instances, whereas 120 s runs on an idle machine kept fleet counts stable.
+
+During the initial development tournament, `reduce_fleet` failed almost immediately when attempting a one-vehicle reduction under `PARALLEL_CHEAPEST_INSERTION` and `SAVINGS` (about 10 s total runtime out of the 30 s budget, with only `PATH_CHEAPEST_ARC` exhausting its full 5 s step), discarding the remaining budget and biasing the comparison against `reduce_fleet`. The earlier claim that the 5 s step was too short was retracted on 2026-11-18, and experiment B3 subsequently re-tested fleet reduction with warm starts and penalised dropping at 120 s, matching SINTEF on R202 yet losing on mean rank to `fixed_cost`. In the v1 layer-B scenarios, independent cold starts produced 20 non-monotone cells (6 in widened windows and 14 in early delivery); warm starts in B5 removed these cells, though the main tables in notebook 06 retain the original v1 runs. The post-hoc v2 re-evaluation reuses previously inspected evaluation instances and serves solely as a descriptive comparison alongside v1.
+
+In Phase C, C2.3 (soft windows) failed in 7 of 10 capacity-feasible instances due to initial construction rather than time limits and cannot support broad claims; C1 applies independent arc and service shocks without real traffic correlation; and C2 and C3 cover only the 14 development instances. Business scenarios also treat route-duration savings as a secondary effect of a solver optimising fleet and distance. A documented deviation from the pre-analysis rule restricting evaluation SINTEF reads to the final tournament is also recorded: notebooks 01 and 02 read all 56 published SINTEF entries descriptively to examine conventions and fleet bounds without using them to tune configurations, budgets or parameters.
 
 ## Documentation
 
-`reports/` holds the feasibility pre-analysis, the proposal assessment, the pre-registered protocols
-(grid, evaluation, v2, phase C, phase D) with their results, the audit sanity plan, the robustness report,
-the time/time-window sensitivity study and the early-delivery scenario.
-`docs/Solomon-html descriptions.pdf` is the saved SINTEF page with the reference table.
+The `reports/` folder contains the feasibility pre-analysis, the proposal assessment, the pre-registered protocols (grid, evaluation, v2, phase C and phase D) with results, the audit sanity plan, the robustness report, the time and window sensitivity study and the early-delivery scenario. The file `docs/Solomon-html descriptions.pdf` preserves the SINTEF reference web page.
 
 ## References
 
-The works cited in the README and in the notebooks, in author-year format, are listed in
-[`docs/referencias.md`](docs/referencias.md) (curated list; each notebook ends with a References section).
+Works cited in this README and the notebooks follow author-year format and are compiled in [`docs/referencias.md`](docs/referencias.md), alongside the closing References section in each notebook.

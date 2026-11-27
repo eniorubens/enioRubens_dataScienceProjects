@@ -45,8 +45,8 @@
       <section id="decisao" aria-labelledby="decisao-title">
         <h2 id="decisao-title">Fleet size first, distance second</h2>
         <div class="copy">
-          <p>The vehicle routing problem with time windows (VRPTW) determines which customers go on each route and the order in which they are served. The plan must respect vehicle capacity, customer time windows and the return to the depot.</p>
-          <p>Solomon is a synthetic academic benchmark. Each instance has 100 customers. Of the 56 instances across six families, 14 were set aside for development and 42 for the primary evaluation. SINTEF publishes the best known solutions under the same order of objectives.</p>
+          <p>The vehicle routing problem with time windows (VRPTW) determines which customers enter each route and the order in which they are served, respecting vehicle capacity, time windows and depot return.</p>
+          <p>Solomon is a synthetic academic benchmark comprising 56 instances across six families, each with 100 customers; 14 were set aside for development and 42 for the primary evaluation against SINTEF's best known solutions under the same objective order.</p>
         </div>
         <ol class="objective" role="list">
           <li><strong>1st · Minimize fleet size</strong><span>Find a feasible plan with the fewest vehicles.</span></li>
@@ -57,8 +57,8 @@
       <section id="avaliacao" aria-labelledby="avaliacao-title">
         <h2 id="avaliacao-title">OR-Tools led the local methods</h2>
         <div class="copy">
-          <p>All three methods found feasible solutions in all 42 instances. The primary result uses the third of five OR-Tools replicates ordered by feasibility, fleet size and distance, with 120 seconds per replicate. The two deterministic baselines are nearest neighbor with time windows and a deadline-first greedy heuristic.</p>
-          <p>OR-Tools matched the fleet size in all 13 instances in the clustered C1 and C2 families. In R1 and RC1, it matched in just 1 of 15 instances. SINTEF remained ahead on the hardest cases.</p>
+          <p>All three methods found feasible solutions across the 42 instances. The primary evaluation uses the third of five OR-Tools replicates (ordered by feasibility, fleet size and distance) with a 120-second limit per replicate, compared against two deterministic baselines: time-oriented nearest neighbor and a deadline-first greedy heuristic.</p>
+          <p>OR-Tools matched the SINTEF fleet in all 13 instances of the clustered C1 and C2 families, yet matched in just 1 of 15 across R1 and RC1, where the reference retained an advantage.</p>
         </div>
         <figure class="evidence" aria-labelledby="fleet-chart" aria-describedby="fleet-note">
           <figcaption id="fleet-chart">Instances matching the SINTEF fleet size</figcaption>
@@ -94,12 +94,12 @@
             </tbody>
           </table>
         </div>
-        <p class="copy">The distance gap uses only instances where each method matched the SINTEF fleet size. The medians describe different subsets.</p>
+        <p class="copy">The distance gap covers only instances where each method matched the SINTEF fleet size, so each median represents a different subset.</p>
       </section>
 
       <section id="cenarios" aria-labelledby="cenarios-title">
         <h2 id="cenarios-title">How disruptions affect the plan</h2>
-        <p class="copy">C1 tests fixed v1 evaluation plans under delays. C2 and C3 use the 14 development instances to simulate operating decisions. C1 compares the local heuristics, while C2 and C3 compare variants of the planning approach.</p>
+        <p class="copy">While C1 stresses fixed v1 evaluation plans against the local heuristics under execution delays, C2 and C3 use the 14 development instances to compare planning variants under operational decisions.</p>
         <article aria-labelledby="c1-title">
           <h3 id="c1-title">C1 · Delays under fixed plans</h3>
           <div class="copy">
@@ -128,8 +128,8 @@
             </table>
           </div>
           <div class="copy">
-            <p>K is the fleet size of each instance's reference plan. In a separate scenario, limiting each vehicle to 80% of its capacity required a larger fleet in 6 of 14 instances.</p>
-            <p>The soft-window scenario was exploratory. Only 3 of 14 instances were solved with one fewer vehicle. Four were infeasible due to capacity, and seven failed to construct an initial solution.</p>
+            <p>K denotes the fleet size of each instance's reference plan. In a separate scenario, limiting each vehicle to 80% of its capacity required a larger fleet in 6 of 14 instances.</p>
+            <p>The soft-window scenario remained exploratory, solving only 3 of 14 instances with one fewer vehicle (four proved infeasible due to capacity and seven failed initial construction).</p>
           </div>
         </article>
 
@@ -173,7 +173,7 @@
             </div>
           </figure>
           <div class="callout">
-            <p class="copy">Median reassignment between cold replicates was zero. For removals, 4 of 42 comparisons were above zero, with a maximum of 23.3%. For insertions, all were zero.</p>
+            <p class="copy">Although median reassignment between cold replicates was zero, 4 of 42 comparisons under removal exceeded zero (peaking at 23.3%), whereas all insertion comparisons stayed at zero.</p>
           </div>
         </article>
       </section>
@@ -181,17 +181,17 @@
       <section id="reavaliacao" aria-labelledby="reavaliacao-title">
         <h2 id="reavaliacao-title">v2 changed fleet size in one instance</h2>
         <div class="copy">
-          <p>The post-hoc re-evaluation reused the same 42 previously seen instances. In RC207, fleet size dropped from 4 to 3 vehicles, bringing the number of SINTEF fleet matches from 24 to 25. Mean extra vehicles went from +0.50 to +0.48.</p>
-          <p>The internal scale changed from 100 to 10,000, and the fixed cost per vehicle changed from an absolute amount to one relative to a distance upper bound. The changes were applied together, so the RC207 result reflects the full v2 configuration.</p>
-          <p>The median equal-fleet gap went from +3.40% to +2.23%, with one extra instance in the subset. Of the 41 instances with the same fleet size across versions, 18 had distance changes within ±0.5%, 11 improved beyond that range and 12 worsened. v1 remains the primary evaluation.</p>
+          <p>The post-hoc re-evaluation reused the same 42 previously seen instances. In RC207, fleet size dropped from 4 to 3 vehicles, raising SINTEF fleet matches from 24 to 25 and shifting mean extra vehicles from +0.50 to +0.48.</p>
+          <p>The internal scale changed from 100 to 10,000, and the fixed cost per vehicle changed from an absolute amount to one relative to a distance upper bound. Because both changes were applied together, the RC207 result reflects the full v2 configuration.</p>
+          <p>The median equal-fleet gap moved from +3.40% to +2.23%, reflecting the addition of that instance alongside two-way fluctuations: across the 41 instances with identical fleets in both versions, 18 stayed within ±0.5% in distance, 11 improved and 12 worsened beyond that band, leaving v1 as the primary evaluation.</p>
         </div>
       </section>
 
       <section id="reproducao" aria-labelledby="reproducao-title">
         <h2 id="reproducao-title">Benchmark use only</h2>
         <div class="copy">
-          <p><code>production_eligible = false</code>. The study uses Euclidean distances and synthetic windows. C1 simulates independent delays, while real traffic can affect multiple routes and times at once. A live operation needs road distances, actual fleet and measured service times, field validation, and replanning rules.</p>
-          <p>This report uses frozen results. To inspect them, see the aggregates and protocols below. To reproduce the experiments locally, follow the project guide to set up the environment, obtain the third-party data and run the scripts. The guide also describes tests that can run on synthetic fixtures.</p>
+          <p>The study runs strictly on a synthetic benchmark (<code>production_eligible = false</code>), using Euclidean distances and artificial windows. C1 simulates independent delays, whereas real traffic can affect multiple routes and times at once; a live operation would require road distances, actual fleet and measured service times, field validation and replanning rules.</p>
+          <p>This report relies solely on frozen outputs, with aggregates and protocols linked in the sources section below. Local reproduction (environment setup, third-party data retrieval, script execution and tests on synthetic fixtures) is documented in the project guide.</p>
           <p><a href="../README.md">Project reproduction guide</a></p>
         </div>
       </section>

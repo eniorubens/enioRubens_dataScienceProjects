@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-18T11:07:06.548454-03:00",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-fase-c.md",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-fase-c.md",
   "config": {
     "solver": {
       "time_limit_s": 30,

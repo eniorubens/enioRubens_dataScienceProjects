@@ -49,8 +49,8 @@
     }
   },
   "config_file": "config/experiment.toml",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-avaliacao.md",
-  "frozen_config": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\selected_config.json",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-avaliacao.md",
+  "frozen_config": "PROJECT_ROOT\\outputs\\frozen\\selected_config.json",
   "instances": [
     "C101",
     "C102",

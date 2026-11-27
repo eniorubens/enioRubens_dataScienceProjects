@@ -104,8 +104,8 @@
     }
   },
   "config_file": "config/experiment.toml",
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-fase-d.md",
-  "frozen_config": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\selected_config.json",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-fase-d.md",
+  "frozen_config": "PROJECT_ROOT\\outputs\\frozen\\selected_config.json",
   "instances": [
     "C101",
     "C102",
@@ -169,9 +169,9 @@
   "version": "v2",
   "label": "v2, p\u00f3s-hoc",
   "post_hoc": true,
-  "protocol_v1": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-avaliacao.md",
-  "protocol_v2": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-v2.md",
+  "protocol_v1": "PROJECT_ROOT\\reports\\protocolo-avaliacao.md",
+  "protocol_v2": "PROJECT_ROOT\\reports\\protocolo-v2.md",
   "scale": 10000,
   "fixed_cost_k": 10,
-  "baselines": "reused from D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\evaluation\\results.csv"
+  "baselines": "reused from PROJECT_ROOT\\outputs\\frozen\\evaluation\\results.csv"
 }

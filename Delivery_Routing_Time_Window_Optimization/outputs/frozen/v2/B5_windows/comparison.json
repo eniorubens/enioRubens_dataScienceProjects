@@ -1,5 +1,5 @@
 {
-  "frozen_v1": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\outputs\\frozen\\window_scenarios\\results.csv",
+  "frozen_v1": "PROJECT_ROOT\\outputs\\frozen\\window_scenarios\\results.csv",
   "instances": [
     "C103",
     "C106",

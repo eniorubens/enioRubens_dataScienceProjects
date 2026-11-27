@@ -23,7 +23,7 @@
   "python": "3.13.18",
   "numpy": "2.5.5",
   "cpu_count": 16,
-  "protocol": "D:\\Projetos\\Delivery_Routing_&_Time_Window_Optimization\\reports\\protocolo-grade-dev.md",
+  "protocol": "PROJECT_ROOT\\reports\\protocolo-grade-dev.md",
   "argv": [
     "scripts\\run_dev_grid.py",
     "--budget",
