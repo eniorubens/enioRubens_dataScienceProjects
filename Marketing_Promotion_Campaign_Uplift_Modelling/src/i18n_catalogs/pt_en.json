@@ -239,5 +239,13 @@
   ,"guardrails operacionais": "operational guardrails"
   ,"análise": "analysis"
   ,"tamanho da amostra e poder": "sample size and power"
-  ,"plano de monitoramento": "monitoring plan"
+  ,"plano de monitoramento": "monitoring plan",
+  "linhas": "rows",
+  "tratados": "treated",
+  "Desvios reais por learner": "Real deviations by learner",
+  "Interações não nulas do ElasticNet": "Non-zero interactions from ElasticNet",
+  "Fonte: Validação, 12.800 linhas  |  Método: LightGBM sobre o braço tratado": "Source: Validation, 12,800 rows  |  Method: LightGBM on the treated arm",
+  "Hash do pré-registro embutido em final_models.joblib não bate com o preregistration.json atual -- os modelos podem ter sido congelados sob uma especificação diferente da vigente.": "The pre-registration hash embedded in final_models.joblib does not match the current preregistration.json -- the models may have been frozen under a different specification.",
+  "{path} já existe -- S6 já foi executada. Esta célula não reabre o teste selado nem recalcula métricas silenciosamente. Leia s6_results.json para o resultado já produzido; não há opção force=True para contornar esta proteção.": "{path} already exists -- S6 has already been executed. This cell does not reopen the sealed test or silently recalculate metrics. Read s6_results.json for the result already produced; there is no force=True option to bypass this protection.",
+  "Essas comparações são pré-especificadas e reportadas por completude (inclusive para encerrar a pergunta de S4 sobre X+Tree/S+LightGBM vs. baseline), mas não substituem retrospectivamente o modelo primário nem elegem um novo 'vencedor' com base no maior Qini absoluto observado aqui.": "These comparisons are pre-specified and reported for completeness (including to close the S4 question about X+Tree/S+LightGBM vs. baseline), but they do not retrospectively replace the primary model or elect a new 'winner' based on the largest absolute Qini observed here."
 }
