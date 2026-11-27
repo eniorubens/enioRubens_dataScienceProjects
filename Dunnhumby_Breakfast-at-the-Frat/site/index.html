@@ -67,6 +67,8 @@
     .detail { color: var(--muted); font-size: .91rem; }
     .bars { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: .65rem; }
     .bars li { display: grid; grid-template-columns: minmax(8.5rem, 10rem) minmax(2rem, 1fr) 4.35rem; align-items: center; gap: .75rem; }
+    .scenario-bars li { grid-template-columns: minmax(12rem, 17rem) minmax(2rem, 1fr) 4.35rem; }
+    .scenario-bars small { display: block; }
     .track { display: block; min-width: 0; height: .8rem; background: #edf1ec; border-radius: 2px; overflow: hidden; }
     .fill { display: block; width: var(--value); height: 100%; border-radius: 2px; background: var(--teal); }
     .alternative .fill { background: var(--olive); }
@@ -198,21 +200,25 @@
           </div>
           <div class="card">
             <h3>Modalidades promocionais</h3>
-            <p>O modelo usa indicadores para encarte, display e redução temporária de preço só na etiqueta (TPR). No treino, toda semana com <code>TPR_ONLY</code> tinha desconto. Os cenários da tabela combinam a modalidade da promoção e a profundidade do desconto em faixas observadas.</p>
+            <p>O modelo usa indicadores para encarte, display e redução temporária de preço só na etiqueta (TPR). No treino, toda semana com <code>TPR_ONLY</code> tinha desconto. Os cenários combinam a modalidade da promoção e a profundidade do desconto em faixas observadas.</p>
           </div>
         </div>
-        <div class="table-shell">
-          <table>
-            <caption>Dois cenários de desconto de 20% frente a uma semana regular</caption>
-            <thead>
-              <tr><th scope="col">Modalidade</th><th scope="col" class="num">Diferença estimada</th><th scope="col" class="num">Linhas de suporte</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">TPR sem encarte ou display</th><td class="num">+39,8%</td><td class="num">10.185</td></tr>
-              <tr><th scope="row">Display sem encarte</th><td class="num">+119,2%</td><td class="num">2.272</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <figure class="chart" aria-labelledby="scenario-chart-label" aria-describedby="scenario-chart-detail">
+          <figcaption id="scenario-chart-label">Dois cenários com desconto de 20%</figcaption>
+          <p class="detail" id="scenario-chart-detail">Diferença estimada nas unidades vendidas em relação a uma semana regular. Escala de 0% a +120%.</p>
+          <ul class="bars scenario-bars" role="list">
+            <li class="alternative">
+              <span>TPR sem encarte ou display<small class="detail">10.185 linhas de suporte</small></span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--value: 33.1667%"></span></span>
+              <strong>+39,8%</strong>
+            </li>
+            <li>
+              <span>Display sem encarte<small class="detail">2.272 linhas de suporte</small></span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--value: 99.3333%"></span></span>
+              <strong>+119,2%</strong>
+            </li>
+          </ul>
+        </figure>
         <p class="copy detail">Os percentuais expressam a diferença estimada nas unidades vendidas após a conversão da escala logarítmica do F3. As contagens são do notebook 03 e incluem linhas de treino da mesma modalidade com desconto de 20% ± 3 pontos percentuais. A escolha do varejista de onde e quando promover pode influenciar as estimativas.</p>
         <div class="note"><p>Os coeficientes descrevem associações condicionais nas semanas com transações registradas. Medir o impacto incremental para embasar decisões de preço requer um desenho de identificação causal. O cálculo do ROI também exige dados de margem.</p></div>
       </section>
@@ -254,6 +260,8 @@
           <li><a href="../notebooks/pt_br/02_modelo_nulo.ipynb">Notebook 02 · Modelo nulo e variância</a></li>
           <li><a href="../notebooks/pt_br/03_efeitos_fixos.ipynb">Notebook 03 · Preço, promoção e dependência temporal</a></li>
           <li><a href="../notebooks/pt_br/04_protocolo_p1.ipynb">Notebook 04 · Protocolo P1 e avaliação temporal</a></li>
+          <li><a href="../notebooks/pt_br/05_contrastes_e_sensibilidade.ipynb">Notebook 05 · Contrastes e sensibilidade</a></li>
+          <li><a href="../notebooks/pt_br/06_cenarios_preco_promocao.ipynb">Notebook 06 · Cenários de preço e promoção</a></li>
         </ul>
       </section>
     </div>

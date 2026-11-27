@@ -67,6 +67,8 @@
     .detail { color: var(--muted); font-size: .91rem; }
     .bars { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: .65rem; }
     .bars li { display: grid; grid-template-columns: minmax(8.5rem, 10rem) minmax(2rem, 1fr) 4.35rem; align-items: center; gap: .75rem; }
+    .scenario-bars li { grid-template-columns: minmax(12rem, 17rem) minmax(2rem, 1fr) 4.35rem; }
+    .scenario-bars small { display: block; }
     .track { display: block; min-width: 0; height: .8rem; background: #edf1ec; border-radius: 2px; overflow: hidden; }
     .fill { display: block; width: var(--value); height: 100%; border-radius: 2px; background: var(--teal); }
     .alternative .fill { background: var(--olive); }
@@ -198,21 +200,25 @@
           </div>
           <div class="card">
             <h3>Promotion types</h3>
-            <p>The model uses indicators for feature advertising, in-store display and shelf-tag-only temporary price reductions (TPR). In training, every <code>TPR_ONLY</code> week had a discount. The scenarios in the table combine promotion type and discount depth within observed ranges.</p>
+            <p>The model uses indicators for feature advertising, in-store display and shelf-tag-only temporary price reductions (TPR). In training, every <code>TPR_ONLY</code> week had a discount. The scenarios combine promotion type and discount depth within observed ranges.</p>
           </div>
         </div>
-        <div class="table-shell">
-          <table>
-            <caption>Two 20% discount scenarios compared with a regular week</caption>
-            <thead>
-              <tr><th scope="col">Promotion type</th><th scope="col" class="num">Estimated difference</th><th scope="col" class="num">Supporting rows</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">TPR without feature or display</th><td class="num">+39.8%</td><td class="num">10,185</td></tr>
-              <tr><th scope="row">Display without feature</th><td class="num">+119.2%</td><td class="num">2,272</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <figure class="chart" aria-labelledby="scenario-chart-label" aria-describedby="scenario-chart-detail">
+          <figcaption id="scenario-chart-label">Two scenarios with a 20% discount</figcaption>
+          <p class="detail" id="scenario-chart-detail">Estimated difference in units sold relative to a regular week. Scale from 0% to +120%.</p>
+          <ul class="bars scenario-bars" role="list">
+            <li class="alternative">
+              <span>TPR without feature or display<small class="detail">10,185 supporting rows</small></span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--value: 33.1667%"></span></span>
+              <strong>+39.8%</strong>
+            </li>
+            <li>
+              <span>Display without feature<small class="detail">2,272 supporting rows</small></span>
+              <span class="track" aria-hidden="true"><span class="fill" style="--value: 99.3333%"></span></span>
+              <strong>+119.2%</strong>
+            </li>
+          </ul>
+        </figure>
         <p class="copy detail">The percentages give the estimated difference in units sold after converting from the F3 log scale. The counts come from notebook 03 and include training rows with the same promotion type and a discount of 20% ± 3 percentage points. The retailer's choice of when and where to promote can influence the estimates.</p>
         <div class="note"><p>The coefficients describe conditional associations in weeks with recorded transactions. Measuring incremental impact to inform pricing decisions requires a causal design. Calculating ROI also requires margin data.</p></div>
       </section>
@@ -254,6 +260,8 @@
           <li><a href="../notebooks/en_us/02_null_model.ipynb">Notebook 02 · Null model and variance</a></li>
           <li><a href="../notebooks/en_us/03_fixed_effects.ipynb">Notebook 03 · Price, promotion, and temporal dependence</a></li>
           <li><a href="../notebooks/en_us/04_protocol_p1.ipynb">Notebook 04 · P1 protocol and temporal evaluation</a></li>
+          <li><a href="../notebooks/en_us/05_contrasts_and_sensitivity.ipynb">Notebook 05 · Contrasts and sensitivity</a></li>
+          <li><a href="../notebooks/en_us/06_pricing_promotion_scenarios.ipynb">Notebook 06 · Pricing and promotion scenarios</a></li>
         </ul>
       </section>
     </div>
