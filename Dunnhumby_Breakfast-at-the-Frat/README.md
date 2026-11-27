@@ -1,6 +1,6 @@
 # Retail pricing and promotion with multilevel models
 
-[Português](README.pt-BR.md) · [Executive report](site/en.html)
+[Português](README.pt-BR.md) · [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/en.html)
 
 > Model selection and final evaluation under protocol P1 are complete, as are the training-only analyses in notebooks 05 and 06.
 
