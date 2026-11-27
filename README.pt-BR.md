@@ -2,240 +2,225 @@
 
 [![Tests](https://github.com/eniorubens/enioRubens_dataScienceProjects/actions/workflows/tests.yml/badge.svg)](https://github.com/eniorubens/enioRubens_dataScienceProjects/actions/workflows/tests.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Autor:** [Enio Rubens](https://github.com/eniorubens)
+Autor: [Enio Rubens](https://github.com/eniorubens)
 
-**Idioma:** [English](README.md) | Português (Brasil)
+Idioma: [English](README.md) | Português (Brasil)
 
-Um portfólio de projetos completos de data science cobrindo todo o espectro analítico, de estatística descritiva e testes inferenciais a modelagem preditiva e otimização prescritiva. Os projetos incluem notebooks reprodutíveis, código-fonte modular e suítes de testes automatizados; o status de idioma de cada edição é documentado em seu próprio README.
+Um portfólio de projetos completos de data science que vão de estatística descritiva e testes inferenciais a modelagem preditiva e otimização prescritiva. Os projetos incluem notebooks reprodutíveis, código-fonte modular e suítes de testes automatizados; o status de idioma de cada edição é documentado em seu próprio README.
 
 ---
 
 ## Filosofia do portfólio
 
-Este não é um conjunto de notebooks isolados. Os projetos analíticos combinam enquadramento de negócio, implementação modular, validação baseada em evidências e uma camada executiva de comunicação. Cada relatório explicita o que os resultados sustentam, suas limitações e o caminho de reprodução; a prontidão para deployment é declarada por projeto, nunca presumida.
+Os projetos analíticos combinam enquadramento de negócio, implementação modular, validação baseada em evidências e uma camada executiva de comunicação. Cada relatório explicita o que os resultados sustentam, suas limitações e o caminho de reprodução; a prontidão para deployment é declarada por projeto, nunca presumida.
 
 ## Acesso rápido
 
 | Projeto | Domínio | Relatório executivo | Código e testes |
 | :--- | :--- | :--- | :--- |
-| **Customer Churn Prediction** | Retenção / classificação | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) | [Repositório](./customer-churn-prediction) |
-| **Customer Lifetime Value** | Marketing probabilístico | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) | [Repositório](./Customer%20Lifetime%20Value) |
-| **Customer Segmentation & Next Best Action** | Segmentação / prescrição | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) | [Repositório](./Customer_Segmentation_and_Next_Best_Action) |
-| **Marketing Campaign Optimization** | Pipeline analítico completo | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) | [Repositório](./Marketing_Campaign_Optimization_and_Retention_Analytics) |
-| **Cross-Sell Association Rules** | Análise de cesta | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) | [Repositório](./Cross_Sell_Association_Rules) |
-| **Seoul Bike Sharing Demand** | Séries temporais / conformal | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) | [Repositório](./Bike-Sharing-Demand) |
-| **Marketing Campaign Uplift Modeling** | Targeting causal | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) | [Repositório](./Marketing_Promotion_Campaign_Uplift_Modelling) |
-| **Consumer Complaint Intelligence** | NLP desbalanceado | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) | [Repositório](./Consumer_Complaint_Intelligence) |
-| **NASA C-MAPSS** | Manutenção preditiva | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) | [Repositório](./CMAPSS_Predictive_Maintenance) |
-| **Model Risk & Responsible ML** | Governança de risco de modelo | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repositório](./ModelRisk_ResponsibleML) |
-| **E-commerce Delivery Network & SLA Risk** | Risco de entrega / ML temporal | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repositório](./E-commerce_Delivery_Network_SLA_Risk) |
-| **Delivery Routing & Time-Window Optimization** | Logística / otimização prescritiva | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) | [Repositório](./Delivery_Routing_Time_Window_Optimization) |
-| **Claim Frequency per Policy** | Seguros / regressão de contagem | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) | [Repositório](./Claim_Frequency_per_Policy) |
-| **Retail Pricing & Promotion (Multilevel)** | Varejo / modelos multinível | [📊 Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) | [Repositório](./Dunnhumby_Breakfast-at-the-Frat) |
-| **ds_toolkit** | Biblioteca reutilizável de ML | [README da biblioteca](./ds_toolkit) | [Código](./ds_toolkit) |
+| Customer Churn Prediction | Retenção / classificação | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) | [Repositório](./customer-churn-prediction) |
+| Customer Lifetime Value | Marketing probabilístico | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) | [Repositório](./Customer%20Lifetime%20Value) |
+| Customer Segmentation & Next Best Action | Segmentação / prescrição | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) | [Repositório](./Customer_Segmentation_and_Next_Best_Action) |
+| Marketing Campaign Optimization | Pipeline analítico completo | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) | [Repositório](./Marketing_Campaign_Optimization_and_Retention_Analytics) |
+| Cross-Sell Association Rules | Análise de cesta | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) | [Repositório](./Cross_Sell_Association_Rules) |
+| Seoul Bike Sharing Demand | Séries temporais / conformal | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) | [Repositório](./Bike-Sharing-Demand) |
+| Marketing Campaign Uplift Modeling | Targeting causal | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) | [Repositório](./Marketing_Promotion_Campaign_Uplift_Modelling) |
+| Consumer Complaint Intelligence | NLP desbalanceado | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) | [Repositório](./Consumer_Complaint_Intelligence) |
+| NASA C-MAPSS | Manutenção preditiva | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) | [Repositório](./CMAPSS_Predictive_Maintenance) |
+| Model Risk & Responsible ML | Governança de risco de modelo | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) | [Repositório](./ModelRisk_ResponsibleML) |
+| E-commerce Delivery Network & SLA Risk | Risco de entrega / ML temporal | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) | [Repositório](./E-commerce_Delivery_Network_SLA_Risk) |
+| Delivery Routing & Time-Window Optimization | Logística / otimização prescritiva | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) | [Repositório](./Delivery_Routing_Time_Window_Optimization) |
+| Claim Frequency per Policy | Seguros / regressão de contagem | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) | [Repositório](./Claim_Frequency_per_Policy) |
+| Retail Pricing & Promotion (Multilevel) | Varejo / modelos multinível | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) | [Repositório](./Dunnhumby_Breakfast-at-the-Frat) |
+| ds_toolkit | Biblioteca reutilizável de ML | [README da biblioteca](./ds_toolkit) | [Código](./ds_toolkit) |
 
 ---
 
 ## Projetos
 
-### 1. [ds_toolkit](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/ds_toolkit) — Biblioteca reutilizável de ML
+### 1. [ds_toolkit](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/ds_toolkit)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-Um toolkit Python modular com componentes reutilizáveis compartilhados entre os projetos.
+Um toolkit Python modular com componentes reutilizáveis compartilhados entre os projetos. Contém dois módulos: `opt_binary_clf_pipe`, um otimizador de pipelines com Optuna para classificação binária que abrange encoding, seleção de features, modelo e threshold, e `multilang`, um dicionário estático de tradução para saídas bilíngues (EN/PT) em notebooks.
 
-**Módulos principais:**
-- `opt_binary_clf_pipe` — Otimizador de pipelines com Optuna para classificação binária (encoding → seleção de features → modelo → threshold)
-- `multilang` — Dicionário estático de tradução para saídas bilíngues (EN/PT) em notebooks
-
-**Tecnologias:** Optuna · scikit-learn · imbalanced-learn · category_encoders · MLflow
+Tecnologias: Optuna · scikit-learn · imbalanced-learn · category_encoders · MLflow
 
 ---
 
-### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction) — Pipeline de ML ponta a ponta
+### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Prevê churn de clientes, com taxa base de 26,6%, usando **76,4% de Recall Macro** e **83,5% de ROC AUC** no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
+Prevê churn de clientes (taxa base de 26,6%) com 76,4% de Recall Macro e 83,5% de ROC AUC no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
 
-**Métodos:** Classificação desbalanceada · BalancedRandomForestClassifier · Otimização de threshold · Correlação PhiK · EDA · Roadmap de implantação em fases de 90 dias
+Métodos: Classificação desbalanceada · BalancedRandomForestClassifier · Otimização de threshold · Correlação PhiK · EDA · Roadmap de implantação em fases de 90 dias
 
-**Tecnologias:** scikit-learn · imbalanced-learn · Optuna · MLflow · FastAPI · pytest · category_encoders · PhiK
+Tecnologias: scikit-learn · imbalanced-learn · Optuna · MLflow · FastAPI · pytest · category_encoders · PhiK
 
 ---
 
-### 3. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Lifetime%20Value) — Modelagem probabilística BTYD
+### 3. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Lifetime%20Value)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Estima a receita futura esperada por cliente em uma **janela de 180 dias** usando modelos probabilísticos Buy-Till-You-Die com validação por holdout temporal.
+Estima a receita futura esperada por cliente em uma janela de 180 dias usando modelos probabilísticos Buy-Till-You-Die com validação por holdout temporal.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer%20Lifetime%20Value/README.pt-BR.md)
 
-**Métodos:** Engenharia de features RFM · Modelo BG/NBD (frequência de compra e P(alive)) · Modelo Gamma-Gamma (valor monetário) · Ajuste MAP e MCMC · Segmentação de clientes na matriz CLTV × P(alive)
+Métodos: Engenharia de features RFM · Modelo BG/NBD (frequência de compra e P(alive)) · Modelo Gamma-Gamma (valor monetário) · Ajuste MAP e MCMC · Segmentação de clientes na matriz CLTV × P(alive)
 
-**Tecnologias:** pymc-marketing · Pandas · NumPy · scikit-learn · Flask API · pytest
+Tecnologias: pymc-marketing · Pandas · NumPy · scikit-learn · Flask API · pytest
 
 ---
 
-### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action) — Analytics prescritivo
+### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Pipeline completo de dados transacionais a decisões acionáveis de marketing: **RFM → segmentação com K-Means → probabilidade de recompra → otimização prescritiva com restrição de orçamento**. O projeto reporta simulações de lucro esperado sob premissas explícitas; uplift causal e superioridade sobre uma campanha uniforme não estão estabelecidos.
+Pipeline completo de dados transacionais a decisões acionáveis de marketing: RFM, segmentação com K-Means, probabilidade de recompra e otimização prescritiva com restrição de orçamento. O projeto reporta simulações de lucro esperado sob premissas explícitas; uplift causal e superioridade sobre uma campanha uniforme não estão estabelecidos.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer_Segmentation_and_Next_Best_Action/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer_Segmentation_and_Next_Best_Action/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer_Segmentation_and_Next_Best_Action/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Customer_Segmentation_and_Next_Best_Action/README.pt-BR.md)
 
-**Métodos:** Clusterização K-Means (Elbow + Silhouette, k=6) · Classificador probabilístico calibrado · Simulação de incentivos · Cálculo de lucro esperado · Otimizador de orçamento
+Métodos: Clusterização K-Means (Elbow + Silhouette, k=6) · Classificador probabilístico calibrado · Simulação de incentivos · Cálculo de lucro esperado · Otimizador de orçamento
 
-**Tecnologias:** scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
+Tecnologias: scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
 
 ---
 
-### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Campaign_Optimization_and_Retention_Analytics) — Pipeline analítico completo
+### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Campaign_Optimization_and_Retention_Analytics)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Um pipeline analítico em quatro camadas — **descritiva → inferencial → preditiva → prescritiva** — para análise de desempenho de campanhas e retenção de usuários, com classificação automatizada de usuários em 6 categorias de ação e exportação para Excel com múltiplas planilhas.
+Um pipeline analítico em quatro camadas (descritiva, inferencial, preditiva e prescritiva) para análise de desempenho de campanhas e retenção de usuários, com classificação automatizada de usuários em 6 categorias de ação e exportação para Excel com múltiplas planilhas.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Campaign_Optimization_and_Retention_Analytics/README.pt-BR.md)
 
-**Métodos:** Análise de desempenho por canal · Teste Z para A/B testing · Modelagem supervisionada de retenção · Diagnóstico de falsos positivos / viés · Simulação financeira de ROI · Sistema automatizado de recomendações
+Métodos: Análise de desempenho por canal · Teste Z para A/B testing · Modelagem supervisionada de retenção · Diagnóstico de falsos positivos / viés · Simulação financeira de ROI · Sistema automatizado de recomendações
 
-**Tecnologias:** Python · Pandas · NumPy · scikit-learn · Statsmodels · Matplotlib · OpenPyXL
+Tecnologias: Python · Pandas · NumPy · scikit-learn · Statsmodels · Matplotlib · OpenPyXL
 
 ---
 
-### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Cross_Sell_Association_Rules) — Análise de cesta de compras
+### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Cross_Sell_Association_Rules)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Identifica oportunidades genuínas de cross-selling em dados transacionais de varejo usando regras de associação. O insight central: **alta frequência de item ≠ associação relevante** — leite integral e vegetais, os dois itens mais populares, apresentam lift de 0,77, mostrando que popularidade isolada induz a erro. As regras são filtradas por lift > 1 e métrica de Zhang > 0,2 para revelar combinações estatisticamente relevantes.
+Identifica oportunidades de cross-selling em dados transacionais de varejo usando regras de associação. Alta frequência de item não implica associação relevante: leite integral e vegetais, os dois itens mais populares, apresentam lift de 0,77. As regras são filtradas por lift > 1 e métrica de Zhang > 0,2 e não constituem evidência causal.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Cross_Sell_Association_Rules/README.pt-BR.md)
 
-**Métodos:** Algoritmo Apriori · Mineração de itemsets frequentes · Avaliação multimétrica (Support, Confidence, Lift, Conviction, métrica de Zhang) · One-hot encoding · Agregação de transações
+Métodos: Algoritmo Apriori · Mineração de itemsets frequentes · Avaliação multimétrica (support, confidence, lift, conviction, métrica de Zhang) · One-hot encoding · Agregação de transações
 
-**Tecnologias:** Python · Pandas · NumPy · MLxtend · Matplotlib · Seaborn
+Tecnologias: Python · Pandas · NumPy · MLxtend · Matplotlib · Seaborn
 
 ---
 
-### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) — Previsão temporal de demanda ⭐ Destaque
+### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Prevê a demanda horária de bicicletas em condições operacionais normais usando nove anos de dados de mobilidade e meteorologia. Um holdout temporal selado confirmou CatBoost com **MAE 1.118,1** e **R² 0,839**. Nos folds de desenvolvimento, a calibração conformal adaptativa elevou a cobertura de intervalos de 90% de **81,0% para 90,1%**, reduzindo a largura média dos intervalos em **25,6%**.
+Prevê a demanda horária de bicicletas em condições operacionais normais usando nove anos de dados de mobilidade e meteorologia. Um holdout temporal selado confirmou CatBoost com MAE 1.118,1 e R² 0,839. Nos folds de desenvolvimento, a calibração conformal adaptativa elevou a cobertura de intervalos de 90% de 81,0% para 90,1%, reduzindo a largura média dos intervalos em 25,6%.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Bike-Sharing-Demand/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Bike-Sharing-Demand/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Bike-Sharing-Demand/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Bike-Sharing-Demand/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Bike-Sharing-Demand/README.pt-BR.md)
 
-**Métodos:** Validação cruzada expansiva por ano meteorológico · Pré-processamento dinâmico por estimador · Optuna · MLflow · CatBoost · Diagnósticos residuais · SHAP · Inferência conformal adaptativa · Replay operacional
+Métodos: Validação cruzada expansiva por ano meteorológico · Pré-processamento dinâmico por estimador · Optuna · MLflow · CatBoost · Diagnósticos residuais · SHAP · Inferência conformal adaptativa · Replay operacional
 
-**Tecnologias:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · MLflow · SHAP · pytest · Jupyter
+Tecnologias: Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · MLflow · SHAP · pytest · Jupyter
 
 ---
 
-### 8. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) — Targeting causal e policy learning ⭐ Destaque
+### 8. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Estima quem deve receber um e-mail porque o tratamento muda seu resultado,
-usando o experimento randomizado Hillstrom. O fluxo bilíngue compara targeting
-por propensão, meta-learners, causal forests e uplift trees, depois avalia
-políticas com restrição de orçamento e cenários de ROI. Seu resultado
-pré-registrado em teste selado é deliberadamente conservador: o candidato
-primário de uplift não demonstrou superioridade sobre o baseline, portanto o
-projeto recomenda um piloto randomizado prospectivo em vez de deployment.
+Estima quem deve receber um e-mail porque o tratamento muda seu resultado, usando o experimento randomizado Hillstrom. O fluxo bilíngue compara targeting por propensão, meta-learners, causal forests e uplift trees, depois avalia políticas com restrição de orçamento e cenários de ROI. No teste selado pré-registrado, o candidato primário de uplift não demonstrou superioridade sobre o baseline, portanto o projeto recomenda um piloto randomizado prospectivo em vez de deployment.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Promotion_Campaign_Uplift_Modelling/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Promotion_Campaign_Uplift_Modelling/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Promotion_Campaign_Uplift_Modelling/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Promotion_Campaign_Uplift_Modelling/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Marketing_Promotion_Campaign_Uplift_Modelling/README.pt-BR.md)
 
-**Métodos:** Auditoria de randomização · S/T/X/R-learners · Causal forest · Uplift trees · Qini/AUUC · Holdout selado · Perfis de heterogeneidade por quantil · Policy learning · Avaliação IPW · Sensibilidade de ROI
+Métodos: Auditoria de randomização · S/T/X/R-learners · Causal forest · Uplift trees · Qini/AUUC · Holdout selado · Perfis de heterogeneidade por quantil · Policy learning · Avaliação IPW · Sensibilidade de ROI
 
-**Tecnologias:** Python · Pandas · scikit-learn · EconML · CausalML · Matplotlib · pytest · Jupyter
+Tecnologias: Python · Pandas · scikit-learn · EconML · CausalML · Matplotlib · pytest · Jupyter
 
 ---
 
-### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) — NLP desbalanceado e avaliação confirmatória ⭐ Destaque
+### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre
-um snapshot do CFPB com 3,8 milhões de linhas. O projeto avança de auditorias
-limitadas com Polars/DuckDB e deduplicação temporal para classificadores
-TF-IDF, mineração de hard negatives, detector hierárquico, bundles congelados
-de inferência e duas avaliações seladas pré-registradas. Nenhum ciclo foi
-promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
+Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre um snapshot do CFPB com 3,8 milhões de linhas. O projeto avança de auditorias limitadas com Polars/DuckDB e deduplicação temporal para classificadores TF-IDF, mineração de hard negatives, detector hierárquico, bundles congelados de inferência e duas avaliações seladas pré-registradas. Nenhum ciclo foi promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
 4; ambos permanecem `NOT_CONFIRMED` e `deploy=false`.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.pt-BR.md)
 
-**Métodos:** NLP multiclasse desbalanceado · TF-IDF por palavras e caracteres · LinearSVC · Regressão logística SGD · Divisão temporal · Deduplicação por grupos · Mineração de hard negatives · Classificação hierárquica · Calibração de threshold · Intervalos bootstrap · Avaliação confirmatória selada
+Métodos: NLP multiclasse desbalanceado · TF-IDF por palavras e caracteres · LinearSVC · Regressão logística SGD · Divisão temporal · Deduplicação por grupos · Mineração de hard negatives · Classificação hierárquica · Calibração de threshold · Intervalos bootstrap · Avaliação confirmatória selada
 
-**Tecnologias:** Python · Polars · DuckDB · scikit-learn · imbalanced-learn · joblib · Kaggle · Jupyter · unittest
-
----
-
-### 10. [NASA C-MAPSS — Manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) — Vida útil restante ⭐ Destaque
-
-Estima a vida útil restante de motores simulados do FD001 com histórico causal dos sensores. Um pipeline Extra Trees selecionou 93 de 205 atributos e registrou **MAE de 16,23 ciclos** e **RMSE de 23,80 ciclos** no benchmark oficial de 100 motores. A escolha final ocorreu após essa comparação; o resultado não é uma avaliação independente adicional após a seleção. Alertas, custos hipotéticos e faixas empíricas de incerteza permanecem exploratórios, sem validação industrial.
-
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/CMAPSS_Predictive_Maintenance/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/CMAPSS_Predictive_Maintenance/README.pt-BR.md)
-
-**Métodos:** Validação por motor · Features móveis causais · Optuna · Seleção de atributos · Diagnóstico de resíduos · Importância por permutação · Alertas e custos ilustrativos de manutenção
-
-**Tecnologias:** Python · Pandas · scikit-learn · Extra Trees · XGBoost · HistGradientBoosting · Optuna · Plotly · Jupyter · GitHub Pages
+Tecnologias: Python · Polars · DuckDB · scikit-learn · imbalanced-learn · joblib · Kaggle · Jupyter · unittest
 
 ---
 
-### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.pt-BR.md) — Auditoria responsável de risco de modelo
+### 10. [NASA C-MAPSS: manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) (destaque)
+
+Estima a vida útil restante de motores simulados do FD001 com histórico causal dos sensores. Um pipeline Extra Trees selecionou 93 de 205 atributos e registrou MAE de 16,23 ciclos e RMSE de 23,80 ciclos no benchmark oficial de 100 motores. A escolha final ocorreu após essa comparação; o resultado não é uma avaliação independente adicional após a seleção. Alertas, custos hipotéticos e faixas empíricas de incerteza permanecem exploratórios, sem validação industrial.
+
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/CMAPSS_Predictive_Maintenance/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/CMAPSS_Predictive_Maintenance/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/CMAPSS_Predictive_Maintenance/README.pt-BR.md)
+
+Métodos: Validação por motor · Features móveis causais · Optuna · Seleção de atributos · Diagnóstico de resíduos · Importância por permutação · Alertas e custos ilustrativos de manutenção
+
+Tecnologias: Python · Pandas · scikit-learn · Extra Trees · XGBoost · HistGradientBoosting · Optuna · Plotly · Jupyter · GitHub Pages
+
+---
+
+### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.pt-BR.md)
 
 Audita calibração, fairness, incerteza e isolamento do teste final sobre o conjunto UCI Adult. O portfólio bilíngue documenta uma avaliação congelada com HistGradientBoosting, threshold 0,31 e 18 testes automatizados de contrato. O resultado é explicitamente exploratório e `production_eligible=false`.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/ModelRisk_ResponsibleML/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/ModelRisk_ResponsibleML/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/ModelRisk_ResponsibleML/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/ModelRisk_ResponsibleML/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/ModelRisk_ResponsibleML/README.pt-BR.md)
 
-**Métodos:** Partições group-aware · Calibração Platt · Auditoria de threshold · Intervalo de Wilson para proporções de grupo · Diagnósticos de fairness · Testes de contrato
+Métodos: Partições group-aware · Calibração Platt · Auditoria de threshold · Intervalo de Wilson para proporções de grupo · Diagnósticos de fairness · Testes de contrato
 
-**Tecnologias:** Python · Pandas · scikit-learn · Matplotlib · Jupyter · unittest · GitHub Pages
-
----
-
-### 12. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md) — Risco de entrega sob deriva temporal
-
-Investiga se uma violação do prazo de entrega do Olist pode ser classificada no momento da compra, usando validação temporal, features da rede vendedor–destino, distância Haversine e modelos calibrados. A avaliação final oficial foi inconclusiva, a análise pós-hoc é exploratória e `production_eligible=false` permanece explícito.
-
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
-
-**Métodos:** Validação expanding-window · Features de rede vendedor→UF baseadas em teoria de grafos, calculadas as-of da compra · Distância Haversine · CatBoost · Baseline logística · Optuna · Calibração · Testes de contrato · Notebooks bilíngues
-
-**Tecnologias:** Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · Plotly · Folium · pytest · GitHub Actions
+Tecnologias: Python · Pandas · scikit-learn · Matplotlib · Jupyter · unittest · GitHub Pages
 
 ---
 
-### 13. [Delivery Routing & Time-Window Optimization](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md) — Roteamento com capacidade e janelas de tempo
+### 12. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
 
-Compara o OR-Tools com duas heurísticas construtivas no benchmark Solomon. Na avaliação principal v1, o OR-Tools igualou a frota de referência do SINTEF em **24 de 42** instâncias, com **3,40%** de diferença mediana de distância nesse subconjunto. Simulações de atrasos e de reotimização mostram como os planos respondem a mudanças operacionais. A reavaliação v2 é pós-hoc e o estudo é de benchmark, com `production_eligible = false`.
+Investiga se uma violação do prazo de entrega do Olist pode ser classificada no momento da compra sob deriva temporal, usando validação temporal, features da rede vendedor–destino, distância Haversine e modelos calibrados. A avaliação final oficial foi inconclusiva, a análise pós-hoc é exploratória e `production_eligible=false` permanece explícito.
 
-📊 **Relatório executivo** · [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) · README · [English](Delivery_Routing_Time_Window_Optimization/README.md) · [Português](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/E-commerce_Delivery_Network_SLA_Risk/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
 
-**Métodos** · Roteamento com janelas de tempo · Avaliação lexicográfica · Verificação independente de viabilidade · Penalidades por prioridade · Reotimização com partida a quente
+Métodos: Validação expanding-window · Features de rede vendedor-UF baseadas em teoria de grafos, calculadas as-of da compra · Distância Haversine · CatBoost · Baseline logística · Optuna · Calibração · Testes de contrato · Notebooks bilíngues
 
-**Tecnologias** · Python · OR-Tools · NumPy · pandas · pytest · Jupyter · GitHub Pages
-
----
-
-### 14. [Claim Frequency per Policy](Claim_Frequency_per_Policy/README.pt-BR.md) — Frequência de sinistros no seguro automotivo
-
-Estima sinistros por 100 apólices-ano no benchmark francês `freMTPL2freq` (678.013 registros). Taxa global, Poisson e NB2 com offset de exposição foram comparados em validação; o Poisson foi congelado e avaliado **uma única vez** no teste reservado, com portão de integridade e trava de execução. O teste sustenta ganho no desvio médio de Poisson (**0,31902** contra **0,33079**; diferença pareada −0,01177, IC 95% −0,01317 a −0,01018), mas a calibração por duração mostra forte subestimação nas exposições muito curtas. `production_eligible = false`.
-
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) · README: [English](Claim_Frequency_per_Policy/README.en-US.md) · [Português](Claim_Frequency_per_Policy/README.pt-BR.md)
-
-**Métodos:** GLM Poisson e NB2 com offset log(Exposure) (IRLS próprio) · Partição determinística por hash · Desvio de Poisson e log-verossimilhança preditiva · Bootstrap pareado por apólice e por perfil · Calibração por segmento · Diagnóstico de zeros · Congelamento verificável e avaliação final única
-
-**Tecnologias:** Python · NumPy · pandas · SciPy · statsmodels · Matplotlib · pytest · Jupyter · conda
+Tecnologias: Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM · Optuna · Plotly · Folium · pytest · GitHub Actions
 
 ---
 
-### 15. [Retail Pricing & Promotion with Multilevel Models](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md) — Elasticidade ao desconto e lift de promoção entre lojas e produtos
+### 13. [Delivery Routing & Time-Window Optimization](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
 
-Estima como a profundidade do desconto, o encarte, o display e as reduções temporárias de preço se associam às vendas em unidades no painel *Breakfast at the Frat* da dunnhumby (524.926 registros semanais de vendas de 77 lojas e 55 produtos ao longo de 156 semanas), com interceptos aleatórios cruzados de loja, produto e loja × produto. Sob um protocolo pré-registrado, o modelo multinível só com interceptos foi mantido frente às inclinações aleatórias do desconto em duas dobras temporais internas e avaliado **uma única vez** nas últimas 52 semanas: MAE por par do log das unidades de **0,454**, contra **0,917** do OLS agrupado, e próximo do desafiante GPBoost (**0,452**). Contrastes planejados com Holm mostram que a inclinação do desconto difere entre categorias (−1,08 a −2,42), e os cenários indicam um display com 20% de desconto em cerca de **1,57×** as vendas modeladas de uma TPR de 20%, como associações condicionais.
+Compara o OR-Tools com duas heurísticas construtivas no benchmark Solomon de roteamento de veículos com capacidade e janelas de tempo. Na avaliação principal v1, o OR-Tools igualou a frota de referência do SINTEF em 24 de 42 instâncias, com 3,40% de diferença mediana de distância nesse subconjunto. Simulações de atrasos e de reotimização mostram como os planos respondem a mudanças operacionais. A reavaliação v2 é pós-hoc e o estudo é de benchmark, com `production_eligible = false`.
 
-📊 **Relatório executivo:** [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/en.html) · README: [English](Dunnhumby_Breakfast-at-the-Frat/README.md) · [Português](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/en.html) · README: [English](Delivery_Routing_Time_Window_Optimization/README.md) · [Português](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
 
-**Métodos:** Modelos lineares mistos cruzados (lme4) · ICC e testes de razão de verossimilhança corrigidos para a fronteira · Decomposição do preço dentro e entre pares (Mundlak) · Inferência robusta com agrupamento em duas vias · Validação temporal pré-registrada com congelamento por hash e avaliação final única · Teste das inclinações aleatórias por bootstrap paramétrico · Contrastes planejados com ajuste de Holm · Cenários com covariância conjunta e suporte observado
+Métodos: Roteamento com janelas de tempo · Avaliação lexicográfica · Verificação independente de viabilidade · Penalidades por prioridade · Reotimização com partida a quente
 
-**Tecnologias:** Python · R · lme4 · rpy2 · pandas · NumPy · SciPy · statsmodels · GPBoost · Optuna · Matplotlib · pytest · Jupyter · conda
+Tecnologias: Python · OR-Tools · NumPy · pandas · pytest · Jupyter · GitHub Pages
+
+---
+
+### 14. [Claim Frequency per Policy](Claim_Frequency_per_Policy/README.pt-BR.md)
+
+Estima sinistros de seguro automotivo por 100 apólices-ano no benchmark francês `freMTPL2freq` (678.013 registros). Taxa global, Poisson e NB2 com offset de exposição foram comparados em validação; o Poisson foi congelado e avaliado uma única vez no teste reservado, com portão de integridade e trava de execução. O teste sustenta ganho no desvio médio de Poisson (0,31902 contra 0,33079; diferença pareada −0,01177, IC 95% −0,01317 a −0,01018), mas a calibração por duração mostra forte subestimação nas exposições muito curtas. `production_eligible = false`.
+
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) · README: [English](Claim_Frequency_per_Policy/README.en-US.md) · [Português](Claim_Frequency_per_Policy/README.pt-BR.md)
+
+Métodos: GLM Poisson e NB2 com offset log(Exposure) (IRLS próprio) · Partição determinística por hash · Desvio de Poisson e log-verossimilhança preditiva · Bootstrap pareado por apólice e por perfil · Calibração por segmento · Diagnóstico de zeros · Congelamento verificável e avaliação final única
+
+Tecnologias: Python · NumPy · pandas · SciPy · statsmodels · Matplotlib · pytest · Jupyter · conda
+
+---
+
+### 15. [Retail Pricing & Promotion with Multilevel Models](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
+
+Estima como a profundidade do desconto, o encarte, o display e as reduções temporárias de preço se associam às vendas em unidades no painel *Breakfast at the Frat* da dunnhumby (524.926 registros semanais de vendas de 77 lojas e 55 produtos ao longo de 156 semanas), com interceptos aleatórios cruzados de loja, produto e loja × produto. Sob um protocolo pré-registrado, o modelo multinível só com interceptos foi mantido frente às inclinações aleatórias do desconto em duas dobras temporais internas e avaliado uma única vez nas últimas 52 semanas: MAE por par do log das unidades de 0,454, contra 0,917 do OLS agrupado, e próximo do desafiante GPBoost (0,452). Contrastes planejados com Holm mostram que a inclinação do desconto difere entre categorias (−1,08 a −2,42), e os cenários indicam um display com 20% de desconto em cerca de 1,57× as vendas modeladas de uma TPR de 20%, como associações condicionais.
+
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/en.html) · README: [English](Dunnhumby_Breakfast-at-the-Frat/README.md) · [Português](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
+
+Métodos: Modelos lineares mistos cruzados (lme4) · ICC e testes de razão de verossimilhança corrigidos para a fronteira · Decomposição do preço dentro e entre pares (Mundlak) · Inferência robusta com agrupamento em duas vias · Validação temporal pré-registrada com congelamento por hash e avaliação final única · Teste das inclinações aleatórias por bootstrap paramétrico · Contrastes planejados com ajuste de Holm · Cenários com covariância conjunta e suporte observado
+
+Tecnologias: Python · R · lme4 · rpy2 · pandas · NumPy · SciPy · statsmodels · GPBoost · Optuna · Matplotlib · pytest · Jupyter · conda
 
 ---
 
@@ -243,21 +228,21 @@ Estima como a profundidade do desconto, o encarte, o display e as reduções tem
 
 | Área | Métodos e técnicas |
 |------|--------------------|
-| **Aprendizado supervisionado** | Random Forest, CatBoost, Gradient Boosting, Logistic Regression, otimização de threshold |
-| **Processamento de linguagem natural** | TF-IDF, modelos lineares esparsos, mineração de hard negatives, classificação hierárquica, classificação de texto desbalanceada |
-| **Modelagem probabilística** | BG/NBD, Gamma-Gamma, MCMC, MAP |
-| **Séries temporais e previsão** | Validação cruzada expansiva, holdout temporal, previsão de demanda, diagnósticos residuais |
-| **Quantificação de incerteza** | Inferência conformal adaptativa, cobertura condicional, Winkler Score, bootstrap temporal |
-| **Explicabilidade de modelos** | SHAP, importância por permutação, análise de ablação |
-| **Aprendizado não supervisionado** | Clusterização K-Means, segmentação RFM |
-| **Analytics prescritivo** | Otimização de orçamento, simulação de lucro esperado, Next Best Action |
-| **Estatística inferencial** | Teste Z, A/B testing, testes de hipótese |
-| **Modelos de contagem** | GLM Poisson e binomial negativo (NB2), offset de exposição, diagnóstico de dispersão e de zeros, calibração por segmento |
-| **Modelos multinível** | Efeitos aleatórios cruzados, partial pooling (encolhimento), ICC, testes de razão de verossimilhança na fronteira, inclinações aleatórias, bootstrap paramétrico |
-| **Inferência causal** | Estimação de CATE, meta-learners, causal forests, avaliação de uplift, policy learning |
-| **MLOps** | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
-| **Engenharia de dados** | Polars, DuckDB, pipelines de features, estratégias de encoding, tratamento de dados desbalanceados |
-| **Market basket analysis** | Apriori, regras de associação, lift, conviction, métrica de Zhang |
+| Aprendizado supervisionado | random forest, CatBoost, gradient boosting, logistic regression, otimização de threshold |
+| Processamento de linguagem natural | TF-IDF, modelos lineares esparsos, mineração de hard negatives, classificação hierárquica, classificação de texto desbalanceada |
+| Modelagem probabilística | BG/NBD, Gamma-Gamma, MCMC, MAP |
+| Séries temporais e previsão | Validação cruzada expansiva, holdout temporal, previsão de demanda, diagnósticos residuais |
+| Quantificação de incerteza | Inferência conformal adaptativa, cobertura condicional, Winkler score, bootstrap temporal |
+| Explicabilidade de modelos | SHAP, importância por permutação, análise de ablação |
+| Aprendizado não supervisionado | Clusterização K-Means, segmentação RFM |
+| Analytics prescritivo | Otimização de orçamento, simulação de lucro esperado, Next Best Action |
+| Estatística inferencial | Teste Z, A/B testing, testes de hipótese |
+| Modelos de contagem | GLM Poisson e binomial negativo (NB2), offset de exposição, diagnóstico de dispersão e de zeros, calibração por segmento |
+| Modelos multinível | Efeitos aleatórios cruzados, partial pooling (encolhimento), ICC, testes de razão de verossimilhança na fronteira, inclinações aleatórias, bootstrap paramétrico |
+| Inferência causal | Estimação de CATE, meta-learners, causal forests, avaliação de uplift, policy learning |
+| MLOps | Optuna, MLflow, FastAPI, pytest, GitHub Actions CI |
+| Engenharia de dados | Polars, DuckDB, pipelines de features, estratégias de encoding, tratamento de dados desbalanceados |
+| Market basket analysis | Apriori, regras de associação, lift, conviction, métrica de Zhang |
 
 ## Tecnologias principais
 
