@@ -64,9 +64,9 @@ One-Year:       11% churn    ← Medium risk
 Two-Year:       2.8% churn   ← Lowest risk (15x improvement)
 ```
 
-Contract type is therefore the main lever associated with churn reduction.
+Contract type is therefore the main factor associated with churn reduction.
 
-On tenure, 40%+ of all churners exit within the first 3 months, and after month 12 churn stabilizes significantly; the early customer experience is critical. On price, customers with monthly charges above $65 show 2x higher churn, and the lack of support services is associated with a 29-37% higher churn risk, which suggests exploring a bundle strategy.
+On tenure, 40%+ of all churners exit within the first 3 months, and after month 12 churn levels off; the early customer experience is critical. On price, customers with monthly charges above $65 show 2x higher churn, and the lack of support services is associated with a 29-37% higher churn risk, which suggests exploring a bundle strategy.
 
 By PhiK correlation, contract type is the strongest churn predictor (φK = 0.45), followed by Internet Service (0.38), Tech Support (0.34) and Tenure (0.32).
 
@@ -231,7 +231,7 @@ The top five drivers of churn on the test set:
 5. OnlineSecurity       ← Moderate, stable importance
 ```
 
-The low-impact features, candidates for removal, are `StreamingTV`, `StreamingMovies`, `PhoneService`, `gender` and `Partner`. Contract structure is the main lever associated with churn reduction, consistent with the exploratory findings (φK=0.45).
+The low-impact features, candidates for removal, are `StreamingTV`, `StreamingMovies`, `PhoneService`, `gender` and `Partner`. Contract structure is the main factor associated with churn reduction, consistent with the exploratory findings (φK=0.45).
 
 ### Error analysis
 
@@ -321,6 +321,8 @@ The realistic next steps need no data beyond what is described here. Probability
 
 The project uses Python 3.10+ and Jupyter Notebook (interactive analysis and documentation). Data processing and ML use Pandas and NumPy, Scikit-learn (preprocessing pipelines, evaluation), imbalanced-learn (BalancedRandomForestClassifier) and category_encoders (SumEncoder and other encoders). Optimization and experiment tracking use opt_binary_clf_pipe (custom library for the full experiment loop), Optuna (Bayesian hyperparameter optimization) and MLflow (experiment tracking and model registry). Statistical analysis uses PhiK (correlation for mixed-type variables) and SciPy (statistical testing), and visualization uses Matplotlib and Seaborn. The API uses FastAPI and Uvicorn, and testing uses pytest with GitHub Actions CI.
 
+The notebooks import the optimization toolkit through the local `churn_project.modeling_backend` boundary. Data, visualization and CI tests therefore run without the optional sibling package; the model search and MLflow cells require that package and a running MLflow tracking service.
+
 ---
 
 ## Author and methodology notes
@@ -329,7 +331,7 @@ Author: Enio Rubens
 
 Role: Data Science & Analytics
 
-AI-assisted tools were used for code optimization, documentation structuring and analytical validation. The business problem framing, methodological decisions, result interpretation and recommendations were driven by the author. All analytical decisions, business interpretations, modeling choices, validation procedures and project integration were conducted and reviewed by the author.
+AI-assisted tools were used for code optimization, documentation structuring and analytical validation. The business problem framing, methodological decisions, modeling choices, validation procedures, result interpretation and recommendations were conducted and reviewed by the author.
 
 ---
 

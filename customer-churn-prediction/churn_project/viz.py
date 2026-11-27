@@ -12,29 +12,24 @@ import seaborn as sns
 from sklearn.inspection import permutation_importance
 from sklearn.metrics import make_scorer, recall_score
 
+from .i18n import set_language, t
+
 RANDOM_SEED = 738
 
 # ---------------------------------------------------------------------------
-# Module-level LangMap support
+# Module-level language support
 # ---------------------------------------------------------------------------
-_LANG = None
 _UNSET = object()
 
 
-def set_lang(lang) -> None:
-    """Configure module-level translator, e.g. LangMap(source='en', target='pt').
-
-    Call once from the notebook/script before any plotting.
-    """
-    global _LANG
-    _LANG = lang
+def set_lang(lang: str) -> None:
+    """Backward-compatible alias for :func:`churn_project.i18n.set_language`."""
+    set_language(lang)
 
 
 def _t(text: str | None) -> str | None:
-    """Translate *text* via the module-level LangMap; passthrough if none set."""
-    if _LANG is None or text is None:
-        return text
-    return _LANG({text: text})[text]
+    """Translate *text* through the local deterministic catalog."""
+    return t(text) if text is not None else None
 
 
 recall_macro_scorer = make_scorer(
@@ -393,7 +388,7 @@ def plot_pairplot_corporate(
 
     if g._legend is not None:
         g._legend.set_bbox_to_anchor((1.02, 0.5))
-        g._legend.set_title(hue)
+        g._legend.set_title(_t(hue))
         g._legend.set_frame_on(False)
 
     add_corporate_footer(fig, text=footer_text, enabled=show_footer)

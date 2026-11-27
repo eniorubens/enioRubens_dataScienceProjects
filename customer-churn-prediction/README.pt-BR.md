@@ -64,9 +64,9 @@ Um ano:     11% de churn       ← Risco médio
 Dois anos:  2,8% de churn      ← Menor risco (melhoria de 15x)
 ```
 
-O tipo de contrato é, portanto, a principal alavanca associada à redução do churn.
+O tipo de contrato é, portanto, o principal fator associado à redução do churn.
 
-Quanto ao tempo de relacionamento, mais de 40% dos churners saem nos primeiros 3 meses, e após o mês 12 o churn se estabiliza de forma significativa; a experiência inicial do cliente é crítica. Quanto ao preço, clientes com cobrança mensal acima de US$ 65 têm churn 2 vezes maior, e a ausência de serviços de suporte está associada a um risco de churn 29–37% maior, o que sugere explorar uma estratégia de bundles.
+Quanto ao tempo de relacionamento, mais de 40% dos churners saem nos primeiros 3 meses, e após o mês 12 o churn se estabiliza; a experiência inicial do cliente é crítica. Quanto ao preço, clientes com cobrança mensal acima de US$ 65 têm churn 2 vezes maior, e a ausência de serviços de suporte está associada a um risco de churn 29–37% maior, o que sugere explorar uma estratégia de bundles.
 
 Pela correlação PhiK, o tipo de contrato é o principal preditor de churn (φK = 0,45), seguido por Internet Service (0,38), Tech Support (0,34) e Tenure (0,32).
 
@@ -231,7 +231,7 @@ Os cinco principais fatores de churn no conjunto de teste:
 5. OnlineSecurity       ← Importância moderada e estável
 ```
 
-Os atributos de baixo impacto, candidatos à remoção, são `StreamingTV`, `StreamingMovies`, `PhoneService`, `gender` e `Partner`. A estrutura do contrato é a principal alavanca associada à redução do churn, consistente com os achados da análise exploratória (φK=0,45).
+Os atributos de baixo impacto, candidatos à remoção, são `StreamingTV`, `StreamingMovies`, `PhoneService`, `gender` e `Partner`. A estrutura do contrato é o principal fator associado à redução do churn, consistente com os achados da análise exploratória (φK=0,45).
 
 ### Análise de erros
 
@@ -321,6 +321,8 @@ Os próximos passos realistas não exigem dados novos além dos já descritos. A
 
 O projeto usa Python 3.10+ e Jupyter Notebook (análise interativa e documentação). O processamento de dados e o ML usam Pandas e NumPy, Scikit-learn (pipelines de pré-processamento e avaliação), imbalanced-learn (BalancedRandomForestClassifier) e category_encoders (SumEncoder e outros encoders). A otimização e o rastreamento de experimentos usam opt_binary_clf_pipe (biblioteca customizada para o ciclo completo de experimentação), Optuna (otimização bayesiana de hiperparâmetros) e MLflow (rastreamento de experimentos e registro de modelos). A análise estatística usa PhiK (correlação para variáveis de tipos mistos) e SciPy (testes estatísticos), e a visualização usa Matplotlib e Seaborn. A API usa FastAPI e Uvicorn, e os testes usam pytest com GitHub Actions CI.
 
+Os notebooks importam o toolkit de otimização pela fronteira local `churn_project.modeling_backend`. Assim, dados, visualizações e testes de CI continuam executáveis sem o pacote opcional vizinho; as células de busca de modelos e de MLflow exigem esse pacote e um serviço MLflow ativo.
+
 ---
 
 ## Autor e notas da metodologia
@@ -329,7 +331,7 @@ Autor: Enio Rubens
 
 Função: Data Science & Analytics
 
-Ferramentas assistidas por IA foram usadas na otimização de código, na estruturação da documentação e na validação analítica. O enquadramento do problema de negócio, as decisões metodológicas, a interpretação dos resultados e as recomendações foram conduzidos pelo autor. Todas as decisões analíticas, interpretações de negócio, escolhas de modelagem, procedimentos de validação e integração do projeto foram conduzidos e revisados pelo autor.
+Ferramentas assistidas por IA foram usadas na otimização de código, na estruturação da documentação e na validação analítica. O enquadramento do problema de negócio, as decisões metodológicas, as escolhas de modelagem, os procedimentos de validação, a interpretação dos resultados e as recomendações foram conduzidos e revisados pelo autor.
 
 ---
 
