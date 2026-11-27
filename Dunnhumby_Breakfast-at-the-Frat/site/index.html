@@ -254,7 +254,8 @@
 
       <section id="conclusion" aria-labelledby="conclusion-title">
         <h2 id="conclusion-title">Conclusão</h2>
-        <p class="copy"><strong>Sim, frente ao OLS agrupado.</strong> Na janela final, nos 3.820 pares loja × produto já vistos no treino, o modelo multinível C0 teve erro absoluto médio (MAE) de <strong>0,4541</strong> no logaritmo das unidades vendidas, ante <strong>0,9172</strong> do OLS agrupado. Cada par recebeu o mesmo peso.</p>
+        <p class="copy"><strong>Sim, frente ao OLS agrupado.</strong> No modelo nulo, a correlação estimada entre duas semanas do mesmo par loja × produto foi de <strong>75,4%</strong>. O C0 leva em conta essa estrutura ao permitir que o nível de vendas varie por loja, produto e par. As inclinações de preço e desconto são comuns aos pares.</p>
+        <p class="copy">Na janela final, nos 3.820 pares loja × produto já vistos no treino, o modelo multinível C0 teve erro absoluto médio (MAE) de <strong>0,4541</strong> no logaritmo das unidades vendidas, ante <strong>0,9172</strong> do OLS agrupado. Cada par recebeu o mesmo peso.</p>
         <p class="copy">Nesse mesmo recorte, o GPBoost teve MAE de 0,4520. Entre os 50 pares inéditos com código de produto (UPC) conhecido, o C0 teve o menor MAE por par dos dois modelos, com <strong>0,6260</strong> frente a <strong>0,6876</strong> do GPBoost.</p>
       </section>
 
