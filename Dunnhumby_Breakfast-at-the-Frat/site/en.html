@@ -138,6 +138,7 @@
         <a href="#short-history">Pairs with limited history</a>
         <a href="#pricing">Price and promotion</a>
         <a href="#method">Method and limitations</a>
+        <a href="#conclusion">Conclusion</a>
         <a href="#sources">Sources</a>
       </div>
     </nav>
@@ -249,6 +250,13 @@
             <p>Weeks without a recorded transaction may reflect zero sales or a stockout. In training, residuals from consecutive weeks for the same pair had a correlation of 0.196. The within-pair sensitivity analysis used standard errors clustered by pair and week, which were larger than the F3 Wald standard errors.</p>
           </div>
         </div>
+      </section>
+
+      <section id="conclusion" aria-labelledby="conclusion-title">
+        <h2 id="conclusion-title">Conclusion</h2>
+        <p class="copy"><strong>Yes, compared with pooled OLS.</strong> Under the null model, the estimated correlation between two weeks for the same store × product pair was <strong>75.4%</strong>. C0 accounts for this structure by allowing sales levels to vary by store, product and pair. Price and discount slopes are shared across pairs.</p>
+        <p class="copy">In the final window, across the 3,820 store × product pairs seen in training, the C0 multilevel model had a mean absolute error (MAE) of <strong>0.4541</strong> in log units sold, compared with <strong>0.9172</strong> for pooled OLS. Each pair received equal weight.</p>
+        <p class="copy">On those same pairs, GPBoost had an MAE of 0.4520. Among the 50 unseen pairs with a known product code (UPC), C0 had the lower per-pair MAE of the two models, at <strong>0.6260</strong> compared with <strong>0.6876</strong> for GPBoost.</p>
       </section>
 
       <section id="sources" aria-labelledby="sources-title">
