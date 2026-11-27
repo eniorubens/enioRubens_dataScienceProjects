@@ -18,7 +18,6 @@ Os projetos analíticos combinam enquadramento de negócio, implementação modu
 
 | Projeto | Domínio | Relatório executivo | Código e testes |
 | :--- | :--- | :--- | :--- |
-| Customer Churn Prediction | Retenção / classificação | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) | [Repositório](./customer-churn-prediction) |
 | Customer Lifetime Value | Marketing probabilístico | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer%20Lifetime%20Value/) | [Repositório](./Customer%20Lifetime%20Value) |
 | Customer Segmentation & Next Best Action | Segmentação / prescrição | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Customer_Segmentation_and_Next_Best_Action/) | [Repositório](./Customer_Segmentation_and_Next_Best_Action) |
 | Marketing Campaign Optimization | Pipeline analítico completo | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Marketing_Campaign_Optimization_and_Retention_Analytics/) | [Repositório](./Marketing_Campaign_Optimization_and_Retention_Analytics) |
@@ -32,6 +31,7 @@ Os projetos analíticos combinam enquadramento de negócio, implementação modu
 | Delivery Routing & Time-Window Optimization | Logística / otimização prescritiva | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Delivery_Routing_Time_Window_Optimization/) | [Repositório](./Delivery_Routing_Time_Window_Optimization) |
 | Claim Frequency per Policy | Seguros / regressão de contagem | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) | [Repositório](./Claim_Frequency_per_Policy) |
 | Retail Pricing & Promotion (Multilevel) | Varejo / modelos multinível | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/) | [Repositório](./Dunnhumby_Breakfast-at-the-Frat) |
+| Customer Churn Prediction | Retenção / classificação | [Ver relatório](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) | [Repositório](./customer-churn-prediction) |
 | ds_toolkit | Biblioteca reutilizável de ML | [README da biblioteca](./ds_toolkit) | [Código](./ds_toolkit) |
 
 ---
@@ -47,20 +47,7 @@ Tecnologias: Optuna · scikit-learn · imbalanced-learn · category_encoders · 
 
 ---
 
-### 2. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction)
-![Status](https://img.shields.io/badge/status-completed-blue)
-
-Prevê churn de clientes (taxa base de 26,6%) com 76,4% de Recall Macro e 83,5% de ROC AUC no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
-
-Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
-
-Métodos: Classificação desbalanceada · BalancedRandomForestClassifier · Otimização de threshold · Correlação PhiK · EDA · Roadmap de implantação em fases de 90 dias
-
-Tecnologias: scikit-learn · imbalanced-learn · Optuna · MLflow · FastAPI · pytest · category_encoders · PhiK
-
----
-
-### 3. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Lifetime%20Value)
+### 2. [Customer Lifetime Value](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer%20Lifetime%20Value)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Estima a receita futura esperada por cliente em uma janela de 180 dias usando modelos probabilísticos Buy-Till-You-Die com validação por holdout temporal.
@@ -73,7 +60,7 @@ Tecnologias: pymc-marketing · Pandas · NumPy · scikit-learn · Flask API · p
 
 ---
 
-### 4. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action)
+### 3. [Customer Segmentation & Next Best Action](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Customer_Segmentation_and_Next_Best_Action)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Pipeline completo de dados transacionais a decisões acionáveis de marketing: RFM, segmentação com K-Means, probabilidade de recompra e otimização prescritiva com restrição de orçamento. O projeto reporta simulações de lucro esperado sob premissas explícitas; uplift causal e superioridade sobre uma campanha uniforme não estão estabelecidos.
@@ -86,7 +73,7 @@ Tecnologias: scikit-learn · Pandas · NumPy · Matplotlib · Seaborn · pytest
 
 ---
 
-### 5. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Campaign_Optimization_and_Retention_Analytics)
+### 4. [Marketing Campaign Optimization and Retention Analytics](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Campaign_Optimization_and_Retention_Analytics)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Um pipeline analítico em quatro camadas (descritiva, inferencial, preditiva e prescritiva) para análise de desempenho de campanhas e retenção de usuários, com classificação automatizada de usuários em 6 categorias de ação e exportação para Excel com múltiplas planilhas.
@@ -99,7 +86,7 @@ Tecnologias: Python · Pandas · NumPy · scikit-learn · Statsmodels · Matplot
 
 ---
 
-### 6. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Cross_Sell_Association_Rules)
+### 5. [Cross-Sell Association Rules](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Cross_Sell_Association_Rules)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Identifica oportunidades de cross-selling em dados transacionais de varejo usando regras de associação. Alta frequência de item não implica associação relevante: leite integral e vegetais, os dois itens mais populares, apresentam lift de 0,77. As regras são filtradas por lift > 1 e métrica de Zhang > 0,2 e não constituem evidência causal.
@@ -112,7 +99,7 @@ Tecnologias: Python · Pandas · NumPy · MLxtend · Matplotlib · Seaborn
 
 ---
 
-### 7. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) (destaque)
+### 6. [Seoul Bike Sharing Demand](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Bike-Sharing-Demand) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Prevê a demanda horária de bicicletas em condições operacionais normais usando nove anos de dados de mobilidade e meteorologia. Um holdout temporal selado confirmou CatBoost com MAE 1.118,1 e R² 0,839. Nos folds de desenvolvimento, a calibração conformal adaptativa elevou a cobertura de intervalos de 90% de 81,0% para 90,1%, reduzindo a largura média dos intervalos em 25,6%.
@@ -125,7 +112,7 @@ Tecnologias: Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM
 
 ---
 
-### 8. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) (destaque)
+### 7. [Marketing Campaign Uplift Modeling](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Marketing_Promotion_Campaign_Uplift_Modelling) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Estima quem deve receber um e-mail porque o tratamento muda seu resultado, usando o experimento randomizado Hillstrom. O fluxo bilíngue compara targeting por propensão, meta-learners, causal forests e uplift trees, depois avalia políticas com restrição de orçamento e cenários de ROI. No teste selado pré-registrado, o candidato primário de uplift não demonstrou superioridade sobre o baseline, portanto o projeto recomenda um piloto randomizado prospectivo em vez de deployment.
@@ -138,7 +125,7 @@ Tecnologias: Python · Pandas · scikit-learn · EconML · CausalML · Matplotli
 
 ---
 
-### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) (destaque)
+### 8. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
 Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre um snapshot do CFPB com 3,8 milhões de linhas. O projeto avança de auditorias limitadas com Polars/DuckDB e deduplicação temporal para classificadores TF-IDF, mineração de hard negatives, detector hierárquico, bundles congelados de inferência e duas avaliações seladas pré-registradas. Nenhuma das avaliações foi promovida retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de 4; ambos permanecem `NOT_CONFIRMED` e `deploy=false`. Um terceiro ciclo (V3) comparou embeddings de sentenças MiniLM congelados com um controle TF-IDF em folds rolling-origin restritos às partições de desenvolvimento; nenhum candidato MiniLM cumpriu o piso de precisão crítica em todos os folds, e o pacote de desenvolvimento congelado usa o detector TF-IDF. O protocolo de confirmação do V3 está aprovado, mas sua execução aguarda a fonte completa de 2026, e por isso o V3 não tem resultado confirmatório.
@@ -151,7 +138,7 @@ Tecnologias: Python · Polars · DuckDB · scikit-learn · imbalanced-learn · s
 
 ---
 
-### 10. [NASA C-MAPSS: manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) (destaque)
+### 9. [NASA C-MAPSS: manutenção preditiva](CMAPSS_Predictive_Maintenance/README.pt-BR.md) (destaque)
 
 Estima a vida útil restante de motores simulados do FD001 com histórico causal dos sensores. Um pipeline Extra Trees selecionou 93 de 205 atributos e registrou MAE de 16,23 ciclos e RMSE de 23,80 ciclos no benchmark oficial de 100 motores. A escolha final ocorreu após essa comparação; o resultado não é uma avaliação independente adicional após a seleção. Alertas, custos hipotéticos e faixas empíricas de incerteza permanecem exploratórios, sem validação industrial.
 
@@ -163,7 +150,7 @@ Tecnologias: Python · Pandas · scikit-learn · Extra Trees · XGBoost · HistG
 
 ---
 
-### 11. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.pt-BR.md)
+### 10. [Model Risk & Responsible ML](ModelRisk_ResponsibleML/README.pt-BR.md)
 
 Audita calibração, fairness, incerteza e isolamento do teste final sobre o conjunto UCI Adult. O portfólio bilíngue documenta uma avaliação congelada com HistGradientBoosting, threshold 0,31 e 18 testes automatizados de contrato. O resultado é explicitamente exploratório e `production_eligible=false`.
 
@@ -175,7 +162,7 @@ Tecnologias: Python · Pandas · scikit-learn · Matplotlib · Jupyter · unitte
 
 ---
 
-### 12. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
+### 11. [E-commerce Delivery Network & SLA Risk](E-commerce_Delivery_Network_SLA_Risk/README.pt-BR.md)
 
 Investiga se uma violação do prazo de entrega do Olist pode ser classificada no momento da compra sob deriva temporal, usando validação temporal, features da rede vendedor–destino, distância Haversine e modelos calibrados. A avaliação final oficial foi inconclusiva, a análise pós-hoc é exploratória e `production_eligible=false` permanece explícito.
 
@@ -187,7 +174,7 @@ Tecnologias: Python · Pandas · scikit-learn · CatBoost · XGBoost · LightGBM
 
 ---
 
-### 13. [Delivery Routing & Time-Window Optimization](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
+### 12. [Delivery Routing & Time-Window Optimization](Delivery_Routing_Time_Window_Optimization/README.pt-BR.md)
 
 Compara o OR-Tools com duas heurísticas construtivas no benchmark Solomon de roteamento de veículos com capacidade e janelas de tempo. Na avaliação principal v1, o OR-Tools igualou a frota de referência do SINTEF em 24 de 42 instâncias, com 3,40% de diferença mediana de distância nesse subconjunto. Simulações de atrasos e de reotimização mostram como os planos respondem a mudanças operacionais. A reavaliação v2 é pós-hoc e o estudo é de benchmark, com `production_eligible = false`.
 
@@ -199,7 +186,7 @@ Tecnologias: Python · OR-Tools · NumPy · pandas · pytest · Jupyter · GitHu
 
 ---
 
-### 14. [Claim Frequency per Policy](Claim_Frequency_per_Policy/README.pt-BR.md)
+### 13. [Claim Frequency per Policy](Claim_Frequency_per_Policy/README.pt-BR.md)
 
 Estima sinistros de seguro automotivo por 100 apólices-ano no benchmark francês `freMTPL2freq` (678.013 registros). Taxa global, Poisson e NB2 com offset de exposição foram comparados em validação; o Poisson foi congelado e avaliado uma única vez no teste reservado, com portão de integridade e trava de execução. O teste sustenta ganho no desvio médio de Poisson (0,31902 contra 0,33079; diferença pareada −0,01177, IC 95% −0,01317 a −0,01018), mas a calibração por duração mostra forte subestimação nas exposições muito curtas. `production_eligible = false`.
 
@@ -211,7 +198,7 @@ Tecnologias: Python · NumPy · pandas · SciPy · statsmodels · Matplotlib · 
 
 ---
 
-### 15. [Retail Pricing & Promotion with Multilevel Models](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
+### 14. [Retail Pricing & Promotion with Multilevel Models](Dunnhumby_Breakfast-at-the-Frat/README.pt-BR.md)
 
 Estima como a profundidade do desconto, o encarte, o display e as reduções temporárias de preço se associam às vendas em unidades no painel *Breakfast at the Frat* da dunnhumby (524.926 registros semanais de vendas de 77 lojas e 55 produtos ao longo de 156 semanas), com interceptos aleatórios cruzados de loja, produto e loja × produto. Sob um protocolo pré-registrado, o modelo multinível só com interceptos foi mantido frente às inclinações aleatórias do desconto em duas dobras temporais internas e avaliado uma única vez nas últimas 52 semanas: MAE por par do log das unidades de 0,454, contra 0,917 do OLS agrupado, e próximo do desafiante GPBoost (0,452). Contrastes planejados com Holm mostram que a inclinação do desconto difere entre categorias (−1,08 a −2,42), e os cenários indicam um display com 20% de desconto em cerca de 1,57× as vendas modeladas de uma TPR de 20%, como associações condicionais.
 
@@ -220,6 +207,19 @@ Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataS
 Métodos: Modelos lineares mistos cruzados (lme4) · ICC e testes de razão de verossimilhança corrigidos para a fronteira · Decomposição do preço dentro e entre pares (Mundlak) · Inferência robusta com agrupamento em duas vias · Validação temporal pré-registrada com congelamento por hash e avaliação final única · Teste das inclinações aleatórias por bootstrap paramétrico · Contrastes planejados com ajuste de Holm · Cenários com covariância conjunta e suporte observado
 
 Tecnologias: Python · R · lme4 · rpy2 · pandas · NumPy · SciPy · statsmodels · GPBoost · Optuna · Matplotlib · pytest · Jupyter · conda
+
+---
+
+### 15. [Customer Churn Prediction](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/customer-churn-prediction)
+![Status](https://img.shields.io/badge/status-completed-blue)
+
+Prevê churn de clientes (taxa base de 26,6%) com 76,4% de Recall Macro e 83,5% de ROC AUC no artefato hold-out atual. Receita preservada e ROI permanecem ilustrativos, sem validação causal.
+
+Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/customer-churn-prediction/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/customer-churn-prediction/README.pt-BR.md)
+
+Métodos: Classificação desbalanceada · BalancedRandomForestClassifier · Otimização de threshold · Correlação PhiK · EDA
+
+Tecnologias: scikit-learn · imbalanced-learn · Optuna · MLflow · FastAPI · pytest · category_encoders · PhiK
 
 ---
 
