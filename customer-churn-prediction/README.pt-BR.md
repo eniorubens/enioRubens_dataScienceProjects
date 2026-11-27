@@ -106,7 +106,7 @@ Os experimentos foram rastreados com `opt_binary_clf_pipe` e MLflow em 35 config
 
 #### Por que BalancedRandomForestClassifier?
 
-O BalancedRandomForestClassifier trata o desbalanceamento de classes por construção: usa bootstrap com balanceamento por classe no nível da árvore, sem exigir SMOTE externo (Chen et al., 2004). O campeão do notebook (artefato reproduzido por `train_model.py` com a mesma divisão estratificada 80/20, semente 42) alcança 76,4% de Recall Macro (IC95% bootstrap 74,0–78,7%) e 83,5% de ROC AUC (IC95% 81,4–85,6%) em 1.407 clientes de teste (374 churners). O ROC AUC é medido a partir de scores contínuos no hold-out. O recall out-of-fold de 6 folds no treino é 76,8% (AUC 84,2%), sem indício de viés otimista no número reportado.
+O BalancedRandomForestClassifier trata o desbalanceamento de classes por construção: usa bootstrap com balanceamento por classe no nível da árvore, sem exigir SMOTE externo (Chen et al., 2004). O campeão do notebook (artefato reproduzido por `train_model.py` com a mesma divisão estratificada 80/20, semente 42) alcança 76,4% de Recall Macro (IC de 95% bootstrap 74,0–78,7%) e 83,5% de ROC AUC (IC de 95% 81,4–85,6%) em 1.407 clientes de teste (374 churners). O ROC AUC é medido a partir de scores contínuos no hold-out. O recall out-of-fold de 6 folds no treino é 76,8% (AUC 84,2%), sem indício de viés otimista no número reportado.
 
 A validação é um único hold-out determinístico, não validação temporal ou produtiva. O uso em produção exige validação temporal, monitoramento e experimento controlado de retenção.
 
@@ -191,7 +191,7 @@ A tabela abaixo compara o campeão com uma regressão logística de referência 
 |--------|--------|---------------|---|
 | Recall Macro (equivalente à acurácia balanceada) | 76,4% | 74,8% | +1,6 p.p. |
 | Precision Macro | 71,2% | 69,8% | +1,4 p.p. |
-| ROC AUC | 83,5% | 83,5% | 0,0 p.p. (IC95% bootstrap −1,0 a +1,0) |
+| ROC AUC | 83,5% | 83,5% | 0,0 p.p. (IC de 95% bootstrap −1,0 a +1,0) |
 | Gini (2 × AUC − 1) | 0,671 | 0,670 | +0,001 |
 | KS | 0,535 | 0,509 | +0,026 |
 | PR AUC (precisão média) | 0,635 | 0,618 | +0,017 |
