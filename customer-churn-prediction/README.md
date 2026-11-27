@@ -40,7 +40,7 @@ The project reframes customer churn prediction from a purely technical classific
 
 ### The business reality
 
-A false negative (missing a churner) means lost customer lifetime value, assumed at about $2-5K. A false positive (flagging a non-churner) means the cost of a retention discount, assumed at about $150-300. The dollar figures are illustrative assumptions, not values from the dataset or a source. Under these assumptions, missing a churner costs 10-30x more than flagging a non-churner.
+A false negative (missing a churner) means lost customer lifetime value, assumed at about $2-5K. A false positive (flagging a non-churner) means the cost of a retention discount, assumed at about $150-300. The dollar figures are illustrative assumptions, not values from the dataset or a source. Under these assumptions, missing a churner costs 10 to 30 times more than flagging a non-churner.
 
 ### Solution approach
 
