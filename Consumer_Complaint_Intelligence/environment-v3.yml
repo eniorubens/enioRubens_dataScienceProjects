@@ -1,0 +1,21 @@
+name: consumer-nlp-v3
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - duckdb=1.5.5
+  - imbalanced-learn=0.14.2
+  - joblib=1.5.3
+  - numpy=2.4.6
+  - polars=1.43.2
+  - pyarrow=25.0.0
+  - pytest=8.4.2
+  - scikit-learn=1.9.0
+  - scipy=1.17.1
+  - pip
+  - pip:
+      - sentence-transformers==5.7.0
+      - transformers==5.14.1
+
+# After activating the environment, install the CUDA wheel in one command:
+# python -m pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cu130

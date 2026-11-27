@@ -10,6 +10,22 @@ from .data import query_parquet
 from .taxonomy import product_family_case_sql
 
 
+def _default_spill_directory(path: Path) -> Path:
+    """Return a writable project-level DuckDB spill directory.
+
+    Production Parquet files live below the repository and can use its
+    ``temp/duckdb`` directory. Synthetic tests may live directly below the
+    operating system temporary directory, where fixed parent indexing can
+    otherwise resolve to ``/temp`` on POSIX systems.
+    """
+
+    resolved = path.expanduser().resolve()
+    for candidate in resolved.parents:
+        if (candidate / "pyproject.toml").is_file():
+            return candidate / "temp" / "duckdb"
+    return resolved.parent / "temp" / "duckdb"
+
+
 def _quote_identifier(name: str) -> str:
     """Quote a DuckDB identifier supplied through configuration."""
 
@@ -200,7 +216,7 @@ def audit_deduplication(
     spill = (
         Path(temp_directory)
         if temp_directory
-        else path.parents[2] / "temp" / "duckdb"
+        else _default_spill_directory(path)
     )
     spill.mkdir(parents=True, exist_ok=True)
     started = perf_counter()

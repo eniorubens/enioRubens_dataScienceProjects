@@ -49,6 +49,40 @@ class NotebookStructureTests(unittest.TestCase):
             ]
             self.assertEqual(pt_code, en_code)
 
+    def test_v3_bilingual_notebooks_have_matching_code(self) -> None:
+        """Keep V3 notebook code aligned apart from the display language."""
+
+        for stem in (
+            "14_V3_E2_Embedding_Cache_Audit",
+            "15_V3_E3_Temporal_Probes",
+        ):
+            pt_path = ROOT / "notebooks" / "pt-BR" / f"{stem}_PT.ipynb"
+            en_path = ROOT / "notebooks" / "en-US" / f"{stem}_EN.ipynb"
+            pt = json.loads(pt_path.read_text(encoding="utf-8"))
+            en = json.loads(en_path.read_text(encoding="utf-8"))
+            self.assertEqual(
+                [cell["cell_type"] for cell in pt["cells"]],
+                [cell["cell_type"] for cell in en["cells"]],
+            )
+            pt_code = [
+                "".join(cell["source"])
+                for cell in pt["cells"]
+                if cell["cell_type"] == "code"
+            ]
+            en_code = [
+                "".join(cell["source"])
+                for cell in en["cells"]
+                if cell["cell_type"] == "code"
+            ]
+            normalize_language = (
+                lambda source: source.replace("'pt-BR'", "'<LANG>'")
+                .replace("'en-US'", "'<LANG>'")
+            )
+            self.assertEqual(
+                [normalize_language(source) for source in pt_code],
+                [normalize_language(source) for source in en_code],
+            )
+
     def test_legacy_notebook_remains_at_root(self) -> None:
         """Keep the executed smoke-test notebook traceable and untouched."""
 

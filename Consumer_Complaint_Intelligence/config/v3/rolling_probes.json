@@ -1,0 +1,154 @@
+{
+  "schema_version": "v3-e3-rolling-probes-v1",
+  "stage": "V3-E3",
+  "status": "FROZEN_FOR_EXECUTION",
+  "frozen_on": "2026-08-21",
+  "protocol_manifest": "config/v3/development_protocol_manifest.json",
+  "embedding_manifest": "temp/v3/v3_e2_embedding_cache_manifest.json",
+  "source": {
+    "path": "temp/s3/scientific.parquet",
+    "allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "expected_rows": 591532,
+    "critical_class": "debt_credit_management",
+    "group_identity": [
+      "normalized_group_hash",
+      "normalized_length"
+    ]
+  },
+  "representations": [
+    {
+      "candidate_prefix": "tfidf_word_char",
+      "family": "tfidf_word_char",
+      "specification": "v2_word_char_tfidf_union_40000_60000"
+    },
+    {
+      "candidate_prefix": "minilm_frozen",
+      "family": "frozen_sentence_embedding",
+      "cache_root": "temp/v3/embeddings/minilm_bc57282_head256",
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+      "embedding_dimensions": 384,
+      "embedding_dtype": "float16",
+      "observed_checkpoint_normalization": "internal_2_Normalize"
+    }
+  ],
+  "hard_negative_mining": {
+    "scope": "fit_window_only",
+    "representation": "v2_word_char_tfidf_union_40000_60000",
+    "classifier": "LinearSVC",
+    "C": 1.0,
+    "class_weight": "balanced",
+    "tol": 0.0001,
+    "max_iter": 5000,
+    "dual": "auto",
+    "splitter": "StratifiedKFold",
+    "n_splits": 3,
+    "shuffle": true,
+    "random_state": 42,
+    "ranking": "descending_out_of_fold_critical_margin_then_group_identity"
+  },
+  "sampling": {
+    "positive_policy": "all_unique_critical_groups_without_replacement",
+    "negative_ratios": [
+      5,
+      10,
+      15
+    ],
+    "negative_composition": {
+      "5": {
+        "hard": 3,
+        "background": 2
+      },
+      "10": {
+        "hard": 7,
+        "background": 3
+      },
+      "15": {
+        "hard": 10,
+        "background": 5
+      }
+    },
+    "background_strata": [
+      "calendar_month",
+      "product_family"
+    ],
+    "background_allocation": "proportional_largest_remainder",
+    "background_order": "sha256_seed_fold_ratio_group_identity",
+    "without_replacement": true,
+    "same_group_ids_across_representations": true,
+    "fit_vectorizer_on_sampled_pool_only": true,
+    "random_state": 42
+  },
+  "classifier": {
+    "class": "LinearSVC",
+    "C": 1.0,
+    "class_weight": null,
+    "tol": 0.0001,
+    "max_iter": 5000,
+    "dual": "auto",
+    "random_state": 42
+  },
+  "calibration": {
+    "input": "linear_decision_margin",
+    "method": "logistic_sigmoid",
+    "implementation": "sklearn.LogisticRegression",
+    "C": 1000000.0,
+    "solver": "lbfgs",
+    "class_weight": null,
+    "max_iter": 1000,
+    "random_state": 42,
+    "fit_scope": "fold_calibration_natural_prevalence_only",
+    "threshold_scope": "same_fold_calibration_only",
+    "threshold_objective": "maximize_critical_f1_subject_to_precision_floor",
+    "critical_precision_floor": 0.4,
+    "threshold_tie_break": [
+      "critical_f1_desc",
+      "critical_recall_desc",
+      "critical_precision_desc",
+      "threshold_desc"
+    ],
+    "evaluation_oracle_threshold_forbidden": true
+  },
+  "metrics": {
+    "pr_auc": "trapezoidal_auc_of_precision_recall_curve",
+    "average_precision": "sklearn_average_precision_score",
+    "brier": "sklearn_brier_score_loss",
+    "ece_bins": 15,
+    "ece_strategy": "equal_width",
+    "critical_recall_at_precision_floor": "evaluation_recall_if_evaluation_precision_meets_floor_else_zero",
+    "candidate_eligibility": "calibration_and_evaluation_precision_floor_met_in_every_fold"
+  },
+  "selection": {
+    "required_fold_count": 3,
+    "ranking": [
+      "worst_fold_critical_recall_at_precision_floor_desc",
+      "median_critical_pr_auc_desc",
+      "median_critical_f1_desc",
+      "critical_f1_between_fold_range_asc",
+      "runtime_asc",
+      "candidate_id_asc"
+    ],
+    "s7_comparison_fold": "F3",
+    "s7_forbidden_folds": [
+      "F1",
+      "F2"
+    ],
+    "no_eligible_candidate_status": "NO_V3_E3_CANDIDATE"
+  },
+  "execution": {
+    "default_run_mode": "disabled",
+    "transform_batch_rows": 8192,
+    "s7_prediction_batch_rows": 4096,
+    "overwrite_existing_results": false,
+    "persist_individual_samples": false,
+    "persist_individual_scores": false,
+    "persist_fitted_estimators": false
+  },
+  "output": {
+    "result": "temp/v3/v3_e3_rolling_results.json",
+    "manifest": "config/v3/e3_results_manifest.json"
+  }
+}

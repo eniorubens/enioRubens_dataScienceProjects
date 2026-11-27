@@ -1,0 +1,30 @@
+{
+  "schema_version": "v3-package-results-manifest-v1",
+  "stage": "V3-P",
+  "status": "FROZEN_FOR_CONFIRMATION",
+  "outcome": "PACKAGE_FROZEN",
+  "complete": true,
+  "development_only": true,
+  "confirmatory": false,
+  "deploy": false,
+  "selected_candidate_id": "tfidf_word_char_ratio_1_10",
+  "reproduction_gate_passed": true,
+  "result": {
+    "path": "temp/v3/v3_package.json",
+    "sha256": "FAB58BFAC788C6D138839D04DB0BCD0F90AE7C42258142C52F64FF543C5C09DF",
+    "size_bytes": 9686
+  },
+  "bundle": {
+    "path": "artifacts/v3/consumer_complaint_detector_v3.joblib",
+    "sha256": "FDA94C2CFEF2DF3389F9E74089BA64540BBA130F0E55B373A892A472DD99250A",
+    "size_bytes": 1653349
+  },
+  "config": {
+    "path": "config/v3/package.json",
+    "sha256": "C259E6823E3640ACA1F0069746927C893F6028EFE03AC69F7ABFF35A7019F332",
+    "size_bytes": 7243
+  },
+  "sealed_partitions_accessed": false,
+  "confirmation_claim_authorized": false,
+  "next_step_authorized": false
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "v3-development-protocol-manifest-v1",
+  "cycle_id": "consumer-complaint-intelligence-v3",
+  "stage": "V3-E0",
+  "status": "FROZEN_FOR_V3_DEVELOPMENT",
+  "approved_on": "2026-08-21",
+  "approved_by": "user",
+  "protocol": {
+    "path": "config/v3/development_protocol.json",
+    "sha256": "1EF5403B0C890F3788AC358B948F85B98D4EC6EE4E22465B961AD5525FC98179",
+    "normalized_sha256": "F99D98F3EF69967E41D3964B745E7E8D9CBFE66DF1A65BB5C100593F510AA45E",
+    "size_bytes": 8535
+  },
+  "authorized_next_stages": [
+    "V3-E2_DEVELOPMENT_EMBEDDING_CACHE",
+    "V3-E3_ROLLING_LINEAR_PROBES"
+  ],
+  "forbidden_partitions": [
+    "test",
+    "stress",
+    "monitor"
+  ],
+  "deployment_authorized": false,
+  "confirmation_claim_authorized": false
+}

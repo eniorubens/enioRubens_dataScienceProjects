@@ -1,0 +1,60 @@
+{
+  "schema_version": "v3-e2-embedding-cache-v1",
+  "stage": "V3-E2",
+  "status": "FROZEN_FOR_EXECUTION",
+  "protocol_manifest": "config/v3/development_protocol_manifest.json",
+  "source": {
+    "path": "temp/s3/scientific.parquet",
+    "allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "expected_rows": 591532,
+    "expected_partition_rows": {
+      "train": 345552,
+      "validation": 245980
+    },
+    "expected_critical_rows": {
+      "train": 946,
+      "validation": 892
+    },
+    "sort_order": [
+      "partition_name",
+      "received_date",
+      "normalized_group_hash",
+      "normalized_length"
+    ]
+  },
+  "model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+    "device": "cuda",
+    "torch_dtype": "float16",
+    "max_seq_length": 256,
+    "normalize_embeddings": false,
+    "embedding_dimensions": 384
+  },
+  "execution": {
+    "default_run_mode": "disabled",
+    "batch_size": 128,
+    "shard_rows": 32768,
+    "random_state": 42,
+    "transactional_write": true,
+    "overwrite_existing_cache": false
+  },
+  "output": {
+    "cache_root": "temp/v3/embeddings/minilm_bc57282_head256",
+    "model_cache": "temp/v3/huggingface",
+    "manifest": "temp/v3/v3_e2_embedding_cache_manifest.json",
+    "embedding_dtype": "float16",
+    "key_columns": [
+      "received_date",
+      "product_family",
+      "normalized_group_hash",
+      "normalized_length",
+      "partition_name"
+    ],
+    "individual_cache_publication": false,
+    "raw_narrative_persistence": false
+  }
+}

@@ -22,6 +22,7 @@
 
 # Frozen and historical evidence is byte-addressed by protocol hashes.
 config/*.json -text whitespace=-trailing-space
+config/v3/package_results_manifest.json text eol=crlf whitespace=-trailing-space
 temp/**/*.json -text whitespace=-trailing-space
 kaggle/**/*.json -text whitespace=-trailing-space
 kaggle/**/*.ipynb -text whitespace=-trailing-space

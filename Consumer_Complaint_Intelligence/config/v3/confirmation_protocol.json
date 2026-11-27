@@ -1,0 +1,243 @@
+{
+  "schema_version": "v3-confirmatory-protocol-v1",
+  "stage": "V3-C",
+  "adr": "docs/ADR-017-v3-confirmatory-evaluation.md",
+  "status": "APPROVED_AWAITING_COMPLETE_SOURCE_FREEZE",
+  "proposed_on": "2026-08-24",
+  "approved_on": "2026-08-24",
+  "approved_by": "user",
+  "methodological_protocol_frozen": true,
+  "execution_authorized": false,
+  "confirmatory_claim_authorized": false,
+  "objective": "test_the_frozen_v3_system_once_on_a_complete_future_window",
+  "approval_record": {
+    "all_six_points_approved": true,
+    "points": [
+      {
+        "id": 1,
+        "decision": "promote_complete_monitor_2026_to_v3_confirmatory_window",
+        "approved": true
+      },
+      {
+        "id": 2,
+        "decision": "wait_for_new_snapshot_acquired_on_or_after_2027_02_01",
+        "approved": true
+      },
+      {
+        "id": 3,
+        "decision": "retain_the_four_historical_confirmatory_gates",
+        "approved": true
+      },
+      {
+        "id": 4,
+        "decision": "add_system_critical_precision_min_0_40_as_fifth_gate",
+        "approved": true
+      },
+      {
+        "id": 5,
+        "decision": "treat_scope_failure_as_inconclusive_without_reusing_window",
+        "approved": true
+      },
+      {
+        "id": 6,
+        "decision": "single_opening_no_refit_and_deploy_always_false",
+        "approved": true
+      }
+    ]
+  },
+  "confirmatory_partition": {
+    "name": "monitor",
+    "start": "2026-01-01",
+    "end": "2026-12-31",
+    "limits_are_inclusive": true,
+    "performance_status": "SEALED_NEVER_SCORED",
+    "metadata_status": "PARTIALLY_PROFILED_BY_S2_WITHOUT_MODEL_PREDICTIONS",
+    "promoted_from_diagnostic_for_v3_confirmation": true,
+    "promotion_approved_on": "2026-08-24"
+  },
+  "timing": {
+    "protocol_freeze_date": "2026-08-24",
+    "window_is_currently_complete": false,
+    "earliest_source_acquisition": "2027-02-01",
+    "reason_for_wait": "the_registered_2026_window_must_close_and_allow_publication_lag",
+    "execution_before_complete_source": "FORBIDDEN"
+  },
+  "current_snapshot_limitation": {
+    "source_snapshot_sha256": "33875E0439B72E00CB6E5985238B47F76B5B0A63B0AC21DDB8C7D46B565C428F",
+    "source_snapshot_size_bytes": 821595288,
+    "latest_date_received_observed_in_s1": "2026-07-23",
+    "s1_report": {
+      "path": "temp/s1/s1_report.json",
+      "sha256": "F032AA013C1AF6F200FE70E855E667AA85D30DCFDAFAA730D27D04CFB1FA2887",
+      "size_bytes": 108809
+    },
+    "use_for_v3_confirmation": false,
+    "reason": "partial_2026_data_would_answer_a_different_question"
+  },
+  "future_source_freeze": {
+    "provider": "Consumer Financial Protection Bureau",
+    "required_snapshot_date_on_or_after": "2027-02-01",
+    "required_latest_date_received_on_or_after": "2026-12-31",
+    "raw_sha256": "TBD_BEFORE_EXECUTION",
+    "raw_size_bytes": "TBD_BEFORE_EXECUTION",
+    "acquisition_manifest": "TBD_BEFORE_EXECUTION",
+    "final_source_manifest": "TBD_BEFORE_EXECUTION",
+    "source_identity_approval_required": true,
+    "rule": "freeze_source_hashes_and_receive_execution_approval_before_any_prediction"
+  },
+  "model": {
+    "architecture": "hierarchical_critical_override",
+    "primary_model_version": "consumer-complaint-detector-v3",
+    "control_model_version": "consumer-complaint-classifier-s7",
+    "critical_class": "debt_credit_management",
+    "threshold": 0.10162120744876312,
+    "threshold_source": "F3_calibration_only",
+    "threshold_change": "FORBIDDEN",
+    "refit": "FORBIDDEN",
+    "recalibration": "FORBIDDEN",
+    "candidate_reselection": "FORBIDDEN"
+  },
+  "arms": {
+    "primary": "v3_critical_override_plus_s7_fallback",
+    "control": "s7_fallback_alone",
+    "same_rows": true,
+    "scored_in_one_pass": true,
+    "seal_openings": 1
+  },
+  "scientific_view": {
+    "modeled_families_only": true,
+    "novel_against_all_pre_2026_frozen_group_fingerprints": true,
+    "group_identity": [
+      "normalized_group_hash",
+      "normalized_length"
+    ],
+    "single_label_groups_only": true,
+    "ambiguous_groups": "COUNT_AND_EXCLUDE",
+    "representative": "minimum_complaint_id_per_clean_group",
+    "primary_for_decision": true
+  },
+  "adequacy_before_prediction": {
+    "all_nine_modeled_families_required": true,
+    "minimum_critical_unique_groups": 500,
+    "maximum_largest_family_share": 0.8,
+    "on_failure": "INCONCLUSIVE_INSUFFICIENT_SCOPE",
+    "reuse_same_window_after_failure": false
+  },
+  "confirmatory_gates": {
+    "required_gate_count": 5,
+    "all_must_pass": true,
+    "evaluated_on": "scientific_primary_view",
+    "gates": {
+      "macro_f1_at_least_0_69": {
+        "metric": "macro_f1",
+        "minimum": 0.69,
+        "inclusive": true,
+        "origin": "historical_S8_and_V2_1_C"
+      },
+      "critical_f1_at_least_0_2715": {
+        "metric": "critical_f1",
+        "minimum": 0.2715,
+        "inclusive": true,
+        "origin": "historical_S8_and_V2_1_C"
+      },
+      "critical_precision_at_least_0_20": {
+        "metric": "critical_precision",
+        "minimum": 0.2,
+        "inclusive": true,
+        "origin": "historical_S8_and_V2_1_C"
+      },
+      "paired_critical_f1_gain_strictly_positive": {
+        "metric": "paired_critical_f1_gain_vs_s7",
+        "minimum": 0.0,
+        "inclusive": false,
+        "origin": "historical_V2_1_C"
+      },
+      "system_critical_precision_at_least_0_40": {
+        "metric": "critical_precision",
+        "minimum": 0.4,
+        "inclusive": true,
+        "origin": "approved_V3_safety_gate_2026_08_24"
+      }
+    }
+  },
+  "comparability_reporting": {
+    "always_report_the_four_historical_gates_separately": true,
+    "v3_decision_requires_the_fifth_gate": true,
+    "gate_count_cannot_be_reduced_after_source_access": true
+  },
+  "decision": {
+    "confirmed_if": "adequate_scope_and_all_five_gates_pass",
+    "not_confirmed_if": "adequate_scope_and_any_gate_fails",
+    "inconclusive_if": "scope_or_source_completeness_fails",
+    "second_attempt_on_same_window": false,
+    "deployment_authorized": false,
+    "confirmation_never_authorizes_deployment": true
+  },
+  "diagnostics": {
+    "operational_all_clean_rows": true,
+    "operational_view_is_not_a_gate": true,
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 42,
+    "confidence_level": 0.95,
+    "paired_difference_interval": true,
+    "bootstrap_is_not_a_gate": true
+  },
+  "frozen_v3_package": {
+    "config": {
+      "path": "config/v3/package.json",
+      "sha256": "C259E6823E3640ACA1F0069746927C893F6028EFE03AC69F7ABFF35A7019F332",
+      "size_bytes": 7243
+    },
+    "result": {
+      "path": "temp/v3/v3_package.json",
+      "sha256": "FAB58BFAC788C6D138839D04DB0BCD0F90AE7C42258142C52F64FF543C5C09DF",
+      "size_bytes": 9686
+    },
+    "manifest": {
+      "path": "config/v3/package_results_manifest.json",
+      "sha256": "A0E10ABD4BB6D8FD2F5D3A6B7349832EB4DFFFD8322F68B7A176A026FD266923",
+      "size_bytes": 993
+    },
+    "bundle": {
+      "path": "artifacts/v3/consumer_complaint_detector_v3.joblib",
+      "sha256": "FDA94C2CFEF2DF3389F9E74089BA64540BBA130F0E55B373A892A472DD99250A",
+      "size_bytes": 1653349
+    }
+  },
+  "frozen_s7_control": {
+    "manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    },
+    "bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    }
+  },
+  "frozen_history_index": {
+    "path": "temp/s2/modeling_index.parquet",
+    "sha256": "EDBE3C38225DA1B380E5651436FF9ABEE6591BE14A1390A988FC24B2F7D8F1A9",
+    "size_bytes": 69858991
+  },
+  "privacy": {
+    "aggregate_outputs_only": true,
+    "persist_narratives": false,
+    "persist_identifiers": false,
+    "persist_individual_predictions": false,
+    "persist_monitor_cache": false
+  },
+  "execution_boundary": {
+    "runner_implemented": false,
+    "unlock_token_defined": false,
+    "monitor_accessed_by_v3": false,
+    "outputs_defined": false,
+    "next_required_action": "acquire_complete_source_freeze_hashes_and_request_execution_approval"
+  }
+}

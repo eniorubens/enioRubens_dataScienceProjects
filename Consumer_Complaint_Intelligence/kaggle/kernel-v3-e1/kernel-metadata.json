@@ -1,0 +1,17 @@
+{
+  "id": "eniorubens/cci-v3-e1-embedding-smoke",
+  "title": "CCI V3 E1 Embedding Smoke",
+  "code_file": "v3_e1_embedding_smoke.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "eniorubens/cci-v3-e1-bundle"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": [],
+  "machine_shape": "NvidiaTeslaT4"
+}

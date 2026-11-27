@@ -1,0 +1,298 @@
+{
+  "schema_version": "v3-development-protocol-v1",
+  "cycle_id": "consumer-complaint-intelligence-v3",
+  "stage": "V3-E0",
+  "approval": {
+    "status": "FROZEN_FOR_V3_DEVELOPMENT",
+    "proposed_on": "2026-08-21",
+    "approved_on": "2026-08-21",
+    "approved_by": "user"
+  },
+  "objective": {
+    "primary": "select a critical-class detector whose gain is stable across chronological development folds",
+    "critical_class": "debt_credit_management",
+    "input_language": "en-US",
+    "deployment_authorized": false,
+    "confirmation_claim_authorized": false
+  },
+  "data_boundary": {
+    "scientific_cache": "temp/s3/scientific.parquet",
+    "allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "forbidden_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ],
+    "partition_status": {
+      "test": "CONSUMED_BY_S8_FORBIDDEN_FOR_V3_SELECTION",
+      "stress": "CONSUMED_BY_V2_1_C_FORBIDDEN_FOR_V3_SELECTION",
+      "monitor": "SEALED_NOT_AUTHORIZED_FOR_V3_DEVELOPMENT"
+    },
+    "group_identity": [
+      "normalized_group_hash",
+      "normalized_length"
+    ],
+    "one_scientific_representative_per_group": true,
+    "individual_text_or_prediction_persistence": false
+  },
+  "rolling_origin": {
+    "folds": [
+      {
+        "fold_id": "F1",
+        "fit": {
+          "partition": "train",
+          "start": "2023-08-01",
+          "end": "2023-12-31",
+          "rows": 140310,
+          "critical_rows": 305
+        },
+        "calibration": {
+          "partition": "train",
+          "start": "2024-01-01",
+          "end": "2024-02-29",
+          "rows": 60936,
+          "critical_rows": 207
+        },
+        "evaluation": {
+          "partition": "train",
+          "start": "2024-03-01",
+          "end": "2024-04-30",
+          "rows": 70573,
+          "critical_rows": 219
+        }
+      },
+      {
+        "fold_id": "F2",
+        "fit": {
+          "partition": "train",
+          "start": "2023-08-01",
+          "end": "2024-02-29",
+          "rows": 201246,
+          "critical_rows": 512
+        },
+        "calibration": {
+          "partition": "train",
+          "start": "2024-03-01",
+          "end": "2024-04-30",
+          "rows": 70573,
+          "critical_rows": 219
+        },
+        "evaluation": {
+          "partition": "train",
+          "start": "2024-05-01",
+          "end": "2024-06-30",
+          "rows": 73733,
+          "critical_rows": 215
+        }
+      },
+      {
+        "fold_id": "F3",
+        "fit": {
+          "partition": "train",
+          "start": "2023-08-01",
+          "end": "2024-06-30",
+          "rows": 345552,
+          "critical_rows": 946
+        },
+        "calibration": {
+          "partition": "validation",
+          "start": "2024-07-01",
+          "end": "2024-09-30",
+          "rows": 118274,
+          "critical_rows": 347
+        },
+        "evaluation": {
+          "partition": "validation",
+          "start": "2024-10-01",
+          "end": "2024-12-31",
+          "rows": 127706,
+          "critical_rows": 545
+        }
+      }
+    ],
+    "fit_policy": "expanding_origin",
+    "calibration_and_evaluation_prevalence": "natural_untouched",
+    "later_folds_may_reuse_earlier_evaluation_as_fit": true
+  },
+  "screening": {
+    "task": "binary_critical_detector",
+    "representations": [
+      {
+        "candidate_id": "tfidf_word_char_control",
+        "role": "required_control",
+        "family": "tfidf_word_char",
+        "specification": "v2_word_char_tfidf_union_40000_60000"
+      },
+      {
+        "candidate_id": "minilm_frozen_primary",
+        "role": "primary_challenger",
+        "family": "frozen_sentence_embedding",
+        "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+        "revision_status": "FROZEN_COMMIT_HASH",
+        "embedding_dimensions": 384,
+        "encoder_trainable": false,
+        "text_view": "head_256_wordpieces",
+        "pooling": "model_default_mean_pooling"
+      }
+    ],
+    "deferred_challengers": [
+      {
+        "candidate_id": "bge_small_frozen",
+        "model_id": "BAAI/bge-small-en-v1.5",
+        "entry_condition": "minilm_completes_e3_and_long_text_risk_remains_material"
+      },
+      {
+        "candidate_id": "minilm_supervised_finetune",
+        "entry_condition": "frozen_minilm_is_eligible_in_all_three_folds"
+      },
+      {
+        "candidate_id": "tfidf_embedding_score_stack",
+        "entry_condition": "frozen_minilm_and_tfidf_errors_are_complementary"
+      }
+    ],
+    "classifier": {
+      "class": "LinearSVC",
+      "C": 1.0,
+      "tol": 0.0001,
+      "max_iter": 5000,
+      "dual": "auto",
+      "class_weight": null,
+      "random_state": 42
+    }
+  },
+  "sampling": {
+    "scope": "fit_window_only",
+    "positive_policy": "all_unique_critical_groups_without_replacement",
+    "negative_ratios_per_positive": [
+      5,
+      10,
+      15
+    ],
+    "negative_composition": {
+      "5": {
+        "hard": 3,
+        "background": 2
+      },
+      "10": {
+        "hard": 7,
+        "background": 3
+      },
+      "15": {
+        "hard": 10,
+        "background": 5,
+        "role": "v2_comparable_control"
+      }
+    },
+    "hard_negatives": {
+      "source": "fit_window_out_of_fold_predictions_only",
+      "splitter": "StratifiedKFold",
+      "n_splits": 3,
+      "shuffle": true,
+      "random_state": 42,
+      "pipeline_refit_per_fold": true
+    },
+    "background_negatives": {
+      "without_replacement": true,
+      "stratify_by": [
+        "calendar_month",
+        "product_family"
+      ]
+    },
+    "same_sampled_group_ids_across_representations": true,
+    "oversampling_before_temporal_split": false,
+    "resampling_calibration_or_evaluation": false
+  },
+  "calibration": {
+    "score_source": "linear_decision_margin",
+    "probability_method": "sigmoid_fit_on_fold_calibration_only",
+    "threshold_source": "fold_calibration_only",
+    "threshold_objective": "maximize_critical_f1_subject_to_critical_precision_floor",
+    "critical_precision_floor": 0.4,
+    "evaluation_threshold_reuse": "same_fold_calibrated_threshold_only"
+  },
+  "metrics": {
+    "primary": [
+      "critical_pr_auc",
+      "critical_recall_at_precision_floor",
+      "critical_f1_at_selected_threshold"
+    ],
+    "secondary": [
+      "critical_precision",
+      "critical_recall",
+      "critical_average_precision",
+      "brier_score",
+      "expected_calibration_error",
+      "positive_decision_rate",
+      "threshold"
+    ],
+    "system_metrics_on_f3_only": [
+      "macro_f1",
+      "critical_f1",
+      "critical_precision",
+      "critical_recall",
+      "effective_overrides",
+      "paired_critical_f1_gain_vs_s7"
+    ]
+  },
+  "selection": {
+    "candidate_unit": "representation_x_negative_ratio",
+    "required_fold_count": 3,
+    "must_meet_precision_floor_in_every_fold": true,
+    "ranking": [
+      "worst_fold_critical_recall_at_precision_floor_desc",
+      "median_critical_pr_auc_desc",
+      "median_critical_f1_desc",
+      "critical_f1_between_fold_range_asc",
+      "runtime_asc"
+    ],
+    "historical_s7_use": {
+      "F1": "FORBIDDEN_IN_SAMPLE_WITH_FROZEN_FALLBACK",
+      "F2": "FORBIDDEN_IN_SAMPLE_WITH_FROZEN_FALLBACK",
+      "F3": "ALLOWED_FOR_DEVELOPMENT_SYSTEM_COMPARISON"
+    },
+    "f3_system_requirements": {
+      "macro_f1_min": 0.69,
+      "critical_f1_min": 0.2715,
+      "critical_precision_min": 0.2,
+      "paired_critical_f1_gain_vs_s7_strictly_positive": true
+    },
+    "evidence_status": "DEVELOPMENT_REUSED_OPTIMISTIC_NOT_CONFIRMATORY",
+    "monitor_can_select_candidate": false
+  },
+  "long_text_challenge": {
+    "stage": "V3-E4",
+    "status": "DEFERRED_UNTIL_MINILM_COMPLETES_E3",
+    "comparison": [
+      "head_256_wordpieces",
+      "mean_pool_head_256_and_tail_256"
+    ],
+    "maximum_comparisons": 1
+  },
+  "execution": {
+    "default_run_mode": "disabled",
+    "smoke_is_diagnostic_only": true,
+    "environment_name": "consumer-nlp-v3",
+    "random_state": 42,
+    "no_sealed_partition_unlock_in_development_code": true,
+    "embedding_cache_allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "embedding_cache_dtype": "float16",
+    "individual_embeddings_publication": false
+  },
+  "stages": [
+    "V3-E0_PROTOCOL",
+    "V3-E1_GPU_SMOKE",
+    "V3-E2_DEVELOPMENT_EMBEDDING_CACHE",
+    "V3-E3_ROLLING_LINEAR_PROBES",
+    "V3-E4_LONG_TEXT_CHALLENGE_IF_ELIGIBLE",
+    "V3-E5_SCORE_FUSION_IF_ELIGIBLE",
+    "V3-E6_FINETUNING_IF_ELIGIBLE",
+    "V3-P_PACKAGE_DEVELOPMENT_CANDIDATE"
+  ]
+}

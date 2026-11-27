@@ -1,0 +1,56 @@
+{
+  "schema_version": "v3-e3-rolling-results-manifest-v1",
+  "stage": "V3-E3",
+  "status": "COMPLETE_SELECTED_DEVELOPMENT_CANDIDATE",
+  "complete": true,
+  "development_only": true,
+  "confirmatory": false,
+  "deploy": false,
+  "result": {
+    "path": "temp/v3/v3_e3_rolling_results.json",
+    "sha256": "DCBE983B492E09418980185827829531EDA26C755FA184B58440B7F7BE715391",
+    "size_bytes": 38271
+  },
+  "execution_config": {
+    "path": "config/v3/rolling_probes.json",
+    "sha256": "D5D0F8ECF41CAD352F7C3F427BA8D0267B76882BFC52FA1868CE84C4664D2A59",
+    "size_bytes": 4529
+  },
+  "protocol_file_sha256": "1EF5403B0C890F3788AC358B948F85B98D4EC6EE4E22465B961AD5525FC98179",
+  "selected_candidate_id": "tfidf_word_char_ratio_1_10",
+  "eligible_candidate_count": 3,
+  "f3_system_comparison": {
+    "fold_id": "F3",
+    "s7_use_in_f1_f2": "FORBIDDEN_NOT_EXECUTED",
+    "selected_system": {
+      "row_count": 127706,
+      "macro_f1": 0.7289702095679682,
+      "critical_precision": 0.407158836689038,
+      "critical_recall": 0.3339449541284404,
+      "critical_f1": 0.36693548387096775,
+      "critical_support": 545
+    },
+    "s7_fallback_alone": {
+      "row_count": 127706,
+      "macro_f1": 0.7258162180952451,
+      "critical_precision": 0.4342857142857143,
+      "critical_recall": 0.27889908256880735,
+      "critical_f1": 0.3396648044692737,
+      "critical_support": 545
+    },
+    "override_decisions": 294,
+    "effective_overrides": 97,
+    "paired_critical_f1_gain_vs_s7": 0.02727067940169403,
+    "gates": {
+      "macro_f1_at_least_0_69": true,
+      "critical_f1_at_least_0_2715": true,
+      "critical_precision_at_least_0_20": true,
+      "paired_critical_f1_gain_strictly_positive": true
+    },
+    "gate_count": 4,
+    "gates_passed": 4,
+    "eligible_for_development_packaging": true
+  },
+  "forbidden_partition_access": false,
+  "raw_narratives_persisted": false
+}

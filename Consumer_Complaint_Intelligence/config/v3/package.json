@@ -1,0 +1,220 @@
+{
+  "schema_version": "v3-frozen-package-config-v1",
+  "stage": "V3-P",
+  "adr": "docs/ADR-016-v3-frozen-development-package.md",
+  "status": "FROZEN_FOR_V3_PACKAGE_EXECUTION",
+  "approved_on": "2026-08-24",
+  "approved_by": "user",
+  "model_version": "consumer-complaint-detector-v3",
+  "critical_class": "debt_credit_management",
+  "input_language": "en-US",
+  "architecture": {
+    "type": "hierarchical_critical_override",
+    "stage_a": "tfidf_word_char_linear_svc_sigmoid",
+    "stage_b": "frozen_s7_multiclass_fallback",
+    "combination": "critical_override_at_or_above_calibrated_probability_threshold",
+    "threshold_source": "F3_calibration_only",
+    "no_refit_after_F3_evaluation": true
+  },
+  "candidate": {
+    "selected_by": "V3-E3",
+    "candidate_id": "tfidf_word_char_ratio_1_10",
+    "representation": "tfidf_word_char",
+    "negative_ratio": 10,
+    "hard_per_positive": 7,
+    "background_per_positive": 3,
+    "random_state": 42
+  },
+  "fit_scope": {
+    "fold_id": "F3",
+    "role": "fit",
+    "partition": "train",
+    "start": "2023-08-01",
+    "end": "2024-06-30",
+    "rows": 345552,
+    "critical_rows": 946
+  },
+  "calibration_scope": {
+    "fold_id": "F3",
+    "role": "calibration",
+    "partition": "validation",
+    "start": "2024-07-01",
+    "end": "2024-09-30",
+    "rows": 118274,
+    "critical_rows": 347
+  },
+  "evaluation_scope": {
+    "fold_id": "F3",
+    "role": "evaluation",
+    "partition": "validation",
+    "start": "2024-10-01",
+    "end": "2024-12-31",
+    "rows": 127706,
+    "critical_rows": 545
+  },
+  "sample": {
+    "positive_groups": 946,
+    "hard_negative_groups": 6622,
+    "background_negative_groups": 2838,
+    "negative_groups": 9460,
+    "row_count": 10406,
+    "signature": "C20F9823FB5C55D6CAC4AC8243CD5FC3AE7B6DD45F77048F60A7770F768D6138",
+    "persisted": false
+  },
+  "reproduction_gate": {
+    "required": true,
+    "comparison": "exact_no_tolerance",
+    "source_of_truth": "temp/v3/v3_e3_rolling_results.json",
+    "checks": [
+      "selected_candidate",
+      "sample_counts",
+      "sample_signature",
+      "calibration_block",
+      "evaluation_block",
+      "f3_system_comparison"
+    ],
+    "expected": {
+      "calibration": {
+        "threshold": 0.10162120744876312,
+        "critical_precision": 0.4396551724137931,
+        "critical_recall": 0.14697406340057637,
+        "critical_f1": 0.2203023758099352,
+        "positive_decision_rate": 0.0009807734582410335,
+        "precision_floor_met": true,
+        "threshold_candidates": 117973
+      },
+      "evaluation": {
+        "row_count": 127706,
+        "critical_support": 545,
+        "true_positive": 151,
+        "false_positive": 143,
+        "false_negative": 394,
+        "true_negative": 127018,
+        "critical_precision": 0.5136054421768708,
+        "critical_recall": 0.27706422018348625,
+        "critical_f1": 0.35995232419547074,
+        "critical_pr_auc": 0.253336985156669,
+        "critical_average_precision": 0.25427638102264993,
+        "brier_score": 0.00358523432123375,
+        "expected_calibration_error": 0.0007276336057410478,
+        "positive_decision_rate": 0.002302162780135624,
+        "precision_floor_met": true,
+        "critical_recall_at_precision_floor": 0.27706422018348625
+      },
+      "f3_system_comparison": {
+        "fold_id": "F3",
+        "s7_use_in_f1_f2": "FORBIDDEN_NOT_EXECUTED",
+        "selected_system": {
+          "row_count": 127706,
+          "macro_f1": 0.7289702095679682,
+          "critical_precision": 0.407158836689038,
+          "critical_recall": 0.3339449541284404,
+          "critical_f1": 0.36693548387096775,
+          "critical_support": 545
+        },
+        "s7_fallback_alone": {
+          "row_count": 127706,
+          "macro_f1": 0.7258162180952451,
+          "critical_precision": 0.4342857142857143,
+          "critical_recall": 0.27889908256880735,
+          "critical_f1": 0.3396648044692737,
+          "critical_support": 545
+        },
+        "override_decisions": 294,
+        "effective_overrides": 97,
+        "paired_critical_f1_gain_vs_s7": 0.02727067940169403,
+        "gates": {
+          "macro_f1_at_least_0_69": true,
+          "critical_f1_at_least_0_2715": true,
+          "critical_precision_at_least_0_20": true,
+          "paired_critical_f1_gain_strictly_positive": true
+        },
+        "gate_count": 4,
+        "gates_passed": 4,
+        "eligible_for_development_packaging": true
+      }
+    },
+    "on_mismatch": "REPRODUCTION_MISMATCH",
+    "publishes_bundle_on_mismatch": false
+  },
+  "provenance": {
+    "source": {
+      "path": "temp/s3/scientific.parquet",
+      "sha256": "8EF752D6AF5FEDB3A99B530B23AA47B412B9E751A3E819FAB110F4A60922AE03",
+      "size_bytes": 152781873
+    },
+    "development_protocol": {
+      "path": "config/v3/development_protocol.json",
+      "sha256": "1EF5403B0C890F3788AC358B948F85B98D4EC6EE4E22465B961AD5525FC98179",
+      "size_bytes": 8535
+    },
+    "development_protocol_manifest": {
+      "path": "config/v3/development_protocol_manifest.json",
+      "sha256": "CEAC62250731F132009D26DBDE5F5D295843D1A7D003480BD5296FFCC6DE1D93",
+      "size_bytes": 760
+    },
+    "rolling_config": {
+      "path": "config/v3/rolling_probes.json",
+      "sha256": "D5D0F8ECF41CAD352F7C3F427BA8D0267B76882BFC52FA1868CE84C4664D2A59",
+      "size_bytes": 4529
+    },
+    "e3_result": {
+      "path": "temp/v3/v3_e3_rolling_results.json",
+      "sha256": "DCBE983B492E09418980185827829531EDA26C755FA184B58440B7F7BE715391",
+      "size_bytes": 38271
+    },
+    "e3_manifest": {
+      "path": "config/v3/e3_results_manifest.json",
+      "sha256": "EB33B8DDEBE2F1A7F4FDEFBD9CE493268FA6224F12E64F410BF26A343DA66E53",
+      "size_bytes": 1943
+    },
+    "s7_bundle": {
+      "path": "artifacts/s7/consumer_complaint_classifier_s7.joblib",
+      "sha256": "5B302E1D958EC99A2ECB3C8B2DA5E5F52F613C5112153A76086FC5ACB4931049",
+      "size_bytes": 3268327
+    },
+    "s7_manifest": {
+      "path": "config/s7_results.json",
+      "sha256": "21ABC44D4639FE8B00113B84E7F6CF80BF59DCAAA6C4678EDDB6EBB85A4DB751",
+      "size_bytes": 11306
+    },
+    "s7_result": {
+      "path": "temp/s7/s7_results.json",
+      "sha256": "1DA0369C6C0D3003CD4941FF5ABDD984712D767C8F339FD54FC4F01350E96F2E",
+      "size_bytes": 10793
+    }
+  },
+  "boundary": {
+    "allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "sealed_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ],
+    "no_sealed_partition_unlock_in_package_code": true,
+    "persists_fitted_weights": true,
+    "persists_narratives_or_identifiers": false,
+    "persists_row_indices": false,
+    "persists_individual_scores": false
+  },
+  "deployment": {
+    "deployment_authorized": false,
+    "confirmation_claim_authorized": false,
+    "status_on_success": "FROZEN_FOR_CONFIRMATION",
+    "next_step": "approve_a_separate_confirmatory_protocol",
+    "next_step_authorized_here": false
+  },
+  "outputs": {
+    "bundle": "artifacts/v3/consumer_complaint_detector_v3.joblib",
+    "result": "temp/v3/v3_package.json",
+    "manifest": "config/v3/package_results_manifest.json"
+  },
+  "run_defaults": {
+    "transform_batch_rows": 8192,
+    "s7_prediction_batch_rows": 4096,
+    "overwrite_existing_results": false
+  }
+}

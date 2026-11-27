@@ -1,0 +1,24 @@
+{
+  "schema_version": "v3-e1-gpu-smoke-results-manifest-v1",
+  "stage": "V3-E1",
+  "status": "TECHNICAL_DIAGNOSTIC_ONLY",
+  "complete": true,
+  "selection_authorized": false,
+  "scientific_partition_access": false,
+  "result": {
+    "path": "temp/v3/v3_e1_gpu_smoke.json",
+    "sha256": "29E970D74B057EAD9E8A5272A182137544032010AEFB6296665A627D209E03F9",
+    "size_bytes": 3226
+  },
+  "summary": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+    "device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "synthetic_rows": 10000,
+    "selected_batch_size": 128,
+    "elapsed_seconds": 6.465388799959328,
+    "texts_per_second": 1546.6973927481217,
+    "peak_reserved_mib": 484.0
+  },
+  "interpretation": "GPU embedding generation is operationally feasible; this smoke contains no model-quality evidence."
+}

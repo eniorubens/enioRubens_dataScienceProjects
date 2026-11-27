@@ -10,7 +10,7 @@
   ],
   "matrix_projects": [
     {"project": "customer-churn-prediction", "python": "3.11", "install": "pip install -e \".[dev]\""},
-    {"project": "Consumer_Complaint_Intelligence", "python": "3.11", "install": "pip install -e . pytest"},
+    {"project": "Consumer_Complaint_Intelligence", "python": "3.11", "install": "pip install -e \".[test]\""},
     {"project": "Customer_Segmentation_and_Next_Best_Action", "python": "3.11", "install": "pip install -e \".[dev]\""},
     {"project": "ds_toolkit/opt_binary_clf_pipe", "python": "3.11", "install": "pip install -e \".[dev]\""},
     {"project": "Cross_Sell_Association_Rules", "python": "3.11", "install": "pip install -e \".[dev]\""},
