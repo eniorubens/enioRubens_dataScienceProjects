@@ -34,6 +34,12 @@ from .viz import (
     formatter,
 )
 
+from .i18n import (
+    get_language,
+    set_language,
+    t,
+)
+
 from .features import (
     show_skewness,
     build_phik_significance_df,
