@@ -10,6 +10,7 @@ from typing import Any
 from .config import S0AuditConfig
 from .data import query_parquet_batch
 from .deduplication import audit_deduplication
+from .deduplication import _default_spill_directory
 from .taxonomy import TAXONOMY_VERSION, mapping_status_case_sql
 from .taxonomy import product_family_case_sql
 
@@ -76,12 +77,6 @@ def _as_date(value: Any) -> str | None:
     """Convert a DuckDB date scalar to a JSON-friendly string."""
 
     return None if value is None else str(value)
-
-
-def _default_spill_directory(path: Path) -> Path:
-    """Return the project-level DuckDB spill directory for a Parquet path."""
-
-    return path.parents[2] / "temp" / "duckdb"
 
 
 def _cache_config(config: S0AuditConfig) -> dict[str, Any]:

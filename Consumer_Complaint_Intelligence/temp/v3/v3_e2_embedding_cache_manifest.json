@@ -1,0 +1,315 @@
+{
+  "schema_version": "v3-e2-embedding-cache-manifest-v1",
+  "stage": "V3-E2",
+  "status": "COMPLETE_DEVELOPMENT_CACHE",
+  "complete": true,
+  "selection_authorized": false,
+  "scientific_partitions": [
+    "train",
+    "validation"
+  ],
+  "forbidden_partition_access": false,
+  "model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+    "embedding_dimensions": 384,
+    "embedding_dtype": "float16"
+  },
+  "source_audit": {
+    "train": {
+      "rows": 345552,
+      "critical_rows": 946,
+      "groups": 345552
+    },
+    "validation": {
+      "rows": 245980,
+      "critical_rows": 892,
+      "groups": 245980
+    }
+  },
+  "row_count": 591532,
+  "ordered_key_sha256": "87F159E3BD1461E82F03FAF7D5AAAA966B0E7F12E5D45B4827476012CAF25AB4",
+  "shard_count": 19,
+  "shards": [
+    {
+      "shard_index": 0,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0000.npy",
+      "embedding": {
+        "sha256": "AE284EC151F958A91F9BB36F6F93C3C3A97E1D78F6562842C28076D13599E67F",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0000.parquet",
+      "keys": {
+        "sha256": "1C3759AB4C4BC04B668986A6F92C7A859619D01415758999C8B44530788735F6",
+        "size_bytes": 678235
+      }
+    },
+    {
+      "shard_index": 1,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0001.npy",
+      "embedding": {
+        "sha256": "95CAC6E41513425144480DBC5BF3A85F3252949485A5F37FB2743CFABE07E398",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0001.parquet",
+      "keys": {
+        "sha256": "354B0F7596969BB183279AC7B22329F52346861903E8697E48594C7C232EE4F7",
+        "size_bytes": 678258
+      }
+    },
+    {
+      "shard_index": 2,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0002.npy",
+      "embedding": {
+        "sha256": "333190BCA5F65ECD2BAEA39E96820C38BCA72E5A3C5763B10F57C5F5D0410BB4",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0002.parquet",
+      "keys": {
+        "sha256": "596FE17FEFA88768A9FEB57D4C03F8CD3EE86C59ACCBFC039A58F1741ABABC9C",
+        "size_bytes": 678411
+      }
+    },
+    {
+      "shard_index": 3,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0003.npy",
+      "embedding": {
+        "sha256": "8FAF1526606104616F8B4BCBFD588CF249D5A38CB8DCD55F26016292CEF9A849",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0003.parquet",
+      "keys": {
+        "sha256": "08C2543C4C1BCD10BBF0F14D3259DFB6F3FEF8AD55726582D22360BD34A7A08D",
+        "size_bytes": 679364
+      }
+    },
+    {
+      "shard_index": 4,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0004.npy",
+      "embedding": {
+        "sha256": "97982DBBCF2893C59EF9B1037817BB31EF916995FEF6DEE2F73AB32FFA9E3E68",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0004.parquet",
+      "keys": {
+        "sha256": "346F2E64C36E3F6CCD27651363FD9F5B865C3C8F3711A480ED60F26B738781D9",
+        "size_bytes": 682406
+      }
+    },
+    {
+      "shard_index": 5,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0005.npy",
+      "embedding": {
+        "sha256": "7236362159AB3DBA1EA18A325344E3144C643380E6A8810071D26022FD8ECA86",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0005.parquet",
+      "keys": {
+        "sha256": "314A8C0CC15782EEFA85041CB55AA1261BF404A220B45CC3263AEC507A8EBA81",
+        "size_bytes": 679481
+      }
+    },
+    {
+      "shard_index": 6,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0006.npy",
+      "embedding": {
+        "sha256": "969037B9664D7D2FF25DB9DB718C47828DBF8160544674A9F3C8FC24DDF0AE5E",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0006.parquet",
+      "keys": {
+        "sha256": "41D97F785B13429F0230CE0F8EEEB60068E979FE9C99FCC7D617CEF31C2080EB",
+        "size_bytes": 681850
+      }
+    },
+    {
+      "shard_index": 7,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0007.npy",
+      "embedding": {
+        "sha256": "E84EB389922553C9719179D52449109309F2D3C18CCC8A6E395D9BB464E12117",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0007.parquet",
+      "keys": {
+        "sha256": "C495E2B0C72ABCE6ECA557951C68DFAF7FD1D939CEF26A66E74E628C2763E042",
+        "size_bytes": 678645
+      }
+    },
+    {
+      "shard_index": 8,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0008.npy",
+      "embedding": {
+        "sha256": "D4C33555EF36F36D48DD7D2BE9D5BCE923872CF62F92AB9D0B0A25D5B8E730FB",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0008.parquet",
+      "keys": {
+        "sha256": "3387C9936FBD1BEA866D0DF58DFCFF60E5C5C0AAD9094A9858F6D287B7445095",
+        "size_bytes": 678109
+      }
+    },
+    {
+      "shard_index": 9,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0009.npy",
+      "embedding": {
+        "sha256": "B2F1EC451400694FC0562F3741C75B2435008F0D8D74AEA4545159C34F2E1523",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0009.parquet",
+      "keys": {
+        "sha256": "629094539604065DDE02182DD6B7ED42B5BEE874C8BC04A8A336DC89E7FD0BAE",
+        "size_bytes": 677918
+      }
+    },
+    {
+      "shard_index": 10,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0010.npy",
+      "embedding": {
+        "sha256": "63F9EC9DF68BAD5941E26B4AF76506DA48BAD25AC3C58E43594FC0D8452236BA",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0010.parquet",
+      "keys": {
+        "sha256": "EB7AB4F8414B552C3077DFB431A229E707FAF26EDD63480F8AC1A4F6C82BC342",
+        "size_bytes": 677339
+      }
+    },
+    {
+      "shard_index": 11,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0011.npy",
+      "embedding": {
+        "sha256": "1A46CEA8AE98EB3FE95B3958FB50161751A270AD264BD858F43323E763196E05",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0011.parquet",
+      "keys": {
+        "sha256": "886B61CB063C64BFA0029225A4836175052487964B5A014BF71A4B0B7463F903",
+        "size_bytes": 678043
+      }
+    },
+    {
+      "shard_index": 12,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0012.npy",
+      "embedding": {
+        "sha256": "EAAFCF449D02BCFED6A26F82FB6371BA67111496B6B8D784821C286B8FE2E364",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0012.parquet",
+      "keys": {
+        "sha256": "6902BCF93E5C192D2A37F6B09234FA1981BC1496351A7EAE26EEBF09CD05BAD8",
+        "size_bytes": 678034
+      }
+    },
+    {
+      "shard_index": 13,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0013.npy",
+      "embedding": {
+        "sha256": "D52382BD13F411F9A8E190C7CA454BCBE4D004E59B4CA89EBA850D79518BDFF7",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0013.parquet",
+      "keys": {
+        "sha256": "1719EA9C65AB94CC0892BE2A8695D2C43CEC73414BD7062CE751049230382DF9",
+        "size_bytes": 680663
+      }
+    },
+    {
+      "shard_index": 14,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0014.npy",
+      "embedding": {
+        "sha256": "06E5173194F27E4689B7375DC1233FF09731092198AC2CD36128C97509FFFA66",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0014.parquet",
+      "keys": {
+        "sha256": "A257A0C203BF598A7DA90D4D84EA8F58B496A25E2FEF0556F5D3AF902C7B9A7A",
+        "size_bytes": 678092
+      }
+    },
+    {
+      "shard_index": 15,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0015.npy",
+      "embedding": {
+        "sha256": "9061FA4DEDC66A79DA0452AF856C4FC8A83E4711AE355E65A11B9142DD730CCB",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0015.parquet",
+      "keys": {
+        "sha256": "91FCE41F5D6815C8309EA91983E7D2F45DA9FA1D3ADA840CA40C66DB178ED240",
+        "size_bytes": 678092
+      }
+    },
+    {
+      "shard_index": 16,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0016.npy",
+      "embedding": {
+        "sha256": "D1FE59B041819D17BED16207AFC6161A6EB2AB2FDBE3774DF8CA21614AB629C9",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0016.parquet",
+      "keys": {
+        "sha256": "75CB4EC081766C94197135E2AE73F051613E30CFE188AC6F51A0BE16BE3EFC3B",
+        "size_bytes": 678193
+      }
+    },
+    {
+      "shard_index": 17,
+      "row_count": 32768,
+      "embedding_path": "embeddings-0017.npy",
+      "embedding": {
+        "sha256": "AC9B497BC1D55BDF2DCA34E6890C1CACCFDA09DD5D797D5FD7F431985DE0ECA8",
+        "size_bytes": 25165952
+      },
+      "keys_path": "keys-0017.parquet",
+      "keys": {
+        "sha256": "D99CD88324886EED9B21BAA08308FD5C0265A2580FC32191EB840A1A352311EF",
+        "size_bytes": 678710
+      }
+    },
+    {
+      "shard_index": 18,
+      "row_count": 1708,
+      "embedding_path": "embeddings-0018.npy",
+      "embedding": {
+        "sha256": "83812F1337E8733D2165C146D76B6E6A16C390F593E38D87FD88352C4DC32009",
+        "size_bytes": 1311872
+      },
+      "keys_path": "keys-0018.parquet",
+      "keys": {
+        "sha256": "02A12232E3E288C5E75A7C994E4705931E0806E1139FC7CB99D4F24089733B46",
+        "size_bytes": 38370
+      }
+    }
+  ],
+  "runtime": {
+    "elapsed_seconds": 717.5705636999919,
+    "rows_per_second": 824.3537707983696,
+    "batch_size": 128,
+    "device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "peak_allocated_mib": 350.52001953125,
+    "peak_reserved_mib": 488.0,
+    "python": "3.11.15",
+    "sentence_transformers": "5.7.0",
+    "torch": "2.12.0+cu130"
+  },
+  "protocol_file_sha256": "1EF5403B0C890F3788AC358B948F85B98D4EC6EE4E22465B961AD5525FC98179",
+  "individual_cache_publication": false,
+  "raw_narrative_persistence": false
+}

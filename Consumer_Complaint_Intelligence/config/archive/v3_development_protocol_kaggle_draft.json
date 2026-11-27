@@ -1,0 +1,268 @@
+{
+  "schema_version": "v3-development-protocol-draft-v1",
+  "cycle_id": "consumer-complaint-intelligence-v3",
+  "stage": "V3-E0",
+  "protocol_status": {
+    "status": "DRAFT_FOR_USER_REVIEW",
+    "frozen": false,
+    "approved_for_execution": false,
+    "review_required_before_freeze": true,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "scientific_cycle": "V3",
+    "possible_public_release_label": "2.0"
+  },
+  "lineage": {
+    "frozen_sources": [
+      "V1-S8",
+      "V2.1"
+    ],
+    "consumed_confirmatory_partitions": [
+      "test",
+      "stress"
+    ],
+    "sealed_diagnostic_only_partitions": [
+      "monitor"
+    ],
+    "frozen_artifacts_are_read_only": true
+  },
+  "objective": {
+    "primary": "recover critical-class F1 with modern sentence embeddings",
+    "critical_class": "debt_credit_management",
+    "input_language": "en-US"
+  },
+  "data_boundary": {
+    "allowed_partitions": [
+      "train",
+      "validation"
+    ],
+    "consumed_archived_partitions": [
+      "test",
+      "stress"
+    ],
+    "never_reusable_in_v3_partitions": [
+      "test",
+      "stress"
+    ],
+    "monitor_partition": {
+      "partition": "monitor",
+      "status": "SEALED_DIAGNOSTIC_ONLY",
+      "selectable": false
+    },
+    "never_selectable_partitions": [
+      "test",
+      "stress",
+      "monitor"
+    ],
+    "selection_partitions": [
+      "train",
+      "validation"
+    ]
+  },
+  "authorization": {
+    "design_authorized_stage_ids": [
+      "E1"
+    ],
+    "design_authorized_actions": [
+      "synthetic_model_loading_smoke_design_review"
+    ],
+    "execution_authorized_stage_ids": [],
+    "execution_authorized_actions": [],
+    "forbidden_execution_actions": [
+      "synthetic_model_loading_smoke_execution",
+      "kaggle_execution",
+      "model_training",
+      "threshold_selection",
+      "candidate_promotion",
+      "sealed_data_access",
+      "project_dataset_loading"
+    ],
+    "forbidden_actions": [
+      "model_training",
+      "threshold_selection",
+      "candidate_promotion",
+      "kaggle_execution_before_user_approval",
+      "sealed_data_access",
+      "project_dataset_loading"
+    ],
+    "e1_execution_requires_separate_user_approval": true
+  },
+  "execution": {
+    "accelerated_platform": "kaggle",
+    "required_gpu": "NVIDIA T4",
+    "accepted_gpu_names": [
+      "NVIDIA T4",
+      "Tesla T4"
+    ],
+    "forbidden_gpu_tokens": [
+      "P100",
+      "sm_60"
+    ],
+    "fail_fast_before": [
+      "data_staging",
+      "model_loading"
+    ],
+    "local_gpu_policy": "not_required_for_v3",
+    "network_required_for_e1": true
+  },
+  "e1_smoke": {
+    "stage_id": "E1",
+    "synthetic_texts_only": true,
+    "project_dataset_required": false,
+    "design_action": "synthetic_model_loading_smoke_design_review",
+    "execution_allowed": false,
+    "allowed_checks": [
+      "load_primary_model",
+      "load_direct_competitor_model",
+      "confirm_embedding_shapes",
+      "confirm_gpu_is_t4",
+      "confirm_no_dataset_dependency"
+    ],
+    "forbidden_outputs": [
+      "trained_estimator",
+      "selected_threshold",
+      "candidate_promotion",
+      "sealed_partition_metric"
+    ]
+  },
+  "candidate_catalog": [
+    {
+      "role": "incumbent",
+      "candidate_id": "tfidf_word_char_linearsvc",
+      "model_id": "sklearn.LinearSVC",
+      "representation": "word_char_tfidf",
+      "head": "LinearSVC",
+      "stage": "E3",
+      "training_allowed_in_e0": false
+    },
+    {
+      "role": "primary_frozen_embedding",
+      "candidate_id": "minilm_l6_v2_linear_probe",
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "representation": "frozen_sentence_embedding",
+      "head": "linear_probe",
+      "stage": "E3",
+      "training_allowed_in_e0": false
+    },
+    {
+      "role": "direct_frozen_embedding_competitor",
+      "candidate_id": "bge_small_en_v15_linear_probe",
+      "model_id": "BAAI/bge-small-en-v1.5",
+      "representation": "frozen_sentence_embedding",
+      "head": "linear_probe",
+      "stage": "E3",
+      "training_allowed_in_e0": false
+    },
+    {
+      "role": "score_fusion",
+      "candidate_id": "incumbent_plus_best_embedding_fusion",
+      "model_id": "v3_score_fusion",
+      "representation": "score_level_fusion",
+      "head": "calibrated_linear_combiner",
+      "stage": "E5",
+      "training_allowed_in_e0": false
+    },
+    {
+      "role": "quality_ceiling",
+      "candidate_id": "mpnet_base_v2_linear_probe",
+      "model_id": "sentence-transformers/all-mpnet-base-v2",
+      "representation": "frozen_sentence_embedding",
+      "head": "linear_probe",
+      "stage": "E3",
+      "training_allowed_in_e0": false
+    },
+    {
+      "role": "optional_supervised_fine_tune",
+      "candidate_id": "winning_transformer_supervised_finetune",
+      "model_id": "winner_from_frozen_embedding_stage",
+      "representation": "supervised_transformer",
+      "head": "classification_head",
+      "stage": "E6",
+      "training_allowed_in_e0": false,
+      "activation_condition": "frozen_embedding_stage_justifies_finetune"
+    }
+  ],
+  "long_text_strategy": {
+    "required_stage": "E4",
+    "must_compare_before_promotion": true,
+    "primary_model_wordpiece_limit": {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "max_wordpieces": 256
+    },
+    "direct_competitor_token_limit": {
+      "model_id": "BAAI/bge-small-en-v1.5",
+      "max_tokens": 512
+    },
+    "strategies_to_evaluate_later": [
+      "head",
+      "tail",
+      "head_tail",
+      "chunk_pooling"
+    ]
+  },
+  "stages": [
+    {
+      "id": "E0",
+      "name": "draft_development_protocol",
+      "status": "draft_for_user_review",
+      "design_authorized": false,
+      "execution_authorized": false
+    },
+    {
+      "id": "E1",
+      "name": "synthetic_model_loading_smoke",
+      "status": "design_authorized_for_user_review_only",
+      "design_authorized": true,
+      "execution_authorized": false,
+      "uses_project_dataset": false
+    },
+    {
+      "id": "E2",
+      "name": "embedding_cache",
+      "status": "planned",
+      "design_authorized": false,
+      "execution_authorized": false,
+      "blocked_until": "E1_reviewed"
+    },
+    {
+      "id": "E3",
+      "name": "linear_probes",
+      "status": "planned",
+      "design_authorized": false,
+      "execution_authorized": false,
+      "blocked_until": "E2_reviewed"
+    },
+    {
+      "id": "E4",
+      "name": "long_text_strategy",
+      "status": "planned",
+      "design_authorized": false,
+      "execution_authorized": false,
+      "blocked_until": "E3_reviewed"
+    },
+    {
+      "id": "E5",
+      "name": "score_fusion",
+      "status": "planned",
+      "design_authorized": false,
+      "execution_authorized": false,
+      "blocked_until": "E4_reviewed"
+    },
+    {
+      "id": "E6",
+      "name": "optional_supervised_fine_tune",
+      "status": "planned",
+      "design_authorized": false,
+      "execution_authorized": false,
+      "blocked_until": "E5_reviewed"
+    },
+    {
+      "id": "P",
+      "name": "packaging",
+      "status": "planned",
+      "design_authorized": false,
+      "execution_authorized": false,
+      "blocked_until": "E6_or_skip_reviewed"
+    }
+  ]
+}

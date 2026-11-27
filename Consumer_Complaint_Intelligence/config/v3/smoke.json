@@ -1,0 +1,43 @@
+{
+  "schema_version": "v3-e1-gpu-smoke-v1",
+  "stage": "V3-E1",
+  "status": "TECHNICAL_DIAGNOSTIC_ONLY",
+  "model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+    "backend": "torch",
+    "device": "cuda",
+    "torch_dtype": "float16",
+    "max_seq_length": 256,
+    "normalize_embeddings": false
+  },
+  "input": {
+    "source": "deterministic_synthetic_text_only",
+    "row_count": 10000,
+    "wordpiece_risk_profile": [
+      "short",
+      "medium",
+      "longer_than_model_limit"
+    ],
+    "scientific_partition_access": false
+  },
+  "benchmark": {
+    "batch_sizes": [
+      8,
+      16,
+      32,
+      64,
+      128
+    ],
+    "probe_rows_per_batch_size": 512,
+    "warmup_rows": 128,
+    "stop_after_cuda_oom": true,
+    "synchronize_cuda_for_timing": true
+  },
+  "paths": {
+    "model_cache": "temp/v3/huggingface",
+    "result": "temp/v3/v3_e1_gpu_smoke.json"
+  },
+  "selection_authorized": false,
+  "scientific_execution_authorized": false
+}

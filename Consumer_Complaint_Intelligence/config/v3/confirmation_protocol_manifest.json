@@ -1,0 +1,38 @@
+{
+  "schema_version": "v3-confirmatory-protocol-manifest-v1",
+  "stage": "V3-C",
+  "status": "APPROVED_AWAITING_COMPLETE_SOURCE_FREEZE",
+  "approved_on": "2026-08-24",
+  "approved_by": "user",
+  "methodological_protocol_frozen": true,
+  "required_gate_count": 5,
+  "all_six_approval_points_recorded": true,
+  "protocol": {
+    "path": "config/v3/confirmation_protocol.json",
+    "sha256": "9620E53E7CD5CB07EAB85452D90C5979E199290313D2E6800A5BAAC5E98CE786",
+    "size_bytes": 8336
+  },
+  "adr": {
+    "path": "docs/ADR-017-v3-confirmatory-evaluation.md",
+    "sha256": "E3E21B6C24E1D4066187F735F9B016BF08390F63551D2D16B174C1C6D2121625",
+    "size_bytes": 5174
+  },
+  "preapproval_archive": {
+    "protocol": {
+      "path": "config/archive/v3_confirmation_protocol_draft_preapproval.json",
+      "sha256": "D176C75EFB94C878B373A582547D3EFAB5D0017069B73D5E73705FCD938D1D0F",
+      "size_bytes": 6581
+    },
+    "adr": {
+      "path": "docs/archive/ADR-017-v3-confirmatory-evaluation-draft-preapproval.md",
+      "sha256": "C4C4E45FD2CF2F9771C2349EBA0149AD92D9084F2CE2B6F48275EFD9D04AC339",
+      "size_bytes": 4946
+    }
+  },
+  "future_source_identity_frozen": false,
+  "execution_authorized": false,
+  "confirmatory_claim_authorized": false,
+  "monitor_accessed_by_v3": false,
+  "deployment_authorized": false,
+  "next_step": "acquire_complete_2026_source_on_or_after_2027_02_01"
+}

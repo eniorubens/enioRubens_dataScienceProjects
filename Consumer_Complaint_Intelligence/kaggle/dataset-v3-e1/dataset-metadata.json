@@ -1,0 +1,10 @@
+{
+  "title": "CCI V3 E1 Code Bundle",
+  "id": "eniorubens/cci-v3-e1-bundle",
+  "licenses": [
+    {
+      "name": "other"
+    }
+  ],
+  "description": "Tiny V3 E1 code bundle for CCI embedding smoke. Project code is MIT-licensed; Kaggle dataset license names do not include MIT."
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "cci-v3-e1-execution-v1",
+  "stage": "V3-E1",
+  "historical_status": {
+    "status": "SUPERSEDED_UNEXECUTED_SCAFFOLD",
+    "superseded_on": "2026-08-21",
+    "superseded_by": "config/v3/smoke.json"
+  },
+  "status": "DRAFT",
+  "approved_status": "APPROVED_FOR_MANUAL_KAGGLE_RUN",
+  "approved_for_kaggle_execution": false,
+  "language": "en-US",
+  "purpose": "Kaggle T4-only synthetic embedding smoke scaffold",
+  "kaggle": {
+    "dataset_slug": "eniorubens/cci-v3-e1-bundle",
+    "kernel_id": "eniorubens/cci-v3-e1-embedding-smoke",
+    "machine_shape": "NvidiaTeslaT4",
+    "internet_enabled": true,
+    "output_file": "v3_e1_smoke.json"
+  },
+  "accelerator": {
+    "required_machine_shape": "NvidiaTeslaT4",
+    "accepted_device_names": [
+      "Tesla T4",
+      "NVIDIA Tesla T4",
+      "NVIDIA T4"
+    ],
+    "required_compute_capability": "sm_75",
+    "forbidden_machine_shapes": [
+      "NvidiaTeslaP100",
+      "NvidiaTeslaP100-PCIE-16GB"
+    ],
+    "require_cuda": true,
+    "require_real_kernel_probe": true
+  },
+  "package_policy": {
+    "sentence-transformers": "5.6.1",
+    "install_sentence_transformers_without_deps": true,
+    "do_not_reinstall": [
+      "torch"
+    ],
+    "record_versions": [
+      "torch",
+      "transformers",
+      "sentence-transformers",
+      "huggingface_hub"
+    ]
+  },
+  "synthetic_batch": [
+    "The account statement was available online.",
+    "A customer asked for the payment address.",
+    "The company sent an email with general information.",
+    "The caller requested a copy of the document."
+  ],
+  "models": [
+    {
+      "candidate_id": "v3_e1_minilm_l6_v2",
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "expected_embedding_dim": 384
+    },
+    {
+      "candidate_id": "v3_e1_bge_small_en_v15",
+      "model_id": "BAAI/bge-small-en-v1.5",
+      "expected_embedding_dim": 384
+    }
+  ],
+  "checks": {
+    "normalize_embeddings": true,
+    "norm_tolerance": 0.0001,
+    "determinism_tolerance_max_abs_diff": 0.000001
+  },
+  "output_contract": {
+    "aggregate_file": "v3_e1_smoke.json",
+    "persist_embeddings": false,
+    "persist_texts": false,
+    "persist_model_cache": false,
+    "persist_fitted_weights": false
+  }
+}

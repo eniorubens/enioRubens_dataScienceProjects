@@ -52,6 +52,12 @@ temp/v2/*
 !temp/v2/v2_resource_monitor_attempt2.json
 !temp/v2/v2_stress_results.json
 !temp/v2/v2_transformer_challenge.json
+!temp/v3/
+temp/v3/*
+!temp/v3/v3_e1_gpu_smoke.json
+!temp/v3/v3_e2_embedding_cache_manifest.json
+!temp/v3/v3_e3_rolling_results.json
+!temp/v3/v3_package.json
 
 !artifacts/
 artifacts/*
@@ -61,6 +67,9 @@ artifacts/s7/*
 !artifacts/v2/
 artifacts/v2/*
 !artifacts/v2/consumer_complaint_detector_v2.joblib
+!artifacts/v3/
+artifacts/v3/*
+!artifacts/v3/consumer_complaint_detector_v3.joblib
 
 # Model and notebook runtime artifacts.
 *.joblib
@@ -72,6 +81,7 @@ artifacts/v2/*
 
 !artifacts/s7/consumer_complaint_classifier_s7.joblib
 !artifacts/v2/consumer_complaint_detector_v2.joblib
+!artifacts/v3/consumer_complaint_detector_v3.joblib
 notebooks/.ipynb_checkpoints/
 
 # Python caches and local environments.
@@ -87,3 +97,7 @@ dist/
 # Regenerable Kaggle upload bundle (scripts/build_kaggle_bundle.py).
 kaggle/dataset-bundle/*.zip
 kaggle/dataset-cache/*.parquet
+
+# Regenerable V3 E1 review bundle.
+kaggle/dataset-v3-e1/*.zip
+kaggle/dataset-v3-e1/v3_e1_bundle_manifest.json

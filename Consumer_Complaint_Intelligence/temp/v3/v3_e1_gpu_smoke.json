@@ -1,0 +1,119 @@
+{
+  "schema_version": "v3-e1-gpu-smoke-result-v1",
+  "stage": "V3-E1",
+  "status": "TECHNICAL_DIAGNOSTIC_ONLY",
+  "complete": true,
+  "selection_authorized": false,
+  "scientific_partition_access": false,
+  "model": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "bc57282bc374d33e0d6c4de27f12dc1c2a87f37a",
+    "max_seq_length": 256,
+    "torch_dtype": "float16"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "torch": "2.12.0+cu130",
+      "sentence-transformers": "5.7.0",
+      "transformers": "5.14.1",
+      "numpy": "2.4.6",
+      "scikit-learn": "1.9.0"
+    },
+    "device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "total_vram_mib": 4095,
+    "cuda_runtime": "13.0"
+  },
+  "input": {
+    "source": "deterministic_synthetic_text_only",
+    "row_count": 10000,
+    "sha256": "175DA9B3E7E179C3FD6FC59DCBFA4D890DD5E040ACE00F97F470F4D2087A27D7"
+  },
+  "batch_probes": [
+    {
+      "batch_size": 8,
+      "row_count": 512,
+      "elapsed_seconds": 0.787430000025779,
+      "texts_per_second": 650.2165271620818,
+      "embedding_shape": [
+        512,
+        384
+      ],
+      "output_dtype": "float16",
+      "peak_allocated_mib": 70.71337890625,
+      "peak_reserved_mib": 98.0,
+      "status": "PASS"
+    },
+    {
+      "batch_size": 16,
+      "row_count": 512,
+      "elapsed_seconds": 0.5299502000561915,
+      "texts_per_second": 966.1285153693908,
+      "embedding_shape": [
+        512,
+        384
+      ],
+      "output_dtype": "float16",
+      "peak_allocated_mib": 89.18798828125,
+      "peak_reserved_mib": 112.0,
+      "status": "PASS"
+    },
+    {
+      "batch_size": 32,
+      "row_count": 512,
+      "elapsed_seconds": 0.4081073999986984,
+      "texts_per_second": 1254.5717132343912,
+      "embedding_shape": [
+        512,
+        384
+      ],
+      "output_dtype": "float16",
+      "peak_allocated_mib": 126.38720703125,
+      "peak_reserved_mib": 168.0,
+      "status": "PASS"
+    },
+    {
+      "batch_size": 64,
+      "row_count": 512,
+      "elapsed_seconds": 0.3673558000009507,
+      "texts_per_second": 1393.744157567881,
+      "embedding_shape": [
+        512,
+        384
+      ],
+      "output_dtype": "float16",
+      "peak_allocated_mib": 200.78564453125,
+      "peak_reserved_mib": 284.0,
+      "status": "PASS"
+    },
+    {
+      "batch_size": 128,
+      "row_count": 512,
+      "elapsed_seconds": 0.42735300003550947,
+      "texts_per_second": 1198.0727875022687,
+      "embedding_shape": [
+        512,
+        384
+      ],
+      "output_dtype": "float16",
+      "peak_allocated_mib": 349.58251953125,
+      "peak_reserved_mib": 482.0,
+      "status": "PASS"
+    }
+  ],
+  "selected_batch_size": 128,
+  "full_benchmark": {
+    "batch_size": 128,
+    "row_count": 10000,
+    "elapsed_seconds": 6.465388799959328,
+    "texts_per_second": 1546.6973927481217,
+    "embedding_shape": [
+      10000,
+      384
+    ],
+    "output_dtype": "float16",
+    "peak_allocated_mib": 349.58251953125,
+    "peak_reserved_mib": 484.0
+  },
+  "protocol_sha256": "D91958A7C7F9C31877E1DF0BB80501FD60943AF1EDC1FB9467D3B85029E601FE"
+}

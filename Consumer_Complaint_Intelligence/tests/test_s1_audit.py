@@ -74,10 +74,7 @@ class S1AuditTests(unittest.TestCase):
                 "Complaint ID": list(range(1, 9)),
             }
         )
-        # Project-like layout: the default DuckDB spill is derived from parents[2].
-        data_dir = Path(directory) / "data" / "processed"
-        data_dir.mkdir(parents=True, exist_ok=True)
-        path = data_dir / "s1.parquet"
+        path = Path(directory) / "s1.parquet"
         frame.write_parquet(path)
         return path
 
