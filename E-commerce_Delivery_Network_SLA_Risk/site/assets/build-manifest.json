@@ -2,7 +2,7 @@
   "builder": {
     "plotly_version": "7.1.0",
     "script": "scripts/build_site.py",
-    "sha256": "149dd2187677aed6660458e8efc5f51ccdf18aa071300ced3d8a02492b64aed1"
+    "sha256": "447ab9b65ed3a0d70f8cb4f5e8e1b15aff0577666d6ece754e38f4bdfdf58a0f"
   },
   "dataset_provenance": {
     "citation": "Olist (2018), Brazilian E-Commerce Public Dataset by Olist, Kaggle",
@@ -10,8 +10,8 @@
     "repository": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce"
   },
   "generated": {
-    "assets/11_final_report.ipynb": "d291ce7024660056668de0b5f0fbfffb1b77f78588201d836fc93e136255d157",
-    "assets/11_relatorio_final.ipynb": "6e018041af0f74b7496dddedb117635b729445c22cb150f4ae32b0ff48ad64b2",
+    "assets/11_final_report.ipynb": "2f71a33158a1e84dc9fdcabfc2dc4bbac86bf2584f0e5b2475020346aea0cd87",
+    "assets/11_relatorio_final.ipynb": "a75263da83269d325a57f5d8a29bc83dd972d5e635569bcd5eee7ba25f06c8d9",
     "assets/README.md": "181789fc92d249c61eec0e62da98d161ec381cdc56e6efafea302719652f4b43",
     "assets/README.pt-BR.md": "a96055f78e1697c96953d01881991633a87731512db4b25029afea03dbc342c1",
     "assets/chart-evidence-en.csv": "a4af8d2c48b7eda00a72b8cfea5dd47c2497c08f665608bf3f183d42a77b097f",
@@ -28,10 +28,10 @@
     "assets/chart-route-nodes.csv": "de9e91caf25cc68903d533da5672afddc9a73b8fd35ac634b2bd2d928e23eb0e",
     "assets/chart-tournament-ap-by-fold.csv": "5c93c6ca4e6065499875b9ffcd1bd44a4164784b33643544dd5c8bb14ed57efa",
     "assets/chart-tournament-gain.csv": "3d87570c96c765f50a2a5b3f3dd9642abe11738d5d115982fa9f51a3c3a03add",
-    "assets/final_report_en.html": "c88895de7eea2835953a8fe7c5e25d5fa56b37c0b001168e0edb7da748b49b3a",
+    "assets/final_report_en.html": "72409154b69f06b322dca5c04ff30340d8fb9a7b09e5a9528e1972a2a0c825d6",
     "assets/geo-topojson.js": "b33acb245a4ef29093d7ad80558642902657c6acd4be6f9c938ed639453126b5",
     "assets/plotly.min.js": "3b6e15d45dbb7fca5bd2094291e961ddc5472cd887009e6009a56dab668d721f",
-    "assets/relatorio_final_pt.html": "07bd5829edef8fa170e432563050fa4650b51bd0ab657ca87fb7c085cecd8f65",
+    "assets/relatorio_final_pt.html": "aa6fb7f98787e1b099eaf44a0c39c157f651236c82689b27d4cbd478d1b09398",
     "assets/report.css": "1032405ae77a616933a264182f73d53ccf0db84d97ba389609893e04435f302c",
     "assets/south-america_110m.json": "c21f1509ddb9fea737f898c9fab4d43a4060e9d214712a5acaede11cd8915482"
   },
@@ -54,8 +54,8 @@
     "data/raw/olist/csv/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
     "data/raw/olist/csv/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
     "docs/REGISTRO-DE-DECISOES.md": "87c79e0a4e957b223561e58ce1012535cd0aa05f3b0c9638a88b6d7b1fe850ac",
-    "notebooks/en_us/11_final_report.ipynb": "d291ce7024660056668de0b5f0fbfffb1b77f78588201d836fc93e136255d157",
-    "notebooks/pt_br/11_relatorio_final.ipynb": "6e018041af0f74b7496dddedb117635b729445c22cb150f4ae32b0ff48ad64b2",
+    "notebooks/en_us/11_final_report.ipynb": "2f71a33158a1e84dc9fdcabfc2dc4bbac86bf2584f0e5b2475020346aea0cd87",
+    "notebooks/pt_br/11_relatorio_final.ipynb": "a75263da83269d325a57f5d8a29bc83dd972d5e635569bcd5eee7ba25f06c8d9",
     "outputs/runs/distance_ablation/V1/classification_ablation.csv": "10fbb607b6d32bdff57cb7e4f307bff0f3e1d831949ee23c0fe517fe925a6587",
     "outputs/runs/distance_ablation/V1/classification_ablation.pkl": "0a6016ca8f56d57d50f4ca85a691029f62979a50179d9585486d7c9a638794c4",
     "outputs/runs/distance_ablation/V1/metadata.json": "482e859560cddd70720d586d4a93c812f13a3abeb47f2f19060d3c360c844795",
@@ -109,8 +109,8 @@
     "outputs/runs/tournament/V1/metadata.json": "0ffff8b45aa8d389d46e8a8c4efb5052f92d4b126a1ff10f93a87f206103debb",
     "outputs/runs/tournament/V1/regression_results.csv": "80ece65be99a188bff1139630ca6338f61505d068b1e9d1026ae626e97b3dbd1",
     "outputs/runs/tournament/V1/regression_results.pkl": "143bc2d3d23da8df62ec9652cd2cb668dcfa239ff1f58ab35336286997eb0040",
-    "reports/final_report_en.html": "c88895de7eea2835953a8fe7c5e25d5fa56b37c0b001168e0edb7da748b49b3a",
-    "reports/relatorio_final_pt.html": "07bd5829edef8fa170e432563050fa4650b51bd0ab657ca87fb7c085cecd8f65"
+    "reports/final_report_en.html": "72409154b69f06b322dca5c04ff30340d8fb9a7b09e5a9528e1972a2a0c825d6",
+    "reports/relatorio_final_pt.html": "aa6fb7f98787e1b099eaf44a0c39c157f651236c82689b27d4cbd478d1b09398"
   },
   "test_reopened": false,
   "training_performed": false

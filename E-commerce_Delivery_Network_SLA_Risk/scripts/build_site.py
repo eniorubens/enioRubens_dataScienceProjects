@@ -1576,7 +1576,7 @@ def render_page(lang: str, raw: dict, data: Data, figs: dict, assets: dict) -> t
     document = f"""<!doctype html>
 <html lang="{t['html_lang']}">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Olist SLA — {esc(t['title'])}</title>
+<title>{esc(t['title'])} | Olist SLA</title>
 <meta name="description" content="{esc(lead)}">
 <link rel="alternate" hreflang="pt-BR" href="index.html"><link rel="alternate" hreflang="en" href="en.html">
 <link rel="stylesheet" href="assets/report.css"><script src="assets/plotly.min.js"></script><script src="assets/geo-topojson.js"></script></head>
