@@ -1,6 +1,6 @@
 # Precificação e promoção no varejo com modelos multinível
 
-[English](README.md) · [Relatório executivo](site/index.html)
+[English](README.md) · [Relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Dunnhumby_Breakfast-at-the-Frat/)
 
 > A seleção de modelos e a avaliação final do P1 foram concluídas, assim como as análises que usaram apenas o treino nos notebooks 05 e 06.
 
