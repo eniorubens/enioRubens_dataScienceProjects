@@ -141,14 +141,13 @@ Tecnologias: Python · Pandas · scikit-learn · EconML · CausalML · Matplotli
 ### 9. [Consumer Complaint Intelligence](https://github.com/eniorubens/enioRubens_dataScienceProjects/tree/main/Consumer_Complaint_Intelligence) (destaque)
 ![Status](https://img.shields.io/badge/status-completed-blue)
 
-Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre um snapshot do CFPB com 3,8 milhões de linhas. O projeto avança de auditorias limitadas com Polars/DuckDB e deduplicação temporal para classificadores TF-IDF, mineração de hard negatives, detector hierárquico, bundles congelados de inferência e duas avaliações seladas pré-registradas. Nenhum ciclo foi promovido retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de
-4; ambos permanecem `NOT_CONFIRMED` e `deploy=false`.
+Constrói um sistema reprodutível de roteamento de reclamações em `en-US` sobre um snapshot do CFPB com 3,8 milhões de linhas. O projeto avança de auditorias limitadas com Polars/DuckDB e deduplicação temporal para classificadores TF-IDF, mineração de hard negatives, detector hierárquico, bundles congelados de inferência e duas avaliações seladas pré-registradas. Nenhuma das avaliações foi promovida retrospectivamente: o S8 passou 2 de 3 gates e o V2.1-C passou 3 de 4; ambos permanecem `NOT_CONFIRMED` e `deploy=false`. Um terceiro ciclo (V3) comparou embeddings de sentenças MiniLM congelados com um controle TF-IDF em folds rolling-origin restritos às partições de desenvolvimento; nenhum candidato MiniLM cumpriu o piso de precisão crítica em todos os folds, e o pacote de desenvolvimento congelado usa o detector TF-IDF. O protocolo de confirmação do V3 está aprovado, mas sua execução aguarda a fonte completa de 2026, e por isso o V3 não tem resultado confirmatório.
 
 Relatório executivo: [Português](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/) · [English](https://eniorubens.github.io/enioRubens_dataScienceProjects/Consumer_Complaint_Intelligence/en.html) · README: [English](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.md) · [Português](https://github.com/eniorubens/enioRubens_dataScienceProjects/blob/main/Consumer_Complaint_Intelligence/README.pt-BR.md)
 
-Métodos: NLP multiclasse desbalanceado · TF-IDF por palavras e caracteres · LinearSVC · Regressão logística SGD · Divisão temporal · Deduplicação por grupos · Mineração de hard negatives · Classificação hierárquica · Calibração de threshold · Intervalos bootstrap · Avaliação confirmatória selada
+Métodos: NLP multiclasse desbalanceado · TF-IDF por palavras e caracteres · LinearSVC · Regressão logística SGD · Divisão temporal · Deduplicação por grupos · Mineração de hard negatives · Classificação hierárquica · Embeddings de sentenças (MiniLM) · Calibração de threshold · Intervalos bootstrap · Avaliação confirmatória selada
 
-Tecnologias: Python · Polars · DuckDB · scikit-learn · imbalanced-learn · joblib · Kaggle · Jupyter · unittest
+Tecnologias: Python · Polars · DuckDB · scikit-learn · imbalanced-learn · sentence-transformers · joblib · Kaggle · Jupyter · unittest
 
 ---
 
