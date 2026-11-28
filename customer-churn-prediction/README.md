@@ -177,7 +177,7 @@ The cross-validation is stratified to keep the 26.5% churn rate in each fold, us
 | ROC AUC | Area under curve | Threshold-independent | Overall discrimination |
 | Accuracy | (TP+TN)/N | Inappropriate here | Misleading for imbalanced data |
 
-With a single positive class, Macro Recall and balanced accuracy are the same quantity. Accuracy is inappropriate for imbalanced classification (He & Garcia, 2009), so this work emphasizes Macro Recall.
+With a single positive class, Macro Recall and balanced accuracy are the same quantity. Accuracy is not suitable when the minority class is the one of interest (Branco et al., 2015), so this work emphasizes Macro Recall.
 
 ---
 
@@ -279,7 +279,7 @@ No observed ROI is reported. The assumptions must be replaced with controlled-ex
 
 Chen, C., Liaw, A., & Breiman, L. (2004). "Using Random Forest to Learn Imbalanced Data." Technical Report 666, Department of Statistics, University of California, Berkeley. Cited for the mechanism of BalancedRandomForestClassifier: each tree is grown from a bootstrap sample of the minority class and the same number of cases drawn, with replacement, from the majority class.
 
-He, H., & Garcia, E. A. (2009). "Learning from Imbalanced Data." *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263-1284. Cited for the choice of metrics suited to imbalanced data, where accuracy fails.
+Branco, P., Torgo, L., & Ribeiro, R. (2015). "A Survey of Predictive Modelling under Imbalanced Distributions." arXiv:1505.01658. https://arxiv.org/abs/1505.01658. Cited for why accuracy is not suitable when the minority class is the one of interest, and for alternative metrics such as recall and G-mean (Section 3.1).
 
 Guyon, I., & Elisseeff, A. (2003). "An Introduction to Variable and Feature Selection." *Journal of Machine Learning Research*, 3, 1157-1182. Cited as the basis of the multi-metric feature selection approach (Chi², ANOVA, PhiK, SelectFromModel).
 
@@ -356,7 +356,7 @@ Dataset: [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja1
 
 Libraries: scikit-learn, imbalanced-learn, Optuna, Pandas and NumPy development communities.
 
-Research: cited works by Chen, Liaw & Breiman, He & Garcia, Guyon & Elisseeff, Fawcett and Ke et al.
+Research: cited works by Chen, Liaw & Breiman, Branco, Torgo & Ribeiro, Guyon & Elisseeff, Fawcett and Ke et al.
 
 ---
 
