@@ -8,7 +8,7 @@
 
 **Não sustenta:** incrementalidade causal, uplift garantido de conversão ou deployment automático de ofertas.
 
-**Superfície de engenharia:** análise reprodutível em notebook e dataset, mais um pequeno pacote `src/cross_sell_rules` (construção das cestas, métricas de associação, mineração Apriori, seleção de candidatas) coberto por 36 testes pytest que reproduzem os números do relatório executivo. Os dois notebooks chamam esse pacote para leitura, cestas, métricas, mineração e seleção de regras, então a análise e os testes executam o mesmo código. Não há API de serving.
+**Superfície de engenharia:** análise reprodutível em notebook e dataset, mais um pequeno pacote `src/cross_sell_rules` (construção das cestas, métricas de associação, mineração Apriori, seleção de candidatas e catálogo bilíngue de textos) coberto por 41 testes pytest que reproduzem os números do relatório executivo. Os dois notebooks chamam esse pacote para leitura, cestas, métricas, mineração, seleção de regras e textos de apresentação, então a análise e os testes executam o mesmo código. Não há API de serving.
 
 **Camada de governança:** o [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) apresenta as regras como associações comportamentais, não como evidência de intervenção.
 
@@ -89,8 +89,9 @@ Cross_Sell_Association_Rules/
 │   ├── data.py                                          # Leitura e construção das cestas
 │   ├── metrics.py                                       # Confidence, lift, conviction, Zhang
 │   ├── mining.py                                        # Apriori, regras, seleção de candidatas
+│   ├── catalog.py                                       # Catálogo de textos em inglês/português
 │   └── report.py                                        # Recalcula os números do relatório
-├── tests/                                               # Suíte pytest (36 testes)
+├── tests/                                               # Suíte pytest (41 testes)
 ├── pyproject.toml                                       # Configuração do pacote e dos testes
 └── README.md                                            # Documentação do projeto
 ```

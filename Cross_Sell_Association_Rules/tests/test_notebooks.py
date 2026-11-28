@@ -55,6 +55,24 @@ def _code(notebook: Path) -> str:
     )
 
 
+def _normalised_code(notebook: Path) -> str:
+    """Return notebook code with the deliberate language assignment masked."""
+    return re.sub(
+        r"(?m)^LANG\s*=\s*[\"'](?:en|pt)[\"']\s*$",
+        'LANG = "<language>"',
+        _code(notebook),
+    )
+
+
+def test_language_notebooks_share_the_same_code():
+    """EN and PT may differ only in the explicit language assignment."""
+    english, portuguese = NOTEBOOKS
+
+    assert _normalised_code(english) == _normalised_code(portuguese)
+    assert re.search(r"(?m)^LANG\s*=\s*[\"']en[\"']\s*$", _code(english))
+    assert re.search(r"(?m)^LANG\s*=\s*[\"']pt[\"']\s*$", _code(portuguese))
+
+
 def _output_text(notebook: Path) -> str:
     """Join the saved text outputs of every code cell of a notebook.
 
