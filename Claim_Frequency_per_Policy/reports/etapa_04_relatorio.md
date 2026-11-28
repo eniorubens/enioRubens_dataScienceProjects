@@ -1,6 +1,6 @@
 # Etapa 4 — Diagnóstico de zeros, decisão de modelo e congelamento
 
-`production_eligible = false`. Só treino e validação foram usados: o leitor interpreta o ARFF integral em memória, `load_partitions` devolve apenas as partições pedidas e recusa `test`, e a verificação do congelamento registra `test_used = false`. Nenhum ZIP ou ZINB foi ajustado. Saídas em `outputs/etapa_04/`; notebook `03_diagnostico_zeros.ipynb` (PT-BR e EN-US).
+`production_eligible = false`. Esta etapa transforma os resultados provisórios da validação em uma decisão congelada, sem abrir o teste. Só treino e validação foram usados: o leitor interpreta o ARFF integral em memória, `load_partitions` devolve apenas as partições pedidas e recusa `test`, e a verificação do congelamento registra `test_used = false`. Nenhum ZIP ou ZINB foi ajustado. As saídas estão em `outputs/etapa_04/`; o notebook é `03_diagnostico_zeros.ipynb` (PT-BR e EN-US).
 
 ## 1. Reprodução e origem
 
@@ -37,7 +37,7 @@ Taxas por 100 apólices-ano das previsões diretas e da exposição total de cad
 | `> 1` (baixo suporte) | 184 | 204,5 | 3,42 | 11,89 (sem IC) | 7,32 (sem IC) |
 | Total | 101.573 | 53.590,0 | 10,02 | 10,07 (−0,22; +0,30) | 10,10 (−0,18; +0,34) |
 
-A subestimação na faixa mais curta é grande com offset fixo (14,24 contra 238,99); o coeficiente livre melhora parcialmente (134,56) e deixa desvio expressivo. O erro absoluto da diferença de taxa global sobe de 0,054 para 0,084. O ajuste livre permanece como **diagnóstico de associação com a duração observada**: a relação não sustenta extrapolação causal nem prospectiva da frequência para outra duração.
+Na faixa mais curta, o offset fixo prevê 14,24 contra 238,99 observados. O coeficiente livre aproxima a previsão para 134,56, mas ainda deixa um desvio expressivo e eleva o erro absoluto da diferença de taxa global de 0,054 para 0,084. Assim, a melhora local não basta para promovê-lo a candidato. O ajuste livre permanece como **diagnóstico da associação com a duração observada**. Essa relação não sustenta extrapolação causal nem prospectiva da frequência para outra duração.
 
 ## 4. Zeros (`zero_diagnostics.csv`, `zero_reconciliation.csv`, `zero_gate.json`)
 
@@ -54,7 +54,7 @@ As faixas reconciliam com o total para os quatro candidatos (registros, exposiç
 - **Sinal dependente da duração.** Com offset fixo, os zeros são superestimados nas faixas curtas e subestimados nas longas.
 - **Erros nas médias coexistem com as diferenças de zeros** (`mean_vs_zero_by_band.csv`): onde as contagens são subestimadas, os zeros são superestimados, e vice-versa. Diagnóstico (nunca usado em taxas ou previsões): reescalando `μ` por faixa para somar as contagens observadas, a diferença de zeros por faixa cai para algumas dezenas, com saldo de −96,3 no Poisson e −115,1 no diagnóstico livre (cerca de 0,1% dos zeros), sem intervalo associado.
 - **O que o contrato sustenta sobre um segundo processo:** o dicionário define `ClaimNb` e `Exposure`, mas não descreve apólices sem risco; não há datas nem identificador de unidade superior; o instante de medição de `BonusMalus` é desconhecido. Nenhuma hipótese plausível está documentada, e o teste de Vuong não é usado como regra (Wilson, 2015).
-- **Decisão desta rodada:** encerrar com os modelos de contagem já avaliados, **sem ZIP nem ZINB**.
+- **Decisão desta rodada:** encerrar com os modelos de contagem já avaliados, **sem ZIP nem ZINB**. O modelo de referência não cumpre o critério numérico de déficit persistente de zeros, e o contrato dos dados não oferece uma hipótese plausível para um segundo processo. Portanto, as duas condições predefinidas para abrir esses modelos falham.
 
 ## 5. Congelamento (`frozen_model.json`)
 

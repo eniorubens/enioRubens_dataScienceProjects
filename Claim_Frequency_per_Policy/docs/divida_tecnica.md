@@ -1,12 +1,12 @@
 # Dívida técnica
 
-Data: 2026-11-23. Origem: achados A12 e A13 da auditoria (`supervisao/auditoria_projeto.md`) e itens encontrados ao escrever os testes da CLI, de `artifacts` e de `plots`.
+Data: 2026-11-23. Este registro reúne os achados A12 e A13 da auditoria (`supervisao/auditoria_projeto.md`) e os itens identificados durante a escrita dos testes da CLI, de `artifacts` e de `plots`.
 
 ## Como ler este documento
 
 Os módulos abaixo têm o SHA-256 registrado no modelo congelado (`outputs/etapa_04/frozen_model.json`), no portão de integridade ou na execução oficial (`outputs/etapa_05/`). Qualquer alteração, mesmo de formatação ou de assinatura, muda o hash, reprova o portão (`stage5.integrity_gate`) e invalida a rastreabilidade da avaliação única no teste. **Por isso nenhum item da seção 1 foi corrigido.**
 
-A regra para tratar esses itens: só numa **nova versão do modelo**, com novo congelamento (etapa 4), novo conjunto reservado de dados e nova avaliação (etapa 5). O teste atual já foi consumido (Dwork et al., 2015); qualquer reuso teria de ser declarado como exploratório.
+Esses itens só podem ser tratados em uma **nova versão do modelo**, com novo congelamento (etapa 4), novo conjunto reservado de dados e nova avaliação (etapa 5). O teste atual já foi consumido (Dwork et al., 2015); qualquer reuso terá de ser declarado como exploratório.
 
 Os números de linha referem-se aos arquivos na data acima.
 
@@ -17,7 +17,7 @@ Módulos com hash localizado em `outputs/` (varredura de `json`, `csv` e `txt`):
 ### 1.1 Argumento não usado: `models._update_alpha(start)`
 
 - **Onde:** `src/freq_sinistros/models.py:166` (definição); chamadas em `models.py:249` (`start=None`) e `models.py:258` (`start=alpha`).
-- **Efeito:** o parâmetro `start` nunca é lido. A maximização de `log(alpha)` usa `minimize_scalar(method="bounded")` sobre `[log ALPHA_MIN, log ALPHA_MAX]`, que não aceita ponto de partida. Não há partida a quente, apesar do nome e da chamada passando o `alpha` anterior. O resultado numérico não é afetado (a busca é limitada e determinística), mas a assinatura sugere um comportamento que não existe.
+- **Efeito:** o parâmetro `start` nunca é lido. A maximização de `log(alpha)` usa `minimize_scalar(method="bounded")` sobre `[log ALPHA_MIN, log ALPHA_MAX]`, que não aceita ponto de partida. Embora a chamada passe o `alpha` anterior, não ocorre partida a quente. O resultado numérico não é afetado, pois a busca é limitada e determinística; o problema é a assinatura sugerir um comportamento que não existe.
 - **Por que não foi corrigido:** `models.py` tem hash em `frozen_model.json` e em `official_run.json`.
 - **Correção sugerida:** remover o parâmetro e as duas passagens de argumento. Se se quiser partida a quente de fato, estreitar os limites da busca em torno do `alpha` anterior e comparar a log-verossimilhança com a busca completa.
 
@@ -38,7 +38,7 @@ Módulos com hash localizado em `outputs/` (varredura de `json`, `csv` e `txt`):
 ### 1.4 Argumento não usado: `compare._evaluate_degree(val)`
 
 - **Onde:** `src/freq_sinistros/compare.py:371`; chamada em `compare.py:450`.
-- **Efeito:** o corpo ajusta e descreve o degrau usando só `train`; `val` não é lido. A avaliação em validação ocorre depois, em `run_comparison`. O argumento dá a impressão de que o ajuste de cada degrau enxerga a validação, o que seria vazamento; não é o caso, mas a assinatura precisa ser confiável em auditorias.
+- **Efeito:** o corpo ajusta e descreve o degrau usando somente `train`; `val` não é lido. A avaliação em validação ocorre depois, em `run_comparison`. Não há vazamento, mas a assinatura sugere que o ajuste de cada degrau enxerga a validação. Em uma auditoria, essa ambiguidade torna o fluxo mais difícil de verificar.
 - **Por que não foi corrigido:** `compare.py` tem hash registrado.
 - **Correção sugerida:** remover `val` da assinatura e da chamada.
 
@@ -59,7 +59,7 @@ Módulos com hash localizado em `outputs/` (varredura de `json`, `csv` e `txt`):
 ### 1.7 `stage5.verify_official` lança exceção em vez de devolver 1
 
 - **Onde:** `src/freq_sinistros/stage5.py:496-524` (leitura sem proteção de `official_run.json` em `:509` e de `SHA256SUMS_etapa05.txt` em `:511`; `file_sha(out / n)` em `:517`).
-- **Efeito:** arquivo ausente (registro, lista ou arquivo listado) produz `FileNotFoundError`; `json.JSONDecodeError` e `ValueError` (linha da lista sem ` *`) também escapam. Contrato da docstring ("0 ... 1 caso contrário") não é cumprido. Além disso, é menos rigorosa que `artifacts.verify_stage5`: não confere a trava, os hashes do modelo e do roteiro contra o registro, nem o portão (achado A5).
+- **Efeito:** a ausência do registro, da lista ou de um arquivo listado produz `FileNotFoundError`; `json.JSONDecodeError` e `ValueError` (linha da lista sem ` *`) também escapam. Assim, o contrato da docstring ("0 ... 1 caso contrário") não é cumprido. A função também é menos rigorosa que `artifacts.verify_stage5`: não confere a trava, os hashes do modelo e do roteiro contra o registro, nem o portão (achado A5).
 - **Contorno atual:** a CLI (`cli.verify_stage5_full`) captura essas exceções e devolve 1, e combina as duas verificações. Há testes em `tests/test_cli.py`.
 - **Por que não foi corrigido:** `stage5.py` tem hash registrado.
 - **Correção sugerida:** tratar as exceções dentro de `verify_official` e unificar com `artifacts.verify_stage5` num único critério.

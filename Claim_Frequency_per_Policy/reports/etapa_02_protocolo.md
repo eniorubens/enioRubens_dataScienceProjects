@@ -1,6 +1,6 @@
 # Etapa 2 — Protocolo de avaliação
 
-`production_eligible = false`. Nenhum modelo foi ajustado e nenhuma previsão foi feita. Os parâmetros abaixo vêm de `src/freq_sinistros/protocol.py` e estão em `outputs/etapa_02/protocol_config.json`. Nenhum depende de desfecho de validação ou de teste.
+`production_eligible = false`. Esta etapa fixa as regras antes de observar os resultados de validação. Nenhum modelo foi ajustado e nenhuma previsão foi feita. Os parâmetros vêm de `src/freq_sinistros/protocol.py`, estão registrados em `outputs/etapa_02/protocol_config.json` e não dependem de desfechos de validação ou de teste.
 
 ## 1. População e partição
 
@@ -19,7 +19,9 @@
 
 ## 2. Treino: verificação (`overview.json`, `segment_support.csv`)
 
-Treino: 474.581 registros; exposição 251.070,30 anos; 25.319 sinistros; 450.731 zeros (94,97%); taxa 10,084 por 100 apólices-ano. Contém 8 registros com `ClaimNb > 4`, 869 com `Exposure > 1` e 13.465 com `Exposure ≤ 0,02`. Validação: 101.573 registros e 53.590,05 anos, sem desfechos. As taxas observadas por segmento no treino estão em `segment_support.csv`; a da faixa `(0; 0,02]` é 250,58 e a de `= 1` é 7,07 por 100 apólices-ano.
+O treino reúne 474.581 registros, 251.070,30 anos de exposição, 25.319 sinistros e 450.731 zeros (94,97%), com taxa de 10,084 por 100 apólices-ano. Também preserva 8 registros com `ClaimNb > 4`, 869 com `Exposure > 1` e 13.465 com `Exposure ≤ 0,02`.
+
+A validação tem 101.573 registros e 53.590,05 anos. Seus desfechos não são usados nesta verificação. As taxas observadas por segmento no treino estão em `segment_support.csv`: 250,58 na faixa `(0; 0,02]` e 7,07 em `= 1`, por 100 apólices-ano. Essa diferença será acompanhada na avaliação conforme a regra já definida de manter a exposição curta visível.
 
 ## 3. Perfis coincidentes e partição agrupada (somente desenvolvimento)
 
@@ -32,7 +34,9 @@ Chave de perfil: as oito covariáveis candidatas (`Area`, `VehPower`, `VehAge`, 
 | Perfis distintos de validação presentes no treino | 36.673 de 95.031 (38,6%) |
 | Registros de treino em perfis compartilhados dentro do treino | 189.628 (40,0%) |
 
-A partição principal por `IDpol` mede, portanto, generalização em que cerca de 40% dos registros de validação têm perfil já visto no treino. **Análise secundária (a executar na etapa 3):** o desenvolvimento (treino + validação, 576.154 registros) é dividido por chave: `bucket(SHA-256("freMTPL2freq-v1-etapa2-grupo|" + chave)[:8]) mod 10000 < 8235` vai para `group_train` (razão 70:15). Resultado: 474.478 registros em `group_train` (82,35%), 101.676 em `group_validation`, 424.986 chaves distintas e **0 chaves em ambos** (`grouped_partition_summary.json`; atribuições em `data/splits/grouped_dev_assignments.csv`, hash `65ec330e…fd09f`). O teste não participa dessa partição.
+A partição principal por `IDpol` mede, portanto, um cenário em que cerca de 40% dos registros de validação têm perfil já visto no treino. Para avaliar o desempenho em perfis que não aparecem no treino, foi predefinida uma **análise secundária, a executar na etapa 3**.
+
+Nessa análise, o desenvolvimento (treino + validação, 576.154 registros) é dividido por chave: `bucket(SHA-256("freMTPL2freq-v1-etapa2-grupo|" + chave)[:8]) mod 10000 < 8235` vai para `group_train` (razão 70:15). O resultado contém 474.478 registros em `group_train` (82,35%), 101.676 em `group_validation`, 424.986 chaves distintas e **0 chaves em ambos** (`grouped_partition_summary.json`; atribuições em `data/splits/grouped_dev_assignments.csv`, hash `65ec330e…fd09f`). O teste não participa dessa partição.
 
 ## 4. Preparação e exposição
 
@@ -82,7 +86,7 @@ A partição principal por `IDpol` mede, portanto, generalização em que cerca 
 
 ## 9. Base metodológica
 
-Notebook 08 (contrato de contagem, dispersão e zeros), 08.01 (comunicação da incidência anual) e 08.02 (comparação de distribuições observadas e previstas), adaptados à exposição variável e às partições reservadas. As funções das métricas e do bootstrap (`src/freq_sinistros/metrics.py`) foram verificadas apenas com dados sintéticos.
+O protocolo adapta três referências metodológicas do MBA: o notebook 08 orienta o contrato de contagem, dispersão e zeros; o 08.01, a comunicação da incidência anual; e o 08.02, a comparação entre distribuições observadas e previstas. As adaptações tratam a exposição variável e a reserva das partições. Até esta etapa, as funções de métricas e bootstrap (`src/freq_sinistros/metrics.py`) foram verificadas apenas com dados sintéticos.
 
 ## 10. Reprodução e custo
 

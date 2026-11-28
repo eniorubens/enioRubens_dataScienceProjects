@@ -217,10 +217,14 @@ plots.show(plots.plot_claimnb(tables["eda_claimnb_distribution"], LANG))
 display(artifacts.extremes_table(summary, LANG))''')
     b.md("""### Insights
 
-Zeros correspondem a {zeros_pct} dos registros. Apólices com um sinistro respondem por {c1_claims} dos sinistros e com dois, por {c2_claims}. A cauda acima de quatro é rara: {tail_rows} registros somam {tail_claims} sinistros. Esses casos são válidos e foram preservados; sua concentração em poucos perfis é tratada na sensibilidade por perfil da comparação de modelos.""",
+Entre os registros de treino, {zeros_pct} têm `ClaimNb = 0`. As outras proporções usam um denominador diferente: do total de sinistros observado, {c1_claims} estão em apólices com um sinistro e {c2_claims}, em apólices com dois sinistros.
+
+A cauda acima de quatro é rara: {tail_rows} registros somam {tail_claims} sinistros. Esses casos são válidos e foram preservados. Sua concentração em poucos perfis é tratada na sensibilidade por perfil da comparação de modelos.""",
          """### Insights
 
-Zeros correspond to {zeros_pct} of the records. Policies with one claim account for {c1_claims} of the claims and those with two for {c2_claims}. The tail above four is rare: {tail_rows} records add up to {tail_claims} claims. These cases are valid and were preserved; their concentration in few profiles is handled in the profile-based sensitivity of the model comparison.""")
+Among the training records, {zeros_pct} have `ClaimNb = 0`. The other percentages use a different denominator: of all observed claims, {c1_claims} are in policies with one claim and {c2_claims} in policies with two claims.
+
+The tail above four is rare: {tail_rows} records add up to {tail_claims} claims. These cases are valid and were preserved. Their concentration in a small number of profiles is handled in the profile-based sensitivity of the model comparison.""")
     b.md("""## 5. Distribuição de `Exposure`
 
 **Pergunta.** Como a duração da cobertura se distribui, e quanto pesam as exposições muito curtas, exatamente um ano e acima de um ano?""",
@@ -267,10 +271,18 @@ display(pd.Series(summary["short_exposure_check"]))
 display(pd.Series(summary["offset_check"]))''')
     b.md("""### Insights
 
-Em {n_above} de {n_strata} estratos com suporte nos dois grupos, a taxa das linhas com `Exposure ≤ 0,08` supera a de referência (razão mediana {med_ratio}; mínima {min_ratio}). A razão observado/esperado é {oe_002} em `(0; 0,02]`, {oe_008} em `(0,02; 0,08]` e {oe_one} em exatamente um ano. Assim, o padrão persiste dentro dos estratos de idade com suporte. Trata-se de uma comparação descritiva: os estratos controlam apenas a idade do condutor e a do veículo, não as demais covariáveis, a referência (`Exposure ≥ 0,75`) é ela própria uma escolha, e o resultado não exclui outras explicações nem indica causalidade. O offset `log(Exposure)` com coeficiente 1 pressupõe sinistros proporcionais à exposição (Cameron & Trivedi, 2013). Como diagnóstico no treino, o coeficiente livre de `log(Exposure)` foi {off_coef} (intervalo aproximado de {off_lo} a {off_hi}), distante de 1. Na validação, será conferida a calibração por faixa de exposição dos três candidatos, sem recalibração pós-hoc; se o padrão persistir, as faixas curtas serão subestimadas e as longas superestimadas.""",
+Em {n_above} de {n_strata} estratos com suporte nos dois grupos, a taxa das linhas com `Exposure ≤ 0,08` supera a de referência (razão mediana {med_ratio}; mínima {min_ratio}). A razão observado/esperado é {oe_002} em `(0; 0,02]`, {oe_008} em `(0,02; 0,08]` e {oe_one} em exatamente um ano. O padrão, portanto, persiste dentro dos estratos de idade com suporte.
+
+Essa comparação é descritiva. Os estratos controlam apenas a idade do condutor e a do veículo, não as demais covariáveis; além disso, a referência (`Exposure ≥ 0,75`) é uma escolha analítica. O resultado não exclui outras explicações nem indica causalidade.
+
+O offset `log(Exposure)` com coeficiente 1 pressupõe sinistros proporcionais à exposição (Cameron & Trivedi, 2013). Como diagnóstico no treino, o coeficiente livre de `log(Exposure)` foi {off_coef} (intervalo aproximado de {off_lo} a {off_hi}), distante de 1. Na validação, será conferida a calibração por faixa de exposição dos três candidatos, sem recalibração pós-hoc. Se o padrão persistir, as faixas curtas serão subestimadas e as longas superestimadas.""",
          """### Insights
 
-In {n_above} of {n_strata} strata with support in both groups, the rate of rows with `Exposure ≤ 0.08` exceeds the reference rate (median ratio {med_ratio}; minimum {min_ratio}). The observed/expected ratio is {oe_002} in `(0; 0.02]`, {oe_008} in `(0.02; 0.08]` and {oe_one} at exactly one year. Hence, the pattern persists within the age strata with support. This is a descriptive comparison: the strata control only driver age and vehicle age, not the other covariates, the reference (`Exposure ≥ 0.75`) is itself a choice, and the result neither rules out other explanations nor indicates causality. The `log(Exposure)` offset with coefficient 1 presupposes claims proportional to exposure (Cameron & Trivedi, 2013). As a training diagnostic, the free coefficient of `log(Exposure)` was {off_coef} (approximate interval {off_lo} to {off_hi}), far from 1. In validation, the calibration by exposure band of the three candidates will be checked, without post hoc recalibration; if the pattern persists, short bands will be underpredicted and long bands overpredicted.""")
+In {n_above} of {n_strata} strata with support in both groups, the rate of rows with `Exposure ≤ 0.08` exceeds the reference rate (median ratio {med_ratio}; minimum {min_ratio}). The observed/expected ratio is {oe_002} in `(0; 0.02]`, {oe_008} in `(0.02; 0.08]` and {oe_one} at exactly one year. The pattern therefore persists within the age strata with support.
+
+This comparison is descriptive. The strata control only driver age and vehicle age, not the other covariates; moreover, the reference (`Exposure ≥ 0.75`) is an analytical choice. The result neither rules out other explanations nor indicates causality.
+
+The `log(Exposure)` offset with coefficient 1 presupposes claims proportional to exposure (Cameron & Trivedi, 2013). As a training diagnostic, the free coefficient of `log(Exposure)` was {off_coef} (approximate interval {off_lo} to {off_hi}), far from 1. In validation, the calibration by exposure band of the three candidates will be checked without post hoc recalibration. If the pattern persists, short bands will be underpredicted and long bands overpredicted.""")
     b.md("""## 8. Cobertura de categorias e níveis desconhecidos
 
 **Pergunta.** Como o pré-processamento trata níveis raros ou ausentes do ajuste? Um pré-processador foi ajustado em uma amostra de 100 mil linhas de treino e aplicado às demais linhas de treino.""",

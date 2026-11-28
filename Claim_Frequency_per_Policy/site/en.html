@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>When the average frequency does not tell the whole story | Claim Frequency per Policy</title>
-  <meta name="description" content="The Poisson model with a fixed exposure offset improves mean deviance on the reserved test set but retains substantial bias for very short exposures.">
+  <title>Claim frequency in motor insurance | Executive report</title>
+  <meta name="description" content="On the reserved test set, fixed-offset Poisson reduces mean deviance versus the global rate but underestimates policies with very short exposure.">
   <link rel="alternate" hreflang="pt-BR" href="index.html">
   <link rel="alternate" hreflang="en-US" href="en.html">
   <link rel="stylesheet" href="assets/report.css">
@@ -22,7 +22,7 @@
       <div class="wrap">
         <p class="kicker">Executive report · Motor insurance</p>
         <h1>Claim frequency in motor insurance</h1>
-        <p class="lead">A Poisson model was frozen before the test set was opened and outperformed a single portfolio rate on mean deviance. Calibration by duration revealed the central limitation: the claim rate remained severely underestimated for policies with very short exposure.</p>
+        <p class="lead">The Poisson model was frozen before the official evaluation and reduced mean deviance versus a single portfolio rate. In calibration by coverage duration, however, rates for very short exposures remained severely underestimated.</p>
         <ul class="metrics" role="list">
           <li><strong>−0.01177</strong><span>paired mean-deviance difference, Poisson minus baseline</span></li>
           <li><strong>10.108</strong><span>predicted claims per 100 policy-years, versus 10.058 observed</span></li>
@@ -56,9 +56,9 @@
       </section>
 
       <section id="result" aria-labelledby="result-title">
-        <h2 id="result-title">The gain appeared in the quality of predicted means</h2>
+        <h2 id="result-title">Poisson reduced mean deviance on the test set</h2>
         <div class="copy">
-          <p>On the reserved test set, Poisson had lower mean deviance than the global rate. The paired difference was entirely negative within the 95% interval, including when the bootstrap clustered records by covariate profile.</p>
+          <p>On the reserved test set, mean deviance was 0.31902 for Poisson and 0.33079 for the global rate. The 95% interval for the paired difference remained entirely below zero. The result also held when the bootstrap clustered records by covariate profile.</p>
         </div>
         <figure class="evidence" aria-labelledby="dev-chart" aria-describedby="dev-note">
           <figcaption id="dev-chart">Mean Poisson deviance on test</figcaption>
@@ -83,9 +83,9 @@
       </section>
 
       <section id="exposure" aria-labelledby="exposure-title">
-        <h2 id="exposure-title">Coverage duration concentrates the main error</h2>
+        <h2 id="exposure-title">Very short exposures carry the largest error</h2>
         <div class="copy">
-          <p>The direction observed on validation reappeared in all eight test bands. The fixed offset underestimated rates for short exposures and overestimated part of the long exposures. The difference was strongest in the first band.</p>
+          <p>The pattern observed on validation reappeared across all eight test bands: the fixed offset underestimated rates for short exposures and overestimated some longer exposures. The largest difference occurred in the first band, up to 0.02 year.</p>
         </div>
         <figure class="evidence" aria-labelledby="exposure-chart" aria-describedby="exposure-note">
           <figcaption id="exposure-chart">Observed and predicted rates by exposure band</figcaption>

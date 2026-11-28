@@ -1,6 +1,6 @@
 # Etapa 5 — Avaliação final e apresentação
 
-`production_eligible = false`. Uma única execução oficial avaliou os **101.859 registros** da partição de teste, com o Poisson de offset fixo e a taxa global de referência congelados na etapa 4. Resultados agregados em `outputs/etapa_05/`; notebook `04_avaliacao_final.ipynb` (PT-BR e EN-US).
+`production_eligible = false`. Depois do congelamento, uma única execução oficial avaliou os **101.859 registros** da partição de teste. Foram usados o Poisson com offset fixo e a taxa global de referência definidos na etapa 4, sem novo ajuste. Os resultados agregados estão em `outputs/etapa_05/`; o notebook é `04_avaliacao_final.ipynb` (PT-BR e EN-US).
 
 ## 1. Integridade antes do teste
 
@@ -32,7 +32,9 @@ Comando: `python -I -m freq_sinistros --root . stage5`, código de saída 0, in�
 | Taxa global | 0,33079 | −0,21663 | 10,084 | +0,027 |
 | Poisson (offset fixo) | 0,31902 | −0,21074 | 10,108 | +0,050 |
 
-Taxa observada: 10,058 por 100 apólices-ano. Diferença pareada Poisson − taxa global: **−0,01177 (IC 95% −0,01317; −0,01018)**; sensibilidade por perfil **−0,01177 (−0,01338; −0,01028)**. Ambos os intervalos ficam inteiramente abaixo de zero: o teste **sustenta um ganho** do Poisson sobre a referência. Os intervalos são condicionados aos modelos ajustados. Na calibração total, cada IC 95% se refere à diferença **prevista − observada** de um candidato: Poisson −0,233 a +0,317 e taxa global −0,253 a +0,288, e ambos incluem zero. Esses intervalos individuais não testam equivalência entre os candidatos nem comparam seus erros absolutos, cujos valores pontuais são 0,050 (Poisson) e 0,027 (taxa global). O ganho confirmado é no desvio médio; nenhum teste adicional foi criado sobre a partição reservada.
+A taxa observada é 10,058 por 100 apólices-ano. A diferença pareada Poisson − taxa global é **−0,01177 (IC 95% −0,01317; −0,01018)**; na sensibilidade por perfil, **−0,01177 (−0,01338; −0,01028)**. Como ambos os intervalos ficam inteiramente abaixo de zero, o teste **sustenta um ganho** do Poisson sobre a referência em desvio médio. Os intervalos são condicionados aos modelos ajustados.
+
+A calibração global foi avaliada pela diferença entre as taxas prevista e observada de cada candidato. Cada IC 95% se refere à diferença **prevista − observada**: Poisson −0,233 a +0,317 e taxa global −0,253 a +0,288. Ambos incluem zero. Esses intervalos individuais não testam equivalência entre os candidatos nem comparam seus erros absolutos, cujos valores pontuais são 0,050 (Poisson) e 0,027 (taxa global). Nenhum teste adicional foi criado sobre a partição reservada.
 
 ## 4. Calibração por segmento (`panel.csv`, `test_calibration.csv`)
 
@@ -59,7 +61,9 @@ Idade do veículo: os intervalos distinguem de zero `6-10` (−0,48), `11-20` (+
 
 ## 6. Conclusão
 
-O teste **sustenta um ganho** do Poisson com offset fixo sobre a taxa global em desvio médio de Poisson (não é empate nem resultado inconclusivo), e a escolha congelada é preservada. O ganho confirmado é no desvio médio; ele não elimina o desvio sistemático nas exposições curtas, que se comporta como em validação. Na calibração total, o erro absoluto pontual do Poisson é maior que o da referência, mas os intervalos individuais, ambos incluindo zero, não permitem concluir equivalência nem diferença entre os candidatos. A reescala por faixa da etapa 4 permanece como diagnóstico de validação e não foi aplicada. Conclusões restritas ao benchmark.
+O teste **sustenta o ganho** do Poisson com offset fixo sobre a taxa global em desvio médio de Poisson; portanto, a escolha congelada é preservada. Esse ganho não elimina o desvio sistemático nas exposições curtas, que reaparece com o mesmo comportamento observado em validação.
+
+Na calibração total, o erro absoluto pontual do Poisson é maior que o da referência. Como os intervalos individuais incluem zero, eles não permitem concluir equivalência nem diferença entre os candidatos. A reescala por faixa da etapa 4 permaneceu como diagnóstico de validação e não foi aplicada. As conclusões se restringem a este benchmark.
 
 ## 7. Notebooks, documentação e verificação
 

@@ -1,6 +1,6 @@
 # Etapa 1 — Aquisição e auditoria do `freMTPL2freq`
 
-`production_eligible = false`. Nenhuma correção, exclusão, deduplicação, imputação ou partição foi aplicada. O bruto está preservado byte a byte.
+`production_eligible = false`. Esta etapa estabelece a procedência e os limites da base antes de qualquer escolha de modelagem. Nenhuma correção, exclusão, deduplicação, imputação ou partição foi aplicada. O arquivo bruto foi preservado byte a byte.
 
 ## 1. Procedência e reprodução
 
@@ -18,7 +18,7 @@
 | MD5 (bytes baixados) | `f8875568bf0ca622929105197e2db613` |
 | MD5 declarado pelo OpenML | `f8875568bf0ca622929105197e2db613` → **confere** (o OpenML só publica MD5, referente ao ARFF; o SHA-256 é local) |
 
-Manifesto: `outputs/etapa_01/manifest.json`. A auditoria reverifica tamanho e SHA-256 contra o manifesto antes de ler e aborta (código 2) se divergirem.
+O manifesto está em `outputs/etapa_01/manifest.json`. Antes de ler os dados, a auditoria confere tamanho e SHA-256 contra esse registro. Qualquer divergência interrompe a execução com código 2, para que um arquivo diferente não seja auditado como se fosse o original.
 
 **Comandos** (raiz do projeto, PowerShell; ambiente conda `freq-sinistros`, Python 3.12.16, numpy 2.5.5, pandas 3.1.1, psutil 7.2.2; `environment.yml`):
 
@@ -43,7 +43,9 @@ A aquisição desta entrega rodou antes da criação do ambiente conda, com Pyth
 | OpenML `NumberOfInstances` / docstring do scikit-learn | 678.013 | 0 |
 | Descrição OpenML / CASdatasets (descrição e `dim()`) | 677.991 | −22 |
 
-O arquivo coincide com o OpenML e com o scikit-learn. A diferença de 22 linhas frente à descrição e ao CASdatasets **não tem origem determinada**. Não há ID repetido, linha duplicada ou linha rejeitada que a explique (linhas = IDs distintos). A fonte original (CASdatasets em R) não foi baixada, então não foi possível comparar IDs. Decisão em aberto: aceitar os 678.013 registros do artefato OpenML como população de trabalho e registrar a diferença como limitação. Fontes consultadas: API OpenML, página CASdatasets `freMTPL.html`, exemplo do scikit-learn.
+O arquivo coincide com o OpenML e com o scikit-learn. Já a descrição e o CASdatasets informam 22 linhas a menos, diferença cuja origem **não pôde ser determinada**. IDs repetidos, linhas duplicadas ou rejeições na leitura não explicam a discrepância, pois as 678.013 linhas correspondem a 678.013 IDs distintos. Como a fonte original em R do CASdatasets não foi baixada, os IDs não puderam ser comparados diretamente.
+
+Por isso, os 678.013 registros do artefato OpenML são adotados como população de trabalho, e a diferença permanece registrada como limitação. Foram consultados a API do OpenML, a página `freMTPL.html` do CASdatasets e o exemplo do scikit-learn.
 
 ## 3. Esquema e integridade
 
@@ -125,7 +127,7 @@ Faixas não sobrepostas. Taxa = 100 × sinistros / exposição. O subconjunto de
 | Exposure ≤ 1 | 1.224 | 36.102 | 358.360,11 | 10,0742 | 0 | −139,34 (−0,039%) | +0,039% |
 | Ambos | 1.233 | 36.056 | 358.360,11 | 10,0614 | −0,127% | −0,039% | −0,089% |
 
-O efeito agregado é pequeno. O efeito por segmento (faixas curtas) não foi medido aqui.
+No agregado, os limites alteram pouco a taxa. Esta etapa, porém, não mediu o efeito por segmento; em especial, o resultado não permite concluir que as faixas de exposição curta sejam igualmente pouco afetadas.
 
 ## 8. Disponibilidade das covariáveis
 
@@ -144,7 +146,7 @@ Detalhe, papel e unidade em `covariate_contract.csv` (PT-BR e EN-US). Fonte: dic
 | Escrita | 0,04 s | 301 MiB |
 | **Total da auditoria** | **5,5 s** | **≈301 MiB** (`peak_wset`, psutil) |
 
-A base inteira cabe confortavelmente nos 16 GB. A auditoria de dois runs seguidos gerou saídas CSV e JSON idênticas bit a bit (`SHA256SUMS_audit.txt`). Só `cost.json` varia.
+A base inteira foi processada com folga nos 16 GB disponíveis. Em duas execuções consecutivas, as saídas CSV e JSON foram idênticas bit a bit (`SHA256SUMS_audit.txt`). Apenas `cost.json`, que registra medidas de execução, variou.
 
 ## 10. Decisões encaminhadas pelo parecer do Codex
 
