@@ -112,10 +112,14 @@ def build() -> Builder:
     b = Builder()
     b.md("""# Diagnóstico de zeros, decisão de modelo e congelamento
 
-Este notebook formaliza, na partição de **validação**, a decisão entre taxa global, Poisson e NB2, preserva a interpretação da exposição, diagnostica os zeros previstos e documenta o congelamento do Poisson com offset fixo e da taxa global de referência. Cada seção segue a sequência pergunta → execução → insights. Os resultados são carregados dos artefatos das etapas 3 e 4 após a verificação de origem. O teste permanece reservado para a etapa 5 e nenhuma de suas linhas é usada aqui. Nenhum ZIP ou ZINB foi ajustado.""",
+Na partição de **validação**, é verificado se a quantidade de zeros observada é compatível com os modelos de contagem já avaliados. Esse diagnóstico é lido junto à calibração por exposição e à regra que seleciona o Poisson com offset fixo. A decisão é então documentada no congelamento do Poisson e da taxa global de referência.
+
+Os resultados são carregados dos artefatos das etapas 3 e 4 após a verificação de origem. O teste permanece reservado para a etapa 5 e nenhuma de suas linhas é usada aqui. Nenhum ZIP ou ZINB foi ajustado.""",
          """# Zero diagnostics, model decision and freezing
 
-This notebook formalizes, on the **validation** partition, the decision among the global rate, Poisson and NB2, preserves the interpretation of exposure, diagnoses predicted zeros and documents the freezing of the fixed-offset Poisson and of the global reference rate. Each section follows the sequence question → execution → insights. Results are loaded from the stage 3 and stage 4 artifacts after the origin check. The test partition remains reserved for stage 5 and none of its rows is used here. No ZIP or ZINB was fitted.""")
+On the **validation** partition, the observed number of zeros is checked for compatibility with the count models already evaluated. This diagnostic is read alongside calibration by exposure and the rule that selects the fixed-offset Poisson. The decision is then documented by freezing the Poisson and the global reference rate.
+
+Results are loaded from the stage 3 and stage 4 artifacts after the origin check. The test partition remains reserved for stage 5 and none of its rows is used here. No ZIP or ZINB was fitted.""")
     b.code('''%matplotlib inline
 import pandas as pd
 from IPython.display import display
@@ -193,12 +197,16 @@ display(artifacts.zero_gate_table(s4))''')
 
 As faixas reconciliam com o total para todos os candidatos (registros, exposição, zeros observados e previstos). No total, a diferença previstos − observados é {zg} para a taxa global (IC {zg_lo} a {zg_hi}), {zp} para o Poisson com offset (IC {zp_lo} a {zp_hi}) e {zn} para o NB2 (IC {zn_lo} a {zn_hi}); os três intervalos incluem zero, de modo que o critério numérico da etapa 2 não é cumprido no modelo de referência. O Poisson com offset superestima zeros nas faixas curtas e subestima nas longas ({p_bands} têm intervalo abaixo de zero), isto é, o sinal depende da duração. O diagnóstico com coeficiente livre cumpre a parte numérica: {zf} no total (IC {zf_lo} a {zf_hi}), com déficits em `(0,02; 0,08]` ({zf2}; IC {zf2_lo} a {zf2_hi}) e em `(0,25; 0,50]` ({zf4}; IC {zf4_lo} a {zf4_hi}), ambas com suporte. Essa diferença entre os modelos é registrada separadamente: o critério se aplica ao modelo de referência, e o resultado do ajuste livre é um diagnóstico.
 
-Um déficit indica que foram previstos menos zeros do que os observados. No total da validação, a alta proporção de apólices sem sinistro foi compatível com o Poisson de offset fixo. O déficit no diagnóstico com coeficiente livre mostra que essa comparação é sensível à forma de modelar a exposição. Como o déficit global do modelo de referência não se distinguiu de zero e o contrato de dados não sustentou a hipótese de um segundo processo que sempre gerasse zero, não foi necessário ajustar ZIP ou ZINB nesta avaliação.""",
+Um déficit indica que foram previstos menos zeros do que os observados. No total da validação, a alta proporção de apólices sem sinistro foi compatível com o Poisson de offset fixo. O déficit do diagnóstico com coeficiente livre mostra que a comparação é sensível à forma de modelar a exposição.
+
+Para o modelo de referência, o déficit global não se distinguiu de zero. Como o contrato de dados também não sustentou a hipótese de um segundo processo que sempre gerasse zero, não foi necessário ajustar ZIP ou ZINB nesta avaliação.""",
          """### Insights
 
 The bands reconcile with the total for all candidates (records, exposure, observed and predicted zeros). Overall, the predicted − observed difference is {zg} for the global rate (CI {zg_lo} to {zg_hi}), {zp} for the offset Poisson (CI {zp_lo} to {zp_hi}) and {zn} for NB2 (CI {zn_lo} to {zn_hi}); all three intervals include zero, so the numerical criterion of stage 2 is not met by the reference model. The offset Poisson overestimates zeros in short bands and underestimates them in long bands ({p_bands} have an interval below zero), that is, the sign depends on duration. The free-coefficient diagnostic meets the numerical part: {zf} overall (CI {zf_lo} to {zf_hi}), with deficits in `(0.02; 0.08]` ({zf2}; CI {zf2_lo} to {zf2_hi}) and in `(0.25; 0.50]` ({zf4}; CI {zf4_lo} to {zf4_hi}), both with support. This difference between models is recorded separately: the criterion applies to the reference model, and the free-fit result is a diagnostic.
 
-A deficit means that fewer zeros were predicted than observed. Across the validation set, the high share of policies with no claims was consistent with the fixed-offset Poisson model. The deficit in the free-coefficient diagnostic shows that this comparison is sensitive to how exposure is modeled. Since the overall deficit for the reference model was not distinguishable from zero and the data contract did not support a second process that always generates zeros, fitting ZIP or ZINB was unnecessary for this evaluation.""")
+A deficit means that fewer zeros were predicted than observed. Across the validation set, the high share of policies with no claims was consistent with the fixed-offset Poisson model. The deficit in the free-coefficient diagnostic shows that this comparison is sensitive to how exposure is modeled.
+
+For the reference model, the overall deficit was not distinguishable from zero. Because the data contract also did not support a second process that always generates zeros, fitting ZIP or ZINB was unnecessary for this evaluation.""")
     b.md("""## 5. Erros nas médias e diferenças de zeros
 
 **Pergunta.** Os erros nas contagens por duração coexistem com as diferenças de zeros? A coluna reescalada ajusta `μ` por faixa para somar as contagens observadas e recalcula os zeros previstos; é apenas um diagnóstico e nunca é usada em taxas ou previsões.""",

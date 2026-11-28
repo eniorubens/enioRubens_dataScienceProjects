@@ -26,6 +26,9 @@ from src.optimizer import (
 )
 
 
+pytestmark = pytest.mark.training
+
+
 @pytest.fixture(autouse=True)
 def _patch_globals(preprocessed_df, tmp_path, monkeypatch):
     """Inject the module globals needed by objective() / detailed_objective()."""

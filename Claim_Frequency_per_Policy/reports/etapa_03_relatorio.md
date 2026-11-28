@@ -1,6 +1,8 @@
 # Etapa 3 — EDA de treino e comparação em validação
 
-`production_eligible = false`. **Reserva do teste.** O leitor interpreta o ARFF integral em memória (as 678.013 linhas), e `load_partitions` devolve apenas as partições pedidas (treino e validação), recusando `test` e descartando o restante logo após a leitura. Nenhuma linha do teste foi usada na EDA, no ajuste ou na avaliação da etapa 3; `comparison_config.json` registra só os tamanhos de treino e validação. Todas as saídas estão em `outputs/etapa_03/`; o protocolo emendado está em `reports/etapa_02_protocolo.md` (seção 11) e em `outputs/etapa_03/protocol_amendment.json`, gravado **antes** do primeiro ajuste em validação.
+`production_eligible = false`. Nesta etapa, a EDA do treino é ligada à comparação dos modelos em validação, sem abrir a partição de teste.
+
+**Reserva do teste.** O leitor interpreta o ARFF integral em memória (as 678.013 linhas), mas `load_partitions` devolve apenas as partições pedidas — treino e validação —, recusa `test` e descarta o restante logo após a leitura. Nenhuma linha do teste foi usada na EDA, no ajuste ou na avaliação. `comparison_config.json` registra somente os tamanhos de treino e validação. As saídas estão em `outputs/etapa_03/`. O protocolo emendado foi gravado **antes** do primeiro ajuste em validação, em `reports/etapa_02_protocolo.md` (seção 11) e `outputs/etapa_03/protocol_amendment.json`.
 
 ## 1. Origem e reprodução
 
@@ -21,7 +23,7 @@ python scripts/run_notebooks.py                 # executa os quatro notebooks em
 python -m pytest ; ruff check .
 ```
 
-Dois problemas de ambiente foram resolvidos e documentados em `environment.yml`: (i) o MKL 2026.1 do conda travava `numpy.linalg` nesta máquina (código de saída −1066598273), e a biblioteca BLAS foi trocada por OpenBLAS (`libblas=*=*openblas`); (ii) o `platformdirs` do perfil do usuário (`AppData\Roaming\Python`) sobrepunha o do ambiente e quebrava o pytest, o que `PYTHONNOUSERSITE=1` evita.
+Dois problemas de ambiente foram resolvidos e documentados em `environment.yml`. O MKL 2026.1 do conda travava `numpy.linalg` nesta máquina (código de saída −1066598273), por isso a biblioteca BLAS foi trocada por OpenBLAS (`libblas=*=*openblas`). Além disso, o `platformdirs` do perfil do usuário (`AppData\Roaming\Python`) sobrepunha o do ambiente e quebrava o pytest. `PYTHONNOUSERSITE=1` evita essa sobreposição.
 
 ## 2. EDA do treino (somente treino)
 
@@ -75,7 +77,9 @@ Taxa observada: 10,017 por 100 apólices-ano. Diferenças pareadas (IC 95%, 1.00
 | Treino inteiro | sim | não | Poisson |
 | Agrupada, treino inteiro | — | sim | NB2 |
 
-O ganho de desvio do Poisson sobre a taxa global é estável em sinal e em IC nos três degraus (−0,0089, −0,0094, −0,0096), mas a condição de erro absoluto de taxa global só é satisfeita no treino inteiro: nos degraus de 100 e 200 mil o erro do Poisson (0,142 e 0,020) supera o da taxa global (0,131 e 0,010). O NB2 melhora a log-verossimilhança, porém piora o desvio e o erro de taxa global, então não supera o Poisson na partição principal. Na partição agrupada o NB2 satisfaz as condições (diferença de desvio −0,00001, IC −0,00009 a +0,00007; log-verossimilhança +0,00140; erros de taxa +0,055 contra +0,244 do Poisson). A conclusão depende da população de avaliação.
+O ganho de desvio do Poisson sobre a taxa global mantém o mesmo sinal e IC favorável nos três degraus (−0,0089, −0,0094, −0,0096). A condição de erro absoluto da taxa global, porém, só é satisfeita no treino inteiro: nos degraus de 100 e 200 mil, o erro do Poisson (0,142 e 0,020) supera o da taxa global (0,131 e 0,010).
+
+O NB2 melhora a log-verossimilhança, mas piora o desvio e o erro de taxa global. Por isso, não supera o Poisson na partição principal. Na partição agrupada, ele satisfaz as condições (diferença de desvio −0,00001, IC −0,00009 a +0,00007; log-verossimilhança +0,00140; erros de taxa +0,055 contra +0,244 do Poisson). A preferência, portanto, depende da população de avaliação e ainda requer a decisão da etapa 4.
 
 ## 6. Calibração (`calibration_by_segment.csv`)
 

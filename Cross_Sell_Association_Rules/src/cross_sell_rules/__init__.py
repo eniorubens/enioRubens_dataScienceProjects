@@ -1,4 +1,5 @@
 """Market basket analysis helpers for the cross-sell rules project."""
+from cross_sell_rules.catalog import CATALOG, translate
 from cross_sell_rules.data import (
     DatasetSummary,
     build_baskets,
@@ -22,6 +23,7 @@ from cross_sell_rules.report import compute_report_figures
 __all__ = [
     "DatasetSummary",
     "build_baskets",
+    "CATALOG",
     "co_count",
     "compute_report_figures",
     "confidence",
@@ -37,5 +39,6 @@ __all__ = [
     "rules_to_coordinates",
     "select_cross_sell_candidates",
     "summarize_baskets",
+    "translate",
     "zhang",
 ]

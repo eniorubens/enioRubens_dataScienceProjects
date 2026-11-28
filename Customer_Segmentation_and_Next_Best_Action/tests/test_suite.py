@@ -200,6 +200,42 @@ class TestBuildRFM:
 
 
 # ══════════════════════════════════════════════════════════════════════════
+# prediction — temporal repurchase dataset
+# ══════════════════════════════════════════════════════════════════════════
+
+class TestRepurchaseDataset:
+    def test_features_exclude_target_window(self):
+        from src.prediction import build_repurchase_dataset
+
+        raw = pd.DataFrame({
+            "Invoice": ["1", "2", "3", "4"],
+            "StockCode": ["A", "B", "A", "C"],
+            "Quantity": [1, 2, 10, 1],
+            "InvoiceDate": pd.to_datetime([
+                "2024-01-01", "2024-01-02", "2024-01-06", "2024-01-10",
+            ]),
+            "Revenue": [10.0, 20.0, 100.0, 5.0],
+            "Customer ID": ["A", "B", "A", "C"],
+            "Country": ["UK", "DE", "UK", "FR"],
+        })
+
+        features, cutoff, target_end = build_repurchase_dataset(raw, horizon_days=5)
+        by_customer = features.set_index("Customer ID")
+
+        assert cutoff == pd.Timestamp("2024-01-05")
+        assert target_end == pd.Timestamp("2024-01-10")
+        assert by_customer.loc["A", "Monetary"] == 10.0
+        assert by_customer.loc["A", "repurchase_90d"] == 1
+        assert by_customer.loc["B", "repurchase_90d"] == 0
+
+    def test_horizon_must_be_positive(self, rfm_df):
+        from src.prediction import build_repurchase_dataset
+
+        with pytest.raises(ValueError, match="horizon_days must be positive"):
+            build_repurchase_dataset(rfm_df, horizon_days=0)
+
+
+# ══════════════════════════════════════════════════════════════════════════
 # segmentation
 # ══════════════════════════════════════════════════════════════════════════
 

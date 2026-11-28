@@ -4,13 +4,17 @@
 
 ## 1. Summary and result
 
-A reproducible study of **claim frequency** on the French motor insurance benchmark `freMTPL2freq` (OpenML 41214, v1; 678,013 records). The goal is to estimate how many claims to expect per **100 policy-years** across vehicle, driver and region profiles, and to measure where the model approximates observed totals well and where it under- or overestimates them.
+This project studies **claim frequency** on the French motor insurance benchmark `freMTPL2freq` (OpenML 41214, v1; 678,013 records). The analysis estimates expected claims per **100 policy-years** across vehicle, driver, and regional profiles. It also shows where predictions track observed totals and where calibration errors remain.
 
-**Final evaluation result** (reserved test set, 101,859 records, 53,839.09 policy-years, 5,415 claims; a single run): the **Poisson with a fixed exposure offset**, frozen on the training data, has a mean Poisson deviance of 0.31902, against 0.33079 for the global reference rate. The paired difference is −0.01177 (95% CI −0.01317 to −0.01018; by profile, −0.01338 to −0.01028), so the test **supports a gain in mean deviance** over the reference. In total calibration, the observed rate is 10.058 per 100 policy-years and the predicted rates are 10.108 (Poisson) and 10.084 (global rate). Each 95% CI refers to the predicted − observed difference of one candidate (Poisson −0.233 to +0.317; reference −0.253 to +0.288) and both include zero; these individual intervals do not test equivalence between the candidates nor compare their absolute errors, which are, as point values, 0.050 (Poisson) and 0.027 (global rate). The bias by duration persists: in the `(0; 0.02]` band, the observed rate is 255.51 and the predicted rate 14.04. Conclusions hold within the benchmark; `production_eligible = false`.
+The reserved test set was used for one official evaluation. It contains 101,859 records, 53,839.09 policy-years, and 5,415 claims. The **Poisson model with a fixed exposure offset**, frozen after training, reached a mean Poisson deviance of 0.31902, compared with 0.33079 for the global reference rate. The paired difference was −0.01177 (95% CI −0.01317 to −0.01018; by profile, −0.01338 to −0.01028). The test therefore supports a Poisson gain in mean deviance.
+
+For aggregate calibration, the observed rate was 10.058 claims per 100 policy-years. Poisson predicted 10.108 and the global rate predicted 10.084. The 95% CI for predicted − observed includes zero for both candidates; it ranges from −0.233 to +0.317 for Poisson and from −0.253 to +0.288 for the baseline. These intervals assess each candidate separately; they do not test equivalence between them or compare their point absolute errors, which were 0.050 for Poisson and 0.027 for the global rate.
+
+The main limitation appears in calibration by coverage duration. In the `(0; 0.02]` band, the observed rate was 255.51, while Poisson predicted 14.04 claims per 100 policy-years. Conclusions are limited to this benchmark, and `production_eligible = false`.
 
 ## 2. Data and question
 
-`freMTPL2freq`, CC0 license on OpenML. The unit is the coverage record (`IDpol`) with `ClaimNb` (count) and `Exposure` (years). The final question: does the frozen Poisson outperform the global rate on never-used records, and where do predicted rates depart from observed rates by exposure band, vehicle age and region?
+The `freMTPL2freq` dataset is available from OpenML under a CC0 license. Each record represents the coverage identified by `IDpol`, with `ClaimNb` for the claim count and `Exposure` for exposure time in years. The evaluation first tests whether the frozen Poisson outperforms the global rate on records that were not used during development. It then identifies the exposure bands, vehicle ages, and regions where predicted rates depart from observed rates.
 
 ## 3. Repository layout
 
@@ -26,7 +30,7 @@ A reproducible study of **claim frequency** on the French motor insurance benchm
 
 ## 4. Reading map
 
-The [executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) presents the problem, decision, and main results as a concise read. It is published on GitHub Pages; the source is `site/en.html`, which can also be opened locally in a browser. The notebooks preserve the complete analytical narrative:
+The [executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/en.html) summarizes the problem, modeling decision, and main results. It is published on GitHub Pages, and its source, `site/en.html`, can also be opened locally in a browser. For the complete analysis, read the notebooks in the order below:
 
 1. [Training EDA](notebooks/en_us/01_eda_treino.ipynb) — presents the variables, partition contract, and exploration conducted on training data only.
 2. [Model comparison](notebooks/en_us/02_comparacao_modelos.ipynb) — explains the analytical table and compares the global rate, Poisson, and NB2 on validation.

@@ -34,6 +34,9 @@ from src.temporal_optimizer import (
 )
 
 
+pytestmark = pytest.mark.training
+
+
 def _fixed(params: dict) -> optuna.trial.FixedTrial:
     return optuna.trial.FixedTrial(params)
 

@@ -8,7 +8,7 @@
 
 **Does not support:** causal incrementality, guaranteed conversion uplift, or automatic offer deployment.
 
-**Engineering surface:** reproducible notebook and dataset analysis, plus a small `src/cross_sell_rules` package (basket construction, association metrics, Apriori mining, candidate selection) covered by 36 pytest tests that reproduce the figures of the executive report. Both notebooks call this package for loading, baskets, metrics, mining and rule selection, so the analysis and the tests run the same code. There is no serving API.
+**Engineering surface:** reproducible notebook and dataset analysis, plus a small `src/cross_sell_rules` package (basket construction, association metrics, Apriori mining, candidate selection, and bilingual text catalog) covered by 41 pytest tests that reproduce the figures of the executive report. Both notebooks call this package for loading, baskets, metrics, mining, rule selection, and presentation text, so the analysis and the tests run the same code. There is no serving API.
 
 **Governance layer:** [Executive report](https://eniorubens.github.io/enioRubens_dataScienceProjects/Cross_Sell_Association_Rules/) presents the rules as behavioral associations, not intervention evidence.
 
@@ -77,8 +77,9 @@ Cross_Sell_Association_Rules/
 │   ├── data.py                                          # Loading and basket construction
 │   ├── metrics.py                                       # Confidence, lift, conviction, Zhang
 │   ├── mining.py                                        # Apriori, rules, candidate selection
+│   ├── catalog.py                                       # English/Portuguese text catalog
 │   └── report.py                                        # Recomputes the report figures
-├── tests/                                               # pytest suite (36 tests)
+├── tests/                                               # pytest suite (41 tests)
 ├── pyproject.toml                                       # Package and test configuration
 └── README.md                                            # Project documentation
 ```

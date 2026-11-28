@@ -31,7 +31,56 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from src.config import N_CLUSTERS, RANDOM_STATE
+from src.data import mode_or_unknown
 from src.segmentation import KMeansClusterAdder
+
+
+# ── Temporal repurchase dataset ───────────────────────────────────────────
+
+def build_repurchase_dataset(
+    clean_df: pd.DataFrame,
+    horizon_days: int = 90,
+) -> tuple[pd.DataFrame, pd.Timestamp, pd.Timestamp]:
+    """Build leakage-aware features and a future repurchase target.
+
+    Transactions before ``cutoff_date`` are used to create customer features;
+    transactions in the following ``horizon_days`` form the binary target.
+    The returned feature table therefore contains no transaction from the
+    target window.
+    """
+    if horizon_days <= 0:
+        raise ValueError("horizon_days must be positive")
+
+    cutoff_date = clean_df["InvoiceDate"].max() - pd.Timedelta(days=horizon_days)
+    target_end_date = cutoff_date + pd.Timedelta(days=horizon_days)
+
+    feature_df = clean_df.loc[clean_df["InvoiceDate"] < cutoff_date].copy()
+    target_df = clean_df.loc[
+        (clean_df["InvoiceDate"] >= cutoff_date)
+        & (clean_df["InvoiceDate"] <= target_end_date)
+    ].copy()
+
+    predictive_features = feature_df.groupby("Customer ID").agg(
+        Recency=("InvoiceDate", lambda x: (cutoff_date - x.max()).days),
+        Frequency=("Invoice", "nunique"),
+        Monetary=("Revenue", "sum"),
+        QuantityTotal=("Quantity", "sum"),
+        UniqueProducts=("StockCode", "nunique"),
+        CountryMode=("Country", mode_or_unknown),
+    ).reset_index()
+
+    predictive_features["AverageTicket"] = np.where(
+        predictive_features["Frequency"] > 0,
+        predictive_features["Monetary"] / predictive_features["Frequency"],
+        0.0,
+    )
+
+    future_buyers = set(target_df["Customer ID"].unique())
+    predictive_features["repurchase_90d"] = (
+        predictive_features["Customer ID"].isin(future_buyers).astype(int)
+    )
+
+    return predictive_features, cutoff_date, target_end_date
 
 
 # ── Encoder / preprocessor factories ──────────────────────────────────────

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quando a frequência média não conta toda a história | Frequência de Sinistros por Apólice</title>
-  <meta name="description" content="O Poisson com offset fixo de exposição melhora o desvio médio no teste reservado, mas mantém um viés importante nas apólices com exposição muito curta.">
+  <title>Frequência de sinistros no seguro automotivo | Relatório executivo</title>
+  <meta name="description" content="No teste reservado, o Poisson com offset fixo reduz o desvio médio frente à taxa global, mas subestima as apólices com exposição muito curta.">
   <link rel="alternate" hreflang="pt-BR" href="index.html">
   <link rel="alternate" hreflang="en-US" href="en.html">
   <link rel="stylesheet" href="assets/report.css">
@@ -22,7 +22,7 @@
       <div class="wrap">
         <p class="kicker">Relatório executivo · Seguro automotivo</p>
         <h1>Frequência de sinistros no seguro automotivo</h1>
-        <p class="lead">Um modelo de Poisson foi congelado antes da abertura do teste e superou a taxa única da carteira no desvio médio. A calibração por duração revelou o limite central: a taxa de sinistros continuou fortemente subestimada nas apólices com exposição muito curta.</p>
+        <p class="lead">O modelo de Poisson foi congelado antes da avaliação oficial e reduziu o desvio médio frente à taxa única da carteira. Na calibração por duração, porém, as exposições muito curtas continuaram com taxas fortemente subestimadas.</p>
         <ul class="metrics" role="list">
           <li><strong>−0,01177</strong><span>diferença pareada no desvio médio, Poisson menos referência</span></li>
           <li><strong>10,108</strong><span>sinistros previstos por 100 apólices-ano, ante 10,058 observados</span></li>
@@ -56,9 +56,9 @@
       </section>
 
       <section id="resultado" aria-labelledby="resultado-title">
-        <h2 id="resultado-title">O ganho apareceu na qualidade das médias previstas</h2>
+        <h2 id="resultado-title">O Poisson reduziu o desvio médio no teste</h2>
         <div class="copy">
-          <p>No teste reservado, o Poisson apresentou menor desvio médio que a taxa global. A diferença pareada foi inteiramente negativa no intervalo de 95%, inclusive quando o bootstrap agrupou registros por perfil de covariáveis.</p>
+          <p>No teste reservado, o desvio médio foi 0,31902 no Poisson e 0,33079 na taxa global. O intervalo de 95% da diferença pareada ficou inteiramente abaixo de zero. O resultado se manteve quando o bootstrap agrupou os registros por perfil de covariáveis.</p>
         </div>
         <figure class="evidence" aria-labelledby="dev-chart" aria-describedby="dev-note">
           <figcaption id="dev-chart">Desvio médio de Poisson no teste</figcaption>
@@ -83,9 +83,9 @@
       </section>
 
       <section id="exposicao" aria-labelledby="exposicao-title">
-        <h2 id="exposicao-title">A duração da cobertura concentra o principal erro</h2>
+        <h2 id="exposicao-title">As exposições muito curtas concentram o maior erro</h2>
         <div class="copy">
-          <p>O sinal observado na validação reapareceu nas oito faixas do teste. O offset fixo subestimou as taxas nas exposições curtas e superestimou parte das longas. A diferença foi mais intensa na primeira faixa.</p>
+          <p>O padrão observado na validação reapareceu nas oito faixas do teste: o offset fixo subestimou as taxas nas exposições curtas e superestimou parte das longas. A maior diferença ocorreu na primeira faixa, de até 0,02 ano.</p>
         </div>
         <figure class="evidence" aria-labelledby="exposure-chart" aria-describedby="exposure-note">
           <figcaption id="exposure-chart">Taxas observadas e previstas por faixa de exposição</figcaption>

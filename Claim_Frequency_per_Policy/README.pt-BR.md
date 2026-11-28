@@ -4,13 +4,17 @@
 
 ## 1. Resumo e resultado
 
-Estudo reproduzível de **frequência de sinistros** no benchmark francês de seguro automotivo `freMTPL2freq` (OpenML 41214, v1; 678.013 registros). O objetivo é estimar quantos sinistros esperar por **100 apólices-ano** em perfis de veículo, condutor e região e medir onde o modelo aproxima bem os totais observados e onde os subestima ou superestima.
+Este projeto estuda a **frequência de sinistros** no benchmark francês de seguro automotivo `freMTPL2freq` (OpenML 41214, v1; 678.013 registros). A análise estima quantos sinistros são esperados por **100 apólices-ano** em diferentes perfis de veículo, condutor e região. Também mostra em quais grupos as previsões se aproximam dos totais observados e onde permanecem erros de calibração.
 
-**Resultado da avaliação final** (teste reservado, 101.859 registros, 53.839,09 apólices-ano, 5.415 sinistros; uma única execução): o **Poisson com offset de exposição fixo**, congelado no treino, tem desvio médio de Poisson 0,31902, contra 0,33079 da taxa global de referência. A diferença pareada é −0,01177 (IC 95% −0,01317 a −0,01018; por perfil, −0,01338 a −0,01028), então o teste **sustenta um ganho no desvio médio** sobre a referência. Na calibração total, a taxa observada é 10,058 por 100 apólices-ano e as previstas são 10,108 (Poisson) e 10,084 (taxa global). Cada IC 95% se refere à diferença prevista − observada de um candidato (Poisson −0,233 a +0,317; referência −0,253 a +0,288) e ambos incluem zero; esses intervalos individuais não testam equivalência entre os candidatos nem comparam seus erros absolutos, que são, em valores pontuais, 0,050 (Poisson) e 0,027 (taxa global). O desvio por duração persiste: na faixa `(0; 0,02]`, o observado é 255,51 e o previsto 14,04. As conclusões valem dentro do benchmark; `production_eligible = false`.
+Foi feita uma única avaliação oficial no teste reservado, que reúne 101.859 registros, 53.839,09 apólices-ano e 5.415 sinistros. O **Poisson com offset de exposição fixo**, congelado após o treino, alcançou desvio médio de Poisson de 0,31902, ante 0,33079 da taxa global de referência. A diferença pareada foi −0,01177 (IC 95% −0,01317 a −0,01018; por perfil, −0,01338 a −0,01028). Portanto, o teste sustenta o ganho do Poisson no desvio médio.
+
+Na calibração agregada, foram observados 10,058 sinistros por 100 apólices-ano. O Poisson previu 10,108 e a taxa global, 10,084. O IC 95% da diferença prevista − observada inclui zero nos dois candidatos; no Poisson, vai de −0,233 a +0,317 e, na referência, de −0,253 a +0,288. Esses intervalos avaliam cada candidato separadamente; não testam equivalência entre eles nem comparam os erros absolutos pontuais, de 0,050 no Poisson e 0,027 na taxa global.
+
+A principal limitação aparece na calibração por duração. Na faixa `(0; 0,02]`, a taxa observada foi 255,51, enquanto o Poisson previu 14,04 sinistros por 100 apólices-ano. As conclusões se restringem a este benchmark, e `production_eligible = false`.
 
 ## 2. Dados e pergunta
 
-`freMTPL2freq`, licença CC0 no OpenML. A unidade é o registro de cobertura (`IDpol`) com `ClaimNb` (contagem) e `Exposure` (anos). A pergunta final: o Poisson congelado supera a taxa global em registros nunca usados, e onde as taxas previstas se afastam das observadas por faixa de exposição, idade do veículo e região?
+O `freMTPL2freq` está disponível no OpenML sob licença CC0. Cada registro representa a cobertura identificada por `IDpol`, com `ClaimNb` para a contagem de sinistros e `Exposure` para o tempo de exposição, em anos. A avaliação verifica se o Poisson congelado supera a taxa global em registros que não participaram do desenvolvimento. Em seguida, identifica as faixas de exposição, idades do veículo e regiões nas quais as taxas previstas se afastam das observadas.
 
 ## 3. Estrutura do repositório
 
@@ -26,7 +30,7 @@ Estudo reproduzível de **frequência de sinistros** no benchmark francês de se
 
 ## 4. Mapa de leitura
 
-O [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) apresenta o problema, a decisão e os principais resultados em uma leitura breve. Ele está publicado no GitHub Pages; a fonte é `site/index.html`, que também pode ser aberta localmente no navegador. Os notebooks preservam a narrativa analítica completa:
+O [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) resume o problema, a decisão de modelagem e os principais resultados. Ele está publicado no GitHub Pages, e sua fonte, `site/index.html`, também pode ser aberta localmente no navegador. Para acompanhar a análise completa, leia os notebooks na ordem abaixo:
 
 1. [EDA do treino](notebooks/pt_br/01_eda_treino.ipynb) — apresenta as variáveis, o contrato de partição e a exploração feita somente no treino.
 2. [Comparação de modelos](notebooks/pt_br/02_comparacao_modelos.ipynb) — explica a tabela analítica e compara taxa global, Poisson e NB2 na validação.
