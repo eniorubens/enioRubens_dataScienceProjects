@@ -2,6 +2,8 @@
 
 Idioma: [English](README.md) | Português (Brasil)
 
+[![CI](https://github.com/eniorubens/consumer-complaint-intelligence/actions/workflows/cci-ci.yml/badge.svg)](https://github.com/eniorubens/consumer-complaint-intelligence/actions/workflows/cci-ci.yml)
+
 Este projeto roteia narrativas livres de reclamações de consumidores do CFPB
 Consumer Complaint Database para nove famílias de produto e estuda o que é
 preciso para confirmar honestamente que um classificador de texto funciona sobre

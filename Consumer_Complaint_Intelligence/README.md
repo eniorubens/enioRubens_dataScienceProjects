@@ -2,6 +2,8 @@
 
 Language: English | [Português (Brasil)](README.pt-BR.md)
 
+[![CI](https://github.com/eniorubens/consumer-complaint-intelligence/actions/workflows/cci-ci.yml/badge.svg)](https://github.com/eniorubens/consumer-complaint-intelligence/actions/workflows/cci-ci.yml)
+
 This project routes free-text consumer complaints from the CFPB Consumer
 Complaint Database into nine product families and studies what it takes to
 honestly confirm that a text classifier works on data it has never seen.
