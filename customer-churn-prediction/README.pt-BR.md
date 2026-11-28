@@ -106,7 +106,7 @@ Os experimentos foram rastreados com `opt_binary_clf_pipe` e MLflow em 35 config
 
 #### Por que BalancedRandomForestClassifier?
 
-O BalancedRandomForestClassifier trata o desbalanceamento de classes por construção: usa bootstrap com balanceamento por classe no nível da árvore, sem exigir SMOTE externo (Chen et al., 2004). O campeão do notebook (artefato reproduzido por `train_model.py` com a mesma divisão estratificada 80/20, semente 42) alcança 76,4% de Recall Macro (IC de 95% bootstrap 74,0–78,7%) e 83,5% de ROC AUC (IC de 95% 81,4–85,6%) em 1.407 clientes de teste (374 churners). O ROC AUC é medido a partir de scores contínuos no hold-out. O recall out-of-fold de 6 folds no treino é 76,8% (AUC 84,2%), sem indício de viés otimista no número reportado.
+O BalancedRandomForestClassifier trata o desbalanceamento de classes por construção: usa bootstrap com balanceamento por classe no nível da árvore (Chen et al., 2004) e, por isso, dispensa reamostragem externa, como o SMOTE. O campeão do notebook (artefato reproduzido por `train_model.py` com a mesma divisão estratificada 80/20, semente 42) alcança 76,4% de Recall Macro (IC de 95% bootstrap 74,0–78,7%) e 83,5% de ROC AUC (IC de 95% 81,4–85,6%) em 1.407 clientes de teste (374 churners). O ROC AUC é medido a partir de scores contínuos no hold-out. O recall out-of-fold de 6 folds no treino é 76,8% (AUC 84,2%), sem indício de viés otimista no número reportado.
 
 A validação é um único hold-out determinístico, não validação temporal ou produtiva. O uso em produção exige validação temporal, monitoramento e experimento controlado de retenção.
 
@@ -277,13 +277,15 @@ Nenhum ROI observado é reportado. As premissas devem ser substituídas por resu
 
 ## Referências
 
+Chen, C., Liaw, A., & Breiman, L. (2004). "Using Random Forest to Learn Imbalanced Data." Technical Report 666, Department of Statistics, University of California, Berkeley. Citada para o mecanismo do BalancedRandomForestClassifier: cada árvore é induzida de uma amostra bootstrap da classe minoritária e do mesmo número de casos sorteados, com reposição, da classe majoritária.
+
 He, H., & Garcia, E. A. (2009). "Learning from Imbalanced Data." *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263–1284. Citada para a escolha de métricas adequadas a dados desbalanceados, quando a acurácia falha.
 
 Guyon, I., & Elisseeff, A. (2003). "An Introduction to Variable and Feature Selection." *Journal of Machine Learning Research*, 3, 1157–1182. Citada como base da seleção de atributos multimétrica (Chi², ANOVA, PhiK, SelectFromModel).
 
 Fawcett, T. (2006). "An Introduction to ROC Analysis." *Pattern Recognition Letters*, 27(8), 861–874. Citada para a seleção do threshold como decisão dependente do contexto de uso.
 
-Ke, G., et al. (2017). "LightGBM: A Fast, Distributed, Gradient Boosting Framework." *NeurIPS*. Referenciada durante a seleção do modelo; o LightGBM foi um candidato forte.
+Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q., & Liu, T.-Y. (2017). "LightGBM: A Highly Efficient Gradient Boosting Decision Tree." *Advances in Neural Information Processing Systems*, 30. Referenciada durante a seleção do modelo; o LightGBM foi um candidato forte.
 
 ---
 
@@ -354,7 +356,7 @@ Dataset: [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja1
 
 Bibliotecas: comunidades de desenvolvimento de scikit-learn, imbalanced-learn, Optuna, Pandas e NumPy.
 
-Pesquisa: artigos citados de He & Garcia, Guyon & Elisseeff, Fawcett e Ke et al.
+Pesquisa: obras citadas de Chen, Liaw & Breiman, He & Garcia, Guyon & Elisseeff, Fawcett e Ke et al.
 
 ---
 

@@ -106,7 +106,7 @@ Experiments were tracked with `opt_binary_clf_pipe` and MLflow across 35 configu
 
 #### Why BalancedRandomForestClassifier?
 
-BalancedRandomForestClassifier addresses class imbalance by design: it uses bootstrap sampling with class balancing at the tree level, with no external SMOTE needed (Chen et al., 2004). The notebook champion (artifact rebuilt by `train_model.py` on the same stratified 80/20 split, seed 42) reaches 76.4% Macro Recall (95% bootstrap CI 74.0–78.7%) and 83.5% ROC AUC (95% CI 81.4–85.6%) on 1,407 test customers (374 churners). ROC AUC is measured from continuous hold-out scores. The 6-fold out-of-fold recall on the training split is 76.8% (AUC 84.2%), so there is no sign of optimistic bias in the reported figure.
+BalancedRandomForestClassifier addresses class imbalance by design: it uses bootstrap sampling with class balancing at the tree level (Chen et al., 2004), so no external resampling such as SMOTE is needed. The notebook champion (artifact rebuilt by `train_model.py` on the same stratified 80/20 split, seed 42) reaches 76.4% Macro Recall (95% bootstrap CI 74.0–78.7%) and 83.5% ROC AUC (95% CI 81.4–85.6%) on 1,407 test customers (374 churners). ROC AUC is measured from continuous hold-out scores. The 6-fold out-of-fold recall on the training split is 76.8% (AUC 84.2%), so there is no sign of optimistic bias in the reported figure.
 
 The validation is a single deterministic hold-out, not temporal or production validation. Production use requires temporal validation, monitoring and a controlled retention experiment.
 
@@ -277,13 +277,15 @@ No observed ROI is reported. The assumptions must be replaced with controlled-ex
 
 ## References
 
+Chen, C., Liaw, A., & Breiman, L. (2004). "Using Random Forest to Learn Imbalanced Data." Technical Report 666, Department of Statistics, University of California, Berkeley. Cited for the mechanism of BalancedRandomForestClassifier: each tree is grown from a bootstrap sample of the minority class and the same number of cases drawn, with replacement, from the majority class.
+
 He, H., & Garcia, E. A. (2009). "Learning from Imbalanced Data." *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263-1284. Cited for the choice of metrics suited to imbalanced data, where accuracy fails.
 
 Guyon, I., & Elisseeff, A. (2003). "An Introduction to Variable and Feature Selection." *Journal of Machine Learning Research*, 3, 1157-1182. Cited as the basis of the multi-metric feature selection approach (Chi², ANOVA, PhiK, SelectFromModel).
 
 Fawcett, T. (2006). "An Introduction to ROC Analysis." *Pattern Recognition Letters*, 27(8), 861-874. Cited for threshold selection as a decision that depends on the context of use.
 
-Ke, G., et al. (2017). "LightGBM: A Fast, Distributed, Gradient Boosting Framework." *NeurIPS*. Referenced during model selection; LightGBM was a strong contender.
+Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q., & Liu, T.-Y. (2017). "LightGBM: A Highly Efficient Gradient Boosting Decision Tree." *Advances in Neural Information Processing Systems*, 30. Referenced during model selection; LightGBM was a strong contender.
 
 ---
 
@@ -354,7 +356,7 @@ Dataset: [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja1
 
 Libraries: scikit-learn, imbalanced-learn, Optuna, Pandas and NumPy development communities.
 
-Research: cited papers by He & Garcia, Guyon & Elisseeff, Fawcett and Ke et al.
+Research: cited works by Chen, Liaw & Breiman, He & Garcia, Guyon & Elisseeff, Fawcett and Ke et al.
 
 ---
 
