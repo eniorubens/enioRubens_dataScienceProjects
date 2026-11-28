@@ -97,6 +97,7 @@ class TestOrchestrationSurface:
     def test_declares_the_run_configuration(self, code_source):
         assert "ModelSelectionConfig(" in code_source
         assert "run_mode='full'" in code_source or 'run_mode="full"' in code_source
+        assert "training_enabled=RETRAIN_MODELS" in code_source
 
     def test_calls_the_public_workflow_functions(self, code_source):
         for symbol in (

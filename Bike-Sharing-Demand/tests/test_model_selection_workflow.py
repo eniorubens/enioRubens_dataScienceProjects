@@ -31,6 +31,13 @@ from src.temporal_optimizer import MAX_SMOKE_TRIALS
 
 
 class TestModelSelectionConfig:
+    def test_estimator_training_is_disabled_by_default(self):
+        assert ModelSelectionConfig().training_enabled is False
+
+    def test_training_flag_must_be_boolean(self):
+        with pytest.raises(TypeError, match="training_enabled"):
+            ModelSelectionConfig(training_enabled=1)
+
     def test_run_mode_is_validated(self):
         with pytest.raises(ValueError, match="run_mode"):
             ModelSelectionConfig(run_mode="quick")
@@ -97,6 +104,13 @@ class TestFullRunSourceGate:
         monkeypatch.setattr(wf, "require_clean_git_source", refuse)
         with pytest.raises(RuntimeError, match="requires committed"):
             run_model_selection(ModelSelectionConfig(run_mode="full"), development=object())
+
+
+class TestTrainingGate:
+    def test_run_model_selection_refuses_training_by_default(self, monkeypatch):
+        monkeypatch.setattr(wf, "require_environment", lambda: None)
+        with pytest.raises(RuntimeError, match="training is disabled"):
+            run_model_selection(ModelSelectionConfig(run_mode="smoke"), development=object())
 
 
 # ---------------------------------------------------------------------------
@@ -227,6 +241,7 @@ def smoke_run(tmp_path_factory, request):
         tmp = tmp_path_factory.mktemp("smoke_workflow")
         config = ModelSelectionConfig(
             run_mode="smoke",
+            training_enabled=True,
             estimators=("Ridge",),
             trial_timeout=180.0,
             study_timeout=900.0,
@@ -242,6 +257,7 @@ def smoke_run(tmp_path_factory, request):
         wf.read_data = original_read_data
 
 
+@pytest.mark.training
 class TestRunModelSelection:
     def test_baseline_and_candidates_all_produced_runs(self, smoke_run):
         _, _, results, _ = smoke_run
@@ -349,6 +365,7 @@ class TestRunModelSelection:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.training
 class TestReports:
     def test_comparison_report_carries_the_pipeline_columns(self, smoke_run):
         from src import model_selection_reports as reports

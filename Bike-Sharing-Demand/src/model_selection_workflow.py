@@ -122,6 +122,9 @@ class ModelSelectionConfig:
         and produces only provisional artifacts; ``"full"`` runs the real
         budget and is the only mode allowed to freeze the definitive
         candidates for notebook 05.
+    training_enabled:
+        Explicit opt-in for estimator fitting and Optuna search. It defaults
+        to ``False`` so published notebook execution must use replay.
     estimators:
         Candidate estimators, excluding the baseline (which always runs).
     include_random_forest, include_catboost:
@@ -139,6 +142,7 @@ class ModelSelectionConfig:
     """
 
     run_mode: str = RUN_MODE_SMOKE
+    training_enabled: bool = False
     estimators: Sequence[str] = tuple(e for e in DEFAULT_ESTIMATORS if e != BASELINE_ESTIMATOR)
     include_random_forest: bool = False
     include_catboost: bool = False
@@ -177,6 +181,8 @@ class ModelSelectionConfig:
     def __post_init__(self) -> None:
         if self.run_mode not in RUN_MODES:
             raise ValueError(f"run_mode must be one of {RUN_MODES}, got '{self.run_mode}'.")
+        if not isinstance(self.training_enabled, bool):
+            raise TypeError("training_enabled must be a bool.")
         if self.n_challengers < 0:
             raise ValueError("n_challengers must be non-negative.")
         if any(value <= 0 for value in self.study_timeout_by_estimator.values()):
@@ -872,6 +878,12 @@ def run_model_selection(
         # four-hour search must never be attributed to a HEAD that does not
         # contain the source that actually produced it.
         require_clean_git_source()
+    if not config.training_enabled:
+        raise RuntimeError(
+            "Estimator training is disabled by default. Set "
+            "ModelSelectionConfig(training_enabled=True) only for an explicit "
+            "model-selection run; use load_model_selection_results() for replay."
+        )
     if development is None:
         development = prepare_development_data(config)
 
