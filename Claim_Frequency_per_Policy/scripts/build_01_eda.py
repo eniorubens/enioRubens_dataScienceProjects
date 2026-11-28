@@ -92,7 +92,7 @@ def build() -> Builder:
         "**O problema.** Quantos sinistros são esperados para diferentes "
         "perfis de veículo, condutor e região, considerando o tempo de "
         "cobertura? Essa pergunta é estudada com registros de uma carteira "
-        "francesa de seguros de automóveis (Dutang & Charpentier, 2018).\n\n"
+        "francesa de seguros de automóveis (Dutang & Charpentier, 2026).\n\n"
         "**Por que importa.** Cada apólice coberta por um ano contribui "
         "com uma apólice-ano de exposição. Dois sinistros observados em "
         "20 apólices-ano correspondem a 10 por 100 apólices-ano. Se os "
@@ -113,7 +113,7 @@ def build() -> Builder:
         "**The problem.** How many claims are expected for different "
         "vehicle, driver and regional profiles, given the length of "
         "coverage? This question is studied using records from a French "
-        "motor insurance portfolio (Dutang & Charpentier, 2018).\n\n"
+        "motor insurance portfolio (Dutang & Charpentier, 2026).\n\n"
         "**Why it matters.** A policy covered for one year contributes "
         "one policy-year of exposure. Two claims observed over "
         "20 policy-years correspond to 10 per 100 policy-years. If the "
@@ -151,7 +151,7 @@ train = parts["train"]
 display(artifacts.provenance_table(provenance, len(train), LANG))''')
     b.md("""### Insights
 
-Foi usado o arquivo bruto do OpenML 41214, versão 1 (`freMTPL2freq`), conferido por SHA-256 contra o manifesto de aquisição. A auditoria confirmou {dataset_rows} valores distintos de `IDpol` e nenhum valor faltante. Cada linha representa um registro de cobertura, com duração medida em anos (Dutang & Charpentier, 2018).
+Foi usado o arquivo bruto do OpenML 41214, versão 1 (`freMTPL2freq`), conferido por SHA-256 contra o manifesto de aquisição. A auditoria confirmou {dataset_rows} valores distintos de `IDpol` e nenhum valor faltante. Cada linha representa um registro de cobertura, com duração medida em anos (Dutang & Charpentier, 2026).
 
 Na etapa 2 do projeto, os registros foram divididos em aproximadamente **70% para treino, 15% para validação e 15% para teste**. A atribuição foi feita de forma determinística pelo hash SHA-256 de `IDpol`, independentemente da ordem das linhas. Foi verificado que cada identificador aparece em uma única partição e que todos foram atribuídos.
 
@@ -166,7 +166,7 @@ Na etapa 2 do projeto, os registros foram divididos em aproximadamente **70% par
 O leitor interpreta o ARFF integral em memória. Para a EDA deste notebook, são disponibilizadas apenas as linhas de treino.""",
          """### Insights
 
-The raw file from OpenML 41214, version 1 (`freMTPL2freq`), was checked by SHA-256 against the acquisition manifest. The audit confirmed {dataset_rows} distinct `IDpol` values and no missing values. Each row represents a coverage record, with duration measured in years (Dutang & Charpentier, 2018).
+The raw file from OpenML 41214, version 1 (`freMTPL2freq`), was checked by SHA-256 against the acquisition manifest. The audit confirmed {dataset_rows} distinct `IDpol` values and no missing values. Each row represents a coverage record, with duration measured in years (Dutang & Charpentier, 2026).
 
 In stage 2 of the project, the records were split approximately **70% for training, 15% for validation, and 15% for testing**. Assignments were made deterministically using a SHA-256 hash of `IDpol`, independently of row order. Every identifier was verified to appear in exactly one partition.
 
@@ -235,10 +235,10 @@ The tail above four is rare: {tail_rows} records add up to {tail_claims} claims.
 plots.show(plots.plot_exposure(tables["eda_exposure_histogram"], LANG))''')
     b.md("""### Insights
 
-Exposições de exatamente um ano são {one_rows} dos registros e {one_exposure} da exposição total. A faixa `(0; 0,02]` (cerca de uma semana) tem {short_rows} registros e a faixa acima de um ano, {gt1_rows}. A unidade é anos, conforme o dicionário (Dutang & Charpentier, 2018). Exposições acima de um ano são tratadas como cauda observada, não como erro, pois a fonte descreve as apólices como observadas predominantemente por um ano.""",
+Exposições de exatamente um ano são {one_rows} dos registros e {one_exposure} da exposição total. A faixa `(0; 0,02]` (cerca de uma semana) tem {short_rows} registros e a faixa acima de um ano, {gt1_rows}. A unidade é anos, conforme o dicionário (Dutang & Charpentier, 2026). Exposições acima de um ano são tratadas como cauda observada, não como erro, pois a fonte descreve as apólices como observadas predominantemente por um ano.""",
          """### Insights
 
-Exposures of exactly one year are {one_rows} of the records and {one_exposure} of total exposure. The `(0; 0.02]` band (about one week) has {short_rows} records and the band above one year has {gt1_rows}. The unit is years, according to the dictionary (Dutang & Charpentier, 2018). Exposures above one year are handled as an observed tail, not as errors, because the source describes the policies as observed mostly over one year.""")
+Exposures of exactly one year are {one_rows} of the records and {one_exposure} of total exposure. The `(0; 0.02]` band (about one week) has {short_rows} records and the band above one year has {gt1_rows}. The unit is years, according to the dictionary (Dutang & Charpentier, 2026). Exposures above one year are handled as an observed tail, not as errors, because the source describes the policies as observed mostly over one year.""")
     b.md("""## 6. Frequência por faixa de exposição, idade e região
 
 **Pergunta.** Como a taxa por 100 apólices-ano varia por faixa de exposição, idade do veículo, idade do condutor e região? Segmentos com menos de 500 registros ou menos de 25 apólices-ano são sinalizados como de baixo suporte.""",
@@ -307,14 +307,14 @@ Levels with fewer than 500 fit rows are pooled into `OTHER`. Among the {heldout}
            "has_dates": False, "has_higher_unit_id": False})''')
     b.md("""### Insights
 
-O esquema não traz datas nem identificador de unidade superior; a disponibilidade das covariáveis na data de estimação é uma hipótese, e `BonusMalus`, cujo instante de medição é desconhecido, fica fora da especificação principal (Dutang & Charpentier, 2018). As taxas por segmento são marginais e não controlam as demais covariáveis. A evidência vale dentro do benchmark e é descritiva. O mesmo conjunto de dados foi estudado em outros trabalhos (Noll et al., 2020); a presente análise não os reproduz. A sequência de modelagem segue a literatura de modelos de contagem (Fávero & Belfiore, 2017).""",
+O esquema não traz datas nem identificador de unidade superior; a disponibilidade das covariáveis na data de estimação é uma hipótese, e `BonusMalus`, cujo instante de medição é desconhecido, fica fora da especificação principal (Dutang & Charpentier, 2026). As taxas por segmento são marginais e não controlam as demais covariáveis. A evidência vale dentro do benchmark e é descritiva. O mesmo conjunto de dados foi estudado em outros trabalhos (Noll et al., 2020); a presente análise não os reproduz. A sequência de modelagem segue o roteiro de modelos de contagem: Poisson, teste de superdispersão e, havendo superdispersão, binomial negativo (Fávero & Belfiore, 2017, cap. 14).""",
          """### Insights
 
-The schema has neither dates nor a higher-level unit identifier; covariate availability at the estimation date is a hypothesis, and `BonusMalus`, whose measurement time is unknown, is left out of the main specification (Dutang & Charpentier, 2018). Segment rates are marginal and do not control for the other covariates. The evidence holds within the benchmark and is descriptive. The same data set has been studied in other work (Noll et al., 2020); the present analysis does not reproduce it. The modeling sequence follows the count-model literature (Fávero & Belfiore, 2017).""")
+The schema has neither dates nor a higher-level unit identifier; covariate availability at the estimation date is a hypothesis, and `BonusMalus`, whose measurement time is unknown, is left out of the main specification (Dutang & Charpentier, 2026). Segment rates are marginal and do not control for the other covariates. The evidence holds within the benchmark and is descriptive. The same data set has been studied in other work (Noll et al., 2020); the present analysis does not reproduce it. The modeling sequence follows the count-model roadmap: Poisson, an overdispersion test and, if there is overdispersion, negative binomial (Fávero & Belfiore, 2017, ch. 14).""")
     return b
 
 
-REFS = ["cameron2013", "dutang2018", "dwork2015", "favero2017", "noll2020",
+REFS = ["cameron2013", "dutang2026", "dwork2015", "favero2017", "noll2020",
         "wickham2017"]
 
 

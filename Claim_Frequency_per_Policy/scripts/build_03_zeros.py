@@ -229,10 +229,10 @@ In the offset Poisson, the count errors by band have the opposite sign to the ze
     b.code('''display(artifacts.second_process_table(s4))''')
     b.md("""### Insights
 
-O dicionário define `ClaimNb` como número de sinistros no período de exposição e `Exposure` como duração em anos (Dutang & Charpentier, 2018); não descreve apólices sem risco, não há datas nem identificador de unidade superior, e o instante de medição de `BonusMalus` é desconhecido. Assim, nenhuma hipótese de segundo processo é sustentada pelo contrato. O teste de Vuong não é usado como regra de seleção, pois seu emprego para testar inflação de zeros é questionado na literatura (Wilson, 2015). Como o modelo de referência não cumpre o critério numérico e não há hipótese documentada, a decisão desta rodada é encerrar com os modelos de contagem já avaliados, sem ajustar ZIP ou ZINB.""",
+O dicionário define `ClaimNb` como número de sinistros no período de exposição e `Exposure` como duração em anos (Dutang & Charpentier, 2026); não descreve apólices sem risco, não há datas nem identificador de unidade superior, e o instante de medição de `BonusMalus` é desconhecido. Assim, nenhuma hipótese de segundo processo é sustentada pelo contrato. O teste de Vuong não é usado como regra de seleção, pois seu emprego para testar inflação de zeros é questionado na literatura (Wilson, 2015). Como o modelo de referência não cumpre o critério numérico e não há hipótese documentada, a decisão desta rodada é encerrar com os modelos de contagem já avaliados, sem ajustar ZIP ou ZINB.""",
          """### Insights
 
-The dictionary defines `ClaimNb` as the number of claims in the exposure period and `Exposure` as the duration in years (Dutang & Charpentier, 2018); it does not describe risk-free policies, there are neither dates nor a higher-level unit identifier, and the measurement time of `BonusMalus` is unknown. Hence, no hypothesis of a second process is supported by the contract. The Vuong test is not used as a selection rule, because its use to test zero inflation is questioned in the literature (Wilson, 2015). Since the reference model does not meet the numerical criterion and no hypothesis is documented, the decision of this round is to close with the count models already evaluated, without fitting ZIP or ZINB.""")
+The dictionary defines `ClaimNb` as the number of claims in the exposure period and `Exposure` as the duration in years (Dutang & Charpentier, 2026); it does not describe risk-free policies, there are neither dates nor a higher-level unit identifier, and the measurement time of `BonusMalus` is unknown. Hence, no hypothesis of a second process is supported by the contract. The Vuong test is not used as a selection rule, because its use to test zero inflation is questioned in the literature (Wilson, 2015). Since the reference model does not meet the numerical criterion and no hypothesis is documented, the decision of this round is to close with the count models already evaluated, without fitting ZIP or ZINB.""")
     b.md("""## 7. Modelo congelado e verificação
 
 **Pergunta.** O que foi congelado, e a verificação restaura o artefato e reproduz a validação aprovada sem reajustar nem reaprender o pré-processamento?""",
@@ -278,7 +278,7 @@ Stage 5 will apply the script once to the test partition, after acceptance, with
     return b
 
 
-REFS = ["dutang2018", "wilson2015"]
+REFS = ["dutang2026", "wilson2015"]
 
 
 class _Safe(dict):

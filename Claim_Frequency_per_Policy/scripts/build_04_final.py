@@ -217,14 +217,14 @@ display(pd.Series(out5["conclusion"]["profile_cluster_bootstrap"],
                   name="profile_cluster_bootstrap"))''')
     b.md("""### Insights
 
-O teste sustenta um ganho do Poisson com offset fixo sobre a taxa global em desvio médio de Poisson, e a escolha congelada é preservada. O ganho confirmado é no desvio médio; ele não elimina o desvio sistemático nas exposições curtas. Na calibração total, o erro absoluto pontual do Poisson é maior que o da referência, mas os intervalos individuais não permitem concluir equivalência nem diferença entre os candidatos. Os resultados valem dentro do benchmark francês, sem evidência temporal, sem `BonusMalus` (instante de medição desconhecido, Dutang & Charpentier, 2018) e sem modelos inflacionados de zeros; os intervalos são condicionados aos modelos ajustados. O modelo não é elegível para produção.""",
+O teste sustenta um ganho do Poisson com offset fixo sobre a taxa global em desvio médio de Poisson, e a escolha congelada é preservada. O ganho confirmado é no desvio médio; ele não elimina o desvio sistemático nas exposições curtas. Na calibração total, o erro absoluto pontual do Poisson é maior que o da referência, mas os intervalos individuais não permitem concluir equivalência nem diferença entre os candidatos. Os resultados valem dentro do benchmark francês, sem evidência temporal, sem `BonusMalus` (instante de medição desconhecido, Dutang & Charpentier, 2026) e sem modelos inflacionados de zeros; os intervalos são condicionados aos modelos ajustados. O modelo não é elegível para produção.""",
          """### Insights
 
-The test supports a gain of the fixed-offset Poisson over the global rate in mean Poisson deviance, and the frozen choice is preserved. The confirmed gain is in the mean deviance; it does not remove the systematic bias in short exposures. In total calibration, the point absolute error of Poisson is larger than the reference's, but the individual intervals do not allow concluding either equivalence or a difference between the candidates. The results hold within the French benchmark, with no temporal evidence, without `BonusMalus` (unknown measurement time, Dutang & Charpentier, 2018) and without zero-inflated models; intervals are conditional on the fitted models. The model is not eligible for production.""")
+The test supports a gain of the fixed-offset Poisson over the global rate in mean Poisson deviance, and the frozen choice is preserved. The confirmed gain is in the mean deviance; it does not remove the systematic bias in short exposures. In total calibration, the point absolute error of Poisson is larger than the reference's, but the individual intervals do not allow concluding either equivalence or a difference between the candidates. The results hold within the French benchmark, with no temporal evidence, without `BonusMalus` (unknown measurement time, Dutang & Charpentier, 2026) and without zero-inflated models; intervals are conditional on the fitted models. The model is not eligible for production.""")
     return b
 
 
-REFS = ["dutang2018"]
+REFS = ["dutang2026"]
 
 
 class _Safe(dict):
