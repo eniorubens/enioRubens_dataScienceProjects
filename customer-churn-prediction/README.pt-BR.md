@@ -177,7 +177,7 @@ A validação cruzada é estratificada para manter os 26,5% de churn em cada fol
 | ROC AUC | Área sob a curva | Independente do threshold | Discriminação geral |
 | Acurácia | (TP+TN)/N | Inadequada aqui | Enganosa em dados desbalanceados |
 
-Com uma única classe positiva, o Recall Macro e a acurácia balanceada são a mesma quantidade. A acurácia é inadequada para classificação desbalanceada (He & Garcia, 2009), e por isso o trabalho enfatiza o Recall Macro.
+Com uma única classe positiva, o Recall Macro e a acurácia balanceada são a mesma quantidade. A acurácia não é adequada quando o interesse está na classe minoritária (Branco et al., 2015), e por isso o trabalho enfatiza o Recall Macro.
 
 ---
 
@@ -279,7 +279,7 @@ Nenhum ROI observado é reportado. As premissas devem ser substituídas por resu
 
 Chen, C., Liaw, A., & Breiman, L. (2004). "Using Random Forest to Learn Imbalanced Data." Technical Report 666, Department of Statistics, University of California, Berkeley. Citada para o mecanismo do BalancedRandomForestClassifier: cada árvore é induzida de uma amostra bootstrap da classe minoritária e do mesmo número de casos sorteados, com reposição, da classe majoritária.
 
-He, H., & Garcia, E. A. (2009). "Learning from Imbalanced Data." *IEEE Transactions on Knowledge and Data Engineering*, 21(9), 1263–1284. Citada para a escolha de métricas adequadas a dados desbalanceados, quando a acurácia falha.
+Branco, P., Torgo, L., & Ribeiro, R. (2015). "A Survey of Predictive Modelling under Imbalanced Distributions." arXiv:1505.01658. https://arxiv.org/abs/1505.01658. Citada para a inadequação da acurácia quando o interesse está na classe minoritária e para as métricas alternativas, como recall e G-mean (seção 3.1).
 
 Guyon, I., & Elisseeff, A. (2003). "An Introduction to Variable and Feature Selection." *Journal of Machine Learning Research*, 3, 1157–1182. Citada como base da seleção de atributos multimétrica (Chi², ANOVA, PhiK, SelectFromModel).
 
@@ -356,7 +356,7 @@ Dataset: [Telecom Customer Churn (Kaggle)](https://www.kaggle.com/datasets/puja1
 
 Bibliotecas: comunidades de desenvolvimento de scikit-learn, imbalanced-learn, Optuna, Pandas e NumPy.
 
-Pesquisa: obras citadas de Chen, Liaw & Breiman, He & Garcia, Guyon & Elisseeff, Fawcett e Ke et al.
+Pesquisa: obras citadas de Chen, Liaw & Breiman, Branco, Torgo & Ribeiro, Guyon & Elisseeff, Fawcett e Ke et al.
 
 ---
 
