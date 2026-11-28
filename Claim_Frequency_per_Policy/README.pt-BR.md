@@ -6,7 +6,7 @@
 
 Este projeto estuda a **frequência de sinistros** no benchmark francês de seguro automotivo `freMTPL2freq` (OpenML 41214, v1; 678.013 registros). A análise estima quantos sinistros são esperados por **100 apólices-ano** em diferentes perfis de veículo, condutor e região. Também mostra em quais grupos as previsões se aproximam dos totais observados e onde permanecem erros de calibração.
 
-Foi feita uma única avaliação oficial no teste reservado, que reúne 101.859 registros, 53.839,09 apólices-ano e 5.415 sinistros. O **Poisson com offset de exposição fixo**, congelado após o treino, alcançou desvio médio de Poisson de 0,31902, ante 0,33079 da taxa global de referência. A diferença pareada foi −0,01177 (IC 95% −0,01317 a −0,01018; por perfil, −0,01338 a −0,01028). Portanto, o teste sustenta o ganho do Poisson no desvio médio.
+Foi feita uma única avaliação oficial no teste reservado, que reúne 101.859 registros, 53.839,09 apólices-ano e 5.415 sinistros. O **Poisson com offset de exposição fixo** (Cameron & Trivedi, 2013), congelado após o treino, alcançou desvio médio de Poisson de 0,31902, ante 0,33079 da taxa global de referência. A diferença pareada foi −0,01177 (IC 95% −0,01317 a −0,01018; por perfil, −0,01338 a −0,01028). Portanto, o teste sustenta o ganho do Poisson no desvio médio.
 
 Na calibração agregada, foram observados 10,058 sinistros por 100 apólices-ano. O Poisson previu 10,108 e a taxa global, 10,084. O IC 95% da diferença prevista − observada inclui zero nos dois candidatos; no Poisson, vai de −0,233 a +0,317 e, na referência, de −0,253 a +0,288. Esses intervalos avaliam cada candidato separadamente; não testam equivalência entre eles nem comparam os erros absolutos pontuais, de 0,050 no Poisson e 0,027 na taxa global.
 
@@ -14,7 +14,7 @@ A principal limitação aparece na calibração por duração. Na faixa `(0; 0,0
 
 ## 2. Dados e pergunta
 
-O `freMTPL2freq` está disponível no OpenML sob licença CC0. Cada registro representa a cobertura identificada por `IDpol`, com `ClaimNb` para a contagem de sinistros e `Exposure` para o tempo de exposição, em anos. A avaliação verifica se o Poisson congelado supera a taxa global em registros que não participaram do desenvolvimento. Em seguida, identifica as faixas de exposição, idades do veículo e regiões nas quais as taxas previstas se afastam das observadas.
+O `freMTPL2freq` está disponível no OpenML sob licença CC0. Cada registro representa a cobertura identificada por `IDpol`, com `ClaimNb` para a contagem de sinistros e `Exposure` para o tempo de exposição, em anos (Dutang & Charpentier, 2026). A avaliação verifica se o Poisson congelado supera a taxa global em registros que não participaram do desenvolvimento. Em seguida, identifica as faixas de exposição, idades do veículo e regiões nas quais as taxas previstas se afastam das observadas.
 
 ## 3. Estrutura do repositório
 
@@ -30,12 +30,14 @@ O `freMTPL2freq` está disponível no OpenML sob licença CC0. Cada registro rep
 
 ## 4. Mapa de leitura
 
-O [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) resume o problema, a decisão de modelagem e os principais resultados. Ele está publicado no GitHub Pages, e sua fonte, `site/index.html`, também pode ser aberta localmente no navegador. Para acompanhar a análise completa, leia os notebooks na ordem abaixo:
+O [relatório executivo](https://eniorubens.github.io/enioRubens_dataScienceProjects/Claim_Frequency_per_Policy/) resume o problema, a decisão de modelagem e os principais resultados. Ele está publicado no GitHub Pages, e sua fonte, `site/index.html`, também pode ser aberta localmente no navegador. Para acompanhar a análise completa, os notebooks seguem a ordem abaixo.
 
-1. [EDA do treino](notebooks/pt_br/01_eda_treino.ipynb) — apresenta as variáveis, o contrato de partição e a exploração feita somente no treino.
-2. [Comparação de modelos](notebooks/pt_br/02_comparacao_modelos.ipynb) — explica a tabela analítica e compara taxa global, Poisson e NB2 na validação.
-3. [Diagnóstico de zeros e decisão](notebooks/pt_br/03_diagnostico_zeros.ipynb) — avalia a necessidade de ZIP/ZINB, documenta a escolha do Poisson e verifica o congelamento.
-4. **[Avaliação final](notebooks/pt_br/04_avaliacao_final.ipynb)** — concentra a conclusão no teste reservado. Pode ser consultada sem o ARFF e sem reajustar os modelos, usando apenas os artefatos agregados publicados.
+| Notebook | Conteúdo |
+| --- | --- |
+| [01. EDA do treino](notebooks/pt_br/01_eda_treino.ipynb) | Apresenta as variáveis, o contrato de partição e a exploração feita somente no treino |
+| [02. Comparação de modelos](notebooks/pt_br/02_comparacao_modelos.ipynb) | Explica a tabela analítica e compara taxa global, Poisson e NB2 na validação |
+| [03. Diagnóstico de zeros e decisão](notebooks/pt_br/03_diagnostico_zeros.ipynb) | Avalia a necessidade de ZIP/ZINB, documenta a escolha do Poisson e verifica o congelamento |
+| [04. Avaliação final](notebooks/pt_br/04_avaliacao_final.ipynb) | Concentra a conclusão no teste reservado; pode ser consultada sem o ARFF e sem reajustar os modelos, usando apenas os artefatos agregados publicados |
 
 ## 5. Ambiente
 
@@ -48,12 +50,7 @@ conda activate freq-sinistros
 $env:PYTHONNOUSERSITE = "1"
 ```
 
-Para fixar as versões exatas usadas nas etapas 1 a 5 (Python 3.12.16, numpy 2.5.5, pandas 3.1.1, scipy 1.18.1, statsmodels 0.15.0, matplotlib 3.11.2, OpenBLAS 0.3.34), há dois arquivos de lock:
-
-- `environment.lock.yml`: exportação do ambiente (`conda env export --no-builds`) com versões exatas e sem builds, útil como referência e para outras plataformas. Atenção: ele registra os canais `rapidsai`, `defaults` e `conda-forge`, herdados da configuração local da máquina, enquanto `environment.yml` usa só `conda-forge`.
-- `conda-win-64.lock.txt`: lista explícita de pacotes para win-64, para recriar o ambiente exatamente: `conda create -n freq-sinistros --file conda-win-64.lock.txt`, seguido de `pip install -e . --no-deps`.
-
-Use `environment.yml` para um ambiente novo e flexível; use o lock win-64 quando a reprodução byte a byte precisar das mesmas versões. O projeto exige Python 3.12 ou superior e é distribuído sob a licença MIT (`LICENSE`).
+Para fixar as versões exatas usadas nas etapas 1 a 5 (Python 3.12.16, numpy 2.5.5, pandas 3.1.1, scipy 1.18.1, statsmodels 0.15.0, matplotlib 3.11.2, OpenBLAS 0.3.34), há dois arquivos de lock. O `environment.lock.yml` exporta o ambiente (`conda env export --no-builds`) com versões exatas e sem builds, útil como referência e para outras plataformas, registrando os canais `rapidsai`, `defaults` e `conda-forge` herdados da configuração local da máquina, enquanto `environment.yml` usa só `conda-forge`. Já `conda-win-64.lock.txt` traz a lista explícita de pacotes para win-64, para recriar o ambiente exatamente com `conda create -n freq-sinistros --file conda-win-64.lock.txt`, seguido de `pip install -e . --no-deps`. Recomenda-se `environment.yml` para um ambiente novo e flexível, e o lock win-64 quando a reprodução byte a byte exigir as mesmas versões. O projeto exige Python 3.12 ou superior e é distribuído sob a licença MIT (`LICENSE`).
 
 ## 6. Consultar os resultados oficiais (sem dados locais)
 
@@ -64,9 +61,7 @@ python -I -m freq_sinistros --root . verify-stage5     # confere offline os agre
 python scripts/run_notebooks.py --final               # executa só os dois notebooks finais, com os agregados gravados
 ```
 
-- `verify-stage5` faz a conferência completa, a mesma do notebook `04_avaliacao_final`: o registro (`status = completed`), os checksums de todos os arquivos listados em `SHA256SUMS_etapa05.txt` (e se não há arquivos fora da lista), a reconciliação, o modelo congelado e o roteiro contra os hashes do registro, o portão de integridade, o número de registros de teste (conferido com a etapa 2) e a presença da trava. Se faltar o registro, a lista ou um arquivo, ele termina com código 1 e uma mensagem, sem traceback.
-- Códigos de saída da CLI: 0 sucesso; 1 falha de verificação; 2 auditoria divergente; 3 aquisição recusada; 4 `stage5` recusado; 5 `check-stage5` ou `verify-freeze` recusado após a trava.
-- Insumos locais dos demais notebooks: `01_eda_treino` lê o ARFF e as atribuições (`data/raw`, `data/splits`); `02_comparacao_modelos` e `03_diagnostico_zeros` conferem o SHA-256 do ARFF. Só o par `04` roda sem eles.
+O comando `verify-stage5` faz a conferência completa realizada pelo notebook `04_avaliacao_final`: verifica o registro (`status = completed`), os checksums de todos os arquivos listados em `SHA256SUMS_etapa05.txt` (e se não há arquivos fora da lista), a reconciliação, o modelo congelado e o roteiro contra os hashes do registro, o portão de integridade, o número de registros de teste (conferido com a etapa 2) e a presença da trava; se faltar o registro, a lista ou algum arquivo, termina com código 1 e uma mensagem, sem traceback. Os códigos de saída da CLI são 0 (sucesso), 1 (falha de verificação), 2 (auditoria divergente), 3 (aquisição recusada), 4 (`stage5` recusado) e 5 (`check-stage5` ou `verify-freeze` recusado após a trava). Quanto aos insumos locais dos demais notebooks, `01_eda_treino` lê o ARFF e as atribuições (`data/raw`, `data/splits`), e `02_comparacao_modelos` e `03_diagnostico_zeros` conferem o SHA-256 do ARFF; apenas o par `04` roda sem eles.
 
 ## 7. Reproduzir as etapas 1 a 4 (cópia isolada)
 
@@ -105,35 +100,32 @@ python -m pytest && ruff check .
 
 A identidade byte a byte com os artefatos aprovados foi verificada no Windows: os JSON e CSV de `outputs/` foram gravados com fim de linha CRLF (a gravação usa o separador da plataforma). Em Linux ou macOS os arquivos regenerados terão LF; compare-os ignorando `\r` (por exemplo, `diff <(tr -d '\r' < a) b`). Por isso `check-stage5` não consta do bloco bash: o portão compararia os hashes dos seis arquivos da etapa 3 regenerados e os recusaria por diferença de fim de linha, não de conteúdo.
 
-- `check-stage5` e `verify-freeze` só rodam onde não há trava: a cópia exclui `etapa_05` e por isso eles rodam normalmente. No workspace, com `outputs/etapa_05/official_run.lock`, os dois recusam com código 5 e não gravam nada (regravariam artefatos selados).
-- A cópia leva `outputs/etapa_04` aprovada (`frozen_model.json`, `stage5_script.json`). **Não** rode `stage4` sobre esses arquivos: ele regenera o congelamento, e os bytes do JSON podem mudar porque incluem informações de plataforma; o portão da etapa 5 compara os hashes com os valores aprovados e recusaria a cópia regenerada.
-- A verificação de integridade compara hashes byte a byte com os artefatos aprovados. Se houver divergência na reprodução, confira as versões do ambiente contra `conda-win-64.lock.txt` e `environment.lock.yml` (seção 5).
-- Nunca rode `stage5` no workspace: a trava `outputs/etapa_05/official_run.lock` recusa uma segunda avaliação. A cópia exclui `etapa_05` de propósito.
-- O leitor interpreta o ARFF integral em memória; o teste só é disponibilizado ao avaliador da etapa 5 depois do portão de integridade e da trava.
+Os comandos `check-stage5` e `verify-freeze` só rodam na ausência da trava: na cópia isolada que exclui `etapa_05`, eles executam normalmente, ao passo que no workspace, onde existe `outputs/etapa_05/official_run.lock`, ambos recusam com código 5 e não gravam nada (pois regravariam artefatos selados). A cópia inclui `outputs/etapa_04` aprovado (`frozen_model.json` e `stage5_script.json`), portanto `stage4` não deve ser rodado sobre esses arquivos porque regeneraria o congelamento e os bytes do JSON podem mudar por incluírem informações de plataforma, levando o portão da etapa 5 a comparar os hashes com os valores aprovados e recusar a cópia regenerada. A verificação de integridade compara hashes byte a byte com os artefatos aprovados; em caso de divergência na reprodução, conferem-se as versões do ambiente contra `conda-win-64.lock.txt` e `environment.lock.yml` (seção 5). Da mesma forma, `stage5` nunca deve rodar no workspace porque a trava `outputs/etapa_05/official_run.lock` recusa uma segunda avaliação, razão pela qual a cópia omite `etapa_05` de propósito. O leitor interpreta o ARFF integral em memória, e os dados de teste só ficam acessíveis ao avaliador da etapa 5 após o portão de integridade e a trava.
 
 ## 8. Etapas
 
-1. **Aquisição e auditoria**: ARFF verificado por MD5 e SHA-256; 0 faltantes; `IDpol` único.
-2. **Desenho da avaliação**: partição determinística por hash de `IDpol` (474.581 / 101.573 / 101.859); protocolo de métricas, segmentos, bootstrap e regras de decisão.
-3. **EDA e comparação**: taxa global, Poisson e NB2 em validação; sensibilidades.
-4. **Zeros, decisão e congelamento**: Poisson com offset fixo escolhido pela regra aprovada; sem ZIP/ZINB; modelo congelado e verificado.
-5. **Avaliação final**: roteiro congelado aplicado uma vez ao teste (`stage5`).
+| Etapa | Síntese |
+| --- | --- |
+| 1. Aquisição e auditoria | ARFF verificado por MD5 e SHA-256; 0 faltantes; `IDpol` único |
+| 2. Desenho da avaliação | Partição determinística por hash de `IDpol` (474.581 / 101.573 / 101.859); protocolo de métricas, segmentos, bootstrap e regras de decisão |
+| 3. EDA e comparação | Taxa global, Poisson e NB2 em validação; sensibilidades |
+| 4. Zeros, decisão e congelamento | Poisson com offset fixo escolhido pela regra aprovada; sem ZIP/ZINB; modelo congelado e verificado |
+| 5. Avaliação final | Roteiro congelado aplicado uma vez ao teste (`stage5`) |
 
 ## 9. Limitações
 
-- O offset fixo **subestima as exposições muito curtas** e superestima as longas; não houve recalibração.
-- Resultados internos ao benchmark: sem evidência temporal, sem `BonusMalus` (instante de medição desconhecido) e sem modelos inflacionados de zeros.
-- Os intervalos de 95% são condicionados aos modelos ajustados.
+O offset fixo **subestima as exposições muito curtas** e superestima as longas, sem recalibração aplicada. Os resultados restringem-se ao benchmark, sem evidência temporal, sem `BonusMalus` (cujo instante de medição é desconhecido) e sem modelos inflacionados de zeros, com intervalos de 95% condicionados aos modelos ajustados.
 
 ## 10. Verificação e CI
 
-- **Checks locais** (Ruff, pytest com cobertura, paridade dos quatro pares de notebooks e dos READMEs): passaram.
-- **Execução com dados reais**: concluída e registrada em `outputs/` e `reports/`.
-- **Listas de checksum**: as listas `SHA256SUMS*` de todas as etapas conferem e são testadas por `tests/test_outputs_integrity.py`. Os registros de execução dos notebooks ficam em `outputs/notebook_execution_etapa03.json`, `outputs/notebook_execution_etapa04.json` e `outputs/notebook_execution_etapa05.json`, fora das pastas seladas. A integridade da avaliação oficial é conferida por `verify-stage5`.
-- **Fim de linha da etapa 5**: `SHA256SUMS_etapa05.txt` está com CRLF (gravado no Windows; é um arquivo selado e não foi regravado). Para o `sha256sum -c` do GNU, converta antes, por exemplo `tr -d '\r' < SHA256SUMS_etapa05.txt | sha256sum -c`. A CLI e o teste aceitam os dois formatos.
-- **CI**: o projeto é publicado como a pasta `Claim_Frequency_per_Policy` do repositório de portfólio [enioRubens_dataScienceProjects](https://github.com/eniorubens/enioRubens_dataScienceProjects). O workflow raiz `Tests` roda o `pytest` desta pasta como suíte própria da matriz (Python 3.12, `pip install -e ".[dev]"`), registrada em `.github/ci/test-projects.json`, só quando esta pasta muda (ou na bateria completa), sem misturar dependências com os demais projetos. `tests/test_ci_config.py` confere esse registro. O CI usa `pip`, como as demais suítes do portfólio; o ambiente local continua conda (seção 5). O Ruff é verificado localmente.
-- **Licença**: MIT (`LICENSE`), para o código; os dados do OpenML são CC0 e ficam fora do repositório.
+Os checks locais (Ruff, pytest com cobertura e paridade dos quatro pares de notebooks e dos READMEs) passaram, e a execução com dados reais está concluída e registrada em `outputs/` e `reports/`. As listas `SHA256SUMS*` de todas as etapas conferem e são testadas por `tests/test_outputs_integrity.py`, enquanto os registros de execução dos notebooks ficam em `outputs/notebook_execution_etapa03.json`, `outputs/notebook_execution_etapa04.json` e `outputs/notebook_execution_etapa05.json`, fora das pastas seladas, com a integridade oficial conferida por `verify-stage5`. O arquivo selado `SHA256SUMS_etapa05.txt` foi gravado no Windows com fim de linha CRLF e não foi regravado (em GNU `sha256sum -c`, converte-se antes com `tr -d '\r' < SHA256SUMS_etapa05.txt | sha256sum -c`; a CLI e o teste aceitam os dois formatos).
+
+Para integração contínua, o projeto é publicado como a pasta `Claim_Frequency_per_Policy` do repositório de portfólio [enioRubens_dataScienceProjects](https://github.com/eniorubens/enioRubens_dataScienceProjects), no qual o workflow raiz `Tests` executa o `pytest` desta pasta como suíte própria da matriz (Python 3.12, `pip install -e ".[dev]"`, registrada em `.github/ci/test-projects.json` e conferida por `tests/test_ci_config.py`) apenas quando esta pasta muda ou na bateria completa, sem misturar dependências com os demais projetos; o CI usa `pip`, como as demais suítes do portfólio, enquanto o ambiente local permanece conda (seção 5) e o Ruff é checado localmente. O código tem licença MIT (`LICENSE`), e os dados do OpenML são CC0 e permanecem fora do repositório.
 
 ## 11. Referências
 
-Dutang e Charpentier (2018), *CASdatasets: Insurance datasets* (dicionário de `freMTPL2freq`); Cameron e Trivedi (2013), *Regression Analysis of Count Data*; Wilson (2015), *Economics Letters*, 127, 51–53. Referências completas ao final de cada notebook.
+Cameron, A. C., & Trivedi, P. K. (2013). *Regression Analysis of Count Data* (2nd ed.). Cambridge University Press. https://doi.org/10.1017/CBO9781139013567
+
+Dutang, C., & Charpentier, A. (2026). *CASdatasets: Insurance datasets* (R package version 1.2-1). https://doi.org/10.57745/P0KHAG
+
+As referências completas de cada notebook, inclusive as que tratam dos zeros, estão ao final dele.

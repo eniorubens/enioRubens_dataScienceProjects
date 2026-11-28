@@ -20,10 +20,11 @@ REFERENCES = {
         "Cameron, A. C., & Trivedi, P. K. (2013). *Regression Analysis of "
         "Count Data* (2nd ed.). Cambridge University Press. "
         "https://doi.org/10.1017/CBO9781139013567"),
-    "dutang2018": (
-        "Dutang, C., & Charpentier, A. (2018). *CASdatasets: Insurance "
-        "datasets* (freMTPL2freq). https://dutangc.github.io/CASdatasets/"
-        "reference/freMTPL.html"),
+    "dutang2026": (
+        "Dutang, C., & Charpentier, A. (2026). *CASdatasets: Insurance "
+        "datasets* (R package version 1.2-1; dicionário de freMTPL2freq em "
+        "https://dutangc.github.io/CASdatasets/reference/freMTPL.html). "
+        "https://doi.org/10.57745/P0KHAG"),
     "dwork2015": (
         "Dwork, C., Feldman, V., Hardt, M., Pitassi, T., Reingold, O., & "
         "Roth, A. (2015). [Generalization in adaptive data analysis and "
@@ -33,7 +34,7 @@ REFERENCES = {
     "favero2017": (
         "Fávero, L. P., & Belfiore, P. (2017). *Manual de Análise de "
         "Dados: Estatística e Modelagem Multivariada com Excel, SPSS e "
-        "Stata*. Rio de Janeiro: GEN LTC. ISBN 978-85-352-7087-7."),
+        "Stata*. Rio de Janeiro: Elsevier. ISBN 978-85-352-7087-7."),
     "wickham2017": (
         "Wickham, H., & Grolemund, G. (2017). "
         "[*R for Data Science*](https://r4ds.had.co.nz/model-intro.html) "

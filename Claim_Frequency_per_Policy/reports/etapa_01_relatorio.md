@@ -1,4 +1,4 @@
-# Etapa 1 — Aquisição e auditoria do `freMTPL2freq`
+# Etapa 1. Aquisição e auditoria do `freMTPL2freq`
 
 `production_eligible = false`. Esta etapa estabelece a procedência e os limites da base antes de qualquer escolha de modelagem. Nenhuma correção, exclusão, deduplicação, imputação ou partição foi aplicada. O arquivo bruto foi preservado byte a byte.
 
@@ -51,21 +51,13 @@ Por isso, os 678.013 registros do artefato OpenML são adotados como população
 
 12 colunas, 678.013 linhas, 0 linhas rejeitadas, 0 faltantes, 0 não numéricos, 0 valores fora do domínio nominal (`schema_summary.csv`, `categorical_levels.csv`, `numeric_quantiles.csv`).
 
-Divergências e achados:
-
-- **OpenML lista em duplicata os níveis nominais** de `Area`, `VehBrand` e `Region`. Os conjuntos únicos coincidem com o ARFF. `VehGas` é `string` no ARFF e no OpenML, lida como categórica (2 níveis).
-- **`VehBrand` tem 11 níveis** (B1–B6, B10–B14). O dicionário CASdatasets diz "unknown categories".
-- **`BonusMalus`** observado 50–230 (dicionário: 50–350). 384.156 linhas (56,7%) valem 50, o piso.
-- **Domínios extremos** (descritivos, não corrigidos): `VehAge` até 100 (25 linhas com 100; 1.116 acima de 30); `DrivAge` 18–100 (3 linhas com 100); `Density` até 27.000.
-- Não há colunas de data nem identificador de unidade superior (cliente, condutor ou contrato).
+Divergências e achados registrados na auditoria mostram que o OpenML lista em duplicata os níveis nominais de `Area`, `VehBrand` e `Region`, embora os conjuntos únicos coincidam com o ARFF, e `VehGas` vem como `string` no ARFF e no OpenML e é lida como categórica (2 níveis). `VehBrand` apresenta 11 níveis (B1–B6, B10–B14), descritos no dicionário CASdatasets como "unknown categories", enquanto `BonusMalus` varia de 50 a 230 (contra 50–350 no dicionário), com 384.156 linhas (56,7%) no piso 50. Os domínios extremos descritivos (não corrigidos) atingem `VehAge` até 100 (25 linhas em 100 e 1.116 acima de 30), `DrivAge` de 18 a 100 (3 linhas em 100) e `Density` até 27.000, sem colunas de data nem identificador de unidade superior (cliente, condutor ou contrato).
 
 ## 4. Identificador e unidade
 
-- 678.013 IDs presentes e distintos. 0 IDs repetidos, 0 linhas duplicadas, 0 grupos conflitantes (`id_repeats.csv` só tem o cabeçalho).
-- **Um ID está gravado em notação científica** (`1e+05`, linha 49.345 do arquivo). A leitura como texto → `float64` → `int64` recupera exatamente 100.000, sem perda e sem colisão. É um artefato de serialização, registrado em `read_noncanonical_id_tokens`. O identificador é lido como `int64`.
-- **Grupos de atributos observados coincidentes.** Entre os 9 campos de covariáveis (todos menos `IDpol`, `ClaimNb`, `Exposure`), há 528.765 conjuntos distintos de valores. 108.663 conjuntos aparecem em mais de uma linha, num total de 257.911 linhas (38,0%). O maior grupo tem 22 linhas. Em 18.703 dessas linhas, a soma de exposição do grupo passa de 1 ano. Isso descreve a coincidência de atributos. A **identidade de apólice, contrato ou condutor é indeterminada**: a fonte não traz identificador de unidade superior nem datas.
-- **Unidade de observação:** cada linha, identificada por `IDpol`, é um registro com sua exposição. A descrição do OpenML fala em "policies", mas o arquivo não permite afirmar que `IDpol` corresponde a uma apólice completa.
-- **Unidade para a partição:** `IDpol` identifica cada registro e é a unidade de rastreabilidade. O desenho da partição fica para a etapa 2, que poderá usar o agrupamento por conjunto de atributos para testar a generalização a perfis distintos.
+Os 678.013 IDs presentes são distintos, com 0 IDs repetidos, 0 linhas duplicadas e 0 grupos conflitantes (`id_repeats.csv` contém apenas o cabeçalho). Um ID está gravado em notação científica (`1e+05`, linha 49.345 do arquivo); a leitura como texto seguida de conversão `float64` para `int64` recupera exatamente 100.000, sem perda nem colisão, artefato de serialização registrado em `read_noncanonical_id_tokens` com identificador tipado como `int64`.
+
+Entre os 9 campos de covariáveis (todos exceto `IDpol`, `ClaimNb` e `Exposure`), observam-se 528.765 conjuntos distintos de valores; 108.663 conjuntos aparecem em mais de uma linha, num total de 257.911 linhas (38,0%). O maior grupo tem 22 linhas, e em 18.703 dessas linhas em grupos coincidentes a soma de exposição do grupo passa de 1 ano. Como a fonte omite identificador de unidade superior e datas, esse padrão descreve apenas coincidência de atributos observados, mantendo indeterminada a identidade de apólice, contrato ou condutor. Cada linha, identificada por `IDpol`, é um registro com sua exposição e é a unidade de rastreabilidade (embora a descrição do OpenML fale em "policies", o arquivo não permite afirmar que `IDpol` corresponde a uma apólice completa), ficando o desenho da partição para a etapa 2, que poderá usar o agrupamento por conjunto de atributos para testar a generalização a perfis distintos.
 
 ## 5. `ClaimNb` (alvo)
 
@@ -114,9 +106,7 @@ Faixas não sobrepostas. Taxa = 100 × sinistros / exposição. O subconjunto de
 
 `reconciliation.csv`: 8 verificações (linhas, sinistros, exposição, subconjunto) entre o bruto e a tabela de faixas, todas `ok`.
 
-- A taxa cai de 249,6 para 7,0 por 100 ap.-ano da faixa mais curta à de ano completo. É descritivo, não causal. A interpretação do offset depende da relação entre a duração observada e a contagem, e a faixa curta deve ficar explícita na avaliação de calibração.
-- Cauda de `ClaimNb`: das 9 linhas com `ClaimNb > 4`, 4 estão em (0,02; 0,08] (36 sinistros em 0,31 ano), 3 em (0,25; 0,5] e 2 em `= 1`.
-- `Exposure > 1`: 1.224 linhas, máximo 2,01. É uma cauda observada. A descrição da fonte diz que as apólices foram observadas "mostly on one year" (predominantemente por um ano), o que não exclui períodos maiores. Os valores válidos são preservados.
+A taxa cai de 249,6 para 7,0 por 100 ap.-ano da faixa mais curta à de ano completo; trata-se de leitura descritiva, não causal, pois a interpretação do offset depende da relação entre a duração observada e a contagem, e a faixa curta deve ficar explícita na avaliação de calibração. Na cauda de `ClaimNb`, das 9 linhas com `ClaimNb > 4`, 4 estão em (0,02; 0,08] (36 sinistros em 0,31 ano), 3 em (0,25; 0,5] e 2 em `= 1`. Já em `Exposure > 1` há 1.224 linhas (máximo 2,01), tratadas como cauda observada porque a fonte descreve as apólices como observadas "mostly on one year" (predominantemente por um ano), o que não exclui períodos maiores, mantendo preservados os valores válidos.
 
 **Sensibilidade agregada dos limites do scikit-learn** (`clip_sensitivity.csv`). Regra: `ClaimNb' = min(ClaimNb, 4)` e `Exposure' = min(Exposure, 1)`, sem remover linhas. Totais ajustados = brutos menos as excedências. Escopo: as 678.013 linhas.
 
@@ -133,7 +123,7 @@ No agregado, os limites alteram pouco a taxa. Esta etapa, porém, não mediu o e
 
 Detalhe, papel e unidade em `covariate_contract.csv` (PT-BR e EN-US). Fonte: dicionário CASdatasets e metadados OpenML. `ClaimNb` é desfecho e `Exposure` é dado do cenário. Para `Area`, `VehPower`, `VehAge`, `DrivAge`, `VehBrand`, `VehGas`, `Density` e `Region`, a fonte descreve o atributo e **omite a data de referência**. Por isso, a disponibilidade na data de estimação da taxa é uma **hipótese**, registrada assim em `covariate_contract.csv` (PT-BR e EN-US).
 
-**`BonusMalus`: disponibilidade indeterminada.** O dicionário diz apenas "between 50 and 350: <100 means bonus, >100 means malus". Nenhuma fonte consultada informa quando o índice foi medido em relação ao período dos sinistros. O esquema não tem datas. Pelo plano de supervisão, o modelo principal deve ficar sem `BonusMalus`, com sensibilidade com e sem a variável. Não explorei a relação com o alvo na base inteira, porque o plano reserva isso ao treino, depois da partição.
+**`BonusMalus`: disponibilidade indeterminada.** O dicionário diz apenas "between 50 and 350: <100 means bonus, >100 means malus". Nenhuma fonte consultada informa quando o índice foi medido em relação ao período dos sinistros. O esquema não tem datas. Pelo plano de supervisão, o modelo principal deve ficar sem `BonusMalus`, com sensibilidade com e sem a variável. A relação com o alvo não foi explorada na base inteira, porque o plano reserva isso ao treino, depois da partição.
 
 ## 9. Custo local (CPU, Windows 11, 16 threads, 15,7 GiB de RAM)
 
@@ -150,16 +140,16 @@ A base inteira foi processada com folga nos 16 GB disponíveis. Em duas execuç�
 
 ## 10. Decisões encaminhadas pelo parecer do Codex
 
-1. **População:** os 678.013 registros do OpenML v1. A diferença de 22 frente ao CASdatasets fica como limitação de origem indeterminada.
-2. **Unidade:** `IDpol` identifica cada registro. O desenho da partição será fechado após a aprovação.
-3. **Caudas:** as observações válidas ficam preservadas na especificação principal (exposições curtas e acima de 1 ano, contagens altas, idades extremas). A faixa curta fica explícita na calibração. Qualquer sensibilidade será predefinida após a partição.
-4. **`BonusMalus`:** fora da especificação principal, com análise de sensibilidade com e sem a variável. O instante de medição segue indeterminado.
+| Tema | Encaminhamento |
+| --- | --- |
+| População | Adotar os 678.013 registros do OpenML v1, mantendo a diferença de 22 frente ao CASdatasets como limitação de origem indeterminada. |
+| Unidade | `IDpol` identifica cada registro, e o desenho da partição será fechado após a aprovação. |
+| Caudas | Preservar observações válidas na especificação principal (exposições curtas e acima de 1 ano, contagens altas e idades extremas), mantendo a faixa curta explícita na calibração e com qualquer sensibilidade predefinida após a partição. |
+| `BonusMalus` | Manter fora da especificação principal, com análise de sensibilidade com e sem a variável, dado que o instante de medição segue indeterminado. |
 
 ## 11. Limitações
 
-- Notebooks PT-BR e EN-US e a validação de paridade dos notebooks não fazem parte desta entrega. O CI (`.github/workflows/ci.yml`) cobre Ruff e pytest.
-- O CI não foi executado (o projeto não é um repositório git).
-- A aquisição foi feita com o Python 3.15.1 da venv provisória. O comando de aquisição não foi reexecutado no ambiente conda, porque não sobrescreve o bruto existente.
+Notebooks PT-BR e EN-US e a validação de paridade dos notebooks não fazem parte desta entrega; o CI (`.github/workflows/ci.yml`) cobre Ruff e pytest, e não foi executado (o projeto não era repositório git nesta etapa). A aquisição foi feita com o Python 3.15.1 da venv provisória, e o comando de aquisição não foi reexecutado no ambiente conda porque não sobrescreve o bruto existente.
 
 ## 12. Correções após o parecer do Codex
 
