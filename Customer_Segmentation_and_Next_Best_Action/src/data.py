@@ -52,7 +52,7 @@ def _log_step(steps: list[dict], name: str, before: int, after: int) -> None:
     })
 
 
-def _mode_or_unknown(series: pd.Series) -> str:
+def mode_or_unknown(series: pd.Series) -> str:
     """Return the modal value of *series*, or ``'Unknown'`` when empty."""
     mode = series.dropna().mode()
     return str(mode.iloc[0]) if not mode.empty else "Unknown"
@@ -232,7 +232,7 @@ def build_rfm(clean_df: pd.DataFrame) -> pd.DataFrame:
             Monetary=("Revenue", "sum"),
             QuantityTotal=("Quantity", "sum"),
             UniqueProducts=("StockCode", "nunique"),
-            CountryMode=("Country", _mode_or_unknown),
+            CountryMode=("Country", mode_or_unknown),
         )
         .reset_index()
     )
